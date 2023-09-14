@@ -162,7 +162,7 @@ cython_debug/
 # Andy's development files
 mojito/
 venv/
-andy_config.json
+config.json
 
 
 

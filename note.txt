@@ -1,0 +1,41 @@
+- module search path: 
+
+    import sys
+    sys.path
+    sys.path.append() # adding at the runtime
+
+
+- executing module as a script
+
+    __name__ == "__main__"
+
+
+- packages
+
+    a package is a set of module
+    it provides a namespace
+    from <package> import <module>
+    if only an package is imported, the subordinated modules are not automatically imported
+    previously, '__init__.py' has to be located in an package(probably in Django migrations it still does...), but no longer required
+
+
+- '-m' option in python
+    
+    python -m enables to run a module (no need to put .py)
+    (1) execute python code from the command line via modulename rather than filename 
+    (2) add a directory to sys.path for use in import resolution and 
+    (3) execute python code that contains relative imports from the command line. 
+
+
+- Package in the pypi
+    pip install <package>
+    this package is different from the package of moudles described above (more close to distribution)
+    there are certain rules to upload a package in pypi, then users can use the package through pip
+
+
+- OAuth
+
+    lets a service to use a user's information available in 3rd parties without using the user's credentials for the 3rd parties
+    instead it uses access tokens
+
+
