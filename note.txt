@@ -47,4 +47,8 @@
     tmux attach -t <process_name>
     exit
     tmux kill-session -t <process_name>
+
+- git 
+    git add . <- . means current directory and subordinated directories
+    git add -A <- adds all from base directory
    
