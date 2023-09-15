@@ -3,7 +3,7 @@ from koreainvst_module import *
 from pprint import pprint
 import requests
 
-with open('config.json', 'r') as json_file:
+with open('../config/config.json', 'r') as json_file:
     config = json.load(json_file)
     key = config['key']
     secret = config['secret']

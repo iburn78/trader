@@ -400,7 +400,7 @@ class KoreaInvestment:
         resp_data['api_secret'] = self.api_secret
 
         # dump access token
-        with open("token.dat", "wb") as f:
+        with open("../config/token.dat", "wb") as f:
             pickle.dump(resp_data, f)
 
     def check_access_token(self):
@@ -410,7 +410,7 @@ class KoreaInvestment:
             Bool: True: token is valid, False: token is not valid
         """
         try:
-            f = open("token.dat", "rb")
+            f = open("../config/token.dat", "rb")
             data = pickle.load(f)
             f.close()
 
@@ -431,7 +431,7 @@ class KoreaInvestment:
     def load_access_token(self):
         """load access token
         """
-        with open("token.dat", "rb") as f:
+        with open("../config/token.dat", "rb") as f:
             data = pickle.load(f)
             self.access_token = f'Bearer {data["access_token"]}'
 
