@@ -160,9 +160,10 @@ cython_debug/
 #.idea/
 
 # Andy's development files
-mojito/
+mojito_code/
 venv/
 config.json
+token.dat
 
 
 

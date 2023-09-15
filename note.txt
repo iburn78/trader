@@ -39,3 +39,4 @@
     instead it uses access tokens
 
 
+- Wrap your multiprocessing code in an if __name__ == '__main__': block in your main script to ensure that it's only executed in the main process. This helps avoid issues with creating child processes during import.
