@@ -1,17 +1,16 @@
 - module search path: 
-
     import sys
     sys.path
     sys.path.append() # adding at the runtime
 
 
 - executing module as a script
-
     __name__ == "__main__"
+    Wrap your multiprocessing code in an if __name__ == '__main__': block in your main script to ensure that it's only executed in the main process. This helps avoid issues with creating child processes during import.
+    i.e., better in process management with the OS
 
 
 - packages
-
     a package is a set of module
     it provides a namespace
     from <package> import <module>
@@ -20,7 +19,6 @@
 
 
 - '-m' option in python
-    
     python -m enables to run a module (no need to put .py)
     (1) execute python code from the command line via modulename rather than filename 
     (2) add a directory to sys.path for use in import resolution and 
@@ -34,9 +32,19 @@
 
 
 - OAuth
-
     lets a service to use a user's information available in 3rd parties without using the user's credentials for the 3rd parties
     instead it uses access tokens
 
 
-- Wrap your multiprocessing code in an if __name__ == '__main__': block in your main script to ensure that it's only executed in the main process. This helps avoid issues with creating child processes during import.
+- TMUX
+    sudo apt-get install tmux; probably already installed in Ubuntu
+    enable virtualenv... then...
+    tmux new -s <process_name>
+    run code
+    ctrl+b, d (detatch)
+
+    tmux ls
+    tmux attach -t <process_name>
+    exit
+    tmux kill-session -t <process_name>
+   
