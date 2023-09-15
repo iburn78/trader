@@ -1,0 +1,40 @@
+model structure: 
+
+    data collector
+        - securities markets 
+        - company names
+        - company information
+            - stock price history
+            - financial performance
+            - non-financial numerical information
+            - qualitative information 
+            - related news
+            - key macro variables
+        - macro information
+            - financials
+            - non-financials
+
+    value analyzer
+        - longterm company values
+        - shorterm company values
+        - potential value distribution (long, short)
+        - price history and current price
+
+    filter 
+        - short list of companies
+
+    rule definder
+        - trading strategies to be defined
+
+    commander (main engine)
+        - execituion of strategies
+
+    trader
+        - perform transactions
+        - track account information
+    
+
+
+
+
+    

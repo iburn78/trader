@@ -15,7 +15,7 @@ with open('../config/config.json', 'r') as json_file:
 # broker = mojito.KoreaInvestment(api_key=key, api_secret=secret, acc_no=acc_no, mock=False)
 broker = KoreaInvestment(api_key=key_mock, api_secret=secret_mock, acc_no=acc_no_mock, mock=True)
 
-# in mock mode, functionality limit is stricter
+# in mock mode, functionkality limit is stricter
 # resp = broker.create_market_buy_order("005930", 5) # 삼성전자, 10주, 시장가
 # resp = broker.fetch_balance_domestic()
 # pprint(resp)
