@@ -162,6 +162,7 @@ cython_debug/
 # Andy's development files
 venv/
 docs_cache/
+reports/
 
 
 
