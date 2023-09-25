@@ -1,0 +1,5021 @@
+
+
+
+
+
+
+
+
+
+
+<!--목록 -->
+<div class="tbTitle">
+ 	<h4>
+		
+			
+			
+			
+			
+	        
+	        
+			전체
+		
+		&nbsp;<span class="txtCB" id="txtCB">1,013</span>건
+		
+			
+				
+					
+					(2022년 04월 15일)
+				
+			
+				
+			
+				
+			
+				
+			
+				
+			
+		
+	</h4>
+	
+	<div class="sort" >
+		
+	    	
+			
+			
+		
+		
+			
+				<a id="time" name="sort" onclick="setOrder(this);" class="downOn" href="#none" data-order="desc" title="시간 내림차순">시간</a>
+				<a id="crp" name="sort"  onclick="setOrder(this);" class="upOff" href="#none" data-order="asc" title="회사명 올림차순">회사명</a>
+				<a id="rpt" name="sort"  onclick="setOrder(this);" class="upOff" href="#none" data-order="asc" title="보고서명 올림차순">보고서명</a>
+			
+			
+			
+			
+		
+	</div>
+</div>
+<div class="tbListInner" >
+	<table class="tbList" summary="시간,공시대상회사,보고서명,제출인,접수일자,비고 순으로 되어있습니다.">
+		<caption>유가증권시장 목록</caption>
+		<colgroup>
+			<col style="width:7%">
+			<col style="width:24%">
+			<col style="width:auto">
+			<col style="width:13%">
+			<col style="width:11%">
+			<col style="width:8%">
+		</colgroup>
+		<thead>
+			<tr>
+				<th scope="row"><label for="inpSample00">시간</label></th>
+				<th scope="row"><label for="inpSample00">공시대상회사</label></th>
+				<th scope="row"><label for="inpSample00">보고서명</label></th>
+				<th scope="row"><label for="inpSample00">제출인</label></th>
+				<th scope="row"><label for="inpSample00">접수일자</label></th>
+				<th scope="row"><label for="inpSample00">비고</label></th>
+			</tr>
+		</thead>
+		
+			
+				<tbody>
+				
+					
+						
+							
+						
+						
+						
+						
+					
+					
+					
+					
+					
+					
+						<tr>
+							<td>
+								
+								
+								
+								11:51
+							</td>
+							<td class="tL">
+							    <span class="innerWrap">
+							    	<span class="tagCom_kospi" title="유가증권시장" style="cursor:default">유</span>
+									<a href="javascript:openCorpInfoNew('00160205', 'winCorpInfo', '/dsae001/selectPopup.ax');" title="한국내화 기업개황 새창" >
+										한국내화
+									</a>
+								</span>
+								
+							</td>
+							<td class="tL">
+								<a href="/dsaf001/main.do?rcpNo=20220415000235"  onclick="openReportViewer('20220415000235'); return false;" id="r_20220415000235"
+									title="사외이사의선임ㆍ해임또는중도퇴임에관한신고 공시뷰어 새창" >사외이사의선임ㆍ해임또는중도퇴임에관한신고
+									
+		  							
+								</a>
+							</td>
+							<td class="tL ellipsis" title="한국내화">한국내화</td>
+							<td>2022.04.15</td>
+							<td></td>
+						</tr>
+					
+					
+					
+					
+					
+					
+					
+					
+				
+					
+						
+						
+						
+						
+							
+						
+					
+					
+					
+					
+					
+					
+						<tr>
+							<td>
+								
+								
+								
+								11:45
+							</td>
+							<td class="tL">
+							    <span class="innerWrap">
+							    	<span class="tagCom_etc"  title="기타법인" style="cursor:default">기</span>
+									<a href="javascript:openCorpInfoNew('01150667', 'winCorpInfo', '/dsae001/selectPopup.ax');" title="에이엔비글로벌 기업개황 새창" >
+										에이엔비글로벌
+									</a>
+								</span>
+								
+							</td>
+							<td class="tL">
+								<a href="/dsaf001/main.do?rcpNo=20220415000232"  onclick="openReportViewer('20220415000232'); return false;" id="r_20220415000232"
+									title="사업보고서 공시뷰어 새창" >사업보고서
+									 (2021.12)
+		  							
+								</a>
+							</td>
+							<td class="tL ellipsis" title="에이엔비글로벌">에이엔비글로벌</td>
+							<td>2022.04.15</td>
+							<td></td>
+						</tr>
+					
+					
+					
+					
+					
+					
+					
+					
+				
+					
+						
+						
+						
+						
+							
+						
+					
+					
+					
+					
+					
+					
+						<tr>
+							<td>
+								
+								
+								
+								11:43
+							</td>
+							<td class="tL">
+							    <span class="innerWrap">
+							    	<span class="tagCom_etc"  title="기타법인" style="cursor:default">기</span>
+									<a href="javascript:openCorpInfoNew('01552652', 'winCorpInfo', '/dsae001/selectPopup.ax');" title="미디어테크 기업개황 새창" >
+										미디어테크
+									</a>
+								</span>
+								
+							</td>
+							<td class="tL">
+								<a href="/dsaf001/main.do?rcpNo=20220415000231"  onclick="openReportViewer('20220415000231'); return false;" id="r_20220415000231"
+									title="감사보고서 공시뷰어 새창" ><span title="본 보고서명으로 이미 제출된 보고서의 기재내용이 변경되어 제출된 것임" class="txtCB">[기재정정]</span>감사보고서
+									 (2021.12)
+		  							
+								</a>
+							</td>
+							<td class="tL ellipsis" title="신한회계법인">신한회계법인</td>
+							<td>2022.04.15</td>
+							<td></td>
+						</tr>
+					
+					
+					
+					
+					
+					
+					
+					
+				
+					
+						
+						
+						
+						
+							
+						
+					
+					
+					
+					
+					
+					
+						<tr>
+							<td>
+								
+								
+								
+								11:42
+							</td>
+							<td class="tL">
+							    <span class="innerWrap">
+							    	<span class="tagCom_etc"  title="기타법인" style="cursor:default">기</span>
+									<a href="javascript:openCorpInfoNew('01087671', 'winCorpInfo', '/dsae001/selectPopup.ax');" title="위너파트너스 기업개황 새창" >
+										위너파트너스
+									</a>
+								</span>
+								
+							</td>
+							<td class="tL">
+								<a href="/dsaf001/main.do?rcpNo=20220415000230"  onclick="openReportViewer('20220415000230'); return false;" id="r_20220415000230"
+									title="감사보고서 공시뷰어 새창" ><span title="본 보고서명으로 이미 제출된 보고서의 기재내용이 변경되어 제출된 것임" class="txtCB">[기재정정]</span>감사보고서
+									 (2021.12)
+		  							
+								</a>
+							</td>
+							<td class="tL ellipsis" title="세영회계법인">세영회계법인</td>
+							<td>2022.04.15</td>
+							<td></td>
+						</tr>
+					
+					
+					
+					
+					
+					
+					
+					
+				
+					
+						
+						
+						
+						
+							
+						
+					
+					
+					
+					
+					
+					
+						<tr>
+							<td>
+								
+								
+								
+								11:41
+							</td>
+							<td class="tL">
+							    <span class="innerWrap">
+							    	<span class="tagCom_etc"  title="기타법인" style="cursor:default">기</span>
+									<a href="javascript:openCorpInfoNew('01570311', 'winCorpInfo', '/dsae001/selectPopup.ax');" title="이지엠 기업개황 새창" >
+										이지엠
+									</a>
+								</span>
+								
+							</td>
+							<td class="tL">
+								<a href="/dsaf001/main.do?rcpNo=20220415000229"  onclick="openReportViewer('20220415000229'); return false;" id="r_20220415000229"
+									title="감사보고서 공시뷰어 새창" >감사보고서
+									 (2021.12)
+		  							
+								</a>
+							</td>
+							<td class="tL ellipsis" title="정세공인회계사감사반(제496호)">정세공인회계사감사반(제496호)</td>
+							<td>2022.04.15</td>
+							<td></td>
+						</tr>
+					
+					
+					
+					
+					
+					
+					
+					
+				
+					
+						
+						
+						
+						
+							
+						
+					
+					
+					
+					
+					
+					
+						<tr>
+							<td>
+								
+								
+								
+								11:37
+							</td>
+							<td class="tL">
+							    <span class="innerWrap">
+							    	<span class="tagCom_etc"  title="기타법인" style="cursor:default">기</span>
+									<a href="javascript:openCorpInfoNew('01291140', 'winCorpInfo', '/dsae001/selectPopup.ax');" title="아주리얼티 기업개황 새창" >
+										아주리얼티
+									</a>
+								</span>
+								
+							</td>
+							<td class="tL">
+								<a href="/dsaf001/main.do?rcpNo=20220415000224"  onclick="openReportViewer('20220415000224'); return false;" id="r_20220415000224"
+									title="감사보고서 공시뷰어 새창" >감사보고서
+									 (2021.12)
+		  							
+								</a>
+							</td>
+							<td class="tL ellipsis" title="신한회계법인">신한회계법인</td>
+							<td>2022.04.15</td>
+							<td></td>
+						</tr>
+					
+					
+					
+					
+					
+					
+					
+					
+				
+					
+						
+						
+						
+						
+							
+						
+					
+					
+					
+					
+					
+					
+						<tr>
+							<td>
+								
+								
+								
+								11:36
+							</td>
+							<td class="tL">
+							    <span class="innerWrap">
+							    	<span class="tagCom_etc"  title="기타법인" style="cursor:default">기</span>
+									<a href="javascript:openCorpInfoNew('00138321', 'winCorpInfo', '/dsae001/selectPopup.ax');" title="신한투자증권 기업개황 새창" >
+										신한투자증권
+									</a>
+								</span>
+								
+							</td>
+							<td class="tL">
+								<a href="/dsaf001/main.do?rcpNo=20220415000221"  onclick="openReportViewer('20220415000221'); return false;" id="r_20220415000221"
+									title="일괄신고추가서류(기타파생결합사채) 공시뷰어 새창" >일괄신고추가서류(기타파생결합사채)
+									
+		  							
+								</a>
+							</td>
+							<td class="tL ellipsis" title="신한투자증권">신한투자증권</td>
+							<td>2022.04.15</td>
+							<td></td>
+						</tr>
+					
+					
+					
+					
+					
+					
+					
+					
+				
+					
+						
+						
+							
+						
+						
+						
+					
+					
+					
+					
+					
+					
+						<tr>
+							<td>
+								
+								
+								
+								11:36
+							</td>
+							<td class="tL">
+							    <span class="innerWrap">
+							    	<span class="tagCom_kosdaq" title="코스닥시장" style="cursor:default">코</span>
+									<a href="javascript:openCorpInfoNew('00544577', 'winCorpInfo', '/dsae001/selectPopup.ax');" title="에이피티씨 기업개황 새창" >
+										에이피티씨
+									</a>
+								</span>
+								
+							</td>
+							<td class="tL">
+								<a href="/dsaf001/main.do?rcpNo=20220415900414"  onclick="openReportViewer('20220415900414'); return false;" id="r_20220415900414"
+									title="대표이사변경 공시뷰어 새창" >대표이사변경
+									
+		  							
+								</a>
+							</td>
+							<td class="tL ellipsis" title="에이피티씨">에이피티씨</td>
+							<td>2022.04.15</td>
+							<td><span class="tagCom_kosdaq_other" title="본 공시사항은 한국거래소 코스닥시장본부 소관임" style="cursor:default">코</span></td>
+						</tr>
+					
+					
+					
+					
+					
+					
+					
+					
+				
+					
+						
+						
+						
+						
+							
+						
+					
+					
+					
+					
+					
+					
+						<tr>
+							<td>
+								
+								
+								
+								11:36
+							</td>
+							<td class="tL">
+							    <span class="innerWrap">
+							    	<span class="tagCom_etc"  title="기타법인" style="cursor:default">기</span>
+									<a href="javascript:openCorpInfoNew('00973964', 'winCorpInfo', '/dsae001/selectPopup.ax');" title="프레시원동서울 기업개황 새창" >
+										프레시원동서울
+									</a>
+								</span>
+								
+							</td>
+							<td class="tL">
+								<a href="/dsaf001/main.do?rcpNo=20220415000220"  onclick="openReportViewer('20220415000220'); return false;" id="r_20220415000220"
+									title="임원의변동 공시뷰어 새창" >임원의변동
+									
+		  							
+								</a>
+							</td>
+							<td class="tL ellipsis" title="프레시원동서울">프레시원동서울</td>
+							<td>2022.04.15</td>
+							<td><span class="tagCom_gong_other" title="본 공시사항은 공정거래위원회 소관임" style="cursor:default">공</span></td>
+						</tr>
+					
+					
+					
+					
+					
+					
+					
+					
+				
+					
+						
+						
+						
+						
+							
+						
+					
+					
+					
+					
+					
+					
+						<tr>
+							<td>
+								
+								
+								
+								11:35
+							</td>
+							<td class="tL">
+							    <span class="innerWrap">
+							    	<span class="tagCom_etc"  title="기타법인" style="cursor:default">기</span>
+									<a href="javascript:openCorpInfoNew('00523167', 'winCorpInfo', '/dsae001/selectPopup.ax');" title="충북소주 기업개황 새창" >
+										충북소주
+									</a>
+								</span>
+								
+							</td>
+							<td class="tL">
+								<a href="/dsaf001/main.do?rcpNo=20220415000219"  onclick="openReportViewer('20220415000219'); return false;" id="r_20220415000219"
+									title="임원의변동 공시뷰어 새창" >임원의변동
+									
+		  							
+								</a>
+							</td>
+							<td class="tL ellipsis" title="충북소주">충북소주</td>
+							<td>2022.04.15</td>
+							<td><span class="tagCom_gong_other" title="본 공시사항은 공정거래위원회 소관임" style="cursor:default">공</span></td>
+						</tr>
+					
+					
+					
+					
+					
+					
+					
+					
+				
+					
+						
+							
+						
+						
+						
+						
+					
+					
+					
+					
+					
+					
+						<tr>
+							<td>
+								
+								
+								
+								11:33
+							</td>
+							<td class="tL">
+							    <span class="innerWrap">
+							    	<span class="tagCom_kospi" title="유가증권시장" style="cursor:default">유</span>
+									<a href="javascript:openCorpInfoNew('01032413', 'winCorpInfo', '/dsae001/selectPopup.ax');" title="해성디에스 기업개황 새창" >
+										해성디에스
+									</a>
+								</span>
+								
+							</td>
+							<td class="tL">
+								<a href="/dsaf001/main.do?rcpNo=20220415800410"  onclick="openReportViewer('20220415800410'); return false;" id="r_20220415800410"
+									title="연결재무제표기준영업(잠정)실적(공정공시) 공시뷰어 새창" >연결재무제표기준영업(잠정)실적(공정공시)
+									
+		  							
+								</a>
+							</td>
+							<td class="tL ellipsis" title="해성디에스">해성디에스</td>
+							<td>2022.04.15</td>
+							<td><span class="tagCom_kospi_other" title="본 공시사항은 한국거래소 유가증권시장본부 소관임" style="cursor:default">유</span></td>
+						</tr>
+					
+					
+					
+					
+					
+					
+					
+					
+				
+					
+						
+						
+							
+						
+						
+						
+					
+					
+						
+							
+							
+								
+							
+						
+					
+					
+					
+					
+					
+						<tr>
+							<td>
+								
+								
+								
+								11:30
+							</td>
+							<td class="tL">
+							    <span class="innerWrapTag">
+							    	<span class="tagCom_kosdaq" title="코스닥시장" style="cursor:default">코</span>
+									<a href="javascript:openCorpInfoNew('01237434', 'winCorpInfo', '/dsae001/selectPopup.ax');" title="플리토 기업개황 새창" >
+										플리토
+									</a>
+								</span>
+								<a href="http://www.flitto.com/ir/notices" target="new">
+										<span class="tagCom_ir" title="기업 IR페이지 연결">IR</span>
+									</a>
+							</td>
+							<td class="tL">
+								<a href="/dsaf001/main.do?rcpNo=20220415000212"  onclick="openReportViewer('20220415000212'); return false;" id="r_20220415000212"
+									title="주식매수선택권부여에관한신고 공시뷰어 새창" ><span title="본 보고서명으로 이미 제출된 보고서의 기재내용이 변경되어 제출된 것임" class="txtCB">[기재정정]</span>주식매수선택권부여에관한신고
+									
+		  							
+								</a>
+							</td>
+							<td class="tL ellipsis" title="플리토">플리토</td>
+							<td>2022.04.15</td>
+							<td></td>
+						</tr>
+					
+					
+					
+					
+					
+					
+					
+					
+				
+					
+						
+						
+							
+						
+						
+						
+					
+					
+					
+					
+					
+					
+						<tr>
+							<td>
+								
+								
+								
+								11:24
+							</td>
+							<td class="tL">
+							    <span class="innerWrap">
+							    	<span class="tagCom_kosdaq" title="코스닥시장" style="cursor:default">코</span>
+									<a href="javascript:openCorpInfoNew('00113261', 'winCorpInfo', '/dsae001/selectPopup.ax');" title="대한광통신 기업개황 새창" >
+										대한광통신
+									</a>
+								</span>
+								
+							</td>
+							<td class="tL">
+								<a href="/dsaf001/main.do?rcpNo=20220415900407"  onclick="openReportViewer('20220415900407'); return false;" id="r_20220415900407"
+									title="단일판매ㆍ공급계약체결 공시뷰어 새창" ><span title="본 보고서명으로 이미 제출된 보고서의 기재내용이 변경되어 제출된 것임" class="txtCB">[기재정정]</span>단일판매ㆍ공급계약체결
+									
+		  							
+								</a>
+							</td>
+							<td class="tL ellipsis" title="대한광통신">대한광통신</td>
+							<td>2022.04.15</td>
+							<td><span class="tagCom_kosdaq_other" title="본 공시사항은 한국거래소 코스닥시장본부 소관임" style="cursor:default">코</span><span class="tagCom_jung_other" title="본 보고서 제출 후 정정신고가 있으니 관련 보고서를 참조하시기 바람" style="cursor:default">정</span></td>
+						</tr>
+					
+					
+					
+					
+					
+					
+					
+					
+				
+					
+						
+						
+							
+						
+						
+						
+					
+					
+					
+					
+					
+					
+						<tr>
+							<td>
+								
+								
+								
+								11:24
+							</td>
+							<td class="tL">
+							    <span class="innerWrap">
+							    	<span class="tagCom_kosdaq" title="코스닥시장" style="cursor:default">코</span>
+									<a href="javascript:openCorpInfoNew('00875237', 'winCorpInfo', '/dsae001/selectPopup.ax');" title="씨앤투스 기업개황 새창" >
+										씨앤투스
+									</a>
+								</span>
+								
+							</td>
+							<td class="tL">
+								<a href="/dsaf001/main.do?rcpNo=20220415900391"  onclick="openReportViewer('20220415900391'); return false;" id="r_20220415900391"
+									title="기업설명회(IR)개최 공시뷰어 새창" >기업설명회(IR)개최
+									
+		  							
+								</a>
+							</td>
+							<td class="tL ellipsis" title="씨앤투스">씨앤투스</td>
+							<td>2022.04.15</td>
+							<td><span class="tagCom_kosdaq_other" title="본 공시사항은 한국거래소 코스닥시장본부 소관임" style="cursor:default">코</span></td>
+						</tr>
+					
+					
+					
+					
+					
+					
+					
+					
+				
+					
+						
+							
+						
+						
+						
+						
+					
+					
+					
+					
+					
+					
+						<tr>
+							<td>
+								
+								
+								
+								11:24
+							</td>
+							<td class="tL">
+							    <span class="innerWrap">
+							    	<span class="tagCom_kospi" title="유가증권시장" style="cursor:default">유</span>
+									<a href="javascript:openCorpInfoNew('00131832', 'winCorpInfo', '/dsae001/selectPopup.ax');" title="SK디스커버리 기업개황 새창" >
+										SK디스커버리
+									</a>
+								</span>
+								
+							</td>
+							<td class="tL">
+								<a href="/dsaf001/main.do?rcpNo=20220415800408"  onclick="openReportViewer('20220415800408'); return false;" id="r_20220415800408"
+									title="유상증자결정(종속회사의주요경영사항) 공시뷰어 새창" >유상증자결정(종속회사의주요경영사항)
+									
+		  							
+								</a>
+							</td>
+							<td class="tL ellipsis" title="SK디스커버리">SK디스커버리</td>
+							<td>2022.04.15</td>
+							<td><span class="tagCom_kospi_other" title="본 공시사항은 한국거래소 유가증권시장본부 소관임" style="cursor:default">유</span></td>
+						</tr>
+					
+					
+					
+					
+					
+					
+					
+					
+				
+					
+						
+						
+						
+						
+							
+						
+					
+					
+					
+					
+					
+					
+						<tr>
+							<td>
+								
+								
+								
+								11:23
+							</td>
+							<td class="tL">
+							    <span class="innerWrap">
+							    	<span class="tagCom_etc"  title="기타법인" style="cursor:default">기</span>
+									<a href="javascript:openCorpInfoNew('00324548', 'winCorpInfo', '/dsae001/selectPopup.ax');" title="한국투자신탁운용 기업개황 새창" >
+										한국투자신탁운용
+									</a>
+								</span>
+								
+							</td>
+							<td class="tL">
+								<a href="/dsaf001/main.do?rcpNo=20220211000399"  onclick="openReportViewer('20220211000399'); return false;" id="r_20220211000399"
+									title="증권발행실적보고서(집합투자증권)(한국투자퇴직연금LCF40-50증권자투자신탁1호(채권혼합)) 공시뷰어 새창" >증권발행실적보고서(집합투자증권)
+									
+		  							(한국투자퇴직연금LCF40-50증권자투자신탁1호(채권혼합))
+								</a>
+							</td>
+							<td class="tL ellipsis" title="한국투자신탁운용">한국투자신탁운용</td>
+							<td>2022.02.11</td>
+							<td></td>
+						</tr>
+					
+					
+					
+					
+					
+					
+					
+					
+				
+					
+						
+						
+						
+						
+							
+						
+					
+					
+					
+					
+					
+					
+						<tr>
+							<td>
+								
+								
+								
+								11:23
+							</td>
+							<td class="tL">
+							    <span class="innerWrap">
+							    	<span class="tagCom_etc"  title="기타법인" style="cursor:default">기</span>
+									<a href="javascript:openCorpInfoNew('01613564', 'winCorpInfo', '/dsae001/selectPopup.ax');" title="밀리언볼트 기업개황 새창" >
+										밀리언볼트
+									</a>
+								</span>
+								
+							</td>
+							<td class="tL">
+								<a href="/dsaf001/main.do?rcpNo=20220415000210"  onclick="openReportViewer('20220415000210'); return false;" id="r_20220415000210"
+									title="주요주주의주식보유변동 공시뷰어 새창" >주요주주의주식보유변동
+									
+		  							
+								</a>
+							</td>
+							<td class="tL ellipsis" title="밀리언볼트">밀리언볼트</td>
+							<td>2022.04.15</td>
+							<td><span class="tagCom_gong_other" title="본 공시사항은 공정거래위원회 소관임" style="cursor:default">공</span></td>
+						</tr>
+					
+					
+					
+					
+					
+					
+					
+					
+				
+					
+						
+						
+						
+						
+							
+						
+					
+					
+					
+					
+					
+					
+						<tr>
+							<td>
+								
+								
+								
+								11:23
+							</td>
+							<td class="tL">
+							    <span class="innerWrap">
+							    	<span class="tagCom_etc"  title="기타법인" style="cursor:default">기</span>
+									<a href="javascript:openCorpInfoNew('00324548', 'winCorpInfo', '/dsae001/selectPopup.ax');" title="한국투자신탁운용 기업개황 새창" >
+										한국투자신탁운용
+									</a>
+								</span>
+								
+							</td>
+							<td class="tL">
+								<a href="/dsaf001/main.do?rcpNo=20220211000414"  onclick="openReportViewer('20220211000414'); return false;" id="r_20220211000414"
+									title="증권발행실적보고서(집합투자증권)(한국투자코스닥두배로증권투자신탁(주식-재간접파생형)) 공시뷰어 새창" >증권발행실적보고서(집합투자증권)
+									
+		  							(한국투자코스닥두배로증권투자신탁(주식-재간접파생형))
+								</a>
+							</td>
+							<td class="tL ellipsis" title="한국투자신탁운용">한국투자신탁운용</td>
+							<td>2022.02.11</td>
+							<td></td>
+						</tr>
+					
+					
+					
+					
+					
+					
+					
+					
+				
+					
+						
+						
+						
+						
+							
+						
+					
+					
+					
+					
+					
+					
+						<tr>
+							<td>
+								
+								
+								
+								11:23
+							</td>
+							<td class="tL">
+							    <span class="innerWrap">
+							    	<span class="tagCom_etc"  title="기타법인" style="cursor:default">기</span>
+									<a href="javascript:openCorpInfoNew('00324548', 'winCorpInfo', '/dsae001/selectPopup.ax');" title="한국투자신탁운용 기업개황 새창" >
+										한국투자신탁운용
+									</a>
+								</span>
+								
+							</td>
+							<td class="tL">
+								<a href="/dsaf001/main.do?rcpNo=20220211000548"  onclick="openReportViewer('20220211000548'); return false;" id="r_20220211000548"
+									title="증권발행실적보고서(집합투자증권)(한국투자골드플랜연금증권전환형투자신탁1호(국공채)) 공시뷰어 새창" >증권발행실적보고서(집합투자증권)
+									
+		  							(한국투자골드플랜연금증권전환형투자신탁1호(국공채))
+								</a>
+							</td>
+							<td class="tL ellipsis" title="한국투자신탁운용">한국투자신탁운용</td>
+							<td>2022.02.11</td>
+							<td></td>
+						</tr>
+					
+					
+					
+					
+					
+					
+					
+					
+				
+					
+						
+						
+						
+						
+							
+						
+					
+					
+					
+					
+					
+					
+						<tr>
+							<td>
+								
+								
+								
+								11:23
+							</td>
+							<td class="tL">
+							    <span class="innerWrap">
+							    	<span class="tagCom_etc"  title="기타법인" style="cursor:default">기</span>
+									<a href="javascript:openCorpInfoNew('00324548', 'winCorpInfo', '/dsae001/selectPopup.ax');" title="한국투자신탁운용 기업개황 새창" >
+										한국투자신탁운용
+									</a>
+								</span>
+								
+							</td>
+							<td class="tL">
+								<a href="/dsaf001/main.do?rcpNo=20220211000405"  onclick="openReportViewer('20220211000405'); return false;" id="r_20220211000405"
+									title="증권발행실적보고서(집합투자증권)(한국투자차이나베트남증권투자신탁1호(주식)) 공시뷰어 새창" >증권발행실적보고서(집합투자증권)
+									
+		  							(한국투자차이나베트남증권투자신탁1호(주식))
+								</a>
+							</td>
+							<td class="tL ellipsis" title="한국투자신탁운용">한국투자신탁운용</td>
+							<td>2022.02.11</td>
+							<td></td>
+						</tr>
+					
+					
+					
+					
+					
+					
+					
+					
+				
+					
+						
+						
+						
+						
+							
+						
+					
+					
+					
+					
+					
+					
+						<tr>
+							<td>
+								
+								
+								
+								11:23
+							</td>
+							<td class="tL">
+							    <span class="innerWrap">
+							    	<span class="tagCom_etc"  title="기타법인" style="cursor:default">기</span>
+									<a href="javascript:openCorpInfoNew('00324548', 'winCorpInfo', '/dsae001/selectPopup.ax');" title="한국투자신탁운용 기업개황 새창" >
+										한국투자신탁운용
+									</a>
+								</span>
+								
+							</td>
+							<td class="tL">
+								<a href="/dsaf001/main.do?rcpNo=20220211000482"  onclick="openReportViewer('20220211000482'); return false;" id="r_20220211000482"
+									title="증권발행실적보고서(집합투자증권)(한국투자크루즈F2.8인덱스증권자투자신탁(주식)) 공시뷰어 새창" >증권발행실적보고서(집합투자증권)
+									
+		  							(한국투자크루즈F2.8인덱스증권자투자신탁(주식))
+								</a>
+							</td>
+							<td class="tL ellipsis" title="한국투자신탁운용">한국투자신탁운용</td>
+							<td>2022.02.11</td>
+							<td></td>
+						</tr>
+					
+					
+					
+					
+					
+					
+					
+					
+				
+					
+						
+						
+						
+						
+							
+						
+					
+					
+					
+					
+					
+					
+						<tr>
+							<td>
+								
+								
+								
+								11:22
+							</td>
+							<td class="tL">
+							    <span class="innerWrap">
+							    	<span class="tagCom_etc"  title="기타법인" style="cursor:default">기</span>
+									<a href="javascript:openCorpInfoNew('00324548', 'winCorpInfo', '/dsae001/selectPopup.ax');" title="한국투자신탁운용 기업개황 새창" >
+										한국투자신탁운용
+									</a>
+								</span>
+								
+							</td>
+							<td class="tL">
+								<a href="/dsaf001/main.do?rcpNo=20220303000049"  onclick="openReportViewer('20220303000049'); return false;" id="r_20220303000049"
+									title="투자설명서(집합투자증권)(한국투자ACE밸류대형증권상장지수투자신탁(주식)) 공시뷰어 새창" ><span title="본 보고서명으로 이미 제출된 보고서의 기재내용이 변경되어 제출된 것임" class="txtCB">[기재정정]</span>투자설명서(집합투자증권)
+									
+		  							(한국투자ACE밸류대형증권상장지수투자신탁(주식))
+								</a>
+							</td>
+							<td class="tL ellipsis" title="한국투자신탁운용">한국투자신탁운용</td>
+							<td>2022.03.03</td>
+							<td><span class="tagCom_jung_other" title="본 보고서 제출 후 정정신고가 있으니 관련 보고서를 참조하시기 바람" style="cursor:default">정</span></td>
+						</tr>
+					
+					
+					
+					
+					
+					
+					
+					
+				
+					
+						
+						
+						
+						
+							
+						
+					
+					
+					
+					
+					
+					
+						<tr>
+							<td>
+								
+								
+								
+								11:22
+							</td>
+							<td class="tL">
+							    <span class="innerWrap">
+							    	<span class="tagCom_etc"  title="기타법인" style="cursor:default">기</span>
+									<a href="javascript:openCorpInfoNew('00324548', 'winCorpInfo', '/dsae001/selectPopup.ax');" title="한국투자신탁운용 기업개황 새창" >
+										한국투자신탁운용
+									</a>
+								</span>
+								
+							</td>
+							<td class="tL">
+								<a href="/dsaf001/main.do?rcpNo=20220303000051"  onclick="openReportViewer('20220303000051'); return false;" id="r_20220303000051"
+									title="투자설명서(집합투자증권)(한국투자ACE인버스증권상장지수투자신탁(주식-파생형)) 공시뷰어 새창" ><span title="본 보고서명으로 이미 제출된 보고서의 기재내용이 변경되어 제출된 것임" class="txtCB">[기재정정]</span>투자설명서(집합투자증권)
+									
+		  							(한국투자ACE인버스증권상장지수투자신탁(주식-파생형))
+								</a>
+							</td>
+							<td class="tL ellipsis" title="한국투자신탁운용">한국투자신탁운용</td>
+							<td>2022.03.03</td>
+							<td><span class="tagCom_jung_other" title="본 보고서 제출 후 정정신고가 있으니 관련 보고서를 참조하시기 바람" style="cursor:default">정</span></td>
+						</tr>
+					
+					
+					
+					
+					
+					
+					
+					
+				
+					
+						
+						
+						
+						
+							
+						
+					
+					
+					
+					
+					
+					
+						<tr>
+							<td>
+								
+								
+								
+								11:22
+							</td>
+							<td class="tL">
+							    <span class="innerWrap">
+							    	<span class="tagCom_etc"  title="기타법인" style="cursor:default">기</span>
+									<a href="javascript:openCorpInfoNew('00324548', 'winCorpInfo', '/dsae001/selectPopup.ax');" title="한국투자신탁운용 기업개황 새창" >
+										한국투자신탁운용
+									</a>
+								</span>
+								
+							</td>
+							<td class="tL">
+								<a href="/dsaf001/main.do?rcpNo=20220303000109"  onclick="openReportViewer('20220303000109'); return false;" id="r_20220303000109"
+									title="투자설명서(집합투자증권)(한국투자신종개인연금증권전환형투자신탁1호(채권)) 공시뷰어 새창" ><span title="본 보고서명으로 이미 제출된 보고서의 기재내용이 변경되어 제출된 것임" class="txtCB">[기재정정]</span>투자설명서(집합투자증권)
+									
+		  							(한국투자신종개인연금증권전환형투자신탁1호(채권))
+								</a>
+							</td>
+							<td class="tL ellipsis" title="한국투자신탁운용">한국투자신탁운용</td>
+							<td>2022.03.03</td>
+							<td><span class="tagCom_jung_other" title="본 보고서 제출 후 정정신고가 있으니 관련 보고서를 참조하시기 바람" style="cursor:default">정</span></td>
+						</tr>
+					
+					
+					
+					
+					
+					
+					
+					
+				
+					
+						
+						
+						
+						
+							
+						
+					
+					
+					
+					
+					
+					
+						<tr>
+							<td>
+								
+								
+								
+								11:22
+							</td>
+							<td class="tL">
+							    <span class="innerWrap">
+							    	<span class="tagCom_etc"  title="기타법인" style="cursor:default">기</span>
+									<a href="javascript:openCorpInfoNew('00324548', 'winCorpInfo', '/dsae001/selectPopup.ax');" title="한국투자신탁운용 기업개황 새창" >
+										한국투자신탁운용
+									</a>
+								</span>
+								
+							</td>
+							<td class="tL">
+								<a href="/dsaf001/main.do?rcpNo=20220303000120"  onclick="openReportViewer('20220303000120'); return false;" id="r_20220303000120"
+									title="투자설명서(집합투자증권)(한국투자ACE일본인버스증권상장지수투자신탁(주식-파생형)(합성H)) 공시뷰어 새창" ><span title="본 보고서명으로 이미 제출된 보고서의 기재내용이 변경되어 제출된 것임" class="txtCB">[기재정정]</span>투자설명서(집합투자증권)
+									
+		  							(한국투자ACE일본인버스증권상장지수투자신탁(주식-파생형)(합성H))
+								</a>
+							</td>
+							<td class="tL ellipsis" title="한국투자신탁운용">한국투자신탁운용</td>
+							<td>2022.03.03</td>
+							<td><span class="tagCom_jung_other" title="본 보고서 제출 후 정정신고가 있으니 관련 보고서를 참조하시기 바람" style="cursor:default">정</span></td>
+						</tr>
+					
+					
+					
+					
+					
+					
+					
+					
+				
+					
+						
+						
+						
+						
+							
+						
+					
+					
+					
+					
+					
+					
+						<tr>
+							<td>
+								
+								
+								
+								11:22
+							</td>
+							<td class="tL">
+							    <span class="innerWrap">
+							    	<span class="tagCom_etc"  title="기타법인" style="cursor:default">기</span>
+									<a href="javascript:openCorpInfoNew('00324548', 'winCorpInfo', '/dsae001/selectPopup.ax');" title="한국투자신탁운용 기업개황 새창" >
+										한국투자신탁운용
+									</a>
+								</span>
+								
+							</td>
+							<td class="tL">
+								<a href="/dsaf001/main.do?rcpNo=20220303000132"  onclick="openReportViewer('20220303000132'); return false;" id="r_20220303000132"
+									title="투자설명서(집합투자증권)(한국투자ACE국채선물3년인버스증권상장지수투자신탁(채권-파생형)) 공시뷰어 새창" ><span title="본 보고서명으로 이미 제출된 보고서의 기재내용이 변경되어 제출된 것임" class="txtCB">[기재정정]</span>투자설명서(집합투자증권)
+									
+		  							(한국투자ACE국채선물3년인버스증권상장지수투자신탁(채권-파생형))
+								</a>
+							</td>
+							<td class="tL ellipsis" title="한국투자신탁운용">한국투자신탁운용</td>
+							<td>2022.03.03</td>
+							<td><span class="tagCom_jung_other" title="본 보고서 제출 후 정정신고가 있으니 관련 보고서를 참조하시기 바람" style="cursor:default">정</span></td>
+						</tr>
+					
+					
+					
+					
+					
+					
+					
+					
+				
+					
+						
+						
+						
+						
+							
+						
+					
+					
+					
+					
+					
+					
+						<tr>
+							<td>
+								
+								
+								
+								11:22
+							</td>
+							<td class="tL">
+							    <span class="innerWrap">
+							    	<span class="tagCom_etc"  title="기타법인" style="cursor:default">기</span>
+									<a href="javascript:openCorpInfoNew('00324548', 'winCorpInfo', '/dsae001/selectPopup.ax');" title="한국투자신탁운용 기업개황 새창" >
+										한국투자신탁운용
+									</a>
+								</span>
+								
+							</td>
+							<td class="tL">
+								<a href="/dsaf001/main.do?rcpNo=20220303000063"  onclick="openReportViewer('20220303000063'); return false;" id="r_20220303000063"
+									title="투자설명서(집합투자증권)(한국투자ACE단기자금증권상장지수투자신탁(채권)) 공시뷰어 새창" ><span title="본 보고서명으로 이미 제출된 보고서의 기재내용이 변경되어 제출된 것임" class="txtCB">[기재정정]</span>투자설명서(집합투자증권)
+									
+		  							(한국투자ACE단기자금증권상장지수투자신탁(채권))
+								</a>
+							</td>
+							<td class="tL ellipsis" title="한국투자신탁운용">한국투자신탁운용</td>
+							<td>2022.03.03</td>
+							<td><span class="tagCom_jung_other" title="본 보고서 제출 후 정정신고가 있으니 관련 보고서를 참조하시기 바람" style="cursor:default">정</span></td>
+						</tr>
+					
+					
+					
+					
+					
+					
+					
+					
+				
+					
+						
+						
+						
+						
+							
+						
+					
+					
+					
+					
+					
+					
+						<tr>
+							<td>
+								
+								
+								
+								11:22
+							</td>
+							<td class="tL">
+							    <span class="innerWrap">
+							    	<span class="tagCom_etc"  title="기타법인" style="cursor:default">기</span>
+									<a href="javascript:openCorpInfoNew('00324548', 'winCorpInfo', '/dsae001/selectPopup.ax');" title="한국투자신탁운용 기업개황 새창" >
+										한국투자신탁운용
+									</a>
+								</span>
+								
+							</td>
+							<td class="tL">
+								<a href="/dsaf001/main.do?rcpNo=20220303000023"  onclick="openReportViewer('20220303000023'); return false;" id="r_20220303000023"
+									title="투자설명서(집합투자증권)(한국투자ACE미국배당다우존스증권상장지수투자신탁(주식)) 공시뷰어 새창" ><span title="본 보고서명으로 이미 제출된 보고서의 기재내용이 변경되어 제출된 것임" class="txtCB">[기재정정]</span>투자설명서(집합투자증권)
+									
+		  							(한국투자ACE미국배당다우존스증권상장지수투자신탁(주식))
+								</a>
+							</td>
+							<td class="tL ellipsis" title="한국투자신탁운용">한국투자신탁운용</td>
+							<td>2022.03.03</td>
+							<td><span class="tagCom_jung_other" title="본 보고서 제출 후 정정신고가 있으니 관련 보고서를 참조하시기 바람" style="cursor:default">정</span></td>
+						</tr>
+					
+					
+					
+					
+					
+					
+					
+					
+				
+					
+						
+						
+							
+						
+						
+						
+					
+					
+						
+							
+							
+								
+							
+						
+					
+					
+					
+					
+					
+						<tr>
+							<td>
+								
+								
+								
+								11:22
+							</td>
+							<td class="tL">
+							    <span class="innerWrapTag">
+							    	<span class="tagCom_kosdaq" title="코스닥시장" style="cursor:default">코</span>
+									<a href="javascript:openCorpInfoNew('00326731', 'winCorpInfo', '/dsae001/selectPopup.ax');" title="바이오니아 기업개황 새창" >
+										바이오니아
+									</a>
+								</span>
+								<a href="http://ir.bioneer.co.kr" target="new">
+										<span class="tagCom_ir" title="기업 IR페이지 연결">IR</span>
+									</a>
+							</td>
+							<td class="tL">
+								<a href="/dsaf001/main.do?rcpNo=20220415900386"  onclick="openReportViewer('20220415900386'); return false;" id="r_20220415900386"
+									title="주주총회소집결의 공시뷰어 새창" >주주총회소집결의
+									
+		  							
+								</a>
+							</td>
+							<td class="tL ellipsis" title="바이오니아">바이오니아</td>
+							<td>2022.04.15</td>
+							<td><span class="tagCom_kosdaq_other" title="본 공시사항은 한국거래소 코스닥시장본부 소관임" style="cursor:default">코</span></td>
+						</tr>
+					
+					
+					
+					
+					
+					
+					
+					
+				
+					
+						
+						
+						
+						
+							
+						
+					
+					
+					
+					
+					
+					
+						<tr>
+							<td>
+								
+								
+								
+								11:22
+							</td>
+							<td class="tL">
+							    <span class="innerWrap">
+							    	<span class="tagCom_etc"  title="기타법인" style="cursor:default">기</span>
+									<a href="javascript:openCorpInfoNew('00324548', 'winCorpInfo', '/dsae001/selectPopup.ax');" title="한국투자신탁운용 기업개황 새창" >
+										한국투자신탁운용
+									</a>
+								</span>
+								
+							</td>
+							<td class="tL">
+								<a href="/dsaf001/main.do?rcpNo=20220211000421"  onclick="openReportViewer('20220211000421'); return false;" id="r_20220211000421"
+									title="증권발행실적보고서(집합투자증권)(한국투자퇴직연금증권자투자신탁1호(채권)) 공시뷰어 새창" >증권발행실적보고서(집합투자증권)
+									
+		  							(한국투자퇴직연금증권자투자신탁1호(채권))
+								</a>
+							</td>
+							<td class="tL ellipsis" title="한국투자신탁운용">한국투자신탁운용</td>
+							<td>2022.02.11</td>
+							<td></td>
+						</tr>
+					
+					
+					
+					
+					
+					
+					
+					
+				
+					
+						
+						
+						
+						
+							
+						
+					
+					
+					
+					
+					
+					
+						<tr>
+							<td>
+								
+								
+								
+								11:22
+							</td>
+							<td class="tL">
+							    <span class="innerWrap">
+							    	<span class="tagCom_etc"  title="기타법인" style="cursor:default">기</span>
+									<a href="javascript:openCorpInfoNew('00324548', 'winCorpInfo', '/dsae001/selectPopup.ax');" title="한국투자신탁운용 기업개황 새창" >
+										한국투자신탁운용
+									</a>
+								</span>
+								
+							</td>
+							<td class="tL">
+								<a href="/dsaf001/main.do?rcpNo=20220303000016"  onclick="openReportViewer('20220303000016'); return false;" id="r_20220303000016"
+									title="투자설명서(집합투자증권)(한국투자ACE미국친환경그린테마INDXX증권상장지수투자신탁(주식)) 공시뷰어 새창" ><span title="본 보고서명으로 이미 제출된 보고서의 기재내용이 변경되어 제출된 것임" class="txtCB">[기재정정]</span>투자설명서(집합투자증권)
+									
+		  							(한국투자ACE미국친환경그린테마INDXX증권상장지수투자신탁(주식))
+								</a>
+							</td>
+							<td class="tL ellipsis" title="한국투자신탁운용">한국투자신탁운용</td>
+							<td>2022.03.03</td>
+							<td><span class="tagCom_jung_other" title="본 보고서 제출 후 정정신고가 있으니 관련 보고서를 참조하시기 바람" style="cursor:default">정</span></td>
+						</tr>
+					
+					
+					
+					
+					
+					
+					
+					
+				
+					
+						
+						
+						
+						
+							
+						
+					
+					
+					
+					
+					
+					
+						<tr>
+							<td>
+								
+								
+								
+								11:22
+							</td>
+							<td class="tL">
+							    <span class="innerWrap">
+							    	<span class="tagCom_etc"  title="기타법인" style="cursor:default">기</span>
+									<a href="javascript:openCorpInfoNew('00324548', 'winCorpInfo', '/dsae001/selectPopup.ax');" title="한국투자신탁운용 기업개황 새창" >
+										한국투자신탁운용
+									</a>
+								</span>
+								
+							</td>
+							<td class="tL">
+								<a href="/dsaf001/main.do?rcpNo=20220211000524"  onclick="openReportViewer('20220211000524'); return false;" id="r_20220211000524"
+									title="증권발행실적보고서(집합투자증권)(한국투자골드플랜연금증권전환형투자신탁1호(주식)) 공시뷰어 새창" >증권발행실적보고서(집합투자증권)
+									
+		  							(한국투자골드플랜연금증권전환형투자신탁1호(주식))
+								</a>
+							</td>
+							<td class="tL ellipsis" title="한국투자신탁운용">한국투자신탁운용</td>
+							<td>2022.02.11</td>
+							<td></td>
+						</tr>
+					
+					
+					
+					
+					
+					
+					
+					
+				
+					
+						
+						
+						
+						
+							
+						
+					
+					
+					
+					
+					
+					
+						<tr>
+							<td>
+								
+								
+								
+								11:22
+							</td>
+							<td class="tL">
+							    <span class="innerWrap">
+							    	<span class="tagCom_etc"  title="기타법인" style="cursor:default">기</span>
+									<a href="javascript:openCorpInfoNew('01613564', 'winCorpInfo', '/dsae001/selectPopup.ax');" title="밀리언볼트 기업개황 새창" >
+										밀리언볼트
+									</a>
+								</span>
+								
+							</td>
+							<td class="tL">
+								<a href="/dsaf001/main.do?rcpNo=20220415000208"  onclick="openReportViewer('20220415000208'); return false;" id="r_20220415000208"
+									title="최대주주등의주식보유변동 공시뷰어 새창" >최대주주등의주식보유변동
+									
+		  							
+								</a>
+							</td>
+							<td class="tL ellipsis" title="밀리언볼트">밀리언볼트</td>
+							<td>2022.04.15</td>
+							<td><span class="tagCom_jung_other" title="본 보고서 제출 후 정정신고가 있으니 관련 보고서를 참조하시기 바람" style="cursor:default">정</span><span class="tagCom_gong_other" title="본 공시사항은 공정거래위원회 소관임" style="cursor:default">공</span></td>
+						</tr>
+					
+					
+					
+					
+					
+					
+					
+					
+				
+					
+						
+						
+						
+						
+							
+						
+					
+					
+					
+					
+					
+					
+						<tr>
+							<td>
+								
+								
+								
+								11:22
+							</td>
+							<td class="tL">
+							    <span class="innerWrap">
+							    	<span class="tagCom_etc"  title="기타법인" style="cursor:default">기</span>
+									<a href="javascript:openCorpInfoNew('00324548', 'winCorpInfo', '/dsae001/selectPopup.ax');" title="한국투자신탁운용 기업개황 새창" >
+										한국투자신탁운용
+									</a>
+								</span>
+								
+							</td>
+							<td class="tL">
+								<a href="/dsaf001/main.do?rcpNo=20220303000006"  onclick="openReportViewer('20220303000006'); return false;" id="r_20220303000006"
+									title="투자설명서(집합투자증권)(한국투자ACE모닝스타싱가포르리츠30증권상장지수투자신탁(채권혼합-파생형)) 공시뷰어 새창" ><span title="본 보고서명으로 이미 제출된 보고서의 기재내용이 변경되어 제출된 것임" class="txtCB">[기재정정]</span>투자설명서(집합투자증권)
+									
+		  							(한국투자ACE모닝스타싱가포르리츠30증권상장지수투자신탁(채권혼합-파생형))
+								</a>
+							</td>
+							<td class="tL ellipsis" title="한국투자신탁운용">한국투자신탁운용</td>
+							<td>2022.03.03</td>
+							<td><span class="tagCom_jung_other" title="본 보고서 제출 후 정정신고가 있으니 관련 보고서를 참조하시기 바람" style="cursor:default">정</span></td>
+						</tr>
+					
+					
+					
+					
+					
+					
+					
+					
+				
+					
+						
+						
+						
+						
+							
+						
+					
+					
+					
+					
+					
+					
+						<tr>
+							<td>
+								
+								
+								
+								11:21
+							</td>
+							<td class="tL">
+							    <span class="innerWrap">
+							    	<span class="tagCom_etc"  title="기타법인" style="cursor:default">기</span>
+									<a href="javascript:openCorpInfoNew('00324548', 'winCorpInfo', '/dsae001/selectPopup.ax');" title="한국투자신탁운용 기업개황 새창" >
+										한국투자신탁운용
+									</a>
+								</span>
+								
+							</td>
+							<td class="tL">
+								<a href="/dsaf001/main.do?rcpNo=20220303000011"  onclick="openReportViewer('20220303000011'); return false;" id="r_20220303000011"
+									title="투자설명서(집합투자증권)(한국투자ACEKIS종합채권(AA-이상)액티브증권상장지수투자신탁(채권)) 공시뷰어 새창" ><span title="본 보고서명으로 이미 제출된 보고서의 기재내용이 변경되어 제출된 것임" class="txtCB">[기재정정]</span>투자설명서(집합투자증권)
+									
+		  							(한국투자ACEKIS종합채권(AA-이상)액티브증권상장지수투자신탁(채권))
+								</a>
+							</td>
+							<td class="tL ellipsis" title="한국투자신탁운용">한국투자신탁운용</td>
+							<td>2022.03.03</td>
+							<td><span class="tagCom_jung_other" title="본 보고서 제출 후 정정신고가 있으니 관련 보고서를 참조하시기 바람" style="cursor:default">정</span></td>
+						</tr>
+					
+					
+					
+					
+					
+					
+					
+					
+				
+					
+						
+						
+						
+						
+							
+						
+					
+					
+					
+					
+					
+					
+						<tr>
+							<td>
+								
+								
+								
+								11:21
+							</td>
+							<td class="tL">
+							    <span class="innerWrap">
+							    	<span class="tagCom_etc"  title="기타법인" style="cursor:default">기</span>
+									<a href="javascript:openCorpInfoNew('00324548', 'winCorpInfo', '/dsae001/selectPopup.ax');" title="한국투자신탁운용 기업개황 새창" >
+										한국투자신탁운용
+									</a>
+								</span>
+								
+							</td>
+							<td class="tL">
+								<a href="/dsaf001/main.do?rcpNo=20220211000558"  onclick="openReportViewer('20220211000558'); return false;" id="r_20220211000558"
+									title="증권발행실적보고서(집합투자증권)(한국투자골드플랜연금증권전환형자투자신탁1호(채권)) 공시뷰어 새창" >증권발행실적보고서(집합투자증권)
+									
+		  							(한국투자골드플랜연금증권전환형자투자신탁1호(채권))
+								</a>
+							</td>
+							<td class="tL ellipsis" title="한국투자신탁운용">한국투자신탁운용</td>
+							<td>2022.02.11</td>
+							<td></td>
+						</tr>
+					
+					
+					
+					
+					
+					
+					
+					
+				
+					
+						
+						
+						
+						
+							
+						
+					
+					
+					
+					
+					
+					
+						<tr>
+							<td>
+								
+								
+								
+								11:21
+							</td>
+							<td class="tL">
+							    <span class="innerWrap">
+							    	<span class="tagCom_etc"  title="기타법인" style="cursor:default">기</span>
+									<a href="javascript:openCorpInfoNew('00324548', 'winCorpInfo', '/dsae001/selectPopup.ax');" title="한국투자신탁운용 기업개황 새창" >
+										한국투자신탁운용
+									</a>
+								</span>
+								
+							</td>
+							<td class="tL">
+								<a href="/dsaf001/main.do?rcpNo=20220303000046"  onclick="openReportViewer('20220303000046'); return false;" id="r_20220303000046"
+									title="투자설명서(집합투자증권)(한국투자ACE삼성그룹주SW증권상장지수투자신탁(주식)) 공시뷰어 새창" ><span title="본 보고서명으로 이미 제출된 보고서의 기재내용이 변경되어 제출된 것임" class="txtCB">[기재정정]</span>투자설명서(집합투자증권)
+									
+		  							(한국투자ACE삼성그룹주SW증권상장지수투자신탁(주식))
+								</a>
+							</td>
+							<td class="tL ellipsis" title="한국투자신탁운용">한국투자신탁운용</td>
+							<td>2022.03.03</td>
+							<td><span class="tagCom_jung_other" title="본 보고서 제출 후 정정신고가 있으니 관련 보고서를 참조하시기 바람" style="cursor:default">정</span></td>
+						</tr>
+					
+					
+					
+					
+					
+					
+					
+					
+				
+					
+						
+						
+						
+						
+							
+						
+					
+					
+					
+					
+					
+					
+						<tr>
+							<td>
+								
+								
+								
+								11:21
+							</td>
+							<td class="tL">
+							    <span class="innerWrap">
+							    	<span class="tagCom_etc"  title="기타법인" style="cursor:default">기</span>
+									<a href="javascript:openCorpInfoNew('00324548', 'winCorpInfo', '/dsae001/selectPopup.ax');" title="한국투자신탁운용 기업개황 새창" >
+										한국투자신탁운용
+									</a>
+								</span>
+								
+							</td>
+							<td class="tL">
+								<a href="/dsaf001/main.do?rcpNo=20220211000589"  onclick="openReportViewer('20220211000589'); return false;" id="r_20220211000589"
+									title="증권발행실적보고서(집합투자증권)(한국투자퇴직연금LCF2010증권자투자신탁2호(채권혼합)) 공시뷰어 새창" >증권발행실적보고서(집합투자증권)
+									
+		  							(한국투자퇴직연금LCF2010증권자투자신탁2호(채권혼합))
+								</a>
+							</td>
+							<td class="tL ellipsis" title="한국투자신탁운용">한국투자신탁운용</td>
+							<td>2022.02.11</td>
+							<td></td>
+						</tr>
+					
+					
+					
+					
+					
+					
+					
+					
+				
+					
+						
+						
+						
+						
+							
+						
+					
+					
+					
+					
+					
+					
+						<tr>
+							<td>
+								
+								
+								
+								11:21
+							</td>
+							<td class="tL">
+							    <span class="innerWrap">
+							    	<span class="tagCom_etc"  title="기타법인" style="cursor:default">기</span>
+									<a href="javascript:openCorpInfoNew('00324548', 'winCorpInfo', '/dsae001/selectPopup.ax');" title="한국투자신탁운용 기업개황 새창" >
+										한국투자신탁운용
+									</a>
+								</span>
+								
+							</td>
+							<td class="tL">
+								<a href="/dsaf001/main.do?rcpNo=20220211000539"  onclick="openReportViewer('20220211000539'); return false;" id="r_20220211000539"
+									title="증권발행실적보고서(집합투자증권)(한국투자골드플랜연금증권전환형투자신탁1호(주식혼합)) 공시뷰어 새창" >증권발행실적보고서(집합투자증권)
+									
+		  							(한국투자골드플랜연금증권전환형투자신탁1호(주식혼합))
+								</a>
+							</td>
+							<td class="tL ellipsis" title="한국투자신탁운용">한국투자신탁운용</td>
+							<td>2022.02.11</td>
+							<td></td>
+						</tr>
+					
+					
+					
+					
+					
+					
+					
+					
+				
+					
+						
+						
+						
+						
+							
+						
+					
+					
+					
+					
+					
+					
+						<tr>
+							<td>
+								
+								
+								
+								11:21
+							</td>
+							<td class="tL">
+							    <span class="innerWrap">
+							    	<span class="tagCom_etc"  title="기타법인" style="cursor:default">기</span>
+									<a href="javascript:openCorpInfoNew('00324548', 'winCorpInfo', '/dsae001/selectPopup.ax');" title="한국투자신탁운용 기업개황 새창" >
+										한국투자신탁운용
+									</a>
+								</span>
+								
+							</td>
+							<td class="tL">
+								<a href="/dsaf001/main.do?rcpNo=20220211000378"  onclick="openReportViewer('20220211000378'); return false;" id="r_20220211000378"
+									title="증권발행실적보고서(집합투자증권)(한국투자연금저축배당리더증권자투자신탁(주식)) 공시뷰어 새창" >증권발행실적보고서(집합투자증권)
+									
+		  							(한국투자연금저축배당리더증권자투자신탁(주식))
+								</a>
+							</td>
+							<td class="tL ellipsis" title="한국투자신탁운용">한국투자신탁운용</td>
+							<td>2022.02.11</td>
+							<td></td>
+						</tr>
+					
+					
+					
+					
+					
+					
+					
+					
+				
+					
+						
+						
+						
+						
+							
+						
+					
+					
+					
+					
+					
+					
+						<tr>
+							<td>
+								
+								
+								
+								11:21
+							</td>
+							<td class="tL">
+							    <span class="innerWrap">
+							    	<span class="tagCom_etc"  title="기타법인" style="cursor:default">기</span>
+									<a href="javascript:openCorpInfoNew('00324548', 'winCorpInfo', '/dsae001/selectPopup.ax');" title="한국투자신탁운용 기업개황 새창" >
+										한국투자신탁운용
+									</a>
+								</span>
+								
+							</td>
+							<td class="tL">
+								<a href="/dsaf001/main.do?rcpNo=20220303000040"  onclick="openReportViewer('20220303000040'); return false;" id="r_20220303000040"
+									title="투자설명서(집합투자증권)(한국투자테크증권자투자신탁2호(주식)) 공시뷰어 새창" ><span title="본 보고서명으로 이미 제출된 보고서의 기재내용이 변경되어 제출된 것임" class="txtCB">[기재정정]</span>투자설명서(집합투자증권)
+									
+		  							(한국투자테크증권자투자신탁2호(주식))
+								</a>
+							</td>
+							<td class="tL ellipsis" title="한국투자신탁운용">한국투자신탁운용</td>
+							<td>2022.03.03</td>
+							<td><span class="tagCom_jung_other" title="본 보고서 제출 후 정정신고가 있으니 관련 보고서를 참조하시기 바람" style="cursor:default">정</span></td>
+						</tr>
+					
+					
+					
+					
+					
+					
+					
+					
+				
+					
+						
+						
+						
+						
+							
+						
+					
+					
+					
+					
+					
+					
+						<tr>
+							<td>
+								
+								
+								
+								11:21
+							</td>
+							<td class="tL">
+							    <span class="innerWrap">
+							    	<span class="tagCom_etc"  title="기타법인" style="cursor:default">기</span>
+									<a href="javascript:openCorpInfoNew('00324548', 'winCorpInfo', '/dsae001/selectPopup.ax');" title="한국투자신탁운용 기업개황 새창" >
+										한국투자신탁운용
+									</a>
+								</span>
+								
+							</td>
+							<td class="tL">
+								<a href="/dsaf001/main.do?rcpNo=20220303000044"  onclick="openReportViewer('20220303000044'); return false;" id="r_20220303000044"
+									title="투자설명서(집합투자증권)(한국투자거꾸로증권투자신탁1호(주식)) 공시뷰어 새창" ><span title="본 보고서명으로 이미 제출된 보고서의 기재내용이 변경되어 제출된 것임" class="txtCB">[기재정정]</span>투자설명서(집합투자증권)
+									
+		  							(한국투자거꾸로증권투자신탁1호(주식))
+								</a>
+							</td>
+							<td class="tL ellipsis" title="한국투자신탁운용">한국투자신탁운용</td>
+							<td>2022.03.03</td>
+							<td><span class="tagCom_jung_other" title="본 보고서 제출 후 정정신고가 있으니 관련 보고서를 참조하시기 바람" style="cursor:default">정</span></td>
+						</tr>
+					
+					
+					
+					
+					
+					
+					
+					
+				
+					
+						
+						
+						
+						
+							
+						
+					
+					
+					
+					
+					
+					
+						<tr>
+							<td>
+								
+								
+								
+								11:21
+							</td>
+							<td class="tL">
+							    <span class="innerWrap">
+							    	<span class="tagCom_etc"  title="기타법인" style="cursor:default">기</span>
+									<a href="javascript:openCorpInfoNew('00324548', 'winCorpInfo', '/dsae001/selectPopup.ax');" title="한국투자신탁운용 기업개황 새창" >
+										한국투자신탁운용
+									</a>
+								</span>
+								
+							</td>
+							<td class="tL">
+								<a href="/dsaf001/main.do?rcpNo=20220303000045"  onclick="openReportViewer('20220303000045'); return false;" id="r_20220303000045"
+									title="투자설명서(집합투자증권)(한국투자연금글로벌브랜드파워증권자투자신탁(주식)) 공시뷰어 새창" ><span title="본 보고서명으로 이미 제출된 보고서의 기재내용이 변경되어 제출된 것임" class="txtCB">[기재정정]</span>투자설명서(집합투자증권)
+									
+		  							(한국투자연금글로벌브랜드파워증권자투자신탁(주식))
+								</a>
+							</td>
+							<td class="tL ellipsis" title="한국투자신탁운용">한국투자신탁운용</td>
+							<td>2022.03.03</td>
+							<td><span class="tagCom_jung_other" title="본 보고서 제출 후 정정신고가 있으니 관련 보고서를 참조하시기 바람" style="cursor:default">정</span></td>
+						</tr>
+					
+					
+					
+					
+					
+					
+					
+					
+				
+					
+						
+						
+						
+						
+							
+						
+					
+					
+					
+					
+					
+					
+						<tr>
+							<td>
+								
+								
+								
+								11:18
+							</td>
+							<td class="tL">
+							    <span class="innerWrap">
+							    	<span class="tagCom_etc"  title="기타법인" style="cursor:default">기</span>
+									<a href="javascript:openCorpInfoNew('00324548', 'winCorpInfo', '/dsae001/selectPopup.ax');" title="한국투자신탁운용 기업개황 새창" >
+										한국투자신탁운용
+									</a>
+								</span>
+								
+							</td>
+							<td class="tL">
+								<a href="/dsaf001/main.do?rcpNo=20220303000031"  onclick="openReportViewer('20220303000031'); return false;" id="r_20220303000031"
+									title="투자설명서(집합투자증권)(한국투자지속가능미국와이드모트증권자투자신탁H(주식)) 공시뷰어 새창" ><span title="본 보고서명으로 이미 제출된 보고서의 기재내용이 변경되어 제출된 것임" class="txtCB">[기재정정]</span>투자설명서(집합투자증권)
+									
+		  							(한국투자지속가능미국와이드모트증권자투자신탁H(주식))
+								</a>
+							</td>
+							<td class="tL ellipsis" title="한국투자신탁운용">한국투자신탁운용</td>
+							<td>2022.03.03</td>
+							<td><span class="tagCom_jung_other" title="본 보고서 제출 후 정정신고가 있으니 관련 보고서를 참조하시기 바람" style="cursor:default">정</span></td>
+						</tr>
+					
+					
+					
+					
+					
+					
+					
+					
+				
+					
+						
+						
+						
+						
+							
+						
+					
+					
+					
+					
+					
+					
+						<tr>
+							<td>
+								
+								
+								
+								11:18
+							</td>
+							<td class="tL">
+							    <span class="innerWrap">
+							    	<span class="tagCom_etc"  title="기타법인" style="cursor:default">기</span>
+									<a href="javascript:openCorpInfoNew('00324548', 'winCorpInfo', '/dsae001/selectPopup.ax');" title="한국투자신탁운용 기업개황 새창" >
+										한국투자신탁운용
+									</a>
+								</span>
+								
+							</td>
+							<td class="tL">
+								<a href="/dsaf001/main.do?rcpNo=20220303000003"  onclick="openReportViewer('20220303000003'); return false;" id="r_20220303000003"
+									title="투자설명서(집합투자증권)(한국투자ACE미국WideMoat가치주증권상장지수투자신탁(주식)) 공시뷰어 새창" ><span title="본 보고서명으로 이미 제출된 보고서의 기재내용이 변경되어 제출된 것임" class="txtCB">[기재정정]</span>투자설명서(집합투자증권)
+									
+		  							(한국투자ACE미국WideMoat가치주증권상장지수투자신탁(주식))
+								</a>
+							</td>
+							<td class="tL ellipsis" title="한국투자신탁운용">한국투자신탁운용</td>
+							<td>2022.03.03</td>
+							<td><span class="tagCom_jung_other" title="본 보고서 제출 후 정정신고가 있으니 관련 보고서를 참조하시기 바람" style="cursor:default">정</span></td>
+						</tr>
+					
+					
+					
+					
+					
+					
+					
+					
+				
+					
+						
+						
+						
+						
+							
+						
+					
+					
+					
+					
+					
+					
+						<tr>
+							<td>
+								
+								
+								
+								11:18
+							</td>
+							<td class="tL">
+							    <span class="innerWrap">
+							    	<span class="tagCom_etc"  title="기타법인" style="cursor:default">기</span>
+									<a href="javascript:openCorpInfoNew('00324548', 'winCorpInfo', '/dsae001/selectPopup.ax');" title="한국투자신탁운용 기업개황 새창" >
+										한국투자신탁운용
+									</a>
+								</span>
+								
+							</td>
+							<td class="tL">
+								<a href="/dsaf001/main.do?rcpNo=20220211000467"  onclick="openReportViewer('20220211000467'); return false;" id="r_20220211000467"
+									title="증권발행실적보고서(집합투자증권)(한국투자정통고편입증권자투자신탁(주식)) 공시뷰어 새창" >증권발행실적보고서(집합투자증권)
+									
+		  							(한국투자정통고편입증권자투자신탁(주식))
+								</a>
+							</td>
+							<td class="tL ellipsis" title="한국투자신탁운용">한국투자신탁운용</td>
+							<td>2022.02.11</td>
+							<td></td>
+						</tr>
+					
+					
+					
+					
+					
+					
+					
+					
+				
+					
+						
+						
+						
+						
+							
+						
+					
+					
+					
+					
+					
+					
+						<tr>
+							<td>
+								
+								
+								
+								11:17
+							</td>
+							<td class="tL">
+							    <span class="innerWrap">
+							    	<span class="tagCom_etc"  title="기타법인" style="cursor:default">기</span>
+									<a href="javascript:openCorpInfoNew('00324548', 'winCorpInfo', '/dsae001/selectPopup.ax');" title="한국투자신탁운용 기업개황 새창" >
+										한국투자신탁운용
+									</a>
+								</span>
+								
+							</td>
+							<td class="tL">
+								<a href="/dsaf001/main.do?rcpNo=20220211000373"  onclick="openReportViewer('20220211000373'); return false;" id="r_20220211000373"
+									title="증권발행실적보고서(집합투자증권)(한국투자퇴직연금LCF20-30증권자투자신탁1호(채권혼합)) 공시뷰어 새창" ><span title="본 보고서명으로 이미 제출된 보고서의 기재내용이 변경되어 제출된 것임" class="txtCB">[기재정정]</span>증권발행실적보고서(집합투자증권)
+									
+		  							(한국투자퇴직연금LCF20-30증권자투자신탁1호(채권혼합))
+								</a>
+							</td>
+							<td class="tL ellipsis" title="한국투자신탁운용">한국투자신탁운용</td>
+							<td>2022.02.11</td>
+							<td></td>
+						</tr>
+					
+					
+					
+					
+					
+					
+					
+					
+				
+					
+						
+						
+						
+						
+							
+						
+					
+					
+					
+					
+					
+					
+						<tr>
+							<td>
+								
+								
+								
+								11:17
+							</td>
+							<td class="tL">
+							    <span class="innerWrap">
+							    	<span class="tagCom_etc"  title="기타법인" style="cursor:default">기</span>
+									<a href="javascript:openCorpInfoNew('00324548', 'winCorpInfo', '/dsae001/selectPopup.ax');" title="한국투자신탁운용 기업개황 새창" >
+										한국투자신탁운용
+									</a>
+								</span>
+								
+							</td>
+							<td class="tL">
+								<a href="/dsaf001/main.do?rcpNo=20220211000366"  onclick="openReportViewer('20220211000366'); return false;" id="r_20220211000366"
+									title="증권발행실적보고서(집합투자증권)(한국투자퇴직연금LCF20-30증권자투자신탁1호(채권혼합)) 공시뷰어 새창" >증권발행실적보고서(집합투자증권)
+									
+		  							(한국투자퇴직연금LCF20-30증권자투자신탁1호(채권혼합))
+								</a>
+							</td>
+							<td class="tL ellipsis" title="한국투자신탁운용">한국투자신탁운용</td>
+							<td>2022.02.11</td>
+							<td><span class="tagCom_jung_other" title="본 보고서 제출 후 정정신고가 있으니 관련 보고서를 참조하시기 바람" style="cursor:default">정</span></td>
+						</tr>
+					
+					
+					
+					
+					
+					
+					
+					
+				
+					
+						
+						
+						
+						
+							
+						
+					
+					
+					
+					
+					
+					
+						<tr>
+							<td>
+								
+								
+								
+								11:17
+							</td>
+							<td class="tL">
+							    <span class="innerWrap">
+							    	<span class="tagCom_etc"  title="기타법인" style="cursor:default">기</span>
+									<a href="javascript:openCorpInfoNew('00324548', 'winCorpInfo', '/dsae001/selectPopup.ax');" title="한국투자신탁운용 기업개황 새창" >
+										한국투자신탁운용
+									</a>
+								</span>
+								
+							</td>
+							<td class="tL">
+								<a href="/dsaf001/main.do?rcpNo=20220217001240"  onclick="openReportViewer('20220217001240'); return false;" id="r_20220217001240"
+									title="증권발행실적보고서(집합투자증권)(한국투자라이프플랜증권투자신탁1호(채권)) 공시뷰어 새창" >증권발행실적보고서(집합투자증권)
+									
+		  							(한국투자라이프플랜증권투자신탁1호(채권))
+								</a>
+							</td>
+							<td class="tL ellipsis" title="한국투자신탁운용">한국투자신탁운용</td>
+							<td>2022.02.17</td>
+							<td></td>
+						</tr>
+					
+					
+					
+					
+					
+					
+					
+					
+				
+					
+						
+						
+						
+						
+							
+						
+					
+					
+					
+					
+					
+					
+						<tr>
+							<td>
+								
+								
+								
+								11:17
+							</td>
+							<td class="tL">
+							    <span class="innerWrap">
+							    	<span class="tagCom_etc"  title="기타법인" style="cursor:default">기</span>
+									<a href="javascript:openCorpInfoNew('00324548', 'winCorpInfo', '/dsae001/selectPopup.ax');" title="한국투자신탁운용 기업개황 새창" >
+										한국투자신탁운용
+									</a>
+								</span>
+								
+							</td>
+							<td class="tL">
+								<a href="/dsaf001/main.do?rcpNo=20220303000052"  onclick="openReportViewer('20220303000052'); return false;" id="r_20220303000052"
+									title="투자설명서(집합투자증권)(한국투자ACE레버리지증권상장지수투자신탁(주식-파생형)) 공시뷰어 새창" ><span title="본 보고서명으로 이미 제출된 보고서의 기재내용이 변경되어 제출된 것임" class="txtCB">[기재정정]</span>투자설명서(집합투자증권)
+									
+		  							(한국투자ACE레버리지증권상장지수투자신탁(주식-파생형))
+								</a>
+							</td>
+							<td class="tL ellipsis" title="한국투자신탁운용">한국투자신탁운용</td>
+							<td>2022.03.03</td>
+							<td><span class="tagCom_jung_other" title="본 보고서 제출 후 정정신고가 있으니 관련 보고서를 참조하시기 바람" style="cursor:default">정</span></td>
+						</tr>
+					
+					
+					
+					
+					
+					
+					
+					
+				
+					
+						
+						
+						
+						
+							
+						
+					
+					
+					
+					
+					
+					
+						<tr>
+							<td>
+								
+								
+								
+								11:17
+							</td>
+							<td class="tL">
+							    <span class="innerWrap">
+							    	<span class="tagCom_etc"  title="기타법인" style="cursor:default">기</span>
+									<a href="javascript:openCorpInfoNew('00324548', 'winCorpInfo', '/dsae001/selectPopup.ax');" title="한국투자신탁운용 기업개황 새창" >
+										한국투자신탁운용
+									</a>
+								</span>
+								
+							</td>
+							<td class="tL">
+								<a href="/dsaf001/main.do?rcpNo=20220303000055"  onclick="openReportViewer('20220303000055'); return false;" id="r_20220303000055"
+									title="투자설명서(집합투자증권)(한국투자ACE중국본토CSI300증권자상장지수투자신탁(주식-파생형)) 공시뷰어 새창" ><span title="본 보고서명으로 이미 제출된 보고서의 기재내용이 변경되어 제출된 것임" class="txtCB">[기재정정]</span>투자설명서(집합투자증권)
+									
+		  							(한국투자ACE중국본토CSI300증권자상장지수투자신탁(주식-파생형))
+								</a>
+							</td>
+							<td class="tL ellipsis" title="한국투자신탁운용">한국투자신탁운용</td>
+							<td>2022.03.03</td>
+							<td><span class="tagCom_jung_other" title="본 보고서 제출 후 정정신고가 있으니 관련 보고서를 참조하시기 바람" style="cursor:default">정</span></td>
+						</tr>
+					
+					
+					
+					
+					
+					
+					
+					
+				
+					
+						
+						
+						
+						
+							
+						
+					
+					
+					
+					
+					
+					
+						<tr>
+							<td>
+								
+								
+								
+								11:17
+							</td>
+							<td class="tL">
+							    <span class="innerWrap">
+							    	<span class="tagCom_etc"  title="기타법인" style="cursor:default">기</span>
+									<a href="javascript:openCorpInfoNew('00324548', 'winCorpInfo', '/dsae001/selectPopup.ax');" title="한국투자신탁운용 기업개황 새창" >
+										한국투자신탁운용
+									</a>
+								</span>
+								
+							</td>
+							<td class="tL">
+								<a href="/dsaf001/main.do?rcpNo=20220303000060"  onclick="openReportViewer('20220303000060'); return false;" id="r_20220303000060"
+									title="투자설명서(집합투자증권)(한국투자ACE다우존스미국리츠부동산상장지수투자신탁(파생형)(합성H)) 공시뷰어 새창" ><span title="본 보고서명으로 이미 제출된 보고서의 기재내용이 변경되어 제출된 것임" class="txtCB">[기재정정]</span>투자설명서(집합투자증권)
+									
+		  							(한국투자ACE다우존스미국리츠부동산상장지수투자신탁(파생형)(합성H))
+								</a>
+							</td>
+							<td class="tL ellipsis" title="한국투자신탁운용">한국투자신탁운용</td>
+							<td>2022.03.03</td>
+							<td><span class="tagCom_jung_other" title="본 보고서 제출 후 정정신고가 있으니 관련 보고서를 참조하시기 바람" style="cursor:default">정</span></td>
+						</tr>
+					
+					
+					
+					
+					
+					
+					
+					
+				
+					
+						
+						
+						
+						
+							
+						
+					
+					
+					
+					
+					
+					
+						<tr>
+							<td>
+								
+								
+								
+								11:17
+							</td>
+							<td class="tL">
+							    <span class="innerWrap">
+							    	<span class="tagCom_etc"  title="기타법인" style="cursor:default">기</span>
+									<a href="javascript:openCorpInfoNew('00324548', 'winCorpInfo', '/dsae001/selectPopup.ax');" title="한국투자신탁운용 기업개황 새창" >
+										한국투자신탁운용
+									</a>
+								</span>
+								
+							</td>
+							<td class="tL">
+								<a href="/dsaf001/main.do?rcpNo=20220303000068"  onclick="openReportViewer('20220303000068'); return false;" id="r_20220303000068"
+									title="투자설명서(집합투자증권)(한국투자ACE중국본토레버리지CSI300증권상장지수투자신탁(주식혼합-파생형)(합성)) 공시뷰어 새창" ><span title="본 보고서명으로 이미 제출된 보고서의 기재내용이 변경되어 제출된 것임" class="txtCB">[기재정정]</span>투자설명서(집합투자증권)
+									
+		  							(한국투자ACE중국본토레버리지CSI300증권상장지수투자신탁(주식혼합-파생형)(합성))
+								</a>
+							</td>
+							<td class="tL ellipsis" title="한국투자신탁운용">한국투자신탁운용</td>
+							<td>2022.03.03</td>
+							<td><span class="tagCom_jung_other" title="본 보고서 제출 후 정정신고가 있으니 관련 보고서를 참조하시기 바람" style="cursor:default">정</span></td>
+						</tr>
+					
+					
+					
+					
+					
+					
+					
+					
+				
+					
+						
+						
+						
+						
+							
+						
+					
+					
+					
+					
+					
+					
+						<tr>
+							<td>
+								
+								
+								
+								11:17
+							</td>
+							<td class="tL">
+							    <span class="innerWrap">
+							    	<span class="tagCom_etc"  title="기타법인" style="cursor:default">기</span>
+									<a href="javascript:openCorpInfoNew('00324548', 'winCorpInfo', '/dsae001/selectPopup.ax');" title="한국투자신탁운용 기업개황 새창" >
+										한국투자신탁운용
+									</a>
+								</span>
+								
+							</td>
+							<td class="tL">
+								<a href="/dsaf001/main.do?rcpNo=20220303000156"  onclick="openReportViewer('20220303000156'); return false;" id="r_20220303000156"
+									title="투자설명서(집합투자증권)(한국투자ACE코스피증권상장지수투자신탁(주식)) 공시뷰어 새창" ><span title="본 보고서명으로 이미 제출된 보고서의 기재내용이 변경되어 제출된 것임" class="txtCB">[기재정정]</span>투자설명서(집합투자증권)
+									
+		  							(한국투자ACE코스피증권상장지수투자신탁(주식))
+								</a>
+							</td>
+							<td class="tL ellipsis" title="한국투자신탁운용">한국투자신탁운용</td>
+							<td>2022.03.03</td>
+							<td><span class="tagCom_jung_other" title="본 보고서 제출 후 정정신고가 있으니 관련 보고서를 참조하시기 바람" style="cursor:default">정</span></td>
+						</tr>
+					
+					
+					
+					
+					
+					
+					
+					
+				
+					
+						
+						
+						
+						
+							
+						
+					
+					
+					
+					
+					
+					
+						<tr>
+							<td>
+								
+								
+								
+								11:17
+							</td>
+							<td class="tL">
+							    <span class="innerWrap">
+							    	<span class="tagCom_etc"  title="기타법인" style="cursor:default">기</span>
+									<a href="javascript:openCorpInfoNew('00324548', 'winCorpInfo', '/dsae001/selectPopup.ax');" title="한국투자신탁운용 기업개황 새창" >
+										한국투자신탁운용
+									</a>
+								</span>
+								
+							</td>
+							<td class="tL">
+								<a href="/dsaf001/main.do?rcpNo=20220303000071"  onclick="openReportViewer('20220303000071'); return false;" id="r_20220303000071"
+									title="투자설명서(집합투자증권)(한국투자ACE골드선물레버리지특별자산상장지수투자신탁(금-파생형)(합성H)) 공시뷰어 새창" ><span title="본 보고서명으로 이미 제출된 보고서의 기재내용이 변경되어 제출된 것임" class="txtCB">[기재정정]</span>투자설명서(집합투자증권)
+									
+		  							(한국투자ACE골드선물레버리지특별자산상장지수투자신탁(금-파생형)(합성H))
+								</a>
+							</td>
+							<td class="tL ellipsis" title="한국투자신탁운용">한국투자신탁운용</td>
+							<td>2022.03.03</td>
+							<td><span class="tagCom_jung_other" title="본 보고서 제출 후 정정신고가 있으니 관련 보고서를 참조하시기 바람" style="cursor:default">정</span></td>
+						</tr>
+					
+					
+					
+					
+					
+					
+					
+					
+				
+					
+						
+						
+						
+						
+							
+						
+					
+					
+					
+					
+					
+					
+						<tr>
+							<td>
+								
+								
+								
+								11:17
+							</td>
+							<td class="tL">
+							    <span class="innerWrap">
+							    	<span class="tagCom_etc"  title="기타법인" style="cursor:default">기</span>
+									<a href="javascript:openCorpInfoNew('00324548', 'winCorpInfo', '/dsae001/selectPopup.ax');" title="한국투자신탁운용 기업개황 새창" >
+										한국투자신탁운용
+									</a>
+								</span>
+								
+							</td>
+							<td class="tL">
+								<a href="/dsaf001/main.do?rcpNo=20220303000075"  onclick="openReportViewer('20220303000075'); return false;" id="r_20220303000075"
+									title="투자설명서(집합투자증권)(한국투자ACE성장소비주도주증권상장지수투자신탁(주식)) 공시뷰어 새창" ><span title="본 보고서명으로 이미 제출된 보고서의 기재내용이 변경되어 제출된 것임" class="txtCB">[기재정정]</span>투자설명서(집합투자증권)
+									
+		  							(한국투자ACE성장소비주도주증권상장지수투자신탁(주식))
+								</a>
+							</td>
+							<td class="tL ellipsis" title="한국투자신탁운용">한국투자신탁운용</td>
+							<td>2022.03.03</td>
+							<td><span class="tagCom_jung_other" title="본 보고서 제출 후 정정신고가 있으니 관련 보고서를 참조하시기 바람" style="cursor:default">정</span></td>
+						</tr>
+					
+					
+					
+					
+					
+					
+					
+					
+				
+					
+						
+						
+						
+						
+							
+						
+					
+					
+					
+					
+					
+					
+						<tr>
+							<td>
+								
+								
+								
+								11:16
+							</td>
+							<td class="tL">
+							    <span class="innerWrap">
+							    	<span class="tagCom_etc"  title="기타법인" style="cursor:default">기</span>
+									<a href="javascript:openCorpInfoNew('00324548', 'winCorpInfo', '/dsae001/selectPopup.ax');" title="한국투자신탁운용 기업개황 새창" >
+										한국투자신탁운용
+									</a>
+								</span>
+								
+							</td>
+							<td class="tL">
+								<a href="/dsaf001/main.do?rcpNo=20220303000097"  onclick="openReportViewer('20220303000097'); return false;" id="r_20220303000097"
+									title="투자설명서(집합투자증권)(한국투자연금베트남증권자투자신탁(주식혼합)) 공시뷰어 새창" ><span title="본 보고서명으로 이미 제출된 보고서의 기재내용이 변경되어 제출된 것임" class="txtCB">[기재정정]</span>투자설명서(집합투자증권)
+									
+		  							(한국투자연금베트남증권자투자신탁(주식혼합))
+								</a>
+							</td>
+							<td class="tL ellipsis" title="한국투자신탁운용">한국투자신탁운용</td>
+							<td>2022.03.03</td>
+							<td><span class="tagCom_jung_other" title="본 보고서 제출 후 정정신고가 있으니 관련 보고서를 참조하시기 바람" style="cursor:default">정</span></td>
+						</tr>
+					
+					
+					
+					
+					
+					
+					
+					
+				
+					
+						
+						
+						
+						
+							
+						
+					
+					
+					
+					
+					
+					
+						<tr>
+							<td>
+								
+								
+								
+								11:16
+							</td>
+							<td class="tL">
+							    <span class="innerWrap">
+							    	<span class="tagCom_etc"  title="기타법인" style="cursor:default">기</span>
+									<a href="javascript:openCorpInfoNew('00324548', 'winCorpInfo', '/dsae001/selectPopup.ax');" title="한국투자신탁운용 기업개황 새창" >
+										한국투자신탁운용
+									</a>
+								</span>
+								
+							</td>
+							<td class="tL">
+								<a href="/dsaf001/main.do?rcpNo=20220303000082"  onclick="openReportViewer('20220303000082'); return false;" id="r_20220303000082"
+									title="투자설명서(집합투자증권)(한국투자ACE중장기국공채액티브증권상장지수투자신탁(채권)) 공시뷰어 새창" ><span title="본 보고서명으로 이미 제출된 보고서의 기재내용이 변경되어 제출된 것임" class="txtCB">[기재정정]</span>투자설명서(집합투자증권)
+									
+		  							(한국투자ACE중장기국공채액티브증권상장지수투자신탁(채권))
+								</a>
+							</td>
+							<td class="tL ellipsis" title="한국투자신탁운용">한국투자신탁운용</td>
+							<td>2022.03.03</td>
+							<td><span class="tagCom_jung_other" title="본 보고서 제출 후 정정신고가 있으니 관련 보고서를 참조하시기 바람" style="cursor:default">정</span></td>
+						</tr>
+					
+					
+					
+					
+					
+					
+					
+					
+				
+					
+						
+						
+						
+						
+							
+						
+					
+					
+					
+					
+					
+					
+						<tr>
+							<td>
+								
+								
+								
+								11:16
+							</td>
+							<td class="tL">
+							    <span class="innerWrap">
+							    	<span class="tagCom_etc"  title="기타법인" style="cursor:default">기</span>
+									<a href="javascript:openCorpInfoNew('00324548', 'winCorpInfo', '/dsae001/selectPopup.ax');" title="한국투자신탁운용 기업개황 새창" >
+										한국투자신탁운용
+									</a>
+								</span>
+								
+							</td>
+							<td class="tL">
+								<a href="/dsaf001/main.do?rcpNo=20220303000092"  onclick="openReportViewer('20220303000092'); return false;" id="r_20220303000092"
+									title="투자설명서(집합투자증권)(한국투자퇴직연금인덱스40증권자투자신탁3호(채권혼합)) 공시뷰어 새창" ><span title="본 보고서명으로 이미 제출된 보고서의 기재내용이 변경되어 제출된 것임" class="txtCB">[기재정정]</span>투자설명서(집합투자증권)
+									
+		  							(한국투자퇴직연금인덱스40증권자투자신탁3호(채권혼합))
+								</a>
+							</td>
+							<td class="tL ellipsis" title="한국투자신탁운용">한국투자신탁운용</td>
+							<td>2022.03.03</td>
+							<td><span class="tagCom_jung_other" title="본 보고서 제출 후 정정신고가 있으니 관련 보고서를 참조하시기 바람" style="cursor:default">정</span></td>
+						</tr>
+					
+					
+					
+					
+					
+					
+					
+					
+				
+					
+						
+						
+						
+						
+							
+						
+					
+					
+					
+					
+					
+					
+						<tr>
+							<td>
+								
+								
+								
+								11:16
+							</td>
+							<td class="tL">
+							    <span class="innerWrap">
+							    	<span class="tagCom_etc"  title="기타법인" style="cursor:default">기</span>
+									<a href="javascript:openCorpInfoNew('00324548', 'winCorpInfo', '/dsae001/selectPopup.ax');" title="한국투자신탁운용 기업개황 새창" >
+										한국투자신탁운용
+									</a>
+								</span>
+								
+							</td>
+							<td class="tL">
+								<a href="/dsaf001/main.do?rcpNo=20220303000103"  onclick="openReportViewer('20220303000103'); return false;" id="r_20220303000103"
+									title="투자설명서(집합투자증권)(한국투자퇴직연금삼성그룹증권자투자신탁1호(주식)) 공시뷰어 새창" ><span title="본 보고서명으로 이미 제출된 보고서의 기재내용이 변경되어 제출된 것임" class="txtCB">[기재정정]</span>투자설명서(집합투자증권)
+									
+		  							(한국투자퇴직연금삼성그룹증권자투자신탁1호(주식))
+								</a>
+							</td>
+							<td class="tL ellipsis" title="한국투자신탁운용">한국투자신탁운용</td>
+							<td>2022.03.03</td>
+							<td><span class="tagCom_jung_other" title="본 보고서 제출 후 정정신고가 있으니 관련 보고서를 참조하시기 바람" style="cursor:default">정</span></td>
+						</tr>
+					
+					
+					
+					
+					
+					
+					
+					
+				
+					
+						
+							
+						
+						
+						
+						
+					
+					
+					
+					
+					
+					
+						<tr>
+							<td>
+								
+								
+								
+								11:16
+							</td>
+							<td class="tL">
+							    <span class="innerWrap">
+							    	<span class="tagCom_kospi" title="유가증권시장" style="cursor:default">유</span>
+									<a href="javascript:openCorpInfoNew('00144164', 'winCorpInfo', '/dsae001/selectPopup.ax');" title="SK가스 기업개황 새창" >
+										SK가스
+									</a>
+								</span>
+								
+							</td>
+							<td class="tL">
+								<a href="/dsaf001/main.do?rcpNo=20220415800401"  onclick="openReportViewer('20220415800401'); return false;" id="r_20220415800401"
+									title="유상증자결정(종속회사의주요경영사항) 공시뷰어 새창" >유상증자결정(종속회사의주요경영사항)
+									
+		  							
+								</a>
+							</td>
+							<td class="tL ellipsis" title="SK가스">SK가스</td>
+							<td>2022.04.15</td>
+							<td><span class="tagCom_kospi_other" title="본 공시사항은 한국거래소 유가증권시장본부 소관임" style="cursor:default">유</span></td>
+						</tr>
+					
+					
+					
+					
+					
+					
+					
+					
+				
+					
+						
+						
+						
+						
+							
+						
+					
+					
+					
+					
+					
+					
+						<tr>
+							<td>
+								
+								
+								
+								11:16
+							</td>
+							<td class="tL">
+							    <span class="innerWrap">
+							    	<span class="tagCom_etc"  title="기타법인" style="cursor:default">기</span>
+									<a href="javascript:openCorpInfoNew('00324548', 'winCorpInfo', '/dsae001/selectPopup.ax');" title="한국투자신탁운용 기업개황 새창" >
+										한국투자신탁운용
+									</a>
+								</span>
+								
+							</td>
+							<td class="tL">
+								<a href="/dsaf001/main.do?rcpNo=20220303000094"  onclick="openReportViewer('20220303000094'); return false;" id="r_20220303000094"
+									title="투자설명서(집합투자증권)(한국투자한국의힘증권자투자신탁1호(채권혼합)) 공시뷰어 새창" ><span title="본 보고서명으로 이미 제출된 보고서의 기재내용이 변경되어 제출된 것임" class="txtCB">[기재정정]</span>투자설명서(집합투자증권)
+									
+		  							(한국투자한국의힘증권자투자신탁1호(채권혼합))
+								</a>
+							</td>
+							<td class="tL ellipsis" title="한국투자신탁운용">한국투자신탁운용</td>
+							<td>2022.03.03</td>
+							<td><span class="tagCom_jung_other" title="본 보고서 제출 후 정정신고가 있으니 관련 보고서를 참조하시기 바람" style="cursor:default">정</span></td>
+						</tr>
+					
+					
+					
+					
+					
+					
+					
+					
+				
+					
+						
+						
+						
+						
+							
+						
+					
+					
+					
+					
+					
+					
+						<tr>
+							<td>
+								
+								
+								
+								11:16
+							</td>
+							<td class="tL">
+							    <span class="innerWrap">
+							    	<span class="tagCom_etc"  title="기타법인" style="cursor:default">기</span>
+									<a href="javascript:openCorpInfoNew('00324548', 'winCorpInfo', '/dsae001/selectPopup.ax');" title="한국투자신탁운용 기업개황 새창" >
+										한국투자신탁운용
+									</a>
+								</span>
+								
+							</td>
+							<td class="tL">
+								<a href="/dsaf001/main.do?rcpNo=20220303000108"  onclick="openReportViewer('20220303000108'); return false;" id="r_20220303000108"
+									title="투자설명서(집합투자증권)(한국투자ACE국고채증권상장지수투자신탁(채권)) 공시뷰어 새창" ><span title="본 보고서명으로 이미 제출된 보고서의 기재내용이 변경되어 제출된 것임" class="txtCB">[기재정정]</span>투자설명서(집합투자증권)
+									
+		  							(한국투자ACE국고채증권상장지수투자신탁(채권))
+								</a>
+							</td>
+							<td class="tL ellipsis" title="한국투자신탁운용">한국투자신탁운용</td>
+							<td>2022.03.03</td>
+							<td><span class="tagCom_jung_other" title="본 보고서 제출 후 정정신고가 있으니 관련 보고서를 참조하시기 바람" style="cursor:default">정</span></td>
+						</tr>
+					
+					
+					
+					
+					
+					
+					
+					
+				
+					
+						
+						
+						
+						
+							
+						
+					
+					
+					
+					
+					
+					
+						<tr>
+							<td>
+								
+								
+								
+								11:16
+							</td>
+							<td class="tL">
+							    <span class="innerWrap">
+							    	<span class="tagCom_etc"  title="기타법인" style="cursor:default">기</span>
+									<a href="javascript:openCorpInfoNew('00251400', 'winCorpInfo', '/dsae001/selectPopup.ax');" title="BNK투자증권 기업개황 새창" >
+										BNK투자증권
+									</a>
+								</span>
+								
+							</td>
+							<td class="tL">
+								<a href="/dsaf001/main.do?rcpNo=20220415000206"  onclick="openReportViewer('20220415000206'); return false;" id="r_20220415000206"
+									title="투자설명서(일괄신고) 공시뷰어 새창" >투자설명서(일괄신고)
+									
+		  							
+								</a>
+							</td>
+							<td class="tL ellipsis" title="BNK투자증권">BNK투자증권</td>
+							<td>2022.04.15</td>
+							<td></td>
+						</tr>
+					
+					
+					
+					
+					
+					
+					
+					
+				
+					
+						
+						
+						
+						
+							
+						
+					
+					
+					
+					
+					
+					
+						<tr>
+							<td>
+								
+								
+								
+								11:16
+							</td>
+							<td class="tL">
+							    <span class="innerWrap">
+							    	<span class="tagCom_etc"  title="기타법인" style="cursor:default">기</span>
+									<a href="javascript:openCorpInfoNew('00324548', 'winCorpInfo', '/dsae001/selectPopup.ax');" title="한국투자신탁운용 기업개황 새창" >
+										한국투자신탁운용
+									</a>
+								</span>
+								
+							</td>
+							<td class="tL">
+								<a href="/dsaf001/main.do?rcpNo=20220303000095"  onclick="openReportViewer('20220303000095'); return false;" id="r_20220303000095"
+									title="투자설명서(집합투자증권)(한국투자장기채증권자투자신탁(국공채)) 공시뷰어 새창" ><span title="본 보고서명으로 이미 제출된 보고서의 기재내용이 변경되어 제출된 것임" class="txtCB">[기재정정]</span>투자설명서(집합투자증권)
+									
+		  							(한국투자장기채증권자투자신탁(국공채))
+								</a>
+							</td>
+							<td class="tL ellipsis" title="한국투자신탁운용">한국투자신탁운용</td>
+							<td>2022.03.03</td>
+							<td><span class="tagCom_jung_other" title="본 보고서 제출 후 정정신고가 있으니 관련 보고서를 참조하시기 바람" style="cursor:default">정</span></td>
+						</tr>
+					
+					
+					
+					
+					
+					
+					
+					
+				
+					
+						
+						
+						
+						
+							
+						
+					
+					
+					
+					
+					
+					
+						<tr>
+							<td>
+								
+								
+								
+								11:16
+							</td>
+							<td class="tL">
+							    <span class="innerWrap">
+							    	<span class="tagCom_etc"  title="기타법인" style="cursor:default">기</span>
+									<a href="javascript:openCorpInfoNew('00324548', 'winCorpInfo', '/dsae001/selectPopup.ax');" title="한국투자신탁운용 기업개황 새창" >
+										한국투자신탁운용
+									</a>
+								</span>
+								
+							</td>
+							<td class="tL">
+								<a href="/dsaf001/main.do?rcpNo=20220303000141"  onclick="openReportViewer('20220303000141'); return false;" id="r_20220303000141"
+									title="투자설명서(집합투자증권)(한국투자네비게이터증권투자신탁1호(주식)) 공시뷰어 새창" ><span title="본 보고서명으로 이미 제출된 보고서의 기재내용이 변경되어 제출된 것임" class="txtCB">[기재정정]</span>투자설명서(집합투자증권)
+									
+		  							(한국투자네비게이터증권투자신탁1호(주식))
+								</a>
+							</td>
+							<td class="tL ellipsis" title="한국투자신탁운용">한국투자신탁운용</td>
+							<td>2022.03.03</td>
+							<td><span class="tagCom_jung_other" title="본 보고서 제출 후 정정신고가 있으니 관련 보고서를 참조하시기 바람" style="cursor:default">정</span></td>
+						</tr>
+					
+					
+					
+					
+					
+					
+					
+					
+				
+					
+						
+						
+						
+						
+							
+						
+					
+					
+					
+					
+					
+					
+						<tr>
+							<td>
+								
+								
+								
+								11:16
+							</td>
+							<td class="tL">
+							    <span class="innerWrap">
+							    	<span class="tagCom_etc"  title="기타법인" style="cursor:default">기</span>
+									<a href="javascript:openCorpInfoNew('00324548', 'winCorpInfo', '/dsae001/selectPopup.ax');" title="한국투자신탁운용 기업개황 새창" >
+										한국투자신탁운용
+									</a>
+								</span>
+								
+							</td>
+							<td class="tL">
+								<a href="/dsaf001/main.do?rcpNo=20220303000078"  onclick="openReportViewer('20220303000078'); return false;" id="r_20220303000078"
+									title="투자설명서(집합투자증권)(한국투자ACE필리핀MSCI증권상장지수투자신탁(주식-파생형)(합성)) 공시뷰어 새창" ><span title="본 보고서명으로 이미 제출된 보고서의 기재내용이 변경되어 제출된 것임" class="txtCB">[기재정정]</span>투자설명서(집합투자증권)
+									
+		  							(한국투자ACE필리핀MSCI증권상장지수투자신탁(주식-파생형)(합성))
+								</a>
+							</td>
+							<td class="tL ellipsis" title="한국투자신탁운용">한국투자신탁운용</td>
+							<td>2022.03.03</td>
+							<td><span class="tagCom_jung_other" title="본 보고서 제출 후 정정신고가 있으니 관련 보고서를 참조하시기 바람" style="cursor:default">정</span></td>
+						</tr>
+					
+					
+					
+					
+					
+					
+					
+					
+				
+					
+						
+						
+						
+						
+							
+						
+					
+					
+					
+					
+					
+					
+						<tr>
+							<td>
+								
+								
+								
+								11:16
+							</td>
+							<td class="tL">
+							    <span class="innerWrap">
+							    	<span class="tagCom_etc"  title="기타법인" style="cursor:default">기</span>
+									<a href="javascript:openCorpInfoNew('00324548', 'winCorpInfo', '/dsae001/selectPopup.ax');" title="한국투자신탁운용 기업개황 새창" >
+										한국투자신탁운용
+									</a>
+								</span>
+								
+							</td>
+							<td class="tL">
+								<a href="/dsaf001/main.do?rcpNo=20220303000043"  onclick="openReportViewer('20220303000043'); return false;" id="r_20220303000043"
+									title="투자설명서(집합투자증권)(한국투자한국의제4차산업혁명증권자투자신탁1호(주식)) 공시뷰어 새창" ><span title="본 보고서명으로 이미 제출된 보고서의 기재내용이 변경되어 제출된 것임" class="txtCB">[기재정정]</span>투자설명서(집합투자증권)
+									
+		  							(한국투자한국의제4차산업혁명증권자투자신탁1호(주식))
+								</a>
+							</td>
+							<td class="tL ellipsis" title="한국투자신탁운용">한국투자신탁운용</td>
+							<td>2022.03.03</td>
+							<td><span class="tagCom_jung_other" title="본 보고서 제출 후 정정신고가 있으니 관련 보고서를 참조하시기 바람" style="cursor:default">정</span></td>
+						</tr>
+					
+					
+					
+					
+					
+					
+					
+					
+				
+					
+						
+						
+						
+						
+							
+						
+					
+					
+					
+					
+					
+					
+						<tr>
+							<td>
+								
+								
+								
+								11:16
+							</td>
+							<td class="tL">
+							    <span class="innerWrap">
+							    	<span class="tagCom_etc"  title="기타법인" style="cursor:default">기</span>
+									<a href="javascript:openCorpInfoNew('00324548', 'winCorpInfo', '/dsae001/selectPopup.ax');" title="한국투자신탁운용 기업개황 새창" >
+										한국투자신탁운용
+									</a>
+								</span>
+								
+							</td>
+							<td class="tL">
+								<a href="/dsaf001/main.do?rcpNo=20220214001043"  onclick="openReportViewer('20220214001043'); return false;" id="r_20220214001043"
+									title="증권발행실적보고서(집합투자증권)(한국투자퇴직연금마이스터40증권자투자신탁2호(국공채혼합)) 공시뷰어 새창" >증권발행실적보고서(집합투자증권)
+									
+		  							(한국투자퇴직연금마이스터40증권자투자신탁2호(국공채혼합))
+								</a>
+							</td>
+							<td class="tL ellipsis" title="한국투자신탁운용">한국투자신탁운용</td>
+							<td>2022.02.14</td>
+							<td></td>
+						</tr>
+					
+					
+					
+					
+					
+					
+					
+					
+				
+					
+						
+						
+						
+						
+							
+						
+					
+					
+					
+					
+					
+					
+						<tr>
+							<td>
+								
+								
+								
+								11:15
+							</td>
+							<td class="tL">
+							    <span class="innerWrap">
+							    	<span class="tagCom_etc"  title="기타법인" style="cursor:default">기</span>
+									<a href="javascript:openCorpInfoNew('00324548', 'winCorpInfo', '/dsae001/selectPopup.ax');" title="한국투자신탁운용 기업개황 새창" >
+										한국투자신탁운용
+									</a>
+								</span>
+								
+							</td>
+							<td class="tL">
+								<a href="/dsaf001/main.do?rcpNo=20220303000112"  onclick="openReportViewer('20220303000112'); return false;" id="r_20220303000112"
+									title="투자설명서(집합투자증권)(한국투자ACE일본레버리지증권상장지수투자신탁(주식-재간접파생형)(H)) 공시뷰어 새창" ><span title="본 보고서명으로 이미 제출된 보고서의 기재내용이 변경되어 제출된 것임" class="txtCB">[기재정정]</span>투자설명서(집합투자증권)
+									
+		  							(한국투자ACE일본레버리지증권상장지수투자신탁(주식-재간접파생형)(H))
+								</a>
+							</td>
+							<td class="tL ellipsis" title="한국투자신탁운용">한국투자신탁운용</td>
+							<td>2022.03.03</td>
+							<td><span class="tagCom_jung_other" title="본 보고서 제출 후 정정신고가 있으니 관련 보고서를 참조하시기 바람" style="cursor:default">정</span></td>
+						</tr>
+					
+					
+					
+					
+					
+					
+					
+					
+				
+					
+						
+						
+						
+						
+							
+						
+					
+					
+					
+					
+					
+					
+						<tr>
+							<td>
+								
+								
+								
+								11:15
+							</td>
+							<td class="tL">
+							    <span class="innerWrap">
+							    	<span class="tagCom_etc"  title="기타법인" style="cursor:default">기</span>
+									<a href="javascript:openCorpInfoNew('00324548', 'winCorpInfo', '/dsae001/selectPopup.ax');" title="한국투자신탁운용 기업개황 새창" >
+										한국투자신탁운용
+									</a>
+								</span>
+								
+							</td>
+							<td class="tL">
+								<a href="/dsaf001/main.do?rcpNo=20220303000124"  onclick="openReportViewer('20220303000124'); return false;" id="r_20220303000124"
+									title="투자설명서(집합투자증권)(한국투자ACES&P아시아TOP50증권상장지수투자신탁(주식)) 공시뷰어 새창" ><span title="본 보고서명으로 이미 제출된 보고서의 기재내용이 변경되어 제출된 것임" class="txtCB">[기재정정]</span>투자설명서(집합투자증권)
+									
+		  							(한국투자ACES&P아시아TOP50증권상장지수투자신탁(주식))
+								</a>
+							</td>
+							<td class="tL ellipsis" title="한국투자신탁운용">한국투자신탁운용</td>
+							<td>2022.03.03</td>
+							<td><span class="tagCom_jung_other" title="본 보고서 제출 후 정정신고가 있으니 관련 보고서를 참조하시기 바람" style="cursor:default">정</span></td>
+						</tr>
+					
+					
+					
+					
+					
+					
+					
+					
+				
+					
+						
+						
+						
+						
+							
+						
+					
+					
+					
+					
+					
+					
+						<tr>
+							<td>
+								
+								
+								
+								11:15
+							</td>
+							<td class="tL">
+							    <span class="innerWrap">
+							    	<span class="tagCom_etc"  title="기타법인" style="cursor:default">기</span>
+									<a href="javascript:openCorpInfoNew('00324548', 'winCorpInfo', '/dsae001/selectPopup.ax');" title="한국투자신탁운용 기업개황 새창" >
+										한국투자신탁운용
+									</a>
+								</span>
+								
+							</td>
+							<td class="tL">
+								<a href="/dsaf001/main.do?rcpNo=20220303000229"  onclick="openReportViewer('20220303000229'); return false;" id="r_20220303000229"
+									title="투자설명서(집합투자증권)(한국투자ACE국고채10년증권상장지수투자신탁(채권)) 공시뷰어 새창" ><span title="본 보고서명으로 이미 제출된 보고서의 기재내용이 변경되어 제출된 것임" class="txtCB">[기재정정]</span>투자설명서(집합투자증권)
+									
+		  							(한국투자ACE국고채10년증권상장지수투자신탁(채권))
+								</a>
+							</td>
+							<td class="tL ellipsis" title="한국투자신탁운용">한국투자신탁운용</td>
+							<td>2022.03.03</td>
+							<td><span class="tagCom_jung_other" title="본 보고서 제출 후 정정신고가 있으니 관련 보고서를 참조하시기 바람" style="cursor:default">정</span></td>
+						</tr>
+					
+					
+					
+					
+					
+					
+					
+					
+				
+					
+						
+						
+						
+						
+							
+						
+					
+					
+					
+					
+					
+					
+						<tr>
+							<td>
+								
+								
+								
+								11:15
+							</td>
+							<td class="tL">
+							    <span class="innerWrap">
+							    	<span class="tagCom_etc"  title="기타법인" style="cursor:default">기</span>
+									<a href="javascript:openCorpInfoNew('00324548', 'winCorpInfo', '/dsae001/selectPopup.ax');" title="한국투자신탁운용 기업개황 새창" >
+										한국투자신탁운용
+									</a>
+								</span>
+								
+							</td>
+							<td class="tL">
+								<a href="/dsaf001/main.do?rcpNo=20220303000154"  onclick="openReportViewer('20220303000154'); return false;" id="r_20220303000154"
+									title="투자설명서(집합투자증권)(한국투자퇴직연금한국의힘증권자투자신탁1호(주식)) 공시뷰어 새창" ><span title="본 보고서명으로 이미 제출된 보고서의 기재내용이 변경되어 제출된 것임" class="txtCB">[기재정정]</span>투자설명서(집합투자증권)
+									
+		  							(한국투자퇴직연금한국의힘증권자투자신탁1호(주식))
+								</a>
+							</td>
+							<td class="tL ellipsis" title="한국투자신탁운용">한국투자신탁운용</td>
+							<td>2022.03.03</td>
+							<td><span class="tagCom_jung_other" title="본 보고서 제출 후 정정신고가 있으니 관련 보고서를 참조하시기 바람" style="cursor:default">정</span></td>
+						</tr>
+					
+					
+					
+					
+					
+					
+					
+					
+				
+					
+						
+						
+						
+						
+							
+						
+					
+					
+					
+					
+					
+					
+						<tr>
+							<td>
+								
+								
+								
+								11:15
+							</td>
+							<td class="tL">
+							    <span class="innerWrap">
+							    	<span class="tagCom_etc"  title="기타법인" style="cursor:default">기</span>
+									<a href="javascript:openCorpInfoNew('00324548', 'winCorpInfo', '/dsae001/selectPopup.ax');" title="한국투자신탁운용 기업개황 새창" >
+										한국투자신탁운용
+									</a>
+								</span>
+								
+							</td>
+							<td class="tL">
+								<a href="/dsaf001/main.do?rcpNo=20220303000116"  onclick="openReportViewer('20220303000116'); return false;" id="r_20220303000116"
+									title="투자설명서(집합투자증권)(한국투자글로벌브랜드파워증권자투자신탁2호(주식)) 공시뷰어 새창" ><span title="본 보고서명으로 이미 제출된 보고서의 기재내용이 변경되어 제출된 것임" class="txtCB">[기재정정]</span>투자설명서(집합투자증권)
+									
+		  							(한국투자글로벌브랜드파워증권자투자신탁2호(주식))
+								</a>
+							</td>
+							<td class="tL ellipsis" title="한국투자신탁운용">한국투자신탁운용</td>
+							<td>2022.03.03</td>
+							<td><span class="tagCom_jung_other" title="본 보고서 제출 후 정정신고가 있으니 관련 보고서를 참조하시기 바람" style="cursor:default">정</span></td>
+						</tr>
+					
+					
+					
+					
+					
+					
+					
+					
+				
+					
+						
+						
+						
+						
+							
+						
+					
+					
+					
+					
+					
+					
+						<tr>
+							<td>
+								
+								
+								
+								11:15
+							</td>
+							<td class="tL">
+							    <span class="innerWrap">
+							    	<span class="tagCom_etc"  title="기타법인" style="cursor:default">기</span>
+									<a href="javascript:openCorpInfoNew('00324548', 'winCorpInfo', '/dsae001/selectPopup.ax');" title="한국투자신탁운용 기업개황 새창" >
+										한국투자신탁운용
+									</a>
+								</span>
+								
+							</td>
+							<td class="tL">
+								<a href="/dsaf001/main.do?rcpNo=20220303000140"  onclick="openReportViewer('20220303000140'); return false;" id="r_20220303000140"
+									title="투자설명서(집합투자증권)(한국투자ACE국채선물10년인버스증권상장지수투자신탁(채권-파생형)) 공시뷰어 새창" ><span title="본 보고서명으로 이미 제출된 보고서의 기재내용이 변경되어 제출된 것임" class="txtCB">[기재정정]</span>투자설명서(집합투자증권)
+									
+		  							(한국투자ACE국채선물10년인버스증권상장지수투자신탁(채권-파생형))
+								</a>
+							</td>
+							<td class="tL ellipsis" title="한국투자신탁운용">한국투자신탁운용</td>
+							<td>2022.03.03</td>
+							<td><span class="tagCom_jung_other" title="본 보고서 제출 후 정정신고가 있으니 관련 보고서를 참조하시기 바람" style="cursor:default">정</span></td>
+						</tr>
+					
+					
+					
+					
+					
+					
+					
+					
+				
+					
+						
+						
+							
+						
+						
+						
+					
+					
+					
+					
+					
+					
+						<tr>
+							<td>
+								
+								
+								
+								11:15
+							</td>
+							<td class="tL">
+							    <span class="innerWrap">
+							    	<span class="tagCom_kosdaq" title="코스닥시장" style="cursor:default">코</span>
+									<a href="javascript:openCorpInfoNew('00958327', 'winCorpInfo', '/dsae001/selectPopup.ax');" title="지앤비에스 에코 기업개황 새창" >
+										지앤비에스 에코
+									</a>
+								</span>
+								
+							</td>
+							<td class="tL">
+								<a href="/dsaf001/main.do?rcpNo=20220415000204"  onclick="openReportViewer('20220415000204'); return false;" id="r_20220415000204"
+									title="주식등의대량보유상황보고서(약식) 공시뷰어 새창" >주식등의대량보유상황보고서(약식)
+									
+		  							
+								</a>
+							</td>
+							<td class="tL ellipsis" title="아이엠엠인베스트먼트">아이엠엠인베스트먼트</td>
+							<td>2022.04.15</td>
+							<td></td>
+						</tr>
+					
+					
+					
+					
+					
+					
+					
+					
+				
+					
+						
+						
+						
+						
+							
+						
+					
+					
+					
+					
+					
+					
+						<tr>
+							<td>
+								
+								
+								
+								11:15
+							</td>
+							<td class="tL">
+							    <span class="innerWrap">
+							    	<span class="tagCom_etc"  title="기타법인" style="cursor:default">기</span>
+									<a href="javascript:openCorpInfoNew('00324548', 'winCorpInfo', '/dsae001/selectPopup.ax');" title="한국투자신탁운용 기업개황 새창" >
+										한국투자신탁운용
+									</a>
+								</span>
+								
+							</td>
+							<td class="tL">
+								<a href="/dsaf001/main.do?rcpNo=20220303000147"  onclick="openReportViewer('20220303000147'); return false;" id="r_20220303000147"
+									title="투자설명서(집합투자증권)(한국투자퇴직연금마이스터40증권자투자신탁1호(채권혼합)) 공시뷰어 새창" ><span title="본 보고서명으로 이미 제출된 보고서의 기재내용이 변경되어 제출된 것임" class="txtCB">[기재정정]</span>투자설명서(집합투자증권)
+									
+		  							(한국투자퇴직연금마이스터40증권자투자신탁1호(채권혼합))
+								</a>
+							</td>
+							<td class="tL ellipsis" title="한국투자신탁운용">한국투자신탁운용</td>
+							<td>2022.03.03</td>
+							<td><span class="tagCom_jung_other" title="본 보고서 제출 후 정정신고가 있으니 관련 보고서를 참조하시기 바람" style="cursor:default">정</span></td>
+						</tr>
+					
+					
+					
+					
+					
+					
+					
+					
+				
+					
+						
+						
+						
+						
+							
+						
+					
+					
+					
+					
+					
+					
+						<tr>
+							<td>
+								
+								
+								
+								11:15
+							</td>
+							<td class="tL">
+							    <span class="innerWrap">
+							    	<span class="tagCom_etc"  title="기타법인" style="cursor:default">기</span>
+									<a href="javascript:openCorpInfoNew('01677155', 'winCorpInfo', '/dsae001/selectPopup.ax');" title="한국투자리얼에셋운용 기업개황 새창" >
+										한국투자리얼에셋운용
+									</a>
+								</span>
+								
+							</td>
+							<td class="tL">
+								<a href="/dsaf001/main.do?rcpNo=20220303000232"  onclick="openReportViewer('20220303000232'); return false;" id="r_20220303000232"
+									title="투자설명서(집합투자증권)(한국투자미국MLP특별자산자투자신탁(오일가스인프라-파생형)) 공시뷰어 새창" ><span title="본 보고서명으로 이미 제출된 보고서의 기재내용이 변경되어 제출된 것임" class="txtCB">[기재정정]</span>투자설명서(집합투자증권)
+									
+		  							(한국투자미국MLP특별자산자투자신탁(오일가스인프라-파생형))
+								</a>
+							</td>
+							<td class="tL ellipsis" title="한국투자리얼에셋운용">한국투자리얼에셋운용</td>
+							<td>2022.03.03</td>
+							<td><span class="tagCom_jung_other" title="본 보고서 제출 후 정정신고가 있으니 관련 보고서를 참조하시기 바람" style="cursor:default">정</span></td>
+						</tr>
+					
+					
+					
+					
+					
+					
+					
+					
+				
+					
+						
+						
+						
+						
+							
+						
+					
+					
+					
+					
+					
+					
+						<tr>
+							<td>
+								
+								
+								
+								11:15
+							</td>
+							<td class="tL">
+							    <span class="innerWrap">
+							    	<span class="tagCom_etc"  title="기타법인" style="cursor:default">기</span>
+									<a href="javascript:openCorpInfoNew('00324548', 'winCorpInfo', '/dsae001/selectPopup.ax');" title="한국투자신탁운용 기업개황 새창" >
+										한국투자신탁운용
+									</a>
+								</span>
+								
+							</td>
+							<td class="tL">
+								<a href="/dsaf001/main.do?rcpNo=20220303000213"  onclick="openReportViewer('20220303000213'); return false;" id="r_20220303000213"
+									title="투자설명서(집합투자증권)(한국투자ACE스마트로우볼증권상장지수투자신탁(주식)) 공시뷰어 새창" ><span title="본 보고서명으로 이미 제출된 보고서의 기재내용이 변경되어 제출된 것임" class="txtCB">[기재정정]</span>투자설명서(집합투자증권)
+									
+		  							(한국투자ACE스마트로우볼증권상장지수투자신탁(주식))
+								</a>
+							</td>
+							<td class="tL ellipsis" title="한국투자신탁운용">한국투자신탁운용</td>
+							<td>2022.03.03</td>
+							<td><span class="tagCom_jung_other" title="본 보고서 제출 후 정정신고가 있으니 관련 보고서를 참조하시기 바람" style="cursor:default">정</span></td>
+						</tr>
+					
+					
+					
+					
+					
+					
+					
+					
+				
+					
+						
+						
+						
+						
+							
+						
+					
+					
+					
+					
+					
+					
+						<tr>
+							<td>
+								
+								
+								
+								11:14
+							</td>
+							<td class="tL">
+							    <span class="innerWrap">
+							    	<span class="tagCom_etc"  title="기타법인" style="cursor:default">기</span>
+									<a href="javascript:openCorpInfoNew('00324548', 'winCorpInfo', '/dsae001/selectPopup.ax');" title="한국투자신탁운용 기업개황 새창" >
+										한국투자신탁운용
+									</a>
+								</span>
+								
+							</td>
+							<td class="tL">
+								<a href="/dsaf001/main.do?rcpNo=20220303000211"  onclick="openReportViewer('20220303000211'); return false;" id="r_20220303000211"
+									title="투자설명서(집합투자증권)(한국투자ACE스마트퀄리티증권상장지수투자신탁(주식)) 공시뷰어 새창" ><span title="본 보고서명으로 이미 제출된 보고서의 기재내용이 변경되어 제출된 것임" class="txtCB">[기재정정]</span>투자설명서(집합투자증권)
+									
+		  							(한국투자ACE스마트퀄리티증권상장지수투자신탁(주식))
+								</a>
+							</td>
+							<td class="tL ellipsis" title="한국투자신탁운용">한국투자신탁운용</td>
+							<td>2022.03.03</td>
+							<td><span class="tagCom_jung_other" title="본 보고서 제출 후 정정신고가 있으니 관련 보고서를 참조하시기 바람" style="cursor:default">정</span></td>
+						</tr>
+					
+					
+					
+					
+					
+					
+					
+					
+				
+					
+						
+						
+						
+						
+							
+						
+					
+					
+					
+					
+					
+					
+						<tr>
+							<td>
+								
+								
+								
+								11:14
+							</td>
+							<td class="tL">
+							    <span class="innerWrap">
+							    	<span class="tagCom_etc"  title="기타법인" style="cursor:default">기</span>
+									<a href="javascript:openCorpInfoNew('01677155', 'winCorpInfo', '/dsae001/selectPopup.ax');" title="한국투자리얼에셋운용 기업개황 새창" >
+										한국투자리얼에셋운용
+									</a>
+								</span>
+								
+							</td>
+							<td class="tL">
+								<a href="/dsaf001/main.do?rcpNo=20220303000235"  onclick="openReportViewer('20220303000235'); return false;" id="r_20220303000235"
+									title="투자설명서(집합투자증권)(한국투자미국MLP분기배당특별자산자투자신탁(오일가스인프라-파생형)) 공시뷰어 새창" ><span title="본 보고서명으로 이미 제출된 보고서의 기재내용이 변경되어 제출된 것임" class="txtCB">[기재정정]</span>투자설명서(집합투자증권)
+									
+		  							(한국투자미국MLP분기배당특별자산자투자신탁(오일가스인프라-파생형))
+								</a>
+							</td>
+							<td class="tL ellipsis" title="한국투자리얼에셋운용">한국투자리얼에셋운용</td>
+							<td>2022.03.03</td>
+							<td><span class="tagCom_jung_other" title="본 보고서 제출 후 정정신고가 있으니 관련 보고서를 참조하시기 바람" style="cursor:default">정</span></td>
+						</tr>
+					
+					
+					
+					
+					
+					
+					
+					
+				
+					
+						
+						
+						
+						
+							
+						
+					
+					
+					
+					
+					
+					
+						<tr>
+							<td>
+								
+								
+								
+								11:13
+							</td>
+							<td class="tL">
+							    <span class="innerWrap">
+							    	<span class="tagCom_etc"  title="기타법인" style="cursor:default">기</span>
+									<a href="javascript:openCorpInfoNew('00251400', 'winCorpInfo', '/dsae001/selectPopup.ax');" title="BNK투자증권 기업개황 새창" >
+										BNK투자증권
+									</a>
+								</span>
+								
+							</td>
+							<td class="tL">
+								<a href="/dsaf001/main.do?rcpNo=20220415000201"  onclick="openReportViewer('20220415000201'); return false;" id="r_20220415000201"
+									title="투자설명서(일괄신고) 공시뷰어 새창" >투자설명서(일괄신고)
+									
+		  							
+								</a>
+							</td>
+							<td class="tL ellipsis" title="BNK투자증권">BNK투자증권</td>
+							<td>2022.04.15</td>
+							<td></td>
+						</tr>
+					
+					
+					
+					
+					
+					
+					
+					
+				
+					
+						
+						
+						
+						
+							
+						
+					
+					
+					
+					
+					
+					
+						<tr>
+							<td>
+								
+								
+								
+								11:13
+							</td>
+							<td class="tL">
+							    <span class="innerWrap">
+							    	<span class="tagCom_etc"  title="기타법인" style="cursor:default">기</span>
+									<a href="javascript:openCorpInfoNew('00324548', 'winCorpInfo', '/dsae001/selectPopup.ax');" title="한국투자신탁운용 기업개황 새창" >
+										한국투자신탁운용
+									</a>
+								</span>
+								
+							</td>
+							<td class="tL">
+								<a href="/dsaf001/main.do?rcpNo=20220303000208"  onclick="openReportViewer('20220303000208'); return false;" id="r_20220303000208"
+									title="투자설명서(집합투자증권)(한국투자ACE싱가포르리츠부동산상장지수투자신탁(재간접형)) 공시뷰어 새창" ><span title="본 보고서명으로 이미 제출된 보고서의 기재내용이 변경되어 제출된 것임" class="txtCB">[기재정정]</span>투자설명서(집합투자증권)
+									
+		  							(한국투자ACE싱가포르리츠부동산상장지수투자신탁(재간접형))
+								</a>
+							</td>
+							<td class="tL ellipsis" title="한국투자신탁운용">한국투자신탁운용</td>
+							<td>2022.03.03</td>
+							<td><span class="tagCom_jung_other" title="본 보고서 제출 후 정정신고가 있으니 관련 보고서를 참조하시기 바람" style="cursor:default">정</span></td>
+						</tr>
+					
+					
+					
+					
+					
+					
+					
+					
+				
+					
+						
+						
+						
+						
+							
+						
+					
+					
+					
+					
+					
+					
+						<tr>
+							<td>
+								
+								
+								
+								11:13
+							</td>
+							<td class="tL">
+							    <span class="innerWrap">
+							    	<span class="tagCom_etc"  title="기타법인" style="cursor:default">기</span>
+									<a href="javascript:openCorpInfoNew('00324548', 'winCorpInfo', '/dsae001/selectPopup.ax');" title="한국투자신탁운용 기업개황 새창" >
+										한국투자신탁운용
+									</a>
+								</span>
+								
+							</td>
+							<td class="tL">
+								<a href="/dsaf001/main.do?rcpNo=20220303000223"  onclick="openReportViewer('20220303000223'); return false;" id="r_20220303000223"
+									title="투자설명서(집합투자증권)(한국투자ACE스마트하이베타증권상장지수투자신탁(주식)) 공시뷰어 새창" ><span title="본 보고서명으로 이미 제출된 보고서의 기재내용이 변경되어 제출된 것임" class="txtCB">[기재정정]</span>투자설명서(집합투자증권)
+									
+		  							(한국투자ACE스마트하이베타증권상장지수투자신탁(주식))
+								</a>
+							</td>
+							<td class="tL ellipsis" title="한국투자신탁운용">한국투자신탁운용</td>
+							<td>2022.03.03</td>
+							<td><span class="tagCom_jung_other" title="본 보고서 제출 후 정정신고가 있으니 관련 보고서를 참조하시기 바람" style="cursor:default">정</span></td>
+						</tr>
+					
+					
+					
+					
+					
+					
+					
+					
+				
+					
+						
+						
+						
+						
+							
+						
+					
+					
+					
+					
+					
+					
+						<tr>
+							<td>
+								
+								
+								
+								11:13
+							</td>
+							<td class="tL">
+							    <span class="innerWrap">
+							    	<span class="tagCom_etc"  title="기타법인" style="cursor:default">기</span>
+									<a href="javascript:openCorpInfoNew('00324548', 'winCorpInfo', '/dsae001/selectPopup.ax');" title="한국투자신탁운용 기업개황 새창" >
+										한국투자신탁운용
+									</a>
+								</span>
+								
+							</td>
+							<td class="tL">
+								<a href="/dsaf001/main.do?rcpNo=20220303000228"  onclick="openReportViewer('20220303000228'); return false;" id="r_20220303000228"
+									title="투자설명서(집합투자증권)(한국투자ACE미국S&P500증권상장지수투자신탁(주식)) 공시뷰어 새창" ><span title="본 보고서명으로 이미 제출된 보고서의 기재내용이 변경되어 제출된 것임" class="txtCB">[기재정정]</span>투자설명서(집합투자증권)
+									
+		  							(한국투자ACE미국S&P500증권상장지수투자신탁(주식))
+								</a>
+							</td>
+							<td class="tL ellipsis" title="한국투자신탁운용">한국투자신탁운용</td>
+							<td>2022.03.03</td>
+							<td><span class="tagCom_jung_other" title="본 보고서 제출 후 정정신고가 있으니 관련 보고서를 참조하시기 바람" style="cursor:default">정</span></td>
+						</tr>
+					
+					
+					
+					
+					
+					
+					
+					
+				
+					
+						
+						
+						
+						
+							
+						
+					
+					
+					
+					
+					
+					
+						<tr>
+							<td>
+								
+								
+								
+								11:13
+							</td>
+							<td class="tL">
+							    <span class="innerWrap">
+							    	<span class="tagCom_etc"  title="기타법인" style="cursor:default">기</span>
+									<a href="javascript:openCorpInfoNew('00324548', 'winCorpInfo', '/dsae001/selectPopup.ax');" title="한국투자신탁운용 기업개황 새창" >
+										한국투자신탁운용
+									</a>
+								</span>
+								
+							</td>
+							<td class="tL">
+								<a href="/dsaf001/main.do?rcpNo=20220303000237"  onclick="openReportViewer('20220303000237'); return false;" id="r_20220303000237"
+									title="투자설명서(집합투자증권)(한국투자ACE차이나항셍테크증권상장지수투자신탁(주식)) 공시뷰어 새창" ><span title="본 보고서명으로 이미 제출된 보고서의 기재내용이 변경되어 제출된 것임" class="txtCB">[기재정정]</span>투자설명서(집합투자증권)
+									
+		  							(한국투자ACE차이나항셍테크증권상장지수투자신탁(주식))
+								</a>
+							</td>
+							<td class="tL ellipsis" title="한국투자신탁운용">한국투자신탁운용</td>
+							<td>2022.03.03</td>
+							<td><span class="tagCom_jung_other" title="본 보고서 제출 후 정정신고가 있으니 관련 보고서를 참조하시기 바람" style="cursor:default">정</span></td>
+						</tr>
+					
+					
+					
+					
+					
+					
+					
+					
+				
+					
+						
+						
+						
+						
+							
+						
+					
+					
+					
+					
+					
+					
+						<tr>
+							<td>
+								
+								
+								
+								11:11
+							</td>
+							<td class="tL">
+							    <span class="innerWrap">
+							    	<span class="tagCom_etc"  title="기타법인" style="cursor:default">기</span>
+									<a href="javascript:openCorpInfoNew('00324548', 'winCorpInfo', '/dsae001/selectPopup.ax');" title="한국투자신탁운용 기업개황 새창" >
+										한국투자신탁운용
+									</a>
+								</span>
+								
+							</td>
+							<td class="tL">
+								<a href="/dsaf001/main.do?rcpNo=20220303000253"  onclick="openReportViewer('20220303000253'); return false;" id="r_20220303000253"
+									title="투자설명서(집합투자증권)(한국투자ACE200증권상장지수투자신탁(주식)) 공시뷰어 새창" ><span title="본 보고서명으로 이미 제출된 보고서의 기재내용이 변경되어 제출된 것임" class="txtCB">[기재정정]</span>투자설명서(집합투자증권)
+									
+		  							(한국투자ACE200증권상장지수투자신탁(주식))
+								</a>
+							</td>
+							<td class="tL ellipsis" title="한국투자신탁운용">한국투자신탁운용</td>
+							<td>2022.03.03</td>
+							<td><span class="tagCom_jung_other" title="본 보고서 제출 후 정정신고가 있으니 관련 보고서를 참조하시기 바람" style="cursor:default">정</span></td>
+						</tr>
+					
+					
+					
+					
+					
+					
+					
+					
+				
+					
+						
+						
+						
+						
+							
+						
+					
+					
+					
+					
+					
+					
+						<tr>
+							<td>
+								
+								
+								
+								11:11
+							</td>
+							<td class="tL">
+							    <span class="innerWrap">
+							    	<span class="tagCom_etc"  title="기타법인" style="cursor:default">기</span>
+									<a href="javascript:openCorpInfoNew('00324548', 'winCorpInfo', '/dsae001/selectPopup.ax');" title="한국투자신탁운용 기업개황 새창" >
+										한국투자신탁운용
+									</a>
+								</span>
+								
+							</td>
+							<td class="tL">
+								<a href="/dsaf001/main.do?rcpNo=20220303000261"  onclick="openReportViewer('20220303000261'); return false;" id="r_20220303000261"
+									title="투자설명서(집합투자증권)(한국투자ACE2차전지&친환경차액티브증권상장지수투자신탁(주식)) 공시뷰어 새창" ><span title="본 보고서명으로 이미 제출된 보고서의 기재내용이 변경되어 제출된 것임" class="txtCB">[기재정정]</span>투자설명서(집합투자증권)
+									
+		  							(한국투자ACE2차전지&친환경차액티브증권상장지수투자신탁(주식))
+								</a>
+							</td>
+							<td class="tL ellipsis" title="한국투자신탁운용">한국투자신탁운용</td>
+							<td>2022.03.03</td>
+							<td><span class="tagCom_jung_other" title="본 보고서 제출 후 정정신고가 있으니 관련 보고서를 참조하시기 바람" style="cursor:default">정</span></td>
+						</tr>
+					
+					
+					
+					
+					
+					
+					
+					
+				
+					
+						
+						
+						
+						
+							
+						
+					
+					
+					
+					
+					
+					
+						<tr>
+							<td>
+								
+								
+								
+								11:10
+							</td>
+							<td class="tL">
+							    <span class="innerWrap">
+							    	<span class="tagCom_etc"  title="기타법인" style="cursor:default">기</span>
+									<a href="javascript:openCorpInfoNew('00324548', 'winCorpInfo', '/dsae001/selectPopup.ax');" title="한국투자신탁운용 기업개황 새창" >
+										한국투자신탁운용
+									</a>
+								</span>
+								
+							</td>
+							<td class="tL">
+								<a href="/dsaf001/main.do?rcpNo=20220303000233"  onclick="openReportViewer('20220303000233'); return false;" id="r_20220303000233"
+									title="투자설명서(집합투자증권)(한국투자ACE미국나스닥100증권상장지수투자신탁(주식)) 공시뷰어 새창" ><span title="본 보고서명으로 이미 제출된 보고서의 기재내용이 변경되어 제출된 것임" class="txtCB">[기재정정]</span>투자설명서(집합투자증권)
+									
+		  							(한국투자ACE미국나스닥100증권상장지수투자신탁(주식))
+								</a>
+							</td>
+							<td class="tL ellipsis" title="한국투자신탁운용">한국투자신탁운용</td>
+							<td>2022.03.03</td>
+							<td><span class="tagCom_jung_other" title="본 보고서 제출 후 정정신고가 있으니 관련 보고서를 참조하시기 바람" style="cursor:default">정</span></td>
+						</tr>
+					
+					
+					
+					
+					
+					
+					
+					
+				
+					
+						
+						
+						
+						
+							
+						
+					
+					
+					
+					
+					
+					
+						<tr>
+							<td>
+								
+								
+								
+								11:10
+							</td>
+							<td class="tL">
+							    <span class="innerWrap">
+							    	<span class="tagCom_etc"  title="기타법인" style="cursor:default">기</span>
+									<a href="javascript:openCorpInfoNew('00324548', 'winCorpInfo', '/dsae001/selectPopup.ax');" title="한국투자신탁운용 기업개황 새창" >
+										한국투자신탁운용
+									</a>
+								</span>
+								
+							</td>
+							<td class="tL">
+								<a href="/dsaf001/main.do?rcpNo=20220303000320"  onclick="openReportViewer('20220303000320'); return false;" id="r_20220303000320"
+									title="투자설명서(집합투자증권)(한국투자ACE스마트모멘텀증권상장지수투자신탁(주식)) 공시뷰어 새창" ><span title="본 보고서명으로 이미 제출된 보고서의 기재내용이 변경되어 제출된 것임" class="txtCB">[기재정정]</span>투자설명서(집합투자증권)
+									
+		  							(한국투자ACE스마트모멘텀증권상장지수투자신탁(주식))
+								</a>
+							</td>
+							<td class="tL ellipsis" title="한국투자신탁운용">한국투자신탁운용</td>
+							<td>2022.03.03</td>
+							<td><span class="tagCom_jung_other" title="본 보고서 제출 후 정정신고가 있으니 관련 보고서를 참조하시기 바람" style="cursor:default">정</span></td>
+						</tr>
+					
+					
+					
+					
+					
+					
+					
+					
+				
+					
+						
+						
+						
+						
+							
+						
+					
+					
+					
+					
+					
+					
+						<tr>
+							<td>
+								
+								
+								
+								11:10
+							</td>
+							<td class="tL">
+							    <span class="innerWrap">
+							    	<span class="tagCom_etc"  title="기타법인" style="cursor:default">기</span>
+									<a href="javascript:openCorpInfoNew('00324548', 'winCorpInfo', '/dsae001/selectPopup.ax');" title="한국투자신탁운용 기업개황 새창" >
+										한국투자신탁운용
+									</a>
+								</span>
+								
+							</td>
+							<td class="tL">
+								<a href="/dsaf001/main.do?rcpNo=20220303000312"  onclick="openReportViewer('20220303000312'); return false;" id="r_20220303000312"
+									title="투자설명서(집합투자증권)(한국투자ACE인도네시아MSCI증권상장지수투자신탁(주식-파생형)(합성)) 공시뷰어 새창" ><span title="본 보고서명으로 이미 제출된 보고서의 기재내용이 변경되어 제출된 것임" class="txtCB">[기재정정]</span>투자설명서(집합투자증권)
+									
+		  							(한국투자ACE인도네시아MSCI증권상장지수투자신탁(주식-파생형)(합성))
+								</a>
+							</td>
+							<td class="tL ellipsis" title="한국투자신탁운용">한국투자신탁운용</td>
+							<td>2022.03.03</td>
+							<td><span class="tagCom_jung_other" title="본 보고서 제출 후 정정신고가 있으니 관련 보고서를 참조하시기 바람" style="cursor:default">정</span></td>
+						</tr>
+					
+					
+					
+					
+					
+					
+					
+					
+				
+					
+						
+						
+						
+						
+							
+						
+					
+					
+					
+					
+					
+					
+						<tr>
+							<td>
+								
+								
+								
+								11:10
+							</td>
+							<td class="tL">
+							    <span class="innerWrap">
+							    	<span class="tagCom_etc"  title="기타법인" style="cursor:default">기</span>
+									<a href="javascript:openCorpInfoNew('00324548', 'winCorpInfo', '/dsae001/selectPopup.ax');" title="한국투자신탁운용 기업개황 새창" >
+										한국투자신탁운용
+									</a>
+								</span>
+								
+							</td>
+							<td class="tL">
+								<a href="/dsaf001/main.do?rcpNo=20220303000246"  onclick="openReportViewer('20220303000246'); return false;" id="r_20220303000246"
+									title="투자설명서(집합투자증권)(한국투자ACEFn5G플러스증권상장지수투자신탁(주식)) 공시뷰어 새창" ><span title="본 보고서명으로 이미 제출된 보고서의 기재내용이 변경되어 제출된 것임" class="txtCB">[기재정정]</span>투자설명서(집합투자증권)
+									
+		  							(한국투자ACEFn5G플러스증권상장지수투자신탁(주식))
+								</a>
+							</td>
+							<td class="tL ellipsis" title="한국투자신탁운용">한국투자신탁운용</td>
+							<td>2022.03.03</td>
+							<td><span class="tagCom_jung_other" title="본 보고서 제출 후 정정신고가 있으니 관련 보고서를 참조하시기 바람" style="cursor:default">정</span></td>
+						</tr>
+					
+					
+					
+					
+					
+					
+					
+					
+				
+					
+						
+						
+						
+						
+							
+						
+					
+					
+					
+					
+					
+					
+						<tr>
+							<td>
+								
+								
+								
+								11:10
+							</td>
+							<td class="tL">
+							    <span class="innerWrap">
+							    	<span class="tagCom_etc"  title="기타법인" style="cursor:default">기</span>
+									<a href="javascript:openCorpInfoNew('01677155', 'winCorpInfo', '/dsae001/selectPopup.ax');" title="한국투자리얼에셋운용 기업개황 새창" >
+										한국투자리얼에셋운용
+									</a>
+								</span>
+								
+							</td>
+							<td class="tL">
+								<a href="/dsaf001/main.do?rcpNo=20220303000244"  onclick="openReportViewer('20220303000244'); return false;" id="r_20220303000244"
+									title="투자설명서(집합투자증권)(한국투자연금저축미국MLP특별자산자투자신탁(오일가스인프라-파생형)) 공시뷰어 새창" ><span title="본 보고서명으로 이미 제출된 보고서의 기재내용이 변경되어 제출된 것임" class="txtCB">[기재정정]</span>투자설명서(집합투자증권)
+									
+		  							(한국투자연금저축미국MLP특별자산자투자신탁(오일가스인프라-파생형))
+								</a>
+							</td>
+							<td class="tL ellipsis" title="한국투자리얼에셋운용">한국투자리얼에셋운용</td>
+							<td>2022.03.03</td>
+							<td><span class="tagCom_jung_other" title="본 보고서 제출 후 정정신고가 있으니 관련 보고서를 참조하시기 바람" style="cursor:default">정</span></td>
+						</tr>
+					
+					
+					
+					
+					
+					
+					
+					
+				
+					
+						
+						
+						
+						
+							
+						
+					
+					
+					
+					
+					
+					
+						<tr>
+							<td>
+								
+								
+								
+								11:10
+							</td>
+							<td class="tL">
+							    <span class="innerWrap">
+							    	<span class="tagCom_etc"  title="기타법인" style="cursor:default">기</span>
+									<a href="javascript:openCorpInfoNew('00324548', 'winCorpInfo', '/dsae001/selectPopup.ax');" title="한국투자신탁운용 기업개황 새창" >
+										한국투자신탁운용
+									</a>
+								</span>
+								
+							</td>
+							<td class="tL">
+								<a href="/dsaf001/main.do?rcpNo=20220303000315"  onclick="openReportViewer('20220303000315'); return false;" id="r_20220303000315"
+									title="투자설명서(집합투자증권)(한국투자ACE러시아MSCI증권상장지수투자신탁(주식-파생형)(합성)) 공시뷰어 새창" ><span title="본 보고서명으로 이미 제출된 보고서의 기재내용이 변경되어 제출된 것임" class="txtCB">[기재정정]</span>투자설명서(집합투자증권)
+									
+		  							(한국투자ACE러시아MSCI증권상장지수투자신탁(주식-파생형)(합성))
+								</a>
+							</td>
+							<td class="tL ellipsis" title="한국투자신탁운용">한국투자신탁운용</td>
+							<td>2022.03.03</td>
+							<td><span class="tagCom_jung_other" title="본 보고서 제출 후 정정신고가 있으니 관련 보고서를 참조하시기 바람" style="cursor:default">정</span></td>
+						</tr>
+					
+					
+					
+					
+					
+					
+					
+					
+				
+					
+						
+						
+						
+						
+							
+						
+					
+					
+					
+					
+					
+					
+						<tr>
+							<td>
+								
+								
+								
+								11:10
+							</td>
+							<td class="tL">
+							    <span class="innerWrap">
+							    	<span class="tagCom_etc"  title="기타법인" style="cursor:default">기</span>
+									<a href="javascript:openCorpInfoNew('00324548', 'winCorpInfo', '/dsae001/selectPopup.ax');" title="한국투자신탁운용 기업개황 새창" >
+										한국투자신탁운용
+									</a>
+								</span>
+								
+							</td>
+							<td class="tL">
+								<a href="/dsaf001/main.do?rcpNo=20220303000289"  onclick="openReportViewer('20220303000289'); return false;" id="r_20220303000289"
+									title="투자설명서(집합투자증권)(한국투자ACEKRX금현물특별자산상장지수투자신탁(금)) 공시뷰어 새창" ><span title="본 보고서명으로 이미 제출된 보고서의 기재내용이 변경되어 제출된 것임" class="txtCB">[기재정정]</span>투자설명서(집합투자증권)
+									
+		  							(한국투자ACEKRX금현물특별자산상장지수투자신탁(금))
+								</a>
+							</td>
+							<td class="tL ellipsis" title="한국투자신탁운용">한국투자신탁운용</td>
+							<td>2022.03.03</td>
+							<td><span class="tagCom_jung_other" title="본 보고서 제출 후 정정신고가 있으니 관련 보고서를 참조하시기 바람" style="cursor:default">정</span></td>
+						</tr>
+					
+					
+					
+					
+					
+					
+					
+					
+				
+					
+						
+						
+						
+						
+							
+						
+					
+					
+					
+					
+					
+					
+						<tr>
+							<td>
+								
+								
+								
+								11:10
+							</td>
+							<td class="tL">
+							    <span class="innerWrap">
+							    	<span class="tagCom_etc"  title="기타법인" style="cursor:default">기</span>
+									<a href="javascript:openCorpInfoNew('00324548', 'winCorpInfo', '/dsae001/selectPopup.ax');" title="한국투자신탁운용 기업개황 새창" >
+										한국투자신탁운용
+									</a>
+								</span>
+								
+							</td>
+							<td class="tL">
+								<a href="/dsaf001/main.do?rcpNo=20220303000260"  onclick="openReportViewer('20220303000260'); return false;" id="r_20220303000260"
+									title="투자설명서(집합투자증권)(한국투자ACE삼성그룹주동일가중증권상장지수투자신탁(주식)) 공시뷰어 새창" ><span title="본 보고서명으로 이미 제출된 보고서의 기재내용이 변경되어 제출된 것임" class="txtCB">[기재정정]</span>투자설명서(집합투자증권)
+									
+		  							(한국투자ACE삼성그룹주동일가중증권상장지수투자신탁(주식))
+								</a>
+							</td>
+							<td class="tL ellipsis" title="한국투자신탁운용">한국투자신탁운용</td>
+							<td>2022.03.03</td>
+							<td><span class="tagCom_jung_other" title="본 보고서 제출 후 정정신고가 있으니 관련 보고서를 참조하시기 바람" style="cursor:default">정</span></td>
+						</tr>
+					
+					
+					
+					
+					
+					
+					
+					
+				
+					
+						
+						
+						
+						
+							
+						
+					
+					
+					
+					
+					
+					
+						<tr>
+							<td>
+								
+								
+								
+								11:10
+							</td>
+							<td class="tL">
+							    <span class="innerWrap">
+							    	<span class="tagCom_etc"  title="기타법인" style="cursor:default">기</span>
+									<a href="javascript:openCorpInfoNew('00324548', 'winCorpInfo', '/dsae001/selectPopup.ax');" title="한국투자신탁운용 기업개황 새창" >
+										한국투자신탁운용
+									</a>
+								</span>
+								
+							</td>
+							<td class="tL">
+								<a href="/dsaf001/main.do?rcpNo=20220303000343"  onclick="openReportViewer('20220303000343'); return false;" id="r_20220303000343"
+									title="투자설명서(집합투자증권)(한국투자ACE미국IT인터넷증권상장지수투자신탁(주식-파생형)(합성H)) 공시뷰어 새창" ><span title="본 보고서명으로 이미 제출된 보고서의 기재내용이 변경되어 제출된 것임" class="txtCB">[기재정정]</span>투자설명서(집합투자증권)
+									
+		  							(한국투자ACE미국IT인터넷증권상장지수투자신탁(주식-파생형)(합성H))
+								</a>
+							</td>
+							<td class="tL ellipsis" title="한국투자신탁운용">한국투자신탁운용</td>
+							<td>2022.03.03</td>
+							<td><span class="tagCom_jung_other" title="본 보고서 제출 후 정정신고가 있으니 관련 보고서를 참조하시기 바람" style="cursor:default">정</span></td>
+						</tr>
+					
+					
+					
+					
+					
+					
+					
+					
+				
+					
+						
+						
+						
+						
+							
+						
+					
+					
+					
+					
+					
+					
+						<tr>
+							<td>
+								
+								
+								
+								11:10
+							</td>
+							<td class="tL">
+							    <span class="innerWrap">
+							    	<span class="tagCom_etc"  title="기타법인" style="cursor:default">기</span>
+									<a href="javascript:openCorpInfoNew('00324548', 'winCorpInfo', '/dsae001/selectPopup.ax');" title="한국투자신탁운용 기업개황 새창" >
+										한국투자신탁운용
+									</a>
+								</span>
+								
+							</td>
+							<td class="tL">
+								<a href="/dsaf001/main.do?rcpNo=20220303000279"  onclick="openReportViewer('20220303000279'); return false;" id="r_20220303000279"
+									title="투자설명서(집합투자증권)(한국투자ACE미국스팩&IPOINDXX증권상장지수투자신탁(주식)) 공시뷰어 새창" ><span title="본 보고서명으로 이미 제출된 보고서의 기재내용이 변경되어 제출된 것임" class="txtCB">[기재정정]</span>투자설명서(집합투자증권)
+									
+		  							(한국투자ACE미국스팩&IPOINDXX증권상장지수투자신탁(주식))
+								</a>
+							</td>
+							<td class="tL ellipsis" title="한국투자신탁운용">한국투자신탁운용</td>
+							<td>2022.03.03</td>
+							<td><span class="tagCom_jung_other" title="본 보고서 제출 후 정정신고가 있으니 관련 보고서를 참조하시기 바람" style="cursor:default">정</span></td>
+						</tr>
+					
+					
+					
+					
+					
+					
+					
+					
+				
+					
+						
+						
+						
+						
+							
+						
+					
+					
+					
+					
+					
+					
+						<tr>
+							<td>
+								
+								
+								
+								11:10
+							</td>
+							<td class="tL">
+							    <span class="innerWrap">
+							    	<span class="tagCom_etc"  title="기타법인" style="cursor:default">기</span>
+									<a href="javascript:openCorpInfoNew('00324548', 'winCorpInfo', '/dsae001/selectPopup.ax');" title="한국투자신탁운용 기업개황 새창" >
+										한국투자신탁운용
+									</a>
+								</span>
+								
+							</td>
+							<td class="tL">
+								<a href="/dsaf001/main.do?rcpNo=20220303000300"  onclick="openReportViewer('20220303000300'); return false;" id="r_20220303000300"
+									title="투자설명서(집합투자증권)(한국투자ACE베트남VN30증권상장지수투자신탁(주식-파생형)(합성)) 공시뷰어 새창" ><span title="본 보고서명으로 이미 제출된 보고서의 기재내용이 변경되어 제출된 것임" class="txtCB">[기재정정]</span>투자설명서(집합투자증권)
+									
+		  							(한국투자ACE베트남VN30증권상장지수투자신탁(주식-파생형)(합성))
+								</a>
+							</td>
+							<td class="tL ellipsis" title="한국투자신탁운용">한국투자신탁운용</td>
+							<td>2022.03.03</td>
+							<td><span class="tagCom_jung_other" title="본 보고서 제출 후 정정신고가 있으니 관련 보고서를 참조하시기 바람" style="cursor:default">정</span></td>
+						</tr>
+					
+					
+					
+					
+					
+					
+					
+					
+				
+					
+						
+						
+						
+						
+							
+						
+					
+					
+					
+					
+					
+					
+						<tr>
+							<td>
+								
+								
+								
+								11:10
+							</td>
+							<td class="tL">
+							    <span class="innerWrap">
+							    	<span class="tagCom_etc"  title="기타법인" style="cursor:default">기</span>
+									<a href="javascript:openCorpInfoNew('00324548', 'winCorpInfo', '/dsae001/selectPopup.ax');" title="한국투자신탁운용 기업개황 새창" >
+										한국투자신탁운용
+									</a>
+								</span>
+								
+							</td>
+							<td class="tL">
+								<a href="/dsaf001/main.do?rcpNo=20220303000304"  onclick="openReportViewer('20220303000304'); return false;" id="r_20220303000304"
+									title="투자설명서(집합투자증권)(한국투자ACE코스닥증권상장지수투자신탁(주식-파생형)(합성)) 공시뷰어 새창" ><span title="본 보고서명으로 이미 제출된 보고서의 기재내용이 변경되어 제출된 것임" class="txtCB">[기재정정]</span>투자설명서(집합투자증권)
+									
+		  							(한국투자ACE코스닥증권상장지수투자신탁(주식-파생형)(합성))
+								</a>
+							</td>
+							<td class="tL ellipsis" title="한국투자신탁운용">한국투자신탁운용</td>
+							<td>2022.03.03</td>
+							<td><span class="tagCom_jung_other" title="본 보고서 제출 후 정정신고가 있으니 관련 보고서를 참조하시기 바람" style="cursor:default">정</span></td>
+						</tr>
+					
+					
+					
+					
+					
+					
+					
+					
+				
+				</tbody>
+			
+			
+		
+		<input type="hidden" name="totalCnt" id="totalCnt" value="1013">
+	</table>
+</div>
+
+	<div class = "psWrap">
+		<div class="pageInfo">[6/11] [총 1,013건]</div>
+		
+		<div class="pageSkip">
+			<ul>
+				<li ><a href="javascript:search(1);" class="first">처음으로</a></li><li class="preview"><a href="javascript:search(1);" class="preview">이전</a></li><li><a href="javascript:search(1);">1</a></li><li><a href="javascript:search(2);">2</a></li><li><a href="javascript:search(3);">3</a></li><li><a href="javascript:search(4);">4</a></li><li><a href="javascript:search(5);">5</a></li><li class="on"><a onClick="javascript:void(0);">6</a></li><li><a href="javascript:search(7);">7</a></li><li><a href="javascript:search(8);">8</a></li><li><a href="javascript:search(9);">9</a></li><li><a href="javascript:search(10);">10</a></li><li ><a href="javascript:search(11);" class="next">다음 페이지</a></li><li ><a href="javascript:search(11);" class="last">끝 페이지</a></li>
+
+			</ul>
+		</div>
+	</div>
+

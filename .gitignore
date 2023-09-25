@@ -160,7 +160,6 @@ cython_debug/
 #.idea/
 
 # Andy's development files
-mojito_code/
 venv/
 
 
