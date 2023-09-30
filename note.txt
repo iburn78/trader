@@ -58,3 +58,4 @@
     pip install -U finance-datareader
     pip install opendartreader 
     pip install pyarrow
+    pip install scipy
