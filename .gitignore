@@ -163,6 +163,8 @@ cython_debug/
 venv/
 docs_cache/
 reports/
+token.dat
+
 
 
 

@@ -52,6 +52,8 @@
     git add . <- . means current directory and subordinated directories
     git add -A <- adds all from base directory
 
+
+
 ### 
 
 - installations
@@ -59,3 +61,12 @@
     pip install opendartreader 
     pip install pyarrow
     pip install scipy
+
+
+
+### Changes need to make in installations
+
+- in mojito module, change path to the token.dat to be in config...
+
+- in fdr, for file \FinanceDataReader\krx\listing.py: 
+    df_listing = pd.read_html(url, header=0, encoding='euc-kr')[0]  # Use 'euc-kr' encoding
