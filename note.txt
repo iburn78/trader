@@ -61,12 +61,13 @@
     pip install opendartreader 
     pip install pyarrow
     pip install scipy
+    pip install mojito2
 
 
 
 ### Changes need to make in installations
 
-- in mojito module, change path to the token.dat to be in config...
-
+- in mojito module, change path to the token.dat to be in config... :should be adjusted according to relative directory (e.g., ../../config/.. or ../config/..)
+    you may use koreainvest_module.py instead
 - in fdr, for file \FinanceDataReader\krx\listing.py: 
     df_listing = pd.read_html(url, header=0, encoding='euc-kr')[0]  # Use 'euc-kr' encoding

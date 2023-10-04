@@ -1,5 +1,5 @@
 import json
-from koreainvst_module import * 
+from koreainvest_module import * 
 from pprint import pprint
 import requests
 
