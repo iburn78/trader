@@ -362,6 +362,15 @@ class KoreaInvestment:
 
         # access token
         self.access_token = None
+
+        if os.path.exists(os.path.join(os.path.dirname(os.getcwd()),'config')):  # '../config/token.dat'
+            config_path = os.path.join(os.path.dirname(os.getcwd()),'config')
+        elif os.path.exists(os.path.join(os.path.dirname(os.path.dirname(os.getcwd())),'config')): # '../../config/token.dat'
+            config_path = os.path.join(os.path.dirname(os.path.dirname(os.getcwd())),'config')
+        else:
+            raise Exception('ERROR: config dirctory has to be correctly located')
+        self.token_location = os.path.join(config_path, 'token.dat')
+
         if self.check_access_token():
             self.load_access_token()
         else:
@@ -400,7 +409,7 @@ class KoreaInvestment:
         resp_data['api_secret'] = self.api_secret
 
         # dump access token
-        with open("../config/token.dat", "wb") as f:
+        with open(self.token_location, "wb") as f:
             pickle.dump(resp_data, f)
 
     def check_access_token(self):
@@ -410,7 +419,7 @@ class KoreaInvestment:
             Bool: True: token is valid, False: token is not valid
         """
         try:
-            f = open("../config/token.dat", "rb")
+            f = open(self.token_location, "rb")
             data = pickle.load(f)
             f.close()
 
@@ -431,7 +440,7 @@ class KoreaInvestment:
     def load_access_token(self):
         """load access token
         """
-        with open("../config/token.dat", "rb") as f:
+        with open(self.token_location, "rb") as f:
             data = pickle.load(f)
             self.access_token = f'Bearer {data["access_token"]}'
 

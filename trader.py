@@ -1,4 +1,4 @@
-from koreainvest_module import * 
+from tools.koreainvest_module import * 
 import json
 from pprint import pprint
 

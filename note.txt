@@ -16,6 +16,17 @@
     from <package> import <module>
     if only an package is imported, the subordinated modules are not automatically imported
     previously, '__init__.py' has to be located in an package(probably in Django migrations it still does...), but no longer required
+        if only package is imported, then __init__.py is executed
+        in __init__.py, you may contain which module to import in a package, e.g., from . import module1
+
+
+- finding a package
+    even with relative import, if the path is not registed in sys.path, then a package cannot be found
+    use the following example: 
+        import sys, os
+        sys.path.append(os.path.dirname(os.getcwd()))  # adding the parent directory to the path; the parent directory contains 'tools' package
+
+        from tools import koreainvest_module
 
 
 - '-m' option in python
@@ -47,6 +58,7 @@
     tmux attach -t <process_name>
     exit
     tmux kill-session -t <process_name>
+
 
 - git 
     git add . <- . means current directory and subordinated directories
