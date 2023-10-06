@@ -1,3 +1,11 @@
 Financial data collection log
-2023-10-06 15:29:52.772946, no: 0, code 207940 in process / 삼성바이오로직스
-2023-10-06 15:30:02.796161, no: 1, code 005490 in process / POSCO홀딩스
+2023-10-06 22:56:39.463040, no: 0, code 005930 in process / 삼성전자
+----> no: 0, code 005930 data not available, could be a financial institution / 삼성전자
+2023-10-06 22:56:45.385131, no: 1, code 373220 in process / LG에너지솔루션
+----> no: 1, code 373220 data not available, could be a financial institution / LG에너지솔루션
+2023-10-06 22:56:51.304689, no: 2, code 000660 in process / SK하이닉스
+----> no: 2, code 000660 data not available, could be a financial institution / SK하이닉스
+2023-10-06 22:56:57.239486, no: 3, code 207940 in process / 삼성바이오로직스
+----> no: 3, code 207940 data not available, could be a financial institution / 삼성바이오로직스
+2023-10-06 22:57:03.187186, no: 4, code 005490 in process / POSCO홀딩스
+----> no: 4, code 005490 data not available, could be a financial institution / POSCO홀딩스

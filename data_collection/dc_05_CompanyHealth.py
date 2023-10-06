@@ -3,7 +3,8 @@ import json
 
 with open('../../config/config.json', 'r') as json_file:
     config = json.load(json_file)
-    dart_api = config['dart_api']
+    # dart_api = config['dart_api_1']
+    dart_api = config['dart_api_2']
 
 dart = OpenDartReader(dart_api)
 
@@ -45,11 +46,13 @@ def collect_financial_reports(dart, code):
         if len(rec) > 0:
             break
         if ind == 8: # search initial data within last 8 quarters
-            raise Exception('Data not available for code:', code) 
+            # raise Exception('Data not available for code:', code) 
+            return pd.DataFrame(), 'Data Not Available'
 
     record[['stock_code', 'fs_div', 'sj_div', 'account_nm']] = rec[['stock_code', 'fs_div', 'sj_div', 'account_nm']]
     if rec['currency'][0] != 'KRW':
-        raise Exception('Currency is not in KRW for code: ', code)
+        # raise Exception('Currency is not in KRW for code: ', code)
+        return pd.DataFrame(), 'Currency Not in KRW'
 
     y_init = y
     q_init = q
@@ -63,8 +66,10 @@ def collect_financial_reports(dart, code):
     if q_init != 4: 
         y = y_init-1
     rec = dart.finstate(code, y, reprt_code=reprt_code_dict[4])
+    # in some cases, previous year data is '-'
+    rec.replace('-', pd.NA, inplace=True)
 
-    while True:
+    while len(rec)>0:
         data_term = 'FY'+str(y)
         rec[data_term] = rec['thstrm_amount'].str.replace(',','').astype('Int64')
         record = pd.merge(record, rec[['stock_code', 'fs_div', 'account_nm', data_term]], how='outer', left_on=['stock_code', 'fs_div', 'account_nm'], right_on=['stock_code', 'fs_div', 'account_nm'])
@@ -83,6 +88,7 @@ def collect_financial_reports(dart, code):
         else: 
             y = y-1
             rec = prev_year_rec
+            rec.replace('-', pd.NA, inplace=True)
 
     # Step 2:
     if q_init == 4: 
@@ -92,6 +98,7 @@ def collect_financial_reports(dart, code):
         y = y_init
         q = q_init
     rec = dart.finstate(code, y, reprt_code=reprt_code_dict[q])
+    rec.replace('-', pd.NA, inplace=True)
 
     while len(rec)>0:
         data_term = str(y)+'_'+str(q)+'Q'
@@ -110,8 +117,6 @@ def collect_financial_reports(dart, code):
         # check if there is data in the prev year, the same quarter
         prev_year_rec = dart.finstate(code, y-1, reprt_code=reprt_code_dict[q]) 
         if len(prev_year_rec) == 0: 
-            # in some cases, previous year data is '-'
-            rec.replace('-', pd.NA, inplace=True)
             prev_term = str(y-1)+'_'+str(q)+'Q'
             # add only IS data
             rec.loc[rec['sj_div']=='IS', prev_term] = rec.loc[rec['sj_div']=='IS', 'frmtrm_amount'].str.replace(',','').astype('Int64')
@@ -127,6 +132,7 @@ def collect_financial_reports(dart, code):
 
         y, q = get_prev_quarter_except_FY(y, q)
         rec = dart.finstate(code, y, reprt_code=reprt_code_dict[q])
+        rec.replace('-', pd.NA, inplace=True)
     
     # post process
     record.rename(columns={'stock_code':'code', }, inplace=True)
@@ -134,30 +140,83 @@ def collect_financial_reports(dart, code):
     static_columns = ['code', 'fs_div', 'sj_div', 'account_nm', 'account']
     record = pd.concat([record[static_columns], record[record.columns.difference(static_columns)].sort_index(axis=1)], axis=1)
 
-    return record
+    message = 'success'
+    return record, message
 
+
+# Execution of financial data collection
 import time
 
 df_krx = pd.read_feather('data/df_krx.feather')
 sector = df_krx.index
+
 financial_reports = pd.DataFrame()
 save_file_name = 'data/financial_reports_upto_'+str(datetime.date.today())+'.feather'
 log_fie = 'data/data_collection_log.txt'
+
 with open(log_fie, 'w') as f:
     f.write('Financial data collection log\n')
 
-for current_target_indicator, code in enumerate(sector): 
-    current_progress = str(datetime.datetime.now()) + ', no: ' + str(current_target_indicator) + ', code ' + code+' in process / '+df_krx['Name'][code]
-    print(current_progress)
-    with open(log_fie, 'a') as f:
-        f.write(current_progress+'\n')
-    
-    record = collect_financial_reports(dart, code)
-    financial_reports = pd.concat([financial_reports, record], ignore_index=True)
-    financial_reports.to_feather(save_file_name)
-    time.sleep(5)
+current_target_indicator = 0
+error_trial = 0
+error_trial_limit = 10
+sleep_time = 5
 
-# print(financial_reports)
+while True:
+    try:
+        code = sector[current_target_indicator]
+        current_progress = str(datetime.datetime.now()) + ', no: ' + str(current_target_indicator) + ', code ' + code+' in process / '+df_krx['Name'][code]
+        print(current_progress)
+        with open(log_fie, 'a') as f:
+            f.write(current_progress+'\n')
+
+        if dart.find_corp_code(code) == None: 
+            current_progress = '----> no: ' + str(current_target_indicator) + ', code ' + code+' not in corp_code, and therefore data not available / '+df_krx['Name'][code]
+            print(current_progress)
+            with open(log_fie, 'a') as f:
+                f.write(current_progress+'\n')
+            current_target_indicator += 1
+            continue
+    
+        record, message = collect_financial_reports(dart, code)
+        if message == 'success':
+            financial_reports = pd.concat([financial_reports, record], ignore_index=True)
+            financial_reports.to_feather(save_file_name)
+        elif message == 'Data Not Available':
+            current_progress = '----> no: ' + str(current_target_indicator) + ', code ' + code+' data not available, could be a financial institution / '+df_krx['Name'][code]
+            print(current_progress)
+            with open(log_fie, 'a') as f:
+                f.write(current_progress+'\n')
+        elif message == 'Currency Not in KRW':
+            current_progress = '----> no: ' + str(current_target_indicator) + ', code ' + code+' currency not in KRW, skipping / '+df_krx['Name'][code]
+            print(current_progress)
+            with open(log_fie, 'a') as f:
+                f.write(current_progress+'\n')
+        else:
+            raise Exception('ERROR in execution loop')
+
+        time.sleep(sleep_time)
+        current_target_indicator += 1
+        error_trial = 0 # reset
+
+    except Exception as e:
+        if error_trial < error_trial_limit:
+            error_trial += 1
+        else:
+            raise Exception('ERROR TRIAL LIMIT REACHED - Entire Process Halted')
+            # break
+
+        current_progress = '----> no: ' + str(current_target_indicator) + ', code ' + code+' unknown exception; process suspended and to be re-tried / '+df_krx['Name'][code]
+        print(current_progress)
+        print(e)
+        with open(log_fie, 'a') as f:
+            f.write(current_progress+'\n')
+
+        time.sleep(sleep_time*error_trial)
+
+# display(financial_reports)
+
+
 
 
 
