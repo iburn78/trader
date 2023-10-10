@@ -66,7 +66,7 @@
 
 
 
-### 
+### Note for operation
 
 - installations
     pip install -U finance-datareader
@@ -74,12 +74,24 @@
     pip install pyarrow
     pip install scipy
     pip install mojito2
+    pip install seaborn
 
-
-
-### Changes need to make in installations
+- config file: location and content
 
 - in mojito module, change path to the token.dat to be in config... :should be adjusted according to relative directory (e.g., ../../config/.. or ../config/..)
     you may use koreainvest_module.py instead
+    
 - in fdr, for file \FinanceDataReader\krx\listing.py: 
     df_listing = pd.read_html(url, header=0, encoding='euc-kr')[0]  # Use 'euc-kr' encoding
+
+- in OpenDartReader
+    dart_finstate.py
+    def finstate(...): 
+        ...
+        if 'message' in jo:
+            if '초과' in jo['message']:
+                print(jo)
+                raise Exception('USAGE LIMIT REACHED...')
+        # print(jo)
+        # print('전자공시의 재무데이터는 2015년 이후 데이터를 제공합니다') if bsns_year < 2015 else print()
+        ...
