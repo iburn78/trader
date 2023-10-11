@@ -192,7 +192,7 @@ log_fie = 'data/data_collection_log.txt'
 with open(log_fie, 'w') as f:
     f.write('Financial data collection log\n')
 
-current_target_indicator = 1681
+current_target_indicator = 2611
 error_trial = 0
 error_trial_limit = 10
 sleep_time = 5
@@ -254,7 +254,5 @@ while True:
 
 # display(financial_reports)
 
-# %%
-3%3
 
 
