@@ -95,3 +95,5 @@
         # print(jo)
         # print('전자공시의 재무데이터는 2015년 이후 데이터를 제공합니다') if bsns_year < 2015 else print()
         ...
+
+- Add C:\Users\user\projects\trader\ or equivalent to environment variable
