@@ -1,4 +1,1 @@
 Financial data collection log
-2023-11-01 13:53:48.361269, no: 0, code 005930 in process / 삼성전자
-2023-11-01 13:53:57.749320, no: 1, code 373220 in process / LG에너지솔루션
-2023-11-01 13:54:07.036639, no: 2, code 000660 in process / SK하이닉스
