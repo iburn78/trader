@@ -91,3 +91,16 @@ def _plot_barline(ax, data, y1, y2, y3, y4=None):
     ax.set_xlim(-0.5, len(x) - 0.5)
     axr.set_xlim(-0.5, len(x) - 0.5)
     sns.despine(left=True, bottom=False)
+
+# merge new data and update existing data
+# usage:
+# A = merge_update(A, B, ['col1', 'col2'])
+
+def merge_update(A, B, index_cols):
+    C = A.merge(B, on=index_cols, how='outer', suffixes=('_x', ''))
+    for col in C.columns: 
+        if col[-2:] == '_x':
+            C[col[:-2]] = C[col[:-2]].fillna(C[col])
+            C.drop(col, axis=1, inplace=True)
+    return C
+
