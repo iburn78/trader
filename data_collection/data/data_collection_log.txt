@@ -229,3 +229,41 @@ Financial data collection log
 2023-11-08 19:32:15.946355, no: 63, code 030960 in process
 2023-11-08 19:32:21.710266, no: 64, code 001590 in process
 ----> no: 64, code 001590 data not available, could be a financial institution
+Financial data collection log
+2023-11-08 23:03:35.250360, no: 0, code 006490 in process
+2023-11-08 23:03:49.075059, no: 1, code 187660 in process
+2023-11-08 23:03:57.032926, no: 2, code 299910 in process
+2023-11-08 23:04:07.636472, no: 3, code 200350 in process
+Financial data collection log
+2023-11-08 23:04:15.326172, no: 0, code 006380 in process
+2023-11-08 23:04:21.444513, no: 1, code 440110 in process
+2023-11-08 23:04:27.281877, no: 2, code  in process
+----> no: 2, code  not in corp_code, and therefore data not available
+2023-11-08 23:04:27.293938, no: 3, code 211270 in process
+2023-11-08 23:04:33.331760, no: 4, code 347860 in process
+2023-11-08 23:04:39.376928, no: 5, code 393360 in process
+2023-11-08 23:04:45.175629, no: 6, code 277410 in process
+2023-11-08 23:04:51.294004, no: 7, code 083310 in process
+2023-11-08 23:04:57.340800, no: 8, code 307280 in process
+2023-11-08 23:05:03.422758, no: 9, code 192650 in process
+2023-11-08 23:05:09.503444, no: 10, code 439410 in process
+2023-11-08 23:05:15.237655, no: 11, code  in process
+----> no: 11, code  not in corp_code, and therefore data not available
+2023-11-08 23:05:15.251141, no: 12, code 240340 in process
+----> no: 12, code 240340 data not available, could be a financial institution
+2023-11-08 23:05:21.553392, no: 13, code 148780 in process
+2023-11-08 23:05:27.644920, no: 14, code 204020 in process
+2023-11-08 23:05:33.805679, no: 15, code 317120 in process
+2023-11-08 23:05:39.894528, no: 16, code 048550 in process
+2023-11-08 23:05:45.917718, no: 17, code 054780 in process
+2023-11-08 23:05:51.898548, no: 18, code 084370 in process
+2023-11-08 23:05:58.034780, no: 19, code 440820 in process
+2023-11-08 23:06:03.922881, no: 20, code 063440 in process
+2023-11-08 23:06:10.015033, no: 21, code 450410 in process
+2023-11-08 23:06:15.662565, no: 22, code 438580 in process
+2023-11-08 23:06:21.388559, no: 23, code 080000 in process
+2023-11-08 23:06:27.392200, no: 24, code 445970 in process
+2023-11-08 23:06:33.120710, no: 25, code 222080 in process
+2023-11-08 23:06:39.168656, no: 26, code 430220 in process
+2023-11-08 23:06:44.955675, no: 27, code 419270 in process
+2023-11-08 23:06:50.669830, no: 28, code 418170 in process

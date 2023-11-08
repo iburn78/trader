@@ -254,7 +254,7 @@ def generate_update_db(log_file, days = 1):
     start_day = (datetime.datetime.today() - datetime.timedelta(days = days)).strftime('%Y-%m-%d')
     dart = OpenDartReader(DART_APIS[0])
     ls = dart.list(start=start_day, end=today, kind='A')
-    # display(ls)
+    # print(ls)
 
     full_rescan_code = ls.loc[ls['report_nm'].str.contains(MODIFIED_REPORT)]['stock_code'].values
     partial_rescan_code = ls.loc[~ls['report_nm'].str.contains(MODIFIED_REPORT)]['stock_code'].values
@@ -272,8 +272,8 @@ if __name__ == '__main__':
     update_db = generate_update_db(log_file, 1)
 
     main_db = merge_update(main_db, update_db)
-    # main_db.to_feather('data/financial_reports_main.feather')
-    print(main_db)
+    main_db.to_feather('data/financial_reports_main.feather')
+    # print(main_db)
 
 
 
