@@ -9,3 +9,223 @@ Financial data collection log
 2023-11-07 12:35:53.245924, no: 0, code 142280 in process
 Financial data collection log
 2023-11-07 12:36:38.166473, no: 0, code 142280 in process
+Financial data collection log
+2023-11-08 19:07:57.889431, no: 0, code 006490 in process
+2023-11-08 19:08:13.042664, no: 1, code 187660 in process
+2023-11-08 19:08:20.963136, no: 2, code 299910 in process
+2023-11-08 19:08:31.245375, no: 3, code 200350 in process
+2023-11-08 19:08:38.617966, no: 4, code 142280 in process
+2023-11-08 19:08:52.030691, no: 5, code 014200 in process
+2023-11-08 19:09:04.857012, no: 6, code 002410 in process
+2023-11-08 19:09:18.001402, no: 7, code 002410 in process
+2023-11-08 19:09:31.025236, no: 8, code 376180 in process
+2023-11-08 19:09:38.388652, no: 9, code 066430 in process
+2023-11-08 19:09:51.011570, no: 10, code 037440 in process
+2023-11-08 19:10:03.722616, no: 11, code 192520 in process
+----> no: 11, code 192520 data not available, could be a financial institution
+2023-11-08 19:10:10.059793, no: 12, code 019490 in process
+2023-11-08 19:10:22.760631, no: 13, code 139130 in process
+----> no: 13, code 139130 data not available, could be a financial institution
+2023-11-08 19:10:28.894402, no: 14, code 377220 in process
+2023-11-08 19:10:36.388382, no: 15, code 377220 in process
+2023-11-08 19:10:43.802871, no: 16, code 367360 in process
+2023-11-08 19:10:49.440716, no: 17, code 015540 in process
+2023-11-08 19:11:02.213202, no: 18, code 064550 in process
+2023-11-08 19:11:15.285887, no: 19, code 064850 in process
+2023-11-08 19:11:23.881790, no: 20, code 011230 in process
+2023-11-08 19:11:36.466081, no: 21, code 432320 in process
+2023-11-08 19:11:42.461069, no: 22, code 138360 in process
+2023-11-08 19:11:54.938757, no: 23, code 069140 in process
+2023-11-08 19:13:02.967983, no: 24, code 006580 in process
+2023-11-08 19:13:15.824399, no: 25, code 105560 in process
+----> no: 25, code 105560 data not available, could be a financial institution
+2023-11-08 19:13:21.895057, no: 26, code  in process
+----> no: 26, code  not in corp_code, and therefore data not available
+----> no: 26, code  unknown exception; process suspended and to be re-tried
+2023-11-08 19:13:26.991291, no: 27, code 105560 in process
+----> no: 27, code 105560 data not available, could be a financial institution
+2023-11-08 19:13:33.172453, no: 28, code 105560 in process
+----> no: 28, code 105560 data not available, could be a financial institution
+2023-11-08 19:13:39.297776, no: 29, code  in process
+----> no: 29, code  not in corp_code, and therefore data not available
+----> no: 29, code  unknown exception; process suspended and to be re-tried
+2023-11-08 19:13:44.455071, no: 30, code  in process
+----> no: 30, code  not in corp_code, and therefore data not available
+----> no: 30, code  unknown exception; process suspended and to be re-tried
+2023-11-08 19:13:54.526234, no: 31, code 069140 in process
+2023-11-08 19:14:07.078792, no: 32, code  in process
+----> no: 32, code  not in corp_code, and therefore data not available
+----> no: 32, code  unknown exception; process suspended and to be re-tried
+Financial data collection log
+2023-11-08 19:14:12.277305, no: 0, code 006380 in process
+2023-11-08 19:14:18.311581, no: 1, code 440110 in process
+2023-11-08 19:14:23.996804, no: 2, code  in process
+----> no: 2, code  not in corp_code, and therefore data not available
+----> no: 2, code  unknown exception; process suspended and to be re-tried
+2023-11-08 19:14:29.107492, no: 3, code 211270 in process
+2023-11-08 19:14:34.891737, no: 4, code 347860 in process
+2023-11-08 19:14:41.050369, no: 5, code 393360 in process
+2023-11-08 19:14:46.684427, no: 6, code 277410 in process
+2023-11-08 19:14:52.624232, no: 7, code 083310 in process
+2023-11-08 19:14:58.582073, no: 8, code 307280 in process
+----> no: 8, code 307280 unknown exception; process suspended and to be re-tried
+2023-11-08 19:15:04.033795, no: 9, code 192650 in process
+2023-11-08 19:15:09.940705, no: 10, code 439410 in process
+2023-11-08 19:15:15.565223, no: 11, code  in process
+----> no: 11, code  not in corp_code, and therefore data not available
+----> no: 11, code  unknown exception; process suspended and to be re-tried
+2023-11-08 19:15:20.646912, no: 12, code 240340 in process
+----> no: 12, code 240340 data not available, could be a financial institution
+2023-11-08 19:15:26.772878, no: 13, code 148780 in process
+2023-11-08 19:15:33.444678, no: 14, code 204020 in process
+2023-11-08 19:15:39.458747, no: 15, code 317120 in process
+2023-11-08 19:15:45.454841, no: 16, code 048550 in process
+2023-11-08 19:15:51.402370, no: 17, code 054780 in process
+2023-11-08 19:15:57.274915, no: 18, code 084370 in process
+2023-11-08 19:16:03.252485, no: 19, code 440820 in process
+2023-11-08 19:16:08.940559, no: 20, code 063440 in process
+2023-11-08 19:16:14.807536, no: 21, code 450410 in process
+2023-11-08 19:16:20.452597, no: 22, code 438580 in process
+2023-11-08 19:16:26.123069, no: 23, code 080000 in process
+2023-11-08 19:16:31.990373, no: 24, code 445970 in process
+2023-11-08 19:16:37.659596, no: 25, code 222080 in process
+2023-11-08 19:16:43.894264, no: 26, code 430220 in process
+2023-11-08 19:16:49.593633, no: 27, code 419270 in process
+2023-11-08 19:16:55.262622, no: 28, code 418170 in process
+2023-11-08 19:17:01.148790, no: 29, code  in process
+----> no: 29, code  not in corp_code, and therefore data not available
+----> no: 29, code  unknown exception; process suspended and to be re-tried
+2023-11-08 19:17:06.288169, no: 30, code 426550 in process
+2023-11-08 19:17:11.954727, no: 31, code 427950 in process
+2023-11-08 19:17:17.779178, no: 32, code 248070 in process
+2023-11-08 19:17:23.689281, no: 33, code  in process
+----> no: 33, code  not in corp_code, and therefore data not available
+----> no: 33, code  unknown exception; process suspended and to be re-tried
+2023-11-08 19:17:28.790863, no: 34, code 065620 in process
+----> no: 34, code 065620 data not available, could be a financial institution
+Financial data collection log
+2023-11-08 19:21:52.295515, no: 0, code 006490 in process
+2023-11-08 19:22:05.251399, no: 1, code 187660 in process
+2023-11-08 19:22:12.954610, no: 2, code 299910 in process
+2023-11-08 19:22:22.855026, no: 3, code 200350 in process
+2023-11-08 19:22:30.034750, no: 4, code 142280 in process
+2023-11-08 19:22:44.130138, no: 5, code 014200 in process
+2023-11-08 19:22:57.887202, no: 6, code 002410 in process
+2023-11-08 19:23:11.545331, no: 7, code 002410 in process
+2023-11-08 19:23:24.785298, no: 8, code 376180 in process
+2023-11-08 19:23:32.305483, no: 9, code 066430 in process
+2023-11-08 19:23:44.771654, no: 10, code 037440 in process
+2023-11-08 19:23:57.849213, no: 11, code 192520 in process
+----> no: 11, code 192520 data not available, could be a financial institution
+2023-11-08 19:24:04.066926, no: 12, code 019490 in process
+2023-11-08 19:24:16.510407, no: 13, code 139130 in process
+----> no: 13, code 139130 data not available, could be a financial institution
+2023-11-08 19:24:22.630944, no: 14, code 377220 in process
+2023-11-08 19:24:30.166659, no: 15, code 377220 in process
+2023-11-08 19:24:37.447772, no: 16, code 367360 in process
+2023-11-08 19:24:43.112159, no: 17, code 015540 in process
+2023-11-08 19:24:55.944854, no: 18, code 064550 in process
+2023-11-08 19:25:09.150085, no: 19, code 064850 in process
+2023-11-08 19:25:17.935995, no: 20, code 011230 in process
+2023-11-08 19:25:31.012828, no: 21, code 432320 in process
+2023-11-08 19:25:36.838489, no: 22, code 138360 in process
+2023-11-08 19:25:49.312543, no: 23, code 069140 in process
+2023-11-08 19:26:02.368788, no: 24, code 006580 in process
+2023-11-08 19:26:15.234436, no: 25, code 105560 in process
+----> no: 25, code 105560 data not available, could be a financial institution
+2023-11-08 19:26:21.391138, no: 26, code  in process
+----> no: 26, code  not in corp_code, and therefore data not available
+2023-11-08 19:26:21.401213, no: 27, code 105560 in process
+----> no: 27, code 105560 data not available, could be a financial institution
+2023-11-08 19:26:27.509321, no: 28, code 105560 in process
+----> no: 28, code 105560 data not available, could be a financial institution
+2023-11-08 19:26:33.552757, no: 29, code  in process
+----> no: 29, code  not in corp_code, and therefore data not available
+2023-11-08 19:26:33.577545, no: 30, code  in process
+----> no: 30, code  not in corp_code, and therefore data not available
+2023-11-08 19:26:33.577545, no: 31, code 069140 in process
+2023-11-08 19:26:46.233511, no: 32, code  in process
+----> no: 32, code  not in corp_code, and therefore data not available
+Financial data collection log
+2023-11-08 19:26:46.307988, no: 0, code 006380 in process
+2023-11-08 19:26:52.112566, no: 1, code 440110 in process
+2023-11-08 19:26:57.845231, no: 2, code  in process
+----> no: 2, code  not in corp_code, and therefore data not available
+2023-11-08 19:26:57.866408, no: 3, code 211270 in process
+2023-11-08 19:27:03.695294, no: 4, code 347860 in process
+2023-11-08 19:27:09.629459, no: 5, code 393360 in process
+2023-11-08 19:27:15.313709, no: 6, code 277410 in process
+2023-11-08 19:27:21.261258, no: 7, code 083310 in process
+2023-11-08 19:27:27.253844, no: 8, code 307280 in process
+2023-11-08 19:27:33.150416, no: 9, code 192650 in process
+2023-11-08 19:27:39.065277, no: 10, code 439410 in process
+2023-11-08 19:27:44.718451, no: 11, code  in process
+----> no: 11, code  not in corp_code, and therefore data not available
+2023-11-08 19:27:44.723212, no: 12, code 240340 in process
+----> no: 12, code 240340 data not available, could be a financial institution
+2023-11-08 19:27:50.920124, no: 13, code 148780 in process
+2023-11-08 19:27:56.871934, no: 14, code 204020 in process
+2023-11-08 19:28:02.827025, no: 15, code 317120 in process
+2023-11-08 19:28:08.825947, no: 16, code 048550 in process
+2023-11-08 19:28:14.854262, no: 17, code 054780 in process
+2023-11-08 19:28:20.775561, no: 18, code 084370 in process
+2023-11-08 19:28:26.722150, no: 19, code 440820 in process
+2023-11-08 19:28:32.390742, no: 20, code 063440 in process
+2023-11-08 19:28:38.351112, no: 21, code 450410 in process
+2023-11-08 19:28:43.995642, no: 22, code 438580 in process
+2023-11-08 19:28:49.614595, no: 23, code 080000 in process
+2023-11-08 19:28:55.659459, no: 24, code 445970 in process
+2023-11-08 19:29:01.488574, no: 25, code 222080 in process
+2023-11-08 19:29:07.580402, no: 26, code 430220 in process
+2023-11-08 19:29:13.406739, no: 27, code 419270 in process
+2023-11-08 19:29:19.221650, no: 28, code 418170 in process
+2023-11-08 19:29:25.396717, no: 29, code  in process
+----> no: 29, code  not in corp_code, and therefore data not available
+2023-11-08 19:29:25.406091, no: 30, code 426550 in process
+2023-11-08 19:29:31.286547, no: 31, code 427950 in process
+2023-11-08 19:29:37.538368, no: 32, code 248070 in process
+2023-11-08 19:29:43.762677, no: 33, code  in process
+----> no: 33, code  not in corp_code, and therefore data not available
+2023-11-08 19:29:43.870267, no: 34, code 065620 in process
+----> no: 34, code 065620 data not available, could be a financial institution
+2023-11-08 19:29:50.137099, no: 35, code 001720 in process
+2023-11-08 19:29:56.172405, no: 36, code 376300 in process
+2023-11-08 19:30:02.874437, no: 37, code 235980 in process
+2023-11-08 19:30:09.139753, no: 38, code 412930 in process
+2023-11-08 19:30:15.392359, no: 39, code 033290 in process
+2023-11-08 19:30:21.926254, no: 40, code 305090 in process
+2023-11-08 19:30:28.492964, no: 41, code  in process
+----> no: 41, code  not in corp_code, and therefore data not available
+2023-11-08 19:30:28.492964, no: 42, code 372290 in process
+2023-11-08 19:30:34.855022, no: 43, code 273640 in process
+2023-11-08 19:30:41.211885, no: 44, code 129890 in process
+2023-11-08 19:30:47.373782, no: 45, code 351020 in process
+2023-11-08 19:30:53.309289, no: 46, code 405000 in process
+2023-11-08 19:30:59.604780, no: 47, code 950170 in process
+----> no: 47, code 950170 currency not in KRW, skipping
+2023-11-08 19:31:04.973804, no: 48, code 900120 in process
+----> no: 48, code 900120 currency not in KRW, skipping
+2023-11-08 19:31:10.259245, no: 49, code 900290 in process
+----> no: 49, code 900290 currency not in KRW, skipping
+2023-11-08 19:31:15.460756, no: 50, code 382800 in process
+2023-11-08 19:31:21.563054, no: 51, code  in process
+----> no: 51, code  not in corp_code, and therefore data not available
+2023-11-08 19:31:21.568516, no: 52, code 448730 in process
+----> no: 52, code 448730 data not available, could be a financial institution
+2023-11-08 19:31:27.970577, no: 53, code 289170 in process
+----> no: 53, code 289170 data not available, could be a financial institution
+2023-11-08 19:31:34.254105, no: 54, code 025340 in process
+----> no: 54, code 025340 data not available, could be a financial institution
+2023-11-08 19:31:40.439718, no: 55, code 357120 in process
+2023-11-08 19:31:46.243642, no: 56, code 338100 in process
+2023-11-08 19:31:52.129111, no: 57, code 365550 in process
+2023-11-08 19:31:58.156433, no: 58, code 004310 in process
+2023-11-08 19:32:04.245750, no: 59, code 357250 in process
+2023-11-08 19:32:10.033648, no: 60, code 001080 in process
+2023-11-08 19:32:15.932826, no: 61, code  in process
+----> no: 61, code  not in corp_code, and therefore data not available
+2023-11-08 19:32:15.932826, no: 62, code  in process
+----> no: 62, code  not in corp_code, and therefore data not available
+2023-11-08 19:32:15.946355, no: 63, code 030960 in process
+2023-11-08 19:32:21.710266, no: 64, code 001590 in process
+----> no: 64, code 001590 data not available, could be a financial institution

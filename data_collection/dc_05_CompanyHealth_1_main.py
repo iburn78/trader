@@ -1,49 +1,30 @@
-# %% [markdown]
-# Create a function to measure a financial health of a company 
-
-# %%
 import OpenDartReader 
-import json
-
-with open('../../config/config.json', 'r') as json_file:
-    config = json.load(json_file)
-    dart_api_1 = config['dart_api_1']
-    dart_api_2 = config['dart_api_2']
-    dart_api_3 = config['dart_api_3']
-    dart_apis = [dart_api_1, dart_api_2, dart_api_3]
-
-
-import pandas as pd
-import datetime
 import sys, os
 sys.path.append(os.path.dirname(os.getcwd()))  
-from tools.dictionary import ACCOUNT_NAME_DICTIONARY, BS_ACCOUNTS, IS_ACCOUNTS
+from tools.dictionary import ACCOUNT_NAME_DICTIONARY, BS_ACCOUNTS, IS_ACCOUNTS, DART_APIS, MODIFIED_REPORT
+from tools.tools import merge_update
+import pandas as pd
+import datetime, time
 
-def sj_div(account_nm):
-    if account_nm in BS_ACCOUNTS:
-        return 'BS'
-    elif account_nm in IS_ACCOUNTS:
-        return 'IS'
-    else:
-        raise Exception('No BS, IS account exception')
+def collect_financial_reports(dart, code, duration=None): # duration as years
 
-def post_process(rec): 
-    if len(rec) > 0:
-        # in some cases, certain data is '-'
-        rec.replace('-', pd.NA, inplace=True)
-        # add more logic for post_process if needed
-        # ...
-        return rec
-    else: 
-        return rec
+    def sj_div(account_nm):
+        if account_nm in BS_ACCOUNTS:
+            return 'BS'
+        elif account_nm in IS_ACCOUNTS:
+            return 'IS'
+        else:
+            raise Exception('No BS, IS account exception')
 
-def collect_financial_reports(dart, code):
-    # find initial report
-    year = datetime.datetime.now().year
-    month = datetime.datetime.now().month
-    quarter = month//3 + 1
-
-    reprt_code_dict = {1: '11013', 2: '11012', 3: '11014', 4: '11011'}
+    def post_process(rec): 
+        if len(rec) > 0:
+            # in some cases, certain data is '-'
+            rec.replace('-', pd.NA, inplace=True)
+            # add more logic for post_process if needed
+            # ...
+            return rec
+        else: 
+            return rec
 
     def get_prev_quarter(yr, qtr): # qtr in [1, 2, 3, 4]
         if qtr == 1: 
@@ -56,6 +37,13 @@ def collect_financial_reports(dart, code):
             return yr-1, 3 
         else: 
             return yr, qtr-1 
+
+    # find initial report
+    year = datetime.datetime.now().year
+    month = datetime.datetime.now().month
+    quarter = month//3 + 1
+
+    reprt_code_dict = {1: '11013', 2: '11012', 3: '11014', 4: '11011'}
 
     y = year
     q = quarter
@@ -71,13 +59,14 @@ def collect_financial_reports(dart, code):
             # raise Exception('Data not available for code:', code) 
             return pd.DataFrame(), 'Data Not Available'
 
-    record = pd.DataFrame(columns=['stock_code', 'fs_div', 'sj_div', 'account_nm'])
+    record = pd.DataFrame(columns=['stock_code', 'fs_div', 'sj_div', 'account_nm', 'date_updated'])
     accounts = BS_ACCOUNTS + IS_ACCOUNTS
+    date_updated = datetime.datetime.today().strftime('%Y-%m-%d')
 
     for i in range(len(accounts)):
-        record.loc[i] = [code, 'CFS', sj_div(accounts[i]), accounts[i]]  
+        record.loc[i] = [code, 'CFS', sj_div(accounts[i]), accounts[i], date_updated]  
     for i in range(len(accounts)):
-        record.loc[i+len(accounts)] = [code, 'OFS', sj_div(accounts[i]), accounts[i]]  
+        record.loc[i+len(accounts)] = [code, 'OFS', sj_div(accounts[i]), accounts[i], date_updated]  
 
     if rec['currency'][0] != 'KRW':
         # raise Exception('Currency is not in KRW for code: ', code)
@@ -97,11 +86,19 @@ def collect_financial_reports(dart, code):
     rec = dart.finstate(code, y, reprt_code=reprt_code_dict[4])
     rec = post_process(rec)
 
+    if duration == None or duration <= 0:
+        duration = 10000 # a large number enough
+
+    ind = 0
     while len(rec)>0:
         data_term = 'FY'+str(y)
         # print(data_term)
         rec[data_term] = rec['thstrm_amount'].str.replace(',','').astype('Int64')
-        record = pd.merge(record, rec[['stock_code', 'fs_div', 'account_nm', data_term]], how='outer', left_on=['stock_code', 'fs_div', 'account_nm'], right_on=['stock_code', 'fs_div', 'account_nm'])
+        record = pd.merge(record, rec[['stock_code', 'fs_div', 'account_nm', data_term]], how='left', left_on=['stock_code', 'fs_div', 'account_nm'], right_on=['stock_code', 'fs_div', 'account_nm'])
+
+        ind += 1
+        if ind == duration:
+            break
 
         # check if there is data in prev year 
         prev_year_rec = dart.finstate(code, y-1, reprt_code=reprt_code_dict[4]) 
@@ -111,7 +108,7 @@ def collect_financial_reports(dart, code):
             pprev_term = 'FY'+str(y-2)
             rec[prev_term] = rec['frmtrm_amount'].str.replace(',','').astype('Int64')
             rec[pprev_term] = rec['bfefrmtrm_amount'].str.replace(',','').astype('Int64')
-            record = pd.merge(record, rec[['stock_code', 'fs_div', 'account_nm', prev_term, pprev_term]], how='outer', left_on=['stock_code', 'fs_div', 'account_nm'], right_on=['stock_code', 'fs_div', 'account_nm'])
+            record = pd.merge(record, rec[['stock_code', 'fs_div', 'account_nm', prev_term, pprev_term]], how='left', left_on=['stock_code', 'fs_div', 'account_nm'], right_on=['stock_code', 'fs_div', 'account_nm'])
             break
         else: 
             y = y-1
@@ -127,11 +124,12 @@ def collect_financial_reports(dart, code):
     rec = dart.finstate(code, y, reprt_code=reprt_code_dict[q])
     rec = post_process(rec)
 
+    ind = 0
     while len(rec)>0:
         data_term = str(y)+'_'+str(q)+'Q'
         # print(data_term)
         rec[data_term] = rec['thstrm_amount'].str.replace(',','').astype('Int64')
-        record = pd.merge(record, rec[['stock_code', 'fs_div', 'account_nm', data_term]], how='outer', left_on=['stock_code', 'fs_div', 'account_nm'], right_on=['stock_code', 'fs_div', 'account_nm'])
+        record = pd.merge(record, rec[['stock_code', 'fs_div', 'account_nm', data_term]], how='left', left_on=['stock_code', 'fs_div', 'account_nm'], right_on=['stock_code', 'fs_div', 'account_nm'])
 
         # adding 4Q data if 'thstr_add_amount' is available
         # NOTE:
@@ -142,9 +140,13 @@ def collect_financial_reports(dart, code):
             if 'FY'+str(y) in record.columns:
                 q4_term = str(y)+'_4Q'
                 rec.loc[rec['sj_div']=='IS', q4_term] = rec.loc[rec['sj_div']=='IS','thstrm_add_amount'].str.replace(',','').astype('Int64')
-                record = pd.merge(record, rec[['stock_code', 'fs_div', 'account_nm', q4_term]], how='outer', left_on=['stock_code', 'fs_div', 'account_nm'], right_on=['stock_code', 'fs_div', 'account_nm'])
+                record = pd.merge(record, rec[['stock_code', 'fs_div', 'account_nm', q4_term]], how='left', left_on=['stock_code', 'fs_div', 'account_nm'], right_on=['stock_code', 'fs_div', 'account_nm'])
                 record.loc[record['sj_div']=='IS', q4_term] = record.loc[record['sj_div']=='IS','FY'+str(y)]-record.loc[record['sj_div']=='IS', q4_term]
                 record.loc[record['sj_div']=='BS', q4_term] = record.loc[record['sj_div']=='BS','FY'+str(y)]
+
+        ind += 1
+        if ind == duration*3:
+            break
 
         # check if there is data in the prev year, the same quarter
         prev_year_rec = dart.finstate(code, y-1, reprt_code=reprt_code_dict[q]) 
@@ -153,13 +155,13 @@ def collect_financial_reports(dart, code):
             prev_term = str(y-1)+'_'+str(q)+'Q'
             # add only IS data
             rec.loc[rec['sj_div']=='IS', prev_term] = rec.loc[rec['sj_div']=='IS', 'frmtrm_amount'].str.replace(',','').astype('Int64')
-            record = pd.merge(record, rec[['stock_code', 'fs_div', 'account_nm', prev_term]], how='outer', left_on=['stock_code', 'fs_div', 'account_nm'], right_on=['stock_code', 'fs_div', 'account_nm'])
+            record = pd.merge(record, rec[['stock_code', 'fs_div', 'account_nm', prev_term]], how='left', left_on=['stock_code', 'fs_div', 'account_nm'], right_on=['stock_code', 'fs_div', 'account_nm'])
 
             if q == 3 and 'frmtrm_add_amount' in rec.columns:
                 if 'FY'+str(y-1) in record.columns:
                     last_q4_term = str(y-1)+'_4Q'
                     rec.loc[rec['sj_div']=='IS', last_q4_term] = rec.loc[rec['sj_div']=='IS','frmtrm_add_amount'].str.replace(',','').astype('Int64')
-                    record = pd.merge(record, rec[['stock_code', 'fs_div', 'account_nm', last_q4_term]], how='outer', left_on=['stock_code', 'fs_div', 'account_nm'], right_on=['stock_code', 'fs_div', 'account_nm'])
+                    record = pd.merge(record, rec[['stock_code', 'fs_div', 'account_nm', last_q4_term]], how='left', left_on=['stock_code', 'fs_div', 'account_nm'], right_on=['stock_code', 'fs_div', 'account_nm'])
                     record.loc[record['sj_div']=='IS', last_q4_term] = record.loc[record['sj_div']=='IS','FY'+str(y-1)]-record.loc[record['sj_div']=='IS', last_q4_term]
                     record.loc[record['sj_div']=='BS', last_q4_term] = record.loc[record['sj_div']=='BS','FY'+str(y-1)]
 
@@ -170,89 +172,108 @@ def collect_financial_reports(dart, code):
     # post process
     record.rename(columns={'stock_code':'code', }, inplace=True)
     record['account'] = record['account_nm'].apply(lambda x: ACCOUNT_NAME_DICTIONARY[x] if x in ACCOUNT_NAME_DICTIONARY.keys() else x)
-    static_columns = ['code', 'fs_div', 'sj_div', 'account_nm', 'account']
-    record = pd.concat([record[static_columns], record[record.columns.difference(static_columns)].sort_index(axis=1)], axis=1)
 
     message = 'success'
     return record, message
 
-# %%
-import time
+def sort_columns_financial_reports(reports):
+    static_columns = ['code', 'fs_div', 'sj_div', 'account_nm', 'account', 'date_updated']
+    return pd.concat([reports[static_columns], reports[reports.columns.difference(static_columns)].sort_index(axis=1)], axis=1)
 
-df_krx = pd.read_feather('data/df_krx.feather')
-sector = df_krx.index
+def generate_financial_reports_set(sector, duration, log_file, save_file_name=None):
+    dart_ind = 0
+    dart = OpenDartReader(DART_APIS[dart_ind])
 
-dart_ind = 0
-dart = OpenDartReader(dart_apis[dart_ind])
+    financial_reports = pd.DataFrame()
 
-financial_reports = pd.DataFrame()
-save_file_name = 'data/financial_reports_upto_'+str(datetime.date.today())+'.feather'
-log_fie = 'data/data_collection_log.txt'
+    with open(log_file, 'a') as f:
+        f.write('Financial data collection log\n')
 
-with open(log_fie, 'w') as f:
-    f.write('Financial data collection log\n')
+    error_trial = 0
+    error_trial_limit = 10
+    sleep_time = 5
 
-current_target_indicator = 2611
-error_trial = 0
-error_trial_limit = 10
-sleep_time = 5
-
-while True:
-    try:
-        code = sector[current_target_indicator]
-        current_progress = str(datetime.datetime.now()) + ', no: ' + str(current_target_indicator) + ', code ' + code+' in process / '+df_krx['Name'][code]
-        print(current_progress)
-        with open(log_fie, 'a') as f:
-            f.write(current_progress+'\n')
-
-        if dart.find_corp_code(code) == None: 
-            current_progress = '----> no: ' + str(current_target_indicator) + ', code ' + code+' not in corp_code, and therefore data not available / '+df_krx['Name'][code]
+    for ix, code in enumerate(sector):
+        try:
+            current_progress = str(datetime.datetime.now()) + ', no: ' + str(ix) + ', code ' + code+' in process' # / '+df_krx['Name'][code]
             print(current_progress)
-            with open(log_fie, 'a') as f:
+            with open(log_file, 'a') as f:
                 f.write(current_progress+'\n')
-            current_target_indicator += 1
-            continue
+
+            if dart.find_corp_code(code) == None: 
+                current_progress = '----> no: ' + str(ix) + ', code ' + code+' not in corp_code, and therefore data not available' # / '+df_krx['Name'][code]
+                print(current_progress)
+                with open(log_file, 'a') as f:
+                    f.write(current_progress+'\n')
+                continue
     
-        record, message = collect_financial_reports(dart, code)
-        if message == 'success':
-            financial_reports = pd.concat([financial_reports, record], ignore_index=True)
-            financial_reports.to_feather(save_file_name)
-        elif message == 'Data Not Available':
-            current_progress = '----> no: ' + str(current_target_indicator) + ', code ' + code+' data not available, could be a financial institution / '+df_krx['Name'][code]
+            record, message = collect_financial_reports(dart, code, duration)
+            if message == 'success':
+                financial_reports = pd.concat([financial_reports, record], ignore_index=True)
+                if save_file_name != None:
+                    financial_reports.to_feather(save_file_name)
+            elif message == 'Data Not Available':
+                current_progress = '----> no: ' + str(ix) + ', code ' + code+' data not available, could be a financial institution' # / '+df_krx['Name'][code]
+                print(current_progress)
+                with open(log_file, 'a') as f:
+                    f.write(current_progress+'\n')
+            elif message == 'Currency Not in KRW':
+                current_progress = '----> no: ' + str(ix) + ', code ' + code+' currency not in KRW, skipping' # / '+df_krx['Name'][code]
+                print(current_progress)
+                with open(log_file, 'a') as f:
+                    f.write(current_progress+'\n')
+            else:
+                raise Exception('ERROR in execution loop')
+
+            time.sleep(sleep_time)
+            error_trial = 0 # reset
+
+        except Exception as e:
+            if error_trial < error_trial_limit:
+                error_trial += 1
+                dart_ind += 1
+                dart = OpenDartReader(DART_APIS[dart_ind%3])
+
+            else:
+                raise Exception('ERROR TRIAL LIMIT REACHED - Entire Process Halted')
+                # break
+
+            current_progress = '----> no: ' + str(ix) + ', code ' + code+' unknown exception; process suspended and to be re-tried' # / '+df_krx['Name'][code]
             print(current_progress)
-            with open(log_fie, 'a') as f:
+            print(e)
+            with open(log_file, 'a') as f:
                 f.write(current_progress+'\n')
-        elif message == 'Currency Not in KRW':
-            current_progress = '----> no: ' + str(current_target_indicator) + ', code ' + code+' currency not in KRW, skipping / '+df_krx['Name'][code]
-            print(current_progress)
-            with open(log_fie, 'a') as f:
-                f.write(current_progress+'\n')
-        else:
-            raise Exception('ERROR in execution loop')
 
-        time.sleep(sleep_time)
-        current_target_indicator += 1
-        error_trial = 0 # reset
+            time.sleep(sleep_time*error_trial)
 
-    except Exception as e:
-        if error_trial < error_trial_limit:
-            error_trial += 1
-            dart_ind += 1
-            dart = OpenDartReader(dart_apis[dart_ind%3])
+    return sort_columns_financial_reports(financial_reports)
 
-        else:
-            raise Exception('ERROR TRIAL LIMIT REACHED - Entire Process Halted')
-            # break
 
-        current_progress = '----> no: ' + str(current_target_indicator) + ', code ' + code+' unknown exception; process suspended and to be re-tried / '+df_krx['Name'][code]
-        print(current_progress)
-        print(e)
-        with open(log_fie, 'a') as f:
-            f.write(current_progress+'\n')
+def generate_update_db(log_file, days = 1):
+    today = datetime.datetime.today().strftime('%Y-%m-%d')
+    start_day = (datetime.datetime.today() - datetime.timedelta(days = days)).strftime('%Y-%m-%d')
+    dart = OpenDartReader(DART_APIS[0])
+    ls = dart.list(start=start_day, end=today, kind='A')
+    # display(ls)
 
-        time.sleep(sleep_time*error_trial)
+    full_rescan_code = ls.loc[ls['report_nm'].str.contains(MODIFIED_REPORT)]['stock_code'].values
+    partial_rescan_code = ls.loc[~ls['report_nm'].str.contains(MODIFIED_REPORT)]['stock_code'].values
 
-# display(financial_reports)
+    db_f = generate_financial_reports_set(full_rescan_code, None, log_file, None)
+    db_p = generate_financial_reports_set(partial_rescan_code, 1, log_file, None) # 1 year
+
+    return sort_columns_financial_reports(pd.concat([db_f, db_p], ignore_index=True))
+
+
+if __name__ == '__main__': 
+    log_file = 'data/data_collection_log.txt'
+
+    main_db = pd.read_feather('data/financial_reports_main.feather')
+    update_db = generate_update_db(log_file, 1)
+
+    main_db = merge_update(main_db, update_db)
+    # main_db.to_feather('data/financial_reports_main.feather')
+    print(main_db)
 
 
 

@@ -96,7 +96,7 @@ def _plot_barline(ax, data, y1, y2, y3, y4=None):
 # usage:
 # A = merge_update(A, B, ['col1', 'col2'])
 
-def merge_update(A, B, index_cols):
+def merge_update(A, B, index_cols=['code', 'fs_div', 'account_nm']):
     C = A.merge(B, on=index_cols, how='outer', suffixes=('_x', ''))
     for col in C.columns: 
         if col[-2:] == '_x':
