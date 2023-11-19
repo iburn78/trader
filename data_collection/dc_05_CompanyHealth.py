@@ -9,7 +9,7 @@ import pandas as pd
 import numpy as np
 import datetime, time
 
-def collect_financial_reports(dart, code, duration=None): # duration as years
+def _collect_financial_reports(dart, code, duration=None): # duration as years
 
     def sj_div(account_nm):
         if account_nm in BS_ACCOUNTS:
@@ -179,11 +179,11 @@ def collect_financial_reports(dart, code, duration=None): # duration as years
     message = 'success'
     return record, message
 
-def sort_columns_financial_reports(reports):
+def _sort_columns_financial_reports(reports):
     static_columns = ['code', 'fs_div', 'sj_div', 'account_nm', 'account', 'date_updated']
     return pd.concat([reports[static_columns], reports[reports.columns.difference(static_columns)].sort_index(axis=1)], axis=1)
 
-def generate_financial_reports_set(sector, duration, log_file, save_file_name=None):
+def _generate_financial_reports_set(sector, duration, log_file, save_file_name=None):
     dart_ind = 0
     dart = OpenDartReader(DART_APIS[dart_ind])
 
@@ -210,7 +210,7 @@ def generate_financial_reports_set(sector, duration, log_file, save_file_name=No
                     f.write(current_progress+'\n')
                 continue
     
-            record, message = collect_financial_reports(dart, code, duration)
+            record, message = _collect_financial_reports(dart, code, duration)
             if message == 'success':
                 financial_reports = pd.concat([financial_reports, record], ignore_index=True)
                 if save_file_name != None:
@@ -249,7 +249,7 @@ def generate_financial_reports_set(sector, duration, log_file, save_file_name=No
 
             time.sleep(sleep_time*error_trial)
 
-    return sort_columns_financial_reports(financial_reports)
+    return _sort_columns_financial_reports(financial_reports)
 
 
 def generate_update_db(log_file, days = None, start_day = None):
@@ -272,10 +272,10 @@ def generate_update_db(log_file, days = None, start_day = None):
         f.write(status +'\n')
     print(status)
 
-    db_f = generate_financial_reports_set(full_rescan_code, None, log_file, None)
-    db_p = generate_financial_reports_set(partial_rescan_code, 1, log_file, None) # 1 year
+    db_f = _generate_financial_reports_set(full_rescan_code, None, log_file, None)
+    db_p = _generate_financial_reports_set(partial_rescan_code, 1, log_file, None) # 1 year
 
-    return sort_columns_financial_reports(pd.concat([db_f, db_p], ignore_index=True))
+    return _sort_columns_financial_reports(pd.concat([db_f, db_p], ignore_index=True))
 
 
 if __name__ == '__main__': 

@@ -163,6 +163,7 @@ cython_debug/
 venv/
 docs_cache/
 reports/
+plots/
 token.dat
 config.json
 
