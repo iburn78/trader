@@ -4,7 +4,7 @@ import OpenDartReader
 import sys, os
 sys.path.append(os.path.dirname(os.getcwd()))  
 from tools.dictionary import ACCOUNT_NAME_DICTIONARY, BS_ACCOUNTS, IS_ACCOUNTS, DART_APIS, MODIFIED_REPORT
-from tools.tools import merge_update
+from tools.tools import merge_update, generate_krx_data
 import pandas as pd
 import numpy as np
 import datetime, time
@@ -280,6 +280,14 @@ def generate_update_db(log_file, days = None, start_day = None):
 
 if __name__ == '__main__': 
     log_file = 'data/data_collection_log.txt'
+    try: 
+        generate_krx_data()
+    except Exception as e:
+        print('Generation of KRX data failed: '+str(e))
+        with open(log_file, 'a') as f:
+            f.write('-------------------------------'+'\n')
+            f.write('Generation of KRX data failed: '+str(e)+'\n')
+            f.write('-------------------------------'+'\n')
 
     main_db = pd.read_feather('data/financial_reports_main.feather')
     start_day = main_db['date_updated'].max()
@@ -288,6 +296,5 @@ if __name__ == '__main__':
     if update_db != None: 
         main_db = merge_update(main_db, update_db)
         main_db.to_feather('data/financial_reports_main.feather')
-    
-        print('== update finished ==')
 
+        print('== update finished ==')

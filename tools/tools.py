@@ -2,6 +2,7 @@ from .dictionary import *
 from math import log10
 import seaborn as sns
 import matplotlib.pyplot as plt
+import FinanceDataReader as fdr
 
 def plot_company_financial_summary(db, code, path=None):
     quarter_cols= [s for s in db.columns.values if 'Q' in s]
@@ -104,3 +105,18 @@ def merge_update(A, B, index_cols=['code', 'fs_div', 'account_nm']):
             C.drop(col, axis=1, inplace=True)
     return C
 
+def generate_krx_data(): 
+    df_krx_desc = fdr.StockListing('KRX-DESC')
+    df_krx = fdr.StockListing('KRX')
+
+    df_krx.drop(columns=['Close', 'ChangeCode', 'Changes', 'ChagesRatio', 'Open', 'High', 'Low', 'Volume', 'Amount'], inplace=True)
+    cols_to_use = df_krx_desc.columns.difference(df_krx.columns).tolist()
+    cols_to_use.append('Code')
+    df_krx = df_krx.merge(df_krx_desc[cols_to_use], on='Code', how='left')
+    df_krx = df_krx.set_index('Code')
+
+    df_krx=df_krx[~df_krx['Dept'].str.contains('관리')]   # remove companies in trouble
+    df_krx.to_feather('data/df_krx.feather')
+    print('OKOK')
+
+    return None
