@@ -1,9 +1,12 @@
+# Create a function to measure a financial health of a company 
+
 import OpenDartReader 
 import sys, os
 sys.path.append(os.path.dirname(os.getcwd()))  
 from tools.dictionary import ACCOUNT_NAME_DICTIONARY, BS_ACCOUNTS, IS_ACCOUNTS, DART_APIS, MODIFIED_REPORT
 from tools.tools import merge_update
 import pandas as pd
+import numpy as np
 import datetime, time
 
 def collect_financial_reports(dart, code, duration=None): # duration as years
@@ -249,15 +252,25 @@ def generate_financial_reports_set(sector, duration, log_file, save_file_name=No
     return sort_columns_financial_reports(financial_reports)
 
 
-def generate_update_db(log_file, days = 1):
+def generate_update_db(log_file, days = None, start_day = None):
     today = datetime.datetime.today().strftime('%Y-%m-%d')
-    start_day = (datetime.datetime.today() - datetime.timedelta(days = days)).strftime('%Y-%m-%d')
+    if days != None:
+        start_day = (datetime.datetime.today() - datetime.timedelta(days = days)).strftime('%Y-%m-%d')
     dart = OpenDartReader(DART_APIS[0])
     ls = dart.list(start=start_day, end=today, kind='A')
-    # print(ls)
+    if len(ls) == 0:
+        print('no new data to update')
+        return None
 
     full_rescan_code = ls.loc[ls['report_nm'].str.contains(MODIFIED_REPORT)]['stock_code'].values
+    full_rescan_code = np.unique(full_rescan_code[full_rescan_code.astype(bool)])
     partial_rescan_code = ls.loc[~ls['report_nm'].str.contains(MODIFIED_REPORT)]['stock_code'].values
+    partial_rescan_code = np.unique(partial_rescan_code[partial_rescan_code.astype(bool)])
+    status = '\nFull rescan codes are {} items: {}'.format(len(full_rescan_code), full_rescan_code) + '\nPartial rescan codes are {} items: {}'.format(len(partial_rescan_code), partial_rescan_code)
+    status = '\n--------------------------\n'+str(datetime.datetime.today())+status
+    with open(log_file, 'a') as f:
+        f.write(status +'\n')
+    print(status)
 
     db_f = generate_financial_reports_set(full_rescan_code, None, log_file, None)
     db_p = generate_financial_reports_set(partial_rescan_code, 1, log_file, None) # 1 year
@@ -269,11 +282,12 @@ if __name__ == '__main__':
     log_file = 'data/data_collection_log.txt'
 
     main_db = pd.read_feather('data/financial_reports_main.feather')
-    update_db = generate_update_db(log_file, 1)
+    start_day = main_db['date_updated'].max()
+    update_db = generate_update_db(log_file, None, start_day)
 
-    main_db = merge_update(main_db, update_db)
-    main_db.to_feather('data/financial_reports_main.feather')
-    # print(main_db)
-
-
+    if update_db != None: 
+        main_db = merge_update(main_db, update_db)
+        main_db.to_feather('data/financial_reports_main.feather')
+    
+        print('== update finished ==')
 
