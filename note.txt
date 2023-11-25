@@ -75,6 +75,7 @@
     pip install scipy
     pip install mojito2
     pip install seaborn
+    pip install plotly
 
 - config file: location and content
 
