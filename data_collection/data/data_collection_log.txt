@@ -153,3 +153,14 @@ Financial data collection log
 2023-11-29 19:22:45.986435, no: 12, code 017960 in process
 2023-11-29 19:23:09.616249, no: 13, code 018290 in process
 2023-11-29 19:23:25.771634, no: 14, code 019680 in process
+2023-11-29 19:23:43.609179, no: 15, code 024850 in process
+----> no: 15, code 024850 unknown exception; process suspended and to be re-tried
+2023-11-29 19:23:54.801177, no: 16, code 034730 in process
+2023-11-29 19:24:12.497131, no: 17, code 035000 in process
+2023-11-29 19:24:29.041648, no: 18, code 036810 in process
+2023-11-29 19:24:45.741655, no: 19, code 039440 in process
+2023-11-29 19:25:02.390061, no: 20, code 043220 in process
+2023-11-29 19:25:19.105653, no: 21, code 048530 in process
+2023-11-29 19:25:35.585228, no: 22, code 049770 in process
+2023-11-29 19:25:52.150320, no: 23, code 051390 in process
+2023-11-29 19:26:08.541706, no: 24, code 053210 in process
