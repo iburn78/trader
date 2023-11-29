@@ -193,7 +193,7 @@ def _generate_financial_reports_set(sector, duration, log_file, save_file_name=N
     error_trial_limit = 10
     sleep_time = 5 # seconds
 
-    for ix, code in enumerate(sector[:1]):
+    for ix, code in enumerate(sector):
         retry_required = True
         while retry_required:
             try:
@@ -224,6 +224,10 @@ def _generate_financial_reports_set(sector, duration, log_file, save_file_name=N
                 retry_required = False
 
             except Exception as e:
+                current_progress = '----> no: ' + str(ix) + ', code ' + code+' unknown exception; process suspended and to be re-tried' # / '+df_krx['Name'][code]
+                log_print(log_file, current_progress)
+                log_print(log_file, e)
+
                 if error_trial < error_trial_limit:
                     error_trial += 1
                     dart_ind += 1
@@ -232,10 +236,6 @@ def _generate_financial_reports_set(sector, duration, log_file, save_file_name=N
                 else:
                     log_print(log_file, '** ERROR TRIAL LIMIT REACHED - Entire Process Halted **')
                     raise Exception('ERROR TRIAL LIMIT REACHED - Entire Process Halted')  # no catch, thus propagates to halt the program. 
-
-                current_progress = '----> no: ' + str(ix) + ', code ' + code+' unknown exception; process suspended and to be re-tried' # / '+df_krx['Name'][code]
-                log_print(log_file, current_progress)
-                log_print(log_file, e)
 
                 time.sleep(sleep_time*error_trial)
 
@@ -280,6 +280,10 @@ if __name__ == '__main__':
     start_day = main_db['date_updated'].max()
     update_db = generate_update_db(log_file, None, start_day)
 
+    # 조회된 데이터가 없습니다. => check if I want to not to print this message
+    # if there is nothing to update, then update_db is None.... but if update_db != None cause an error if update_db is not None => Abmigious blah... 
+    # SHOUD FIX THIS
+    #######################################
     if len(update_db) > 0:
         main_db = merge_update(main_db, update_db)
         main_db.to_feather('data/financial_reports_main.feather')

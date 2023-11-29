@@ -1,0 +1,239 @@
+Updating KRX data...
+--------------------------
+2023-11-30 00:03:12.048853
+Full rescan codes are 67 items: 
+['000300' '000970' '001440' '003410' '004490' '005010' '007310' '007720'
+ '008260' '009070' '009830' '016800' '017960' '018290' '019680' '024850'
+ '034730' '035000' '036810' '039440' '043220' '048530' '049770' '051390'
+ '053210' '063440' '076610' '079980' '080160' '086820' '094860' '097230'
+ '102460' '118990' '128540' '134790' '140070' '143210' '151860' '177350'
+ '189860' '194700' '196300' '200350' '204630' '211050' '219550' '228760'
+ '236030' '246710' '265560' '268600' '279600' '296160' '309930' '311390'
+ '336570' '347860' '348340' '355150' '357550' '359090' '376290' '405000'
+ '450520' '900100' '950210']
+Partial rescan codes are 48 items: 
+['016790' '060300' '065370' '065530' '092790' '099390' '129920' '133820'
+ '146060' '198940' '217330' '267320' '290670' '298870' '312610' '321260'
+ '348340' '354200' '356890' '365900' '368600' '369370' '373200' '376930'
+ '382840' '389030' '394280' '403490' '405920' '417500' '424960' '432430'
+ '434480' '454910' '900070' '900100' '900110' '900120' '900140' '900250'
+ '900260' '900270' '900280' '900290' '900300' '900310' '900340' '950210']
+Financial data collection log >> 
+2023-11-30 00:03:12.103211, no: 0, code 000300 in process
+Financial data collection log >> 
+2023-11-30 00:03:28.024798, no: 0, code 016790 in process
+== update finished ==
+Updating KRX data...
+--------------------------
+2023-11-30 00:06:49.985315
+Full rescan codes are 67 items: 
+['000300' '000970' '001440' '003410' '004490' '005010' '007310' '007720'
+ '008260' '009070' '009830' '016800' '017960' '018290' '019680' '024850'
+ '034730' '035000' '036810' '039440' '043220' '048530' '049770' '051390'
+ '053210' '063440' '076610' '079980' '080160' '086820' '094860' '097230'
+ '102460' '118990' '128540' '134790' '140070' '143210' '151860' '177350'
+ '189860' '194700' '196300' '200350' '204630' '211050' '219550' '228760'
+ '236030' '246710' '265560' '268600' '279600' '296160' '309930' '311390'
+ '336570' '347860' '348340' '355150' '357550' '359090' '376290' '405000'
+ '450520' '900100' '950210']
+Partial rescan codes are 48 items: 
+['016790' '060300' '065370' '065530' '092790' '099390' '129920' '133820'
+ '146060' '198940' '217330' '267320' '290670' '298870' '312610' '321260'
+ '348340' '354200' '356890' '365900' '368600' '369370' '373200' '376930'
+ '382840' '389030' '394280' '403490' '405920' '417500' '424960' '432430'
+ '434480' '454910' '900070' '900100' '900110' '900120' '900140' '900250'
+ '900260' '900270' '900280' '900290' '900300' '900310' '900340' '950210']
+Financial data collection log >> 
+2023-11-30 00:06:50.061517, no: 0, code 000300 in process
+** API-changed **
+----> no: 0, code 000300 unknown exception; process suspended and to be re-tried
+HTTPSConnectionPool(host='opendart.fss.or.kr', port=443): Max retries exceeded with url: /api/fnlttSinglAcnt.json?crtfc_key=5f29227b902e730a9350eacbf2dee9abd6f5623f&corp_code=00126089&bsns_year=2015&reprt_code=11012 (Caused by SSLError(SSLEOFError(8, '[SSL: UNEXPECTED_EOF_WHILE_READING] EOF occurred in violation of protocol (_ssl.c:1007)')))
+2023-11-30 00:07:05.489882, no: 0, code 000300 in process
+2023-11-30 00:07:21.430835, no: 1, code 000970 in process
+2023-11-30 00:07:31.943588, no: 2, code 001440 in process
+2023-11-30 00:07:48.774849, no: 3, code 003410 in process
+2023-11-30 00:08:04.901317, no: 4, code 004490 in process
+2023-11-30 00:08:24.609123, no: 5, code 005010 in process
+2023-11-30 00:08:40.543902, no: 6, code 007310 in process
+2023-11-30 00:08:56.618977, no: 7, code 007720 in process
+2023-11-30 00:09:12.791665, no: 8, code 008260 in process
+2023-11-30 00:09:28.188724, no: 9, code 009070 in process
+2023-11-30 00:09:44.526724, no: 10, code 009830 in process
+2023-11-30 00:10:00.468652, no: 11, code 016800 in process
+2023-11-30 00:10:16.140728, no: 12, code 017960 in process
+** API-changed **
+----> no: 12, code 017960 unknown exception; process suspended and to be re-tried
+HTTPSConnectionPool(host='opendart.fss.or.kr', port=443): Max retries exceeded with url: /api/fnlttSinglAcnt.json?crtfc_key=9c180c67fba16e9a8d8bf3a74112ce0a6dbdb907&corp_code=00159795&bsns_year=2018&reprt_code=11013 (Caused by SSLError(SSLEOFError(8, '[SSL: UNEXPECTED_EOF_WHILE_READING] EOF occurred in violation of protocol (_ssl.c:1007)')))
+2023-11-30 00:10:29.631368, no: 12, code 017960 in process
+2023-11-30 00:10:45.636533, no: 13, code 018290 in process
+2023-11-30 00:11:01.656320, no: 14, code 019680 in process
+2023-11-30 00:11:17.689239, no: 15, code 024850 in process
+2023-11-30 00:11:33.466577, no: 16, code 034730 in process
+2023-11-30 00:11:49.359341, no: 17, code 035000 in process
+2023-11-30 00:12:06.245155, no: 18, code 036810 in process
+** API-changed **
+----> no: 18, code 036810 unknown exception; process suspended and to be re-tried
+HTTPSConnectionPool(host='opendart.fss.or.kr', port=443): Max retries exceeded with url: /api/fnlttSinglAcnt.json?crtfc_key=a1fc27d1b9ed7efbdfee49e92b741635d3c76c26&corp_code=00223434&bsns_year=2020&reprt_code=11014 (Caused by SSLError(SSLEOFError(8, '[SSL: UNEXPECTED_EOF_WHILE_READING] EOF occurred in violation of protocol (_ssl.c:1007)')))
+2023-11-30 00:12:23.992950, no: 18, code 036810 in process
+2023-11-30 00:12:40.214028, no: 19, code 039440 in process
+2023-11-30 00:12:56.609147, no: 20, code 043220 in process
+2023-11-30 00:13:12.752732, no: 21, code 048530 in process
+2023-11-30 00:13:28.793145, no: 22, code 049770 in process
+2023-11-30 00:13:45.761817, no: 23, code 051390 in process
+** API-changed **
+----> no: 23, code 051390 unknown exception; process suspended and to be re-tried
+HTTPSConnectionPool(host='opendart.fss.or.kr', port=443): Max retries exceeded with url: /api/fnlttSinglAcnt.json?crtfc_key=5f29227b902e730a9350eacbf2dee9abd6f5623f&corp_code=00296263&bsns_year=2020&reprt_code=11014 (Caused by SSLError(SSLEOFError(8, '[SSL: UNEXPECTED_EOF_WHILE_READING] EOF occurred in violation of protocol (_ssl.c:1007)')))
+2023-11-30 00:13:57.484761, no: 23, code 051390 in process
+** API-changed **
+----> no: 23, code 051390 unknown exception; process suspended and to be re-tried
+HTTPSConnectionPool(host='opendart.fss.or.kr', port=443): Max retries exceeded with url: /api/fnlttSinglAcnt.json?crtfc_key=9c180c67fba16e9a8d8bf3a74112ce0a6dbdb907&corp_code=00296263&bsns_year=2018&reprt_code=11011 (Caused by SSLError(SSLEOFError(8, '[SSL: UNEXPECTED_EOF_WHILE_READING] EOF occurred in violation of protocol (_ssl.c:1007)')))
+2023-11-30 00:14:08.785347, no: 23, code 051390 in process
+** API-changed **
+----> no: 23, code 051390 unknown exception; process suspended and to be re-tried
+HTTPSConnectionPool(host='opendart.fss.or.kr', port=443): Max retries exceeded with url: /api/fnlttSinglAcnt.json?crtfc_key=a1fc27d1b9ed7efbdfee49e92b741635d3c76c26&corp_code=00296263&bsns_year=2020&reprt_code=11014 (Caused by SSLError(SSLEOFError(8, '[SSL: UNEXPECTED_EOF_WHILE_READING] EOF occurred in violation of protocol (_ssl.c:1007)')))
+2023-11-30 00:14:29.325238, no: 23, code 051390 in process
+2023-11-30 00:14:46.505180, no: 24, code 053210 in process
+** API-changed **
+----> no: 24, code 053210 unknown exception; process suspended and to be re-tried
+HTTPSConnectionPool(host='opendart.fss.or.kr', port=443): Max retries exceeded with url: /api/fnlttSinglAcnt.json?crtfc_key=5f29227b902e730a9350eacbf2dee9abd6f5623f&corp_code=00349097&bsns_year=2015&reprt_code=11011 (Caused by SSLError(SSLEOFError(8, '[SSL: UNEXPECTED_EOF_WHILE_READING] EOF occurred in violation of protocol (_ssl.c:1007)')))
+2023-11-30 00:14:53.225623, no: 24, code 053210 in process
+2023-11-30 00:15:09.975492, no: 25, code 063440 in process
+2023-11-30 00:15:26.297241, no: 26, code 076610 in process
+2023-11-30 00:15:42.389181, no: 27, code 079980 in process
+2023-11-30 00:15:58.505664, no: 28, code 080160 in process
+** API-changed **
+----> no: 28, code 080160 unknown exception; process suspended and to be re-tried
+HTTPSConnectionPool(host='opendart.fss.or.kr', port=443): Max retries exceeded with url: /api/fnlttSinglAcnt.json?crtfc_key=9c180c67fba16e9a8d8bf3a74112ce0a6dbdb907&corp_code=00456218&bsns_year=2016&reprt_code=11011 (Caused by SSLError(SSLEOFError(8, '[SSL: UNEXPECTED_EOF_WHILE_READING] EOF occurred in violation of protocol (_ssl.c:1007)')))
+2023-11-30 00:16:05.022370, no: 28, code 080160 in process
+** API-changed **
+----> no: 28, code 080160 unknown exception; process suspended and to be re-tried
+HTTPSConnectionPool(host='opendart.fss.or.kr', port=443): Max retries exceeded with url: /api/fnlttSinglAcnt.json?crtfc_key=a1fc27d1b9ed7efbdfee49e92b741635d3c76c26&corp_code=00456218&bsns_year=2021&reprt_code=11011 (Caused by SSLError(SSLEOFError(8, '[SSL: UNEXPECTED_EOF_WHILE_READING] EOF occurred in violation of protocol (_ssl.c:1007)')))
+2023-11-30 00:16:22.722183, no: 28, code 080160 in process
+** API-changed **
+----> no: 28, code 080160 unknown exception; process suspended and to be re-tried
+HTTPSConnectionPool(host='opendart.fss.or.kr', port=443): Max retries exceeded with url: /api/fnlttSinglAcnt.json?crtfc_key=5f29227b902e730a9350eacbf2dee9abd6f5623f&corp_code=00456218&bsns_year=2017&reprt_code=11014 (Caused by SSLError(SSLEOFError(8, '[SSL: UNEXPECTED_EOF_WHILE_READING] EOF occurred in violation of protocol (_ssl.c:1007)')))
+2023-11-30 00:16:45.581230, no: 28, code 080160 in process
+2023-11-30 00:17:01.667588, no: 29, code 086820 in process
+2023-11-30 00:17:13.832045, no: 30, code 094860 in process
+2023-11-30 00:17:29.696855, no: 31, code 097230 in process
+2023-11-30 00:17:45.904020, no: 32, code 102460 in process
+2023-11-30 00:18:01.847654, no: 33, code 118990 in process
+2023-11-30 00:18:15.662358, no: 34, code 128540 in process
+2023-11-30 00:18:27.774661, no: 35, code 134790 in process
+2023-11-30 00:18:43.195544, no: 36, code 140070 in process
+2023-11-30 00:18:58.040613, no: 37, code 143210 in process
+2023-11-30 00:19:12.809153, no: 38, code 151860 in process
+** API-changed **
+----> no: 38, code 151860 unknown exception; process suspended and to be re-tried
+HTTPSConnectionPool(host='opendart.fss.or.kr', port=443): Max retries exceeded with url: /api/fnlttSinglAcnt.json?crtfc_key=9c180c67fba16e9a8d8bf3a74112ce0a6dbdb907&corp_code=00366137&bsns_year=2018&reprt_code=11011 (Caused by SSLError(SSLEOFError(8, '[SSL: UNEXPECTED_EOF_WHILE_READING] EOF occurred in violation of protocol (_ssl.c:1007)')))
+2023-11-30 00:19:18.929234, no: 38, code 151860 in process
+** API-changed **
+----> no: 38, code 151860 unknown exception; process suspended and to be re-tried
+HTTPSConnectionPool(host='opendart.fss.or.kr', port=443): Max retries exceeded with url: /api/fnlttSinglAcnt.json?crtfc_key=a1fc27d1b9ed7efbdfee49e92b741635d3c76c26&corp_code=00366137&bsns_year=2022&reprt_code=11011 (Caused by SSLError(SSLEOFError(8, '[SSL: UNEXPECTED_EOF_WHILE_READING] EOF occurred in violation of protocol (_ssl.c:1007)')))
+2023-11-30 00:19:29.301426, no: 38, code 151860 in process
+** API-changed **
+----> no: 38, code 151860 unknown exception; process suspended and to be re-tried
+HTTPSConnectionPool(host='opendart.fss.or.kr', port=443): Max retries exceeded with url: /api/fnlttSinglAcnt.json?crtfc_key=5f29227b902e730a9350eacbf2dee9abd6f5623f&corp_code=00366137&bsns_year=2022&reprt_code=11011 (Caused by SSLError(SSLEOFError(8, '[SSL: UNEXPECTED_EOF_WHILE_READING] EOF occurred in violation of protocol (_ssl.c:1007)')))
+2023-11-30 00:19:44.689707, no: 38, code 151860 in process
+2023-11-30 00:20:00.291994, no: 39, code 177350 in process
+2023-11-30 00:20:16.721030, no: 40, code 189860 in process
+2023-11-30 00:20:32.702418, no: 41, code 194700 in process
+2023-11-30 00:20:46.573230, no: 42, code 196300 in process
+2023-11-30 00:21:00.783872, no: 43, code 200350 in process
+2023-11-30 00:21:09.047181, no: 44, code 204630 in process
+2023-11-30 00:21:25.257177, no: 45, code 211050 in process
+2023-11-30 00:21:33.534977, no: 46, code 219550 in process
+2023-11-30 00:21:48.121234, no: 47, code 228760 in process
+2023-11-30 00:22:00.163086, no: 48, code 236030 in process
+----> no: 48, code 236030 data not available, could be a financial institution
+2023-11-30 00:22:06.672081, no: 49, code 246710 in process
+2023-11-30 00:22:18.404869, no: 50, code 265560 in process
+2023-11-30 00:22:31.959521, no: 51, code 268600 in process
+** API-changed **
+----> no: 51, code 268600 unknown exception; process suspended and to be re-tried
+HTTPSConnectionPool(host='opendart.fss.or.kr', port=443): Max retries exceeded with url: /api/fnlttSinglAcnt.json?crtfc_key=9c180c67fba16e9a8d8bf3a74112ce0a6dbdb907&corp_code=01182444&bsns_year=2020&reprt_code=11012 (Caused by SSLError(SSLEOFError(8, '[SSL: UNEXPECTED_EOF_WHILE_READING] EOF occurred in violation of protocol (_ssl.c:1007)')))
+2023-11-30 00:22:41.973239, no: 51, code 268600 in process
+2023-11-30 00:22:53.989229, no: 52, code 279600 in process
+2023-11-30 00:23:04.497033, no: 53, code 296160 in process
+----> no: 53, code 296160 data not available, could be a financial institution
+2023-11-30 00:23:11.007664, no: 54, code 309930 in process
+2023-11-30 00:23:22.649234, no: 55, code 311390 in process
+2023-11-30 00:23:33.973001, no: 56, code 336570 in process
+2023-11-30 00:23:41.650114, no: 57, code 347860 in process
+2023-11-30 00:23:51.148494, no: 58, code 348340 in process
+2023-11-30 00:23:58.074965, no: 59, code 355150 in process
+2023-11-30 00:24:04.788036, no: 60, code 357550 in process
+2023-11-30 00:24:14.374990, no: 61, code 359090 in process
+2023-11-30 00:24:22.788635, no: 62, code 376290 in process
+2023-11-30 00:24:31.044746, no: 63, code 405000 in process
+2023-11-30 00:24:37.958616, no: 64, code 450520 in process
+2023-11-30 00:24:43.931370, no: 65, code 900100 in process
+----> no: 65, code 900100 currency not in KRW, skipping
+2023-11-30 00:24:49.145135, no: 66, code 950210 in process
+----> no: 66, code 950210 currency not in KRW, skipping
+Financial data collection log >> 
+2023-11-30 00:24:54.472706, no: 0, code 016790 in process
+2023-11-30 00:25:00.913041, no: 1, code 060300 in process
+2023-11-30 00:25:06.909594, no: 2, code 065370 in process
+2023-11-30 00:25:13.313257, no: 3, code 065530 in process
+2023-11-30 00:25:19.614055, no: 4, code 092790 in process
+2023-11-30 00:25:25.617325, no: 5, code 099390 in process
+2023-11-30 00:25:31.954667, no: 6, code 129920 in process
+2023-11-30 00:25:38.318008, no: 7, code 133820 in process
+2023-11-30 00:25:44.573179, no: 8, code 146060 in process
+2023-11-30 00:25:50.557472, no: 9, code 198940 in process
+2023-11-30 00:25:56.941626, no: 10, code 217330 in process
+2023-11-30 00:26:03.281919, no: 11, code 267320 in process
+2023-11-30 00:26:09.617411, no: 12, code 290670 in process
+2023-11-30 00:26:15.925965, no: 13, code 298870 in process
+2023-11-30 00:26:21.869956, no: 14, code 312610 in process
+2023-11-30 00:26:28.197036, no: 15, code 321260 in process
+2023-11-30 00:26:34.563108, no: 16, code 348340 in process
+2023-11-30 00:26:40.893177, no: 17, code 354200 in process
+2023-11-30 00:26:47.259179, no: 18, code 356890 in process
+2023-11-30 00:26:53.505133, no: 19, code 365900 in process
+2023-11-30 00:26:59.834589, no: 20, code 368600 in process
+2023-11-30 00:27:06.173971, no: 21, code 369370 in process
+2023-11-30 00:27:12.517279, no: 22, code 373200 in process
+2023-11-30 00:27:18.841610, no: 23, code 376930 in process
+2023-11-30 00:27:25.197238, no: 24, code 382840 in process
+2023-11-30 00:27:31.527684, no: 25, code 389030 in process
+2023-11-30 00:27:37.840826, no: 26, code 394280 in process
+2023-11-30 00:27:44.349431, no: 27, code 403490 in process
+2023-11-30 00:27:50.326601, no: 28, code 405920 in process
+2023-11-30 00:27:56.629404, no: 29, code 417500 in process
+2023-11-30 00:28:02.973804, no: 30, code 424960 in process
+2023-11-30 00:28:09.105527, no: 31, code 432430 in process
+2023-11-30 00:28:15.073230, no: 32, code 434480 in process
+2023-11-30 00:28:21.433399, no: 33, code 454910 in process
+2023-11-30 00:28:27.423089, no: 34, code 900070 in process
+----> no: 34, code 900070 currency not in KRW, skipping
+2023-11-30 00:28:32.642538, no: 35, code 900100 in process
+----> no: 35, code 900100 currency not in KRW, skipping
+2023-11-30 00:28:37.888356, no: 36, code 900110 in process
+----> no: 36, code 900110 currency not in KRW, skipping
+2023-11-30 00:28:43.103646, no: 37, code 900120 in process
+----> no: 37, code 900120 currency not in KRW, skipping
+2023-11-30 00:28:48.321017, no: 38, code 900140 in process
+----> no: 38, code 900140 currency not in KRW, skipping
+2023-11-30 00:28:53.543268, no: 39, code 900250 in process
+----> no: 39, code 900250 currency not in KRW, skipping
+2023-11-30 00:28:58.781231, no: 40, code 900260 in process
+----> no: 40, code 900260 currency not in KRW, skipping
+2023-11-30 00:29:04.017233, no: 41, code 900270 in process
+----> no: 41, code 900270 currency not in KRW, skipping
+2023-11-30 00:29:09.243474, no: 42, code 900280 in process
+----> no: 42, code 900280 currency not in KRW, skipping
+2023-11-30 00:29:14.507140, no: 43, code 900290 in process
+----> no: 43, code 900290 currency not in KRW, skipping
+2023-11-30 00:29:19.726455, no: 44, code 900300 in process
+----> no: 44, code 900300 currency not in KRW, skipping
+2023-11-30 00:29:24.951438, no: 45, code 900310 in process
+----> no: 45, code 900310 currency not in KRW, skipping
+2023-11-30 00:29:30.181629, no: 46, code 900340 in process
+----> no: 46, code 900340 currency not in KRW, skipping
+2023-11-30 00:29:35.405231, no: 47, code 950210 in process
+----> no: 47, code 950210 currency not in KRW, skipping
+== update finished ==
+Updating KRX data...
+no new data to update
