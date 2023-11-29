@@ -8,6 +8,7 @@ from tools.tools import merge_update, generate_krx_data
 import pandas as pd
 import numpy as np
 import datetime, time
+import warnings
 
 def _collect_financial_reports(dart, code, duration=None): # duration as years
 
@@ -281,7 +282,10 @@ def generate_update_db(log_file, days = None, start_day = None):
 if __name__ == '__main__': 
     log_file = 'data/data_collection_log.txt'
     try: 
+        print('Updating KRX data...')
+        warnings.filterwarnings("ignore")
         generate_krx_data()
+        warnings.resetwarnings()
     except Exception as e:
         print('Generation of KRX data failed: '+str(e))
         with open(log_file, 'a') as f:
