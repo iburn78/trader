@@ -397,3 +397,8 @@ def generate_krx_data():
     df_krx.to_feather('data/df_krx.feather')
 
     return None
+
+def log_print(log_file, message):
+    print(message)
+    with open(log_file, 'a') as f: # a new file would be created if there is no log_file / otherwise it will append with "a" option
+        f.write(str(message)+'\n')
