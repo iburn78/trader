@@ -256,8 +256,8 @@ def generate_update_db(log_file, days = None, start_day = None):
     full_rescan_code = np.unique(full_rescan_code[full_rescan_code.astype(bool)])
     partial_rescan_code = ls.loc[~ls['report_nm'].str.contains(MODIFIED_REPORT)]['stock_code'].values
     partial_rescan_code = np.unique(partial_rescan_code[partial_rescan_code.astype(bool)])
-    status = '\nFull rescan codes are {} items: {}'.format(len(full_rescan_code), full_rescan_code) + '\nPartial rescan codes are {} items: {}'.format(len(partial_rescan_code), partial_rescan_code)
-    status = '\n--------------------------\n'+str(datetime.datetime.today())+status
+    status = '\nFull rescan codes are {} items: \n{}'.format(len(full_rescan_code), full_rescan_code) + '\nPartial rescan codes are {} items: \n{}'.format(len(partial_rescan_code), partial_rescan_code)
+    status = '--------------------------\n'+str(datetime.datetime.today())+status
     log_print(log_file, status)
 
     db_f = _generate_financial_reports_set(full_rescan_code, None, log_file, None)
