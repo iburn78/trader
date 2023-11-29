@@ -193,7 +193,7 @@ def _generate_financial_reports_set(sector, duration, log_file, save_file_name=N
     error_trial_limit = 10
     sleep_time = 5 # seconds
 
-    for ix, code in enumerate(sector):
+    for ix, code in enumerate(sector[:1]):
         retry_required = True
         while retry_required:
             try:
@@ -280,7 +280,10 @@ if __name__ == '__main__':
     start_day = main_db['date_updated'].max()
     update_db = generate_update_db(log_file, None, start_day)
 
-    if update_db != None: 
+    if len(update_db) > 0:
         main_db = merge_update(main_db, update_db)
         main_db.to_feather('data/financial_reports_main.feather')
         log_print(log_file, '== update finished ==')
+    else:
+        log_print(log_file, '** nothing to update - main_db not updated **')
+        
