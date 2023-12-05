@@ -250,7 +250,7 @@ def generate_update_db(log_file, days = None, start_day = None):
     ls = dart.list(start=start_day, end=today, kind='A')
     if len(ls) == 0:
         log_print(log_file, 'no new data to update')
-        return None
+        return pd.DataFrame() # return an empty dataframe
 
     full_rescan_code = ls.loc[ls['report_nm'].str.contains(MODIFIED_REPORT)]['stock_code'].values
     full_rescan_code = np.unique(full_rescan_code[full_rescan_code.astype(bool)])
@@ -280,10 +280,6 @@ if __name__ == '__main__':
     start_day = main_db['date_updated'].max()
     update_db = generate_update_db(log_file, None, start_day)
 
-    # 조회된 데이터가 없습니다. => check if I want to not to print this message
-    # if there is nothing to update, then update_db is None.... but if update_db != None cause an error if update_db is not None => Abmigious blah... 
-    # SHOUD FIX THIS
-    #######################################
     if len(update_db) > 0:
         main_db = merge_update(main_db, update_db)
         main_db.to_feather('data/financial_reports_main.feather')

@@ -66,7 +66,7 @@
 
 
 
-### Note for operation
+### Note for operational setup ... 
 
 - installations
     pip install -U finance-datareader
@@ -77,7 +77,7 @@
     pip install seaborn
     pip install plotly
 
-- config file: location and content
+- config file: be careful about the location and content
 
 - in mojito module, change path to the token.dat to be in config... :should be adjusted according to relative directory (e.g., ../../config/.. or ../config/..)
     you may use koreainvest_module.py instead
@@ -93,8 +93,19 @@
             if '초과' in jo['message']:
                 print(jo)
                 raise Exception('USAGE LIMIT REACHED...')
-        # print(jo)
-        # print('전자공시의 재무데이터는 2015년 이후 데이터를 제공합니다') if bsns_year < 2015 else print()
+        # print(jo)  <- make this a comment 
+        # print('전자공시의 재무데이터는 2015년 이후 데이터를 제공합니다') if bsns_year < 2015 else print()   <- make this a comment    
+        ...
+    
+- in OpenDartReader    
+    def list(api_key, corp_code='', start=None, end=None, kind='', kind_detail='', final=False):
+        ...
+        except ET.ParseError as e:
+            jo = r.json()
+            if jo['status'] != '000':
+                pass
+                # print(ValueError(r.text))   <- make this a comment 
         ...
 
-- Add C:\Users\user\projects\trader\ or equivalent to environment variable
+
+- Add C:\Users\user\projects\trader\ or equivalent to environment variable for import to work.

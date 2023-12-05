@@ -237,3 +237,50 @@ Financial data collection log >>
 == update finished ==
 Updating KRX data...
 no new data to update
+Updating KRX data...
+--------------------------
+2023-12-05 08:57:23.336239
+Full rescan codes are 24 items: 
+['001630' '004360' '007530' '009270' '012280' '016920' '019490' '023530'
+ '041830' '066430' '079370' '111870' '122900' '136510' '137400' '218410'
+ '220100' '225530' '298690' '304840' '307870' '317240' '347770' '389030']
+Partial rescan codes are 1 items: 
+['357430']
+Financial data collection log >> 
+2023-12-05 08:57:23.397637, no: 0, code 001630 in process
+2023-12-05 08:57:39.938589, no: 1, code 004360 in process
+----> no: 1, code 004360 unknown exception; process suspended and to be re-tried
+HTTPSConnectionPool(host='opendart.fss.or.kr', port=443): Max retries exceeded with url: /api/fnlttSinglAcnt.json?crtfc_key=5f29227b902e730a9350eacbf2dee9abd6f5623f&corp_code=00133812&bsns_year=2019&reprt_code=11014 (Caused by SSLError(SSLEOFError(8, '[SSL: UNEXPECTED_EOF_WHILE_READING] EOF occurred in violation of protocol (_ssl.c:1007)')))
+** API-changed **
+2023-12-05 08:57:50.835130, no: 1, code 004360 in process
+2023-12-05 08:58:07.573691, no: 2, code 007530 in process
+2023-12-05 08:58:24.179543, no: 3, code 009270 in process
+2023-12-05 08:58:40.550610, no: 4, code 012280 in process
+2023-12-05 08:58:56.563039, no: 5, code 016920 in process
+2023-12-05 08:59:13.063631, no: 6, code 019490 in process
+2023-12-05 08:59:29.405740, no: 7, code 023530 in process
+2023-12-05 08:59:45.835243, no: 8, code 041830 in process
+2023-12-05 09:00:02.229299, no: 9, code 066430 in process
+2023-12-05 09:00:18.522972, no: 10, code 079370 in process
+2023-12-05 09:00:35.202089, no: 11, code 111870 in process
+2023-12-05 09:00:51.768843, no: 12, code 122900 in process
+2023-12-05 09:01:09.060037, no: 13, code 136510 in process
+2023-12-05 09:01:26.225127, no: 14, code 137400 in process
+2023-12-05 09:01:42.846001, no: 15, code 218410 in process
+2023-12-05 09:01:57.309097, no: 16, code 220100 in process
+2023-12-05 09:02:12.880024, no: 17, code 225530 in process
+2023-12-05 09:02:29.669043, no: 18, code 298690 in process
+2023-12-05 09:02:42.082537, no: 19, code 304840 in process
+2023-12-05 09:02:51.883118, no: 20, code 307870 in process
+2023-12-05 09:03:00.231283, no: 21, code 317240 in process
+2023-12-05 09:03:10.257817, no: 22, code 347770 in process
+2023-12-05 09:03:20.513359, no: 23, code 389030 in process
+Financial data collection log >> 
+2023-12-05 09:03:28.963155, no: 0, code 357430 in process
+== update finished ==
+Updating KRX data...
+no new data to update
+** nothing to update - main_db not updated **
+Updating KRX data...
+no new data to update
+** nothing to update - main_db not updated **
