@@ -284,3 +284,62 @@ no new data to update
 Updating KRX data...
 no new data to update
 ** nothing to update - main_db not updated **
+Updating KRX data...
+update from date: 2023-12-05
+--------------------------
+2023-12-06 15:53:49.318364
+Full rescan codes are 1 items: 
+['149980']
+Partial rescan codes are 1 items: 
+['395400']
+Financial data collection log >> 
+2023-12-06 15:53:49.370599, no: 0, code 149980 in process
+Financial data collection log >> 
+2023-12-06 15:54:06.251722, no: 0, code 395400 in process
+== update finished ==
+Updating KRX data...
+update from date: 2023-12-06
+--------------------------
+2023-12-06 15:54:31.625568
+Full rescan codes are 1 items: 
+['149980']
+Partial rescan codes are 0 items: 
+[]
+Financial data collection log >> 
+2023-12-06 15:54:31.685267, no: 0, code 149980 in process
+Financial data collection log >> 
+Updating KRX data...
+update from date: 2023-12-06
+--------------------------
+2023-12-06 15:58:31.578618
+Full rescan codes are 1 items: 
+['149980']
+Partial rescan codes are 0 items: 
+[]
+Financial data collection log >> 
+2023-12-06 15:58:31.643123, no: 0, code 149980 in process
+Financial data collection log >> 
+Updating KRX data...
+update from date: 2023-12-06
+Financial data collection log >> 
+2023-12-06 16:15:51.251291, no: 0, code 149980 in process
+2023-12-06 16:16:10.885429, no: 1, code 300080 in process
+2023-12-06 16:16:22.849511, no: 2, code 353590 in process
+-----------------------------
+2023-12-06 16:16:31.512731
+Full rescan codes are 3 items: 
+['149980' '300080' '353590']
+ No partial rescan codes
+== update finished ==
+Updating KRX data...
+update from date: 2023-12-06
+-----------------------------
+2023-12-06 16:17:42.718525
+Full rescan codes are 3 items: 
+['149980' '300080' '353590']
+No partial rescan codes
+Financial data collection log >> 
+2023-12-06 16:17:42.779174, no: 0, code 149980 in process
+2023-12-06 16:17:59.715431, no: 1, code 300080 in process
+2023-12-06 16:18:11.635307, no: 2, code 353590 in process
+== update finished ==

@@ -247,23 +247,36 @@ def generate_update_db(log_file, days = None, start_day = None):
     if days != None:
         start_day = (datetime.datetime.today() - datetime.timedelta(days = days)).strftime('%Y-%m-%d')
     dart = OpenDartReader(DART_APIS[0])
+    log_print(log_file, 'update from date: '+ str(start_day))
     ls = dart.list(start=start_day, end=today, kind='A')
-    if len(ls) == 0:
-        log_print(log_file, 'no new data to update')
-        return pd.DataFrame() # return an empty dataframe
 
     full_rescan_code = ls.loc[ls['report_nm'].str.contains(MODIFIED_REPORT)]['stock_code'].values
     full_rescan_code = np.unique(full_rescan_code[full_rescan_code.astype(bool)])
     partial_rescan_code = ls.loc[~ls['report_nm'].str.contains(MODIFIED_REPORT)]['stock_code'].values
     partial_rescan_code = np.unique(partial_rescan_code[partial_rescan_code.astype(bool)])
-    status = '\nFull rescan codes are {} items: \n{}'.format(len(full_rescan_code), full_rescan_code) + '\nPartial rescan codes are {} items: \n{}'.format(len(partial_rescan_code), partial_rescan_code)
-    status = '--------------------------\n'+str(datetime.datetime.today())+status
-    log_print(log_file, status)
 
-    db_f = _generate_financial_reports_set(full_rescan_code, None, log_file, None)
-    db_p = _generate_financial_reports_set(partial_rescan_code, 1, log_file, None) # 1 year
+    if len(full_rescan_code) > 0 and len(partial_rescan_code) > 0:
+        res = pd.concat([db_f, db_p], ignore_index=True)
+        status = '\nFull rescan codes are {} items: \n{}'.format(len(full_rescan_code), full_rescan_code) + '\nPartial rescan codes are {} items: \n{}'.format(len(partial_rescan_code), partial_rescan_code)
+        status = '-----------------------------\n'+str(datetime.datetime.today())+status
+        log_print(log_file, status)
+        db_f = _generate_financial_reports_set(full_rescan_code, None, log_file, None)
+        db_p = _generate_financial_reports_set(partial_rescan_code, 1, log_file, None) # 1 year
+    elif len(full_rescan_code) > 0 and len(partial_rescan_code) == 0: 
+        status = '\nFull rescan codes are {} items: \n{}'.format(len(full_rescan_code), full_rescan_code) + '\nNo partial rescan codes'
+        status = '-----------------------------\n'+str(datetime.datetime.today())+status
+        log_print(log_file, status)
+        res = _generate_financial_reports_set(full_rescan_code, None, log_file, None)
+    elif len(full_rescan_code) == 0 and len(partial_rescan_code) > 0: 
+        status = '\nNo full rescan codes' + '\nPartial rescan codes are {} items: \n{}'.format(len(partial_rescan_code), partial_rescan_code)
+        status = '-----------------------------\n'+str(datetime.datetime.today())+status
+        log_print(log_file, status)
+        res = _generate_financial_reports_set(partial_rescan_code, 1, log_file, None) # 1 year
+    else:
+        log_print(log_file, 'no new data to update')
+        return pd.DataFrame() # return an empty dataframe
 
-    return _sort_columns_financial_reports(pd.concat([db_f, db_p], ignore_index=True))
+    return _sort_columns_financial_reports(res)
 
 
 if __name__ == '__main__': 
