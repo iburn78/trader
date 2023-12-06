@@ -10,7 +10,7 @@ import numpy as np
 import datetime, time
 import warnings
 
-def _collect_financial_reports(dart, code, duration=None): # duration as years
+def _collect_financial_reports(dart, code, duration=None, date_updated=None): # duration as years
 
     def sj_div(account_nm):
         if account_nm in BS_ACCOUNTS:
@@ -65,7 +65,8 @@ def _collect_financial_reports(dart, code, duration=None): # duration as years
 
     record = pd.DataFrame(columns=['stock_code', 'fs_div', 'sj_div', 'account_nm', 'date_updated'])
     accounts = BS_ACCOUNTS + IS_ACCOUNTS
-    date_updated = datetime.datetime.today().strftime('%Y-%m-%d')
+    if date_updated == None:
+        date_updated = datetime.datetime.today().strftime('%Y-%m-%d')
 
     for i in range(len(accounts)):
         record.loc[i] = [code, 'CFS', sj_div(accounts[i]), accounts[i], date_updated]  
@@ -182,7 +183,7 @@ def _sort_columns_financial_reports(reports):
     static_columns = ['code', 'fs_div', 'sj_div', 'account_nm', 'account', 'date_updated']
     return pd.concat([reports[static_columns], reports[reports.columns.difference(static_columns)].sort_index(axis=1)], axis=1)
 
-def _generate_financial_reports_set(sector, duration, log_file, save_file_name=None):
+def _generate_financial_reports_set(sector, duration, log_file, date_updated=None, save_file_name=None):
     dart_ind = 0
     dart = OpenDartReader(DART_APIS[dart_ind])
 
@@ -205,7 +206,7 @@ def _generate_financial_reports_set(sector, duration, log_file, save_file_name=N
                     log_print(log_file, current_progress)
                     continue # skip the rest of the code
     
-                record, message = _collect_financial_reports(dart, code, duration)
+                record, message = _collect_financial_reports(dart, code, duration, date_updated)
                 if message == 'success':
                     financial_reports = pd.concat([financial_reports, record], ignore_index=True)
                     if save_file_name != None:
@@ -241,14 +242,14 @@ def _generate_financial_reports_set(sector, duration, log_file, save_file_name=N
 
     return _sort_columns_financial_reports(financial_reports)
 
-
-def generate_update_db(log_file, days = None, start_day = None):
-    today = datetime.datetime.today().strftime('%Y-%m-%d')
+def _generate_update_db(log_file, start_day = None, end_day = None, days = None):  # days counted from today
+    if end_day == None:
+        end_day = datetime.datetime.today().strftime('%Y-%m-%d')
     if days != None:
         start_day = (datetime.datetime.today() - datetime.timedelta(days = days)).strftime('%Y-%m-%d')
     dart = OpenDartReader(DART_APIS[0])
-    log_print(log_file, 'update from date: '+ str(start_day))
-    ls = dart.list(start=start_day, end=today, kind='A')
+    log_print(log_file, 'Updating between dates: '+ str(start_day) + ' / ' + str(end_day))
+    ls = dart.list(start=start_day, end=end_day, kind='A')
 
     full_rescan_code = ls.loc[ls['report_nm'].str.contains(MODIFIED_REPORT)]['stock_code'].values
     full_rescan_code = np.unique(full_rescan_code[full_rescan_code.astype(bool)])
@@ -256,31 +257,29 @@ def generate_update_db(log_file, days = None, start_day = None):
     partial_rescan_code = np.unique(partial_rescan_code[partial_rescan_code.astype(bool)])
 
     if len(full_rescan_code) > 0 and len(partial_rescan_code) > 0:
-        res = pd.concat([db_f, db_p], ignore_index=True)
         status = '\nFull rescan codes are {} items: \n{}'.format(len(full_rescan_code), full_rescan_code) + '\nPartial rescan codes are {} items: \n{}'.format(len(partial_rescan_code), partial_rescan_code)
         status = '-----------------------------\n'+str(datetime.datetime.today())+status
         log_print(log_file, status)
-        db_f = _generate_financial_reports_set(full_rescan_code, None, log_file, None)
-        db_p = _generate_financial_reports_set(partial_rescan_code, 1, log_file, None) # 1 year
+        db_f = _generate_financial_reports_set(full_rescan_code, None, log_file, end_day, None)
+        db_p = _generate_financial_reports_set(partial_rescan_code, 1, log_file, end_day, None) # 1 year
+        res = pd.concat([db_f, db_p], ignore_index=True)
     elif len(full_rescan_code) > 0 and len(partial_rescan_code) == 0: 
         status = '\nFull rescan codes are {} items: \n{}'.format(len(full_rescan_code), full_rescan_code) + '\nNo partial rescan codes'
         status = '-----------------------------\n'+str(datetime.datetime.today())+status
         log_print(log_file, status)
-        res = _generate_financial_reports_set(full_rescan_code, None, log_file, None)
+        res = _generate_financial_reports_set(full_rescan_code, None, log_file, end_day, None)
     elif len(full_rescan_code) == 0 and len(partial_rescan_code) > 0: 
         status = '\nNo full rescan codes' + '\nPartial rescan codes are {} items: \n{}'.format(len(partial_rescan_code), partial_rescan_code)
         status = '-----------------------------\n'+str(datetime.datetime.today())+status
         log_print(log_file, status)
-        res = _generate_financial_reports_set(partial_rescan_code, 1, log_file, None) # 1 year
+        res = _generate_financial_reports_set(partial_rescan_code, 1, log_file, end_day, None) # 1 year
     else:
-        log_print(log_file, 'no new data to update')
+        log_print(log_file, 'No new data to update')
         return pd.DataFrame() # return an empty dataframe
 
     return _sort_columns_financial_reports(res)
 
-
-if __name__ == '__main__': 
-    log_file = 'data/data_collection_log.txt'
+def update_main_db(log_file, main_db_file):
     try: 
         log_print(log_file, 'Updating KRX data...')
         warnings.filterwarnings("ignore")
@@ -289,14 +288,22 @@ if __name__ == '__main__':
     except Exception as e:
         log_print(log_file, 'Generation of KRX data failed: '+str(e))
 
-    main_db = pd.read_feather('data/financial_reports_main.feather')
+    main_db = pd.read_feather(main_db_file)
     start_day = main_db['date_updated'].max()
-    update_db = generate_update_db(log_file, None, start_day)
+    end_day = datetime.datetime.today().strftime('%Y-%m-%d')
+    update_db = _generate_update_db(log_file, start_day, end_day, None)
 
     if len(update_db) > 0:
         main_db = merge_update(main_db, update_db)
-        main_db.to_feather('data/financial_reports_main.feather')
-        log_print(log_file, '== update finished ==')
+        main_db.to_feather(main_db_file)
+        log_print(log_file, '== Update finished ==')
     else:
-        log_print(log_file, '** nothing to update - main_db not updated **')
+        log_print(log_file, '** Nothing to update - main_db not updated **')
+    
+    return None
         
+
+if __name__ == '__main__': 
+    log_file = 'data/data_collection_log.txt'
+    main_db_file = 'data/financial_reports_main.feather'
+    update_main_db(log_file, main_db_file)
