@@ -360,3 +360,22 @@ Financial data collection log >>
 Financial data collection log >> 
 2023-12-06 23:01:48.167675, no: 0, code 377190 in process
 == update finished ==
+Updating KRX data...
+Updating between dates: 2023-12-06 / 2023-12-09
+-----------------------------
+2023-12-09 23:37:56.684993
+Full rescan codes are 7 items: 
+['149980' '300080' '311320' '336570' '348340' '353590' '419530']
+Partial rescan codes are 1 items: 
+['377190']
+Financial data collection log >> 
+2023-12-09 23:37:56.765333, no: 0, code 149980 in process
+2023-12-09 23:40:54.902714, no: 1, code 300080 in process
+2023-12-09 23:43:00.234650, no: 2, code 311320 in process
+2023-12-09 23:43:30.854704, no: 3, code 336570 in process
+2023-12-09 23:43:38.842758, no: 4, code 348340 in process
+2023-12-09 23:43:45.998761, no: 5, code 353590 in process
+2023-12-09 23:43:54.734777, no: 6, code 419530 in process
+Financial data collection log >> 
+2023-12-09 23:44:01.920567, no: 0, code 377190 in process
+== Update finished ==
