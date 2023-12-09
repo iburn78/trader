@@ -110,4 +110,8 @@
 
 - Add C:\Users\user\projects\trader\ or equivalent to environment variable for import to work.
 
-- On Korean font setup for matplotlib: https://unsolvedproblem.github.io/etc/2020/08/04/matplotlib_korean_recog.html
+- On Korean font setup for matplotlib: 
+    * refer to https://unsolvedproblem.github.io/etc/2020/08/04/matplotlib_korean_recog.html
+    * but, no need to install nanum / instead user malgun.ttf from windows/fonts
+    * copy it into vevn/.../matplotlib... 
+    * modify (maynot be needed, if the font is installed in the system...) json file to add 'Malgun Gothic'

@@ -301,7 +301,7 @@ def plot_company_financial_summary(db, code, path=None):
     df_krx = pd.read_feather('data/df_krx.feather')
     name = df_krx['Name'][code]
 
-    kor_ft={'font':'NanumGothic'}
+    kor_ft={'font':'Malgun Gothic'}
     f.suptitle('Consolidated Financial Statement Summary - company: '+name+'('+code+') updated on '+date_updated, fontsize=14, fontdict=kor_ft)
     if path==None: 
         plt.show()
