@@ -276,10 +276,10 @@ def _generate_update_db(log_file, start_day = None, end_day = None, days = None)
     else:
         log_print(log_file, 'No new data to update')
         return pd.DataFrame() # return an empty dataframe
-
+    
     return _sort_columns_financial_reports(res)
 
-def update_main_db(log_file, main_db_file):
+def update_main_db(log_file, main_db_file, update_db_file=None):
     try: 
         log_print(log_file, 'Updating KRX data...')
         warnings.filterwarnings("ignore")
@@ -292,6 +292,9 @@ def update_main_db(log_file, main_db_file):
     start_day = main_db['date_updated'].max()
     end_day = datetime.datetime.today().strftime('%Y-%m-%d')
     update_db = _generate_update_db(log_file, start_day, end_day, None)
+
+    if update_db_file != None: 
+        update_db.to_feather(update_db_file)
 
     if len(update_db) > 0:
         main_db = merge_update(main_db, update_db)
@@ -306,4 +309,5 @@ def update_main_db(log_file, main_db_file):
 if __name__ == '__main__': 
     log_file = 'data/data_collection_log.txt'
     main_db_file = 'data/financial_reports_main.feather'
-    update_main_db(log_file, main_db_file)
+    update_db_file = 'data/financial_reports_update.feather'
+    update_main_db(log_file, main_db_file, update_db_file)
