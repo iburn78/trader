@@ -1,0 +1,213 @@
+001740 | Incompatible indexer with Series
+009240 | Incompatible indexer with Series
+185750 | Incompatible indexer with Series
+225570 | Incompatible indexer with Series
+336570 | Incompatible indexer with Series
+085370 | '085370'
+294090 | Incompatible indexer with Series
+215200 | Incompatible indexer with Series
+182400 | Incompatible indexer with Series
+011810 | Incompatible indexer with Series
+082270 | Incompatible indexer with Series
+077500 | Incompatible indexer with Series
+074610 | Incompatible indexer with Series
+348340 | Incompatible indexer with Series
+015540 | '015540'
+183190 | Incompatible indexer with Series
+363280 | Incompatible indexer with Series
+084110 | Incompatible indexer with Series
+334970 | Incompatible indexer with Series
+093640 | Incompatible indexer with Series
+048530 | Incompatible indexer with Series
+045100 | Incompatible indexer with Series
+083930 | Incompatible indexer with Series
+003960 | Incompatible indexer with Series
+229640 | Incompatible indexer with Series
+102260 | list index out of range
+419050 | Incompatible indexer with Series
+091580 | Incompatible indexer with Series
+250060 | Incompatible indexer with Series
+173130 | Incompatible indexer with Series
+321550 | Incompatible indexer with Series
+002620 | Incompatible indexer with Series
+419080 | Incompatible indexer with Series
+078940 | '078940'
+261200 | Incompatible indexer with Series
+006490 | Incompatible indexer with Series
+061250 | Incompatible indexer with Series
+002700 | Incompatible indexer with Series
+046140 | '046140'
+060310 | list index out of range
+082660 | Incompatible indexer with Series
+017040 | Incompatible indexer with Series
+377220 | Incompatible indexer with Series
+003780 | Incompatible indexer with Series
+333430 | Incompatible indexer with Series
+109860 | Incompatible indexer with Series
+008830 | Incompatible indexer with Series
+004060 | list index out of range
+173940 | Incompatible indexer with Series
+201490 | Incompatible indexer with Series
+263800 | Incompatible indexer with Series
+351330 | Incompatible indexer with Series
+124500 | Incompatible indexer with Series
+339950 | Incompatible indexer with Series
+222420 | Incompatible indexer with Series
+323280 | Incompatible indexer with Series
+025750 | Incompatible indexer with Series
+032680 | list index out of range
+006980 | Incompatible indexer with Series
+052900 | Incompatible indexer with Series
+069110 | '069110'
+139670 | Incompatible indexer with Series
+009770 | Incompatible indexer with Series
+033200 | '033200'
+002410 | Incompatible indexer with Series
+089140 | Incompatible indexer with Series
+204840 | Incompatible indexer with Series
+204630 | Incompatible indexer with Series
+217620 | Incompatible indexer with Series
+187660 | Incompatible indexer with Series
+155900 | '155900'
+148250 | Incompatible indexer with Series
+353190 | Incompatible indexer with Series
+065060 | Incompatible indexer with Series
+424760 | Incompatible indexer with Series
+072950 | Incompatible indexer with Series
+154030 | Incompatible indexer with Series
+237750 | Incompatible indexer with Series
+331920 | Incompatible indexer with Series
+241820 | Incompatible indexer with Series
+161570 | Incompatible indexer with Series
+054180 | Incompatible indexer with Series
+106240 | Incompatible indexer with Series
+069330 | list index out of range
+071460 | '071460'
+377460 | '377460'
+069140 | Incompatible indexer with Series
+014200 | '014200'
+367360 | '367360'
+006580 | '006580'
+450410 | '450410'
+000400 | Incompatible indexer with Series
+068060 | '068060'
+099520 | '099520'
+096640 | '096640'
+056000 | '056000'
+083660 | '083660'
+181340 | '181340'
+000110 | '000110'
+005980 | '005980'
+010050 | '010050'
+048260 | '048260'
+012580 | '012580'
+038160 | cannot convert float NaN to integer
+002550 | '002550'
+005270 | '005270'
+057500 | '057500'
+039230 | '039230'
+052670 | '052670'
+062860 | '062860'
+046070 | '046070'
+160600 | '160600'
+065560 | '065560'
+103160 | '103160'
+150840 | '150840'
+089530 | '089530'
+174880 | '174880'
+053660 | cannot convert float NaN to integer
+121800 | '121800'
+078650 | cannot convert float NaN to integer
+194510 | '194510'
+138690 | '138690'
+033340 | '033340'
+102210 | '102210'
+101000 | '101000'
+257370 | '257370'
+036220 | '036220'
+268600 | '268600'
+219750 | '219750'
+114120 | '114120'
+031990 | '031990'
+017680 | '017680'
+318020 | '318020'
+011160 | '011160'
+047820 | '047820'
+064090 | '064090'
+126870 | '126870'
+263540 | '263540'
+044060 | '044060'
+269620 | '269620'
+078130 | '078130'
+136510 | '136510'
+032860 | '032860'
+068420 | '068420'
+217480 | '217480'
+068940 | '068940'
+056090 | '056090'
+066410 | '066410'
+141020 | '141020'
+148140 | '148140'
+081970 | '081970'
+060910 | '060910'
+033630 | '033630'
+060300 | '060300'
+090120 | '090120'
+049130 | '049130'
+010090 | '010090'
+158310 | '158310'
+051310 | '051310'
+021960 | '021960'
+192520 | '192520'
+050540 | '050540'
+024810 | '024810'
+086250 | '086250'
+155960 | '155960'
+032040 | '032040'
+033430 | '033430'
+046400 | '046400'
+001890 | cannot convert float NaN to integer
+035430 | '035430'
+011400 | '011400'
+066110 | '066110'
+065160 | '065160'
+053110 | cannot convert float NaN to integer
+008800 | '008800'
+226350 | cannot convert float NaN to integer
+058530 | '058530'
+178780 | '178780'
+101970 | '101970'
+057880 | '057880'
+037340 | '037340'
+000800 | '000800'
+054340 | cannot convert float NaN to integer
+094190 | cannot convert float NaN to integer
+052190 | '052190'
+005450 | '005450'
+064510 | '064510'
+047730 | cannot convert float NaN to integer
+046110 | '046110'
+112240 | '112240'
+008270 | '008270'
+377630 | '377630'
+373340 | '373340'
+090740 | '090740'
+050320 | '050320'
+380440 | '380440'
+290380 | '290380'
+037640 | '037640'
+039790 | '039790'
+039670 | '039670'
+134780 | '134780'
+067250 | '067250'
+404950 | '404950'
+052270 | '052270'
+111820 | '111820'
+139200 | '139200'
+377400 | '377400'
+008120 | '008120'
+298870 | '298870'
+111870 | '111870'
+000060 | '000060'
+070080 | '070080'
+Exception list: ['091990', '005070', '403870', '001740', '009240', '185750', '225570', '336570', '085370', '294090', '215200', '182400', '011810', '082270', '077500', '074610', '348340', '015540', '183190', '363280', '084110', '334970', '093640', '048530', '045100', '083930', '003960', '229640', '102260', '419050', '091580', '250060', '173130', '321550', '002620', '419080', '078940', '261200', '006490', '061250', '002700', '046140', '060310', '082660', '017040', '377220', '003780', '333430', '109860', '008830', '004060', '173940', '201490', '263800', '351330', '124500', '339950', '222420', '323280', '025750', '032680', '006980', '052900', '069110', '139670', '009770', '033200', '002410', '089140', '204840', '204630', '217620', '187660', '155900', '148250', '353190', '065060', '424760', '072950', '154030', '237750', '331920', '241820', '161570', '054180', '106240', '069330', '071460', '377460', '069140', '014200', '367360', '006580', '450410', '000400', '068060', '099520', '096640', '056000', '083660', '181340', '000110', '005980', '010050', '048260', '012580', '038160', '002550', '005270', '057500', '039230', '052670', '062860', '046070', '160600', '065560', '103160', '150840', '089530', '174880', '053660', '121800', '078650', '194510', '138690', '033340', '102210', '101000', '257370', '036220', '268600', '219750', '114120', '031990', '017680', '318020', '011160', '047820', '064090', '126870', '263540', '044060', '269620', '078130', '136510', '032860', '068420', '217480', '068940', '056090', '066410', '141020', '148140', '081970', '060910', '033630', '060300', '090120', '049130', '010090', '158310', '051310', '021960', '192520', '050540', '024810', '086250', '155960', '032040', '033430', '046400', '001890', '035430', '011400', '066110', '065160', '053110', '008800', '226350', '058530', '178780', '101970', '057880', '037340', '000800', '054340', '094190', '052190', '005450', '064510', '047730', '046110', '112240', '008270', '377630', '373340', '090740', '050320', '380440', '290380', '037640', '039790', '039670', '134780', '067250', '404950', '052270', '111820', '139200', '377400', '008120', '298870', '111870', '000060', '070080']

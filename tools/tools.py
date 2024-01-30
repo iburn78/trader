@@ -307,6 +307,7 @@ def plot_company_financial_summary(db, code, path=None):
         plt.show()
     else: 
         plt.savefig(path)
+        plt.close()
 
 def _plot_barline(ax, data, y1, y2, y3, y4=None):
     axr = ax.twinx()
