@@ -18,7 +18,6 @@ l = len(plot_ctrl)
 
 for i, code in enumerate(plot_ctrl):
     try:
-        print('-------------------')
         print('{} | {}/{}'.format(code, i, l))
         path = 'plots/'+code+'.png'
         plot_company_financial_summary(main_db, code, path)

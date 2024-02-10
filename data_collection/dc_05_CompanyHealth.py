@@ -1,7 +1,7 @@
 # Create a function to measure a financial health of a company 
 
 import OpenDartReader 
-import sys, os, json
+import sys, os
 sys.path.append(os.path.dirname(os.getcwd()))  
 from tools.dictionary import ACCOUNT_NAME_DICTIONARY, BS_ACCOUNTS, IS_ACCOUNTS, DART_APIS, MODIFIED_REPORT
 from tools.tools import merge_update, generate_krx_data, log_print
@@ -250,6 +250,9 @@ def _generate_update_db(log_file, start_day = None, end_day = None, days = None)
     dart = OpenDartReader(DART_APIS[0])
     log_print(log_file, 'Updating between dates: '+ str(start_day) + ' / ' + str(end_day))
     ls = dart.list(start=start_day, end=end_day, kind='A')
+    if len(ls) == 0: 
+        log_print(log_file, 'No new data to update')
+        return pd.DataFrame() # return an empty dataframe
 
     full_rescan_code = ls.loc[ls['report_nm'].str.contains(MODIFIED_REPORT)]['stock_code'].values
     full_rescan_code = np.unique(full_rescan_code[full_rescan_code.astype(bool)])
@@ -316,7 +319,7 @@ if __name__ == '__main__':
     main_db_file = 'data/financial_reports_main.feather'
     plot_gen_control_file = 'data/plot_gen_control.npy'
 
-    # update_main_db(log_file, main_db_file, plot_gen_control_file)
+    update_main_db(log_file, main_db_file, plot_gen_control_file)
     
 
     

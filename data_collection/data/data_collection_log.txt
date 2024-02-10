@@ -622,3 +622,44 @@ Financial data collection log >>
 2024-01-30 23:43:12.799251, no: 11, code 950170 in process
 ----> no: 11, code 950170 currency not in KRW, skipping
 == Update finished ==
+Updating KRX data...
+Updating between dates: 2024-01-30 / 2024-02-11
+-----------------------------
+2024-02-11 01:57:37.114181
+Full rescan codes are 5 items: 
+['000060' '067390' '138040' '187420' '217480']
+Partial rescan codes are 6 items: 
+['002630' '017250' '030960' '039670' '060310' '357120']
+Financial data collection log >> 
+2024-02-11 01:57:37.168368, no: 0, code 000060 in process
+2024-02-11 01:57:43.185982, no: 1, code 067390 in process
+Updating KRX data...
+Updating between dates: 2024-01-30 / 2024-02-11
+-----------------------------
+2024-02-11 01:58:19.707247
+Full rescan codes are 5 items: 
+['000060' '067390' '138040' '187420' '217480']
+Partial rescan codes are 6 items: 
+['002630' '017250' '030960' '039670' '060310' '357120']
+Financial data collection log >> 
+2024-02-11 01:58:19.771428, no: 0, code 000060 in process
+2024-02-11 01:58:25.788048, no: 1, code 067390 in process
+2024-02-11 01:58:40.956686, no: 2, code 138040 in process
+2024-02-11 01:58:46.978355, no: 3, code 187420 in process
+2024-02-11 01:59:02.040514, no: 4, code 217480 in process
+Financial data collection log >> 
+2024-02-11 01:59:16.040396, no: 0, code 002630 in process
+2024-02-11 01:59:22.125411, no: 1, code 017250 in process
+2024-02-11 01:59:28.326022, no: 2, code 030960 in process
+2024-02-11 01:59:34.474082, no: 3, code 039670 in process
+2024-02-11 01:59:40.630054, no: 4, code 060310 in process
+2024-02-11 01:59:46.817801, no: 5, code 357120 in process
+== Update finished ==
+Updating KRX data...
+Updating between dates: 2024-02-11 / 2024-02-11
+Updating KRX data...
+Updating between dates: 2024-02-11 / 2024-02-11
+Updating KRX data...
+Updating between dates: 2024-02-11 / 2024-02-11
+No new data to update
+** Nothing to update - main_db not updated **
