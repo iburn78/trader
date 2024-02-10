@@ -1,7 +1,7 @@
 # Create a function to measure a financial health of a company 
 
 import OpenDartReader 
-import sys, os
+import sys, os, json
 sys.path.append(os.path.dirname(os.getcwd()))  
 from tools.dictionary import ACCOUNT_NAME_DICTIONARY, BS_ACCOUNTS, IS_ACCOUNTS, DART_APIS, MODIFIED_REPORT
 from tools.tools import merge_update, generate_krx_data, log_print
@@ -279,7 +279,7 @@ def _generate_update_db(log_file, start_day = None, end_day = None, days = None)
     
     return _sort_columns_financial_reports(res)
 
-def update_main_db(log_file, main_db_file, update_db_file=None):
+def update_main_db(log_file, main_db_file, plot_gen_control_file=None):
     try: 
         log_print(log_file, 'Updating KRX data...')
         warnings.filterwarnings("ignore")
@@ -293,21 +293,31 @@ def update_main_db(log_file, main_db_file, update_db_file=None):
     end_day = datetime.datetime.today().strftime('%Y-%m-%d')
     update_db = _generate_update_db(log_file, start_day, end_day, None)
 
-    if update_db_file != None: 
-        update_db.to_feather(update_db_file)
-
     if len(update_db) > 0:
         main_db = merge_update(main_db, update_db)
         main_db.to_feather(main_db_file)
+
+        if plot_gen_control_file != None:
+            if os.path.exists(plot_gen_control_file):
+                plot_ctrl = np.concatenate((update_db['code'].unique(), np.load(plot_gen_control_file, allow_pickle=True)))
+                plot_ctrl = np.unique(plot_ctrl)
+            else: 
+                plot_ctrl = update_db['code'].unique()
+            np.save(plot_gen_control_file, plot_ctrl)
+
         log_print(log_file, '== Update finished ==')
     else:
         log_print(log_file, '** Nothing to update - main_db not updated **')
     
     return None
         
-
 if __name__ == '__main__': 
     log_file = 'data/data_collection_log.txt'
     main_db_file = 'data/financial_reports_main.feather'
-    update_db_file = 'data/financial_reports_update.feather'
-    update_main_db(log_file, main_db_file, update_db_file)
+    plot_gen_control_file = 'data/plot_gen_control.npy'
+
+    # update_main_db(log_file, main_db_file, plot_gen_control_file)
+    
+
+    
+

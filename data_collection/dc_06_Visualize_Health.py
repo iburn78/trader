@@ -15,7 +15,7 @@ codes = update_db['code'].unique()
 
 df_krx_file = 'data/df_krx.feather'
 df_krx = pd.read_feather(df_krx_file)
-
+display(df_krx)
 
 # #%%
 # log_file = 'dc_06_exception_errors_check.txt'
@@ -40,3 +40,5 @@ df_krx = pd.read_feather(df_krx_file)
 # - make a overarching code to run dc_05 and dc_06
 #     . may need to monitor the success of each code and display it to TNP webpage/dashboard
 # - copy newly generated images to TNP server for update/replace
+
+# %%
