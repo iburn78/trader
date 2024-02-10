@@ -279,10 +279,16 @@ def generate_update_db(log_file, days = None, start_day = None):
 
 def plot_company_financial_summary(db, code, path=None):
     quarter_cols= [s for s in db.columns.values if 'Q' in s]
-    y = db.loc[(db['code']==code) & (db['fs_div']=='CFS'), ['account']+quarter_cols].set_index(['account'])
+    y = db.loc[(db['code']==code) & (db['fs_div']=='CFS'), ['account']+quarter_cols].drop_duplicates().set_index(['account'])
+    if y.isnull().all().all():
+        y = db.loc[(db['code']==code) & (db['fs_div']=='OFS'), ['account']+quarter_cols].drop_duplicates().set_index(['account'])
+    if y.isnull().all().all():
+        raise Exception('Code {}: quarterly data is empty.'.format(code))
+
     date_updated = str(db.loc[(db['code']==code) & (db['fs_div']=='CFS'), 'date_updated'].values[0])
     y.columns = [s.replace('2020','XX').replace('20','').replace('XX','20').replace('_','.') for s in quarter_cols]
     yiu = y/KRW_UNIT 
+    yiu=_choose_unique_rows(yiu, 'account')
 
     yiu.loc['opmargin', :] = yiu.loc['operating_income']/yiu.loc['revenue'].replace(0, pd.NA)*100   # sometimes, revenue entry is zero, then it computes to '+- np.inf'
     yiu.loc['liquid_asset_ratio', :] = yiu.loc['liquid_assets']/yiu.loc['assets']*100
@@ -309,6 +315,13 @@ def plot_company_financial_summary(db, code, path=None):
         plt.savefig(path)
         plt.close()
 
+
+def _choose_unique_rows(df, index_name):
+    df.reset_index(drop=False, inplace=True)
+    idx = df.groupby(df[index_name]).apply(lambda gp: gp.count(axis=1).idxmax())
+    return df.loc[idx].set_index(index_name, drop=True)
+
+
 def _plot_barline(ax, data, y1, y2, y3, y4=None):
     axr = ax.twinx()
     if y4 != None:
@@ -323,7 +336,10 @@ def _plot_barline(ax, data, y1, y2, y3, y4=None):
     t_ = ax.get_yticklabels()[-1].get_position()[1] / float(ax.get_yticklabels()[-1].get_text())
 
     unit_list = ['uk_won','10 uk_won','100 uk_won','1,000 uk_won', 'jo_won', '10 jo_won', '100 jo_won']
-    unit_exp = unit_list[int(log10(t_))]
+    try: 
+        unit_exp = unit_list[int(log10(t_))]
+    except IndexError:
+        unit_exp = 'DATA SCALE ERROR'
 
     for index, value in enumerate(data.loc[y1, x]):
         try:
