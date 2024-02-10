@@ -7,32 +7,25 @@ import datetime
 
 main_db_file = 'data/financial_reports_main.feather'
 main_db = pd.read_feather(main_db_file)
-all_codes = main_db['code'].unique()
 
-update_db_file = 'data/financial_reports_update.feather'
-update_db = pd.read_feather(update_db_file)
-codes = update_db['code'].unique()
+plot_gen_control_file = 'data/plot_gen_control.npy'
+if not os.path.exists(plot_gen_control_file):
+    sys.exit()
 
-df_krx_file = 'data/df_krx.feather'
-df_krx = pd.read_feather(df_krx_file)
-display(df_krx)
+plot_ctrl = np.load(plot_gen_control_file, allow_pickle=True)
+log_file = 'data/plot_gen_control_execptions.txt'
+l = len(plot_ctrl)
 
-# #%%
-# log_file = 'dc_06_exception_errors_check.txt'
-# for i, code in enumerate(except_list[:1]):
-#     try:
-#         print('-------------------')
-#         print('{} | {}/{}'.format(code, i, l))
-#         if code not in df_krx.index:
-#             continue
-#         path = 'plots/'+code+'.png'
-#         plot_company_financial_summary(main_db, code, path)
-#     except Exception as error:
-#         final_ex_list.append(code)
-#         log_print(log_file, code+' | '+str(error))
+for i, code in enumerate(plot_ctrl):
+    try:
+        print('-------------------')
+        print('{} | {}/{}'.format(code, i, l))
+        path = 'plots/'+code+'.png'
+        plot_company_financial_summary(main_db, code, path)
+    except Exception as error:
+        log_print(log_file, str(datetime.datetime.now())+' | '+code+' | '+str(error))
 
-# log_print(log_file, 'Exception list: '+ str(final_ex_list))
-    
+os.remove(plot_gen_control_file)
 
 #### To-do next #### 
 # - generate images for all codes (check if any errors occur while generating images)
@@ -40,5 +33,3 @@ display(df_krx)
 # - make a overarching code to run dc_05 and dc_06
 #     . may need to monitor the success of each code and display it to TNP webpage/dashboard
 # - copy newly generated images to TNP server for update/replace
-
-# %%

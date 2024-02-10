@@ -283,7 +283,7 @@ def plot_company_financial_summary(db, code, path=None):
     if y.isnull().all().all():
         y = db.loc[(db['code']==code) & (db['fs_div']=='OFS'), ['account']+quarter_cols].drop_duplicates().set_index(['account'])
     if y.isnull().all().all():
-        raise Exception('Code {}: quarterly data is empty.'.format(code))
+        raise Exception('quarterly data of {} is empty.'.format(code))
 
     date_updated = str(db.loc[(db['code']==code) & (db['fs_div']=='CFS'), 'date_updated'].values[0])
     y.columns = [s.replace('2020','XX').replace('20','').replace('XX','20').replace('_','.') for s in quarter_cols]
@@ -305,7 +305,10 @@ def plot_company_financial_summary(db, code, path=None):
     _plot_barline(ax[3], yiu, 'equity', 'retained_earnings', 'debt_to_equity_ratio')
 
     df_krx = pd.read_feather('data/df_krx.feather')
-    name = df_krx['Name'][code]
+    try: 
+        name = df_krx['Name'][code]
+    except Exception as e: 
+        raise Exception('{} not in df_krx'.format(code))
 
     kor_ft={'font':'Malgun Gothic'}
     f.suptitle('Consolidated Financial Statement Summary - company: '+name+'('+code+') updated on '+date_updated, fontsize=14, fontdict=kor_ft)
@@ -410,7 +413,7 @@ def generate_krx_data():
     df_krx = df_krx.merge(df_krx_desc[cols_to_use], on='Code', how='left')
     df_krx = df_krx.set_index('Code')
 
-    df_krx=df_krx[~df_krx['Dept'].str.contains('관리')]   # remove companies in trouble
+    # df_krx=df_krx[~df_krx['Dept'].str.contains('관리')]   # remove companies in trouble
     df_krx.to_feather('data/df_krx.feather')
 
     return None
