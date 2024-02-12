@@ -13,16 +13,18 @@ if not os.path.exists(plot_gen_control_file):
     sys.exit()
 
 plot_ctrl = np.load(plot_gen_control_file, allow_pickle=True)
-log_file = 'data/plot_gen_control_execptions.txt'
+log_file = 'data/plot_gen_control_exceptions.txt'
 l = len(plot_ctrl)
 
 for i, code in enumerate(plot_ctrl):
+    print('{} | {}/{}'.format(code, i, l))
+    path = 'plots/'+code+'.png'
     try:
-        print('{} | {}/{}'.format(code, i, l))
-        path = 'plots/'+code+'.png'
         plot_company_financial_summary(main_db, code, path)
     except Exception as error:
         log_print(log_file, str(datetime.datetime.now())+' | '+code+' | '+str(error))
+        if not os.path.exists(path):
+            os.remove(path)
 
 os.remove(plot_gen_control_file)
 
