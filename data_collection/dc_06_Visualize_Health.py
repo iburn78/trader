@@ -13,7 +13,7 @@ if not os.path.exists(plot_gen_control_file):
     sys.exit()
 
 plot_ctrl = np.load(plot_gen_control_file, allow_pickle=True)
-log_file = 'data/plot_gen_control_exceptions.txt'
+log_file = 'log/plot_gen_control_exceptions.log'
 l = len(plot_ctrl)
 
 for i, code in enumerate(plot_ctrl):

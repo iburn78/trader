@@ -315,7 +315,7 @@ def update_main_db(log_file, main_db_file, plot_gen_control_file=None):
     return None
         
 if __name__ == '__main__': 
-    log_file = 'data/data_collection_log.txt'
+    log_file = 'log/data_collection.log'
     main_db_file = 'data/financial_reports_main.feather'
     plot_gen_control_file = 'data/plot_gen_control.npy'
 
