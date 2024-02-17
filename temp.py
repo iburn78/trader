@@ -1,3 +1,4 @@
+#%% 
 import json
 from tools.koreainvest_module import * 
 from pprint import pprint
@@ -52,14 +53,31 @@ def _fetch_today_1m_ohlcv(broker, symbol: str, to: str):
 # resp = broker.fetch_balance_domestic()
 # pprint(resp)
 
-if __name__ == "__main__":
-    broker_ws = KoreaInvestmentWS(key_mock, secret_mock, ["H0STCNT0", "H0STASP0"], ["005930", "000660"], user_id="iburn78")
-    broker_ws.start()
-    while True:
-        data_ = broker_ws.get()
-        if data_[0] == '체결':
-            print(data_[1])
-        elif data_[0] == '호가':
-            print(data_[1])
-        elif data_[0] == '체잔':
-            print(data_[1])
+#%%
+# if __name__ == "__main__":
+    # broker_ws = KoreaInvestmentWS(key_mock, secret_mock, ["H0STCNT0", "H0STASP0"], ["005930", "000660"], user_id="iburn78")
+    # broker_ws.start()
+    # while True:
+    #     data_ = broker_ws.get()
+    #     if data_[0] == '체결':
+    #         print(data_[1])
+    #     elif data_[0] == '호가':
+    #         print(data_[1])
+    #     elif data_[0] == '체잔':
+    #         print(data_[1])
+
+#%%
+
+import sqlite3
+import pandas as pd
+
+db_path = 'df_krx.db'
+conn = sqlite3.connect(db_path)
+
+df_krx = pd.read_feather('data_collection\data\df_krx.feather')
+df_krx['ListingDate'] = df_krx['ListingDate'].dt.strftime('%Y-%m-%d')
+
+df_krx.to_sql('krx_data', conn, if_exists='replace')
+conn.commit()
+conn.close()
+
