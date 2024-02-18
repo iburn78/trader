@@ -1,10 +1,11 @@
+#%%
 # Create a function to measure a financial health of a company 
 
 import OpenDartReader 
 import sys, os
 sys.path.append(os.path.dirname(os.getcwd()))  
 from tools.dictionary import ACCOUNT_NAME_DICTIONARY, BS_ACCOUNTS, IS_ACCOUNTS, DART_APIS, MODIFIED_REPORT
-from tools.tools import merge_update, generate_krx_data, log_print
+from tools.tools import * # merge_update, generate_krx_data, log_print
 import pandas as pd
 import numpy as np
 import datetime, time
@@ -259,6 +260,10 @@ def _generate_update_db(log_file, start_day = None, end_day = None, days = None)
     partial_rescan_code = ls.loc[~ls['report_nm'].str.contains(MODIFIED_REPORT)]['stock_code'].values
     partial_rescan_code = np.unique(partial_rescan_code[partial_rescan_code.astype(bool)])
 
+    # to manually assign codes (lists of codes in string)
+    # partial_rescan_code = []
+    # full_rescan_code = []
+
     if len(full_rescan_code) > 0 and len(partial_rescan_code) > 0:
         status = '\nFull rescan codes are {} items: \n{}'.format(len(full_rescan_code), full_rescan_code) + '\nPartial rescan codes are {} items: \n{}'.format(len(partial_rescan_code), partial_rescan_code)
         status = '-----------------------------\n'+str(datetime.datetime.today())+status
@@ -294,6 +299,11 @@ def update_main_db(log_file, main_db_file, plot_gen_control_file=None):
     main_db = pd.read_feather(main_db_file)
     start_day = main_db['date_updated'].max()
     end_day = datetime.datetime.today().strftime('%Y-%m-%d')
+
+    # to manually assign the period: (up to three months)
+    # start_day = '2023-11-14'
+    # end_day = '2023-11-15'
+
     update_db = _generate_update_db(log_file, start_day, end_day, None)
 
     if len(update_db) > 0:
@@ -313,11 +323,23 @@ def update_main_db(log_file, main_db_file, plot_gen_control_file=None):
         log_print(log_file, '** Nothing to update - main_db not updated **')
     
     return None
-        
+
+def single_company_data_collect(code):
+    dart = OpenDartReader(DART_APIS[0])
+    record, message = _collect_financial_reports(dart, code)
+    return _sort_columns_financial_reports(record)
+
+#%%
 if __name__ == '__main__': 
     log_file = 'log/data_collection.log'
     main_db_file = 'data/financial_reports_main.feather'
     plot_gen_control_file = 'data/plot_gen_control.npy'
 
     update_main_db(log_file, main_db_file, plot_gen_control_file)
-    
+
+    # to collect a single company data and plot it:
+    # code = '373220'
+    # db = single_company_data_collect(code)
+    # display(db)
+    # path = 'plots/'+code+'.png'
+    # plot_company_financial_summary(db, code, path)
