@@ -13,9 +13,9 @@ cd ~/projects/trader/data_collection
 plot_directory="/home/andy/projects/trader/data_collection/plots/"
 info_directory="/home/andy/projects/trader/data_collection/"
 tnp_data_directory="/home/ubuntu/tnp/public/data/"
-tnp_info_directory="/home/ubuntu/tnp/public/data/"
+tnp_info_directory="/home/ubuntu/tnp/public/"
 private_key="/home/andy/.tnpartners_keypair.pem"
 
 date >  "$info_directory"update_info.txt
 # rsync -ruv --progress -e "ssh -i $private_key" "$plot_directory" "ubuntu@tnpartners.net:$tnp_data_directory"
-scp -i $private_key $info_directory ubuntu@tnpartners.net:$tnp_info_directory
+scp -i $private_key "$info_directory"update_info.txt ubuntu@tnpartners.net:$tnp_info_directory
