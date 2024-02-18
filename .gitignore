@@ -164,6 +164,7 @@ venv/
 docs_cache/
 reports/
 plots/
+log/
 token.dat
 config.json
 update_info.txt

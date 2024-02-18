@@ -23,14 +23,7 @@ for i, code in enumerate(plot_ctrl):
         plot_company_financial_summary(main_db, code, path)
     except Exception as error:
         log_print(log_file, str(datetime.datetime.now())+' | '+code+' | '+str(error))
-        if not os.path.exists(path):
+        if os.path.exists(path):
             os.remove(path)
 
 os.remove(plot_gen_control_file)
-
-#### To-do next #### 
-# - generate images for all codes (check if any errors occur while generating images)
-# - copy them to TNP server
-# - make a overarching code to run dc_05 and dc_06
-#     . may need to monitor the success of each code and display it to TNP webpage/dashboard
-# - copy newly generated images to TNP server for update/replace
