@@ -571,3 +571,124 @@ update_info.txt
 
 sent 8,615,304 bytes  received 89,423 bytes  3,481,890.80 bytes/sec
 total size is 1,105,340,233  speedup is 126.98
+Updating KRX data...
+Updating between dates: 2024-02-16 / 2024-02-17
+No new data to update
+** Nothing to update - main_db not updated **
+001080 | 0/33
+001720 | 1/33
+003610 | 2/33
+005390 | 3/33
+008110 | 4/33
+008870 | 5/33
+018500 | 6/33
+020180 | 7/33
+021820 | 8/33
+021880 | 9/33
+032800 | 10/33
+033200 | 11/33
+042520 | 12/33
+050860 | 13/33
+067010 | 14/33
+067390 | 15/33
+092440 | 16/33
+093240 | 17/33
+097870 | 18/33
+099750 | 19/33
+154030 | 20/33
+169330 | 21/33
+189690 | 22/33
+190650 | 23/33
+222160 | 24/33
+289080 | 25/33
+293940 | 26/33
+334970 | 27/33
+338100 | 28/33
+357430 | 29/33
+377190 | 30/33
+396690 | 31/33
+417310 | 32/33
+2024-02-17 23:02:30.699921 | 417310 | quarterly data of 417310 is empty.
+Traceback (most recent call last):
+  File "/home/andy/projects/trader/data_collection/dc_06_Visualize_Health.py", line 23, in <module>
+    plot_company_financial_summary(main_db, code, path)
+  File "/home/andy/projects/trader/tools/tools.py", line 286, in plot_company_financial_summary
+    raise Exception('quarterly data of {} is empty.'.format(code))
+Exception: quarterly data of 417310 is empty.
+
+During handling of the above exception, another exception occurred:
+
+Traceback (most recent call last):
+  File "/home/andy/projects/trader/data_collection/dc_06_Visualize_Health.py", line 27, in <module>
+    os.remove(path)
+FileNotFoundError: [Errno 2] No such file or directory: 'plots/417310.png'
+sending incremental file list
+001080.png
+            700   0%    0.00kB/s    0:00:00          351,569 100%  334.61MB/s    0:00:00 (xfr#1, to-chk=2332/2385)
+001720.png
+            700   0%  683.59kB/s    0:00:00          193,458 100%  184.50MB/s    0:00:00 (xfr#2, to-chk=2303/2385)
+003610.png
+            700   0%  683.59kB/s    0:00:00          288,578 100%  275.21MB/s    0:00:00 (xfr#3, to-chk=2219/2385)
+005390.png
+            700   0%  683.59kB/s    0:00:00          284,779 100%  271.59MB/s    0:00:00 (xfr#4, to-chk=2152/2385)
+008110.png
+            736   0%  718.75kB/s    0:00:00          547,248 100%  521.90MB/s    0:00:00 (xfr#5, to-chk=2068/2385)
+008870.png
+            700   0%  683.59kB/s    0:00:00          280,696 100%  133.85MB/s    0:00:00 (xfr#6, to-chk=2054/2385)
+018500.png
+            700   0%  341.80kB/s    0:00:01          471,043 100%  224.61MB/s    0:00:00 (xfr#7, to-chk=1869/2385)
+020180.png
+            784   0%  382.81kB/s    0:00:01          615,301 100%  195.60MB/s    0:00:00 (xfr#8, to-chk=1846/2385)
+021820.png
+            700   0%  227.86kB/s    0:00:01          275,589 100%   87.61MB/s    0:00:00 (xfr#9, to-chk=1835/2385)
+021880.png
+            700   0%  227.86kB/s    0:00:00          202,586 100%   64.40MB/s    0:00:00 (xfr#10, to-chk=1834/2385)
+032800.png
+            700   0%  227.86kB/s    0:00:01          302,807 100%   96.26MB/s    0:00:00 (xfr#11, to-chk=1721/2385)
+033200.png
+            728   0%   78.99kB/s    0:00:06          534,305 100%   50.96MB/s    0:00:00 (xfr#12, to-chk=1708/2385)
+042520.png
+            712   0%   69.53kB/s    0:00:07          517,964 100%   49.40MB/s    0:00:00 (xfr#13, to-chk=1560/2385)
+050860.png
+            700   0%   68.36kB/s    0:00:03          266,136 100%   23.07MB/s    0:00:00 (xfr#14, to-chk=1476/2385)
+067010.png
+            768   0%   68.18kB/s    0:00:08          593,492 100%   51.45MB/s    0:00:00 (xfr#15, to-chk=1301/2385)
+067390.png
+            728   0%   64.63kB/s    0:00:08          534,571 100%   42.48MB/s    0:00:00 (xfr#16, to-chk=1293/2385)
+092440.png
+            720   0%   58.59kB/s    0:00:09          528,155 100%   41.97MB/s    0:00:00 (xfr#17, to-chk=1075/2385)
+093240.png
+            700   0%   56.97kB/s    0:00:05          293,528 100%   23.33MB/s    0:00:00 (xfr#18, to-chk=1065/2385)
+097870.png
+            700   0%   52.58kB/s    0:00:05          270,124 100%   19.82MB/s    0:00:00 (xfr#19, to-chk=1024/2385)
+099750.png
+            720   0%   11.34kB/s    0:00:46          529,834 100%    8.02MB/s    0:00:00 (xfr#20, to-chk=1012/2385)
+154030.png
+            700   0%   10.85kB/s    0:00:26          291,848 100%    4.42MB/s    0:00:00 (xfr#21, to-chk=779/2385)
+169330.png
+            700   0%   10.85kB/s    0:00:26          284,532 100%    4.24MB/s    0:00:00 (xfr#22, to-chk=756/2385)
+189690.png
+            700   0%   10.68kB/s    0:00:27          289,668 100%    4.32MB/s    0:00:00 (xfr#23, to-chk=715/2385)
+190650.png
+            700   0%   10.68kB/s    0:00:18          198,395 100%    2.96MB/s    0:00:00 (xfr#24, to-chk=711/2385)
+222160.png
+            700   0%   10.68kB/s    0:00:36          387,726 100%    5.78MB/s    0:00:00 (xfr#25, to-chk=589/2385)
+289080.png
+            700   0%   10.68kB/s    0:00:18          201,649 100%    2.96MB/s    0:00:00 (xfr#26, to-chk=399/2385)
+293940.png
+            700   0%   10.52kB/s    0:00:16          176,302 100%    2.59MB/s    0:00:00 (xfr#27, to-chk=379/2385)
+334970.png
+            700   0%   10.52kB/s    0:00:35          378,921 100%    5.56MB/s    0:00:00 (xfr#28, to-chk=266/2385)
+338100.png
+            700   0%   10.52kB/s    0:00:16          178,148 100%    2.61MB/s    0:00:00 (xfr#29, to-chk=257/2385)
+357430.png
+            700   0%   10.52kB/s    0:00:16          178,273 100%    2.58MB/s    0:00:00 (xfr#30, to-chk=210/2385)
+377190.png
+            700   0%   10.36kB/s    0:00:16          173,841 100%    2.51MB/s    0:00:00 (xfr#31, to-chk=167/2385)
+396690.png
+            700   0%   10.36kB/s    0:00:17          180,010 100%    2.60MB/s    0:00:00 (xfr#32, to-chk=128/2385)
+update_info.txt
+             33 100%    0.49kB/s    0:00:00               33 100%    0.49kB/s    0:00:00 (xfr#33, to-chk=0/2385)
+
+sent 120,710 bytes  received 91,391 bytes  141,400.67 bytes/sec
+total size is 1,105,340,233  speedup is 5,211.39

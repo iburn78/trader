@@ -813,3 +813,7 @@ HTTPSConnectionPool(host='opendart.fss.or.kr', port=443): Max retries exceeded w
 2024-02-16 23:03:26.992792, no: 24, code 950110 in process
 ----> no: 24, code 950110 currency not in KRW, skipping
 == Update finished ==
+Updating KRX data...
+Updating between dates: 2024-02-16 / 2024-02-17
+No new data to update
+** Nothing to update - main_db not updated **
