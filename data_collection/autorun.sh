@@ -6,13 +6,16 @@
 # following scripts need to be run in .../data_collection
 cd ~/projects/trader/data_collection
 
-python dc_05_CompanyHealth.py
-python dc_06_Visualize_Health.py
+# python dc_05_CompanyHealth.py
+# python dc_06_Visualize_Health.py
 
 # copying plots to tnpartners.net
-local_directory="/home/andy/projects/trader/data_collection/plots/"
-tnp_directory="/home/ubuntu/tnp/public/"
+plot_directory="/home/andy/projects/trader/data_collection/plots/"
+info_directory="/home/andy/projects/trader/data_collection/"
+tnp_data_directory="/home/ubuntu/tnp/public/data/"
+tnp_info_directory="/home/ubuntu/tnp/public/data/"
 private_key="/home/andy/.tnpartners_keypair.pem"
 
-date >  "$local_directory"update_info.txt
-rsync -ruv --progress -e "ssh -i $private_key" "$local_directory" "ubuntu@tnpartners.net:$tnp_directory"
+date >  "$info_directory"update_info.txt
+# rsync -ruv --progress -e "ssh -i $private_key" "$plot_directory" "ubuntu@tnpartners.net:$tnp_data_directory"
+scp -i $private_key $info_directory ubuntu@tnpartners.net:$tnp_info_directory
