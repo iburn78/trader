@@ -1,694 +1,0 @@
-Updating KRX data...
-Updating between dates: 2024-02-11 / 2024-02-13
------------------------------
-2024-02-13 23:00:17.398168
-Full rescan codes are 1 items: 
-['067390']
-Partial rescan codes are 6 items: 
-['020180' '021880' '092440' '289080' '338100' '417310']
-Financial data collection log >> 
-2024-02-13 23:00:17.453424, no: 0, code 067390 in process
-Financial data collection log >> 
-2024-02-13 23:00:33.102079, no: 0, code 020180 in process
-2024-02-13 23:00:39.240739, no: 1, code 021880 in process
-2024-02-13 23:00:45.643613, no: 2, code 092440 in process
-2024-02-13 23:00:51.898376, no: 3, code 289080 in process
-2024-02-13 23:00:58.329518, no: 4, code 338100 in process
-2024-02-13 23:01:03.914657, no: 5, code 417310 in process
-== Update finished ==
-067390 | 0/7
-020180 | 1/7
-021880 | 2/7
-092440 | 3/7
-289080 | 4/7
-338100 | 5/7
-417310 | 6/7
-2024-02-13 23:01:39.829291 | 417310 | quarterly data of 417310 is empty.
-Traceback (most recent call last):
-  File "/home/andy/projects/trader/data_collection/dc_06_Visualize_Health.py", line 23, in <module>
-    plot_company_financial_summary(main_db, code, path)
-  File "/home/andy/projects/trader/tools/tools.py", line 286, in plot_company_financial_summary
-    raise Exception('quarterly data of {} is empty.'.format(code))
-Exception: quarterly data of 417310 is empty.
-
-During handling of the above exception, another exception occurred:
-
-Traceback (most recent call last):
-  File "/home/andy/projects/trader/data_collection/dc_06_Visualize_Health.py", line 27, in <module>
-    os.remove(path)
-FileNotFoundError: [Errno 2] No such file or directory: 'plots/417310.png'
-sending incremental file list
-020180.png
-         32,768   5%    0.00kB/s    0:00:00          615,592 100%   79.40MB/s    0:00:00 (xfr#1, to-chk=1844/2383)
-021880.png
-         32,768  16%    4.46MB/s    0:00:00          202,818 100%   21.49MB/s    0:00:00 (xfr#2, to-chk=1832/2383)
-067390.png
-         32,768   6%    3.12MB/s    0:00:00          515,151 100%   27.29MB/s    0:00:00 (xfr#3, to-chk=1292/2383)
-092440.png
-         32,768   6%    1.74MB/s    0:00:00          528,414 100%   15.27MB/s    0:00:00 (xfr#4, to-chk=1074/2383)
-289080.png
-         32,768  16%  941.18kB/s    0:00:00          201,939 100%    4.81MB/s    0:00:00 (xfr#5, to-chk=399/2383)
-338100.png
-         32,768  18%  761.90kB/s    0:00:00          178,385 100%    3.62MB/s    0:00:00 (xfr#6, to-chk=257/2383)
-update_info.txt
-             33 100%    0.69kB/s    0:00:00               33 100%    0.69kB/s    0:00:00 (xfr#7, to-chk=0/2383)
-
-sent 2,302,000 bytes  received 18,307 bytes  928,122.80 bytes/sec
-total size is 1,103,212,329  speedup is 475.46
-Updating KRX data...
-Updating between dates: 2024-02-13 / 2024-02-14
------------------------------
-2024-02-14 23:00:23.419696
-Full rescan codes are 2 items: 
-['001080' '067390']
-Partial rescan codes are 32 items: 
-['001720' '003610' '005390' '008110' '008870' '018500' '020180' '021820'
- '021880' '032800' '033200' '042520' '050860' '067010' '092440' '093240'
- '097870' '099750' '154030' '169330' '189690' '190650' '222160' '289080'
- '293940' '334970' '338100' '357430' '377190' '396690' '417310' '950110']
-Financial data collection log >> 
-2024-02-14 23:00:23.468594, no: 0, code 001080 in process
-2024-02-14 23:00:36.125321, no: 1, code 067390 in process
-Financial data collection log >> 
-2024-02-14 23:00:51.908477, no: 0, code 001720 in process
-2024-02-14 23:00:58.400024, no: 1, code 003610 in process
-2024-02-14 23:01:04.694845, no: 2, code 005390 in process
-2024-02-14 23:01:11.022100, no: 3, code 008110 in process
-2024-02-14 23:01:17.392633, no: 4, code 008870 in process
-2024-02-14 23:01:23.766040, no: 5, code 018500 in process
-2024-02-14 23:01:30.130949, no: 6, code 020180 in process
-2024-02-14 23:01:36.700649, no: 7, code 021820 in process
-2024-02-14 23:01:43.014098, no: 8, code 021880 in process
-2024-02-14 23:01:49.486070, no: 9, code 032800 in process
-2024-02-14 23:01:55.762965, no: 10, code 033200 in process
-2024-02-14 23:02:02.058092, no: 11, code 042520 in process
-2024-02-14 23:02:08.341306, no: 12, code 050860 in process
-2024-02-14 23:02:14.663046, no: 13, code 067010 in process
-2024-02-14 23:02:20.873552, no: 14, code 092440 in process
-2024-02-14 23:02:27.262426, no: 15, code 093240 in process
-2024-02-14 23:02:33.647865, no: 16, code 097870 in process
-2024-02-14 23:02:39.993833, no: 17, code 099750 in process
-2024-02-14 23:02:46.329739, no: 18, code 154030 in process
-2024-02-14 23:02:52.714352, no: 19, code 169330 in process
-2024-02-14 23:02:59.006097, no: 20, code 189690 in process
-2024-02-14 23:03:05.397211, no: 21, code 190650 in process
-2024-02-14 23:03:11.932197, no: 22, code 222160 in process
-2024-02-14 23:03:18.467560, no: 23, code 289080 in process
-2024-02-14 23:03:24.938085, no: 24, code 293940 in process
-2024-02-14 23:03:31.004819, no: 25, code 334970 in process
-2024-02-14 23:03:36.600912, no: 26, code 338100 in process
-2024-02-14 23:03:42.189514, no: 27, code 357430 in process
-2024-02-14 23:03:47.798468, no: 28, code 377190 in process
-2024-02-14 23:03:53.386080, no: 29, code 396690 in process
-2024-02-14 23:03:59.010090, no: 30, code 417310 in process
-2024-02-14 23:04:04.567808, no: 31, code 950110 in process
-----> no: 31, code 950110 currency not in KRW, skipping
-== Update finished ==
-001080 | 0/33
-001720 | 1/33
-003610 | 2/33
-005390 | 3/33
-008110 | 4/33
-008870 | 5/33
-018500 | 6/33
-020180 | 7/33
-021820 | 8/33
-021880 | 9/33
-032800 | 10/33
-033200 | 11/33
-042520 | 12/33
-050860 | 13/33
-067010 | 14/33
-067390 | 15/33
-092440 | 16/33
-093240 | 17/33
-097870 | 18/33
-099750 | 19/33
-154030 | 20/33
-169330 | 21/33
-189690 | 22/33
-190650 | 23/33
-222160 | 24/33
-289080 | 25/33
-293940 | 26/33
-334970 | 27/33
-338100 | 28/33
-357430 | 29/33
-377190 | 30/33
-396690 | 31/33
-417310 | 32/33
-2024-02-14 23:06:16.440298 | 417310 | quarterly data of 417310 is empty.
-Traceback (most recent call last):
-  File "/home/andy/projects/trader/data_collection/dc_06_Visualize_Health.py", line 23, in <module>
-    plot_company_financial_summary(main_db, code, path)
-  File "/home/andy/projects/trader/tools/tools.py", line 286, in plot_company_financial_summary
-    raise Exception('quarterly data of {} is empty.'.format(code))
-Exception: quarterly data of 417310 is empty.
-
-During handling of the above exception, another exception occurred:
-
-Traceback (most recent call last):
-  File "/home/andy/projects/trader/data_collection/dc_06_Visualize_Health.py", line 27, in <module>
-    os.remove(path)
-FileNotFoundError: [Errno 2] No such file or directory: 'plots/417310.png'
-sending incremental file list
-001080.png
-         32,768   9%    0.00kB/s    0:00:00          351,285 100%   60.75MB/s    0:00:00 (xfr#1, to-chk=2332/2385)
-001720.png
-         32,768  16%    6.25MB/s    0:00:00          193,155 100%   26.32MB/s    0:00:00 (xfr#2, to-chk=2303/2385)
-003610.png
-         32,768  11%    3.91MB/s    0:00:00          288,284 100%   24.99MB/s    0:00:00 (xfr#3, to-chk=2219/2385)
-005390.png
-         32,768  11%    2.60MB/s    0:00:00          284,501 100%   18.09MB/s    0:00:00 (xfr#4, to-chk=2152/2385)
-008110.png
-         32,768   5%    2.08MB/s    0:00:00          546,937 100%   20.06MB/s    0:00:00 (xfr#5, to-chk=2068/2385)
-008870.png
-         32,768  11%    1.16MB/s    0:00:00          280,396 100%    7.64MB/s    0:00:00 (xfr#6, to-chk=2054/2385)
-018500.png
-         32,768   6%  888.89kB/s    0:00:00          470,822 100%    7.74MB/s    0:00:00 (xfr#7, to-chk=1869/2385)
-020180.png
-         32,768   5%  542.37kB/s    0:00:01          615,301 100%    4.77MB/s    0:00:00 (xfr#8, to-chk=1846/2385)
-021820.png
-         32,768  11%  256.00kB/s    0:00:00          275,282 100%    1.85MB/s    0:00:00 (xfr#9, to-chk=1835/2385)
-021880.png
-         32,768  16%  223.78kB/s    0:00:00          202,586 100%    1.17MB/s    0:00:00 (xfr#10, to-chk=1834/2385)
-032800.png
-         32,768  10%  193.94kB/s    0:00:01          302,521 100%    1.53MB/s    0:00:00 (xfr#11, to-chk=1721/2385)
-033200.png
-         32,768   6%  169.31kB/s    0:00:02          534,063 100%    2.19MB/s    0:00:00 (xfr#12, to-chk=1708/2385)
-042520.png
-         32,768  11%  136.75kB/s    0:00:01          285,510 100%    1.07MB/s    0:00:00 (xfr#13, to-chk=1560/2385)
-050860.png
-         32,768  12%  125.49kB/s    0:00:01          265,864 100%  927.26kB/s    0:00:00 (xfr#14, to-chk=1476/2385)
-067010.png
-         32,768   5%  113.88kB/s    0:00:04          593,216 100%    1.70MB/s    0:00:00 (xfr#15, to-chk=1301/2385)
-067390.png
-         32,768   6%   96.10kB/s    0:00:05          534,571 100%    1.35MB/s    0:00:00 (xfr#16, to-chk=1293/2385)
-092440.png
-         32,768   6%   84.43kB/s    0:00:05          528,155 100%    1.19MB/s    0:00:00 (xfr#17, to-chk=1075/2385)
-093240.png
-         32,768  11%   75.65kB/s    0:00:03          293,236 100%  643.51kB/s    0:00:00 (xfr#18, to-chk=1065/2385)
-097870.png
-         32,768  12%   71.75kB/s    0:00:03          269,802 100%  564.19kB/s    0:00:00 (xfr#19, to-chk=1024/2385)
-099750.png
-         32,768   6%   68.38kB/s    0:00:07          529,510 100% 1009.96kB/s    0:00:00 (xfr#20, to-chk=1012/2385)
-154030.png
-         32,768  11%   62.38kB/s    0:00:04          291,572 100%  531.23kB/s    0:00:00 (xfr#21, to-chk=779/2385)
-169330.png
-         32,768  11%   59.70kB/s    0:00:04          284,262 100%  496.60kB/s    0:00:00 (xfr#22, to-chk=756/2385)
-189690.png
-         32,768  11%   56.34kB/s    0:00:04          289,374 100%  478.97kB/s    0:00:00 (xfr#23, to-chk=715/2385)
-190650.png
-         32,768  16%   54.24kB/s    0:00:03          198,115 100%  321.92kB/s    0:00:00 (xfr#24, to-chk=711/2385)
-222160.png
-         32,768   8%   52.20kB/s    0:00:06          387,452 100%  589.36kB/s    0:00:00 (xfr#25, to-chk=589/2385)
-289080.png
-         32,768  16%   49.77kB/s    0:00:03          201,649 100%  302.96kB/s    0:00:00 (xfr#26, to-chk=399/2385)
-293940.png
-         32,768  18%   48.27kB/s    0:00:02          176,016 100%  255.41kB/s    0:00:00 (xfr#27, to-chk=379/2385)
-334970.png
-         32,768   8%   47.55kB/s    0:00:07          378,601 100%  524.44kB/s    0:00:00 (xfr#28, to-chk=266/2385)
-338100.png
-         32,768  18%   45.33kB/s    0:00:03          178,148 100%  242.64kB/s    0:00:00 (xfr#29, to-chk=257/2385)
-357430.png
-         32,768  18%   44.63kB/s    0:00:03          177,978 100%  238.75kB/s    0:00:00 (xfr#30, to-chk=210/2385)
-377190.png
-         32,768  18%   43.36kB/s    0:00:03          173,578 100%  226.31kB/s    0:00:00 (xfr#31, to-chk=167/2385)
-396690.png
-         32,768  18%   42.72kB/s    0:00:03          179,705 100%  230.91kB/s    0:00:00 (xfr#32, to-chk=128/2385)
-update_info.txt
-             33 100%    0.04kB/s    0:00:00               33 100%    0.04kB/s    0:00:00 (xfr#33, to-chk=0/2385)
-
-sent 10,595,000 bytes  received 73,829 bytes  2,370,850.89 bytes/sec
-total size is 1,105,100,604  speedup is 103.58
-Updating KRX data...
-Traceback (most recent call last):
-  File "/home/andy/projects/trader/venv/lib/python3.10/site-packages/urllib3/connectionpool.py", line 467, in _make_request
-    self._validate_conn(conn)
-  File "/home/andy/projects/trader/venv/lib/python3.10/site-packages/urllib3/connectionpool.py", line 1096, in _validate_conn
-    conn.connect()
-  File "/home/andy/projects/trader/venv/lib/python3.10/site-packages/urllib3/connection.py", line 642, in connect
-    sock_and_verified = _ssl_wrap_socket_and_match_hostname(
-  File "/home/andy/projects/trader/venv/lib/python3.10/site-packages/urllib3/connection.py", line 782, in _ssl_wrap_socket_and_match_hostname
-    ssl_sock = ssl_wrap_socket(
-  File "/home/andy/projects/trader/venv/lib/python3.10/site-packages/urllib3/util/ssl_.py", line 470, in ssl_wrap_socket
-    ssl_sock = _ssl_wrap_socket_impl(sock, context, tls_in_tls, server_hostname)
-  File "/home/andy/projects/trader/venv/lib/python3.10/site-packages/urllib3/util/ssl_.py", line 514, in _ssl_wrap_socket_impl
-    return ssl_context.wrap_socket(sock, server_hostname=server_hostname)
-  File "/usr/lib/python3.10/ssl.py", line 513, in wrap_socket
-    return self.sslsocket_class._create(
-  File "/usr/lib/python3.10/ssl.py", line 1100, in _create
-    self.do_handshake()
-  File "/usr/lib/python3.10/ssl.py", line 1371, in do_handshake
-    self._sslobj.do_handshake()
-ssl.SSLCertVerificationError: [SSL: CERTIFICATE_VERIFY_FAILED] certificate verify failed: unable to get local issuer certificate (_ssl.c:1007)
-
-During handling of the above exception, another exception occurred:
-
-Traceback (most recent call last):
-  File "/home/andy/projects/trader/venv/lib/python3.10/site-packages/urllib3/connectionpool.py", line 790, in urlopen
-    response = self._make_request(
-  File "/home/andy/projects/trader/venv/lib/python3.10/site-packages/urllib3/connectionpool.py", line 491, in _make_request
-    raise new_e
-urllib3.exceptions.SSLError: [SSL: CERTIFICATE_VERIFY_FAILED] certificate verify failed: unable to get local issuer certificate (_ssl.c:1007)
-
-The above exception was the direct cause of the following exception:
-
-Traceback (most recent call last):
-  File "/home/andy/projects/trader/venv/lib/python3.10/site-packages/requests/adapters.py", line 486, in send
-    resp = conn.urlopen(
-  File "/home/andy/projects/trader/venv/lib/python3.10/site-packages/urllib3/connectionpool.py", line 844, in urlopen
-    retries = retries.increment(
-  File "/home/andy/projects/trader/venv/lib/python3.10/site-packages/urllib3/util/retry.py", line 515, in increment
-    raise MaxRetryError(_pool, url, reason) from reason  # type: ignore[arg-type]
-urllib3.exceptions.MaxRetryError: HTTPSConnectionPool(host='opendart.fss.or.kr', port=443): Max retries exceeded with url: /api/corpCode.xml?crtfc_key=5f29227b902e730a9350eacbf2dee9abd6f5623f (Caused by SSLError(SSLCertVerificationError(1, '[SSL: CERTIFICATE_VERIFY_FAILED] certificate verify failed: unable to get local issuer certificate (_ssl.c:1007)')))
-
-During handling of the above exception, another exception occurred:
-
-Traceback (most recent call last):
-  File "/home/andy/projects/trader/data_collection/dc_05_CompanyHealth.py", line 322, in <module>
-    update_main_db(log_file, main_db_file, plot_gen_control_file)
-  File "/home/andy/projects/trader/data_collection/dc_05_CompanyHealth.py", line 297, in update_main_db
-    update_db = _generate_update_db(log_file, start_day, end_day, None)
-  File "/home/andy/projects/trader/data_collection/dc_05_CompanyHealth.py", line 250, in _generate_update_db
-    dart = OpenDartReader(DART_APIS[0])
-  File "/home/andy/projects/trader/venv/lib/python3.10/site-packages/OpenDartReader/dart.py", line 39, in __init__
-    df = dart_list.corp_codes(api_key)
-  File "/home/andy/projects/trader/venv/lib/python3.10/site-packages/OpenDartReader/dart_list.py", line 165, in corp_codes
-    r = requests.get(url, params=params)
-  File "/home/andy/projects/trader/venv/lib/python3.10/site-packages/requests/api.py", line 73, in get
-    return request("get", url, params=params, **kwargs)
-  File "/home/andy/projects/trader/venv/lib/python3.10/site-packages/requests/api.py", line 59, in request
-    return session.request(method=method, url=url, **kwargs)
-  File "/home/andy/projects/trader/venv/lib/python3.10/site-packages/requests/sessions.py", line 589, in request
-    resp = self.send(prep, **send_kwargs)
-  File "/home/andy/projects/trader/venv/lib/python3.10/site-packages/requests/sessions.py", line 703, in send
-    r = adapter.send(request, **kwargs)
-  File "/home/andy/projects/trader/venv/lib/python3.10/site-packages/requests/adapters.py", line 517, in send
-    raise SSLError(e, request=request)
-requests.exceptions.SSLError: HTTPSConnectionPool(host='opendart.fss.or.kr', port=443): Max retries exceeded with url: /api/corpCode.xml?crtfc_key=5f29227b902e730a9350eacbf2dee9abd6f5623f (Caused by SSLError(SSLCertVerificationError(1, '[SSL: CERTIFICATE_VERIFY_FAILED] certificate verify failed: unable to get local issuer certificate (_ssl.c:1007)')))
-001080 | 0/33
-001720 | 1/33
-003610 | 2/33
-005390 | 3/33
-008110 | 4/33
-008870 | 5/33
-018500 | 6/33
-020180 | 7/33
-021820 | 8/33
-021880 | 9/33
-032800 | 10/33
-033200 | 11/33
-042520 | 12/33
-050860 | 13/33
-067010 | 14/33
-067390 | 15/33
-092440 | 16/33
-093240 | 17/33
-097870 | 18/33
-099750 | 19/33
-154030 | 20/33
-169330 | 21/33
-189690 | 22/33
-190650 | 23/33
-222160 | 24/33
-289080 | 25/33
-293940 | 26/33
-334970 | 27/33
-338100 | 28/33
-357430 | 29/33
-377190 | 30/33
-396690 | 31/33
-417310 | 32/33
-2024-02-15 23:02:23.438333 | 417310 | quarterly data of 417310 is empty.
-Traceback (most recent call last):
-  File "/home/andy/projects/trader/data_collection/dc_06_Visualize_Health.py", line 23, in <module>
-    plot_company_financial_summary(main_db, code, path)
-  File "/home/andy/projects/trader/tools/tools.py", line 286, in plot_company_financial_summary
-    raise Exception('quarterly data of {} is empty.'.format(code))
-Exception: quarterly data of 417310 is empty.
-
-During handling of the above exception, another exception occurred:
-
-Traceback (most recent call last):
-  File "/home/andy/projects/trader/data_collection/dc_06_Visualize_Health.py", line 27, in <module>
-    os.remove(path)
-FileNotFoundError: [Errno 2] No such file or directory: 'plots/417310.png'
-sending incremental file list
-001080.png
-            700   0%    0.00kB/s    0:00:00          351,285 100%  334.34MB/s    0:00:00 (xfr#1, to-chk=2332/2385)
-001720.png
-            700   0%  683.59kB/s    0:00:00          193,155 100%  184.21MB/s    0:00:00 (xfr#2, to-chk=2303/2385)
-003610.png
-            700   0%  683.59kB/s    0:00:00          288,284 100%  274.93MB/s    0:00:00 (xfr#3, to-chk=2219/2385)
-005390.png
-            700   0%  683.59kB/s    0:00:00          284,501 100%  271.32MB/s    0:00:00 (xfr#4, to-chk=2152/2385)
-008110.png
-            736   0%  718.75kB/s    0:00:00          546,937 100%  521.60MB/s    0:00:00 (xfr#5, to-chk=2068/2385)
-008870.png
-            700   0%  341.80kB/s    0:00:00          280,396 100%  133.70MB/s    0:00:00 (xfr#6, to-chk=2054/2385)
-018500.png
-            700   0%  341.80kB/s    0:00:01          470,822 100%  224.51MB/s    0:00:00 (xfr#7, to-chk=1869/2385)
-020180.png
-            784   0%  382.81kB/s    0:00:01          615,301 100%  195.60MB/s    0:00:00 (xfr#8, to-chk=1846/2385)
-021820.png
-            700   0%  227.86kB/s    0:00:01          275,282 100%   87.51MB/s    0:00:00 (xfr#9, to-chk=1835/2385)
-021880.png
-            700   0%  227.86kB/s    0:00:00          202,586 100%   64.40MB/s    0:00:00 (xfr#10, to-chk=1834/2385)
-032800.png
-            700   0%  227.86kB/s    0:00:01          302,521 100%   72.13MB/s    0:00:00 (xfr#11, to-chk=1721/2385)
-033200.png
-            728   0%  177.73kB/s    0:00:03          534,063 100%  127.33MB/s    0:00:00 (xfr#12, to-chk=1708/2385)
-042520.png
-            700   0%  170.90kB/s    0:00:01          285,510 100%   68.07MB/s    0:00:00 (xfr#13, to-chk=1560/2385)
-050860.png
-            700   0%  136.72kB/s    0:00:01          265,864 100%   50.71MB/s    0:00:00 (xfr#14, to-chk=1476/2385)
-067010.png
-            768   0%  150.00kB/s    0:00:03          593,216 100%  113.15MB/s    0:00:00 (xfr#15, to-chk=1301/2385)
-067390.png
-            728   0%  142.19kB/s    0:00:03          534,571 100%   84.97MB/s    0:00:00 (xfr#16, to-chk=1293/2385)
-092440.png
-            720   0%  117.19kB/s    0:00:04          528,155 100%   83.95MB/s    0:00:00 (xfr#17, to-chk=1075/2385)
-093240.png
-            700   0%  113.93kB/s    0:00:02          293,236 100%   46.61MB/s    0:00:00 (xfr#18, to-chk=1065/2385)
-097870.png
-            700   0%   97.66kB/s    0:00:02          269,802 100%   36.76MB/s    0:00:00 (xfr#19, to-chk=1024/2385)
-099750.png
-            720   0%  100.45kB/s    0:00:05          529,510 100%   72.14MB/s    0:00:00 (xfr#20, to-chk=1012/2385)
-154030.png
-            700   0%   23.57kB/s    0:00:12          291,572 100%    9.27MB/s    0:00:00 (xfr#21, to-chk=779/2385)
-169330.png
-            700   0%   22.79kB/s    0:00:12          284,262 100%    9.04MB/s    0:00:00 (xfr#22, to-chk=756/2385)
-189690.png
-            700   0%   22.79kB/s    0:00:12          289,374 100%    9.20MB/s    0:00:00 (xfr#23, to-chk=715/2385)
-190650.png
-            700   0%   22.79kB/s    0:00:08          198,115 100%    6.30MB/s    0:00:00 (xfr#24, to-chk=711/2385)
-222160.png
-            700   0%   22.05kB/s    0:00:17          387,452 100%   11.92MB/s    0:00:00 (xfr#25, to-chk=589/2385)
-289080.png
-            700   0%   22.05kB/s    0:00:09          201,649 100%    6.20MB/s    0:00:00 (xfr#26, to-chk=399/2385)
-293940.png
-            700   0%   22.05kB/s    0:00:07          176,016 100%    5.41MB/s    0:00:00 (xfr#27, to-chk=379/2385)
-334970.png
-            700   0%   22.05kB/s    0:00:17          378,601 100%   11.28MB/s    0:00:00 (xfr#28, to-chk=266/2385)
-338100.png
-            700   0%   21.36kB/s    0:00:08          178,148 100%    5.31MB/s    0:00:00 (xfr#29, to-chk=257/2385)
-357430.png
-            700   0%   21.36kB/s    0:00:08          177,978 100%    5.30MB/s    0:00:00 (xfr#30, to-chk=210/2385)
-377190.png
-            700   0%   21.36kB/s    0:00:08          173,578 100%    5.17MB/s    0:00:00 (xfr#31, to-chk=167/2385)
-396690.png
-            700   0%   21.36kB/s    0:00:08          179,705 100%    5.36MB/s    0:00:00 (xfr#32, to-chk=128/2385)
-update_info.txt
-             33 100%    1.01kB/s    0:00:00               33 100%    1.01kB/s    0:00:00 (xfr#33, to-chk=0/2385)
-
-sent 119,399 bytes  received 89,423 bytes  83,528.80 bytes/sec
-total size is 1,105,100,604  speedup is 5,292.07
-Updating KRX data...
-Updating between dates: 2024-02-14 / 2024-02-16
------------------------------
-2024-02-16 23:00:21.941710
-Full rescan codes are 2 items: 
-['001080' '042520']
-Partial rescan codes are 25 items: 
-['001720' '003610' '005390' '008110' '008870' '018500' '021820' '032800'
- '033200' '050860' '067010' '093240' '097870' '099750' '154030' '169330'
- '189690' '190650' '222160' '293940' '334970' '357430' '377190' '396690'
- '950110']
-Financial data collection log >> 
-2024-02-16 23:00:21.990034, no: 0, code 001080 in process
-2024-02-16 23:00:33.678149, no: 1, code 042520 in process
-Financial data collection log >> 
-2024-02-16 23:00:45.660465, no: 0, code 001720 in process
-2024-02-16 23:00:52.133905, no: 1, code 003610 in process
-2024-02-16 23:00:58.288551, no: 2, code 005390 in process
-2024-02-16 23:01:04.415325, no: 3, code 008110 in process
-2024-02-16 23:01:10.596753, no: 4, code 008870 in process
-2024-02-16 23:01:16.744501, no: 5, code 018500 in process
-2024-02-16 23:01:22.919076, no: 6, code 021820 in process
-2024-02-16 23:01:29.091395, no: 7, code 032800 in process
-2024-02-16 23:01:35.312527, no: 8, code 033200 in process
-2024-02-16 23:01:41.476172, no: 9, code 050860 in process
-----> no: 9, code 050860 unknown exception; process suspended and to be re-tried
-HTTPSConnectionPool(host='opendart.fss.or.kr', port=443): Max retries exceeded with url: /api/fnlttSinglAcnt.json?crtfc_key=5f29227b902e730a9350eacbf2dee9abd6f5623f&corp_code=00138747&bsns_year=2022&reprt_code=11014 (Caused by SSLError(SSLEOFError(8, '[SSL: UNEXPECTED_EOF_WHILE_READING] EOF occurred in violation of protocol (_ssl.c:1007)')))
-** API-changed **
-2024-02-16 23:01:47.132549, no: 9, code 050860 in process
-----> no: 9, code 050860 unknown exception; process suspended and to be re-tried
-HTTPSConnectionPool(host='opendart.fss.or.kr', port=443): Max retries exceeded with url: /api/fnlttSinglAcnt.json?crtfc_key=9c180c67fba16e9a8d8bf3a74112ce0a6dbdb907&corp_code=00138747&bsns_year=2023&reprt_code=11014 (Caused by SSLError(SSLEOFError(8, '[SSL: UNEXPECTED_EOF_WHILE_READING] EOF occurred in violation of protocol (_ssl.c:1007)')))
-** API-changed **
-2024-02-16 23:01:57.608781, no: 9, code 050860 in process
-2024-02-16 23:02:03.680905, no: 10, code 067010 in process
-2024-02-16 23:02:09.836822, no: 11, code 093240 in process
-2024-02-16 23:02:16.033789, no: 12, code 097870 in process
-2024-02-16 23:02:22.213484, no: 13, code 099750 in process
-2024-02-16 23:02:28.480836, no: 14, code 154030 in process
-2024-02-16 23:02:34.625033, no: 15, code 169330 in process
-2024-02-16 23:02:40.832349, no: 16, code 189690 in process
-2024-02-16 23:02:47.003367, no: 17, code 190650 in process
-2024-02-16 23:02:53.327094, no: 18, code 222160 in process
-2024-02-16 23:02:59.429447, no: 19, code 293940 in process
-2024-02-16 23:03:04.929757, no: 20, code 334970 in process
-2024-02-16 23:03:10.429113, no: 21, code 357430 in process
-2024-02-16 23:03:15.961057, no: 22, code 377190 in process
-2024-02-16 23:03:21.461513, no: 23, code 396690 in process
-2024-02-16 23:03:26.992792, no: 24, code 950110 in process
-----> no: 24, code 950110 currency not in KRW, skipping
-== Update finished ==
-001080 | 0/33
-001720 | 1/33
-003610 | 2/33
-005390 | 3/33
-008110 | 4/33
-008870 | 5/33
-018500 | 6/33
-020180 | 7/33
-021820 | 8/33
-021880 | 9/33
-032800 | 10/33
-033200 | 11/33
-042520 | 12/33
-050860 | 13/33
-067010 | 14/33
-067390 | 15/33
-092440 | 16/33
-093240 | 17/33
-097870 | 18/33
-099750 | 19/33
-154030 | 20/33
-169330 | 21/33
-189690 | 22/33
-190650 | 23/33
-222160 | 24/33
-289080 | 25/33
-293940 | 26/33
-334970 | 27/33
-338100 | 28/33
-357430 | 29/33
-377190 | 30/33
-396690 | 31/33
-417310 | 32/33
-2024-02-16 23:05:45.779365 | 417310 | quarterly data of 417310 is empty.
-Traceback (most recent call last):
-  File "/home/andy/projects/trader/data_collection/dc_06_Visualize_Health.py", line 23, in <module>
-    plot_company_financial_summary(main_db, code, path)
-  File "/home/andy/projects/trader/tools/tools.py", line 286, in plot_company_financial_summary
-    raise Exception('quarterly data of {} is empty.'.format(code))
-Exception: quarterly data of 417310 is empty.
-
-During handling of the above exception, another exception occurred:
-
-Traceback (most recent call last):
-  File "/home/andy/projects/trader/data_collection/dc_06_Visualize_Health.py", line 27, in <module>
-    os.remove(path)
-FileNotFoundError: [Errno 2] No such file or directory: 'plots/417310.png'
-sending incremental file list
-001080.png
-         32,768   9%    0.00kB/s    0:00:00          351,569 100%  101.34MB/s    0:00:00 (xfr#1, to-chk=2332/2385)
-001720.png
-         32,768  16%    7.81MB/s    0:00:00          193,458 100%   30.75MB/s    0:00:00 (xfr#2, to-chk=2303/2385)
-003610.png
-         32,768  11%    5.21MB/s    0:00:00          288,578 100%   27.52MB/s    0:00:00 (xfr#3, to-chk=2219/2385)
-005390.png
-         32,768  11%    3.12MB/s    0:00:00          284,779 100%   20.89MB/s    0:00:00 (xfr#4, to-chk=2152/2385)
-008110.png
-         32,768   5%    2.23MB/s    0:00:00          547,248 100%   22.69MB/s    0:00:00 (xfr#5, to-chk=2068/2385)
-008870.png
-         32,768  11%    1.30MB/s    0:00:00          280,696 100%    8.11MB/s    0:00:00 (xfr#6, to-chk=2054/2385)
-018500.png
-         32,768   6%  941.18kB/s    0:00:00          471,043 100%    7.61MB/s    0:00:00 (xfr#7, to-chk=1869/2385)
-020180.png
-            784   0%   12.98kB/s    0:00:47          615,301 100%    9.78MB/s    0:00:00 (xfr#8, to-chk=1846/2385)
-021820.png
-         32,768  11%  524.59kB/s    0:00:00          275,589 100%    3.02MB/s    0:00:00 (xfr#9, to-chk=1835/2385)
-021880.png
-            700   0%    7.86kB/s    0:00:25          202,586 100%    2.22MB/s    0:00:00 (xfr#10, to-chk=1834/2385)
-032800.png
-         32,768  10%  359.55kB/s    0:00:00          302,807 100%    2.58MB/s    0:00:00 (xfr#11, to-chk=1721/2385)
-033200.png
-         32,768   6%  280.70kB/s    0:00:01          534,305 100%    3.33MB/s    0:00:00 (xfr#12, to-chk=1708/2385)
-042520.png
-         32,768   6%  207.79kB/s    0:00:02          517,964 100%    2.49MB/s    0:00:00 (xfr#13, to-chk=1560/2385)
-050860.png
-         32,768  12%  160.80kB/s    0:00:01          266,136 100%    1.15MB/s    0:00:00 (xfr#14, to-chk=1476/2385)
-067010.png
-         32,768   5%  144.80kB/s    0:00:03          593,492 100%    2.05MB/s    0:00:00 (xfr#15, to-chk=1301/2385)
-067390.png
-            728   0%    2.57kB/s    0:03:27          534,571 100%    1.84MB/s    0:00:00 (xfr#16, to-chk=1293/2385)
-092440.png
-            720   0%    2.54kB/s    0:03:27          528,155 100%    1.81MB/s    0:00:00 (xfr#17, to-chk=1075/2385)
-093240.png
-         32,768  11%  115.11kB/s    0:00:02          293,528 100%  961.91kB/s    0:00:00 (xfr#18, to-chk=1065/2385)
-097870.png
-         32,768  12%  107.02kB/s    0:00:02          270,124 100%  821.78kB/s    0:00:00 (xfr#19, to-chk=1024/2385)
-099750.png
-         32,768   6%   99.69kB/s    0:00:04          529,834 100%    1.38MB/s    0:00:00 (xfr#20, to-chk=1012/2385)
-154030.png
-         32,768  11%   87.43kB/s    0:00:02          291,848 100%  734.56kB/s    0:00:00 (xfr#21, to-chk=779/2385)
-169330.png
-         32,768  11%   82.26kB/s    0:00:03          284,532 100%  674.43kB/s    0:00:00 (xfr#22, to-chk=756/2385)
-189690.png
-         32,768  11%   77.67kB/s    0:00:03          289,668 100%  650.30kB/s    0:00:00 (xfr#23, to-chk=715/2385)
-190650.png
-         32,768  16%   72.23kB/s    0:00:02          198,395 100%  424.88kB/s    0:00:00 (xfr#24, to-chk=711/2385)
-222160.png
-         32,768   8%   70.18kB/s    0:00:05          387,726 100%  775.90kB/s    0:00:00 (xfr#25, to-chk=589/2385)
-289080.png
-            700   0%    1.40kB/s    0:02:23          201,649 100%  402.71kB/s    0:00:00 (xfr#26, to-chk=399/2385)
-293940.png
-         32,768  18%   65.44kB/s    0:00:02          176,302 100%  344.34kB/s    0:00:00 (xfr#27, to-chk=379/2385)
-334970.png
-         32,768   8%   62.75kB/s    0:00:05          378,921 100%  692.96kB/s    0:00:00 (xfr#28, to-chk=266/2385)
-338100.png
-            700   0%    1.28kB/s    0:02:18          178,148 100%  325.79kB/s    0:00:00 (xfr#29, to-chk=257/2385)
-357430.png
-         32,768  18%   59.81kB/s    0:00:02          178,273 100%  313.68kB/s    0:00:00 (xfr#30, to-chk=210/2385)
-377190.png
-         32,768  18%   57.66kB/s    0:00:02          173,841 100%  298.88kB/s    0:00:00 (xfr#31, to-chk=167/2385)
-396690.png
-         32,768  18%   56.34kB/s    0:00:02          180,010 100%  303.61kB/s    0:00:00 (xfr#32, to-chk=128/2385)
-update_info.txt
-             33 100%    0.06kB/s    0:00:00               33 100%    0.06kB/s    0:00:00 (xfr#33, to-chk=0/2385)
-
-sent 8,615,304 bytes  received 89,423 bytes  3,481,890.80 bytes/sec
-total size is 1,105,340,233  speedup is 126.98
-Updating KRX data...
-Updating between dates: 2024-02-16 / 2024-02-17
-No new data to update
-** Nothing to update - main_db not updated **
-001080 | 0/33
-001720 | 1/33
-003610 | 2/33
-005390 | 3/33
-008110 | 4/33
-008870 | 5/33
-018500 | 6/33
-020180 | 7/33
-021820 | 8/33
-021880 | 9/33
-032800 | 10/33
-033200 | 11/33
-042520 | 12/33
-050860 | 13/33
-067010 | 14/33
-067390 | 15/33
-092440 | 16/33
-093240 | 17/33
-097870 | 18/33
-099750 | 19/33
-154030 | 20/33
-169330 | 21/33
-189690 | 22/33
-190650 | 23/33
-222160 | 24/33
-289080 | 25/33
-293940 | 26/33
-334970 | 27/33
-338100 | 28/33
-357430 | 29/33
-377190 | 30/33
-396690 | 31/33
-417310 | 32/33
-2024-02-17 23:02:30.699921 | 417310 | quarterly data of 417310 is empty.
-Traceback (most recent call last):
-  File "/home/andy/projects/trader/data_collection/dc_06_Visualize_Health.py", line 23, in <module>
-    plot_company_financial_summary(main_db, code, path)
-  File "/home/andy/projects/trader/tools/tools.py", line 286, in plot_company_financial_summary
-    raise Exception('quarterly data of {} is empty.'.format(code))
-Exception: quarterly data of 417310 is empty.
-
-During handling of the above exception, another exception occurred:
-
-Traceback (most recent call last):
-  File "/home/andy/projects/trader/data_collection/dc_06_Visualize_Health.py", line 27, in <module>
-    os.remove(path)
-FileNotFoundError: [Errno 2] No such file or directory: 'plots/417310.png'
-sending incremental file list
-001080.png
-            700   0%    0.00kB/s    0:00:00          351,569 100%  334.61MB/s    0:00:00 (xfr#1, to-chk=2332/2385)
-001720.png
-            700   0%  683.59kB/s    0:00:00          193,458 100%  184.50MB/s    0:00:00 (xfr#2, to-chk=2303/2385)
-003610.png
-            700   0%  683.59kB/s    0:00:00          288,578 100%  275.21MB/s    0:00:00 (xfr#3, to-chk=2219/2385)
-005390.png
-            700   0%  683.59kB/s    0:00:00          284,779 100%  271.59MB/s    0:00:00 (xfr#4, to-chk=2152/2385)
-008110.png
-            736   0%  718.75kB/s    0:00:00          547,248 100%  521.90MB/s    0:00:00 (xfr#5, to-chk=2068/2385)
-008870.png
-            700   0%  683.59kB/s    0:00:00          280,696 100%  133.85MB/s    0:00:00 (xfr#6, to-chk=2054/2385)
-018500.png
-            700   0%  341.80kB/s    0:00:01          471,043 100%  224.61MB/s    0:00:00 (xfr#7, to-chk=1869/2385)
-020180.png
-            784   0%  382.81kB/s    0:00:01          615,301 100%  195.60MB/s    0:00:00 (xfr#8, to-chk=1846/2385)
-021820.png
-            700   0%  227.86kB/s    0:00:01          275,589 100%   87.61MB/s    0:00:00 (xfr#9, to-chk=1835/2385)
-021880.png
-            700   0%  227.86kB/s    0:00:00          202,586 100%   64.40MB/s    0:00:00 (xfr#10, to-chk=1834/2385)
-032800.png
-            700   0%  227.86kB/s    0:00:01          302,807 100%   96.26MB/s    0:00:00 (xfr#11, to-chk=1721/2385)
-033200.png
-            728   0%   78.99kB/s    0:00:06          534,305 100%   50.96MB/s    0:00:00 (xfr#12, to-chk=1708/2385)
-042520.png
-            712   0%   69.53kB/s    0:00:07          517,964 100%   49.40MB/s    0:00:00 (xfr#13, to-chk=1560/2385)
-050860.png
-            700   0%   68.36kB/s    0:00:03          266,136 100%   23.07MB/s    0:00:00 (xfr#14, to-chk=1476/2385)
-067010.png
-            768   0%   68.18kB/s    0:00:08          593,492 100%   51.45MB/s    0:00:00 (xfr#15, to-chk=1301/2385)
-067390.png
-            728   0%   64.63kB/s    0:00:08          534,571 100%   42.48MB/s    0:00:00 (xfr#16, to-chk=1293/2385)
-092440.png
-            720   0%   58.59kB/s    0:00:09          528,155 100%   41.97MB/s    0:00:00 (xfr#17, to-chk=1075/2385)
-093240.png
-            700   0%   56.97kB/s    0:00:05          293,528 100%   23.33MB/s    0:00:00 (xfr#18, to-chk=1065/2385)
-097870.png
-            700   0%   52.58kB/s    0:00:05          270,124 100%   19.82MB/s    0:00:00 (xfr#19, to-chk=1024/2385)
-099750.png
-            720   0%   11.34kB/s    0:00:46          529,834 100%    8.02MB/s    0:00:00 (xfr#20, to-chk=1012/2385)
-154030.png
-            700   0%   10.85kB/s    0:00:26          291,848 100%    4.42MB/s    0:00:00 (xfr#21, to-chk=779/2385)
-169330.png
-            700   0%   10.85kB/s    0:00:26          284,532 100%    4.24MB/s    0:00:00 (xfr#22, to-chk=756/2385)
-189690.png
-            700   0%   10.68kB/s    0:00:27          289,668 100%    4.32MB/s    0:00:00 (xfr#23, to-chk=715/2385)
-190650.png
-            700   0%   10.68kB/s    0:00:18          198,395 100%    2.96MB/s    0:00:00 (xfr#24, to-chk=711/2385)
-222160.png
-            700   0%   10.68kB/s    0:00:36          387,726 100%    5.78MB/s    0:00:00 (xfr#25, to-chk=589/2385)
-289080.png
-            700   0%   10.68kB/s    0:00:18          201,649 100%    2.96MB/s    0:00:00 (xfr#26, to-chk=399/2385)
-293940.png
-            700   0%   10.52kB/s    0:00:16          176,302 100%    2.59MB/s    0:00:00 (xfr#27, to-chk=379/2385)
-334970.png
-            700   0%   10.52kB/s    0:00:35          378,921 100%    5.56MB/s    0:00:00 (xfr#28, to-chk=266/2385)
-338100.png
-            700   0%   10.52kB/s    0:00:16          178,148 100%    2.61MB/s    0:00:00 (xfr#29, to-chk=257/2385)
-357430.png
-            700   0%   10.52kB/s    0:00:16          178,273 100%    2.58MB/s    0:00:00 (xfr#30, to-chk=210/2385)
-377190.png
-            700   0%   10.36kB/s    0:00:16          173,841 100%    2.51MB/s    0:00:00 (xfr#31, to-chk=167/2385)
-396690.png
-            700   0%   10.36kB/s    0:00:17          180,010 100%    2.60MB/s    0:00:00 (xfr#32, to-chk=128/2385)
-update_info.txt
-             33 100%    0.49kB/s    0:00:00               33 100%    0.49kB/s    0:00:00 (xfr#33, to-chk=0/2385)
-
-sent 120,710 bytes  received 91,391 bytes  141,400.67 bytes/sec
-total size is 1,105,340,233  speedup is 5,211.39
