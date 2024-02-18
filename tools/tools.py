@@ -7,6 +7,7 @@ import FinanceDataReader as fdr
 import pandas as pd
 import numpy as np
 import datetime, time
+import sqlite3
 
 def _collect_financial_reports(dart, code, duration=None): # duration as years
 
@@ -415,6 +416,13 @@ def generate_krx_data():
 
     # df_krx=df_krx[~df_krx['Dept'].str.contains('관리')]   # remove companies in trouble
     df_krx.to_feather('data/df_krx.feather')
+
+    conn = sqlite3.connect('data/df_krx.db')
+    df_krx['ListingDate'] = df_krx['ListingDate'].dt.strftime('%Y-%m-%d')
+    df_krx.to_sql('krx_data', conn, if_exists='replace')
+
+    conn.commit()
+    conn.close()
 
     return None
 

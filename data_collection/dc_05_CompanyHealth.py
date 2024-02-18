@@ -321,6 +321,3 @@ if __name__ == '__main__':
 
     update_main_db(log_file, main_db_file, plot_gen_control_file)
     
-
-    
-

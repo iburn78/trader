@@ -68,16 +68,16 @@ def _fetch_today_1m_ohlcv(broker, symbol: str, to: str):
 
 #%%
 
-import sqlite3
-import pandas as pd
+# import sqlite3
+# import pandas as pd
 
-db_path = 'df_krx.db'
-conn = sqlite3.connect(db_path)
+# db_path = 'df_krx.db'
+# conn = sqlite3.connect(db_path)
 
-df_krx = pd.read_feather('data_collection\data\df_krx.feather')
-df_krx['ListingDate'] = df_krx['ListingDate'].dt.strftime('%Y-%m-%d')
+# df_krx = pd.read_feather('data_collection/data/df_krx.feather')
+# df_krx['ListingDate'] = df_krx['ListingDate'].dt.strftime('%Y-%m-%d')
 
-df_krx.to_sql('krx_data', conn, if_exists='replace')
-conn.commit()
-conn.close()
+# df_krx.to_sql('krx_data', conn, if_exists='replace')
+# conn.commit()
+# conn.close()
 
