@@ -338,8 +338,11 @@ if __name__ == '__main__':
     update_main_db(log_file, main_db_file, plot_gen_control_file)
 
     # to collect a single company data and plot it:
-    # code = '373220'
+    # code = '001890'
     # db = single_company_data_collect(code)
+    # or 
+    # main_db = pd.read_feather(main_db_file)
+    # db = main_db.loc[main_db['code'] == code]
     # display(db)
     # path = 'plots/'+code+'.png'
     # plot_company_financial_summary(db, code, path)
