@@ -338,15 +338,14 @@ def _plot_barline(ax, data, y1, y2, y3, y4=None):
     sns.set_color_codes("pastel")
     sns.barplot(x=x, y=data.loc[y1, x], ax = ax, label=y1, color="b")
     ax.ticklabel_format(axis='y', scilimits=[-3, 3])
-    t_ = ax.get_yticklabels()[-1].get_position()[1] / float(ax.get_yticklabels()[-1].get_text())
-    print(ax.get_yticklabels()[-1].get_position()[1])
-    print(float(ax.get_yticklabels()[-1].get_text())==0)
-    display(data)
-    print(t_)
+    if ax.get_yticklabels()[-1].get_text() is None or float(ax.get_yticklabels()[-1].get_text())==0: 
+        t_ = 1
+    else: 
+        t_ = ax.get_yticklabels()[-1].get_position()[1] / float(ax.get_yticklabels()[-1].get_text())
 
     unit_list = ['uk_won','10 uk_won','100 uk_won','1,000 uk_won', 'jo_won', '10 jo_won', '100 jo_won']
     try: 
-        unit_exp = unit_list[int(log10(t_))]
+        unit_exp = unit_list[int(round(log10(t_)))]
     except IndexError:
         unit_exp = 'DATA SCALE ERROR'
 
