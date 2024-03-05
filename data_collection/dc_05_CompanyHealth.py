@@ -330,19 +330,28 @@ def single_company_data_collect(code):
     return _sort_columns_financial_reports(record)
 
 #%%
+import OpenDartReader.dart_list as dl
 if __name__ == '__main__': 
     log_file = 'log/data_collection.log'
     main_db_file = 'data/financial_reports_main.feather'
     plot_gen_control_file = 'data/plot_gen_control.npy'
 
-    update_main_db(log_file, main_db_file, plot_gen_control_file)
+    # update_main_db(log_file, main_db_file, plot_gen_control_file)
 
     # to collect a single company data and plot it:
-    # code = '001890'
+    code = '001890'
     # db = single_company_data_collect(code)
     # or 
-    # main_db = pd.read_feather(main_db_file)
-    # db = main_db.loc[main_db['code'] == code]
+    main_db = pd.read_feather(main_db_file)
+    db = main_db.loc[main_db['code'] == code]
+    # pd.set_option('display.max_columns', None)
+    db=db.dropna(axis=1, how='all')
     # display(db)
     # path = 'plots/'+code+'.png'
     # plot_company_financial_summary(db, code, path)
+    dart = OpenDartReader(DART_APIS[0])
+    a = dl.corp_codes(DART_APIS[0])
+    display(a)
+    print(a.loc[a['corp_name'].str.contains('', case=False)])
+
+
