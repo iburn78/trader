@@ -1,9 +1,0 @@
-/bin/bash: 줄 1: /home/andy/projects/trader/data_collection/test.sh: 그런 파일이나 디렉터리가 없습니다
-/bin/bash: 줄 1: /home/andy/projects/trader/data_collection/test.sh: 허가 거부
-certain code runs
-rtcwake: wakeup from "mem" using /dev/rtc0 at Sat Mar  9 04:51:01 2024
-certain code runs
-rtcwake: wakeup from "mem" using /dev/rtc0 at Sat Mar  9 04:53:01 2024
-certain code runs
-rtcwake: assuming RTC uses UTC ...
-rtcwake: wakeup from "mem" using /dev/rtc0 at Sat Mar  9 04:58:00 2024

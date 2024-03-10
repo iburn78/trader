@@ -28,7 +28,6 @@ scp -i $private_key "$info_directory"update_info.txt ubuntu@tnpartners.net:$tnp_
 scp -i $private_key "$log_directory"*.log ubuntu@tnpartners.net:$tnp_log_directory
 
 if [ $? -eq 0 ]; then 
-    echo "Local system go to suspend"
     sleep 60
     sudo rtcwake -m mem -t $(date -d 'today 23:30:00' +%s)
 else
