@@ -107,3 +107,8 @@
     * but, no need to install nanum / instead user malgun.ttf from windows/fonts
     * copy it into venv/.../matplotlib... 
     * modify (maynot be needed, if the font is installed in the system...) json file to add 'Malgun Gothic'
+
+- fdr: prices are adjusted prices... (refer to the online manual Q&A section)
+
+- fdr: Modified listing.py and data.py to include date_req parameter
+    * this allows you to get market data for a specific date
