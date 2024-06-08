@@ -3,49 +3,43 @@
     sys.path
     sys.path.append() # adding at the runtime
 
+- Executing a Module as a Script:
+    Use if __name__ == "__main__": to check if a module is being run as the main program.
+    Wrap your multiprocessing code in an if __name__ == "__main__": block in your main script to ensure that it's only executed in the main process. This helps avoid issues with creating child processes during import.
+    This approach ensures better process management with the operating system.
 
-- executing module as a script
-    __name__ == "__main__"
-    Wrap your multiprocessing code in an if __name__ == '__main__': block in your main script to ensure that it's only executed in the main process. This helps avoid issues with creating child processes during import.
-    i.e., better in process management with the OS
+- Packages:
+    A package is a set of modules.
+    It provides a namespace.
+    You can import a module from a package using from <package> import <module>.
+    If only the package is imported, the subordinated modules are not automatically imported.
+    Previously, an __init__.py file had to be located in a package (this may still be required in Django migrations), but it is no longer necessary.
+        If only the package is imported, then __init__.py is executed.
+        In __init__.py, you may specify which module to import in a package, e.g., from . import module1.
 
-
-- packages
-    a package is a set of module
-    it provides a namespace
-    from <package> import <module>
-    if only an package is imported, the subordinated modules are not automatically imported
-    previously, '__init__.py' has to be located in an package(probably in Django migrations it still does...), but no longer required
-        if only package is imported, then __init__.py is executed
-        in __init__.py, you may contain which module to import in a package, e.g., from . import module1
-
-
-- finding a package
-    even with relative import, if the path is not registed in sys.path, then a package cannot be found
-    use the following example: 
+- Finding a Package:
+    Even with relative imports, if the path is not registered in sys.path, then a package cannot be found.
+    Use the following example to add a directory to sys.path:
+        
         import sys, os
         sys.path.append(os.path.dirname(os.getcwd()))  # adding the parent directory to the path; the parent directory contains 'tools' package
 
         from tools import koreainvest_module
 
-
 - '-m' option in python
     python -m enables to run a module (no need to put .py)
-    (1) execute python code from the command line via modulename rather than filename 
-    (2) add a directory to sys.path for use in import resolution and 
-    (3) execute python code that contains relative imports from the command line. 
-
+    (1) add directories to sys.path for use in import resolution
+    (2) execute python code from the command line via modulename rather than filename 
+    you can execute python code that contains relative imports from the module location
 
 - Package in the pypi
     pip install <package>
     this package is different from the package of moudles described above (more close to distribution)
     there are certain rules to upload a package in pypi, then users can use the package through pip
 
-
 - OAuth
     lets a service to use a user's information available in 3rd parties without using the user's credentials for the 3rd parties
     instead it uses access tokens
-
 
 - TMUX
     sudo apt-get install tmux; probably already installed in Ubuntu
@@ -58,7 +52,6 @@
     tmux attach -t <process_name>
     exit
     tmux kill-session -t <process_name>
-
 
 - git 
     git add . <- . means current directory and subordinated directories
@@ -79,7 +72,7 @@
 
 - config file: be careful about the location and content
 
-- in mojito module, change path to the token.dat to be in config... :should be adjusted according to relative directory (e.g., ../../config/.. or ../config/..)
+- in mojito module, change path to the token.dat for it to be in config... :should be adjusted according to relative directory (e.g., ../../config/.. or ../config/..)
     you may use koreainvest_module.py instead
     
 - in fdr, for file \FinanceDataReader\krx\listing.py: 
@@ -107,11 +100,29 @@
                 # print(ValueError(r.text))   <- make this a comment 
         ...
 
-
 - Add C:\Users\user\projects\trader\ or equivalent to environment variable for import to work.
 
 - On Korean font setup for matplotlib: 
     * refer to https://unsolvedproblem.github.io/etc/2020/08/04/matplotlib_korean_recog.html
     * but, no need to install nanum / instead user malgun.ttf from windows/fonts
-    * copy it into vevn/.../matplotlib... 
+    * copy it into venv/.../matplotlib... 
     * modify (maynot be needed, if the font is installed in the system...) json file to add 'Malgun Gothic'
+
+- fdr: prices are adjusted prices... (refer to the online manual Q&A section)
+
+- fdr: Modified listing.py and data.py to include date_req parameter
+    * this allows you to get market data for a specific date
+    [data.py]
+        def StockListing(market, date_req = None):
+            ...
+            if market in [ 'KRX', 'KOSPI', 'KOSDAQ', 'KONEX', 'KRX-MARCAP' ]:
+                return KrxMarcapListing(market).read(date_req)
+            ...
+            
+    [listing.py]
+        def read(self, date_req = None):
+            ...
+            if date_req == None: 
+                date_str = j['result']['output'][0]['max_work_dt']
+            else: 
+                date_str = date_req
