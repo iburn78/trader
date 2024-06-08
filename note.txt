@@ -112,3 +112,17 @@
 
 - fdr: Modified listing.py and data.py to include date_req parameter
     * this allows you to get market data for a specific date
+    [data.py]
+        def StockListing(market, date_req = None):
+            ...
+            if market in [ 'KRX', 'KOSPI', 'KOSDAQ', 'KONEX', 'KRX-MARCAP' ]:
+                return KrxMarcapListing(market).read(date_req)
+            ...
+            
+    [listing.py]
+        def read(self, date_req = None):
+            ...
+            if date_req == None: 
+                date_str = j['result']['output'][0]['max_work_dt']
+            else: 
+                date_str = date_req

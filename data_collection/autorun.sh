@@ -6,8 +6,8 @@
 # following scripts need to be run in .../data_collection
 cd ~/projects/trader/data_collection
 
-python dc_05_CompanyHealth.py
-python dc_06_Visualize_Health.py
+python dc05_CompanyHealth.py
+python dc06_VisualizeHealth.py
 
 # copying plots to tnpartners.net
 plot_directory="/home/andy/projects/trader/data_collection/plots/"
