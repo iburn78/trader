@@ -205,6 +205,7 @@ def _generate_financial_reports_set(sector, duration, log_file, date_updated, sa
                 if dart.find_corp_code(code) == None: 
                     current_progress = '----> no: ' + str(ix) + ', code ' + code+' not in corp_code, and therefore data not available' # / '+df_krx['Name'][code]
                     log_print(log_file, current_progress)
+                    retry_required = False
                     continue # skip the rest of the code
     
                 record, message = _collect_financial_reports(dart, code, duration, date_updated)

@@ -13,7 +13,7 @@ main_db_file = 'data/financial_reports_main.feather'
 price_db_file = 'data/price_DB.feather'
 
 df_krx = fdr.StockListing('KRX')
-codelist = df_krx.Code.tolist()[:1]
+codelist = df_krx.Code.tolist()[:]
 
 DAYS_ALLOWANCE = 2
 end_day = (datetime.datetime.today() - datetime.timedelta(days=DAYS_ALLOWANCE)).strftime('%Y-%m-%d')
