@@ -184,7 +184,7 @@ def _sort_columns_financial_reports(reports):
     static_columns = ['code', 'fs_div', 'sj_div', 'account_nm', 'account', 'date_updated']
     return pd.concat([reports[static_columns], reports[reports.columns.difference(static_columns)].sort_index(axis=1)], axis=1)
 
-def _generate_financial_reports_set(sector, duration, log_file, date_updated=None, save_file_name=None):
+def _generate_financial_reports_set(sector, duration, log_file, date_updated, save_file_name=None):
     dart_ind = 0
     dart = OpenDartReader(DART_APIS[dart_ind])
 
@@ -243,14 +243,10 @@ def _generate_financial_reports_set(sector, duration, log_file, date_updated=Non
 
     return _sort_columns_financial_reports(financial_reports)
 
-def _generate_update_db(log_file, start_day = None, end_day = None, days = None):  # days counted from today
-    if end_day == None:
-        end_day = datetime.datetime.today().strftime('%Y-%m-%d')
-    if days != None:
-        start_day = (datetime.datetime.today() - datetime.timedelta(days = days)).strftime('%Y-%m-%d')
+def _generate_update_db(log_file, start_day, end_day):  
     dart = OpenDartReader(DART_APIS[0])
     log_print(log_file, 'Updating between dates: '+ str(start_day) + ' / ' + str(end_day))
-    ls = dart.list(start=start_day, end=end_day, kind='A')
+    ls = dart.list(start=start_day, end=end_day, kind='A') # works only withn three month gap between start_day and end_day
     if len(ls) == 0: 
         log_print(log_file, 'No new data to update')
         return pd.DataFrame() # return an empty dataframe
@@ -297,14 +293,15 @@ def update_main_db(log_file, main_db_file, plot_gen_control_file=None):
         log_print(log_file, 'Generation of KRX data failed: '+str(e))
 
     main_db = pd.read_feather(main_db_file)
-    start_day = main_db['date_updated'].max()
-    end_day = datetime.datetime.today().strftime('%Y-%m-%d')
 
+    DAYS_ALLOWANCE = 2
+    start_day = main_db['date_updated'].max()
+    end_day = (datetime.datetime.today() - datetime.timedelta(days=DAYS_ALLOWANCE)).strftime('%Y-%m-%d')
     # to manually assign the period: (up to three months)
     # start_day = '2023-11-14'
     # end_day = '2023-11-15'
 
-    update_db = _generate_update_db(log_file, start_day, end_day, None)
+    update_db = _generate_update_db(log_file, start_day, end_day)
 
     if len(update_db) > 0:
         main_db = merge_update(main_db, update_db)
