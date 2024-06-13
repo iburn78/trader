@@ -9,6 +9,7 @@ import sqlite3
 
 def plot_company_financial_summary(db, code, path=None):
     quarter_cols= [s for s in db.columns.values if 'Q' in s]
+    quarter_cols.sort()
     y = db.loc[(db['code']==code) & (db['fs_div']=='CFS'), ['account']+quarter_cols].drop_duplicates().set_index(['account'])
     if y.isnull().all().all():
         y = db.loc[(db['code']==code) & (db['fs_div']=='OFS'), ['account']+quarter_cols].drop_duplicates().set_index(['account'])
@@ -53,13 +54,17 @@ def plot_company_financial_summary(db, code, path=None):
 
 def plot_company_financial_summary2(fr_db, pr_db, code, path=None):
     quarter_cols= [s for s in fr_db.columns.values if 'Q' in s]
-    y = fr_db.loc[(fr_db['code']==code) & (fr_db['fs_div']=='CFS'), ['account']+quarter_cols].drop_duplicates().set_index(['account'])
+    quarter_cols.sort()
+    fs_div_mode = 'CFS'
+    y = fr_db.loc[(fr_db['code']==code) & (fr_db['fs_div']==fs_div_mode), ['account']+quarter_cols].drop_duplicates().set_index(['account'])
     if y.isnull().all().all():
-        y = fr_db.loc[(fr_db['code']==code) & (fr_db['fs_div']=='OFS'), ['account']+quarter_cols].drop_duplicates().set_index(['account'])
+        fs_div_mode = 'OFS'
+        y = fr_db.loc[(fr_db['code']==code) & (fr_db['fs_div']==fs_div_mode), ['account']+quarter_cols].drop_duplicates().set_index(['account'])
+        CFS_mode = False
     if y.isnull().all().all():
         raise Exception('quarterly data of {} is empty.'.format(code))
 
-    date_updated = str(fr_db.loc[(fr_db['code']==code) & (fr_db['fs_div']=='CFS'), 'date_updated'].values[0])
+    date_updated = str(fr_db.loc[(fr_db['code']==code) & (fr_db['fs_div']==fs_div_mode), 'date_updated'].values[0])
     y.columns = [s.replace('2020','XX').replace('20','').replace('XX','20').replace('_','.').replace('Q','') for s in quarter_cols]
     yiu = y/KRW_UNIT 
     yiu=_choose_unique_rows(yiu, 'account')
@@ -73,7 +78,7 @@ def plot_company_financial_summary2(fr_db, pr_db, code, path=None):
     cmap = sns.color_palette("Blues", as_cmap=True)
     f, ax = plt.subplots(5, 1, figsize=(20, 18), constrained_layout=True, gridspec_kw={'height_ratios': [4, 5, 3, 3, 3]})
     f.set_constrained_layout_pads(w_pad=0, h_pad=0.1, hspace=0, wspace=0.)
-    qprices = _get_quarterly_prices(fr_db, pr_db, code)
+    qprices = _get_quarterly_prices(fr_db, pr_db, code, fs_div_mode)
     _plot_priceline(ax[0], qprices)
     _plot_barline2(ax[1], yiu, 'revenue', 'operating_income', 'opmargin', 'net_income', cc1=cmap(0.25), cc2=cmap(0.7))
     _plot_barline2(ax[2], yiu, 'assets', 'liquid_assets', 'liquid_asset_ratio', cc1=cmap(0.25), cc2=cmap(0.65))
@@ -257,8 +262,8 @@ def _choose_unique_rows(df, index_name):
     idx = df.groupby(df[index_name]).apply(lambda gp: gp.count(axis=1).idxmax())
     return df.loc[idx].set_index(index_name, drop=True)
 
-def _get_quarterly_prices(fr_db, pr_db, code):
-    opincome = fr_db.loc[(fr_db.code == code) & (fr_db.fs_div == 'CFS') & (fr_db.account == 'operating_income')]
+def _get_quarterly_prices(fr_db, pr_db, code, fs_div_mode = 'CFS'):
+    opincome = fr_db.loc[(fr_db.code == code) & (fr_db.fs_div == fs_div_mode) & (fr_db.account == 'operating_income')]
     non_empty_columns = [col for col in opincome.columns if not pd.isnull(opincome[col].values[0])]
     quarters = [i for i in non_empty_columns if 'Q' in i]
     quarters.sort()
@@ -270,8 +275,8 @@ def _get_quarterly_prices(fr_db, pr_db, code):
     else: 
         sq = None
         eq = None
-        sday = pd.Timestamp().now().normalize()
-        eday = pd.Timestamp().now().normalize()
+        sday = pd.Timestamp.now().normalize()
+        eday = pd.Timestamp.now().normalize()
 
     qprices = pd.DataFrame(pr_db[code])
     qprices = qprices.loc[(qprices.index >= sday) & (qprices.index <= eday) ]
