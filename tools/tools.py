@@ -287,9 +287,9 @@ def _get_quarterly_prices(fr_db, pr_db, code, fs_div_mode = 'CFS'):
 
 def _plot_priceline(ax, qprices):
     sns.lineplot(x='quarter', y='price', data=qprices, ax = ax, color="k")
-    for yt in ax.get_yticks():
-        ax.axhline(y=yt, xmin=0.05, color='white', linewidth=0.7)
     qm = qprices.groupby('quarter').mean().sort_index()['price'].tolist()
+    for yt in ax.get_yticks():
+        ax.axhline(y=yt, color='white', linewidth=0.7)
     ref_points = [i  for i in range(1, len(qm)-1) if (((qm[i] - qm[i-1]) * (qm[i+1] - qm[i])) < 0 )]    
     if len(qm) > 0: 
         ref_points.append(len(qm)-1)
@@ -297,7 +297,7 @@ def _plot_priceline(ax, qprices):
         value = qm[i]
         try:
             v = str("{:,}".format(round(value)))
-            ax.text(i-0.2, value*(1.02), v)
+            ax.text(i-0.005*len(qm), value*(1.02), v)
         except: 
             pass
     ax.set_title('quarterly average prices')
@@ -313,6 +313,44 @@ def _plot_priceline(ax, qprices):
     ax.spines['right'].set_visible(False)
     ax.spines['left'].set_visible(False)
     ax.set_facecolor('whitesmoke')
+
+
+def plot_last_quarter_prices(pr_db, code, path=None):
+    plt.close('all')
+    sns.set_theme(style="darkgrid")
+    f, ax = plt.subplots(1, 1, figsize=(20, 5), constrained_layout=True)
+    f.set_constrained_layout_pads(w_pad=0, h_pad=0.1, hspace=0, wspace=0.)
+
+    pr = pr_db.loc[pr_db.index>=prev_quarter_start(), code]
+    if len(pr.index)>0:
+        date_updated = pr.index[-1].strftime('%Y-%m-%d')
+    else: 
+        date_updated = ''
+
+    sns.lineplot(data=pr, ax=ax, color='k')
+    ax.set_title('recent price movement')
+    ax.set_xlabel('')
+    ax.set_ylabel('')
+    ax.tick_params(axis='y', direction='in', pad=-40)
+    ax.spines['top'].set_visible(False)
+    ax.spines['right'].set_visible(False)
+    ax.spines['left'].set_visible(False)
+
+    df_krx = pd.read_feather('data/df_krx.feather')
+    try: 
+        name = df_krx['Name'][code]
+    except Exception as e: 
+        raise Exception('{} not in df_krx'.format(code))
+
+    kor_ft={'font':'Malgun Gothic'}
+    f.suptitle('General Analysis - company: '+name+'('+code+') updated on '+date_updated, fontsize=14, fontdict=kor_ft)
+
+    if path==None: 
+        plt.show()
+    else: 
+        plt.savefig(path)
+        plt.close()
+
 
 
 # merge new data and update existing data
@@ -353,3 +391,11 @@ def log_print(log_file, message):
     print(message)
     with open(log_file, 'a') as f: # a new file would be created if there is no log_file / otherwise it will append with "a" option
         f.write(str(message)+'\n')
+
+def prev_quarter_start(date: pd.Timestamp = None) -> pd.Timestamp:
+    if date == None: 
+        date = pd.Timestamp.now()
+    month = (date.month - 1) // 3 * 3 - 2
+    year = date.year if month > 0 else date.year - 1
+    month = month if month > 0 else month + 12
+    return pd.Timestamp(year, month, 1)

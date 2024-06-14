@@ -18,14 +18,14 @@ codelist = df_krx.Code.tolist()[:]
 
 DAYS_ALLOWANCE = 2
 end_day = (datetime.datetime.today() - datetime.timedelta(days=DAYS_ALLOWANCE)).strftime('%Y-%m-%d')
-# res = _generate_financial_reports_set(codelist, 1, log_file, end_day, None) # 1 year
-# res = _sort_columns_financial_reports(res)
+res = _generate_financial_reports_set(codelist, 1, log_file, end_day, None) # 1 year
+res = _sort_columns_financial_reports(res)
 
 main_db = pd.read_feather(main_db_file)
-# main_db = merge_update(main_db, res)
-# main_db.to_feather(main_db_file)
+main_db = merge_update(main_db, res)
+main_db.to_feather(main_db_file)
 
-# gen_price_DB()
+gen_price_DB()
 price_DB = pd.read_feather(price_db_file)
 
 l = len(codelist)
