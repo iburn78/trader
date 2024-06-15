@@ -263,8 +263,8 @@ def _choose_unique_rows(df, index_name):
     return df.loc[idx].set_index(index_name, drop=True)
 
 def _get_quarterly_prices(fr_db, pr_db, code, fs_div_mode = 'CFS'):
-    opincome = fr_db.loc[(fr_db.code == code) & (fr_db.fs_div == fs_div_mode) & (fr_db.account == 'operating_income')]
-    non_empty_columns = [col for col in opincome.columns if not pd.isnull(opincome[col].values[0])]
+    fr_code = fr_db.loc[(fr_db.code == code) & (fr_db.fs_div == fs_div_mode)] 
+    non_empty_columns = fr_code.columns[fr_code.notna().any()].tolist()
     quarters = [i for i in non_empty_columns if 'Q' in i]
     quarters.sort()
     if len(quarters) > 0:
