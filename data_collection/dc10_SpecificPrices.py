@@ -22,19 +22,19 @@ names = []
 for code in codes: 
     name = df_krx_desc.loc[df_krx_desc['Code']==code]['Name'].values[0]
     names.append(name)
-# print(names)
+print(names)
 
 #%%
 price_data = pd.DataFrame()
 period = '2024'
-basedate = '2024-06-06'
+# basedate = '2024-06-06'
 
 for code in codes: 
     df = fdr.DataReader(code, period)
     price_data[code] = df['Close']
 
-basedate = datetime.strptime(basedate, '%Y-%m-%d')
-price_data = price_data.loc[price_data.index <= basedate]
+# basedate = datetime.strptime(basedate, '%Y-%m-%d')
+# price_data = price_data.loc[price_data.index <= basedate]
 
 price_data.index = price_data.index.strftime('%Y-%m-%d')
 price_data.columns = names

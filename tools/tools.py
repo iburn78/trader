@@ -399,3 +399,36 @@ def prev_quarter_start(date: pd.Timestamp = None) -> pd.Timestamp:
     year = date.year if month > 0 else date.year - 1
     month = month if month > 0 else month + 12
     return pd.Timestamp(year, month, 1)
+
+
+def get_listed():
+    listing_db = fdr.StockListing('KRX-DESC')
+
+    listed = listing_db.loc[listing_db.ListingDate.notna()].copy()
+    category_dict = pd.read_excel('category.xlsx').set_index('Sector')['Category'].to_dict()
+
+    for a in set(listed.Sector.unique())-set(category_dict.keys()):
+        category_dict[str(a)] = 'Uncategorized'
+    ts = pd.Series(category_dict)
+    ts.index.name = 'Sector'
+    ts.name = 'Category'
+    ts.to_excel('category.xlsx')
+
+    listed['Category'] = None
+    for key, val in category_dict.items():
+        listed.loc[listed['Sector'] == str(key), 'Category'] = val
+
+    if len(listed.loc[listed.Category.isna()]) > 0: 
+        raise Exception('--- Category mapping error ---')
+
+    stock_info = fdr.StockListing('KRX')
+    mc = pd.to_numeric(stock_info['Marcap'], errors='coerce')
+    cl = pd.to_numeric(stock_info['Close'], errors='coerce')
+    stock_info['SharesOuts'] = mc/cl.replace(0, pd.NA)
+    listed = pd.merge(listed, stock_info[['Code', 'SharesOuts']], on='Code', how='left')
+
+    if len(listed.loc[listed.SharesOuts.isna()]) > 0: 
+        raise Exception('--- SharesOutstanding calculation error ---')
+
+    listed = listed.drop(['Representative', 'HomePage', 'Region'], axis=1)
+    return listed

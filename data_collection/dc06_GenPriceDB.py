@@ -1,3 +1,6 @@
+# Generate price DB 
+# if price_DB is given then updates it, otherwise creates one
+
 #%%
 import sys, os
 sys.path.append(os.path.dirname(os.getcwd()))  
