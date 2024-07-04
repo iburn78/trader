@@ -112,6 +112,7 @@
 
 - fdr: Modified listing.py and data.py to include date_req parameter
     * this allows you to get market data for a specific date
+    * date format: '20240101'
     [data.py]
         def StockListing(market, date_req = None):
             ...
@@ -119,7 +120,7 @@
                 return KrxMarcapListing(market).read(date_req)
             ...
             
-    [listing.py]
+    [krx/listing.py]
         def read(self, date_req = None):
             ...
             if date_req == None: 

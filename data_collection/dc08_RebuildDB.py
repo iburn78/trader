@@ -1,5 +1,8 @@
+# this is for rebuilding DBs for both price and financial records 
+# be careful in setting up date_req and DAYS_ALLOWANCE
+# DAYS_ALLOWANCE is for giving enough time for DART to update its API
+
 #%% 
-import OpenDartReader 
 import datetime
 import sys, os
 sys.path.append(os.path.dirname(os.getcwd()))  
