@@ -9,6 +9,7 @@ cd ~/projects/trader/data_collection
 python dc05_CompanyHealth.py
 python dc06_GenPriceDB.py
 python dc07_VisualizeHealth.py
+python dc13_RateChanges.py
 
 # copying plots to tnpartners.net
 plot_directory="/home/andy/projects/trader/data_collection/plots/"
