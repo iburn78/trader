@@ -75,8 +75,6 @@
 - in mojito module, change path to the token.dat for it to be in config... :should be adjusted according to relative directory (e.g., ../../config/.. or ../config/..)
     you may use koreainvest_module.py instead
     
-- in fdr, for file \FinanceDataReader\krx\listing.py: 
-    df_listing = pd.read_html(url, header=0, encoding='euc-kr')[0]  # Use 'euc-kr' encoding
 
 - in OpenDartReader
     dart_finstate.py
@@ -110,6 +108,12 @@
 
 - fdr: prices are adjusted prices... (refer to the online manual Q&A section)
 
+- in fdr, for file \FinanceDataReader\krx\listing.py: 
+    ***** After update of FDR, this may not be needed *****
+    class KrxStockListing: # descriptive information
+    def read(self):
+        df_listing = pd.read_html(url, header=0, encoding='euc-kr')[0]  # Use 'euc-kr' encoding
+
 - fdr: Modified listing.py and data.py to include date_req parameter
     * this allows you to get market data for a specific date
     * date format: '20240101'
@@ -121,9 +125,10 @@
             ...
             
     [krx/listing.py]
-        def read(self, date_req = None):
-            ...
-            if date_req == None: 
-                date_str = j['result']['output'][0]['max_work_dt']
-            else: 
-                date_str = date_req
+        class KrxMarcapListing:
+            def read(self, date_req = None):
+                ...
+                if date_req == None: 
+                    date_str = j['result']['output'][0]['max_work_dt']
+                else: 
+                    date_str = date_req
