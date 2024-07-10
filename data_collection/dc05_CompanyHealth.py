@@ -181,6 +181,8 @@ def _collect_financial_reports(dart, code, duration=None, date_updated=None): # 
     return record, message
 
 def _sort_columns_financial_reports(reports):
+    if len(reports) == 0: 
+        return pd.DataFrame()
     static_columns = ['code', 'fs_div', 'sj_div', 'account_nm', 'account', 'date_updated']
     return pd.concat([reports[static_columns], reports[reports.columns.difference(static_columns)].sort_index(axis=1)], axis=1)
 
