@@ -3,6 +3,7 @@ import sys, os
 sys.path.append(os.path.dirname(os.getcwd()))  
 from tools.tools import *
 import pandas as pd
+from matplotlib import font_manager
 
 price_db_file = 'data/price_DB.feather'
 pr_db = pd.read_feather(price_db_file)
@@ -47,7 +48,14 @@ for p in ['last_day', 'last_week', 'last_month', 'last_quarter', 'last_year']:
 
 import matplotlib.pyplot as plt
 import seaborn as sns
-plt.rcParams['font.family'] = 'Arial Unicode MS'
+# plt.rcParams['font.family'] = 'Arial Unicode MS'
+###########################
+#### below font setting for Unbuntu
+font_path = '/usr/share/fonts/opentype/noto/NotoSansCJK-Regular.ttc'
+font_prop = font_manager.FontProperties(fname=font_path)
+plt.rcParams['font.family'] = font_prop.get_name()
+plt.rcParams['font.sans-serif'] = [font_prop.get_name()]
+###########################
 
 f, ax = plt.subplots(2, 1, figsize=(10, 12), constrained_layout=True, gridspec_kw={'height_ratios': [1, 1]})
 
