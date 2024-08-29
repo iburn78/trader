@@ -5,7 +5,8 @@ import matplotlib.pyplot as plt
 import FinanceDataReader as fdr
 import pandas as pd
 import sqlite3
-
+from matplotlib import font_manager
+import platform
 
 def plot_company_financial_summary(db, code, path=None):
     quarter_cols= [s for s in db.columns.values if 'Q' in s]
@@ -432,3 +433,43 @@ def get_listed():
 
     listed = listed.drop(['Representative', 'HomePage', 'Region'], axis=1)
     return listed
+
+def get_pr_changes(price_db_file):
+    pr_db = pd.read_feather(price_db_file)
+
+    def _calc_change(cur_date, prev_date):
+        cp = pr_db.loc[pr_db.index >= cur_date].iloc[0]
+        pp = pr_db.loc[pr_db.index >= prev_date].iloc[0]
+        return cp/pp - 1
+
+    pr_changes = pd.DataFrame(columns = pr_db.columns)
+
+    cur_day = pr_db.index[-1]
+    last_day = pr_db.index[-2]
+    last_week = last_day - pd.Timedelta(weeks=1)
+    last_month = last_day - pd.DateOffset(months=1)
+    last_quarter = last_day - pd.DateOffset(months=3)
+    last_year = last_day - pd.DateOffset(months=12)
+    pr_changes.loc['cur_price'] = pr_db.iloc[-1]
+    pr_changes.loc['last_day'] = _calc_change(cur_day, last_day)
+    pr_changes.loc['last_week'] = _calc_change(cur_day, last_week)
+    pr_changes.loc['last_month'] = _calc_change(cur_day, last_month)
+    pr_changes.loc['last_quarter'] = _calc_change(cur_day, last_quarter)
+    pr_changes.loc['last_year'] = _calc_change(cur_day, last_year)
+
+    pr_changes = pr_changes.transpose()
+    pr_changes.index.name = 'Code'
+    
+    return pr_changes, cur_day
+
+def set_KoreaFonts():
+    if platform.system() == 'Windows':
+        plt.rcParams['font.family'] = 'Arial Unicode MS'
+    elif platform.system() == 'Linux':
+        font_path = '/usr/share/fonts/opentype/noto/NotoSansCJK-Regular.ttc'
+        font_prop = font_manager.FontProperties(fname=font_path)
+        plt.rcParams['font.family'] = font_prop.get_name()
+        plt.rcParams['font.sans-serif'] = [font_prop.get_name()]
+    else:
+        raise Exception("Running on another OS")
+    return None
