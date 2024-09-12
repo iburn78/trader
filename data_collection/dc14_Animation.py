@@ -30,12 +30,11 @@ anim.save('bar_animation.mp4', writer=writer)
 
 #%% 
 from moviepy.editor import TextClip
+from PIL import Image, ImageDraw, ImageFont
 
-# Example Korean text
-korean_text = "맑은 고딕"
+korean_text = "한글" 
 
-# Create a TextClip with the custom font
-txt_clip = TextClip(korean_text, fontsize=70, font='Malgun-Gothic', color='Red')
+txt_clip = TextClip(korean_text, fontsize=70, font='나눔고딕', color='Red')
 
 # Set duration and position
 txt_clip = txt_clip.set_duration(10).set_position('center')
@@ -45,3 +44,6 @@ txt_clip = txt_clip.set_fps(24)
 # Export the clip
 txt_clip.write_videofile("output_with_korean_text.mp4", codec="libx264")
 
+#%%
+# import moviepy.editor as mp
+# print(mp.TextClip.list('font'))

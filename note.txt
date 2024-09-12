@@ -102,7 +102,8 @@
 
 - On Korean font setup for matplotlib: 
     * refer to https://unsolvedproblem.github.io/etc/2020/08/04/matplotlib_korean_recog.html
-    * but, no need to install nanum / instead user malgun.ttf from windows/fonts
+    * but, no need to install nanum / instead use malgun.ttf from windows/fonts
+    * malgun may have copyright issue. use nanum...
     * copy it into venv/.../matplotlib... 
     * modify (maynot be needed, if the font is installed in the system...) json file to add 'Malgun Gothic'
 
