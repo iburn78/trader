@@ -1,8 +1,7 @@
 #%%
-
-from matplotlib.font_manager import FontProperties
-font_path = r'C:\Windows\Fonts\NanumGothic.ttf'
-font_prop = FontProperties(fname=font_path)
+import sys, os
+sys.path.append(os.path.dirname(os.getcwd()))  
+from tools.tools import *
 
 def get_quarters(this_quarter, num = 5 ):
     year, quarter = this_quarter.split('_')
@@ -47,11 +46,12 @@ def draw_arrow(ax, sp, ep,
             text_size=14, 
             line_width=2, 
             arrowstyle='->'):
-
+    set_KoreaFonts()
     arrowprops = dict(arrowstyle = arrowstyle, lw=line_width, facecolor= line_color, edgecolor= line_color, shrinkA=1, shrinkB=0)
     mid_point = ((sp[0] + ep[0]) / 2, (sp[1] + ep[1]) / 2)
     ax.annotate('', xy=ep, xytext=sp, arrowprops=arrowprops)
-    ax.annotate(text, xy=mid_point, xytext=text_offset, textcoords='offset points', ha='center', va='bottom', fontproperties= font_prop, fontsize=text_size, color=text_color)
+    ax.annotate(text, xy=mid_point, xytext=text_offset, textcoords='offset points', ha='center', va='bottom', fontsize=text_size, color=text_color)
+    # ax.annotate(text, xy=mid_point, xytext=text_offset, textcoords='offset points', ha='center', va='bottom', fontproperties= font_prop, fontsize=text_size, color=text_color)
     return None
 
 def draw_text(ax, pt, text, **kwargs):

@@ -43,8 +43,9 @@ def plot_company_financial_summary(db, code, path=None):
     except Exception as e: 
         raise Exception('{} not in df_krx'.format(code))
 
-    kor_ft={'font':'Malgun Gothic'}
-    f.suptitle('Consolidated Financial Statement Summary - company: '+name+'('+code+') updated on '+date_updated, fontsize=14, fontdict=kor_ft)
+    set_KoreaFonts()
+    f.suptitle('Consolidated Financial Statement Summary - company: '+name+'('+code+') updated on '+date_updated, fontsize=14)
+    
     if path==None: 
         plt.show()
     else: 
@@ -92,8 +93,8 @@ def plot_company_financial_summary2(fr_db, pr_db, code, path=None):
     except Exception as e: 
         raise Exception('{} not in df_krx'.format(code))
 
-    kor_ft={'font':'Malgun Gothic'}
-    f.suptitle('Consolidated Financial Statement Summary - company: '+name+'('+code+') updated on '+date_updated, fontsize=14, fontdict=kor_ft)
+    set_KoreaFonts()
+    f.suptitle('Consolidated Financial Statement Summary - company: '+name+'('+code+') updated on '+date_updated, fontsize=14)
     if path==None: 
         plt.show()
     else: 
@@ -343,8 +344,8 @@ def plot_last_quarter_prices(pr_db, code, path=None):
     except Exception as e: 
         raise Exception('{} not in df_krx'.format(code))
 
-    kor_ft={'font':'Malgun Gothic'}
-    f.suptitle('General Analysis - company: '+name+'('+code+') updated on '+date_updated, fontsize=14, fontdict=kor_ft)
+    set_KoreaFonts()
+    f.suptitle('General Analysis - company: '+name+'('+code+') updated on '+date_updated, fontsize=14)
 
     if path==None: 
         plt.show()
@@ -464,12 +465,14 @@ def get_pr_changes(price_db_file):
 
 def set_KoreaFonts():
     if platform.system() == 'Windows':
-        plt.rcParams['font.family'] = 'Arial Unicode MS'
+        plt.rcParams['font.family'] = 'Noto Sans KR'
+        # plt.rcParams['font.family'] = 'NanumGothic'
     elif platform.system() == 'Linux':
-        font_path = '/usr/share/fonts/opentype/noto/NotoSansCJK-Regular.ttc'
-        font_prop = font_manager.FontProperties(fname=font_path)
-        plt.rcParams['font.family'] = font_prop.get_name()
-        plt.rcParams['font.sans-serif'] = [font_prop.get_name()]
+        plt.rcParams['font.family'] = 'Noto Sans CJK JP'
+        # font_path = '/usr/share/fonts/opentype/noto/NotoSansCJK-Regular.ttc'
+        # font_prop = font_manager.FontProperties(fname=font_path)
+        # plt.rcParams['font.family'] = font_prop.get_name()
+        # plt.rcParams['font.sans-serif'] = [font_prop.get_name()]
     else:
         raise Exception("Running on another OS")
     return None

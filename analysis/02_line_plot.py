@@ -3,6 +3,7 @@ import sys, os
 sys.path.append(os.path.dirname(os.getcwd()))  
 import FinanceDataReader as fdr
 from analysis_tools import *
+from tools.tools import *
 import matplotlib.pyplot as plt
 from matplotlib.font_manager import FontProperties
 import matplotlib.dates as mdates
@@ -20,8 +21,7 @@ ax_size = [0.05, 0.05, 0.9, 0.9]
 text_size = 25
 tick_text_size = 20
 
-font_path = r'C:\Windows\Fonts\NanumGothic.ttf'
-font_prop = FontProperties(fname=font_path)
+set_KoreaFonts()
 plt.rcParams.update({
     'axes.edgecolor': spine_color,
     'axes.labelcolor': spine_color,
@@ -39,7 +39,7 @@ ax.spines['right'].set_visible(False)
 fig.patch.set_facecolor(background_color)  # Figure background color
 ax.set_facecolor(background_color)
 
-ax.set_title('주가', fontproperties=font_prop, fontsize=text_size)
+ax.set_title('주가', fontsize=text_size)
 ax.set_xlabel('quarters', fontsize=tick_text_size)
 
 pr_raw = fdr.DataReader(code, START_DATE)['Close']
@@ -55,7 +55,7 @@ ax.plot(pr, label="price")
 
 # Set y-axis label and add unit text
 # ax.set_ylabel('Price', fontsize=tick_text_size)
-ax.text(0, 1.02, '(원)', fontproperties=font_prop, fontsize=tick_text_size, color=spine_color, ha='left', va='bottom', transform=ax.transAxes)
+ax.text(0, 1.02, '(원)', fontsize=tick_text_size, color=spine_color, ha='left', va='bottom', transform=ax.transAxes)
 
 quarters = pd.to_datetime(pr.index).to_period('Q')
 pr_av = pr.groupby(quarters).transform('mean')

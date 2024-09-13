@@ -4,17 +4,17 @@ sys.path.append(os.path.dirname(os.getcwd()))
 import FinanceDataReader as fdr
 from data_collection.dc05_CompanyHealth import single_company_data_collect
 from analysis_tools import *
+import matplotlib.pyplot as plt
 
 code = '005930'
 fh = single_company_data_collect(code)
 fh = fh.loc[(fh['fs_div']=='CFS')]
 
 #%%
-import matplotlib.pyplot as plt
-import importlib
-import analysis_tools
-importlib.reload(analysis_tools)
-from analysis_tools import *
+# import importlib
+# import analysis_tools
+# importlib.reload(analysis_tools)
+# from analysis_tools import *
 
 # target_account = 'revenue'
 target_account = 'operating_income'
@@ -35,9 +35,7 @@ background_color = '#001f3f' # deep dark blue
 figsize = (15, 5)
 ax_size = [0.05, 0.05, 0.9, 0.9]
 tick_text_size = 12
-text_size = 16
-# tick_text_size = max(int(2*num_qts), 12)
-# text_size = max(int(1.2*tick_text_size), 12)
+text_size = 18
 lim_scale_factor = 0.7  # determine axis starting point
 
 plt.rcParams.update({
@@ -77,7 +75,7 @@ ax.set_xlim(-1, len(x))
 ymax = max(int(max(y)*1.1), int(max(y)*lim_scale_factor))
 ymin = min(int(min(y)*1.1), int(min(y)*lim_scale_factor))
 ax.set_ylim(ymin, ymax)  
-ax.set_title(target_account.replace('_', ' '), fontsize = tick_text_size)
+ax.set_title(target_account.replace('_', ' '), fontsize = text_size)
 ax.set_xlabel('quarters', fontsize = tick_text_size)
 
 unit_pt = (-0.5, ymax)
