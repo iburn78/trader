@@ -9,6 +9,11 @@ code = '005930'
 fh = single_company_data_collect(code, 'CFS')
 
 #%%
+# import importlib
+# import analysis_tools
+# importlib.reload(analysis_tools)
+# from analysis_tools import *
+
 target_account = 'revenue'
 num_qts = 6
 output_file = f'plots/plot_{target_account[:4]}.png'

@@ -8,10 +8,21 @@ code = '005930'
 fh = single_company_data_collect(code, 'CFS')
 
 #%%
-target_account = 'net_income'
-qts_back = 6  # Define how many quarters back you want to start from
+# import importlib
+# import analysis_tools
+# importlib.reload(analysis_tools)
+# from analysis_tools import *
+
+# Define how many quarters back you want to start from
+qts_back = 10 
 output_file = f'plots/plot_PER.png'
 
-fhr = L4_addition(fh, target_account)
-PER = get_PER_rolling(code, fhr, qts_back, target_account) # PER should use net_income
+fhr = L4_addition(fh, 'net_income')
+PER = get_PER_rolling(code, fhr, qts_back)
 save_line_plot(PER, 'PER', output_file)
+
+
+#%% 
+
+PBR = get_PBR(code, fh, qts_back)
+save_line_plot(PBR, 'PBR', output_file)

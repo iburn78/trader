@@ -96,6 +96,7 @@ def quarterly_average_plot(ax, pr, fontsize = 12, precision=0):
         mid_point = start + (end - start) / 2  # Midpoint of the quarter
         ax.text(mid_point, avg_value + (avg_value * 0.01), f'{avg_value}', color='orange', ha='center', va='bottom', fontsize=fontsize)
 
+    ax.text(pr.index[-1], pr.values[-1], f' {pr.values[-1].round(precision)}', ha='left', va='bottom', fontsize = fontsize, color='red')
     # Iterate over each quarter and highlight even-numbered quarters
     for i, quarter in enumerate(quarters.unique()):
         if quarter.quarter % 2 == 0:  # Check if it is an even-numbered quarter
@@ -116,6 +117,7 @@ def quarterly_average_plot(ax, pr, fontsize = 12, precision=0):
     # Set tick positions and custom tick formatter
     ax.set_xticks(tick_positions)
     ax.xaxis.set_major_formatter(plt.FuncFormatter(format_quarter))
+    
 
 # adding rolling last 4 quater values
 def L4_addition(fh, target_account):
@@ -144,16 +146,27 @@ def get_prev_quarter_in_format(quarter):
 # - performace is immediately known to the market at the end of each quarter
 # - for example, when calculating PER, prices (i.e., market cap) of a quarter will be devided by the sum of previous 4 quarters value of net_income
 
-def get_PER_rolling(code, fhr, qts_back, target_account='net_income'):
+def get_PER_rolling(code, fh, qts_back):
+    target_account='net_income'
     marcap = get_last_N_quarter_price(code, qts_back)*get_shares_outstanding(code)
     PER = pd.Series(index = marcap.index)
     for i in marcap.index:
         q = pd.to_datetime(i).to_period('Q')
         pq = get_prev_quarter_in_format(q)
-        L4 = fhr.loc[fhr['account']=='L4_'+target_account, [pq]].values[0,0]
+        L4 = fh.loc[fh['account']=='L4_'+target_account, [pq]].values[0,0]
         PER[i] = marcap[i] / L4
     return PER
 
+def get_PBR(code, fh, qts_back):
+    target_account='assets'
+    marcap = get_last_N_quarter_price(code, qts_back)*get_shares_outstanding(code)
+    PBR = pd.Series(index = marcap.index)
+    for i in marcap.index:
+        q = pd.to_datetime(i).to_period('Q')
+        pq = get_prev_quarter_in_format(q)
+        divider = fh.loc[fh['account']==target_account, [pq]].values[0,0]
+        PBR[i] = marcap[i] / divider
+    return PBR
 
 
 def save_line_plot(data, type, output_file):
@@ -162,7 +175,10 @@ def save_line_plot(data, type, output_file):
         precision = 0
     elif type == 'PER':
         unit_text = '배수'
-        precision = 1
+        precision = 2
+    elif type == 'PBR': 
+        unit_text = '배수'
+        precision = 3
     else: 
         pass
         
@@ -170,8 +186,8 @@ def save_line_plot(data, type, output_file):
     background_color = '#001f3f'  # deep dark blue
     figsize = (16, 9)
     ax_size = [0.05, 0.05, 0.9, 0.9]
-    text_size = 22
-    tick_text_size = 20
+    text_size = 18
+    tick_text_size = 15
 
     set_KoreaFonts()
     plt.rcParams.update({
@@ -189,7 +205,8 @@ def save_line_plot(data, type, output_file):
     ax.spines['right'].set_visible(False)
     fig.patch.set_facecolor(background_color)  # Figure background color
     ax.set_facecolor(background_color)
-    ax.text(0, 1.02, f'({unit_text})', fontsize=tick_text_size, color=spine_color, ha='left', va='bottom', transform=ax.transAxes)
+    ax.text(0, 1.01, f'({unit_text})', fontsize=tick_text_size, color=spine_color, ha='left', va='bottom', transform=ax.transAxes)
+    ax.text(1, 1.01, f'({data.index[-1].date()})', fontsize=tick_text_size, color=spine_color, ha='right', va='bottom', transform=ax.transAxes)
     ax.set_title(type, fontsize=text_size)
     ax.set_xlabel('quarters', fontsize=tick_text_size)
 
