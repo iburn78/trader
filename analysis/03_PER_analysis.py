@@ -24,5 +24,7 @@ save_line_plot(PER, 'PER', output_file)
 
 #%% 
 
+qts_back = 10 
+output_file = f'plots/plot_PBR.png'
 PBR = get_PBR(code, fh, qts_back)
 save_line_plot(PBR, 'PBR', output_file)
