@@ -465,10 +465,11 @@ def get_pr_changes(price_db_file):
 
 def set_KoreaFonts():
     if platform.system() == 'Windows':
-        plt.rcParams['font.family'] = 'Noto Sans KR'
-        # plt.rcParams['font.family'] = 'NanumGothic'
+        # plt.rcParams['font.family'] = ['DejaVu Sans', 'Noto Sans KR', 'NanumGothic']
+        plt.rcParams['font.family'] = ['DejaVu Sans', 'NanumGothic']
+        # plt.rcParams['font.weight'] = 'bold'
     elif platform.system() == 'Linux':
-        plt.rcParams['font.family'] = 'Noto Sans CJK JP'
+        plt.rcParams['font.family'] = ['DejaVu Sans', 'Noto Sans CJK JP']
         # font_path = '/usr/share/fonts/opentype/noto/NotoSansCJK-Regular.ttc'
         # font_prop = font_manager.FontProperties(fname=font_path)
         # plt.rcParams['font.family'] = font_prop.get_name()

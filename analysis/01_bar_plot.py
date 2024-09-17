@@ -2,6 +2,7 @@
 import sys, os
 sys.path.append(os.path.dirname(os.getcwd()))  
 from data_collection.dc05_CompanyHealth import single_company_data_collect
+from tools.tools import set_KoreaFonts
 from analysis_tools import *
 import matplotlib.pyplot as plt
 
@@ -35,6 +36,7 @@ tick_text_size = 20
 text_size = 20
 lim_scale_factor = 0.7  # determine axis starting point
 
+set_KoreaFonts()
 plt.rcParams.update({
     'axes.edgecolor':spine_color,
     'axes.labelcolor':spine_color,
