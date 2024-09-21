@@ -380,14 +380,15 @@ def generate_krx_data():
     # df_krx=df_krx[~df_krx['Dept'].str.contains('관리')]   # remove companies in trouble
     df_krx.to_feather('data/df_krx.feather')
 
+    df_krx_sql = df_krx.copy()
     conn = sqlite3.connect('data/df_krx.db')
-    df_krx['ListingDate'] = df_krx['ListingDate'].dt.strftime('%Y-%m-%d')
-    df_krx.to_sql('krx_data', conn, if_exists='replace')
+    df_krx_sql['ListingDate'] = df_krx_sql['ListingDate'].dt.strftime('%Y-%m-%d')
+    df_krx_sql.to_sql('krx_data', conn, if_exists='replace')
 
     conn.commit()
     conn.close()
 
-    return None
+    return df_krx
 
 def log_print(log_file, message):
     print(message)
