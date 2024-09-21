@@ -367,7 +367,7 @@ def merge_update(A, B, index_cols=['code', 'fs_div', 'account_nm']):
             C.drop(col, axis=1, inplace=True)
     return C
 
-def generate_krx_data(): 
+def generate_krx_data(sql_db_creation=True): 
     df_krx_desc = fdr.StockListing('KRX-DESC')
     df_krx = fdr.StockListing('KRX')
 
@@ -380,13 +380,14 @@ def generate_krx_data():
     # df_krx=df_krx[~df_krx['Dept'].str.contains('관리')]   # remove companies in trouble
     df_krx.to_feather('data/df_krx.feather')
 
-    df_krx_sql = df_krx.copy()
-    conn = sqlite3.connect('data/df_krx.db')
-    df_krx_sql['ListingDate'] = df_krx_sql['ListingDate'].dt.strftime('%Y-%m-%d')
-    df_krx_sql.to_sql('krx_data', conn, if_exists='replace')
+    if sql_db_creation: 
+        df_krx_sql = df_krx.copy()
+        conn = sqlite3.connect('data/df_krx.db')
+        df_krx_sql['ListingDate'] = df_krx_sql['ListingDate'].dt.strftime('%Y-%m-%d')
+        df_krx_sql.to_sql('krx_data', conn, if_exists='replace')
 
-    conn.commit()
-    conn.close()
+        conn.commit()
+        conn.close()
 
     return df_krx
 

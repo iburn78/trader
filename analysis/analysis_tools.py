@@ -107,15 +107,23 @@ def get_unit_base_in_Korean(unit_base):
     return unit_dict.get(unit_base, 'UNIT_ERROR')
 
 
-def read_or_regen(data_file, regen_func, **kwargs):
+TIME_ALLOWANCE = 24*3600
+def read_or_regen(data_file, regen_func, time_allowance = TIME_ALLOWANCE, **kwargs):
+    if data_file == None: 
+        raise Exception('file path should be given')
+    if regen_func == generate_krx_data:
+        kwargs['sql_db_creation'] = False
     if os.path.exists(data_file):
         last_modified = os.path.getmtime(data_file)
-        if time.time() - last_modified <= 24*3600:
+        if time.time() - last_modified <= time_allowance:
             res = pd.read_feather(data_file)
         else:
             res = regen_func(**kwargs)
+            res.to_feather(data_file)
     else: 
         res = regen_func(**kwargs)
+        res.to_feather(data_file)
+
     return res
 
 def lookup_name_onetime(code): # for efficiency use this function only for onetime lookup
@@ -401,7 +409,7 @@ class Drawer:
         self = Drawer(figsize=figsize)
         self._init_fig()
 
-        corr_data_file = 'data/corr_fh.feather'
+        corr_data_file = 'data/corr_foreignholdings.feather'
         corr = read_or_regen(corr_data_file, broker.generate_corr_data)
 
         sorted_corr = corr.sort_values(period, ascending=True)[-num_to_plot:].reset_index(drop=True)
@@ -409,7 +417,7 @@ class Drawer:
         self.ax.set_ylim(-0.5, len(bars)-0.5)
         self.ax.text(1, 1.01, f'{corr.loc[0, "date"].strftime("%Y-%m-%d")}', fontsize=self.tick_text_size, color=self.label_text_color, ha='right', va='bottom', transform=self.ax.transAxes)
         self.ax.set_title(f'외국인 보유율과 주가 상관관계', fontsize=self.text_size)
-        self.ax.text(0.5, 0.05, f'(시총>{format(int(Broker.MARCAP_THRESHOLD/10**8),",")}억원, 상장>{int(Broker.IPO_YEAR_THRESHOLD)}년인 상장사 총{len(corr)}개 중 상위{min(len(corr), num_to_plot)}개 표시)', ha='center', va='center', transform=self.ax.transAxes,  # Use axes coordinates
+        self.ax.text(0.5, 0.05, f'(시총>{format(int(Broker.MARCAP_THRESHOLD/10**8),",")}억원, 상장>{int(Broker.IPO_YEAR_THRESHOLD)}년인 상장사 총{len(corr)}개 중 상관계수 상위{min(len(corr), num_to_plot)}개 표시)', ha='center', va='center', transform=self.ax.transAxes,  # Use axes coordinates
                 bbox=dict(facecolor='black', edgecolor='none', boxstyle='round,pad=0.3'),
                 fontsize=self.tick_text_size, color='white', zorder=5)  # Ensure text is on top
 
@@ -505,11 +513,11 @@ class Broker:
 
     MARCAP_THRESHOLD = 5000*10**8 
     IPO_YEAR_THRESHOLD = 3 
-    def generate_corr_data(self) :
-        krx_data_file = 'data/df_krx.feather'
+    KRX_DATA_FILE = 'data/df_krx.feather'
+    def generate_corr_data(self, krx_data_file=KRX_DATA_FILE):
         df_krx = read_or_regen(krx_data_file, generate_krx_data)
-        df_krx = df_krx.loc[df_krx['Marcap'] >= MARCAP_THRESHOLD]
-        df_krx = df_krx.loc[pd.Timestamp.today()- df_krx['ListingDate'] > pd.Timedelta(days = IPO_YEAR_THRESHOLD*(365+1))]
+        df_krx = df_krx.loc[df_krx['Marcap'] >= Broker.MARCAP_THRESHOLD]
+        df_krx = df_krx.loc[pd.Timestamp.today()- df_krx['ListingDate'] > pd.Timedelta(days = Broker.IPO_YEAR_THRESHOLD*(365+1))]
         corr = []
         for code in df_krx.index:
             corr_ = self.fetch_corr_foreign_holdings(code)
@@ -521,10 +529,7 @@ class Broker:
         corr['average'] = corr[['D', 'W', 'M']].mean(axis=1)
         corr['std']= corr[['D', 'W', 'M']].std(axis=1)
         corr.dropna(inplace=True)
-        corr.to_feather('data/corr_fh.feather')
-
         # example usage
         # corr_top = corr.loc[(corr['average'] > 0.7) & (corr['std'] < 0.1)]
         # corr_inv = corr[corr[['w', 'm']].min(axis=1) > 0.7].sort_values('d')
-
         return corr
