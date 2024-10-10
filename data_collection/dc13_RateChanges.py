@@ -20,7 +20,7 @@ for p in ['last_day', 'last_week', 'last_month', 'last_quarter', 'last_year']:
     wg.name = 'wg_'+p
     category_mean = pd.merge(category_mean, wg, on='Category', how='left')
 
-set_KoreaFonts()
+set_KoreanFonts()
 
 f, ax = plt.subplots(2, 1, figsize=(10, 12), constrained_layout=True, gridspec_kw={'height_ratios': [1, 1]})
 

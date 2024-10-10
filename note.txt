@@ -133,3 +133,9 @@
                     date_str = j['result']['output'][0]['max_work_dt']
                 else: 
                     date_str = date_req
+
+
+### 
+- Quick fix
+    from PIL import Image 
+    Image.ANTIALIAS=Image.LANCZOS

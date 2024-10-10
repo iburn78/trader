@@ -43,7 +43,7 @@ def plot_company_financial_summary(db, code, path=None):
     except Exception as e: 
         raise Exception('{} not in df_krx'.format(code))
 
-    set_KoreaFonts()
+    set_KoreanFonts()
     f.suptitle('Consolidated Financial Statement Summary - company: '+name+'('+code+') updated on '+date_updated, fontsize=14)
     
     if path==None: 
@@ -93,7 +93,7 @@ def plot_company_financial_summary2(fr_db, pr_db, code, path=None):
     except Exception as e: 
         raise Exception('{} not in df_krx'.format(code))
 
-    set_KoreaFonts()
+    set_KoreanFonts()
     f.suptitle('Consolidated Financial Statement Summary - company: '+name+'('+code+') updated on '+date_updated, fontsize=14)
     if path==None: 
         plt.show()
@@ -344,7 +344,7 @@ def plot_last_quarter_prices(pr_db, code, path=None):
     except Exception as e: 
         raise Exception('{} not in df_krx'.format(code))
 
-    set_KoreaFonts()
+    set_KoreanFonts()
     f.suptitle('General Analysis - company: '+name+'('+code+') updated on '+date_updated, fontsize=14)
 
     if path==None: 
@@ -465,7 +465,7 @@ def get_pr_changes(price_db_file):
     
     return pr_changes, cur_day
 
-def set_KoreaFonts():
+def set_KoreanFonts():
     if platform.system() == 'Windows':
         # plt.rcParams['font.family'] = ['DejaVu Sans', 'Noto Sans KR', 'NanumGothic']
         plt.rcParams['font.family'] = ['DejaVu Sans', 'NanumGothic']
