@@ -324,9 +324,11 @@ def update_main_db(log_file, main_db_file, plot_gen_control_file=None):
     
     return None
 
-def single_company_data_collect(code):
+def single_company_data_collect(code, fs_div=None):
     dart = OpenDartReader(DART_APIS[0])
     record, message = _collect_financial_reports(dart, code)
+    if fs_div != None:
+        record = record.loc[record['fs_div']==fs_div]
     return _sort_columns_financial_reports(record)
 
 #%%

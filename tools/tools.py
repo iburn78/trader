@@ -43,7 +43,7 @@ def plot_company_financial_summary(db, code, path=None):
     except Exception as e: 
         raise Exception('{} not in df_krx'.format(code))
 
-    set_KoreaFonts()
+    set_KoreanFonts()
     f.suptitle('Consolidated Financial Statement Summary - company: '+name+'('+code+') updated on '+date_updated, fontsize=14)
     
     if path==None: 
@@ -93,7 +93,7 @@ def plot_company_financial_summary2(fr_db, pr_db, code, path=None):
     except Exception as e: 
         raise Exception('{} not in df_krx'.format(code))
 
-    set_KoreaFonts()
+    set_KoreanFonts()
     f.suptitle('Consolidated Financial Statement Summary - company: '+name+'('+code+') updated on '+date_updated, fontsize=14)
     if path==None: 
         plt.show()
@@ -344,7 +344,7 @@ def plot_last_quarter_prices(pr_db, code, path=None):
     except Exception as e: 
         raise Exception('{} not in df_krx'.format(code))
 
-    set_KoreaFonts()
+    set_KoreanFonts()
     f.suptitle('General Analysis - company: '+name+'('+code+') updated on '+date_updated, fontsize=14)
 
     if path==None: 
@@ -367,7 +367,7 @@ def merge_update(A, B, index_cols=['code', 'fs_div', 'account_nm']):
             C.drop(col, axis=1, inplace=True)
     return C
 
-def generate_krx_data(): 
+def generate_krx_data(sql_db_creation=True): 
     df_krx_desc = fdr.StockListing('KRX-DESC')
     df_krx = fdr.StockListing('KRX')
 
@@ -380,14 +380,16 @@ def generate_krx_data():
     # df_krx=df_krx[~df_krx['Dept'].str.contains('관리')]   # remove companies in trouble
     df_krx.to_feather('data/df_krx.feather')
 
-    conn = sqlite3.connect('data/df_krx.db')
-    df_krx['ListingDate'] = df_krx['ListingDate'].dt.strftime('%Y-%m-%d')
-    df_krx.to_sql('krx_data', conn, if_exists='replace')
+    if sql_db_creation: 
+        df_krx_sql = df_krx.copy()
+        conn = sqlite3.connect('data/df_krx.db')
+        df_krx_sql['ListingDate'] = df_krx_sql['ListingDate'].dt.strftime('%Y-%m-%d')
+        df_krx_sql.to_sql('krx_data', conn, if_exists='replace')
 
-    conn.commit()
-    conn.close()
+        conn.commit()
+        conn.close()
 
-    return None
+    return df_krx
 
 def log_print(log_file, message):
     print(message)
@@ -463,12 +465,13 @@ def get_pr_changes(price_db_file):
     
     return pr_changes, cur_day
 
-def set_KoreaFonts():
+def set_KoreanFonts():
     if platform.system() == 'Windows':
-        plt.rcParams['font.family'] = 'Noto Sans KR'
-        # plt.rcParams['font.family'] = 'NanumGothic'
+        # plt.rcParams['font.family'] = ['DejaVu Sans', 'Noto Sans KR', 'NanumGothic']
+        plt.rcParams['font.family'] = ['DejaVu Sans', 'NanumGothic']
+        # plt.rcParams['font.weight'] = 'bold'
     elif platform.system() == 'Linux':
-        plt.rcParams['font.family'] = 'Noto Sans CJK JP'
+        plt.rcParams['font.family'] = ['DejaVu Sans', 'Noto Sans CJK JP']
         # font_path = '/usr/share/fonts/opentype/noto/NotoSansCJK-Regular.ttc'
         # font_prop = font_manager.FontProperties(fname=font_path)
         # plt.rcParams['font.family'] = font_prop.get_name()
