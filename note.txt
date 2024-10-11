@@ -139,3 +139,7 @@
 - Quick fix
     from PIL import Image 
     Image.ANTIALIAS=Image.LANCZOS
+
+- pypi
+    python -m build
+    twine upload dist/*

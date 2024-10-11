@@ -132,7 +132,7 @@ class Drawer:
         ymin = min(int(min(y)*1.1), int(min(y)*lim_scale_factor))
         self.ax.set_ylim(ymin, ymax)  
         self.ax.set_title(lang_formatter(target_account.replace('_', ' '), self.lang), fontsize = self.text_size)
-        self.ax.set_xlabel(lang_formatter('quarters', self.lang), fontsize = self.tick_text_size, color= self.label_text_color)
+        # self.ax.set_xlabel(lang_formatter('quarters', self.lang), fontsize = self.tick_text_size, color= self.label_text_color)
 
         # self.draw_text((-0.5, ymax), f'(x {format(unit, ",")} {self._get_unit_base(unit_base)})', text_size = self.tick_text_size, text_color=self.label_text_color)
         self.ax.set_ylabel(f'(x {format(unit, ",")}{" " if unit_base == 8 else ""}{self._get_unit_base(unit_base)})', fontsize = self.tick_text_size, color=self.label_text_color) 
@@ -170,7 +170,7 @@ class Drawer:
         self.ax.text(0, 1.01, f'({unit_text})', fontsize=self.tick_text_size, color=self.label_text_color, ha='right', va='bottom', transform=self.ax.transAxes)
         self.ax.text(1, 1.01, f'({data.index[-1].date()})', fontsize=self.tick_text_size, color=self.label_text_color, ha='right', va='bottom', transform=self.ax.transAxes)
         self.ax.set_title(lang_formatter(type, self.lang), fontsize=self.text_size, weight='bold')
-        self.ax.set_xlabel(lang_formatter('quarters', self.lang), fontsize=self.tick_text_size)
+        # self.ax.set_xlabel(lang_formatter('quarters', self.lang), fontsize=self.tick_text_size)
         self.ax.yaxis.set_major_formatter(ticker.FuncFormatter(precision_formatter))
 
         self.ax.plot(data)
@@ -209,8 +209,11 @@ class Drawer:
         self.ax.xaxis.set_major_formatter(plt.FuncFormatter(Drawer._format_quarter))
 
         if self._check_xtick_label_overlap(): 
-            self.ax.xaxis.set_major_locator(mdates.AutoDateLocator())  # Automatically set date ticks
-            self.ax.xaxis.set_major_formatter(mdates.AutoDateFormatter(self.ax.xaxis.get_major_locator()))  # Set date formatter
+            self.ax.xaxis.set_major_locator(mdates.YearLocator())  # Set major ticks to years
+            self.ax.xaxis.set_major_formatter(mdates.DateFormatter('%Y'))  # Format ticks to show only the year
+
+            # self.ax.xaxis.set_major_locator(mdates.AutoDateLocator())  # Automatically set date ticks
+            # self.ax.xaxis.set_major_formatter(mdates.AutoDateFormatter(self.ax.xaxis.get_major_locator()))  # Set date formatter
 
     # price to be the result from the function get_last_N_quarter_price
     def _quarterly_average_plot(self, pr, precision=0):
@@ -278,7 +281,7 @@ class Drawer:
         self.ax.set_xticklabels(fh.index.strftime('%m-%d'), rotation=45)  # Set the tick labels with rotation
         self.tax.plot(x_locs, fh['fh'], ':o', color='r', linewidth = 2, label=lang_formatter('foreigner', self.lang))
 
-        self.ax.set_xlabel('Dates', fontsize = self.tick_text_size, color=self.label_text_color)
+        # self.ax.set_xlabel('Dates', fontsize = self.tick_text_size, color=self.label_text_color)
         self.ax.set_ylabel(f'Price({lang_formatter("KRW", self.lang)})', fontsize = self.tick_text_size, color=self.label_text_color)
 
         if self.lang == 'K':

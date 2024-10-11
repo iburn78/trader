@@ -134,7 +134,7 @@ def get_PER_rolling(code, fh, qts_back):
     return PER
 
 def get_PBR(code, fh, qts_back):
-    target_account='assets'
+    target_account='equity'
     marcap = get_last_N_quarter_price(code, qts_back)*get_shares_outstanding(code)
     PBR = pd.Series(index = marcap.index)
     for i in marcap.index:

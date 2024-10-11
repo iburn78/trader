@@ -6,20 +6,29 @@ from analysis_tools import *
 from drawer import Drawer
 
 code = '005930'
+# code = '003230' #삼양식품
 kwargs = {'code': code, 'fs_div': 'CFS'}
 data_file = f'data/finhealth_{code}.feather'
 fh = read_or_regen(data_file, single_company_data_collect, **kwargs)
 
+rev = fh.loc[fh['account']=='revenue', '2024_2Q']*1.0666
+opi = fh.loc[fh['account']=='operating_income', '2024_2Q']*(1-0.1284)
+ni = fh.loc[fh['account']=='net_income', '2024_2Q']*(1-0.1284)  # approx
+fh.loc[fh['account'] == 'revenue', '2024_3Q'] = rev
+fh.loc[fh['account'] == 'operating_income', '2024_3Q'] = opi
+fh.loc[fh['account'] == 'net_income', '2024_3Q'] = ni
+fh.loc[fh['account'] == 'equity', '2024_3Q'] = fh.loc[fh['account'] == 'equity', '2024_2Q']
+
 # Define how many quarters back you want to start from
-qts_back = 32
+qts_back = 16
 
 fhr = L4_addition(fh, 'net_income') # last 4 quarters data addition, i.e., quarterly rolling
 PER = get_PER_rolling(code, fhr, qts_back)
 
 PER_Drawer = Drawer(
-    figsize = (16, 9), 
-    tick_text_size = 15,
-    text_size = 20,
+    figsize = (7, 9), 
+    tick_text_size = 20,
+    text_size = 25,
     lang = 'E'
 )
 output_file = f'plots/{code}_PER_quarterly.png'
