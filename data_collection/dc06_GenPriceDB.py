@@ -172,5 +172,5 @@ if __name__ == '__main__':
     outshare_DB_path = 'data/outshare_DB.feather'
     log_file = 'log/data_collection.log'
 
-    # gen_market_DB(price_DB_path, volume_DB_path, START_DATE, log_file=log_file)
+    gen_market_DB(price_DB_path, volume_DB_path, START_DATE, log_file=log_file)
     gen_OutstandingShares_DB(outshare_DB_path, START_DATE, log_file)

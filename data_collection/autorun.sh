@@ -38,6 +38,7 @@ if [ $? -eq 0 ]; then
     git add -A
     git commit -m "$(date '+%Y-%m-%d') upload done from linux machine"
     git push
+    git pull
 
     # Suspend system after a 60 second delay
     sleep 60
