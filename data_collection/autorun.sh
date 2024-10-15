@@ -26,25 +26,23 @@ rsync -ruv --progress -e "ssh -i $private_key" "$plot_directory" "ubuntu@tnpartn
 
 date > "$info_directory"update_info.txt
 scp -i $private_key "$info_directory"update_info.txt ubuntu@tnpartners.net:$tnp_info_directory
-
 scp -i $private_key "$log_directory"*.log ubuntu@tnpartners.net:$tnp_log_directory
 
-# Check if file transfers were successful
-if [ $? -eq 0 ]; then 
-    # Navigate to the git directory
-    cd ~/projects/trader
+# Navigate to the git directory
+cd ~/projects/trader
 
-    # Add all changes, commit with today's date, and push
-    git add -A
-    git commit -m "$(date '+%Y-%m-%d') upload done from linux machine"
-    git push
-    git pull
+# Fetch the latest changes from the remote repository
+git fetch origin
 
-    # Suspend system after a 60 second delay
-    sleep 60
-    sudo rtcwake -m mem -t $(date -d 'today 23:30:00' +%s)
-else
-    echo "Local system suspend error"
-fi
+# Merge the fetched changes, preferring 'theirs' in case of conflicts
+git merge -X theirs origin/main
 
+# push to remote
+git add -A
+git commit -m "$(date '+%Y-%m-%d') upload done from linux machine"
+git push origin main
+
+# Suspend system after a 60 second delay
+sleep 60
+sudo rtcwake -m mem -t $(date -d 'today 23:30:00' +%s)
 
