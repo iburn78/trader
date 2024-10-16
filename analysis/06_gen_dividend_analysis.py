@@ -17,16 +17,6 @@ div_DB = pd.read_feather(div_DB_path)
 
 #%% 
 
-import sys, os
-sys.path.append(os.path.dirname(os.getcwd()))  
-from data_collection.dc15_DividendDB import *
-code = '002310'
-div = get_div_single_company(code)
-div = div.dropna(subset=['record_date', 'per_sto_divi_amt', 'face_val'])
-face_val_from_div = div['face_val'][0]
-print(face_val_from_div)
-#%% 
-
 # display(fr_main)
 # display(df_krx)
 # display(price_DB)
@@ -35,46 +25,74 @@ print(face_val_from_div)
 # display(div_DB)
 
 #%% 
-import sys, os
-sys.path.append(os.path.dirname(os.getcwd()))  
-from tools.koreainvest_module import *
-import pandas as pd
+from analysis_tools import *
 
-def get_company_info(broker, code):
-    base_url = "https://openapi.koreainvestment.com:9443"
-    path = "/uapi/domestic-stock/v1/quotations/search-stock-info"
-    url = f"{base_url}/{path}"
-    headers = {
-        "content-type": "application/json; charset=utf-8",
-        "authorization": broker.access_token,
-        "appKey": broker.api_key,
-        "appSecret": broker.api_secret,
-        "tr_id": "CTPF1002R",
-        "tr_cont": "",
-    }
+def get_modifier_div(broker, code): 
+    face_val_from_div = get_div_single_company(broker, code)['face_val'][0]
+    latest_face_val = get_latest_face_value(broker, code)
+    try:  
+        modifier = float(latest_face_val)/float(face_val_from_div)
+    except: 
+        modifier = 0
+    return modifier 
 
-    params = {
-        "PRDT_TYPE_CD" : "300",
-        "PDNO" : code,
-    }
-
-    output = requests.get(url, headers=headers, params=params).json()['output']
-    return output
-
-def gen_broker():
-    with open('../../config/config.json', 'r') as json_file:
-        config = json.load(json_file)
-        key = config['key']
-        secret = config['secret']
-        acc_no = config['acc_no']
-
-    broker = KoreaInvestment(api_key=key, api_secret=secret, acc_no=acc_no, mock=False)
-    return broker
-
-def get_latest_face_value(broker, code):
-    return get_company_info(broker, code)['papr']
-
-code = '002310'
+year = 2021
+threshold = 8.5
 broker = gen_broker()
 
-print(get_latest_face_value(broker, code))
+temp = {}
+temp['div'] = div_DB.loc[year]
+temp['price'] = price_DB.loc[price_DB.index[price_DB.index.year == year].max()]
+temp['rate'] = temp['div']/temp['price']*100
+div_year = pd.DataFrame(temp).sort_values(by = 'rate', ascending=False)
+div_year = div_year.loc[div_year['rate']>threshold]
+
+div_year['modifier'] = div_year.index.map(lambda x: get_modifier_div(broker, x))
+div_year['new_rate'] = div_year['rate']*div_year['modifier']
+div_year = pd.DataFrame(div_year).sort_values(by = 'new_rate', ascending=False)
+div_year = div_year.loc[div_year['new_rate']>threshold]
+div_year['name'] = div_year.index.map(lambda x: df_krx.loc[x]['Name'])
+
+display(div_year)
+
+
+import seaborn as sns
+import matplotlib.pyplot as plt
+from tools.tools import set_KoreanFonts
+
+set_KoreanFonts()
+
+plt.figure(figsize=(8, 8))
+    
+# Create the barplot
+sns.barplot(y=div_year['name'], x=div_year['new_rate'], palette='viridis')
+    
+# Add labels with white text color and set fontsize to 20 (adjustable)
+plt.ylabel('Top Companies', color='white', fontsize=12)
+plt.xlabel(f'Dividend/Stock Price(%, {year})', color='white', fontsize=12)  # Adjust if there's an index name, or use '' for no label
+    
+# Remove the top and right spines (axes)
+ax = plt.gca()
+ax.spines['top'].set_visible(False)
+ax.spines['right'].set_visible(False)
+    
+# Set the bottom and left spines (axes) to white
+ax.spines['bottom'].set_color('white')
+ax.spines['left'].set_color('white')
+    
+# Set tick parameters to make them white and adjust the font size
+ax.tick_params(colors='white', labelsize=15)  # Adjust tick label size here
+    
+# Set the background to be transparent
+plt.gcf().set_facecolor('none')  # For figure background
+ax.set_facecolor('none')         # For axes background
+    
+# Adjust layout
+plt.tight_layout()
+    
+# Show the plot
+plt.show()
+
+
+#%% 
+div_DB['100840']

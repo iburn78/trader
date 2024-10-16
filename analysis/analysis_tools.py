@@ -184,3 +184,54 @@ def fig_num(fn):
         return time.strftime("%y%m%d_%H%M%S")
 
 
+
+def get_company_info(broker, code):
+    base_url = "https://openapi.koreainvestment.com:9443"
+    path = "/uapi/domestic-stock/v1/quotations/search-stock-info"
+    url = f"{base_url}/{path}"
+    headers = {
+        "content-type": "application/json; charset=utf-8",
+        "authorization": broker.access_token,
+        "appKey": broker.api_key,
+        "appSecret": broker.api_secret,
+        "tr_id": "CTPF1002R",
+        "tr_cont": "",
+    }
+
+    params = {
+        "PRDT_TYPE_CD" : "300",
+        "PDNO" : code,
+    }
+    
+    output = requests.get(url, headers=headers, params=params).json()
+    if 'output' in output: 
+        output = output['output']
+    else: 
+        output = None
+    return output
+
+def get_latest_face_value(broker, code):
+    res = get_company_info(broker, code)
+    if res == None:
+        return None
+    else: 
+        return res['papr']
+
+def gen_broker():
+    with open('../../config/config.json', 'r') as json_file:
+        config = json.load(json_file)
+        key = config['key']
+        secret = config['secret']
+        acc_no = config['acc_no']
+
+    broker = KoreaInvestment(api_key=key, api_secret=secret, acc_no=acc_no, mock=False)
+    return broker
+    
+
+from data_collection.dc15_DividendDB import *
+def get_div_single_company(broker, code): 
+    start_date = pd.to_datetime('2014-01-01').strftime('%Y%m%d')
+    end_date = pd.to_datetime('now').strftime('%Y%m%d')
+
+    return get_div(broker, code, start_date, end_date, detail=True).dropna(subset=['record_date', 'per_sto_divi_amt', 'face_val'])
+

@@ -61,20 +61,6 @@ def get_div(broker, code, start_date, end_date, detail=False):
 
     return res_yearly_sum
 
-def get_div_single_company(code):
-    with open('../../config/config.json', 'r') as json_file:
-        config = json.load(json_file)
-        key = config['key']
-        secret = config['secret']
-        acc_no = config['acc_no']
-
-    broker = KoreaInvestment(api_key=key, api_secret=secret, acc_no=acc_no, mock=False)
-    start_date = pd.to_datetime('2014-01-01').strftime('%Y%m%d')
-    end_date = pd.to_datetime('now').strftime('%Y%m%d')
-
-    return get_div(broker, code, start_date, end_date, detail=True) 
-
-
 def build_div_DB(codelist, div_DB_path = None):
 
     with open('../../config/config.json', 'r') as json_file:
