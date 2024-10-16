@@ -1,5 +1,12 @@
 #!/bin/bash
 
+# update from git 
+cd ~/projects/trader
+# Fetch the latest changes from the remote repository
+git fetch origin
+# Merge the fetched changes, preferring 'theirs' in case of conflicts
+git merge -X theirs origin/main
+
 # venv activation is not necessary if executed in crontab -e as in crontab -e, venv python is specified
 # source ~/projects/trader/venv/bin/activate
 
@@ -27,12 +34,7 @@ scp -i $private_key "$info_directory"df_krx.db ubuntu@tnpartners.net:$tnp_data_d
 scp -i $private_key "$andy_update_directory"andy_update.json ubuntu@tnpartners.net:$tnp_andy_update_directory
 rsync -ruv --progress -e "ssh -i $private_key" "$plot_directory" "ubuntu@tnpartners.net:$tnp_data_directory"
 
-cd ~/projects/trader
-# Fetch the latest changes from the remote repository
-git fetch origin
-# Merge the fetched changes, preferring 'theirs' in case of conflicts
-git merge -X theirs origin/main
-
+# push git
 git add -A
 git commit -m "$(date '+%Y-%m-%d') upload done from linux machine"
 git push origin main
