@@ -479,3 +479,17 @@ def set_KoreanFonts():
     else:
         raise Exception("Running on another OS")
     return None
+
+def nearest_midnight(offset=0):
+    current_time_kst = pd.Timestamp.now(tz='Asia/Seoul')
+
+    # Determine the nearest midnight date based on current time
+    if current_time_kst.hour < 12:  # If before noon
+        nearest_midnight_date = current_time_kst.normalize().date()  # Today's date
+    else:
+        nearest_midnight_date = (current_time_kst + pd.Timedelta(days=1)).normalize().date()  # Tomorrow's date
+
+    # Adjust for the offset
+    adjusted_date = nearest_midnight_date + pd.Timedelta(days=offset)
+
+    return adjusted_date
