@@ -24,6 +24,7 @@ display(div_DB)
 
 
 #%% 
+# selected companies that have ever increasing dividend
 pos_code = []
 for col in div_DB.columns:
     if all(div_DB[col][:-1].diff().dropna()>0): 

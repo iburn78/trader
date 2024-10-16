@@ -5,7 +5,7 @@ from tools.koreainvest_module import *
 import pandas as pd
 import time
 
-def get_div(broker, code, start_date, end_date): 
+def get_div(broker, code, start_date, end_date, detail=False): 
     base_url = "https://openapi.koreainvestment.com:9443"
     path = "/uapi/domestic-stock/v1/ksdinfo/dividend"
     url = f"{base_url}/{path}"
@@ -26,13 +26,13 @@ def get_div(broker, code, start_date, end_date):
         "SHT_CD" : code, 
         "HIGH_GB" : "",
     }
-
-    time.sleep(0.1)
-    print(code)
     output = requests.get(url, headers=headers, params=params).json()['output1']
     res = pd.DataFrame(output)
+    if detail: 
+        return res
     if len(res) == 0:
         return pd.DataFrame()
+
     res['record_date'] = pd.to_datetime(res['record_date'], errors='coerce')
     res['divi_pay_dt'] = pd.to_datetime(res['divi_pay_dt'], errors='coerce')
     type_casting = {'per_sto_divi_amt':'int', 'face_val': 'int', 'stk_divi_rate': 'float', 'divi_rate': 'float'}
@@ -56,7 +56,24 @@ def get_div(broker, code, start_date, end_date):
     res_yearly_sum.rename(columns={'record_date': 'year', 'per_sto_divi_amt': code}, inplace=True)
     res_yearly_sum.set_index('year', inplace=True)
 
+    time.sleep(0.05)
+    print(code)
+
     return res_yearly_sum
+
+def get_div_single_company(code):
+    with open('../../config/config.json', 'r') as json_file:
+        config = json.load(json_file)
+        key = config['key']
+        secret = config['secret']
+        acc_no = config['acc_no']
+
+    broker = KoreaInvestment(api_key=key, api_secret=secret, acc_no=acc_no, mock=False)
+    start_date = pd.to_datetime('2014-01-01').strftime('%Y%m%d')
+    end_date = pd.to_datetime('now').strftime('%Y%m%d')
+
+    return get_div(broker, code, start_date, end_date, detail=True) 
+
 
 def build_div_DB(codelist, div_DB_path = None):
 
