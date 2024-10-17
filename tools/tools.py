@@ -430,7 +430,7 @@ def get_listed():
     cl = pd.to_numeric(stock_info['Close'], errors='coerce')
     stock_info['SharesOuts'] = mc/cl.replace(0, pd.NA)
     listed = pd.merge(listed, stock_info[['Code', 'SharesOuts']], on='Code', how='left')
-
+    listed = listed.loc[listed.SharesOuts.notna()]
     if len(listed.loc[listed.SharesOuts.isna()]) > 0: 
         raise Exception('--- SharesOutstanding calculation error ---')
 

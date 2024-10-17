@@ -108,16 +108,25 @@ class Drawer:
         output_file = output_file[:-4]+'_'+self.lang+output_file[-4:]
         self.fig.savefig(output_file, format='png', transparent=True, bbox_inches='tight', pad_inches=0.2)
 
-    def save_bar_plot(self, fh, target_account, num_qts, unit, unit_base, increment_FT, lim_scale_factor, output_file):
+    def save_bar_plot(self, fh, target_account, num_qts, unit, unit_base, increment_FT, lim_scale_factor, output_file, bar_highlights = None, bar_highlights_gray = None):
         self._init_fig()
         x = get_quarters(get_last_quarter(fh), num_qts)
         xs = get_quarter_simpler_string(x)
         y = (fh.loc[fh['account'] == target_account, x]/((10**unit_base)*unit)).round(1).values.flatten()
         bars = self.ax.bar(xs,y)
 
-        bars[-1].set_color('orange')
-        for i in range(1, len(bars)+1, 4):
-            bars[-i].set_color('orange')
+        light_orange = (1.0, 0.8, 0.6)  # Lighter shade of orange
+        if bar_highlights == None: 
+            bars[-1].set_color('orange')
+            for i in range(1, len(bars)+1, 4):
+                bars[-i].set_color('orange')
+        else: 
+            for i in bar_highlights:
+                bars[-i].set_color('orange')
+
+        if bar_highlights_gray != None: 
+            for j in bar_highlights_gray:
+                bars[-j].set_color('gray')
 
         for bar in bars:
             yval = bar.get_height()
