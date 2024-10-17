@@ -17,7 +17,7 @@ python dc05_CompanyHealth.py
 python dc06_GenPriceDB.py
 python dc07_VisualizeHealth.py
 python dc13_RateChanges.py
-python dc16_AndyUpdate.py
+python dc16_DailyUpdate.py
 
 # copying plots to tnpartners.net
 plot_directory="/home/andy/projects/trader/data_collection/plots/"
@@ -31,7 +31,7 @@ tnp_andy_update_directory="/home/ubuntu/tnp/public/andy/"
 private_key="/home/andy/.tnpartners_keypair.pem"
 
 scp -i $private_key "$info_directory"df_krx.db ubuntu@tnpartners.net:$tnp_data_directory
-scp -i $private_key "$andy_update_directory"andy_update.json ubuntu@tnpartners.net:$tnp_andy_update_directory
+rsync -ruv --progress -e "ssh -i $private_key" "$andy_update_directory" "ubuntu@tnpartners.net:$tnp_andy_update_directory"
 rsync -ruv --progress -e "ssh -i $private_key" "$plot_directory" "ubuntu@tnpartners.net:$tnp_data_directory"
 
 # push git

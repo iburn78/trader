@@ -24,7 +24,7 @@ price_DB = pd.read_feather(price_DB_path)
 df_krx_path = '../data_collection/data/df_krx.feather'
 df_krx = pd.read_feather(df_krx_path)
 
-andy_update_file = 'andy/andy_update.json'
+daily_update_file = 'andy/daily_update.json'
 ud = dict()
 ud['Report date'] = str(nearest_midnight(-1))
 
@@ -80,6 +80,5 @@ ud[f'Last week changes (top {RNK_LIM})'] = nlt7
 ud['Yesterday changes'] = nl1
 ud['Last week changes'] = nl7
 
-with open(andy_update_file, mode='w') as udf:
+with open(daily_update_file, mode='w') as udf:
     json.dump(ud, udf, indent=4)
-
