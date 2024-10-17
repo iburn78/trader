@@ -1,11 +1,11 @@
 #!/bin/bash
 
-# update from git 
-cd ~/projects/trader
-# Fetch the latest changes from the remote repository
-git fetch origin
-# Merge the fetched changes, preferring 'theirs' in case of conflicts
-git merge -X theirs origin/main
+# update from git (moved to crontab run 15 mins before)
+# cd ~/projects/trader
+# # Fetch the latest changes from the remote repository
+# git fetch origin
+# # Merge the fetched changes, preferring 'theirs' in case of conflicts
+# git merge -X theirs origin/main
 
 # venv activation is not necessary if executed in crontab -e as in crontab -e, venv python is specified
 # source ~/projects/trader/venv/bin/activate
