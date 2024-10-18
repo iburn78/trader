@@ -9,12 +9,12 @@ fod = Drawer(
     tick_text_size = 15,
     text_size = 20,
     lang = 'E', 
-    # eng_name = 'SK Hynix',
-    eng_name = 'Samsung Electronics'
+    eng_name = 'SK Hynix',
+    # eng_name = 'Samsung Electronics'
 )
-code = '005930'
+# code = '005930'
 # code = '003230' #삼양식품
-# code = '000660' # 하이닉스
+code = '000660' # 하이닉스
 period = 'D'
 output_file = f'plots/{code}_corr_{period}.png'
 fo, cr = broker.fetch_foreign_ownership(code, period)
