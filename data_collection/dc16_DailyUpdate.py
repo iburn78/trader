@@ -52,20 +52,29 @@ one_week_ago = (today_raw - pd.Timedelta(weeks=1)).strftime('%Y-%m-%d')  # Forma
 today = today_raw.strftime('%Y-%m-%d')  # Format as 'YYYY-MM-DD'
 
 def get_unique_list(dart, start, end):
-    res = dart.list(start=yesterday, end=today, kind='A') # works only withn three month gap between start_day and end_day
-    res = res['stock_code'].unique()
-    res = res[res.astype(bool)].tolist()
+    res = dart.list(start=start, end=today, kind='A') # works only withn three month gap between start_day and end_day
+    if len(res) >0 :
+        res = res['stock_code'].unique()
+        res = res[res.astype(bool)].tolist()
+    else: 
+        res = []
     return res
 
 def lookup_names(codelist, df_krx):
-    return [df_krx.loc[x]['Name'] for x in codelist]
+    res = []
+    for x in codelist:
+        if x in df_krx.index:
+            res.append(df_krx.loc[x]['Name'])
+        else: 
+            res.append(f'delisted {x}')
+    return res
 
 def check_within_rank(codelist, RNK_LIM, df_krx):
-    df_sorted = df_krx.sort_values(by='Marcap', ascending=True)
-    return [i for i in codelist if i in df_krx.index[:RNK_LIM]] 
+    df_sorted = df_krx.sort_values(by='Marcap', ascending=False)
+    return [i for i in codelist if i in df_sorted.index[:RNK_LIM]] 
 
-l1 = get_unique_list(dart, one_week_ago, today)
-l7 = get_unique_list(dart, yesterday, today)
+l1 = get_unique_list(dart, yesterday, today)
+l7 = get_unique_list(dart, one_week_ago, today)
 RNK_LIM = 100
 lt1 = check_within_rank(l1, RNK_LIM, df_krx)
 lt7 = check_within_rank(l7, RNK_LIM, df_krx)
@@ -80,5 +89,5 @@ ud[f'Last week changes (top {RNK_LIM})'] = nlt7
 ud['Yesterday changes'] = nl1
 ud['Last week changes'] = nl7
 
-with open(daily_update_file, mode='w') as udf:
+with open(daily_update_file, mode='w', encoding='utf-8') as udf:
     json.dump(ud, udf, indent=4)
