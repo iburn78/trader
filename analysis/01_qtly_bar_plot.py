@@ -8,6 +8,7 @@ from drawer import Drawer
 # code = '005930'
 code = '000660' # 하이닉스
 # code = '003230' #삼양식품
+code = '207940' #삼성바이오로직스
 
 # kwargs = {'code': code, 'fs_div': 'CFS'}
 # data_file = f'data/finhealth_{code}.feather'
@@ -16,7 +17,6 @@ code = '000660' # 하이닉스
 fr_main_path = '../data_collection/data/financial_reports_main.feather'
 fr_main = pd.read_feather(fr_main_path)
 fh = fr_main.loc[(fr_main['code']==code) & (fr_main['fs_div']=='CFS')].dropna(axis=1, how='all')  # main_DB might have all na columns
-
 
 
 # adjustment part for Samsung 
