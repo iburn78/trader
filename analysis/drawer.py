@@ -15,7 +15,8 @@ class Drawer:
     def __init__(
             self, 
             spine_color = 'lightgray',
-            background_color = '#001f3f',  # deep dark blue
+            # background_color = '#001f3f',  # deep dark blue
+            background_color = 'black',  # deep dark blue
             figsize = (16, 9),
             ax_size = [0.05, 0.05, 0.9, 0.9],
             text_size = 18,
@@ -107,6 +108,10 @@ class Drawer:
     def _savefig(self, output_file): 
         output_file = output_file[:-4]+'_'+self.lang+output_file[-4:]
         self.fig.savefig(output_file, format='png', transparent=True, bbox_inches='tight', pad_inches=0.2)
+    
+    def free_plot(self):
+        self._init_fig()
+        return
 
     def save_bar_plot(self, fh, target_account, num_qts, unit, unit_base, increment_FT, lim_scale_factor, output_file, bar_highlights = None, bar_highlights_gray = None):
         self._init_fig()
@@ -137,8 +142,8 @@ class Drawer:
             self.ax.text(bar.get_x() + bar.get_width()/2, yval, f'{format(yval, ",")}', ha='center', va='bottom', fontsize = self.tick_text_size )
 
         self.ax.set_xlim(-1, len(x))
-        ymax = max(int(max(y)*1.1), int(max(y)*lim_scale_factor))
-        ymin = min(int(min(y)*1.1), int(min(y)*lim_scale_factor))
+        ymax = max(max(y)*1.1, max(y)*lim_scale_factor)
+        ymin = min(min(y)*1.1, min(y)*lim_scale_factor)
         self.ax.set_ylim(ymin, ymax)  
         self.ax.set_title(lang_formatter(target_account.replace('_', ' '), self.lang), fontsize = self.text_size)
         # self.ax.set_xlabel(lang_formatter('quarters', self.lang), fontsize = self.tick_text_size, color= self.label_text_color)

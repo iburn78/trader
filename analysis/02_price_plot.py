@@ -5,12 +5,13 @@ from drawer import Drawer
 code = '005930'
 # code = '003230' #삼양식품
 code = '000660' # 하이닉스
-qts_back = 2  # Define how many quarters back you want to start from
+code = '207940' #삼성바이오로직스
+qts_back = 17  # Define how many quarters back you want to start from
 
 pr = get_last_N_quarter_price(code, qts_back)
 
 line_drawer = Drawer(
-    figsize = (6, 6), 
+    figsize = (16, 6), 
     tick_text_size = 15,
     text_size = 20,
     lang = 'E', 

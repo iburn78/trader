@@ -173,7 +173,7 @@ def lookup_name_onetime(code, lang='K', eng_name = None): # for efficiency use t
     else: 
         if eng_name == None: 
             print('### WARNING: Please give English Name for the company ###')
-        return eng_name
+        return ""
 
 def fig_num(fn): 
     if fn > 0 and fn < 10:
