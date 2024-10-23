@@ -477,3 +477,42 @@ class Drawer:
             ani.save(output_file, writer='ffmpeg', fps=24)
 
         plt.show()
+
+    def triple_line_animate(self, x1, y1, x2, y2, x3, y3, speed=1, output_file=None):
+        self._init_fig()
+    
+        # Initialize two lines
+        line1, = self.ax.plot([], [], lw=1.5, color='yellow', label='Line 1')
+        line2, = self.ax.plot([], [], lw=1.5, color='red', label='Line 2')
+        line3, = self.ax.plot([], [], lw=1.5, color='orange', label='Line 3')
+
+        # Set axis limits
+        self.ax.set_xlim(min(min(x1), min(x2), min(x3)), max(max(x1), max(x2), max(x3)))
+        self.ax.set_ylim(min(min(y1), min(y2), min(y3)), max(max(y1), max(y2), max(y3)))
+        self.ax.margins(x=0.1, y=0.1)
+
+
+        # Initialize function for animation
+        def init():
+            line1.set_data([], [])
+            line2.set_data([], [])
+            line3.set_data([], [])
+            return line1, line2, line3 
+
+        # Function to animate each frame
+        def animate(i):
+            idx = i * speed
+            # Set x and y data for both lines
+            line1.set_data(x1[:idx+1], y1[:idx+1])
+            line2.set_data(x2[:idx+1], y2[:idx+1])
+            line3.set_data(x3[:idx+1], y3[:idx+1])
+            return line1, line2, line3 
+
+        frames = min(len(y1), len(y2), len(y3)) // speed  # Adjust the number of frames based on the shortest line
+
+        ani = animation.FuncAnimation(self.fig, animate, frames=frames, init_func=init, blit=True, interval=50)
+
+        if output_file is not None:
+            ani.save(output_file, writer='ffmpeg', fps=24)
+
+        plt.show()

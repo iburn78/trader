@@ -82,14 +82,15 @@ def get_quarter_simpler_string(quarters):
     return res
         
 START_DATE = '2014-01-01'
-def get_last_N_quarter_price(code, qts_back, start_date=START_DATE):
+def get_last_N_quarter_price(code, qts_back=None, start_date=START_DATE):
     # preparing last N quaters price data
     pr_raw = fdr.DataReader(code, start_date)['Close']
     last_date = pr_raw.index[-1]
     # Calculate the month of the current quarter
     quarter_month = ((last_date.month - 1) // 3) * 3 + 1
     # Calculate the first day of the quarter start_qts_back quarters before last_date
-    start_date = pd.Timestamp(year=last_date.year, month=quarter_month, day=1) - pd.DateOffset(months=3 * qts_back)
+    if qts_back != None: 
+        start_date = pd.Timestamp(year=last_date.year, month=quarter_month, day=1) - pd.DateOffset(months=3 * qts_back)
     return pr_raw.loc[start_date:]
 
 # adding rolling last 4 quater values
