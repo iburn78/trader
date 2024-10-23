@@ -7,6 +7,7 @@ from analysis_tools import *
 import matplotlib.pyplot as plt
 import matplotlib.dates as mdates
 import matplotlib.ticker as ticker
+import matplotlib.animation as animation
 import pandas as pd
 from broker import Broker
 
@@ -112,6 +113,44 @@ class Drawer:
     def free_plot(self):
         self._init_fig()
         return
+    
+    def bar_plot(self, x, y,  increment_FT = None, output_file = None, bar_highlights = None, bar_highlights_gray = None): 
+        self._init_fig()
+        bars = self.ax.bar(x, y)
+        light_orange = (1.0, 0.8, 0.6)  # Lighter shade of orange
+        bars[-1].set_color('orange')
+        if bar_highlights == None: 
+            for i in range(1, len(bars)+1, 4):
+                bars[-i].set_color('orange')
+        else: 
+            for i in bar_highlights:
+                bars[-i].set_color('orange')
+
+        if bar_highlights_gray != None: 
+            for j in bar_highlights_gray:
+                bars[-j].set_color('gray')
+
+        for bar in bars:
+            yval = bar.get_height()
+            if yval < 100:
+                yval = round(yval, 1)
+            else:
+                yval = int(yval)
+            self.ax.text(bar.get_x() + bar.get_width()/2, yval, f'{format(yval, ",")}', ha='center', va='bottom', fontsize = self.tick_text_size )
+
+        if increment_FT != None: 
+            if increment_FT[0] != increment_FT[1]:
+                sp = self.pt_iqbefore(increment_FT[0] , x, y)
+                ep = self.pt_iqbefore(increment_FT[1], x, y)
+                ax_size_in_px = (int(72*self.figsize[0]*self.ax_size[2]), int(72*self.figsize[1]*self.ax_size[3]))
+                bar_distance_px = int(ax_size_in_px[0]/(2+len(x)))
+                self.draw_increase(sp, ep, text_offset = (int(bar_distance_px/2)+2, -self.text_size/2), text_size = self.text_size)
+
+        if output_file != None:
+            self._savefig(output_file)
+
+        plt.show()
+        plt.close(self.fig)
 
     def save_bar_plot(self, fh, target_account, num_qts, unit, unit_base, increment_FT, lim_scale_factor, output_file, bar_highlights = None, bar_highlights_gray = None):
         self._init_fig()
@@ -380,3 +419,61 @@ class Drawer:
 
         plt.show()
         plt.close(self.fig)
+    
+    def line_animate(self, x, y, speed = 1, output_file=None):
+        self._init_fig()
+        line, = self.ax.plot([], [], lw=1.5, color='yellow')
+        self.ax.set_xlim(min(x), max(x))
+        self.ax.set_ylim(min(y), max(y))
+        def init():
+            line.set_data([], [])
+            return line,
+
+        # Function to animate each frame (two points at a time)
+        def animate(i):
+            idx = i * speed
+            # Set x-data and y-data to include more points
+            line.set_data(x[:idx+1], y[:idx+1])
+            return line,
+
+        frames = len(y) // speed  # Adjust the number of frames, since we add two points per frame
+        ani = animation.FuncAnimation(self.fig, animate, frames=frames, init_func=init, blit=True, interval=50)
+
+        if output_file != None:
+            ani.save(output_file, writer='ffmpeg', fps=24)
+
+        plt.show()
+
+    def double_line_animate(self, x1, y1, x2, y2, speed=1, output_file=None):
+        self._init_fig()
+    
+        # Initialize two lines
+        line1, = self.ax.plot([], [], lw=1.5, color='yellow', label='Line 1')
+        line2, = self.ax.plot([], [], lw=1.5, color='red', label='Line 2')
+
+        # Set axis limits
+        self.ax.set_xlim(min(min(x1), min(x2)), max(max(x1), max(x2)))
+        self.ax.set_ylim(min(min(y1), min(y2)), max(max(y1), max(y2)))
+
+        # Initialize function for animation
+        def init():
+            line1.set_data([], [])
+            line2.set_data([], [])
+            return line1, line2
+
+        # Function to animate each frame
+        def animate(i):
+            idx = i * speed
+            # Set x and y data for both lines
+            line1.set_data(x1[:idx+1], y1[:idx+1])
+            line2.set_data(x2[:idx+1], y2[:idx+1])
+            return line1, line2
+
+        frames = min(len(y1), len(y2)) // speed  # Adjust the number of frames based on the shortest line
+
+        ani = animation.FuncAnimation(self.fig, animate, frames=frames, init_func=init, blit=True, interval=50)
+
+        if output_file is not None:
+            ani.save(output_file, writer='ffmpeg', fps=24)
+
+        plt.show()

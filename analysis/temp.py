@@ -2,23 +2,23 @@
 from analysis_tools import *
 from drawer import *
 
-a = Drawer(
-    figsize = (6, 5), 
+drawer = Drawer(
+    figsize = (16, 9), 
     tick_text_size = 15,
     text_size = 20,
-    lang = 'E'
 )
 
-a.free_plot()
-x = ['2020', '2021', '2022', '2023', '2024.10']
-y = [1.94, 1.16, 1.78, 3.5, 4.36]
-bars = a.ax.bar(x, y)
-bars[-1].set_color('orange')
-for bar in bars:
-    yval = bar.get_height()
-    if yval < 100:
-        yval = round(yval, 1)
-    else:
-        yval = int(yval)
-    a.ax.text(bar.get_x() + bar.get_width()/2, yval, f'{format(yval, ",")}', ha='center', va='bottom', fontsize = a.tick_text_size )
-plt.show()
+# x = ['2020', '2021', '2022', '2023', '2024.10']
+# y = [1.94, 1.16, 1.78, 3.5, 4.36]
+# drawer.bar_plot(x,y)
+# plt.show()
+
+code = '207940' #삼성바이오로직스
+qts_back = 10  # Define how many quarters back you want to start from
+pr = get_last_N_quarter_price(code, qts_back)
+
+x = pr.index
+y = pr.values
+
+# drawer.line_animate(x,y, speed=2, output_file='plots/ani.mp4')
+drawer.double_line_animate(x,y, x, y/2, speed=1, output_file='plots/ani_long.mp4')
