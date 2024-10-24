@@ -9,6 +9,7 @@ from drawer import Drawer
 code = '000660' # 하이닉스
 # code = '003230' #삼양식품
 code = '207940' #삼성바이오로직스
+code = '005380' #현대차 
 
 kwargs = {'code': code, 'fs_div': 'CFS'}
 data_file = f'data/finhealth_{code}.feather'
@@ -26,12 +27,15 @@ fh = read_or_regen(data_file, single_company_data_collect, **kwargs)
 # fh.loc[fh['account'] == 'revenue', '2024_3Q'] = rev
 # fh.loc[fh['account'] == 'operating_income', '2024_3Q'] = opi
 # # fh.loc[fh['account'] == 'net_income', '2024_3Q'] = ni
+#%% 
+
+display(fh.loc[fh['account']=='net_income', '2021_3Q'])
 
 #%% 
 target_account = 'revenue'
 # target_account = 'operating_income'
-target_account = 'net_income'
-num_qts = 17
+# target_account = 'net_income'
+num_qts = 16
 unit = 1
 unit_base = 9 
 increment_FT= (0, 0) # from ith before to jth before 

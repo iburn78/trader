@@ -5,7 +5,7 @@ from broker import Broker
 
 broker = Broker()
 fod = Drawer(
-    figsize = (16,4), 
+    figsize = (12,12),  
     tick_text_size = 15,
     text_size = 20,
     lang = 'E', 
@@ -16,7 +16,8 @@ code = '005930'
 # code = '003230' #삼양식품
 # code = '000660' # 하이닉스
 code = '207940' #삼성바이오로직스
-period = 'D'
+code = '005380' #현대차 
+period = 'M'
 output_file = f'plots/{code}_corr_{period}.png'
 fo, cr = broker.fetch_foreign_ownership(code, period)
 fod.plot_fownership(fo, cr, period, output_file)

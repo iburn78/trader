@@ -121,8 +121,8 @@ def get_prev_n_quarter_in_format(quarter, n: int = 1):
 # - performace is immediately known to the market at the end of each quarter
 # - for example, when calculating PER, prices (i.e., market cap) of a quarter will be devided by the sum of previous 4 quarters value of net_income
 
-def get_PER_rolling(code, fh, qts_back):
-    target_account='net_income'
+def get_PER_rolling(code, fh, qts_back, target_account='net_income'):
+    # target_account='net_income'
     marcap = get_last_N_quarter_price(code, qts_back)*get_shares_outstanding(code)
     PER = pd.Series(index = marcap.index)
     for i in marcap.index:
