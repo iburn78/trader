@@ -62,13 +62,14 @@ class Drawer:
         
     def draw_arrow(self, sp, ep, 
                 text = '', 
-                line_color='white', 
-                text_color='white', 
+                line_color='yellow', 
+                text_color='orange', 
                 text_offset=(0, 0),  # in pt (1/72 inch)
                 text_size=14, 
                 line_width=2, 
+                line_style = 'solid', 
                 arrowstyle='->'):
-        arrowprops = dict(arrowstyle = arrowstyle, lw=line_width, facecolor= line_color, edgecolor= line_color, shrinkA=1, shrinkB=0)
+        arrowprops = dict(arrowstyle = arrowstyle, lw=line_width, linestyle=line_style, facecolor= line_color, edgecolor= line_color, shrinkA=1, shrinkB=0)
         # mid_point = ((sp[0] + ep[0]) / 2, (sp[1] + ep[1]) / 2)
         mid_point = (sp[0] + (ep[0]-sp[0]) / 2, sp[1] + (ep[1]-sp[1]) / 2)  # this works even for Timestamp instances
         self.ax.annotate('', xy=ep, xytext=sp, arrowprops=arrowprops)
@@ -82,14 +83,17 @@ class Drawer:
     def draw_line(self, sp, ep, **kwargs):
         self.draw_arrow(sp = sp, ep = ep, arrowstyle='-', **kwargs)
 
+    def draw_dash(self, sp, ep, **kwargs):
+        self.draw_arrow(sp = sp, ep = ep, arrowstyle='-', line_style='dashed', **kwargs)
+
     def draw_increase(self, sp, ep, ext = 1, pos = 0.85, **kwargs):
         (spx, spy) = sp
         (epx, epy) = ep
-        self.draw_line(sp, (epx+ext, spy), line_color='whitesmoke', line_width = 1, **kwargs)
-        self.draw_line(ep, (epx+ext, epy), line_color='whitesmoke', line_width = 1, **kwargs)
+        self.draw_dash(sp, (epx+ext, spy), line_color = 'gray', line_width = 1, **kwargs)
+        self.draw_dash(ep, (epx+ext, epy), line_color = 'gray', line_width = 1, **kwargs)
         if spy*epy > 0:
             increment = str(round((epy/spy-1)*100)) + '%'
-        self.draw_arrow((epx+ext*pos, spy), (epx+ext*pos, epy), text=increment, line_width=2, **kwargs )
+        self.draw_arrow((epx+ext*pos, spy), (epx+ext*pos, epy), line_color = 'gray', text=increment, line_width=2, **kwargs )
     
     def pt_iqbefore(self, ith, quarters_list, y_values): # ith = 0, this quarter (last bar)
         # quarters_list: return value of get_quarters()
