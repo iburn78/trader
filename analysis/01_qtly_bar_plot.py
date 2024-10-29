@@ -8,9 +8,9 @@ from drawer import Drawer
 # code = '005930'
 # code = '000660' # 하이닉스
 # code = '003230' #삼양식품
-# code = '207940' #삼성바이오로직스
+code = '207940' #삼성바이오로직스
 # code = '005380' #현대차 
-code = '373220' # LG에너지솔루션
+# code = '373220' # LG에너지솔루션
 
 kwargs = {'code': code, 'fs_div': 'CFS'}
 data_file = f'data/finhealth_{code}.feather'
@@ -28,6 +28,10 @@ fh = read_or_regen(data_file, single_company_data_collect, **kwargs)
 # fh.loc[fh['account'] == 'operating_income', '2024_3Q'] = opi
 # # fh.loc[fh['account'] == 'net_income', '2024_3Q'] = ni
 
+# Samsung biologics
+fh.loc[fh['account'] == 'revenue', '2024_3Q'] = 11871*(10**8)
+fh.loc[fh['account'] == 'operating_income', '2024_3Q'] = 3386*(10**8)
+
 # Hynix
 # fh.loc[fh['account'] == 'revenue', '2024_3Q'] = 175731*(10**8)
 # fh.loc[fh['account'] == 'operating_income', '2024_3Q'] = 70300*(10**8)
@@ -37,12 +41,12 @@ fh = read_or_regen(data_file, single_company_data_collect, **kwargs)
 # fh.loc[fh['account'] == 'operating_income', '2024_3Q'] = 35809*(10**8)
 
 # LG 에너지 솔루션
-fh.loc[fh['account'] == 'revenue', '2024_3Q'] = 68778*(10**8)
-fh.loc[fh['account'] == 'operating_income', '2024_3Q'] = 4483*(10**8)
+# fh.loc[fh['account'] == 'revenue', '2024_3Q'] = 68778*(10**8)
+# fh.loc[fh['account'] == 'operating_income', '2024_3Q'] = 4483*(10**8)
 
 #%% 
 target_account = 'revenue'
-target_account = 'operating_income'
+# target_account = 'operating_income'
 # target_account = 'net_income'
 num_qts = 5
 unit = 1
