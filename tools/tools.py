@@ -493,3 +493,39 @@ def nearest_midnight(offset=0):
     adjusted_date = nearest_midnight_date + pd.Timedelta(days=offset)
 
     return adjusted_date
+
+def get_krx_unique_update_list(dart, start, end):
+    res = dart.list(start=start, end=end, kind='A') # works only withn three month gap between start_day and end_day
+    if len(res) >0 :
+        res = res['stock_code'].unique()
+        res = res[res.astype(bool)].tolist()
+    else: 
+        res = []
+    return res
+
+def lookup_names_from_codelist(codelist, df_krx):
+    res = []
+    for x in codelist:
+        if x in df_krx.index:
+            res.append(df_krx.loc[x]['Name'])
+        else: 
+            res.append(f'delisted {x}')
+    return res
+
+def return_list_within_rank(codelist, RNK_LIM, df_krx):
+    df_sorted = df_krx.sort_values(by='Marcap', ascending=False)
+    return [i for i in codelist if i in df_sorted.index[:RNK_LIM]] 
+
+def code_desc(pr_DB, code, range): 
+    pr_date = pr_DB[code].index[-1]
+    price = pr_DB.loc[pr_date, [code]].values[0]
+    lb, ub = range
+    if (price >= lb) and (price <= ub):
+        status = f'price with in range ({lb}, {ub})'
+    elif lb > price: 
+        status = f'price LOWER than {lb}: need attention!'
+    elif price > ub:
+        status = f'price HIGHER than {ub}: check'
+    else:
+        status = f'error - range ({lb}, {ub})' 
+    return pr_date.strftime('%Y-%m-%d'), status

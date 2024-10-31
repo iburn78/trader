@@ -299,7 +299,8 @@ def update_main_db(log_file, main_db_file, plot_gen_control_file=None):
 
     DAYS_ALLOWANCE = 2
     start_day = main_db['date_updated'].max()
-    end_day = (datetime.datetime.today() - datetime.timedelta(days=DAYS_ALLOWANCE)).strftime('%Y-%m-%d')
+    start_day = (pd.to_datetime(start_day) - datetime.timedelta(days=7)).strftime('%Y-%m-%d')
+    end_day = datetime.datetime.today().strftime('%Y-%m-%d')
     # to manually assign the period: (up to three months)
     # start_day = '2023-11-14'
     # end_day = '2023-11-15'
@@ -331,13 +332,13 @@ def single_company_data_collect(code, fs_div=None):
         record = record.loc[record['fs_div']==fs_div]
     return _sort_columns_financial_reports(record)
 
-#%%
 
 if __name__ == '__main__': 
     log_file = 'log/data_collection.log'
     main_db_file = 'data/financial_reports_main.feather'
     plot_gen_control_file = 'data/plot_gen_control.npy'
 
-    update_main_db(log_file, main_db_file, plot_gen_control_file)
+    # update_main_db(log_file, main_db_file, plot_gen_control_file)
 
-
+    main_db = pd.read_feather(main_db_file)
+    display(main_db)
