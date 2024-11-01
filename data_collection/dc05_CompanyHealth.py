@@ -320,9 +320,9 @@ def update_main_db(log_file, main_db_file, plot_gen_control_file=None, force_ful
         for code in partial_rescan_code: 
             if code in main_db_codelist: 
                 if not main_db.loc[main_db['code']==code, tg_qt].isna().all():
-                    target_list.apepnd(code)
+                    target_list.append(code)
             else:
-                target_list.apepnd(code)
+                target_list.append(code)
         partial_rescan_code = target_list
 
     update_db = _generate_update_db(log_file, full_rescan_code, partial_rescan_code)
