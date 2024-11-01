@@ -245,7 +245,7 @@ def _generate_financial_reports_set(sector, duration, log_file, date_updated, sa
 
     return _sort_columns_financial_reports(financial_reports)
 
-def _generate_update_codelist(log_file, start_day, end_day)
+def _generate_update_codelist(log_file, start_day, end_day): 
     dart = OpenDartReader(DART_APIS[0])
     log_print(log_file, 'Updating between dates: '+ str(start_day) + ' / ' + str(end_day))
     ls = dart.list(start=start_day, end=end_day, kind='A') # works only withn three month gap between start_day and end_day
