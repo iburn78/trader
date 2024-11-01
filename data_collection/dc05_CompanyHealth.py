@@ -254,9 +254,9 @@ def _generate_update_codelist(log_file, start_day, end_day):
         return pd.DataFrame() # return an empty dataframe
 
     full_rescan_code = ls.loc[ls['report_nm'].str.contains(MODIFIED_REPORT)]['stock_code'].values
-    full_rescan_code = np.unique(full_rescan_code[full_rescan_code.astype(bool)])
+    full_rescan_code = np.unique(full_rescan_code[full_rescan_code.astype(bool)]).tolist()
     partial_rescan_code = ls.loc[~ls['report_nm'].str.contains(MODIFIED_REPORT)]['stock_code'].values
-    partial_rescan_code = np.unique(partial_rescan_code[partial_rescan_code.astype(bool)])
+    partial_rescan_code = np.unique(partial_rescan_code[partial_rescan_code.astype(bool)]).tolist()
 
     return full_rescan_code, partial_rescan_code
 
