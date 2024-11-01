@@ -305,10 +305,12 @@ def update_main_db(log_file, main_db_file, plot_gen_control_file=None, force_ful
     full_rescan_code, partial_rescan_code = _generate_update_codelist(log_file, start_day, end_day)
 
     if force_full_scan_list != None: 
-        full_rescan_code += force_full_scan_list
+        for c in force_full_scan_list:
+            full_rescan_code.append(c)
 
     if force_partial_scan_list != None: 
-        partial_rescan_code += force_partial_scan_list
+        for c in force_partial_scan_list:
+            partial_rescan_code.append(c)
 
     full_rescan_code = remove_delisted(full_rescan_code)
     partial_rescan_code = remove_delisted(partial_rescan_code)
