@@ -321,7 +321,7 @@ def update_main_db(log_file, main_db_file, plot_gen_control_file=None, force_ful
         target_list = []
         for code in partial_rescan_code: 
             if code in main_db_codelist: 
-                if not main_db.loc[main_db['code']==code, tg_qt].isna().all():
+                if main_db.loc[main_db['code']==code, tg_qt].isna().all():
                     target_list.append(code)
             else:
                 target_list.append(code)
@@ -374,9 +374,9 @@ if __name__ == '__main__':
 
     main_db = pd.read_feather(main_db_file)
     partial_rescan = null_checker(main_db, 2)
-    print('Forcing rescan of the following codes:')
-    print(partial_rescan)
-    print(len(partial_rescan))
+    log_print('Forcing rescan of the following codes:')
+    log_print(partial_rescan)
+    log_print(len(partial_rescan))
 
     update_main_db(log_file, main_db_file, plot_gen_control_file, force_partial_scan_list=partial_rescan)
 
