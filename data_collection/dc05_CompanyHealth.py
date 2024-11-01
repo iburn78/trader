@@ -374,9 +374,9 @@ if __name__ == '__main__':
 
     main_db = pd.read_feather(main_db_file)
     partial_rescan = null_checker(main_db, 2)
-    log_print('Forcing rescan of the following codes:')
-    log_print(partial_rescan)
-    log_print(len(partial_rescan))
+    print('Forcing rescan of the following codes:')
+    print(partial_rescan)
+    print(len(partial_rescan))
 
     update_main_db(log_file, main_db_file, plot_gen_control_file, force_partial_scan_list=partial_rescan)
 
