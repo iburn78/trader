@@ -374,6 +374,7 @@ if __name__ == '__main__':
     partial_rescan = null_checker(main_db, 2)
     print('Forcing rescan of the following codes:')
     print(partial_rescan)
+
     update_main_db(log_file, main_db_file, plot_gen_control_file, force_partial_scan_list=partial_rescan)
 
 
