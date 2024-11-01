@@ -260,7 +260,7 @@ def _generate_update_codelist(log_file, start_day, end_day):
 
     return full_rescan_code, partial_rescan_code
 
-def _generate_update_db(logfile, full_rescan_code, partial_rescan_code): 
+def _generate_update_db(log_file, end_day, full_rescan_code, partial_rescan_code): 
     if len(full_rescan_code) > 0 and len(partial_rescan_code) > 0:
         status = '\nFull rescan codes are {} items: \n{}'.format(len(full_rescan_code), full_rescan_code) + '\nPartial rescan codes are {} items: \n{}'.format(len(partial_rescan_code), partial_rescan_code)
         status = '-----------------------------\n'+str(datetime.datetime.today())+status
@@ -325,7 +325,7 @@ def update_main_db(log_file, main_db_file, plot_gen_control_file=None, force_ful
                 target_list.append(code)
         partial_rescan_code = target_list
 
-    update_db = _generate_update_db(log_file, full_rescan_code, partial_rescan_code)
+    update_db = _generate_update_db(log_file, end_day, full_rescan_code, partial_rescan_code)
 
     if len(update_db) > 0:
         main_db = merge_update(main_db, update_db)
@@ -374,6 +374,7 @@ if __name__ == '__main__':
     partial_rescan = null_checker(main_db, 2)
     print('Forcing rescan of the following codes:')
     print(partial_rescan)
+    print(len(partial_rescan))
 
     update_main_db(log_file, main_db_file, plot_gen_control_file, force_partial_scan_list=partial_rescan)
 
