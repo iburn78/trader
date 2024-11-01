@@ -7,6 +7,7 @@ import pandas as pd
 import sqlite3
 from matplotlib import font_manager
 import platform
+import datetime
 
 def plot_company_financial_summary(db, code, path=None):
     quarter_cols= [s for s in db.columns.values if 'Q' in s]
@@ -404,6 +405,9 @@ def prev_quarter_start(date: pd.Timestamp = None) -> pd.Timestamp:
     month = month if month > 0 else month + 12
     return pd.Timestamp(year, month, 1)
 
+def get_public_codelist():
+    listing_db = fdr.StockListing('KRX-DESC')
+    return listing_db.loc[listing_db.ListingDate.notna(), 'Code'].values
 
 def get_listed():
     listing_db = fdr.StockListing('KRX-DESC')
@@ -436,6 +440,7 @@ def get_listed():
 
     listed = listed.drop(['Representative', 'HomePage', 'Region'], axis=1)
     return listed
+
 
 def get_pr_changes(price_db_file):
     pr_db = pd.read_feather(price_db_file)
@@ -529,3 +534,10 @@ def code_desc(pr_DB, code, range):
     else:
         status = f'error - range ({lb}, {ub})' 
     return pr_date.strftime('%Y-%m-%d'), status
+
+def nth_quarter_before(n: int = 0):
+    year = datetime.datetime.now().year
+    month = datetime.datetime.now().month
+    year = year - (3*n // 12) 
+    quarter = (month-3*n-1) // 3 % 4 + 1  
+    return f'{year}_{quarter}Q'

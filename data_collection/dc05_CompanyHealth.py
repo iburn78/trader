@@ -196,7 +196,6 @@ def _generate_financial_reports_set(sector, duration, log_file, date_updated, sa
     error_trial = 0
     error_trial_limit = 10
     sleep_time = 5 # seconds
-
     for ix, code in enumerate(sector):
         retry_required = True
         while retry_required:
@@ -246,7 +245,7 @@ def _generate_financial_reports_set(sector, duration, log_file, date_updated, sa
 
     return _sort_columns_financial_reports(financial_reports)
 
-def _generate_update_db(log_file, start_day, end_day):  
+def _generate_update_codelist(log_file, start_day, end_day)
     dart = OpenDartReader(DART_APIS[0])
     log_print(log_file, 'Updating between dates: '+ str(start_day) + ' / ' + str(end_day))
     ls = dart.list(start=start_day, end=end_day, kind='A') # works only withn three month gap between start_day and end_day
@@ -259,16 +258,15 @@ def _generate_update_db(log_file, start_day, end_day):
     partial_rescan_code = ls.loc[~ls['report_nm'].str.contains(MODIFIED_REPORT)]['stock_code'].values
     partial_rescan_code = np.unique(partial_rescan_code[partial_rescan_code.astype(bool)])
 
-    # to manually assign codes (lists of codes in string)
-    # partial_rescan_code = []
-    # full_rescan_code = []
+    return full_rescan_code, partial_rescan_code
 
+def _generate_update_db(logfile, full_rescan_code, partial_rescan_code): 
     if len(full_rescan_code) > 0 and len(partial_rescan_code) > 0:
         status = '\nFull rescan codes are {} items: \n{}'.format(len(full_rescan_code), full_rescan_code) + '\nPartial rescan codes are {} items: \n{}'.format(len(partial_rescan_code), partial_rescan_code)
         status = '-----------------------------\n'+str(datetime.datetime.today())+status
         log_print(log_file, status)
         db_f = _generate_financial_reports_set(full_rescan_code, None, log_file, end_day, None)
-        db_p = _generate_financial_reports_set(partial_rescan_code, 1, log_file, end_day, None) # 1 year
+        db_p = _generate_financial_reports_set(partial_rescan_code, 2, log_file, end_day, None) # 1 year
         res = pd.concat([db_f, db_p], ignore_index=True)
     elif len(full_rescan_code) > 0 and len(partial_rescan_code) == 0: 
         status = '\nFull rescan codes are {} items: \n{}'.format(len(full_rescan_code), full_rescan_code) + '\nNo partial rescan codes'
@@ -279,14 +277,14 @@ def _generate_update_db(log_file, start_day, end_day):
         status = '\nNo full rescan codes' + '\nPartial rescan codes are {} items: \n{}'.format(len(partial_rescan_code), partial_rescan_code)
         status = '-----------------------------\n'+str(datetime.datetime.today())+status
         log_print(log_file, status)
-        res = _generate_financial_reports_set(partial_rescan_code, 1, log_file, end_day, None) # 1 year
+        res = _generate_financial_reports_set(partial_rescan_code, 2, log_file, end_day, None) # 1 year
     else:
         log_print(log_file, 'No new data to update')
         return pd.DataFrame() # return an empty dataframe
     
     return _sort_columns_financial_reports(res)
 
-def update_main_db(log_file, main_db_file, plot_gen_control_file=None):
+def update_main_db(log_file, main_db_file, plot_gen_control_file=None, force_full_scan_list=None, force_partial_scan_list=None):
     try: 
         log_print(log_file, 'Updating KRX data...')
         warnings.filterwarnings("ignore")
@@ -297,7 +295,6 @@ def update_main_db(log_file, main_db_file, plot_gen_control_file=None):
 
     main_db = pd.read_feather(main_db_file)
 
-    DAYS_ALLOWANCE = 2
     start_day = main_db['date_updated'].max()
     start_day = (pd.to_datetime(start_day) - datetime.timedelta(days=7)).strftime('%Y-%m-%d')
     end_day = datetime.datetime.today().strftime('%Y-%m-%d')
@@ -305,7 +302,30 @@ def update_main_db(log_file, main_db_file, plot_gen_control_file=None):
     # start_day = '2023-11-14'
     # end_day = '2023-11-15'
 
-    update_db = _generate_update_db(log_file, start_day, end_day)
+    full_rescan_code, partial_rescan_code = _generate_update_codelist(log_file, start_day, end_day)
+
+    if force_full_scan_list != None: 
+        full_rescan_code = force_full_scan_list
+
+    if force_partial_scan_list != None: 
+        partial_rescan_code = force_partial_scan_list
+
+    full_rescan_code = remove_delisted(full_rescan_code)
+    partial_rescan_code = remove_delisted(partial_rescan_code)
+
+    tg_qt = nth_quarter_before(1)  # last quarter 
+    main_db_codelist = main_db['code'].unique()
+    if tg_qt in main_db.columns:
+        target_list = []
+        for code in partial_rescan_code: 
+            if code in main_db_codelist: 
+                if not main_db.loc[main_db['code']==code, tg_qt].isna().all():
+                    target_list.apepnd(code)
+            else:
+                target_list.apepnd(code)
+        partial_rescan_code = target_list
+
+    update_db = _generate_update_db(log_file, full_rescan_code, partial_rescan_code)
 
     if len(update_db) > 0:
         main_db = merge_update(main_db, update_db)
@@ -332,13 +352,26 @@ def single_company_data_collect(code, fs_div=None):
         record = record.loc[record['fs_div']==fs_div]
     return _sort_columns_financial_reports(record)
 
+def remove_delisted(codelist):
+    public_codelist = get_public_codelist()
+    return [i for i in codelist if i in public_codelist]
+
+def null_checker(main_db, n):  # check if there are no data in nth quarter before from now
+    tg_qt = nth_quarter_before(n)
+    codelist = remove_delisted(main_db['code'].unique())
+    res = [] 
+    for code in codelist: 
+        if main_db.loc[main_db['code']==code, tg_qt].isna().all():
+            res.append(code)
+    return res
 
 if __name__ == '__main__': 
     log_file = 'log/data_collection.log'
     main_db_file = 'data/financial_reports_main.feather'
     plot_gen_control_file = 'data/plot_gen_control.npy'
 
-    # update_main_db(log_file, main_db_file, plot_gen_control_file)
-
     main_db = pd.read_feather(main_db_file)
-    display(main_db)
+    partial_rescan = null_checker(main_db, 2)
+    update_main_db(log_file, main_db_file, plot_gen_control_file, force_partial_scan_list=partial_rescan)
+
+
