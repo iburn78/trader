@@ -118,7 +118,7 @@ class Drawer:
         self._init_fig()
         return
     
-    def bar_plot(self, x, y,  increment_FT = None, output_file = None, bar_highlights = None, bar_highlights_gray = None): 
+    def bar_plot(self, x, y,  increment_FT = None, output_file = None, bar_highlights = None, bar_highlights_gray = None, bar_highlights_red = None): 
         self._init_fig()
         bars = self.ax.bar(x, y)
         light_orange = (1.0, 0.8, 0.6)  # Lighter shade of orange
@@ -133,6 +133,10 @@ class Drawer:
         if bar_highlights_gray != None: 
             for j in bar_highlights_gray:
                 bars[-j].set_color('gray')
+
+        if bar_highlights_red != None: 
+            for j in bar_highlights_red:
+                bars[-j].set_color('red')
 
         for bar in bars:
             yval = bar.get_height()
