@@ -121,6 +121,7 @@ class Drawer:
     def bar_plot(self, x, y,  increment_FT = None, output_file = None, bar_highlights = None, bar_highlights_gray = None, bar_highlights_red = None): 
         self._init_fig()
         bars = self.ax.bar(x, y)
+        
         light_orange = (1.0, 0.8, 0.6)  # Lighter shade of orange
         bars[-1].set_color('orange')
         if bar_highlights == None: 

@@ -8,8 +8,8 @@ from drawer import Drawer
 # code = '005930'
 # code = '000660' # 하이닉스
 # code = '003230' #삼양식품
-code = '207940' #삼성바이오로직스
-# code = '005380' #현대차 
+# code = '207940' #삼성바이오로직스
+code = '005380' #현대차 
 # code = '373220' # LG에너지솔루션
 
 # kwargs = {'code': code, 'fs_div': 'CFS'}
