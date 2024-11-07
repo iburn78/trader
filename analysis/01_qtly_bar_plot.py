@@ -77,6 +77,27 @@ bar_drawer.save_bar_plot(
     # bar_highlights=[2, 6, 10, 14, 18], 
     # bar_highlights_gray=[1]
     )
+
+#%% 
+
+x = [2019, 2020, 2021, 2022, 2023, 2024]
+y = [114, 166, 227, 280, 444, 399]
+bar_drawer = Drawer(
+    figsize = (10, 6), 
+    tick_text_size = 20,
+    text_size = 20,
+    lang = 'E',
+    )
+
+bar_drawer.bar_plot(
+    x, y, 
+    bar_highlights=[1],
+    # bar_highlights_gray=[1]
+)
+
+
+
+
 # %%
 
 qtrs = [
