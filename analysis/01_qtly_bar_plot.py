@@ -154,3 +154,31 @@ bar_drawer = Drawer(
     )
 
 bar_drawer.bar_plot(qtrs, rate, bar_highlights_red=[1])
+
+
+#%% 
+d1 = [-4.01, -3.23, -2.30, -2.28, -1.98, -1.90]
+d2 = [-3497, -421, -168, -109, -105, -97]
+d3 = [230, 580]
+
+bar_drawer = Drawer(
+    figsize = (4, 4), 
+    tick_text_size = 16,
+    text_size = 20,
+    lang = 'E',
+    )
+
+x = range(len(d1))
+# y = d1
+x = ['KOSDAQ', 'KOSPI']
+y = [580, 230]
+bar_drawer.free_plot()
+bars = bar_drawer.ax.barh(x, y)
+for index, value in enumerate(y):
+    bar_drawer.ax.text(value, index, " "+str(round(value,2)), va='center', fontsize=12, fontdict={'color':'white'})
+bars[-1].set_color('red')
+bars[-2].set_color('red')
+# bars[-3].set_color('orange')
+# bars[-4].set_color('orange')
+# bars[-5].set_color('gray')
+# bars[-6].set_color('gray')
