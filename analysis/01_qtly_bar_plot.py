@@ -182,3 +182,39 @@ bars[-2].set_color('red')
 # bars[-4].set_color('orange')
 # bars[-5].set_color('gray')
 # bars[-6].set_color('gray')
+
+#%% 
+
+x = ['11/11', '11/12', '11/13', '11/14', '11/15']
+nd = [19298.76, 19281.40, 19230.72,	19107.65, 18680.12]
+kp = [2531.66, 2482.57, 2417.08, 2418.86, 2416.86]
+usd_krw = [1396.00, 1406.00, 1407.00, 1408.50, 1401.30]
+
+bar_drawer = Drawer(
+    figsize = (12, 4), 
+    tick_text_size = 16,
+    text_size = 20,
+    lang = 'E',
+    )
+y = nd
+# y = kp
+ymax = max(max(y)*1.0, max(y)*0.98)
+ymin = min(min(y)*1.0, min(y)*0.98)
+bar_drawer.free_plot()
+bars = bar_drawer.ax.bar(x, y)
+bar_drawer.ax.set_ylim(ymin, ymax)  
+bars[-1].set_color('orange')
+bars[-2].set_color('orange')
+#%% 
+bar_drawer = Drawer(
+    figsize = (12, 4), 
+    tick_text_size = 16,
+    text_size = 20,
+    lang = 'E',
+    )
+y = usd_krw
+ymax = max(max(y)*1.01, max(y)*0.99)
+ymin = min(min(y)*1.01, min(y)*0.99)
+bar_drawer.free_plot()
+bars = bar_drawer.ax.plot(x, y, '-o')
+bar_drawer.ax.set_ylim(ymin, ymax)  
