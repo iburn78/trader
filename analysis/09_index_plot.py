@@ -59,3 +59,21 @@ line_drawer.triple_line_animate(dj.index, dj.values, sp.index, sp.values, nq.ind
 output_file = f'plots/index_other.mp4'
 line_drawer.triple_line_animate(nk.index, nk.values, hs.index, hs.values, ft.index, ft.values, output_file=output_file)
 # yellow, red, orange
+#%% 
+
+from analysis_tools import *
+from drawer import Drawer
+import yfinance as yf
+
+df_KS = fdr.DataReader('KS11')['Close'] # KOSPI 지수 (KRX)
+display(df_KS)
+#%% 
+line_drawer = Drawer(
+    figsize = (10, 10), 
+    tick_text_size = 12,
+    text_size = 20,
+    lang = 'E', 
+    eng_name = None
+)
+line_drawer.free_plot()
+line_drawer.ax.plot(df_KS[-300:], color='w')

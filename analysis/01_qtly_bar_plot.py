@@ -4,6 +4,7 @@ sys.path.append(os.path.dirname(os.getcwd()))
 from data_collection.dc05_CompanyHealth import single_company_data_collect
 from analysis_tools import *
 from drawer import Drawer
+
 #%% 
 # code = '005930'
 # code = '000660' # 하이닉스
@@ -184,6 +185,9 @@ bars[-2].set_color('red')
 # bars[-6].set_color('gray')
 
 #%% 
+
+
+
 
 x = ['11/11', '11/12', '11/13', '11/14', '11/15']
 nd = [19298.76, 19281.40, 19230.72,	19107.65, 18680.12]
