@@ -431,7 +431,7 @@ class Drawer:
     
     def line_animate(self, x, y, speed = 1, output_file=None):
         self._init_fig()
-        line, = self.ax.plot([], [], lw=1.5, color='yellow')
+        line, = self.ax.plot([], [], lw=3, color='yellow')
         self.ax.set_xlim(min(x), max(x))
         self.ax.set_ylim(min(y), max(y))
         def init():
@@ -457,12 +457,14 @@ class Drawer:
         self._init_fig()
     
         # Initialize two lines
-        line1, = self.ax.plot([], [], lw=1.5, color='yellow', label='Line 1')
-        line2, = self.ax.plot([], [], lw=1.5, color='red', label='Line 2')
+        line1, = self.ax.plot([], [], lw=3, color='white', label='Line 1')
+        line2, = self.ax.plot([], [], lw=3, color='orange', label='Line 2')
 
         # Set axis limits
         self.ax.set_xlim(min(min(x1), min(x2)), max(max(x1), max(x2)))
         self.ax.set_ylim(min(min(y1), min(y2)), max(max(y1), max(y2)))
+        self.ax.margins(x=0.1, y=0.1)
+        self.ax.xaxis.set_major_formatter(mdates.DateFormatter('%m-%d'))
 
         # Initialize function for animation
         def init():
@@ -491,15 +493,15 @@ class Drawer:
         self._init_fig()
     
         # Initialize two lines
-        line1, = self.ax.plot([], [], lw=1.5, color='yellow', label='Line 1')
-        line2, = self.ax.plot([], [], lw=1.5, color='red', label='Line 2')
-        line3, = self.ax.plot([], [], lw=1.5, color='orange', label='Line 3')
+        line1, = self.ax.plot([], [], lw=3, color='white', label='Line 1')
+        line2, = self.ax.plot([], [], lw=3, color='orange', label='Line 2')
+        line3, = self.ax.plot([], [], lw=3, color='cyan', label='Line 3')
 
         # Set axis limits
         self.ax.set_xlim(min(min(x1), min(x2), min(x3)), max(max(x1), max(x2), max(x3)))
         self.ax.set_ylim(min(min(y1), min(y2), min(y3)), max(max(y1), max(y2), max(y3)))
         self.ax.margins(x=0.1, y=0.1)
-
+        self.ax.xaxis.set_major_formatter(mdates.DateFormatter('%m-%d'))
 
         # Initialize function for animation
         def init():
