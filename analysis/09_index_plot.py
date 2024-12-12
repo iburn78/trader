@@ -3,6 +3,39 @@ from analysis_tools import *
 from drawer import Drawer
 import yfinance as yf
 
+# List of indices and their ticker symbols
+indices = {
+    "S&P 500": "^GSPC",
+    "Nikkei 225": "^N225",
+    "DAX": "^GDAXI",
+    "FTSE 100": "^FTSE",
+    "Shanghai Composite": "000001.SS"
+}
+
+# Create an empty DataFrame to store yearly closing prices
+yearly_closing_prices = pd.DataFrame()
+
+# Fetch data for each index
+for index_name, ticker in indices.items():
+    print(f"Fetching data for {index_name} ({ticker})...")
+    data = yf.download(ticker, start="2000-01-01", end="2024-12-31", interval="1d")
+    
+    # Resample to yearly closing price
+    yearly_closing = data['Close'].resample('Y').last()
+    yearly_closing_prices[index_name] = yearly_closing.values.squeeze()  # Use squeeze to ensure 1D
+
+# Format the index to show only the year
+yearly_closing_prices.index = yearly_closing.index.year
+
+# Display the yearly closing prices
+print(yearly_closing_prices)
+
+# Optionally save to CSV
+yearly_closing_prices.to_excel("yearly_closing_prices.xlsx", index_label="Year")
+
+
+
+#%% 
 # Define tickers for global indices
 indices = {
     'Dow Jones': '^DJI',       # USA
