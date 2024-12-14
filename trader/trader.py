@@ -1,6 +1,9 @@
-from tools.koreainvest_module import * 
+#%% 
+import sys
+import os
 import json
-from pprint import pprint
+sys.path.append(os.path.abspath(os.path.join(os.path.dirname(__file__), "..")))
+from tools.koreainvest_module import *
 
 class Trader():
     def __init__(self):
@@ -38,7 +41,3 @@ class Trader():
     def get_price(self, code): 
         resp = self.broker.fetch_price(code)
         return resp
-
-        
-
-
