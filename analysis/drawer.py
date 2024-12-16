@@ -12,7 +12,6 @@ import pandas as pd
 from broker import Broker
 
 class Drawer:
-
     def __init__(
             self, 
             spine_color = 'lightgray',
@@ -23,8 +22,8 @@ class Drawer:
             text_size = 18,
             tick_text_size = 15,
             label_text_color = 'gray',
-            lang = 'K',
-            eng_name = None
+            lang = 'E',
+            eng_name = None,
         ):
         self.spine_color = spine_color
         self.background_color = background_color
@@ -68,13 +67,15 @@ class Drawer:
                 text_size=14, 
                 line_width=2, 
                 line_style = 'solid', 
-                arrowstyle='->'):
+                arrowstyle='->',
+                vertical=True):
         arrowprops = dict(arrowstyle = arrowstyle, lw=line_width, linestyle=line_style, facecolor= line_color, edgecolor= line_color, shrinkA=1, shrinkB=0)
-        # mid_point = ((sp[0] + ep[0]) / 2, (sp[1] + ep[1]) / 2)
         mid_point = (sp[0] + (ep[0]-sp[0]) / 2, sp[1] + (ep[1]-sp[1]) / 2)  # this works even for Timestamp instances
         self.ax.annotate('', xy=ep, xytext=sp, arrowprops=arrowprops)
-        self.ax.annotate(text, xy=mid_point, xytext=text_offset, textcoords='offset points', ha='center', va='bottom', fontsize=text_size, color=text_color)
-        # ax.annotate(text, xy=mid_point, xytext=text_offset, textcoords='offset points', ha='center', va='bottom', fontproperties= font_prop, fontsize=text_size, color=text_color)
+        if vertical:
+            self.ax.annotate(text, xy=mid_point, xytext=text_offset, textcoords='offset points', ha='left', va='center', fontsize=text_size, color=text_color)
+        else:
+            self.ax.annotate(text, xy=mid_point, xytext=text_offset, textcoords='offset points', ha='center', va='bottom', fontsize=text_size, color=text_color)
         return None
 
     def draw_text(self, pt, text, **kwargs):
@@ -85,20 +86,73 @@ class Drawer:
 
     def draw_dash(self, sp, ep, **kwargs):
         self.draw_arrow(sp = sp, ep = ep, arrowstyle='-', line_style='dashed', **kwargs)
-
-    def draw_increase(self, sp, ep, ext = 1, pos = 0.85, **kwargs):
+    
+    # si: start_index, ei: end_index (counted backward, zero based)
+    def draw_increase_bar(self, si, ei, bars):
+        sp = self.pt_ith_before(si, bars)
+        ep = self.pt_ith_before(ei, bars)
         (spx, spy) = sp
         (epx, epy) = ep
-        self.draw_dash(sp, (epx+ext, spy), line_color = 'gray', line_width = 1, **kwargs)
-        self.draw_dash(ep, (epx+ext, epy), line_color = 'gray', line_width = 1, **kwargs)
-        if spy*epy > 0:
+        ext = bars[-1].get_x() - bars[-2].get_x() - bars[-2].get_width()/2
+        lp = bars[-1].get_x() + bars[-1].get_width()/2
+        ext = min(self.ax.get_xlim()[1]-lp, ext)
+        pos = (ext - bars[-1].get_width()/2)/2 + bars[-1].get_width()/2
+        x_to_pt = (self.ax.transData.transform((1, 0))[0] - self.ax.transData.transform((0, 0))[0])*72/self.fig.dpi
+        text_offest = (ext - bars[-1].get_width()/2)/2*x_to_pt
+        self.draw_dash(sp, (epx+ext, spy), line_color = 'gray', line_width = 1.5)
+        self.draw_dash(ep, (epx+ext, epy), line_color = 'gray', line_width = 1.5)
+        if spy != 0:
             increment = str(round((epy/spy-1)*100)) + '%'
-        self.draw_arrow((epx+ext*pos, spy), (epx+ext*pos, epy), line_color = 'gray', text=increment, line_width=2, **kwargs )
-    
-    def pt_iqbefore(self, ith, quarters_list, y_values): # ith = 0, this quarter (last bar)
-        # quarters_list: return value of get_quarters()
-        x_idx = len(quarters_list)-ith-1
-        return (x_idx, y_values[x_idx])
+        else: 
+            increment = 'N/A'
+        kwargs = {
+            'line_color': 'orange', 
+            'text': increment, 
+            'line_width': 2, 
+            'text_offset': (text_offest, 0), 
+            'text_size': self.text_size,
+        }
+        self.draw_arrow((epx+pos, spy), (epx+pos, epy), **kwargs)
+
+    # si: start_index, ei: end_index (counted from top, zero based)
+    def draw_increase_barh(self, si, ei, bars):
+        sp = self.pt_ith_before_hor(si, bars)
+        ep = self.pt_ith_before_hor(ei, bars)
+        (spx, spy) = sp
+        (epx, epy) = ep
+        ext = bars[-1].get_y() - bars[-2].get_y() - bars[-2].get_height()/2
+        lp = bars[-1].get_y() + bars[-1].get_height()/2
+        ext = min(self.ax.get_ylim()[1]-lp, ext)
+        pos = (ext - bars[-1].get_height()/2)/2 + bars[-1].get_height()/2
+        y_to_pt = (self.ax.transData.transform((0, 1))[1] - self.ax.transData.transform((0, 0))[1])*72/self.fig.dpi
+        text_offest = (ext - bars[-1].get_height()/2)/2*y_to_pt
+        self.draw_dash(sp, (spx, epy+ext), line_color = 'gray', line_width = 1.5)
+        self.draw_dash(ep, (epx, epy+ext), line_color = 'gray', line_width = 1.5)
+        if spy != 0:
+            increment = str(round((epx/spx-1)*100)) + '%'
+        else: 
+            increment = 'N/A'
+        kwargs = {
+            'line_color': 'orange', 
+            'text': increment, 
+            'line_width': 2, 
+            'text_offset': (0, text_offest), 
+            'text_size': self.text_size,
+            'vertical': False,
+        }
+        self.draw_arrow((spx, epy+pos), (epx, epy+pos), **kwargs)
+
+    def pt_ith_before(self, ith, bars): # ith = 0, last bar
+        idx = len(bars)-ith-1
+        x_pos = bars[idx].get_x() + bars[idx].get_width()/2
+        y_pos = bars[idx].get_height()
+        return (x_pos, y_pos)
+
+    def pt_ith_before_hor(self, ith, bars): # ith = 0, last bar
+        idx = len(bars)-ith-1
+        x_pos = bars[idx].get_width()
+        y_pos = bars[idx].get_y() + bars[idx].get_height()/2
+        return (x_pos, y_pos)
 
     def _format_quarter(x, pos=None): 
         date = mdates.num2date(x)
@@ -111,74 +165,123 @@ class Drawer:
         return unit_dict.get(unit_base, 'UNIT_ERROR')
     
     def _savefig(self, output_file): 
-        output_file = output_file[:-4]+'_'+self.lang+output_file[-4:]
+        # output_file = output_file[:-4]+'_'+self.lang+output_file[-4:]
         self.fig.savefig(output_file, format='png', transparent=True, bbox_inches='tight', pad_inches=0.2)
     
     def free_plot(self):
         self._init_fig()
         return
-    
-    def bar_plot(self, x, y,  increment_FT = None, output_file = None, bar_highlights = None, bar_highlights_gray = None, bar_highlights_red = None): 
+
+    def bar_plot(self, x, y,  increment_FT = None, save=True, output_file = None, highlights = None, highlights_gray = None, highlights_red = None, scale=False, scale_factor=0.7): 
         self._init_fig()
         bars = self.ax.bar(x, y)
         
-        light_orange = (1.0, 0.8, 0.6)  # Lighter shade of orange
-        bars[-1].set_color('orange')
-        if bar_highlights == None: 
-            for i in range(1, len(bars)+1, 4):
-                bars[-i].set_color('orange')
-        else: 
-            for i in bar_highlights:
+        if highlights != None: 
+            for i in highlights:
                 bars[-i].set_color('orange')
 
-        if bar_highlights_gray != None: 
-            for j in bar_highlights_gray:
+        if highlights_gray != None: 
+            for j in highlights_gray:
                 bars[-j].set_color('gray')
 
-        if bar_highlights_red != None: 
-            for j in bar_highlights_red:
+        if highlights_red != None: 
+            for j in highlights_red:
                 bars[-j].set_color('red')
 
         for bar in bars:
-            yval = bar.get_height()
-            if yval < 100:
-                yval = round(yval, 1)
-            else:
-                yval = int(yval)
-            self.ax.text(bar.get_x() + bar.get_width()/2, yval, f'{format(yval, ",")}', ha='center', va='bottom', fontsize = self.tick_text_size )
+            yval = precision_adjust(bar.get_height())
+            self.ax.text(bar.get_x() + bar.get_width()/2, bar.get_height(), f'{format(yval, ",")}', ha='center', va='bottom', fontsize = self.tick_text_size)
 
         if increment_FT != None: 
             if increment_FT[0] != increment_FT[1]:
-                sp = self.pt_iqbefore(increment_FT[0] , x, y)
-                ep = self.pt_iqbefore(increment_FT[1], x, y)
-                ax_size_in_px = (int(72*self.figsize[0]*self.ax_size[2]), int(72*self.figsize[1]*self.ax_size[3]))
-                bar_distance_px = int(ax_size_in_px[0]/(2+len(x)))
-                self.draw_increase(sp, ep, text_offset = (int(bar_distance_px/2)+2, -self.text_size/2), text_size = self.text_size)
+                self.draw_increase_bar(increment_FT[0], increment_FT[1], bars)
 
-        if output_file != None:
-            self._savefig(output_file)
+        if scale: 
+            if all(i>0 for i in y):
+                ymin = min(y)*scale_factor
+                ymax = self.ax.get_ylim()[1]
+                self.ax.set_ylim(ymin, ymax)  
+            elif all(i<0 for i in y): 
+                ymin = self.ax.get_ylim()[0]
+                ymax = max(y)*scale_factor
+                self.ax.set_ylim(ymin, ymax)  
+            else: 
+                pass
+
+        if save:  
+            if output_file != None:
+                self._savefig(output_file)
+            else: 
+                self._savefig(gen_output_plot_path_file('bar'))
+
+        plt.show()
+        plt.close(self.fig)
+    
+    def barh_plot(self, items, values, increment_FT = None, save=True, output_file = None, highlights = None, highlights_gray = None, highlights_red = None, scale=False, scale_factor=0.7, display_x_axis = True): 
+        self._init_fig()
+        bars = self.ax.barh(items, values)
+        self.ax.xaxis.set_visible(display_x_axis)
+        self.ax.spines['bottom'].set_visible(display_x_axis)
+        
+        if highlights != None: 
+            for i in highlights:
+                bars[-i].set_color('orange')
+
+        if highlights_gray != None: 
+            for j in highlights_gray:
+                bars[-j].set_color('gray')
+
+        if highlights_red != None: 
+            for j in highlights_red:
+                bars[-j].set_color('red')
+
+        for bar in bars:
+            val = precision_adjust(bar.get_width())
+            self.ax.text(bar.get_width(), bar.get_y()+bar.get_height()/2, f'{format(val, ",")}', va='center', fontsize = self.tick_text_size)
+
+        if increment_FT != None: 
+            if increment_FT[0] != increment_FT[1]:
+                self.draw_increase_barh(increment_FT[0], increment_FT[1], bars)
+
+        if scale: 
+            if all(i>0 for i in values):
+                val_min = min(values)*scale_factor
+                val_max = self.ax.get_xlim()[1]
+                self.ax.set_xlim(val_min, val_max)  
+            elif all(i<0 for i in values): 
+                val_min = self.ax.get_xlim()[0]
+                val_max = max(values)*scale_factor
+                self.ax.set_xlim(val_min, val_max)  
+            else: 
+                pass
+
+        if save:  
+            if output_file != None:
+                self._savefig(output_file)
+            else: 
+                self._savefig(gen_output_plot_path_file('barh'))
 
         plt.show()
         plt.close(self.fig)
 
-    def save_bar_plot(self, fh, target_account, num_qts, unit, unit_base, increment_FT, lim_scale_factor, output_file, bar_highlights = None, bar_highlights_gray = None):
+    def quarterly_bar_plot(self, code, target_account, num_qts, unit_base, unit=1, increment_FT=(0,0), lim_scale_factor=0.7, save=True, output_file=None, highlights = None, highlights_gray = None):
         self._init_fig()
+        fh = retrieve_quarterly_data_code(code)
         x = get_quarters(get_last_quarter(fh), num_qts)
         xs = get_quarter_simpler_string(x)
         y = (fh.loc[fh['account'] == target_account, x]/((10**unit_base)*unit)).round(1).values.flatten()
         bars = self.ax.bar(xs,y)
 
-        light_orange = (1.0, 0.8, 0.6)  # Lighter shade of orange
-        if bar_highlights == None: 
+        if highlights == None: 
             bars[-1].set_color('orange')
             for i in range(1, len(bars)+1, 4):
                 bars[-i].set_color('orange')
         else: 
-            for i in bar_highlights:
+            for i in highlights:
                 bars[-i].set_color('orange')
 
-        if bar_highlights_gray != None: 
-            for j in bar_highlights_gray:
+        if highlights_gray != None: 
+            for j in highlights_gray:
                 bars[-j].set_color('gray')
 
         for bar in bars:
@@ -187,11 +290,11 @@ class Drawer:
                 yval = round(yval, 1)
             else:
                 yval = int(yval)
-            self.ax.text(bar.get_x() + bar.get_width()/2, yval, f'{format(yval, ",")}', ha='center', va='bottom', fontsize = self.tick_text_size )
+            self.ax.text(bar.get_x() + bar.get_width()/2, yval, f'{format(yval, ",")}', ha='center', va='bottom', fontsize = self.tick_text_size)
 
         self.ax.set_xlim(-1, len(x))
-        ymax = max(max(y)*1.1, max(y)*lim_scale_factor)
-        ymin = min(min(y)*1.1, min(y)*lim_scale_factor)
+        ymax = max(max(y)*1.07, max(y)*lim_scale_factor)
+        ymin = min(min(y)*1.07, min(y)*lim_scale_factor)
         self.ax.set_ylim(ymin, ymax)  
         self.ax.set_title(lang_formatter(target_account.replace('_', ' '), self.lang), fontsize = self.text_size)
         # self.ax.set_xlabel(lang_formatter('quarters', self.lang), fontsize = self.tick_text_size, color= self.label_text_color)
@@ -200,19 +303,36 @@ class Drawer:
         self.ax.set_ylabel(f'(x {format(unit, ",")}{" " if unit_base == 8 else ""}{self._get_unit_base(unit_base)})', fontsize = self.tick_text_size, color=self.label_text_color) 
         self.ax.yaxis.set_major_formatter(ticker.FuncFormatter(precision_formatter))
 
-        if increment_FT[0] != increment_FT[1]:
-            sp = self.pt_iqbefore(increment_FT[0] , x, y)
-            ep = self.pt_iqbefore(increment_FT[1], x, y)
-            ax_size_in_px = (int(72*self.figsize[0]*self.ax_size[2]), int(72*self.figsize[1]*self.ax_size[3]))
-            bar_distance_px = int(ax_size_in_px[0]/(2+len(x)))
-            self.draw_increase(sp, ep, text_offset = (int(bar_distance_px/2)+2, -self.text_size/2), text_size = self.text_size)
+        if increment_FT != None:
+            if increment_FT[0] != increment_FT[1]:
+                self.draw_increase_bar(increment_FT[0], increment_FT[1], bars)
 
-        if output_file != None:
-            self._savefig(output_file)
+        if save:  
+            if output_file != None:
+                self._savefig(output_file)
+            else: 
+                self._savefig(gen_output_plot_path_file(code+'_'+target_account))
         plt.show()
         plt.close(self.fig)
 
-    def save_line_plot(self, data, type, subgraph, output_file):  
+    # just the same as plot function but with Drawer format and grid
+    # multi line possible as in the original plot
+    # d.line_plot(x1, y1, '-o', x2, y2, ':^')
+    def line_plot(self, *args, save=True, output_file=None): 
+        self._init_fig()
+        self.ax.grid(True, color='gray', linestyle='--', linewidth=0.5)
+        self.ax.plot(*args)
+
+        if save:  
+            if output_file != None:
+                self._savefig(output_file)
+            else: 
+                self._savefig(gen_output_plot_path_file('line'))
+
+        plt.show()
+        plt.close(self.fig)
+
+    def quarterly_line_plot(self, code, qtrs_back, type, subgraph = 'average', save = True, output_file = None):  
         self._init_fig()
 
         # type : price, PER, PBR
@@ -220,12 +340,22 @@ class Drawer:
         if type == 'price':
             unit_text = lang_formatter('KRW', self.lang)
             precision = 0
+            data = get_last_N_quarter_price(code, qtrs_back)
         elif type == 'PER':
             unit_text = lang_formatter('multiple', self.lang)
             precision = 2
+            fh = retrieve_quarterly_data_code(code)
+            fhr = L4_addition(fh, 'net_income') # last 4 quarters data addition, i.e., quarterly rolling
+            PER = get_PER_rolling(code, fhr, qtrs_back)
+            # fhr = L4_addition(fh, 'operating_income') # last 4 quarters data addition, i.e., quarterly rolling
+            # PER = get_PER_rolling(code, fhr, qts_back, target_account='operating_income')
+            data = PER
         elif type == 'PBR': 
             unit_text = lang_formatter('multiple', self.lang)
             precision = 3
+            fh = retrieve_quarterly_data_code(code)
+            PBR = get_PBR(code, fh, qtrs_back)
+            data = PBR
         else: 
             pass
 
@@ -242,8 +372,11 @@ class Drawer:
             self._average_plot(data, precision=precision)
         else:
             pass
-        if output_file != None:
-            self._savefig(output_file)
+        if save: 
+            if output_file != None:
+                self._savefig(output_file)
+            else: 
+                self._savefig(gen_output_plot_path_file(code+'_'+type, subgraph))
         plt.show()
         plt.close(self.fig)
 
@@ -331,17 +464,17 @@ class Drawer:
         self.draw_arrow((pr.index[arrow_point], avg_value*(1.0)), (pr.index[arrow_point], lower_value), '-1$\sigma$', text_offset=(17, 0))
         self._price_xtick_formatter(pr)
 
-    def plot_fownership(self, fh, cr, period='D', output_file=None):
+    def plot_fownership(self, fo, cr, period='D', save=True, output_file=None):
         # period = 'D', 'W', 'M'
         self._init_fig()
         self._init_twinx()
 
         self.ax.grid(True, color='gray', linestyle='--', linewidth=0.5)
-        x_locs = range(len(fh))
-        self.ax.plot(x_locs, fh['price'], '-o', linewidth = 1, label = 'price')
+        x_locs = range(len(fo))
+        self.ax.plot(x_locs, fo['price'], '-o', linewidth = 1, label = 'price')
         self.ax.set_xticks(x_locs)  # Set the tick locations
-        self.ax.set_xticklabels(fh.index.strftime('%m-%d'), rotation=45)  # Set the tick labels with rotation
-        self.tax.plot(x_locs, fh['fh'], ':o', color='r', linewidth = 2, label=lang_formatter('foreigner', self.lang))
+        self.ax.set_xticklabels(fo.index.strftime('%m-%d'), rotation=45)  # Set the tick labels with rotation
+        self.tax.plot(x_locs, fo['fo'], ':o', color='r', linewidth = 2, label=lang_formatter('foreigner', self.lang))
 
         # self.ax.set_xlabel('Dates', fontsize = self.tick_text_size, color=self.label_text_color)
         self.ax.set_ylabel(f'Price({lang_formatter("KRW", self.lang)})', fontsize = self.tick_text_size, color=self.label_text_color)
@@ -363,19 +496,22 @@ class Drawer:
         self.tax.legend(framealpha=0, loc='upper right', fontsize = self.tick_text_size, bbox_to_anchor=(1,1.05))
         self.ax.yaxis.set_major_formatter(ticker.FuncFormatter(lambda x, _: f'{int(x):,}'))
 
-        name = lookup_name_onetime(fh['code'].iloc[0], self.lang, self.eng_name)
-        self.ax.text(0.5, 0.07, f'{name} {corr_text}: '+str(round(cr, 2)), ha='center', va='center', transform=self.ax.transAxes,  # Use axes coordinates
+        name = lookup_name_onetime(fo['code'].iloc[0], self.lang, self.eng_name)
+        if name != '': name += ' '
+        self.ax.text(0.5, 0.07, f'{name}{corr_text}: '+str(round(cr, 2)), ha='center', va='center', transform=self.ax.transAxes,  # Use axes coordinates
                 bbox=dict(facecolor='green', edgecolor='none', boxstyle='round,pad=0.3'),
                 fontsize=self.text_size, color='white', zorder=5)  # Ensure text is on top
-        if output_file != None:
-            self._savefig(output_file)
+        if save: 
+            if output_file != None:
+                self._savefig(output_file)
+            else: 
+                self._savefig(gen_output_plot_path_file(f'frn_ownership_{fo["code"].iloc[0]}_{period}'))
 
         plt.show()
         plt.close(self.fig)
 
-    def corr_comparison_plot(self, broker, code, period = 'M', figsize = (10,10), num_to_plot = 500, text_label = True, output_file=None):
-        threshold = 45
-        self.figsize = figsize
+    def corr_comparison_plot(self, broker, code, period = 'M', num_to_plot = 400, text_label = True, save=True, output_file=None, scale=True, scale_factor=0.85):
+        y_tick_removal_threshold = 45
         self._init_fig()
 
         corr_data_file = 'data/corr_fownership.feather'
@@ -383,10 +519,10 @@ class Drawer:
 
         if self.lang == 'K':
             title = '외국인 보유율과 주가 상관관계'
-            text_01 = f'(시총>{format(int(Broker.MARCAP_THRESHOLD/10**8),",")}억원, 상장>{int(Broker.IPO_YEAR_THRESHOLD)}년인 상장사 총{len(corr)}개 중 상관계수 상위{min(len(corr), num_to_plot)}개 표시)'
+            text_01 = f'시총>{format(int(Broker.MARCAP_THRESHOLD/10**8),",")}억원, 상장>{int(Broker.IPO_YEAR_THRESHOLD)}년인 상장사 총{len(corr)}개 중 상관계수 상위{min(len(corr), num_to_plot)}개 표시'
         else: 
             title = 'Share price and Foreign ownership correlation '
-            text_01 = f'(total {len(corr)} public companies are Market Cap > {format(int(Broker.MARCAP_THRESHOLD/10**9),",")}B KRW, IPO > {int(Broker.IPO_YEAR_THRESHOLD)} years, and top {min(len(corr), num_to_plot)} are shown)'
+            text_01 = f'total {len(corr)} public companies are Market Cap > {format(int(Broker.MARCAP_THRESHOLD/10**9),",")}B KRW, IPO > {int(Broker.IPO_YEAR_THRESHOLD)} years, and top {min(len(corr), num_to_plot)} are shown'
 
         sorted_corr = corr.sort_values(period, ascending=True)[-num_to_plot:].reset_index(drop=True)
         bars = self.ax.barh(sorted_corr['name'], sorted_corr[period])
@@ -395,8 +531,8 @@ class Drawer:
         self.ax.set_title(title, fontsize=self.text_size)
         if text_label: 
             self.ax.text(0.5, 0.05, text_01, ha='center', va='center', transform=self.ax.transAxes,  # Use axes coordinates
-                    bbox=dict(facecolor='black', edgecolor='none', boxstyle='round,pad=0.3'),
-                    fontsize=self.tick_text_size, color='white', zorder=5)  # Ensure text is on top
+                    bbox=dict(facecolor='orange', edgecolor='none', boxstyle='round,pad=0.3'),
+                    fontsize=self.tick_text_size, color='black', zorder=5)  # Ensure text is on top
 
         target_row = sorted_corr.loc[sorted_corr['code'] == code]
         if len(target_row)>0:
@@ -404,27 +540,44 @@ class Drawer:
             bars[code_loc].set_color('orange')
 
             target_name = lookup_name_onetime(code, self.lang, self.eng_name)
+            if target_name != '': target_name += ': ' 
             target_ranking = len(sorted_corr) - code_loc
             if self.lang == 'K':
-                text_02 = f'{target_name}: {target_ranking}번째로 상관관계 높음'
+                text_02 = f'{target_name}{target_ranking}번째로 상관관계 높음'
             else: 
-                text_02 = f'{target_name}: top {target_ranking} in terms of correlation coefficient'
+                text_02 = f'{target_name}Top {target_ranking} in terms of correlation coefficient'
 
             if text_label:
                 self.ax.text(0.5, 0.10, text_02, ha='center', va='center', transform=self.ax.transAxes,  # Use axes coordinates
                         bbox=dict(facecolor='green', edgecolor='none', boxstyle='round,pad=0.3'),
                         fontsize=self.text_size, color='white', zorder=5)  # Ensure text is on top
 
-        if num_to_plot > threshold: 
+        if num_to_plot > y_tick_removal_threshold: 
             self.ax.set_yticks([]) 
         else: 
             for bar in bars:
-                xval = round(bar.get_width(), 2)
+                xval = bar.get_width()
+                xval_p = round(xval, 2)
                 yval = bar.get_y() + bar.get_height()/2
-                self.ax.text(xval*1.01, yval, f'{xval}', va='center', ha='left', fontsize = self.tick_text_size )
+                self.ax.text(xval*1.005, yval, f'{xval_p}', va='center', ha='left', fontsize = self.tick_text_size )
 
-        if output_file != None:
-            self._savefig(output_file)
+        if scale: 
+            if all(i>0 for i in sorted_corr[period]):
+                val_min = min(sorted_corr[period])*scale_factor
+                val_max = self.ax.get_xlim()[1]
+                self.ax.set_xlim(val_min, val_max)  
+            elif all(i<0 for i in sorted_corr[period]): 
+                val_min = self.ax.get_xlim()[0]
+                val_max = max(sorted_corr[period])*scale_factor
+                self.ax.set_xlim(val_min, val_max)  
+            else: 
+                pass
+
+        if save: 
+            if output_file != None:
+                self._savefig(output_file)
+            else: 
+                self._savefig(gen_output_plot_path_file(f'frn_ownership_compare_{code}_{period}'))
 
         plt.show()
         plt.close(self.fig)
@@ -527,3 +680,16 @@ class Drawer:
             ani.save(output_file, writer='ffmpeg', fps=24)
 
         plt.show()
+
+if __name__ == '__main__': 
+    x = ['11/11', '11/12', '11/13', '11/14', '11/15']
+    y = [19298.76, 19281.40, 19230.72,	19107.65, 18680.12]
+
+    d = Drawer(
+        figsize = (12, 4), 
+        tick_text_size = 16,
+        text_size = 20,
+        )
+
+    y2 = [i*1.1 for i in y]
+    pass

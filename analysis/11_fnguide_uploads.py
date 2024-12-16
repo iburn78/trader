@@ -1,4 +1,7 @@
 #%%
+# -----------------------------------------------------------------------------
+# Utilizing the fn-guide quartelry result data - downloaded as Excel (ProResult.xlsx)
+# -----------------------------------------------------------------------------
 import pandas as pd
 
 df = pd.read_excel("data/ProResult.xlsx", header=[0, 1])
@@ -31,13 +34,12 @@ df = df[~mask]
 up= df.loc[df['Issue']=='컨상']
 down= df.loc[df['Issue']=='컨하']
 print(df.groupby("Issue")['Name'].count())
+
 #%% 
 up = up.sort_values(by='Q3OP', ascending=False)
 down = down.sort_values(by='Q3OP', ascending=False)
 display(up)
 display(down)
-# %%
-display(df)
 
 #%%
 print(len(df))
@@ -52,22 +54,19 @@ oppn = opp.loc[opp['Y3OP_inc_n']<=0]
 print(len(oppp), len(oppn))
 
 #%% 
-
 oppx = df.groupby('Y3OP_inc')['Name'].count().sort_values()[-100:]
 display(oppx)
+
 #%% 
-
-
-
-
 up_sector = up.groupby('Sector')['Name'].count()
 display(up_sector)
 down_sector = down.groupby('Sector')['Name'].count()
 display(down_sector)
 
 #%% 
-a = pd.merge(up_sector, down_sector, left_index=True, right_index=True, how='outer', suffixes=('_up', '_down'))
-display(a)
+temp = pd.merge(up_sector, down_sector, left_index=True, right_index=True, how='outer', suffixes=('_up', '_down'))
+display(temp)
+
 #%% 
 up['Y3OP_inc_n'] = pd.to_numeric(opp['Y3OP_inc'], errors='coerce')
 down['Y3OP_inc_n'] = pd.to_numeric(opp['Y3OP_inc'], errors='coerce')

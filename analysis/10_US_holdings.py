@@ -1,9 +1,10 @@
 #%% 
 import pandas as pd
 import yfinance as yf
-import json
-
+# -----------------------------------------------------------------------------
 # Example DataFrame with Tickers (you'll need to map CUSIPs to tickers)
+# get foreign holdings (US) from 금융투자협회 (or 증권거래소 etc as Excel file format)
+# -----------------------------------------------------------------------------
 datafile = 'data/usholdings.xlsx'
 df = pd.read_excel(datafile)
 
@@ -60,7 +61,6 @@ tickers = [
     "PFE"  # PFIZER INC
 ]
 
-
 MarCaps = []
 for ticker in tickers:
     stock = yf.Ticker(ticker)
@@ -68,19 +68,17 @@ for ticker in tickers:
 
 df['Ticker'] = tickers
 df['MarCap'] = MarCaps
-#%% 
 df['MarCap'] = pd.to_numeric(df['MarCap'], errors='coerce')
 df['보관금액'] = pd.to_numeric(df['보관금액'], errors='coerce')
 df['KR'] = df['보관금액']/df['MarCap']*100
 dfx  = df.dropna()
-
 dfx['name'] = df['종목명'].apply(lambda x: x.split(' ')[0])
-display(dfx)
 
-#%% 
-from analysis_tools import *
+
+#%% --------------------------------------
+# Drawing part
+# ----------------------------------------
 from drawer import Drawer
-
 
 bar_drawer = Drawer(
     figsize = (6, 10), 
@@ -89,66 +87,15 @@ bar_drawer = Drawer(
     lang = 'E',
     )
 bar_drawer.free_plot()
+
 x = dfx['Ticker'].iloc[::-1]
 y = dfx['보관금액'].iloc[::-1]/10**8
+
 bars = bar_drawer.ax.barh(x,y)
 for index, value in enumerate(y):
     bar_drawer.ax.text(value, index, " "+str(round(value)), va='center', fontsize=12)
+
 bars[-1].set_color('orange')
 bars[-2].set_color('gray')
 bars[-3].set_color('gray')
-#%% 
 
-datafile = 'data/usholdings_1104.xlsx'
-df_1104 = pd.read_excel(datafile)
-
-display(df_1104)
-#%% 
-print(df["종목명"][:8].equals(df_1104["종목명"][:8])) 
-dfc = pd.DataFrame()
-dfc['a'] = df['종목명']
-dfc['b'] = df_1104['종목명']
-display(df_1104)
-#%% 
-# display(dfx)
-
-bar_drawer2 = Drawer(
-    figsize = (6, 10), 
-    tick_text_size = 14,
-    text_size = 20,
-    lang = 'E',
-    )
-bar_drawer2.free_plot()
-x = dfx['Ticker'].iloc[::-1]
-y = dfx['KR'].iloc[::-1]
-bars = bar_drawer2.ax.barh(x,y)
-for index, value in enumerate(y):
-    bar_drawer2.ax.text(value, index, " "+str(round(value,1)), va='center', fontsize=12)
-bars[-1].set_color('orange')
-bars[-2].set_color('orange')
-bars[-6].set_color('red')
-bars[-10].set_color('orange')
-bars[-15].set_color('orange')
-bars[-20].set_color('gray')
-bars[-21].set_color('gray')
-bars[-22].set_color('gray')
-bars[-23].set_color('gray')
-bars[-24].set_color('gray')
-bars[-25].set_color('gray')
-
-#%% 
-
-
-datafile = 'data/reserve.xlsx'
-df_res = pd.read_excel(datafile)
-df_res['date'] = pd.to_datetime(df_res['date'], format='%Y/%m/%d')
-df_res['value'] = df_res['value'].apply(lambda x: int(x.replace(",", "")))/1000000
-display(df_res)
-drawer3 = Drawer(
-    figsize = (9, 5), 
-    tick_text_size = 10,
-    text_size = 20,
-    lang = 'E',
-)
-drawer3.free_plot()
-drawer3.ax.plot(df_res['date'], df_res['value'])

@@ -38,17 +38,51 @@ CONVERT_DICT = {
     'quarters': 'Quarters'
 }
 
+QUARTER_START_DATE = '2014-01-01'
+RR_TIME_ALLOWANCE = 24*3600
+FR_MAIN_PATH = '../data_collection/data/financial_reports_main.feather'
+OUTPUT_PLOTS_DIR = 'plots/'
+KRX_DATA_FILE = 'data/df_krx.feather'
+
+def retrieve_quarterly_data_code(code, fr_main_path=FR_MAIN_PATH):
+    fr_main = pd.read_feather(fr_main_path)
+    fh = fr_main.loc[(fr_main['code']==code) & (fr_main['fs_div']=='CFS')].dropna(axis=1, how='all')  # main_DB might have all na columns
+    return fh
+
+def gen_output_plot_path_file(prefix=None, suffix=None, filetype='.png', plot_dir = OUTPUT_PLOTS_DIR): 
+    fname = ''
+    if prefix: fname += prefix +'_'
+    fname += pd.Timestamp.now().strftime("%y%m%d_%H%M%S_%f")[:-3]
+    if suffix: fname += '_' + suffix
+    fname += filetype
+    return os.path.join(plot_dir, fname)
+
 def lang_formatter(text, lang = 'K'):
     if lang == 'K':
         return LANG_DICT.get(text, text)
     else:
         return CONVERT_DICT.get(text, text)
-    
+
+# this fucntion is used in ticker.FuncFormatter(), not for general use
 def precision_formatter(x, _): 
     if x < 10:
         return round(x,1)
     else: 
         return f'{int(x):,}'
+
+def precision_adjust(x):
+    if abs(x) < 0.1:
+        x = round(x, 5)
+    elif abs(x) < 1: 
+        x = round(x, 3)
+    elif abs(x) < 100: 
+        x = round(x, 1)
+    else:
+        try:
+            x = int(x)
+        except:  # in case Inf or NaN
+            x = 0
+    return x    
 
 def get_last_quarter(fh):
     return max([q for q in fh.columns if 'Q' in q])
@@ -80,9 +114,8 @@ def get_quarter_simpler_string(quarters):
         qt = q[5:6]
         res.append(quarter_format(ys,qt))
     return res
-        
-START_DATE = '2014-01-01'
-def get_last_N_quarter_price(code, qts_back=None, start_date=START_DATE):
+
+def get_last_N_quarter_price(code, qts_back=None, start_date=QUARTER_START_DATE):
     # preparing last N quaters price data
     pr_raw = fdr.DataReader(code, start_date)['Close']
     last_date = pr_raw.index[-1]
@@ -115,12 +148,10 @@ def get_shares_outstanding(code):
 def get_prev_n_quarter_in_format(quarter, n: int = 1):
     return str(quarter-n).replace('Q','_') + 'Q'
 
-
 # preparing PER 
 # assumption: 
 # - performace is immediately known to the market at the end of each quarter
 # - for example, when calculating PER, prices (i.e., market cap) of a quarter will be devided by the sum of previous 4 quarters value of net_income
-
 def get_PER_rolling(code, fh, qts_back, target_account='net_income'):
     # target_account='net_income'
     marcap = get_last_N_quarter_price(code, qts_back)*get_shares_outstanding(code)
@@ -147,8 +178,7 @@ def get_PBR(code, fh, qts_back):
         PBR[i] = marcap[i] / divider
     return PBR
 
-TIME_ALLOWANCE = 24*3600
-def read_or_regen(data_file, regen_func, time_allowance = TIME_ALLOWANCE, **kwargs):
+def read_or_regen(data_file, regen_func, time_allowance = RR_TIME_ALLOWANCE, **kwargs):
     if data_file == None: 
         raise Exception('file path should be given')
     if regen_func == generate_krx_data:
@@ -163,28 +193,17 @@ def read_or_regen(data_file, regen_func, time_allowance = TIME_ALLOWANCE, **kwar
     else: 
         res = regen_func(**kwargs)
         res.to_feather(data_file)
-
     return res
 
 def lookup_name_onetime(code, lang='K', eng_name = None): # for efficiency use this function only for onetime lookup
     if lang == 'K': 
-        krx_data_file = 'data/df_krx.feather'
+        krx_data_file = KRX_DATA_FILE 
         df_krx = read_or_regen(krx_data_file, generate_krx_data)
         return df_krx.loc[code, 'Name']
     else: 
         if eng_name == None: 
             print('### WARNING: Please give English Name for the company ###')
         return ""
-
-def fig_num(fn): 
-    if fn > 0 and fn < 10:
-        return '0'+str(fn)
-    elif fn>=10: 
-        return str(fn)
-    else: 
-        return time.strftime("%y%m%d_%H%M%S")
-
-
 
 def get_company_info(broker, code):
     base_url = "https://openapi.koreainvestment.com:9443"
@@ -218,21 +237,78 @@ def get_latest_face_value(broker, code):
     else: 
         return res['papr']
 
-def gen_broker():
-    with open('../../config/config.json', 'r') as json_file:
-        config = json.load(json_file)
-        key = config['key']
-        secret = config['secret']
-        acc_no = config['acc_no']
+# use Broker class instead
+# def gen_broker():
+#     with open('../../config/config.json', 'r') as json_file:
+#         config = json.load(json_file)
+#         key = config['key']
+#         secret = config['secret']
+#         acc_no = config['acc_no']
 
-    broker = KoreaInvestment(api_key=key, api_secret=secret, acc_no=acc_no, mock=False)
-    return broker
+#     broker = KoreaInvestment(api_key=key, api_secret=secret, acc_no=acc_no, mock=False)
+#     return broker
     
-
 from data_collection.dc15_DividendDB import *
 def get_div_single_company(broker, code): 
     start_date = pd.to_datetime('2014-01-01').strftime('%Y%m%d')
     end_date = pd.to_datetime('now').strftime('%Y%m%d')
 
     return get_div(broker, code, start_date, end_date, detail=True).dropna(subset=['record_date', 'per_sto_divi_amt', 'face_val'])
+
+# give days in the format of 'yyyymmdd'
+# day_from = '20240101'
+# day_to = '20240201'
+def market_change_analysis(day_from, day_to):
+    y_close = fdr.StockListing('KRX', day_from)
+    t_close = fdr.StockListing('KRX', day_to)
+
+    y_close_KOSPI = y_close.loc[y_close['Market']=='KOSPI']
+    t_close_KOSPI = t_close.loc[t_close['Market']=='KOSPI']
+
+    y_close_KOSDAQ = y_close.loc[y_close['Market']=='KOSDAQ']
+    t_close_KOSDAQ = t_close.loc[t_close['Market']=='KOSDAQ']
+
+    res_KOSPI = t_close_KOSPI.merge(y_close_KOSPI[['Code', 'Close', 'Volume', 'Marcap']], on='Code', how='inner', suffixes=('_t', '_y'))
+    res_KOSPI = res_KOSPI[['Code', 'Name', 'Marcap_y', 'Marcap_t', 'Close_y', 'Close_t', 'Volume_y', 'Volume_t']]
+    type_cast = ['Marcap_y', 'Marcap_t', 'Close_y', 'Close_t', 'Volume_y', 'Volume_t']
+    res_KOSPI[type_cast] = res_KOSPI[type_cast].apply(pd.to_numeric, errors='coerce').fillna(0).astype('int64')
+    res_KOSDAQ = t_close_KOSDAQ.merge(y_close_KOSDAQ[['Code', 'Close', 'Volume', 'Marcap']], on='Code', how='inner', suffixes=('_t', '_y'))
+    res_KOSDAQ = res_KOSDAQ[['Code', 'Name', 'Marcap_y', 'Marcap_t', 'Close_y', 'Close_t', 'Volume_y', 'Volume_t']]
+    res_KOSDAQ[type_cast] = res_KOSDAQ[type_cast].apply(pd.to_numeric, errors='coerce').fillna(0).astype('int64')
+    res_KOSPI = res_KOSPI.sort_values(by='Marcap_y', ascending=False).reset_index(drop=True)
+    res_KOSDAQ = res_KOSDAQ.sort_values(by='Marcap_y', ascending=False).reset_index(drop=True)
+
+    return res_KOSPI, res_KOSDAQ
+
+def market_grouping_anaysis(target_DB):
+    # --------------------------------------------------
+    # add logic or modify logic of grouping
+    # --------------------------------------------------
+    target_DB['Group'] = target_DB.index // 100
+    # --------------------------------------------------
+    # Marcap changes and Volume(price weighted averaged) chages are calculated per group
+    # --------------------------------------------------
+    group_mc = target_DB.groupby('Group').apply(
+        lambda group: (group['Marcap_t'].sum()-group['Marcap_y'].sum())/group['Marcap_y'].sum()*100
+    ).reset_index(name='Measure')
+
+    group_vol = target_DB.groupby('Group').apply(
+        lambda g: ((g['Volume_t'] * g['Close_t']).sum() - (g['Volume_y'] * g['Close_y']).sum()) / (g['Volume_y'] * g['Close_y']).sum() * 100
+    ).reset_index(name='Measure')
+
+    return target_DB, group_mc, group_vol
+
+# target_DB = res_KOSPI or res_KOSDAQ from market_change_analysis function
+def top_movements_in_group(target_DB, select_by_marcap = 100):
+    target_group = target_DB.iloc[:select_by_marcap]
+    target_group['p_increase'] = (target_group['Marcap_t']-target_group['Marcap_y'])/target_group['Marcap_y']*100
+    target_group['v_increase'] = (target_group['Volume_t']*target_group['Close_t']-target_group['Volume_y']*target_group['Close_y'])/(target_group['Volume_y']*target_group['Close_y'])*100
+    target_group1=target_group.sort_values(by='p_increase', ascending=False)
+    price_top_performers = target_group1.iloc[:20]
+    price_bottom_performers = target_group1.iloc[-20:]
+    target_group2=target_group.sort_values(by='v_increase', ascending=False)
+    volume_top_performers = target_group2.iloc[:20]
+    volume_bottom_performers = target_group2.iloc[-20:]
+    return price_top_performers, price_bottom_performers, volume_top_performers, volume_bottom_performers
+
 

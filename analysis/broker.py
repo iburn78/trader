@@ -27,6 +27,7 @@ class Broker:
                 broker = KoreaInvestment(api_key=key, api_secret=secret, acc_no=acc_no, mock=False)
         return broker
 
+    # returns last 30 datapoints according to defined period
     def fetch_foreign_ownership(self, code, period): 
         # period: D, W, M
         base_url = "https://openapi.koreainvestment.com:9443"
@@ -55,20 +56,20 @@ class Broker:
             return None
 
         type_casting = {'stck_clpr':'int', 'hts_frgn_ehrt':'float'}
-        res = res.astype(type_casting).rename(columns={'stck_bsop_date':'date', 'stck_clpr':'price', 'hts_frgn_ehrt':'fh'})
-        foreign_ownership = res.set_index('date')[['price', 'fh']].sort_index()
+        res = res.astype(type_casting).rename(columns={'stck_bsop_date':'date', 'stck_clpr':'price', 'hts_frgn_ehrt':'fo'})
+        foreign_ownership = res.set_index('date')[['price', 'fo']].sort_index()
         foreign_ownership.index = pd.to_datetime(foreign_ownership.index, format='%Y%m%d')
         foreign_ownership['code'] = code
-        corr = foreign_ownership['price'].corr(foreign_ownership['fh'])
+        corr = foreign_ownership['price'].corr(foreign_ownership['fo'])
 
         return foreign_ownership, corr
 
 
     def fetch_corr_foreign_ownership(self, code): 
-        fh_d, cr_d = self.fetch_foreign_ownership(code, 'D')
-        fh_w, cr_w = self.fetch_foreign_ownership(code, 'W')
-        fh_m, cr_m = self.fetch_foreign_ownership(code, 'M')
-        date = fh_d.index.values[-1]
+        fo_d, cr_d = self.fetch_foreign_ownership(code, 'D')
+        fo_w, cr_w = self.fetch_foreign_ownership(code, 'W')
+        fo_m, cr_m = self.fetch_foreign_ownership(code, 'M')
+        date = fo_d.index.values[-1]
 
         return [code, cr_d, cr_w, cr_m, date]
 

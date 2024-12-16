@@ -16,7 +16,6 @@ class Trader():
             secret_mock = config['secret_mock']
             acc_no_mock = config['acc_no_mock']
 
-        # self.broker = mojito.KoreaInvestment(api_key=key, api_secret=secret, acc_no=acc_no, mock=False)
         self.broker = KoreaInvestment(api_key=key_mock, api_secret=secret_mock, acc_no=acc_no_mock, mock=True)
     
     def buy_at_price(self, code, price, quantity):

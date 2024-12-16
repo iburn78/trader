@@ -1,33 +1,29 @@
 #%% 
-from analysis_tools import *
+# -------------------------------------------------------
+# Foreign Ownership plots
+# -------------------------------------------------------
+
 from drawer import Drawer
 from broker import Broker
 
+code = '005930'
 broker = Broker()
 fod = Drawer(
-    figsize = (7,10),  
+    figsize = (10,10),  
     tick_text_size = 12,
-    text_size = 20,
+    text_size = 15,
     lang = 'E', 
-    # eng_name = 'SK Hynix',
     # eng_name = 'Samsung Electronics'
 )
-code = '005930'
-# code = '003230' #삼양식품
-# code = '000660' # 하이닉스
-# code = '207940' #삼성바이오로직스
-# code = '005380' #현대차 
-period = 'D'
-output_file = f'plots/{code}_corr_{period}.png'
+
+period = 'W'
 fo, cr = broker.fetch_foreign_ownership(code, period)
-fod.plot_fownership(fo, cr, period, output_file)
+fod.plot_fownership(fo, cr, period) 
 
 #%% 
-num_to_plot = 400
-figsize = (16,16)
 period = 'D' 
-output_file = 'plots/plot_corr_comparison.png'
-fod.corr_comparison_plot(broker, code, period, figsize, num_to_plot, False, output_file)
+num_to_plot = 40
+fod.corr_comparison_plot(broker, code, period, num_to_plot)
 
 
 
