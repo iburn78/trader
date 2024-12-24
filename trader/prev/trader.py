@@ -2,12 +2,13 @@
 import sys
 import os
 import json
+from pprint import pprint
 sys.path.append(os.path.abspath(os.path.join(os.path.dirname(__file__), "..")))
 from tools.koreainvest_module import *
 
 class Trader():
     def __init__(self):
-        with open('../config/config.json', 'r') as json_file:
+        with open('../../config/config.json', 'r') as json_file:
             config = json.load(json_file)
             key = config['key']
             secret = config['secret']
@@ -17,9 +18,10 @@ class Trader():
             acc_no_mock = config['acc_no_mock']
 
         self.broker = KoreaInvestment(api_key=key_mock, api_secret=secret_mock, acc_no=acc_no_mock, mock=True)
+        # self.broker = KoreaInvestment(api_key=key, api_secret=secret, acc_no=acc_no, mock=False)
     
     def buy_at_price(self, code, price, quantity):
-        resp = broker.create_limit_buy_order(
+        resp = self.broker.create_limit_buy_order(
             symbol=code, 
             price=price,
             quantity=quantity
@@ -40,3 +42,17 @@ class Trader():
     def get_price(self, code): 
         resp = self.broker.fetch_price(code)
         return resp
+
+
+trader = Trader()
+r = trader.check_balance()
+pprint(r)
+#%% 
+# trader.buy_at_price('005930', 54500, 10)
+#%% 
+r = trader.check_balance()
+pprint(r)
+#%% 
+pprint(trader.get_price('005930'))
+trader.buy_at_price('005930', 54500, 10)
+#%% 
