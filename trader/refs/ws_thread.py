@@ -3,7 +3,7 @@ import websocket   # sync - use with Thread, easier to control but not scalable,
 from threading import Thread
 
 import kis_auth as ka 
-import kis_domstk as kb
+import kis_domstk as kd
 import yaml
 
 import os
@@ -371,12 +371,12 @@ def _dparse(data):
             # tr_plans[stock_code].eval()         # RSI(Relative Strength Index, 상대강도지수)라는 주가 지표 계산 활용
 
             # [국내주식] 주문/계좌 > 매수가능조회 (종목번호 5자리 + 종목단가) REST API
-            rt_data = kb.get_inquire_psbl_order(pdno=stock_code, ord_unpr=val1)
+            rt_data = kd.get_inquire_psbl_order(pdno=stock_code, ord_unpr=val1)
             ord_qty = rt_data.loc[0, 'nrcvb_buy_qty']  # nrcvb_buy_qty	미수없는매수수량
             print("[미수없는매수주문가능수량!] : " + ord_qty)
 
             # 국내주식 현금 주문
-            # rt_data = kb.get_order_cash(ord_dv="buy",itm_no=stock_code, qty=ord_qty, unpr=val1)
+            # rt_data = kd.get_order_cash(ord_dv="buy",itm_no=stock_code, qty=ord_qty, unpr=val1)
             # print(rt_data.KRX_FWDG_ORD_ORGNO + "+" + rt_data.ODNO + "+" + rt_data.ORD_TMD) # 주문접수조직번호+주문접수번호+주문시각
             # print("매수/매도 조건 주문 : " + val1)
 

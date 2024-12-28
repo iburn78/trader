@@ -7,16 +7,9 @@ Created on Wed Feb 15 16:57:19 2023
 @author: Administrator
 """
 import kis_auth as kis
-
-import time, copy
-import requests
-import json
-
+import time
 import pandas as pd
-
-from collections import namedtuple
 from datetime import datetime
-from pandas import DataFrame
 
 #====|  [국내주식] 주문/계좌  |===========================================================================================================================
 

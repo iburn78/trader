@@ -243,7 +243,9 @@ def get_sys_resp(data, _iv, _ekey):
 async def read_pickle(reader):
     # Read the 4-byte header to determine data length (upto 4GB)
     header = await reader.read(4)
-    if len(header) < 4:
+    if len(header) == 0:
+        return None
+    if len(header) < 4 and len(header) > 0:
         raise asyncio.IncompleteReadError(partial=header, expected=4)
     length = struct.unpack("!I", header)[0]
     # Read the exact amount of data as specified by the header
@@ -254,9 +256,10 @@ async def read_pickle(reader):
 
 async def write_pickle(writer, data):
     # Serialize the response data
-    serialized_data = pickle.dumps(data)
+    serialized_data = pickle.dumps(data)  # data should not be None
     # Create a 4-byte header indicating the length of the serialized data (upto 4GB)
     header = struct.pack("!I", len(serialized_data))
     # Write the header and serialized data to the writer
     writer.write(header + serialized_data)
     await writer.drain()
+
