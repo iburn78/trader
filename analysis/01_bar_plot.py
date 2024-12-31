@@ -1,16 +1,16 @@
 #%%
 from drawer import Drawer
 
-#%% 
 # ----------------------------------------------------------------
 # Quarterly Bar Plot
 # ----------------------------------------------------------------
 
 code = '005930'
+code = '068270'
 
-# target_account = 'revenue'
+target_account = 'revenue'
 # target_account = 'operating_income'
-target_account = 'net_income'
+# target_account = 'net_income'
 num_qts = 5
 unit_base = 9 
 increment_FT= (4, 0) # from ith before to jth before (0: latest quarter)
@@ -18,7 +18,9 @@ increment_FT= (4, 0) # from ith before to jth before (0: latest quarter)
 drawer = Drawer(
     # spine_color='white', 
     # label_text_color='white',
-    figsize = (16, 9), 
+    spine_color='black', 
+    label_text_color='black',
+    figsize = (10, 8), 
     text_size = 18,
     tick_text_size = 15,
     )
