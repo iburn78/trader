@@ -1,15 +1,13 @@
 #%% 
-import sys, os
-sys.path.append(os.path.dirname(os.getcwd()))  
-from tools.tools import set_KoreanFonts
-from tools.koreainvest_module import *
-from analysis_tools import *
+from trader.tools.tools import set_KoreanFonts
+from trader.tools.koreainvest_module import *
+from trader.analysis.analysis_tools import *
 import matplotlib.pyplot as plt
 import matplotlib.dates as mdates
 import matplotlib.ticker as ticker
 import matplotlib.animation as animation
 import pandas as pd
-from broker import Broker
+from trader.analysis.broker import Broker
 
 class Drawer:
     def __init__(

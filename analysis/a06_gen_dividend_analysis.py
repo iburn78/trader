@@ -1,9 +1,10 @@
 #%%
 import pandas as pd
+import os
 
-df_krx_path = '../data_collection/data/df_krx.feather'
-price_DB_path = '../data_collection/data/price_DB.feather'
-div_DB_path = '../data_collection/data/div_DB_20241014.feather'
+df_krx_path = os.path.join(os.path.dirname(os.path.dirname(__file__)), 'data_collection/data/df_krx.feather')
+price_DB_path = os.path.join(os.path.dirname(os.path.dirname(__file__)), 'data_collection/data/price_DB.feather')
+div_DB_path = os.path.join(os.path.dirname(os.path.dirname(__file__)), 'data_collection/data/div_DB_20241014.feather')
 
 df_krx = pd.read_feather(df_krx_path)
 price_DB = pd.read_feather(price_DB_path)
@@ -15,8 +16,8 @@ div_DB = pd.read_feather(div_DB_path)
 # Removal logic is necessary to be implemented of some financial vehicle companies: reducing face-value after dividend.
 # ---------------------------------------------------------------
 
-from analysis_tools import *
-from broker import Broker
+from trader.analysis.analysis_tools import *
+from trader.analysis.broker import Broker
 
 year = 2024
 threshold = 7 # dividend yield rate to filter larger ones
@@ -40,7 +41,7 @@ div_year = div_year.dropna()
 
 import seaborn as sns
 import matplotlib.pyplot as plt
-from tools.tools import set_KoreanFonts
+from trader.tools.tools import set_KoreanFonts
 
 set_KoreanFonts()
 

@@ -1,14 +1,11 @@
 #%% 
-import sys
-import os
 import json
 from pprint import pprint
-sys.path.append(os.path.abspath(os.path.join(os.path.dirname(__file__), "..")))
-from tools.koreainvest_module import *
+from trader.tools.koreainvest_module import *
 
 class Trader():
     def __init__(self):
-        with open('../../config/config.json', 'r') as json_file:
+        with open(os.path.join(os.path.dirname(os.path.dirname(os.path.dirname(__file__))), 'config/config.json'), 'r') as json_file:
             config = json.load(json_file)
             key = config['key']
             secret = config['secret']

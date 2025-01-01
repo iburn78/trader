@@ -1,7 +1,5 @@
 #%% 
-import sys, os
-sys.path.append(os.path.dirname(os.getcwd()))  
-from tools.koreainvest_module import *
+from trader.tools.koreainvest_module import *
 import pandas as pd
 import time
 
@@ -63,7 +61,7 @@ def get_div(broker, code, start_date, end_date, detail=False):
 
 def build_div_DB(codelist, div_DB_path = None):
 
-    with open('../../config/config.json', 'r') as json_file:
+    with open(os.path.join(os.path.dirname(os.path.dirname(os.path.dirname(__file__))), 'config/config.json'), 'r') as json_file:
         config = json.load(json_file)
         key = config['key']
         secret = config['secret']

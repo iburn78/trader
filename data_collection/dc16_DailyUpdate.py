@@ -1,13 +1,12 @@
 #%%
-import json, sys, os
-sys.path.append(os.path.dirname(os.getcwd()))  
-from tools.tools import *
+import json
+from trader.tools.tools import *
 import OpenDartReader 
-from tools.dictionary import DART_APIS
+from trader.tools.dictionary import DART_APIS
 
-price_DB_path = '../data_collection/data/price_DB.feather'
+price_DB_path = os.path.join(os.path.dirname(os.path.dirname(__file__)), 'data_collection/data/price_DB.feather')
 price_DB = pd.read_feather(price_DB_path)
-df_krx_path = '../data_collection/data/df_krx.feather'
+df_krx_path = os.path.join(os.path.dirname(os.path.dirname(__file__)), 'data_collection/data/df_krx.feather')
 df_krx = pd.read_feather(df_krx_path)
 
 daily_update_file = 'andy/daily_update.json'

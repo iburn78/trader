@@ -1,9 +1,7 @@
 #%% 
-import sys, os
-sys.path.append(os.path.dirname(os.getcwd()))  
-from tools.tools import generate_krx_data
-from tools.koreainvest_module import *
-from analysis_tools import *
+from trader.tools.tools import generate_krx_data
+from trader.tools.koreainvest_module import *
+from trader.analysis.analysis_tools import *
 import pandas as pd
 import time
 
@@ -12,7 +10,7 @@ class Broker:
         self.broker = self.get_broker()
 
     def get_broker(self, mock=False):
-        with open('../../config/config.json', 'r') as json_file:
+        with open(os.path.join(os.path.dirname(os.path.dirname(os.path.dirname(__file__))), 'config/config.json'), 'r') as json_file:
             config = json.load(json_file)
             if mock:
                 # key_mock = config['key_mock']

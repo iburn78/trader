@@ -1,7 +1,6 @@
 #%%
 import sys, os
-sys.path.append(os.path.dirname(os.getcwd()))  
-from tools.tools import *
+from trader.tools.tools import *
 import pandas as pd
 import numpy as np
 import datetime

@@ -11,7 +11,7 @@ from Crypto.Cipher import AES
 from Crypto.Util.Padding import unpad
 from base64 import b64decode
 
-with open('../../config/config.json', 'r') as json_file:
+with open(os.path.join(os.path.dirname(os.path.dirname(os.path.dirname(__file__))), 'config/config.json'), 'r') as json_file:
     config = json.load(json_file)
     app_key = config['key']
     app_secret = config['secret']

@@ -1,13 +1,9 @@
 # Generate price DB 
 # if price_DB and volume_DB are given then updates them, otherwise creates
 #%% 
-import sys
-import os
 import pandas as pd
 import FinanceDataReader as fdr
-
-sys.path.append(os.path.dirname(os.getcwd()))  
-from tools.tools import *
+from trader.tools.tools import *
 
 def _initialization(codelist, START_DATE): 
     price_data = {}
@@ -163,7 +159,6 @@ def gen_OutstandingShares_DB(outshare_DB_path, START_DATE, log_file=None):
         outshare_DB.to_feather(outshare_DB_path)
 
     return True
-
 
 if __name__ == '__main__': 
     START_DATE = '2014-01-01'

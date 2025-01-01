@@ -10,7 +10,10 @@
 # venv activation is not necessary if executed in crontab -e as in crontab -e, venv python is specified
 # source ~/projects/trader/venv/bin/activate
 
-# following scripts need to be run in .../data_collection
+# cron-job runs in a new shell, and .bashrc is not sourced 
+# sudo cron-job and cron-job will have etc/environment variables
+# sh runs in a subshell which inherits the env of parent, but the new setting would only exist while sh is running
+
 cd ~/projects/trader/data_collection
 
 python dc05_CompanyHealth.py

@@ -1,5 +1,5 @@
 #%%
-from drawer import Drawer
+from trader.analysis.drawer import Drawer
 
 # ----------------------------------------------------------------
 # Quarterly Bar Plot
@@ -92,7 +92,8 @@ drawer.barh_plot(items, values,
 # ----------------------------------------------------------------
 # Bar plot using analysis tools
 # ----------------------------------------------------------------
-from analysis_tools import market_change_analysis, top_movements_in_group
+from trader.analysis.drawer import Drawer
+from trader.analysis.analysis_tools import market_change_analysis, top_movements_in_group
 day_from = '20240111'
 day_to = '20241213'
 

@@ -1,9 +1,8 @@
 #%%
-import sys, os
-sys.path.append(os.path.dirname(os.getcwd()))  
+import os
 import FinanceDataReader as fdr
-from tools.tools import generate_krx_data
-from tools.koreainvest_module import *
+from trader.tools.tools import generate_krx_data
+from trader.tools.koreainvest_module import *
 import pandas as pd
 import time
 
@@ -40,7 +39,7 @@ CONVERT_DICT = {
 
 QUARTER_START_DATE = '2014-01-01'
 RR_TIME_ALLOWANCE = 24*3600
-FR_MAIN_PATH = '../data_collection/data/financial_reports_main.feather'
+FR_MAIN_PATH = os.path.join(os.path.dirname(os.path.dirname(__file__)), 'data_collection/data/financial_reports_main.feather')
 OUTPUT_PLOTS_DIR = 'plots/'
 KRX_DATA_FILE = 'data/df_krx.feather'
 
@@ -239,7 +238,7 @@ def get_latest_face_value(broker, code):
 
 # use Broker class instead
 # def gen_broker():
-#     with open('../../config/config.json', 'r') as json_file:
+#     with open(os.path.join(os.path.dirname(os.path.dirname(os.path.dirname(__file__))), 'config/config.json', 'r') as json_file:
 #         config = json.load(json_file)
 #         key = config['key']
 #         secret = config['secret']
@@ -248,7 +247,7 @@ def get_latest_face_value(broker, code):
 #     broker = KoreaInvestment(api_key=key, api_secret=secret, acc_no=acc_no, mock=False)
 #     return broker
     
-from data_collection.dc15_DividendDB import *
+from trader.data_collection.dc15_DividendDB import *
 def get_div_single_company(broker, code): 
     start_date = pd.to_datetime('2014-01-01').strftime('%Y%m%d')
     end_date = pd.to_datetime('now').strftime('%Y%m%d')
@@ -300,7 +299,7 @@ def market_grouping_anaysis(target_DB):
 
 # target_DB = res_KOSPI or res_KOSDAQ from market_change_analysis function
 def top_movements_in_group(target_DB, select_by_marcap = 100):
-    target_group = target_DB.iloc[:select_by_marcap]
+    target_group = target_DB.iloc[:select_by_marcap].copy()
     target_group['p_increase'] = (target_group['Marcap_t']-target_group['Marcap_y'])/target_group['Marcap_y']*100
     target_group['v_increase'] = (target_group['Volume_t']*target_group['Close_t']-target_group['Volume_y']*target_group['Close_y'])/(target_group['Volume_y']*target_group['Close_y'])*100
     target_group1=target_group.sort_values(by='p_increase', ascending=False)

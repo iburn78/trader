@@ -18,6 +18,7 @@
         In __init__.py, you may specify which module to import in a package, e.g., from . import module1.
 
 - Finding a Package:
+    (temporary method)
     Even with relative imports, if the path is not registered in sys.path, then a package cannot be found.
     Use the following example to add a directory to sys.path:
         
@@ -25,6 +26,11 @@
         sys.path.append(os.path.dirname(os.getcwd()))  # adding the parent directory to the path; the parent directory contains 'tools' package
 
         from tools import koreainvest_module
+    
+    (more robust method)
+    add project folder to PYTHONPATH
+    then use dirname subsequently 
+        from trader.tools import ... should work
 
 - '-m' option in python
     python -m enables to run a module (no need to put .py)
@@ -62,7 +68,7 @@
 ### Note for operational setup ... 
 
 - installations
-    pip install -U finance-datareader
+    pip install finance-datareader
     pip install opendartreader 
     pip install pyarrow
     pip install scipy
@@ -72,12 +78,10 @@
 
 - config file: be careful about the location and content
 
-- in mojito module, change path to the token.dat for it to be in config... :should be adjusted according to relative directory (e.g., ../../config/.. or ../config/..)
-    you may use koreainvest_module.py instead
-    
+- install mojito module, but instead, always use koreainvest_module.py instead 
 
 - in OpenDartReader
-    dart_finstate.py
+    dart_finstate.py - modify the following
     def finstate(...): 
         ...
         if 'message' in jo:
@@ -89,6 +93,7 @@
         ...
     
 - in OpenDartReader    
+    dart_list.py - modify the following
     def list(api_key, corp_code='', start=None, end=None, kind='', kind_detail='', final=False):
         ...
         except ET.ParseError as e:
@@ -109,13 +114,7 @@
 
 - fdr: prices are adjusted prices... (refer to the online manual Q&A section)
 
-- in fdr, for file \FinanceDataReader\krx\listing.py: 
-    ***** After update of FDR, this may not be needed *****
-    class KrxStockListing: # descriptive information
-    def read(self):
-        df_listing = pd.read_html(url, header=0, encoding='euc-kr')[0]  # Use 'euc-kr' encoding
-
-- fdr: Modified listing.py and data.py to include date_req parameter
+- fdr: Modify listing.py and data.py to include date_req parameter
     * this allows you to get market data for a specific date
     * date format: '20240101'
     [data.py]

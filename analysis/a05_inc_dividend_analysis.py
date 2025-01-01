@@ -3,11 +3,12 @@
 # Dividend analysis example
 # -------------------------------------------------------
 import pandas as pd
+import os
 
-df_krx_path = '../data_collection/data/df_krx.feather'
-price_DB_path = '../data_collection/data/price_DB.feather'
+df_krx_path = os.path.join(os.path.dirname(os.path.dirname(__file__)), 'data_collection/data/df_krx.feather')
+price_DB_path = os.path.join(os.path.dirname(os.path.dirname(__file__)), 'data_collection/data/price_DB.feather')
 # build div_DB to do the analysis first, using dc15_DividendDB.py
-div_DB_path = '../data_collection/data/div_DB_20241014.feather'
+div_DB_path = os.path.join(os.path.dirname(os.path.dirname(__file__)), 'data_collection/data/div_DB_20241014.feather')
 
 df_krx = pd.read_feather(df_krx_path)
 price_DB = pd.read_feather(price_DB_path)

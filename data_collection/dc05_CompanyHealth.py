@@ -2,10 +2,9 @@
 # Create a function to measure a financial health of a company 
 
 import OpenDartReader 
-import sys, os
-sys.path.append(os.path.dirname(os.getcwd()))  
-from tools.dictionary import ACCOUNT_NAME_DICTIONARY, BS_ACCOUNTS, IS_ACCOUNTS, DART_APIS, MODIFIED_REPORT
-from tools.tools import * # merge_update, generate_krx_data, log_print
+import os
+from trader.tools.dictionary import ACCOUNT_NAME_DICTIONARY, BS_ACCOUNTS, IS_ACCOUNTS, DART_APIS, MODIFIED_REPORT
+from trader.tools.tools import * # merge_update, generate_krx_data, log_print
 import pandas as pd
 import numpy as np
 import datetime, time
@@ -368,6 +367,7 @@ def null_checker(main_db, n):  # check if there are no data in nth quarter befor
     return res
 
 if __name__ == '__main__': 
+    
     log_file = 'log/data_collection.log'
     main_db_file = 'data/financial_reports_main.feather'
     plot_gen_control_file = 'data/plot_gen_control.npy'

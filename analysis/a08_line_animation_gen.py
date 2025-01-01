@@ -1,6 +1,6 @@
 #%% 
-from analysis_tools import *
-from drawer import *
+from trader.analysis.analysis_tools import *
+from trader.analysis.drawer import *
 
 drawer = Drawer(
     figsize = (16, 16), 

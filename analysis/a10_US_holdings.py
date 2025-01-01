@@ -78,7 +78,7 @@ dfx['name'] = df['종목명'].apply(lambda x: x.split(' ')[0])
 #%% --------------------------------------
 # Drawing part
 # ----------------------------------------
-from drawer import Drawer
+from trader.analysis.drawer import Drawer
 
 bar_drawer = Drawer(
     figsize = (6, 10), 
