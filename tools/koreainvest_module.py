@@ -363,8 +363,8 @@ class KoreaInvestment:
         # access token
         self.access_token = None
 
-        if os.path.exists(os.path.join(os.path.dirname(os.path.dirname(os.path.dirname(__file__))),'config')): 
-            config_path = os.path.join(os.path.dirname(os.path.dirname(os.path.dirname(__file__))),'config')
+        if os.path.exists(os.path.join(os.path.dirname(os.path.dirname(os.path.dirname(os.path.abspath(__file__)))),'config')): 
+            config_path = os.path.join(os.path.dirname(os.path.dirname(os.path.dirname(os.path.abspath(__file__)))),'config')
         else:
             raise Exception('ERROR: config dirctory has to be correctly located')
         self.token_location = os.path.join(config_path, 'token.dat')

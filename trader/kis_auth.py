@@ -24,7 +24,9 @@ clearConsole = lambda: os.system('cls' if os.name in ('nt', 'dos') else 'clear')
 
 key_bytes = 32
 
-config_root = 'C:\\Users\\user\\projects\\config\\'  # 토큰 파일이 저장될 폴더, 제3자가 찾지 어렵도록 경로 설정하시기 바랍니다.
+ppd_ = os.path.dirname(os.path.dirname(os.path.dirname(os.path.abspath(__file__)))) # ../..
+td_ = 'config'
+config_root = os.path.join(ppd_, td_) 
 token_path = os.path.join(config_root, 'KIS_token') 
 
 # 앱키, 앱시크리트, 토큰, 계좌번호 등 저장관리, 자신만의 경로와 파일명으로 설정하시기 바랍니다.

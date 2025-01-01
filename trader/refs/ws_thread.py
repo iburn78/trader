@@ -33,8 +33,7 @@ class KIS_WSReq(StrEnum):
 import talib as ta
 
 with open(ka.config_root + 'kis_devlp.yaml', encoding='UTF-8') as f:
-    _cfg = yaml.load(f, Loader=yaml.FullLoader)
-    HTS_ID = _cfg['hts_id']
+    HTS_ID = yaml.load(f, Loader=yaml.FullLoader)['hts_id']
 
 # Stores 20 values and calculates the moving average
 # Values are pushed into the queue and the moving average is calculated

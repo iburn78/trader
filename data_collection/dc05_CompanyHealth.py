@@ -368,9 +368,10 @@ def null_checker(main_db, n):  # check if there are no data in nth quarter befor
 
 if __name__ == '__main__': 
     
-    log_file = 'log/data_collection.log'
-    main_db_file = 'data/financial_reports_main.feather'
-    plot_gen_control_file = 'data/plot_gen_control.npy'
+    cd_ = os.path.dirname(os.path.abspath(__file__)) # .   
+    log_file = os.path.join(cd_, 'log/data_collection.log')
+    main_db_file = os.path.join(cd_, 'data/financial_reports_main.feather')
+    plot_gen_control_file = os.path.join(cd_, 'data/plot_gen_control.npy')
 
     main_db = pd.read_feather(main_db_file)
     partial_rescan = null_checker(main_db, 2)

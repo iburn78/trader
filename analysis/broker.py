@@ -2,15 +2,13 @@
 from trader.tools.tools import generate_krx_data
 from trader.tools.koreainvest_module import *
 from trader.analysis.analysis_tools import *
-import pandas as pd
-import time
 
 class Broker:
     def __init__(self):
         self.broker = self.get_broker()
 
     def get_broker(self, mock=False):
-        with open(os.path.join(os.path.dirname(os.path.dirname(os.path.dirname(__file__))), 'config/config.json'), 'r') as json_file:
+        with open(os.path.join(os.path.dirname(os.path.dirname(os.path.dirname(os.path.abspath(__file__)))), 'config/config.json'), 'r') as json_file:
             config = json.load(json_file)
             if mock:
                 # key_mock = config['key_mock']
@@ -73,7 +71,9 @@ class Broker:
 
     MARCAP_THRESHOLD = 5000*10**8 
     IPO_YEAR_THRESHOLD = 3 
-    KRX_DATA_FILE = 'data/df_krx.feather'
+    cd_ = os.path.dirname(os.path.abspath(__file__)) # .   
+    KRX_DATA_FILE = os.path.join(cd_, 'data/df_krx.feather')
+
     def generate_corr_data(self, krx_data_file=KRX_DATA_FILE):
         df_krx = read_or_regen(krx_data_file, generate_krx_data)
         df_krx = df_krx.loc[df_krx['Marcap'] >= Broker.MARCAP_THRESHOLD]

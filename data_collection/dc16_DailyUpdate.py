@@ -4,12 +4,14 @@ from trader.tools.tools import *
 import OpenDartReader 
 from trader.tools.dictionary import DART_APIS
 
-price_DB_path = os.path.join(os.path.dirname(os.path.dirname(__file__)), 'data_collection/data/price_DB.feather')
+cd_ = os.path.dirname(os.path.abspath(__file__)) # .   
+price_DB_path = os.path.join(cd_, 'data/price_DB.feather')
+df_krx_path = os.path.join(cd_, 'data/df_krx.feather')
+daily_update_file = os.path.join(cd_,'andy/daily_update.json')
+
 price_DB = pd.read_feather(price_DB_path)
-df_krx_path = os.path.join(os.path.dirname(os.path.dirname(__file__)), 'data_collection/data/df_krx.feather')
 df_krx = pd.read_feather(df_krx_path)
 
-daily_update_file = 'andy/daily_update.json'
 ud = dict()
 ud['Report date'] = str(nearest_midnight(-1))   
 

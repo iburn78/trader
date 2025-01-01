@@ -1,11 +1,14 @@
 #%% 
 import pandas as pd
 import yfinance as yf
+import os
 # -----------------------------------------------------------------------------
 # Example DataFrame with Tickers (you'll need to map CUSIPs to tickers)
 # get foreign holdings (US) from 금융투자협회 (or 증권거래소 etc as Excel file format)
 # -----------------------------------------------------------------------------
-datafile = 'data/usholdings.xlsx'
+
+cd_ = os.path.dirname(os.path.abspath(__file__)) # .   
+datafile = os.path.join(cd_, 'data/usholdings.xlsx')
 df = pd.read_excel(datafile)
 
 tickers = [

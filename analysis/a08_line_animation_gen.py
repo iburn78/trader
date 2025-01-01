@@ -28,9 +28,10 @@ y2 = y2/y2[0]*100
 # y3 = pr3.values
 # y3 = y3/y3[0]*100
 
-# drawer.line_animate(x,y, speed=2, output_file='plots/ani.mp4')
-drawer.double_line_animate(x1,y1, x2, y2, speed=1, output_file='plots/ani.mp4')
-# drawer.triple_line_animate(x1 ,y1, x2, y2, x3, y3, speed=2, output_file='plots/ani.mp4')
+cd_ = os.path.dirname(os.path.abspath(__file__)) # .   
+# drawer.line_animate(x,y, speed=2, output_file=os.path.join(cd_, 'plots/ani.mp4'))
+drawer.double_line_animate(x1,y1, x2, y2, speed=1, output_file=os.path.join(cd_, 'plots/ani.mp4'))
+# drawer.triple_line_animate(x1 ,y1, x2, y2, x3, y3, speed=2, output_file=os.path.join(cd_, 'plots/ani.mp4'))
 
 # print(x1)
 # print(x2) 

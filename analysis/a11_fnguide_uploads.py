@@ -3,8 +3,10 @@
 # Utilizing the fn-guide quartelry result data - downloaded as Excel (ProResult.xlsx)
 # -----------------------------------------------------------------------------
 import pandas as pd
+import os 
 
-df = pd.read_excel("data/ProResult.xlsx", header=[0, 1])
+cd_ = os.path.dirname(os.path.abspath(__file__)) # .   
+df = pd.read_excel(os.path.join(cd_, "data/ProResult.xlsx"), header=[0, 1])
 new_column_names = {
     ('종목코드', 'Unnamed: 0_level_1'): 'Code',
     ('종목명', 'Unnamed: 1_level_1'): 'Name',
@@ -38,8 +40,8 @@ print(df.groupby("Issue")['Name'].count())
 #%% 
 up = up.sort_values(by='Q3OP', ascending=False)
 down = down.sort_values(by='Q3OP', ascending=False)
-display(up)
-display(down)
+# display(up)
+# display(down)
 
 #%%
 print(len(df))
@@ -55,17 +57,17 @@ print(len(oppp), len(oppn))
 
 #%% 
 oppx = df.groupby('Y3OP_inc')['Name'].count().sort_values()[-100:]
-display(oppx)
+# display(oppx)
 
 #%% 
 up_sector = up.groupby('Sector')['Name'].count()
-display(up_sector)
+# display(up_sector)
 down_sector = down.groupby('Sector')['Name'].count()
-display(down_sector)
+# display(down_sector)
 
 #%% 
 temp = pd.merge(up_sector, down_sector, left_index=True, right_index=True, how='outer', suffixes=('_up', '_down'))
-display(temp)
+# display(temp)
 
 #%% 
 up['Y3OP_inc_n'] = pd.to_numeric(opp['Y3OP_inc'], errors='coerce')
@@ -73,5 +75,5 @@ down['Y3OP_inc_n'] = pd.to_numeric(opp['Y3OP_inc'], errors='coerce')
 up = up.loc[up['Q3OP']>500].sort_values('Y3OP_inc_n', ascending=False)
 down = down.loc[down['Q3OP']>500].sort_values('Y3OP_inc_n', ascending=True)
 
-up.to_excel('data/temp_up.xlsx')
-down.to_excel('data/temp_down.xlsx')
+up.to_excel(os.path.join(cd_, 'data/temp_up.xlsx'))
+down.to_excel(os.path.join(cd_, 'data/temp_down.xlsx')) 

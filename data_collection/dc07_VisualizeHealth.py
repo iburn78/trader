@@ -5,23 +5,24 @@ import pandas as pd
 import numpy as np
 import datetime
 
-main_db_file = 'data/financial_reports_main.feather'
+cd_ = os.path.dirname(os.path.abspath(__file__)) # .   
+main_db_file = os.path.join(cd_, 'data/financial_reports_main.feather')
 main_db = pd.read_feather(main_db_file)
 
-plot_gen_control_file = 'data/plot_gen_control.npy'
+plot_gen_control_file = os.path.join(cd_, 'data/plot_gen_control.npy')
 if not os.path.exists(plot_gen_control_file):
-    sys.exit()
+    raise FileNotFoundError('***** plot_gen_control.npy does not exist. *****')
 
-price_db_file = 'data/price_DB.feather'
+price_db_file = os.path.join(cd_, 'data/price_DB.feather')
 price_DB = pd.read_feather(price_db_file)
 
 plot_ctrl = np.load(plot_gen_control_file, allow_pickle=True)
-log_file = 'log/plot_gen_control_exceptions.log'
+log_file = os.path.join(cd_, 'log/plot_gen_control_exceptions.log')
 
 l = len(plot_ctrl)
 for i, code in enumerate(plot_ctrl):
     print('{} | {}/{}'.format(code, i+1, l))
-    path = 'plots/'+code+'.png'
+    path = os.path.join(cd_, 'plots/'+code+'.png')
     try:
         plot_company_financial_summary2(main_db, price_DB, code, path)
     except Exception as error:

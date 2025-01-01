@@ -142,3 +142,13 @@
 - pypi
     python -m build
     twine upload dist/*
+
+
+### 
+# projects dir
+cd_ = os.path.dirname(os.path.abspath(__file__)) # .   
+pd_ = os.path.dirname(os.path.dirname(os.path.abspath(__file__))) # .. 
+ppd_ = os.path.dirname(os.path.dirname(os.path.dirname(os.path.abspath(__file__)))) # ../..
+
+td_ = ''
+os.path.join(pd_, td_)

@@ -512,7 +512,8 @@ class Drawer:
         y_tick_removal_threshold = 45
         self._init_fig()
 
-        corr_data_file = 'data/corr_fownership.feather'
+        cd_ = os.path.dirname(os.path.abspath(__file__)) # .   
+        corr_data_file = os.path.join(cd_, 'data/corr_fownership.feather')
         corr = read_or_regen(corr_data_file, broker.generate_corr_data)
 
         if self.lang == 'K':

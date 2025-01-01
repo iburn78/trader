@@ -2,7 +2,10 @@
 from trader.tools.tools import *
 
 listed = get_listed()
-price_db_file = 'data/price_DB.feather'
+cd_ = os.path.dirname(os.path.abspath(__file__)) # .   
+price_db_file = os.path.join(cd_, 'data/price_DB.feather')
+output_fig_file = os.path.join(cd_, 'plots/rate_changes.png')
+
 pr_changes, cur_day = get_pr_changes(price_db_file)
 listed = pd.merge(listed, pr_changes, on='Code', how='left')
 
@@ -38,5 +41,5 @@ ax[1].set_title('분야별 시총 가중평균 주가변동폭 (%, '+cur_day.str
 ax[1].set_xlabel('')
 ax[1].set_ylabel('')
 
-f.savefig('plots/rate_changes.png')
+f.savefig(output_fig_file)
 plt.close('all')

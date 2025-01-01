@@ -10,9 +10,10 @@ from trader.tools.tools import *
 from dc05_CompanyHealth import _generate_financial_reports_set, _sort_columns_financial_reports
 from dc06_GenPriceDB import gen_price_DB
 
-log_file = 'log/rebuild.log'
-main_db_file = 'data/financial_reports_main.feather'
-price_db_file = 'data/price_DB.feather'
+cd_ = os.path.dirname(os.path.abspath(__file__)) # .   
+log_file = os.path.join(cd_, 'log/rebuild.log')
+main_db_file = os.path.join(cd_, 'data/financial_reports_main.feather') 
+price_db_file = os.path.join(cd_, 'data/price_DB.feather') 
 
 date_req = '20240612'
 df_krx = fdr.StockListing('KRX', date_req)
@@ -33,7 +34,7 @@ price_DB = pd.read_feather(price_db_file)
 l = len(codelist)
 for i, code in enumerate(codelist):
     print('{} | {}/{}'.format(code, i+1, l))
-    path = 'plots/'+code+'.png'
+    path = os.path.join(cd_, 'plots/'+code+'.png')
     try:
         plot_company_financial_summary2(main_db, price_DB, code, path)
         pass

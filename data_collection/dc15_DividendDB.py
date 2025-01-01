@@ -61,7 +61,7 @@ def get_div(broker, code, start_date, end_date, detail=False):
 
 def build_div_DB(codelist, div_DB_path = None):
 
-    with open(os.path.join(os.path.dirname(os.path.dirname(os.path.dirname(__file__))), 'config/config.json'), 'r') as json_file:
+    with open(os.path.join(os.path.dirname(os.path.dirname(os.path.dirname(os.path.abspath(__file__)))), 'config/config.json'), 'r') as json_file:
         config = json.load(json_file)
         key = config['key']
         secret = config['secret']
@@ -75,11 +75,14 @@ def build_div_DB(codelist, div_DB_path = None):
     res =  pd.concat(results, axis=1)
 
     if div_DB_path == None:
-        div_DB_path = f'data/div_DB_{end_date}.feather' 
+        cd_ = os.path.dirname(os.path.abspath(__file__)) # .   
+        div_DB_path = os.path.join(cd_, f'data/div_DB_{end_date}.feather')
     res.to_feather(div_DB_path)
     
 if __name__ == '__main__':
-    df_krx_path = 'data/df_krx.feather'
+    cd_ = os.path.dirname(os.path.abspath(__file__)) # .   
+    df_krx_path = os.path.join(cd_, 'data/df_krx.feather')
+
     df_krx = pd.read_feather(df_krx_path)
     codelist = df_krx.index
     build_div_DB(codelist)

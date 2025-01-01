@@ -1,5 +1,6 @@
 #%%
 import pandas as pd
+import os
 
 # parameters
 c = 1 # the current period (months)
@@ -12,7 +13,9 @@ c_start = (baseDate - pd.DateOffset(months=c))
 c_end = baseDate
 p_start = (baseDate - pd.DateOffset(months=c+p))
 p_end = (baseDate - pd.DateOffset(months=c, days=1))
-price_DB = pd.read_feather('data/price_DB.feather')
+
+cd_ = os.path.dirname(os.path.abspath(__file__)) # .   
+price_DB = pd.read_feather(os.path.join(cd_, 'data/price_DB.feather'))
 
 def drop_enough(prices):
     c_prices = prices.loc[(prices.index >= c_start) & (prices.index <= c_end)]

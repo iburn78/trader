@@ -90,10 +90,11 @@ line_drawer = Drawer(
     lang = 'E', 
     eng_name = None
 )
-output_file = f'plots/index_KR.mp4'
+cd_ = os.path.dirname(os.path.abspath(__file__)) # .   
+output_file = os.path.join(cd_, f'plots/index_KR.mp4')
 line_drawer.double_line_animate(KS.index, KS.values, KQ.index, KQ.values, output_file=output_file)
-output_file = f'plots/index_us.mp4'
+output_file = os.path.join(cd_, f'plots/index_us.mp4')
 line_drawer.triple_line_animate(dj.index, dj.values, sp.index, sp.values, nq.index, nq.values, output_file=output_file)
-output_file = f'plots/index_other.mp4'
+output_file = os.path.join(cd_, f'plots/index_other.mp4')
 line_drawer.triple_line_animate(nk.index, nk.values, hs.index, hs.values, ft.index, ft.values, output_file=output_file)
 # yellow, red, orange
