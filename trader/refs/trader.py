@@ -5,7 +5,9 @@ from trader.tools.koreainvest_module import *
 
 class Trader():
     def __init__(self):
-        with open(os.path.join(os.path.dirname(os.path.dirname(os.path.dirname(os.path.abspath(__file__)))), 'config/config.json'), 'r') as json_file:
+        # NEED TO PLACE THIS FILE IN RIGHT DIRECTORY e.g. trader/trader/trader.py
+        ppd_ = os.path.dirname(os.path.dirname(os.path.dirname(os.path.abspath(__file__)))) # ../..
+        with open(os.path.join(ppd_, 'config/config.json'), 'r') as json_file:
             config = json.load(json_file)
             key = config['key']
             secret = config['secret']

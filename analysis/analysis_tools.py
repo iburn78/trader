@@ -43,9 +43,9 @@ RR_TIME_ALLOWANCE = 24*3600
 cd_ = os.path.dirname(os.path.abspath(__file__)) # .   
 pd_ = os.path.dirname(os.path.dirname(os.path.abspath(__file__))) # .. 
 
-FR_MAIN_PATH = os.path.join(pd_, 'data_collection/data/financial_reports_main.feather')
 OUTPUT_PLOTS_DIR = os.path.join(cd_, 'plots/')
-KRX_DATA_FILE = os.path.join(cd_, 'data/df_krx.feather')
+FR_MAIN_PATH = os.path.join(pd_, 'data_collection/data/financial_reports_main.feather')
+KRX_DATA_FILE = os.path.join(pd_, 'data_collection/data/df_krx.feather')
 
 def retrieve_quarterly_data_code(code, fr_main_path=FR_MAIN_PATH):
     fr_main = pd.read_feather(fr_main_path)

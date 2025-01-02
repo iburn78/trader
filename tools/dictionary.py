@@ -24,7 +24,8 @@ IS_ACCOUNTS=['매출액','영업이익','법인세차감전 순이익','당기�
 KRW_UNIT = 10**8
 KRW_UNIT_STR = '10^8 KRW (uk-won)'
 
-config_file = os.path.join(os.path.dirname(os.path.dirname(os.path.dirname(os.path.abspath(__file__)))), 'config/config.json')
+ppd_ = os.path.dirname(os.path.dirname(os.path.dirname(os.path.abspath(__file__)))) # ../..
+config_file = os.path.join(ppd_, 'config/config.json')
 with open(config_file, 'r') as json_file:
     config = json.load(json_file)
     dart_api_1 = config['dart_api_1']

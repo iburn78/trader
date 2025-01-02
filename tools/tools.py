@@ -39,8 +39,8 @@ def plot_company_financial_summary(db, code, path=None):
     _plot_barline(ax[2], yiu, 'debts', 'liquid_debts', 'liquid_debt_ratio')
     _plot_barline(ax[3], yiu, 'equity', 'retained_earnings', 'debt_to_equity_ratio')
 
-    cd_ = os.path.dirname(os.path.abspath(__file__)) # .   
-    df_krx = pd.read_feather(os.path.join(cd_, 'data/df_krx.feather'))
+    pd_ = os.path.dirname(os.path.dirname(os.path.abspath(__file__))) # .. 
+    df_krx = pd.read_feather(os.path.join(pd_, 'data_collection/data/df_krx.feather'))
     try: 
         name = df_krx['Name'][code]
     except Exception as e: 
@@ -90,8 +90,8 @@ def plot_company_financial_summary2(fr_db, pr_db, code, path=None):
     _plot_barline2(ax[3], yiu, 'debts', 'liquid_debts', 'liquid_debt_ratio', cc1=cmap(0.25), cc2=cmap(0.60))
     _plot_barline2(ax[4], yiu, 'equity', 'retained_earnings', 'debt_to_equity_ratio', cc1=cmap(0.25), cc2=cmap(0.55))
 
-    cd_ = os.path.dirname(os.path.abspath(__file__)) # .   
-    df_krx = pd.read_feather(os.path.join(cd_, 'data/df_krx.feather'))
+    pd_ = os.path.dirname(os.path.dirname(os.path.abspath(__file__))) # .. 
+    df_krx = pd.read_feather(os.path.join(pd_, 'data_collection/data/df_krx.feather'))
     try: 
         name = df_krx['Name'][code]
     except Exception as e: 
@@ -342,8 +342,8 @@ def plot_last_quarter_prices(pr_db, code, path=None):
     ax.spines['right'].set_visible(False)
     ax.spines['left'].set_visible(False)
 
-    cd_ = os.path.dirname(os.path.abspath(__file__)) # .   
-    df_krx = pd.read_feather(os.path.join(cd_, 'data/df_krx.feather'))
+    pd_ = os.path.dirname(os.path.dirname(os.path.abspath(__file__))) # .. 
+    df_krx = pd.read_feather(os.path.join(pd_, 'data_collection/data/df_krx.feather'))
     try: 
         name = df_krx['Name'][code]
     except Exception as e: 
@@ -373,7 +373,7 @@ def merge_update(A, B, index_cols=['code', 'fs_div', 'account_nm']):
     return C
 
 def generate_krx_data(sql_db_creation=True): 
-    cd_ = os.path.dirname(os.path.abspath(__file__)) # .   
+    pd_ = os.path.dirname(os.path.dirname(os.path.abspath(__file__))) # .. 
     df_krx_desc = fdr.StockListing('KRX-DESC')
     df_krx = fdr.StockListing('KRX')
 
@@ -384,11 +384,11 @@ def generate_krx_data(sql_db_creation=True):
     df_krx = df_krx.set_index('Code')
 
     # df_krx=df_krx[~df_krx['Dept'].str.contains('관리')]   # remove companies in trouble
-    df_krx.to_feather(os.path.join(cd_, 'data/df_krx.feather'))
+    df_krx.to_feather(os.path.join(pd_, 'data_collection/data/df_krx.feather'))
 
     if sql_db_creation: 
         df_krx_sql = df_krx.copy()
-        conn = sqlite3.connect(os.path.join(cd_, 'data/df_krx.db'))
+        conn = sqlite3.connect(os.path.join(pd_, 'data_collection/data/df_krx.feather'))
         df_krx_sql['ListingDate'] = df_krx_sql['ListingDate'].dt.strftime('%Y-%m-%d')
         df_krx_sql.to_sql('krx_data', conn, if_exists='replace')
 

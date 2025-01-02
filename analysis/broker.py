@@ -8,7 +8,8 @@ class Broker:
         self.broker = self.get_broker()
 
     def get_broker(self, mock=False):
-        with open(os.path.join(os.path.dirname(os.path.dirname(os.path.dirname(os.path.abspath(__file__)))), 'config/config.json'), 'r') as json_file:
+        ppd_ = os.path.dirname(os.path.dirname(os.path.dirname(os.path.abspath(__file__)))) # ../..
+        with open(os.path.join(ppd_, 'config/config.json'), 'r') as json_file:
             config = json.load(json_file)
             if mock:
                 # key_mock = config['key_mock']
@@ -71,8 +72,8 @@ class Broker:
 
     MARCAP_THRESHOLD = 5000*10**8 
     IPO_YEAR_THRESHOLD = 3 
-    cd_ = os.path.dirname(os.path.abspath(__file__)) # .   
-    KRX_DATA_FILE = os.path.join(cd_, 'data/df_krx.feather')
+    pd_ = os.path.dirname(os.path.dirname(os.path.abspath(__file__))) # .. 
+    KRX_DATA_FILE = os.path.join(pd_, 'data_collection/data/df_krx.feather')
 
     def generate_corr_data(self, krx_data_file=KRX_DATA_FILE):
         df_krx = read_or_regen(krx_data_file, generate_krx_data)
