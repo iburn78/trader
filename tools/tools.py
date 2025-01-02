@@ -1,4 +1,5 @@
-from .dictionary import *
+#%%
+from trader.tools.dictionary import *
 from math import log10
 import seaborn as sns
 import matplotlib.pyplot as plt
@@ -540,8 +541,5 @@ def code_desc(pr_DB, code, range):
     return pr_date.strftime('%Y-%m-%d'), status
 
 def nth_quarter_before(n: int = 0):
-    year = datetime.datetime.now().year
-    month = datetime.datetime.now().month
-    year = year - (3*n // 12) 
-    quarter = (month-3*n-1) // 3 % 4 + 1  
-    return f'{year}_{quarter}Q'
+    t_ = pd.Timestamp.now()-pd.DateOffset(months=3*n)
+    return f'{t_.year}_{t_.quarter}Q'
