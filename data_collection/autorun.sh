@@ -51,10 +51,10 @@ date > "${info_directory}update_info.txt"
 scp -i $private_key "${info_directory}update_info.txt" ubuntu@tnpartners.net:$tnp_info_directory
 
 # Ensure all data is flushed to the log file
-exec &>-  # Close file descriptors
+exec >&-  # Close file descriptors
 
 # SCP the log files to the server
-scp -i $private_key "${log_directory}*.log" ubuntu@tnpartners.net:$tnp_log_directory
+scp -i $private_key "${log_directory}"*.log ubuntu@tnpartners.net:$tnp_log_directory
 
 # Suspend system after a 60 second delay
 sleep 60
