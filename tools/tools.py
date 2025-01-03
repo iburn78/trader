@@ -513,6 +513,13 @@ def get_krx_unique_update_list(dart, start, end):
         res = []
     return res
 
+def get_name_from_code(code, df_krx=None): 
+    if df_krx is None: 
+        pd_ = os.path.dirname(os.path.dirname(os.path.abspath(__file__)))
+        df_krx = pd.read_feather(os.path.join(pd_, 'data_collection/data/df_krx.feather'))
+    return df_krx.loc[code, 'Name']
+
+
 def lookup_names_from_codelist(codelist, df_krx):
     res = []
     for x in codelist:
