@@ -519,6 +519,15 @@ def get_name_from_code(code, df_krx=None):
         df_krx = pd.read_feather(os.path.join(pd_, 'data_collection/data/df_krx.feather'))
     return df_krx.loc[code, 'Name']
 
+def get_market_and_rank(code, df_krx=None):
+    if df_krx is None: 
+        pd_ = os.path.dirname(os.path.dirname(os.path.abspath(__file__)))
+        df_krx = pd.read_feather(os.path.join(pd_, 'data_collection/data/df_krx.feather'))
+    
+    market = df_krx.loc[code, 'Market']
+    tdf_ = df_krx.loc[df_krx['Market'] == market].reset_index()
+    rank = tdf_.sort_values(by='Marcap', ascending=False).loc[tdf_['Code'] == code].index[0]+1
+    return market, rank
 
 def lookup_names_from_codelist(codelist, df_krx):
     res = []
@@ -550,3 +559,13 @@ def code_desc(pr_DB, code, range):
 def nth_quarter_before(n: int = 0):
     t_ = pd.Timestamp.now()-pd.DateOffset(months=3*n)
     return f'{t_.year}_{t_.quarter}Q'
+
+def rank_counter(n, lang='E'):
+    if lang=='E': 
+        if 11 <= n % 100 <= 13:  # Special case for 11th, 12th, 13th
+            suffix = 'th'
+        else:
+            suffix = {1: 'st', 2: 'nd', 3: 'rd'}.get(n % 10, 'th')
+        return f"{n}{suffix}"
+    if lang=='K':
+        return f"{n}위"
