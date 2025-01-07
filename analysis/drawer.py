@@ -313,6 +313,8 @@ class Drawer:
         plt.show()
         plt.close(self.fig)
 
+        return xs, y
+
     # just the same as plot function but with Drawer format and grid
     # multi line possible as in the original plot
     # d.line_plot(x1, y1, '-o', x2, y2, ':^')
