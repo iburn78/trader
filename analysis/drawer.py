@@ -262,7 +262,7 @@ class Drawer:
         plt.show()
         plt.close(self.fig)
 
-    def quarterly_bar_plot(self, code, target_account, num_qts, unit_base, unit=1, increment_FT=(0,0), lim_scale_factor=0.7, save=True, output_file=None, highlights = None, highlights_gray = None):
+    def quarterly_bar_plot(self, code, target_account, num_qts, unit_base, unit=1, increment_FT=(0,0), lim_scale_factor=0.7, save=True, output_file=None, highlights = None, highlights_gray = None, plt_show = True):
         self._init_fig()
         fh = retrieve_quarterly_data_code(code)
         x = get_quarters(get_last_quarter(fh), num_qts)
@@ -310,7 +310,8 @@ class Drawer:
                 self._savefig(output_file)
             else: 
                 self._savefig(gen_output_plot_path_file(code+'_'+target_account))
-        plt.show()
+        if plt_show:
+            plt.show()
         plt.close(self.fig)
 
         return xs, y
