@@ -517,7 +517,10 @@ def get_name_from_code(code, df_krx=None):
     if df_krx is None: 
         pd_ = os.path.dirname(os.path.dirname(os.path.abspath(__file__)))
         df_krx = pd.read_feather(os.path.join(pd_, 'data_collection/data/df_krx.feather'))
-    return df_krx.loc[code, 'Name']
+    if code not in df_krx.index:
+        return 'Name_not_found'
+    else: 
+        return df_krx.loc[code, 'Name']
 
 def get_market_and_rank(code, df_krx=None):
     if df_krx is None: 
