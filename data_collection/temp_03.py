@@ -17,7 +17,7 @@ df_krx = pd.read_feather(df_krx_file)
 # display(price_db)
 # display(df_krx)
 
-def get_quarterly_data(code, fr_db, unit=10**6, key_accounts=[]):
+def get_quarterly_data(code, fr_db, unit=10**6):
     quarter_cols= [s for s in fr_db.columns.values if 'Q' in s]
     quarter_cols.sort()
     fs_div_mode = 'CFS'
@@ -42,78 +42,71 @@ def get_quarterly_data(code, fr_db, unit=10**6, key_accounts=[]):
 
 
 #%% 
-code = '005930'
-res = get_quarterly_data(code, main_db)
-#%%
 
-# Function to test if 'res' is an outstanding company (last 16 quarters)
-def is_outstanding_company(res):
-    # Define adjustable thresholds at the top
+def is_outstanding_company(q_df):
+    KEY_ACCOUNT = 'operating_income'
     MIN_QUARTERS = 8  # Minimum quarters of data required
-    MAX_QUARTERS = 100  # Maximum quarters to analyze (last quarters)
-    REVENUE_GROWTH_MIN = 5.0  # Average YoY revenue growth (%) 
-    MAX_NEGATIVE_GROWTH_COUNT = 8  # Max quarters with >5% revenue decline
+    MAX_QUARTERS = 16  # Maximum quarters to analyze 
+    REVENUE_GROWTH_MIN = 10.0  # Average YoY revenue growth (%) 
     REVENUE_DIP_THRESHOLD = -5.0  # Threshold for a significant revenue dip (%)
-    OP_MARGIN_MIN = 12.0  # Minimum average operating margin (%)
-    NET_MARGIN_MIN = 10.0  # Minimum average net margin (%)
-    LIQUID_ASSET_RATIO_MIN = 20.0  # Minimum average liquid asset ratio (%)
-    LIQUID_DEBT_RATIO_MAX = 50.0  # Maximum average liquid debt ratio (%)
-    DEBT_TO_EQUITY_MAX = 50.0  # Maximum average debt-to-equity ratio (in %, e.g., 50% = 0.5 as a ratio)
-    REVENUE_VOLATILITY_MAX = 10.0  # Maximum revenue volatility (%)
+    MAX_NEGATIVE_GROWTH_COUNT = float(MAX_QUARTERS/5)  # Max quarters with >[]% revenue decline
+    OP_MARGIN_MIN = 12.0
+    NET_MARGIN_MIN = 10.0
+    LIQUID_ASSET_RATIO_STD_MAX = 10.0 # Max std deviation of liquid asset ratio (%)
+    LIQUID_DEBT_RATIO_STD_MAX = 10.0 # Max std deviation of liquid debt ratio (%)
+    DEBT_TO_EQUITY_MAX = 150.0 # Max average debt-to-equity ratio (%)
+    DEBT_TO_EQUITY_STD_MAX = 10.0 # Max std deviation of debt-to-equity ratio (%)
 
-    # Transpose the DataFrame so quarters are rows and accounts are columns
-    df = res.T
-    
-    # Ensure numeric data
-    df = df.astype(float)
-    
-    # Limit to the last MAX_QUARTERS (16) quarters
-    if len(df) > MAX_QUARTERS:
-        df = df.tail(MAX_QUARTERS)
-    
-    # Drop rows with missing data for key metrics (adjust as needed)
-    df = df.dropna(subset=['revenue', 'net_income', 'operating_income', 
-                           'assets', 'debts', 'liquid_assets', 'liquid_debts', 'liquid_asset_ratio', 'liquid_debt_ratio', 'debt_to_equity_ratio'])
-    
-    if len(df) < MIN_QUARTERS:
-        return False, f"Insufficient data (need at least {MIN_QUARTERS} quarters, got {len(df)} after limiting to last {MAX_QUARTERS})"
+    if q_df is None or len(q_df) == 0:
+        return False, "No data available"   
 
-    # 1. Revenue Growth: >REVENUE_GROWTH_MIN% YoY average, no more than MAX_NEGATIVE_GROWTH_COUNT dips
-    revenue_yoy = df['revenue'].pct_change(periods=4) * 100  # YoY (4 quarters ago)
+    df = q_df.T
+    df = df[-MAX_QUARTERS:]
+    if len(df[KEY_ACCOUNT].dropna()) < MIN_QUARTERS:
+        return False, f"Insufficient data (need at least {MIN_QUARTERS} quarters, got {len(df[KEY_ACCOUNT].dropna())})"
+
+    # 1. Revenue Growth and Stability
+    # if len(df['revenue'].dropna()) < MIN_QUARTERS:
+    #     return False, "Revenue data is missing"
+    revenue_yoy = df['revenue'].dropna().pct_change(periods=4) * 100  # YoY (4 quarters ago)
     avg_revenue_growth = revenue_yoy.mean()
     negative_growth_count = (revenue_yoy < REVENUE_DIP_THRESHOLD).sum()
-    if avg_revenue_growth <= REVENUE_GROWTH_MIN or negative_growth_count > MAX_NEGATIVE_GROWTH_COUNT:
+    if pd.isna(avg_revenue_growth) or pd.isna(negative_growth_count):
+        return False, "Revenue growth data is missing"
+    if avg_revenue_growth < REVENUE_GROWTH_MIN or negative_growth_count > MAX_NEGATIVE_GROWTH_COUNT:
         return False, f"Revenue growth issue: Avg {avg_revenue_growth:.2f}% (min {REVENUE_GROWTH_MIN}%), {negative_growth_count} dips (max {MAX_NEGATIVE_GROWTH_COUNT})"
 
-    # 2. Profitability: Operating margin >OP_MARGIN_MIN%, Net margin >NET_MARGIN_MIN%
+    # 2. Profitability
     avg_op_margin = df['opmargin'].mean()
     net_margin = (df['net_income'] / df['revenue'] * 100)
     avg_net_margin = net_margin.mean()
     if avg_op_margin <= OP_MARGIN_MIN or avg_net_margin <= NET_MARGIN_MIN:
         return False, f"Profitability issue: Op margin {avg_op_margin:.2f}% (min {OP_MARGIN_MIN}%), Net margin {avg_net_margin:.2f}% (min {NET_MARGIN_MIN}%)"
 
-    # 3. Liquidity: Liquid asset ratio >LIQUID_ASSET_RATIO_MIN%, Liquid debt ratio <LIQUID_DEBT_RATIO_MAX%
-    avg_liquid_asset_ratio = df['liquid_asset_ratio'].mean()
-    avg_liquid_debt_ratio = df['liquid_debt_ratio'].mean()
-    if avg_liquid_asset_ratio <= LIQUID_ASSET_RATIO_MIN or avg_liquid_debt_ratio >= LIQUID_DEBT_RATIO_MAX:
-        return False, f"Liquidity issue: Liquid asset ratio {avg_liquid_asset_ratio:.2f}% (min {LIQUID_ASSET_RATIO_MIN}%), Liquid debt ratio {avg_liquid_debt_ratio:.2f}% (max {LIQUID_DEBT_RATIO_MAX}%)"
+    # 3. Liquidity
+    liquid_asset_ratio_std = df['liquid_asset_ratio'].std()
+    liquid_debt_ratio_std = df['liquid_debt_ratio'].std()
+    if liquid_asset_ratio_std > LIQUID_ASSET_RATIO_STD_MAX or liquid_debt_ratio_std > LIQUID_DEBT_RATIO_STD_MAX:
+        return False, f"Liquidity issue: Liquid asset ratio std {liquid_asset_ratio_std:.2f} (max {LIQUID_ASSET_RATIO_STD_MAX}), Liquid debt ratio std {liquid_debt_ratio_std:.2f} (max {LIQUID_DEBT_RATIO_STD_MAX})"
 
-    # 4. Leverage: Debt-to-equity ratio <DEBT_TO_EQUITY_MAX%
-    df['equity'] = df['assets'] - df['debts']
-    df['debt_to_equity_ratio'] = (df['debts'] / df['equity']) * 100
+    # 4. Leverage
     avg_debt_to_equity = df['debt_to_equity_ratio'].mean()
-    if avg_debt_to_equity >= DEBT_TO_EQUITY_MAX:
-        return False, f"Leverage issue: Debt-to-equity ratio {avg_debt_to_equity:.2f}% (max {DEBT_TO_EQUITY_MAX}%)"
-
-    # 5. Stability: Revenue volatility <REVENUE_VOLATILITY_MAX%
-    revenue_volatility = df['revenue'].pct_change().std() * 100
-    if revenue_volatility >= REVENUE_VOLATILITY_MAX:
-        return False, f"Stability issue: Revenue volatility {revenue_volatility:.2f}% (max {REVENUE_VOLATILITY_MAX}%)"
+    debt_to_equity_std = df['debt_to_equity_ratio'].std()
+    if avg_debt_to_equity > DEBT_TO_EQUITY_MAX or debt_to_equity_std > DEBT_TO_EQUITY_STD_MAX:
+        return False, f"Leverage issue: Debt-to-equity ratio {avg_debt_to_equity:.2f}% (max {DEBT_TO_EQUITY_MAX}%) Debt-to-equity std {debt_to_equity_std:.2f} (max {DEBT_TO_EQUITY_STD_MAX})"
 
     # If all criteria pass
     return True, "Outstanding company"
 
-# Test the function
-result, reason = is_outstanding_company(res)
-print(f"Is Samsung Electronics outstanding? {result}")
-print(f"Reason: {reason}")
+# q_df = get_quarterly_data('005930', main_db)
+# result, reason = is_outstanding_company(q_df)
+
+#%% 
+
+for code in df_krx.index[500:1000]:
+    print(code)
+
+    q_df = get_quarterly_data(code, main_db)
+    result, reason = is_outstanding_company(q_df)
+    if result: 
+        print(code, df_krx.loc[code, 'Name'], reason)
