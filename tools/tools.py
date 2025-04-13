@@ -5,6 +5,7 @@ import seaborn as sns
 import matplotlib.pyplot as plt
 import FinanceDataReader as fdr
 import pandas as pd
+import numpy as np
 import sqlite3
 from matplotlib import font_manager
 import platform
@@ -48,7 +49,7 @@ def plot_company_financial_summary(db, code, path=None):
 
     set_KoreanFonts()
     f.suptitle('Consolidated Financial Statement Summary - company: '+name+'('+code+') updated on '+date_updated, fontsize=14)
-    
+
     if path==None: 
         plt.show()
     else: 
@@ -472,7 +473,7 @@ def get_pr_changes(price_db_file):
 
     pr_changes = pr_changes.transpose()
     pr_changes.index.name = 'Code'
-    
+
     return pr_changes, cur_day
 
 def set_KoreanFonts():
@@ -526,7 +527,7 @@ def get_market_and_rank(code, df_krx=None):
     if df_krx is None: 
         pd_ = os.path.dirname(os.path.dirname(os.path.abspath(__file__)))
         df_krx = pd.read_feather(os.path.join(pd_, 'data_collection/data/df_krx.feather'))
-    
+
     market = df_krx.loc[code, 'Market']
     tdf_ = df_krx.loc[df_krx['Market'] == market].reset_index()
     rank = tdf_.sort_values(by='Marcap', ascending=False).loc[tdf_['Code'] == code].index[0]+1
@@ -572,3 +573,89 @@ def rank_counter(n, lang='E'):
         return f"{n}{suffix}"
     if lang=='K':
         return f"{n}위"
+
+def git_timestamp():
+    import subprocess
+
+    timestamp = int(subprocess.check_output(["git", "log", "-1", "--format=%ct"]))
+    commit_time = datetime.datetime.fromtimestamp(timestamp)
+    now = datetime.datetime.now()
+    if now - commit_time > datetime.timedelta(hours=24):
+        print("####### CHECK DATA #######")
+        print("Last git-commit was older than 24 hours.")
+        print("Last commit time:", commit_time.strftime("%Y-%m-%d %H:%M:%S"))
+        return False
+    else:
+        return True
+
+def get_dbs(check_time=True):
+    if check_time:
+        if not git_timestamp():
+            raise Exception('git timestamp check failed')
+
+    pd_ = os.path.dirname(os.path.dirname(os.path.abspath(__file__))) # ..
+    main_db_file = os.path.join(pd_, 'data_collection/data/financial_reports_main.feather') 
+    price_db_file = os.path.join(pd_, 'data_collection/data/price_DB.feather') 
+    df_krx_file = os.path.join(pd_, 'data_collection/data/df_krx.feather') 
+
+    main_db = pd.read_feather(main_db_file)
+    price_db = pd.read_feather(price_db_file)
+    df_krx = pd.read_feather(df_krx_file)
+    return main_db, price_db, df_krx
+    
+
+def get_quarterly_data(code, fr_db, unit=KRW_UNIT):  # fr_db = main_db or financial_reports_main
+    quarter_cols= [s for s in fr_db.columns.values if 'Q' in s]
+    quarter_cols.sort()
+    fs_div_mode = 'CFS'
+    y = fr_db.loc[(fr_db['code']==code) & (fr_db['fs_div']==fs_div_mode), ['account']+quarter_cols].drop_duplicates().set_index(['account'])
+    if y.isnull().all().all():
+        fs_div_mode = 'OFS'
+        y = fr_db.loc[(fr_db['code']==code) & (fr_db['fs_div']==fs_div_mode), ['account']+quarter_cols].drop_duplicates().set_index(['account'])
+
+    # date_updated = str(fr_db.loc[(fr_db['code']==code) & (fr_db['fs_div']==fs_div_mode), 'date_updated'].values[0])
+    y.columns = [s.replace('2020','XX').replace('20','').replace('XX','20').replace('_','.').replace('Q','') for s in quarter_cols]
+    yiu = y/unit
+    yiu=_choose_unique_rows(yiu, 'account')
+    yiu.loc['opmargin', :] = yiu.loc['operating_income']/yiu.loc['revenue'].replace(0, pd.NA)*100   # sometimes, revenue entry is zero, then it computes to '+- np.inf'
+    yiu.loc['liquid_asset_ratio', :] = yiu.loc['liquid_assets']/yiu.loc['assets']*100
+    yiu.loc['liquid_debt_ratio', :] = yiu.loc['liquid_debts']/yiu.loc['debts']*100
+    yiu.loc['debt_to_equity_ratio', :] = yiu.loc['debts']/yiu.loc['equity']*100
+    return yiu #, date_updated
+
+def slope_and_acc(series: pd.Series):
+    series = series.dropna().astype(float)
+    x = np.arange(len(series))
+    y = series.values
+
+    if len(y) < 2:
+        return np.nan, np.nan
+
+    mean = np.mean(y)
+    slope = np.polyfit(x, y, 1)[0]
+    acc = np.polyfit(x, y, 2)[0]
+
+    # "increasing" if slope > 0 else "decreasing" if slope < 0 else "flat",
+    # "accelerating upward" if a > 0 else "accelerating downward" if a < 0 else "no acceleration"
+    return slope, acc
+
+def rounder(x):
+    if x is None or pd.isna(x):
+        return np.nan
+    elif isinstance(x, str):
+        return x
+    elif isinstance(x, (int, np.integer)):
+        return x 
+    elif isinstance(x, (float, np.floating)):
+        if abs(x) >= 100: 
+            return int(x)
+        else:
+            return round(x, 2)
+
+def basic_stats(series: pd.Series):
+    mean = series.mean()
+    std = series.std()
+    slope, acc = slope_and_acc(series)
+    cv = std / mean if mean != 0 else np.nan
+    lst = [mean, cv, slope, acc]
+    return [rounder(x) for x in lst]
