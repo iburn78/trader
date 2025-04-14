@@ -6,9 +6,14 @@ from trader.tools.tools import get_dbs, get_quarterly_data, basic_stats, rounder
 
 def calculate_stats(df):
     # 1. Revenue Growth and Stability
-    revenue_yoy = df['revenue'].dropna().pct_change(periods=4) * 100  # YoY (4 quarters ago)
-    avg_revenue_growth_pct = rounder(revenue_yoy.mean())
-    negative_growth_count = (revenue_yoy < REVENUE_DIP_THRESHOLD).sum()
+    ry = df['revenue'].dropna()
+    if len(ry) > 4:
+        revenue_yoy = ry.pct_change(periods=4) * 100  # YoY (4 quarters ago)
+        avg_revenue_growth_pct = rounder(revenue_yoy.mean())
+        negative_growth_count = (revenue_yoy < REVENUE_DIP_THRESHOLD).sum()
+    else:
+        avg_revenue_growth_pct = np.nan
+        negative_growth_count = np.nan
     rev_stats = basic_stats(df['revenue'])
 
     # 2. Profitability
@@ -63,6 +68,7 @@ def code_handler(code, fr_db, df_krx):
     }
     res.at[code, 'meta'] = meta_dict
     for i, qs in enumerate(quarter_steps):
+        print(i, qs)
         df = q_df.T[-qs:] # only generates a view
         res.at[code, quarter_labels[i]] = calculate_stats(df)
     return res # returns a dataframe with single row and multiple columns
@@ -106,7 +112,7 @@ if __name__ == "__main__":
     MIN_QUARTERS = 8  # Minimum quarters of data required
     MAX_QUARTERS = 24  # Maximum quarters to analyze 
     STEPS = 4  # Number of quarters to reduce analysis window
-    REVENUE_DIP_THRESHOLD = -5.0  # Threshold for a significant revenue dip (%)
+    REVENUE_DIP_THRESHOLD = -5.0  # Threshold for a significant revenue dip (%, quarter)
     TODAY = pd.Timestamp.today().strftime('%Y-%m-%d')
 
     INITIAL_SIZE = 2500 # initial size of the codelist
@@ -123,6 +129,7 @@ if __name__ == "__main__":
             log_print(log_file, f'{TODAY} QA DB: updating {codelist.tolist()}')
     try:
         qa_db = qa_db_builder(codelist, qa_db, fr_db, df_krx, qa_db_file) 
+        # display(qa_db)
     except Exception as error:
         log_print(log_file, str(error))
         # raise error
