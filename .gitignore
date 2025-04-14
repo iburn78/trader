@@ -163,7 +163,7 @@ cython_debug/
 venv/
 docs_cache/
 plots/
-log/
+# log/
 token.dat
 config.json
 update_info.txt
