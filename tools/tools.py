@@ -595,18 +595,18 @@ def get_dbs(check_time=True):
 
     pd_ = os.path.dirname(os.path.dirname(os.path.abspath(__file__))) # ..
     main_db_file = os.path.join(pd_, 'data_collection/data/financial_reports_main.feather') 
-    price_db_file = os.path.join(pd_, 'data_collection/data/price_DB.feather') 
+    # price_db_file = os.path.join(pd_, 'data_collection/data/price_DB.feather') 
     df_krx_file = os.path.join(pd_, 'data_collection/data/df_krx.feather') 
     qa_db_file = os.path.join(pd_, 'data_collection/data/qa_db.pkl') 
 
     main_db = pd.read_feather(main_db_file)
-    price_db = pd.read_feather(price_db_file)
+    # price_db = pd.read_feather(price_db_file)
     df_krx = pd.read_feather(df_krx_file)
     try: 
-        qa_db = pd.read_pickle(qa_db_file) # preserves exactly as it the dataframe was saved
+        qa_db = pd.read_pickle(qa_db_file) # pickle format preserves exactly as it the dataframe was saved
     except:
         qa_db = None
-    return main_db, price_db, df_krx, qa_db
+    return main_db, df_krx, qa_db #, price_db
     
 
 def get_quarterly_data(code, fr_db, unit=KRW_UNIT):  # fr_db = main_db or financial_reports_main

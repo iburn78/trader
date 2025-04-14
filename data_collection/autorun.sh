@@ -32,6 +32,7 @@ cd ~/projects/trader/data_collection
 # Run Python scripts
 python dc05_CompanyHealth.py
 python dc06_GenPriceDB.py
+python dc17_QuarterlyAnalysisDB.py
 python dc07_VisualizeHealth.py
 python dc13_RateChanges.py
 python dc16_DailyUpdate.py
