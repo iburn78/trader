@@ -68,7 +68,6 @@ def code_handler(code, fr_db, df_krx):
     }
     res.at[code, 'meta'] = meta_dict
     for i, qs in enumerate(quarter_steps):
-        print(i, qs)
         df = q_df.T[-qs:] # only generates a view
         res.at[code, quarter_labels[i]] = calculate_stats(df)
     return res # returns a dataframe with single row and multiple columns
