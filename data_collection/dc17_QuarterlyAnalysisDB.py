@@ -111,16 +111,16 @@ if __name__ == "__main__":
 
     INITIAL_SIZE = 2500 # initial size of the codelist
     if qa_db == None:
-        log_print(f'{TODAY} QA DB: initialization with {INITIAL_SIZE} codes')
+        log_print(log_file, f'{TODAY} QA DB: initialization with {INITIAL_SIZE} codes')
         codelist = df_krx.index.tolist()[0:2500]
     else:
         if not os.path.exists(plot_gen_control_file):
-            log_print(f'{TODAY} QA DB: ***** plot_gen_control.npy does not exist. *****')
+            log_print(log_file, f'{TODAY} QA DB: ***** plot_gen_control.npy does not exist. *****')
             # raise FileNotFoundError('***** plot_gen_control.npy does not exist. *****')
             codelist = []
         else: 
             codelist = np.load(plot_gen_control_file, allow_pickle=True)
-            log_print(f'{TODAY} QA DB: updating {codelist.tolist()}')
+            log_print(log_file, f'{TODAY} QA DB: updating {codelist.tolist()}')
     try:
         qa_db = qa_db_builder(codelist, qa_db, fr_db, df_krx, qa_db_file) 
     except Exception as error:
