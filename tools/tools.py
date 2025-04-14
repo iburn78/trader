@@ -628,6 +628,7 @@ def get_quarterly_data(code, fr_db, unit=KRW_UNIT):  # fr_db = main_db or financ
     yiu.loc['liquid_asset_ratio', :] = yiu.loc['liquid_assets']/yiu.loc['assets']*100
     yiu.loc['liquid_debt_ratio', :] = yiu.loc['liquid_debts']/yiu.loc['debts']*100
     yiu.loc['debt_to_equity_ratio', :] = yiu.loc['debts']/yiu.loc['equity']*100
+    yiu.replace(0, np.nan, inplace=True)   # works both for int and float, and there is no truly zero value in financial data
     return yiu #, date_updated
 
 def slope_and_acc(series: pd.Series):
@@ -640,7 +641,10 @@ def slope_and_acc(series: pd.Series):
 
     mean = np.mean(y)
     slope = np.polyfit(x, y, 1)[0]
-    acc = np.polyfit(x, y, 2)[0]
+    if len(x) > 2:
+        acc = np.polyfit(x, y, 2)[0]
+    else:
+        acc = np.nan
 
     # "increasing" if slope > 0 else "decreasing" if slope < 0 else "flat",
     # "accelerating upward" if a > 0 else "accelerating downward" if a < 0 else "no acceleration"

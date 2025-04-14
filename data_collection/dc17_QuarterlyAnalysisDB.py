@@ -55,9 +55,10 @@ def code_handler(code, fr_db, df_krx):
     if q_df is None:
         return None
     key_account_len = len(q_df.loc[KEY_ACCOUNT].dropna())
+
     if key_account_len < MIN_QUARTERS:
         return None
-    quarter_steps = range(min(key_account_len, MAX_QUARTERS), MIN_QUARTERS-1, -STEPS)
+    quarter_steps = list(range(MIN_QUARTERS, min(key_account_len, MAX_QUARTERS)+1, STEPS))[::-1]
     name = df_krx.loc[code, 'Name']
     quarter_labels = [f'{q}Q' for q in quarter_steps]  
     res = pd.DataFrame(columns=['meta'] + quarter_labels, index=[code])
@@ -132,4 +133,3 @@ if __name__ == "__main__":
     except Exception as error:
         log_print(log_file, str(error))
         # raise error
-
