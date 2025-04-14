@@ -597,11 +597,16 @@ def get_dbs(check_time=True):
     main_db_file = os.path.join(pd_, 'data_collection/data/financial_reports_main.feather') 
     price_db_file = os.path.join(pd_, 'data_collection/data/price_DB.feather') 
     df_krx_file = os.path.join(pd_, 'data_collection/data/df_krx.feather') 
+    qa_db_file = os.path.join(pd_, 'data_collection/data/qa_db.pkl') 
 
     main_db = pd.read_feather(main_db_file)
     price_db = pd.read_feather(price_db_file)
     df_krx = pd.read_feather(df_krx_file)
-    return main_db, price_db, df_krx
+    try: 
+        qa_db = pd.read_pickle(qa_db_file) # preserves exactly as it the dataframe was saved
+    except:
+        qa_db = None
+    return main_db, price_db, df_krx, qa_db
     
 
 def get_quarterly_data(code, fr_db, unit=KRW_UNIT):  # fr_db = main_db or financial_reports_main
@@ -612,6 +617,8 @@ def get_quarterly_data(code, fr_db, unit=KRW_UNIT):  # fr_db = main_db or financ
     if y.isnull().all().all():
         fs_div_mode = 'OFS'
         y = fr_db.loc[(fr_db['code']==code) & (fr_db['fs_div']==fs_div_mode), ['account']+quarter_cols].drop_duplicates().set_index(['account'])
+    if y.isnull().all().all():
+        return None
 
     # date_updated = str(fr_db.loc[(fr_db['code']==code) & (fr_db['fs_div']==fs_div_mode), 'date_updated'].values[0])
     y.columns = [s.replace('2020','XX').replace('20','').replace('XX','20').replace('_','.').replace('Q','') for s in quarter_cols]
@@ -640,7 +647,7 @@ def slope_and_acc(series: pd.Series):
     return slope, acc
 
 def rounder(x):
-    if x is None or pd.isna(x):
+    if x is None or pd.isna(x) or np.isinf(x):
         return np.nan
     elif isinstance(x, str):
         return x
@@ -656,6 +663,6 @@ def basic_stats(series: pd.Series):
     mean = series.mean()
     std = series.std()
     slope, acc = slope_and_acc(series)
-    cv = std / mean if mean != 0 else np.nan
+    cv = std / mean if pd.notna(mean) and mean != 0 else np.nan
     lst = [mean, cv, slope, acc]
     return [rounder(x) for x in lst]

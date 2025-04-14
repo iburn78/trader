@@ -1,31 +1,21 @@
 #%%
 import pandas as pd
+import os
 from trader.tools.tools import get_dbs, get_quarterly_data, basic_stats, rounder
 
-fr_db, pr_db, df_krx = get_dbs() 
+fr_db, pr_db, df_krx, qa_db = get_dbs() 
+
+pd_ = os.path.dirname(os.path.dirname(os.path.abspath(__file__))) # ..
+qa_db_file = os.path.join(pd_, 'data_collection/data/qa_db.pkl') 
 
 KEY_ACCOUNT = 'operating_income'
 MIN_QUARTERS = 8  # Minimum quarters of data required
-MAX_QUARTERS = 20  # Maximum quarters to analyze 
+MAX_QUARTERS = 24  # Maximum quarters to analyze 
+STEPS = 4  # Number of quarters to reduce analysis window
 REVENUE_DIP_THRESHOLD = -5.0  # Threshold for a significant revenue dip (%)
+TODAY = pd.Timestamp.today().strftime('%Y-%m-%d')
 
 #%% 
-code = '005930'
-q_df = get_quarterly_data(code, fr_db)
-name = df_krx.loc[code, 'Name']
-
-def create_quarterly_analysis(q_df):
-    if q_df is None or len(q_df) == 0:
-        return None
-
-    df = q_df.T
-    df = df[-MAX_QUARTERS:]
-    key_account_len = len(df[KEY_ACCOUNT].dropna())
-    if key_account_len < MIN_QUARTERS:
-        # print(f"Insufficient data (need at least {MIN_QUARTERS} quarters, got {len(df[KEY_ACCOUNT].dropna())})")
-        return None 
-        'key_account_len': key_account_len, # count
-    
 def calculate_stats(df):
     # 1. Revenue Growth and Stability
     revenue_yoy = df['revenue'].dropna().pct_change(periods=4) * 100  # YoY (4 quarters ago)
@@ -50,9 +40,9 @@ def calculate_stats(df):
     # 5. Leverage
     debt_to_equity_ratio_pct_stats = basic_stats(df['debt_to_equity_ratio']) # percent
 
+    # stats = [mean, cv, slope, acc]
     result_dict = {
-        'avg_revenue_growth_pct': avg_revenue_growth_pct, # percent
-        'negative_growth_count': negative_growth_count, # count
+        'revenue_growth': [avg_revenue_growth_pct, negative_growth_count], # percent, # count
         'revenue_stats': rev_stats, # size
         'opincome_stats': opincome_stats, # size
         'opmargin_stats': opmargin_pct_stats, # percent
@@ -64,10 +54,61 @@ def calculate_stats(df):
         'liquid_debt_ratio_stats': liquid_debt_ratio_pct_stats, # percent
         'debt_to_equity_ratio_stats': debt_to_equity_ratio_pct_stats, # percent
     }
-    return pd.Series(result_dict)
+    return result_dict
 
-create_quarterly_analysis(q_df)
+def code_handler(code):
+    print(code)
+    q_df = get_quarterly_data(code, fr_db)
+    if q_df is None:
+        return None
+    key_account_len = len(q_df.loc[KEY_ACCOUNT].dropna())
+    if key_account_len < MIN_QUARTERS:
+        return None
+    quarter_steps = range(min(key_account_len, MAX_QUARTERS), MIN_QUARTERS-1, -STEPS)
+    name = df_krx.loc[code, 'Name']
+    quarter_labels = [f'{q}Q' for q in quarter_steps]  
+    res = pd.DataFrame(columns=['meta'] + quarter_labels, index=[code])
+    meta_dict = {
+        'name': name,
+        'date': TODAY, # date of analysis
+        'last_quarter': q_df.columns[-1], # last quarter of data
+    }
+    res.at[code, 'meta'] = meta_dict
+    for i, qs in enumerate(quarter_steps):
+        df = q_df.T[-qs:] # only generates a view
+        res.at[code, quarter_labels[i]] = calculate_stats(df)
+    return res # returns a dataframe with single row and multiple columns
 
+def builder(qa_db, codelist): 
+    reslist = []
+    for code in codelist:
+        res = code_handler(code)
+        if res is not None:
+            reslist.append(res)
+    if len(reslist) == 0:
+        return qa_db
+    elif len(reslist) == 1:
+        reslist_all = pd.DataFrame(reslist[0])
+    else: 
+        reslist_all = pd.concat(reslist)
+    if qa_db is not None:
+        qa_db = pd.concat([qa_db, reslist_all])
+        qa_db = qa_db.loc[~qa_db.index.duplicated(keep='last')]
+        q_cols = [int(col[:-1]) for col in qa_db.columns if col != 'meta']
+        q_cols = sorted(q_cols, reverse=True)
+        quarter_labels = [f'{q}Q' for q in q_cols]  
+        qa_db = qa_db[['meta'] + quarter_labels]
+    else:
+        qa_db = reslist_all
+    # Reindex to match df_krx index and drop rows that are not in df_krx
+    qa_db = qa_db.reindex(df_krx.index) 
+    qa_db = qa_db.dropna(how='all')
+    qa_db.to_pickle(qa_db_file)
+    return qa_db
+
+codes = df_krx.index.tolist()[0:1000]
+qa_db = builder(qa_db, codes)
+display(qa_db)
 
 #%% 
 
@@ -121,3 +162,4 @@ def is_outstanding_company(q_df):
 
     # If all criteria pass
     return True, "Outstanding company"
+
