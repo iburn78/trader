@@ -152,3 +152,10 @@ ppd_ = os.path.dirname(os.path.dirname(os.path.dirname(os.path.abspath(__file__)
 
 td_ = ''
 os.path.join(pd_, td_)
+
+
+### 
+git lfs installed
+(you only need to install in each local machines, and the command is the same)
+- size and bandwidth limit exists... 
+- don't use lfs, and keep file size under 50 MB
