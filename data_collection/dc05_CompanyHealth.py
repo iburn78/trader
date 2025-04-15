@@ -189,7 +189,8 @@ def _generate_financial_reports_set(sector, duration, log_file, date_updated, sa
     dart_ind = 0
     dart = OpenDartReader(DART_APIS[dart_ind])
 
-    financial_reports = pd.DataFrame()
+    # financial_reports = pd.DataFrame()
+    financial_reports = []
     log_print(log_file, 'Financial data collection log >> ')
 
     error_trial = 0
@@ -210,7 +211,8 @@ def _generate_financial_reports_set(sector, duration, log_file, date_updated, sa
     
                 record, message = _collect_financial_reports(dart, code, duration, date_updated)
                 if message == 'success':
-                    financial_reports = pd.concat([financial_reports, record], ignore_index=True)
+                    # financial_reports = pd.concat([financial_reports, record], ignore_index=True)
+                    financial_reports.append(record)
                     if save_file_name != None:
                         financial_reports.to_feather(save_file_name)
                 elif message == 'Data Not Available':
@@ -242,7 +244,8 @@ def _generate_financial_reports_set(sector, duration, log_file, date_updated, sa
 
                 time.sleep(sleep_time*error_trial)
 
-    return _sort_columns_financial_reports(financial_reports)
+                final = pd.concat(financial_reports, ignore_index=True)
+    return _sort_columns_financial_reports(final)
 
 def _generate_update_codelist(log_file, start_day, end_day): 
     dart = OpenDartReader(DART_APIS[0])
@@ -316,7 +319,7 @@ def update_main_db(log_file, main_db_file, plot_gen_control_file=None):
     # full_rescan_code = remove_delisted(full_rescan_code)
     # partial_rescan_code = remove_delisted(partial_rescan_code)
 
-    temp = ['088260', '222160', '241560', '293490', '293940', '323230', '330590', '334890', '338100', '348950', '350520', '357120', '357250', '357430', '365550', '377190', '396690', '400760', '404990', '432320', '451800', '481850', '021820', '062040', '079900', '088340', '199480', '308430', '351870', '355690', '381620', '389650', '431190', '456070', '457370', '461300', '462870', '464280', '464500', '469750', '473950', '476080', '084440', '107640', '126730', '145170', '154030', '160190', '295310', '323350', '347850', '412540', '443060', '450330', '452200', '453450', '458870', '460470', '460940', '462510', '464080', '473000', '474490', '474660', '474930', '334970', '442770', '064400', '448830', '101970', '382150', '041460', '376300', '388720', '195940']
+    temp = ['088260', '222160', '293490', '293940', '323230', '330590', '334890', '338100', '348950', '350520', '357120', '357250', '357430', '365550', '377190', '396690', '400760', '404990', '432320', '451800', '481850', '021820', '062040', '079900', '088340', '199480', '308430', '351870', '355690', '381620', '389650', '431190', '456070', '457370', '461300', '462870', '464280', '464500', '469750', '473950', '476080', '084440', '107640', '126730', '145170', '154030', '160190', '295310', '323350', '347850', '412540', '443060', '450330', '452200', '453450', '458870', '460470', '460940', '462510', '464080', '473000', '474490', '474660', '474930', '334970', '442770', '064400', '448830', '101970', '382150', '041460', '376300', '388720', '195940']
     full_rescan_code = temp
     partial_rescan_code = []
 
@@ -367,7 +370,6 @@ if __name__ == '__main__':
     plot_gen_control_file = os.path.join(cd_, 'data/plot_gen_control.npy')
     main_db = pd.read_feather(main_db_file)
 
-    print('start')
     update_main_db(log_file, main_db_file, plot_gen_control_file)
 
 
