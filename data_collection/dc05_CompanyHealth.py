@@ -367,6 +367,7 @@ if __name__ == '__main__':
     plot_gen_control_file = os.path.join(cd_, 'data/plot_gen_control.npy')
     main_db = pd.read_feather(main_db_file)
 
+    print('start')
     update_main_db(log_file, main_db_file, plot_gen_control_file)
 
 
