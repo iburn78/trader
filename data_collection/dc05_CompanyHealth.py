@@ -244,7 +244,7 @@ def _generate_financial_reports_set(sector, duration, log_file, date_updated, sa
 
                 time.sleep(sleep_time*error_trial)
 
-                final = pd.concat(financial_reports, ignore_index=True)
+            final = pd.concat(financial_reports, ignore_index=True)
     return _sort_columns_financial_reports(final)
 
 def _generate_update_codelist(log_file, start_day, end_day): 
