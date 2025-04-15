@@ -304,14 +304,14 @@ def update_main_db(log_file, main_db_file, plot_gen_control_file=None):
     # full_rescan_code, partial_rescan_code = _generate_update_codelist(log_file, start_day, end_day)
 
     # include codes that does not have 2 quarters previous data, while have 3 quarters data
-    cp2 = null_checker(main_db, 2)
-    cp3 = null_checker(main_db, 3)
-    cp4 = null_checker(main_db, 4)
-    to_add_partially = [i for i in cp2 if i not in cp3]
+    # cp2 = null_checker(main_db, 2)
+    # cp3 = null_checker(main_db, 3)
+    # cp4 = null_checker(main_db, 4)
+    # to_add_partially = [i for i in cp2 if i not in cp3]
 
-    for c in to_add_partially:
-        if c not in partial_rescan_code:
-            partial_rescan_code.append(c)
+    # for c in to_add_partially:
+    #     if c not in partial_rescan_code:
+    #         partial_rescan_code.append(c)
 
     # full_rescan_code = remove_delisted(full_rescan_code)
     # partial_rescan_code = remove_delisted(partial_rescan_code)
