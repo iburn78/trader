@@ -1,3 +1,1 @@
 data_collection/data/financial_reports_main.feather filter=lfs diff=lfs merge=lfs -text
-data_collection/data/price_DB.feather filter=lfs diff=lfs merge=lfs -text
-data_collection/data/volume_DB.feather filter=lfs diff=lfs merge=lfs -text
