@@ -185,11 +185,10 @@ def _sort_columns_financial_reports(reports):
     static_columns = ['code', 'fs_div', 'sj_div', 'account_nm', 'account', 'date_updated']
     return pd.concat([reports[static_columns], reports[reports.columns.difference(static_columns)].sort_index(axis=1)], axis=1)
 
-def _generate_financial_reports_set(sector, duration, log_file, date_updated, save_file_name=None):
+def _generate_financial_reports_set(sector, duration, log_file, date_updated):
     dart_ind = 0
     dart = OpenDartReader(DART_APIS[dart_ind])
 
-    # financial_reports = pd.DataFrame()
     financial_reports = []
     log_print(log_file, 'Financial data collection log >> ')
 
@@ -211,10 +210,7 @@ def _generate_financial_reports_set(sector, duration, log_file, date_updated, sa
     
                 record, message = _collect_financial_reports(dart, code, duration, date_updated)
                 if message == 'success':
-                    # financial_reports = pd.concat([financial_reports, record], ignore_index=True)
                     financial_reports.append(record)
-                    if save_file_name != None:
-                        financial_reports.to_feather(save_file_name)
                 elif message == 'Data Not Available':
                     current_progress = '----> no: ' + str(ix) + ', code ' + code+' data not available, could be a financial institution' # / '+df_krx['Name'][code]
                     log_print(log_file, current_progress)
@@ -244,7 +240,7 @@ def _generate_financial_reports_set(sector, duration, log_file, date_updated, sa
 
                 time.sleep(sleep_time*error_trial)
 
-            final = pd.concat(financial_reports, ignore_index=True)
+    final = pd.concat(financial_reports, ignore_index=True)
     return _sort_columns_financial_reports(final)
 
 def _generate_update_codelist(log_file, start_day, end_day): 
@@ -267,19 +263,19 @@ def _generate_update_db(log_file, end_day, full_rescan_code, partial_rescan_code
         status = '\nFull rescan codes are {} items: \n{}'.format(len(full_rescan_code), full_rescan_code) + '\nPartial rescan codes are {} items: \n{}'.format(len(partial_rescan_code), partial_rescan_code)
         status = '-----------------------------\n'+str(datetime.datetime.today())+status
         log_print(log_file, status)
-        db_f = _generate_financial_reports_set(full_rescan_code, None, log_file, end_day, None)
-        db_p = _generate_financial_reports_set(partial_rescan_code, 2, log_file, end_day, None) # 1 year
+        db_f = _generate_financial_reports_set(full_rescan_code, None, log_file, end_day)
+        db_p = _generate_financial_reports_set(partial_rescan_code, 2, log_file, end_day) # 1 year
         res = pd.concat([db_f, db_p], ignore_index=True)
     elif len(full_rescan_code) > 0 and len(partial_rescan_code) == 0: 
         status = '\nFull rescan codes are {} items: \n{}'.format(len(full_rescan_code), full_rescan_code) + '\nNo partial rescan codes'
         status = '-----------------------------\n'+str(datetime.datetime.today())+status
         log_print(log_file, status)
-        res = _generate_financial_reports_set(full_rescan_code, None, log_file, end_day, None)
+        res = _generate_financial_reports_set(full_rescan_code, None, log_file, end_day)
     elif len(full_rescan_code) == 0 and len(partial_rescan_code) > 0: 
         status = '\nNo full rescan codes' + '\nPartial rescan codes are {} items: \n{}'.format(len(partial_rescan_code), partial_rescan_code)
         status = '-----------------------------\n'+str(datetime.datetime.today())+status
         log_print(log_file, status)
-        res = _generate_financial_reports_set(partial_rescan_code, 2, log_file, end_day, None) # 1 year
+        res = _generate_financial_reports_set(partial_rescan_code, 2, log_file, end_day) # 1 year
     else:
         log_print(log_file, 'No new data to update')
         return pd.DataFrame() # return an empty dataframe
