@@ -21,7 +21,7 @@ codelist = df_krx.Code.tolist()[:]
 
 DAYS_ALLOWANCE = 2
 end_day = (datetime.datetime.today() - datetime.timedelta(days=DAYS_ALLOWANCE)).strftime('%Y-%m-%d')
-res = _generate_financial_reports_set(codelist, 1, log_file, end_day, None) # 1 year
+res = _generate_financial_reports_set(codelist, 1, log_file, end_day) # 1 year
 res = _sort_columns_financial_reports(res)
 
 main_db = pd.read_feather(main_db_file)
