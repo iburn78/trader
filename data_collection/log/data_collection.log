@@ -83,3 +83,54 @@ Financial data collection log >>
 updating market prices...
 Updating outstanding shares information...
 Processing outstanding shares data for 2025-04-15... 0/150
+Updating KRX data...
+Updating between dates: 2025-04-08 / 2025-04-16
+-----------------------------
+2025-04-16 00:00:18.610390
+Full rescan codes are 27 items: 
+['003120', '004650', '006740', '011080', '032960', '034230', '036690', '037350', '058430', '065500', '082660', '090850', '101390', '106520', '208640', '208860', '215090', '219550', '226440', '234300', '257720', '290120', '323410', '336060', '348080', '411080', '458650']
+Partial rescan codes are 11 items: 
+['004310', '043090', '093380', '227100', '338100', '357120', '357250', '365550', '432320', '448730', '293490']
+Financial data collection log >> 
+2025-04-16 00:00:18.686396, no: 0, code 003120 in process
+2025-04-16 00:00:34.471983, no: 1, code 004650 in process
+2025-04-16 00:00:50.751178, no: 2, code 006740 in process
+2025-04-16 00:01:06.409913, no: 3, code 011080 in process
+2025-04-16 00:01:22.319365, no: 4, code 032960 in process
+2025-04-16 00:01:37.950244, no: 5, code 034230 in process
+2025-04-16 00:01:53.541185, no: 6, code 036690 in process
+2025-04-16 00:02:09.773217, no: 7, code 037350 in process
+2025-04-16 00:02:25.899631, no: 8, code 058430 in process
+2025-04-16 00:02:41.518937, no: 9, code 065500 in process
+2025-04-16 00:02:55.644786, no: 10, code 082660 in process
+2025-04-16 00:03:11.322943, no: 11, code 090850 in process
+2025-04-16 00:03:28.219438, no: 12, code 101390 in process
+2025-04-16 00:03:44.086823, no: 13, code 106520 in process
+2025-04-16 00:03:59.997602, no: 14, code 208640 in process
+2025-04-16 00:04:15.933165, no: 15, code 208860 in process
+2025-04-16 00:04:30.671610, no: 16, code 215090 in process
+2025-04-16 00:04:44.294255, no: 17, code 219550 in process
+2025-04-16 00:04:58.817619, no: 18, code 226440 in process
+2025-04-16 00:05:12.089058, no: 19, code 234300 in process
+2025-04-16 00:05:25.771150, no: 20, code 257720 in process
+2025-04-16 00:05:35.097086, no: 21, code 290120 in process
+2025-04-16 00:05:48.058398, no: 22, code 323410 in process
+2025-04-16 00:05:55.424369, no: 23, code 336060 in process
+2025-04-16 00:06:04.433533, no: 24, code 348080 in process
+2025-04-16 00:06:13.327609, no: 25, code 411080 in process
+2025-04-16 00:06:21.213174, no: 26, code 458650 in process
+Financial data collection log >> 
+2025-04-16 00:06:27.295006, no: 0, code 004310 in process
+2025-04-16 00:06:34.511360, no: 1, code 043090 in process
+2025-04-16 00:06:41.922376, no: 2, code 093380 in process
+2025-04-16 00:06:49.452006, no: 3, code 227100 in process
+2025-04-16 00:06:56.873866, no: 4, code 338100 in process
+2025-04-16 00:07:02.671042, no: 5, code 357120 in process
+2025-04-16 00:07:08.567526, no: 6, code 357250 in process
+2025-04-16 00:07:14.309834, no: 7, code 365550 in process
+2025-04-16 00:07:20.166953, no: 8, code 432320 in process
+2025-04-16 00:07:26.014364, no: 9, code 448730 in process
+2025-04-16 00:07:31.856425, no: 10, code 293490 in process
+updating market prices...
+Updating outstanding shares information...
+Processing outstanding shares data for 2025-04-15... 0/150
