@@ -4,7 +4,7 @@
 import OpenDartReader 
 import os
 from trader.tools.dictionary import ACCOUNT_NAME_DICTIONARY, BS_ACCOUNTS, IS_ACCOUNTS, DART_APIS, MODIFIED_REPORT
-from trader.tools.tools import * # merge_update, generate_krx_data, log_print
+from trader.tools.tools import * 
 import pandas as pd
 import numpy as np
 import datetime, time
@@ -283,7 +283,7 @@ def _generate_update_db(log_file, end_day, full_rescan_code, partial_rescan_code
     
     return _sort_columns_financial_reports(res)
 
-def update_main_db(log_file, main_db_file, plot_gen_control_file=None, force_full_scan_list=None, force_partial_scan_list=None):
+def update_main_db(log_file, main_db_file, plot_gen_control_file=None):
     try: 
         log_print(log_file, 'Updating KRX data...')
         warnings.filterwarnings("ignore")
@@ -301,18 +301,24 @@ def update_main_db(log_file, main_db_file, plot_gen_control_file=None, force_ful
     # start_day = '2023-11-14'
     # end_day = '2023-11-15'
 
-    full_rescan_code, partial_rescan_code = _generate_update_codelist(log_file, start_day, end_day)
+    # full_rescan_code, partial_rescan_code = _generate_update_codelist(log_file, start_day, end_day)
 
-    if force_full_scan_list != None: 
-        for c in force_full_scan_list:
-            full_rescan_code.append(c)
+    # include codes that does not have 2 quarters previous data, while have 3 quarters data
+    cp2 = null_checker(main_db, 2)
+    cp3 = null_checker(main_db, 3)
+    cp4 = null_checker(main_db, 4)
+    to_add_partially = [i for i in cp2 if i not in cp3]
 
-    if force_partial_scan_list != None: 
-        for c in force_partial_scan_list:
+    for c in to_add_partially:
+        if c not in partial_rescan_code:
             partial_rescan_code.append(c)
 
-    full_rescan_code = remove_delisted(full_rescan_code)
-    partial_rescan_code = remove_delisted(partial_rescan_code)
+    # full_rescan_code = remove_delisted(full_rescan_code)
+    # partial_rescan_code = remove_delisted(partial_rescan_code)
+
+    temp = ['088260', '222160', '241560', '293490', '293940', '323230', '330590', '334890', '338100', '348950', '350520', '357120', '357250', '357430', '365550', '377190', '396690', '400760', '404990', '432320', '451800', '481850', '021820', '062040', '079900', '088340', '199480', '308430', '351870', '355690', '381620', '389650', '431190', '456070', '457370', '461300', '462870', '464280', '464500', '469750', '473950', '476080', '084440', '107640', '126730', '145170', '154030', '160190', '295310', '323350', '347850', '412540', '443060', '450330', '452200', '453450', '458870', '460470', '460940', '462510', '464080', '473000', '474490', '474660', '474930', '334970', '442770', '064400', '448830', '101970', '382150', '041460', '376300', '388720', '195940']
+    full_rescan_code = temp
+    partial_rescan_code = []
 
     tg_qt = nth_quarter_before(1)  # last quarter 
     main_db_codelist = main_db['code'].unique()
@@ -353,33 +359,87 @@ def single_company_data_collect(code, fs_div=None):
         record = record.loc[record['fs_div']==fs_div]
     return _sort_columns_financial_reports(record)
 
-def remove_delisted(codelist):
-    public_codelist = get_public_codelist()
-    return [i for i in codelist if i in public_codelist]
-
-def null_checker(main_db, n):  # check if there are no data in nth quarter before from now
-    tg_qt = nth_quarter_before(n)
-    codelist = remove_delisted(main_db['code'].unique())
-    res = [] 
-    for code in codelist: 
-        if main_db.loc[main_db['code']==code, tg_qt].isna().all():
-            res.append(code)
-    return res
 
 if __name__ == '__main__': 
-    
     cd_ = os.path.dirname(os.path.abspath(__file__)) # .   
     log_file = os.path.join(cd_, 'log/data_collection.log')
     main_db_file = os.path.join(cd_, 'data/financial_reports_main.feather')
     plot_gen_control_file = os.path.join(cd_, 'data/plot_gen_control.npy')
-
     main_db = pd.read_feather(main_db_file)
-    partial_rescan = null_checker(main_db, 2)
-    print('Forcing rescan of the following codes:')
-    print(partial_rescan)
-    print(len(partial_rescan))
-    print('-------')
 
-    update_main_db(log_file, main_db_file, plot_gen_control_file, force_partial_scan_list=partial_rescan)
+    update_main_db(log_file, main_db_file, plot_gen_control_file)
 
 
+#%% 
+# dart_ind = 0
+# dart = OpenDartReader(DART_APIS[dart_ind])
+# d, e = _collect_financial_reports(dart, '005930')
+# #%% 
+# # display(d)
+# print(e)
+# #%% 
+# quarter_cols= [s for s in d.columns.values if 'Q' in s]
+# quarter_cols.sort()
+# print(quarter_cols)
+# #%% 
+# # choose columns in quarter_cols
+# display(d.loc[:, quarter_cols])
+# #%% 
+# res = {}
+# for i in range(2, 26):
+#     res[i] =null_checker(main_db, i) 
+# print(res)
+
+# #%%
+# union_list = list({item for sublist in res.values() for item in sublist})
+
+# print(union_list)
+# print(len(union_list))
+# #%% 
+# print(list(res.values()))
+# #%% 
+# from collections import Counter
+
+# # Step 1: Convert each list to a Counter (counts each letter)
+# rows = {k: Counter(v) for k, v in res.items()}
+# print(rows)
+# #%% 
+
+# # Step 2: Convert to DataFrame
+# df = pd.DataFrame.from_dict(rows, orient='index').fillna(0).astype(int)
+# #%% 
+# # %%
+# diff = df.diff().fillna(0)
+
+# # Step 2: A 1 → 0 transition becomes -1 in diff
+# transition_cols = diff[diff == -1].dropna(how='all', axis=1).columns.tolist()
+# #%% 
+# print(transition_cols)
+# #%% 
+# import matplotlib.pyplot as plt
+# df2 = df.drop(columns = transition_cols)
+# # Convert to NumPy array
+# arr = df2.values
+
+# # Plot
+# fig, ax = plt.subplots(figsize=[10, 6])
+# ax.imshow(arr, cmap='Greys', interpolation='none')
+
+# # Remove ticks and labels
+# ax.set_xticks([])
+# ax.set_yticks([])
+
+# plt.show()
+# #%% 
+# display(df2)
+
+# #%% 
+# display(res[2])
+
+# #%%
+# cp2 = null_checker(main_db, 2)
+# cp3 = null_checker(main_db, 3)
+# to_add_partially = [i for i in cp2 if i not in cp3]
+# print(cp2)
+# print(cp3)
+# print(to_add_partially)

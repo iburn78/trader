@@ -383,6 +383,7 @@ def generate_krx_data(sql_db_creation=True):
     cols_to_use.append('Code')
     df_krx = df_krx.merge(df_krx_desc[cols_to_use], on='Code', how='left')
     df_krx = df_krx.set_index('Code')
+    df_krx = df_krx[df_krx['MarketId'] != 'KNX']
 
     # df_krx=df_krx[~df_krx['Dept'].str.contains('관리')]   # remove companies in trouble
     df_krx.to_feather(os.path.join(pd_, 'data_collection/data/df_krx.feather'))
@@ -412,8 +413,31 @@ def prev_quarter_start(date: pd.Timestamp = None) -> pd.Timestamp:
     return pd.Timestamp(year, month, 1)
 
 def get_public_codelist():
-    listing_db = fdr.StockListing('KRX-DESC')
-    return listing_db.loc[listing_db.ListingDate.notna(), 'Code'].values
+    # below includes KNX
+    # listing_db = fdr.StockListing('KRX-DESC')
+    # return listing_db.loc[listing_db.ListingDate.notna(), 'Code'].values
+
+    # instead just use df_krx index
+    pd_ = os.path.dirname(os.path.dirname(os.path.abspath(__file__))) # ..
+    df_krx = pd.read_feather(os.path.join(pd_, 'data_collection/data/df_krx.feather'))
+    return df_krx.index.tolist()
+
+def remove_delisted(codelist):
+    public_codelist = get_public_codelist()
+    return [i for i in codelist if i in public_codelist]
+
+def null_checker(main_db, n):  # check if there are no data in nth quarter before from now
+    tg_qt = nth_quarter_before(n)
+    codelist = remove_delisted(main_db['code'].unique())
+
+    # Keep only necessary columns
+    df = main_db[['code', tg_qt]].copy()
+    # Drop rows that are not in the active codelist
+    df = df[df['code'].isin(codelist)]
+    # Group by code and check if all values for tg_qt are NaN
+    null_flags = df.groupby('code')[tg_qt].apply(lambda x: x.isna().all())
+    # Return only codes where all values are NaN
+    return null_flags[null_flags].index.tolist()
 
 def get_listed():
     listing_db = fdr.StockListing('KRX-DESC')
