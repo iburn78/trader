@@ -116,7 +116,7 @@ if __name__ == "__main__":
     TODAY = pd.Timestamp.today().strftime('%Y-%m-%d')
 
     INITIAL_SIZE = 2500 # initial size of the codelist
-    if qa_db == None:
+    if qa_db is None:
         log_print(log_file, f'{TODAY} QA DB: initialization with {INITIAL_SIZE} codes')
         codelist = df_krx.index.tolist()[0:2500]
     else:
