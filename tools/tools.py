@@ -365,13 +365,57 @@ def plot_last_quarter_prices(pr_db, code, path=None):
 # usage:
 # A = merge_update(A, B, ['col1', 'col2'])
 
-def merge_update(A, B, index_cols=['code', 'fs_div', 'account_nm']):
-    C = A.merge(B, on=index_cols, how='outer', suffixes=('_x', ''))
-    for col in C.columns: 
-        if col[-2:] == '_x':
-            C[col[:-2]] = C[col[:-2]].fillna(C[col])
-            C.drop(col, axis=1, inplace=True)
-    return C
+# below is much more moemory inefficient, so changed to the below one
+# def merge_update_prev(A, B, index_cols=['code', 'fs_div', 'account_nm']):
+#     C = A.merge(B, on=index_cols, how='outer', suffixes=('_x', ''))
+#     for col in C.columns: 
+#         if col[-2:] == '_x':
+#             C[col[:-2]] = C[col[:-2]].fillna(C[col])
+#             C.drop(col, axis=1, inplace=True)
+#     return C
+
+# the below one is more memory efficient and even faster
+# def merge_update_option(A, B, index_cols=['code', 'fs_div', 'account_nm']):
+#     A = A.set_index(index_cols)
+#     B = B.set_index(index_cols)
+
+#     # Rows in both A and B (to update)
+#     common_idx = A.index.intersection(B.index)
+#     A.update(B.loc[common_idx])
+
+#     # Rows in B but not in A (to append)
+#     new_idx = B.index.difference(A.index)
+#     B_only = B.loc[new_idx]
+
+#     # Drop all-NA columns to avoid FutureWarning
+#     B_only = B_only.dropna(axis=1, how='all')
+
+#     # Append only new rows
+#     result = pd.concat([A, B_only], axis=0)
+
+#     return result.reset_index()
+
+def merge_update(A, F, P, index_cols=['code', 'fs_div', 'account_nm']):
+    # Ensure all columns are included
+    all_columns = A.columns.union(F.columns).union(P.columns)
+    A[all_columns.difference(A.columns)] = np.nan
+
+    # Set index
+    A.set_index(index_cols, inplace=True)
+    F.set_index(index_cols, inplace=True)
+    P.set_index(index_cols, inplace=True)
+
+    # 1. Update A with non-NA values from P where index matches
+    A.update(P)
+
+    # 2. Add new rows from P not in A
+    new_idx_P = P.index.difference(A.index)
+    A = pd.concat([A, P.loc[new_idx_P]], axis=0)
+
+    # 3. Overwrite or insert all rows from F
+    A.loc[F.index] = F
+    A = A.reset_index()
+    return A
 
 def generate_krx_data(sql_db_creation=True): 
     pd_ = os.path.dirname(os.path.dirname(os.path.abspath(__file__))) # .. 

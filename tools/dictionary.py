@@ -33,4 +33,5 @@ with open(config_file, 'r') as json_file:
     dart_api_3 = config['dart_api_3']
     DART_APIS = [dart_api_1, dart_api_2, dart_api_3]
 
-MODIFIED_REPORT = '기재정정'
+# MODIFIED_REPORT = '기재정정'
+MODIFIED_REPORT = '정정'

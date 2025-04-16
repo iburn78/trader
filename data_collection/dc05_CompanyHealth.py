@@ -241,7 +241,7 @@ def _generate_financial_reports_set(sector, duration, log_file, date_updated):
                 time.sleep(sleep_time*error_trial)
 
     final = pd.concat(financial_reports, ignore_index=True)
-    return _sort_columns_financial_reports(final)
+    return final
 
 def _generate_update_codelist(log_file, start_day, end_day): 
     dart = OpenDartReader(DART_APIS[0])
@@ -259,28 +259,29 @@ def _generate_update_codelist(log_file, start_day, end_day):
     return full_rescan_code, partial_rescan_code
 
 def _generate_update_db(log_file, end_day, full_rescan_code, partial_rescan_code): 
+    db_f = pd.DataFrame()
+    db_p = pd.DataFrame()
     if len(full_rescan_code) > 0 and len(partial_rescan_code) > 0:
         status = '\nFull rescan codes are {} items: \n{}'.format(len(full_rescan_code), full_rescan_code) + '\nPartial rescan codes are {} items: \n{}'.format(len(partial_rescan_code), partial_rescan_code)
         status = '-----------------------------\n'+str(datetime.datetime.today())+status
         log_print(log_file, status)
         db_f = _generate_financial_reports_set(full_rescan_code, None, log_file, end_day)
         db_p = _generate_financial_reports_set(partial_rescan_code, 2, log_file, end_day) # 1 year
-        res = pd.concat([db_f, db_p], ignore_index=True)
+        # res = pd.concat([db_f, db_p], ignore_index=True)
     elif len(full_rescan_code) > 0 and len(partial_rescan_code) == 0: 
         status = '\nFull rescan codes are {} items: \n{}'.format(len(full_rescan_code), full_rescan_code) + '\nNo partial rescan codes'
         status = '-----------------------------\n'+str(datetime.datetime.today())+status
         log_print(log_file, status)
-        res = _generate_financial_reports_set(full_rescan_code, None, log_file, end_day)
+        db_f = _generate_financial_reports_set(full_rescan_code, None, log_file, end_day)
     elif len(full_rescan_code) == 0 and len(partial_rescan_code) > 0: 
         status = '\nNo full rescan codes' + '\nPartial rescan codes are {} items: \n{}'.format(len(partial_rescan_code), partial_rescan_code)
         status = '-----------------------------\n'+str(datetime.datetime.today())+status
         log_print(log_file, status)
-        res = _generate_financial_reports_set(partial_rescan_code, 2, log_file, end_day) # 1 year
+        db_p = _generate_financial_reports_set(partial_rescan_code, 2, log_file, end_day) # 1 year
     else:
         log_print(log_file, 'No new data to update')
-        return pd.DataFrame() # return an empty dataframe
     
-    return _sort_columns_financial_reports(res)
+    return db_f, db_p
 
 def update_main_db(log_file, main_db_file, plot_gen_control_file=None):
     try: 
@@ -326,18 +327,19 @@ def update_main_db(log_file, main_db_file, plot_gen_control_file=None):
                 target_list.append(code)
         partial_rescan_code = target_list
 
-    update_db = _generate_update_db(log_file, end_day, full_rescan_code, partial_rescan_code)
+    db_f, db_p = _generate_update_db(log_file, end_day, full_rescan_code, partial_rescan_code)
 
-    if len(update_db) > 0:
-        main_db = merge_update(main_db, update_db)
+    if len(db_f) > 0 or len(db_p) > 0:
+        main_db = merge_update(main_db, db_f, db_p)
+        main_db = _sort_columns_financial_reports(main_db)
         main_db.to_feather(main_db_file)
 
         if plot_gen_control_file != None:
             if os.path.exists(plot_gen_control_file):
-                plot_ctrl = np.concatenate((update_db['code'].unique(), np.load(plot_gen_control_file, allow_pickle=True)))
+                plot_ctrl = np.concatenate((full_rescan_code+partial_rescan_code, np.load(plot_gen_control_file, allow_pickle=True)))
                 plot_ctrl = np.unique(plot_ctrl)
             else: 
-                plot_ctrl = update_db['code'].unique()
+                plot_ctrl = full_rescan_code + partial_rescan_code
             np.save(plot_gen_control_file, plot_ctrl)
 
         log_print(log_file, '== Update finished ==')
@@ -352,7 +354,6 @@ def single_company_data_collect(code, fs_div=None):
     if fs_div != None:
         record = record.loc[record['fs_div']==fs_div]
     return _sort_columns_financial_reports(record)
-
 
 if __name__ == '__main__': 
     cd_ = os.path.dirname(os.path.abspath(__file__)) # .   
