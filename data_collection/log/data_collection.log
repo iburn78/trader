@@ -43,3 +43,46 @@ updating market prices...
 Updating outstanding shares information...
 Processing outstanding shares data for 2025-04-15... 0/150
 Processing outstanding shares data for 2025-04-16... 1/150
+Updating KRX data...
+Updating between dates: 2025-04-09 / 2025-04-17
+-----------------------------
+2025-04-17 00:00:23.686088
+Full rescan codes are 21 items: 
+['003120', '004650', '006740', '011080', '032960', '034230', '036690', '037350', '082660', '090850', '101390', '106520', '192820', '208640', '215090', '226440', '234300', '290120', '323410', '336060', '458650']
+Partial rescan codes are 9 items: 
+['043090', '093380', '338100', '357120', '357250', '365550', '432320', '448730', '293490']
+Financial data collection log >> 
+2025-04-17 00:00:23.753142, no: 0, code 003120 in process
+2025-04-17 00:00:38.206401, no: 1, code 004650 in process
+2025-04-17 00:00:53.004336, no: 2, code 006740 in process
+2025-04-17 00:01:07.715044, no: 3, code 011080 in process
+2025-04-17 00:01:22.459993, no: 4, code 032960 in process
+2025-04-17 00:01:37.301004, no: 5, code 034230 in process
+2025-04-17 00:01:52.239094, no: 6, code 036690 in process
+2025-04-17 00:02:07.093869, no: 7, code 037350 in process
+2025-04-17 00:02:22.566350, no: 8, code 082660 in process
+2025-04-17 00:02:37.331262, no: 9, code 090850 in process
+2025-04-17 00:02:52.026051, no: 10, code 101390 in process
+2025-04-17 00:03:06.980013, no: 11, code 106520 in process
+2025-04-17 00:03:21.783038, no: 12, code 192820 in process
+2025-04-17 00:03:36.452689, no: 13, code 208640 in process
+2025-04-17 00:03:50.944292, no: 14, code 215090 in process
+2025-04-17 00:04:04.088087, no: 15, code 226440 in process
+2025-04-17 00:04:16.340512, no: 16, code 234300 in process
+2025-04-17 00:04:29.666809, no: 17, code 290120 in process
+2025-04-17 00:04:41.485569, no: 18, code 323410 in process
+2025-04-17 00:04:48.496008, no: 19, code 336060 in process
+2025-04-17 00:04:57.071333, no: 20, code 458650 in process
+Financial data collection log >> 
+2025-04-17 00:05:02.964973, no: 0, code 043090 in process
+2025-04-17 00:05:10.194950, no: 1, code 093380 in process
+2025-04-17 00:05:17.458232, no: 2, code 338100 in process
+2025-04-17 00:05:23.199997, no: 3, code 357120 in process
+2025-04-17 00:05:28.958164, no: 4, code 357250 in process
+2025-04-17 00:05:34.836461, no: 5, code 365550 in process
+2025-04-17 00:05:40.665367, no: 6, code 432320 in process
+2025-04-17 00:05:46.430179, no: 7, code 448730 in process
+2025-04-17 00:05:52.194092, no: 8, code 293490 in process
+updating market prices...
+Updating outstanding shares information...
+Processing outstanding shares data for 2025-04-16... 0/150
