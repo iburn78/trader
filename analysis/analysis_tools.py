@@ -1,7 +1,7 @@
 #%%
 import os
 import FinanceDataReader as fdr
-from trader.tools.tools import generate_krx_data
+from trader.tools.tools import generate_krx_data, get_main_financial_reports_db
 from trader.tools.koreainvest_module import *
 import pandas as pd
 import time
@@ -44,11 +44,10 @@ cd_ = os.path.dirname(os.path.abspath(__file__)) # .
 pd_ = os.path.dirname(os.path.dirname(os.path.abspath(__file__))) # .. 
 
 OUTPUT_PLOTS_DIR = os.path.join(cd_, 'plots/')
-FR_MAIN_PATH = os.path.join(pd_, 'data_collection/data/financial_reports_main.feather')
 KRX_DATA_FILE = os.path.join(pd_, 'data_collection/data/df_krx.feather')
 
-def retrieve_quarterly_data_code(code, fr_main_path=FR_MAIN_PATH):
-    fr_main = pd.read_feather(fr_main_path)
+def retrieve_quarterly_data_code(code):
+    fr_main = get_main_financial_reports_db()
     fh = fr_main.loc[(fr_main['code']==code) & (fr_main['fs_div']=='CFS')].dropna(axis=1, how='all')  # main_DB might have all na columns
     return fh
 

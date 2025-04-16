@@ -6,8 +6,7 @@ import numpy as np
 import datetime
 
 cd_ = os.path.dirname(os.path.abspath(__file__)) # .   
-main_db_file = os.path.join(cd_, 'data/financial_reports_main.feather')
-main_db = pd.read_feather(main_db_file)
+main_db = get_main_financial_reports_db()
 
 plot_gen_control_file = os.path.join(cd_, 'data/plot_gen_control.npy')
 if not os.path.exists(plot_gen_control_file):

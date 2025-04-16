@@ -395,7 +395,10 @@ def plot_last_quarter_prices(pr_db, code, path=None):
 
 #     return result.reset_index()
 
-def merge_update(A, F, P, index_cols=['code', 'fs_div', 'account_nm']):
+def merge_update(A, F, P=None, index_cols=['code', 'fs_div', 'account_nm']):
+    if P == None: 
+        P = pd.DataFrame(columns=A.columns)
+
     # Ensure all columns are included
     all_columns = A.columns.union(F.columns).union(P.columns)
     A[all_columns.difference(A.columns)] = np.nan
@@ -656,18 +659,45 @@ def git_timestamp():
     else:
         return True
 
+
+def get_main_financial_reports_db():
+    pd_ = os.path.dirname(os.path.dirname(os.path.abspath(__file__))) # ..
+    # main_db_file = os.path.join(pd_, 'data_collection/data/financial_reports_main.feather') 
+    main_db_file1 = os.path.join(pd_, 'data_collection/data/financial_reports_main1.feather') 
+    main_db_file2 = os.path.join(pd_, 'data_collection/data/financial_reports_main2.feather') 
+    main_db_file3 = os.path.join(pd_, 'data_collection/data/financial_reports_main3.feather') 
+    
+    # main_db = pd.read_feather(main_db_file)
+    main_db1 = pd.read_feather(main_db_file1)
+    main_db2 = pd.read_feather(main_db_file2)
+    main_db3 = pd.read_feather(main_db_file3)
+
+    main_db = pd.concat([main_db1, main_db2, main_db3], axis=0)
+    return main_db
+
+def save_main_financial_reports_db(main_db):
+    pd_ = os.path.dirname(os.path.dirname(os.path.abspath(__file__))) # ..
+    main_db_file1 = os.path.join(pd_, 'data_collection/data/financial_reports_main1.feather') 
+    main_db_file2 = os.path.join(pd_, 'data_collection/data/financial_reports_main2.feather') 
+    main_db_file3 = os.path.join(pd_, 'data_collection/data/financial_reports_main3.feather') 
+
+    main_db1, main_db2, main_db3 = np.array_split(main_db, 3, axis=0)
+    main_db1.to_feather(main_db_file1)
+    main_db2.to_feather(main_db_file2)
+    main_db3.to_feather(main_db_file3)
+    return True
+
 def get_dbs(check_time=True):
     if check_time:
         if not git_timestamp():
             raise Exception('git timestamp check failed')
 
     pd_ = os.path.dirname(os.path.dirname(os.path.abspath(__file__))) # ..
-    main_db_file = os.path.join(pd_, 'data_collection/data/financial_reports_main.feather') 
     # price_db_file = os.path.join(pd_, 'data_collection/data/price_DB.feather') 
     df_krx_file = os.path.join(pd_, 'data_collection/data/df_krx.feather') 
     qa_db_file = os.path.join(pd_, 'data_collection/data/qa_db.pkl') 
 
-    main_db = pd.read_feather(main_db_file)
+    main_db = get_main_financial_reports_db()
     # price_db = pd.read_feather(price_db_file)
     df_krx = pd.read_feather(df_krx_file)
     try: 

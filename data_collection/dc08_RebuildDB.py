@@ -12,7 +12,6 @@ from dc06_GenPriceDB import gen_price_DB
 
 cd_ = os.path.dirname(os.path.abspath(__file__)) # .   
 log_file = os.path.join(cd_, 'log/rebuild.log')
-main_db_file = os.path.join(cd_, 'data/financial_reports_main.feather') 
 price_db_file = os.path.join(cd_, 'data/price_DB.feather') 
 
 date_req = '20240612'
@@ -24,9 +23,9 @@ end_day = (datetime.datetime.today() - datetime.timedelta(days=DAYS_ALLOWANCE)).
 res = _generate_financial_reports_set(codelist, 1, log_file, end_day) # 1 year
 res = _sort_columns_financial_reports(res)
 
-main_db = pd.read_feather(main_db_file)
+main_db = get_main_financial_reports_db()
 main_db = merge_update(main_db, res)
-main_db.to_feather(main_db_file)
+save_main_financial_reports_db(main_db)
 
 gen_price_DB()
 price_DB = pd.read_feather(price_db_file)

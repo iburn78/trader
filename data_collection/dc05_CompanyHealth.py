@@ -283,7 +283,7 @@ def _generate_update_db(log_file, end_day, full_rescan_code, partial_rescan_code
     
     return db_f, db_p
 
-def update_main_db(log_file, main_db_file, plot_gen_control_file=None):
+def update_main_db(log_file, main_db, plot_gen_control_file=None):
     try: 
         log_print(log_file, 'Updating KRX data...')
         warnings.filterwarnings("ignore")
@@ -291,8 +291,6 @@ def update_main_db(log_file, main_db_file, plot_gen_control_file=None):
         warnings.resetwarnings()
     except Exception as e:
         log_print(log_file, 'Generation of KRX data failed: '+str(e))
-
-    main_db = pd.read_feather(main_db_file)
 
     start_day = main_db['date_updated'].max()
     start_day = (pd.to_datetime(start_day) - datetime.timedelta(days=7)).strftime('%Y-%m-%d')
@@ -332,7 +330,7 @@ def update_main_db(log_file, main_db_file, plot_gen_control_file=None):
     if len(db_f) > 0 or len(db_p) > 0:
         main_db = merge_update(main_db, db_f, db_p)
         main_db = _sort_columns_financial_reports(main_db)
-        main_db.to_feather(main_db_file)
+        save_main_financial_reports_db(main_db)
 
         if plot_gen_control_file != None:
             if os.path.exists(plot_gen_control_file):
@@ -358,8 +356,7 @@ def single_company_data_collect(code, fs_div=None):
 if __name__ == '__main__': 
     cd_ = os.path.dirname(os.path.abspath(__file__)) # .   
     log_file = os.path.join(cd_, 'log/data_collection.log')
-    main_db_file = os.path.join(cd_, 'data/financial_reports_main.feather')
     plot_gen_control_file = os.path.join(cd_, 'data/plot_gen_control.npy')
-    main_db = pd.read_feather(main_db_file)
+    main_db = get_main_financial_reports_db()
 
-    update_main_db(log_file, main_db_file, plot_gen_control_file)
+    update_main_db(log_file, main_db, plot_gen_control_file)
