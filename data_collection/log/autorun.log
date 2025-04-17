@@ -194,3 +194,21 @@ rate_changes.png
 
 sent 11,030,123 bytes  received 95,023 bytes  4,450,058.40 bytes/sec
 total size is 1,059,582,218  speedup is 95.24
+[main 7ad1914] 2025-04-17 upload done from linux machine
+ 14 files changed, 250 insertions(+)
+ create mode 100644 data_collection/data/df_krx.db
+ create mode 100644 data_collection/data/df_krx.feather
+ create mode 100644 data_collection/log/autorun.log
+ create mode 100644 data_collection/log/data_collection.log
+ create mode 100644 data_collection/log/plot_gen_control_exceptions.log
+ create mode 100644 data_collection/log/quarterly_analysis_db.log
+To https://github.com/iburn78/trader
+   c5f7c8a..7ad1914  main -> main
+rtcwake: write error
+[?2004h(venv) ]0;andy@andy-ThinkPad-T450s: ~/projects/trader/data_collection[01;32mandy@andy-ThinkPad-T450s[00m:[01;34m~/projects/trader/data_collection[00m$ gi tpu[K[K[K[Kt pull 
+[?2004lFrom https://github.com/iburn78/trader
+   7ad1914..c870e7c  main       -> origin/main
+[?2004h(venv) ]0;andy@andy-ThinkPad-T450s: ~/projects/trader/data_collection[01;32mandy@andy-ThinkPad-T450s[00m:[01;34m~/projects/trader/data_collection[00m$ vim autorun.sh q[K[K
+[?2004lVim: Warning: Output is not to a terminal
+[?2004h(venv) ]0;andy@andy-ThinkPad-T450s: ~/projects/trader/data_collection[01;32mandy@andy-ThinkPad-T450s[00m:[01;34m~/projects/trader/data_collection[00m$ exit
+[?2004lexit
