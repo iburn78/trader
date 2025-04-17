@@ -17,7 +17,7 @@ def _weighted_avg(df, rate):
     return (weights*values).sum()/weights.sum()
 
 for p in ['last_day', 'last_week', 'last_month', 'last_quarter', 'last_year']:
-    wg = listed.groupby('Category').apply(_weighted_avg, rate = p)
+    wg = listed.groupby('Category', group_keys=False).apply(_weighted_avg, rate=p, include_groups=False)
     wg.name = 'wg_'+p
     category_mean = pd.merge(category_mean, wg, on='Category', how='left')
 
