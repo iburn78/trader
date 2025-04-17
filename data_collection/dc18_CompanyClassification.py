@@ -7,15 +7,13 @@ pd_ = os.path.dirname(os.path.dirname(os.path.abspath(__file__))) # ..
 qa_db_file = os.path.join(pd_, 'data_collection/data/qa_db.pkl') 
 qa_db = pd.read_pickle(qa_db_file)
 
-#%% 
-
 cv_threshold_prime = 0.3
-cv_threshold = 0.5
+cv_threshold = 0.7
 outstanding_companies = {
-    'revenue_growth': [10, 0.2], # percent, # count (0.2 = 20% of quarters: to be multiplied by period)
+    'revenue_growth': [5, 0.3], # percent, # count (e.g., 0.2 = 20% of quarters: to be multiplied by period)
     'revenue_stats': [np.nan, cv_threshold_prime, 0, np.nan], # size
     'opincome_stats': [np.nan, cv_threshold_prime, 0, np.nan], # size
-    'opmargin_stats': [10, cv_threshold_prime, 0, np.nan], # percent
+    'opmargin_stats': [12, cv_threshold_prime, 0, np.nan], # percent
     'nopincome_stats': [np.nan, cv_threshold, np.nan, np.nan], # size
     'asset_stats': [np.nan, cv_threshold, 0, np.nan], # size
     'debt_stats': [np.nan, cv_threshold, np.nan, np.nan], # size
@@ -100,19 +98,21 @@ def compare_logic(period, data_dict, criteria_dict):
     
     return res, comment
 
+# visualize datadict 
+# overall score datadict
+# price trend, PER/PBR
+# PER trend (refer to the already made code)
+
 for code in qa_db.index[:]:
     data_dict = qa_db.loc[code, '24Q']
-    period = 24
-    if data_dict is not None and pd.isna(data_dict) == False:
+    period = 16
+    if pd.isna(data_dict) == False:
         res, comment = compare_logic(period, data_dict, outstanding_companies)
-        # print(data_dict)
         # print(sum(res), res, comment)
         if all(res):
             print(code, '################ Outstanding company')
             print(comment)
         else: 
             pass
-            # print(code, 'not outstanding company')
     else: 
         pass
-        # print(code, 'not')
