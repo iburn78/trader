@@ -396,7 +396,7 @@ def plot_last_quarter_prices(pr_db, code, path=None):
 #     return result.reset_index()
 
 def merge_update(A, F, P=None, index_cols=['code', 'fs_div', 'account_nm']):
-    if P == None: 
+    if P is None: 
         P = pd.DataFrame(columns=A.columns)
 
     # Ensure all columns are included
