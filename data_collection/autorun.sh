@@ -23,19 +23,19 @@ private_key="/home/andy/.tnpartners_keypair.pem"
 LOG_FILE="${log_directory}autorun.log"  
 
 # Redirect all output (stdout and stderr) to the log file from here on
-# exec > >(tee -a "$LOG_FILE") 2>&1 
+exec > >(tee -a "$LOG_FILE") 2>&1 
 
 # Activate virtual environment 
 source ~/projects/trader/venv/bin/activate
 cd ~/projects/trader/data_collection
 
 # Run Python scripts
-# python dc05_CompanyHealth.py
-# python dc06_GenPriceDB.py
-# python dc17_QuarterlyAnalysisDB.py
-# python dc07_VisualizeHealth.py
+python dc05_CompanyHealth.py
+python dc06_GenPriceDB.py
+python dc17_QuarterlyAnalysisDB.py
+python dc07_VisualizeHealth.py
 python dc13_RateChanges.py
-# python dc16_DailyUpdate.py
+python dc16_DailyUpdate.py
 
 # SCP and Rsync commands
 scp -i $private_key "${info_directory}df_krx.db" ubuntu@tnpartners.net:$tnp_data_directory
@@ -52,7 +52,7 @@ date > "${info_directory}update_info.txt"
 scp -i $private_key "${info_directory}update_info.txt" ubuntu@tnpartners.net:$tnp_info_directory
 
 # Ensure all data is flushed to the log file
-# exec >&-  # Close file descriptors
+exec >&-  # Close file descriptors
 
 # SCP the log files to the server
 scp -i $private_key "${log_directory}"*.log ubuntu@tnpartners.net:$tnp_log_directory
