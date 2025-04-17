@@ -56,8 +56,6 @@ def plot_company_financial_summary(db, code, path=None):
         plt.savefig(path)
         plt.close()
 
-
-
 def plot_company_financial_summary2(fr_db, pr_db, code, path=None):
     quarter_cols= [s for s in fr_db.columns.values if 'Q' in s]
     quarter_cols.sort()
@@ -105,8 +103,6 @@ def plot_company_financial_summary2(fr_db, pr_db, code, path=None):
     else: 
         plt.savefig(path)
         plt.close()
-
-
 
 def _plot_barline(ax, data, y1, y2, y3, y4=None):
     axr = ax.twinx()
@@ -176,7 +172,6 @@ def _plot_barline(ax, data, y1, y2, y3, y4=None):
     ax.set_xlim(-0.5, len(x) - 0.5)
     axr.set_xlim(-0.5, len(x) - 0.5)
     sns.despine(left=True, bottom=False)
-
 
 def _plot_barline2(ax, data, y1, y2, y3, y4=None, cc1='lightskyblue', cc2='steelblue', cc3='r', cc4='k'):
     axr = ax.twinx()
@@ -291,7 +286,6 @@ def _get_quarterly_prices(fr_db, pr_db, code, fs_div_mode = 'CFS'):
     qprices['quarter'] = qprices.index.year.astype(str).str[-2:] + '.' + qprices.index.quarter.astype(str) 
     return qprices
 
-
 def _plot_priceline(ax, qprices):
     sns.lineplot(x='quarter', y='price', data=qprices, ax = ax, color="k")
     qm = qprices.groupby('quarter').mean().sort_index()['price'].tolist()
@@ -320,7 +314,6 @@ def _plot_priceline(ax, qprices):
     ax.spines['right'].set_visible(False)
     ax.spines['left'].set_visible(False)
     ax.set_facecolor('whitesmoke')
-
 
 def plot_last_quarter_prices(pr_db, code, path=None):
     plt.close('all')
@@ -358,8 +351,6 @@ def plot_last_quarter_prices(pr_db, code, path=None):
     else: 
         plt.savefig(path)
         plt.close()
-
-
 
 # merge new data and update existing data
 # usage:
@@ -459,23 +450,9 @@ def prev_quarter_start(date: pd.Timestamp = None) -> pd.Timestamp:
     month = month if month > 0 else month + 12
     return pd.Timestamp(year, month, 1)
 
-def get_public_codelist():
-    # below includes KNX
-    # listing_db = fdr.StockListing('KRX-DESC')
-    # return listing_db.loc[listing_db.ListingDate.notna(), 'Code'].values
-
-    # instead just use df_krx index
-    pd_ = os.path.dirname(os.path.dirname(os.path.abspath(__file__))) # ..
-    df_krx = pd.read_feather(os.path.join(pd_, 'data_collection/data/df_krx.feather'))
-    return df_krx.index.tolist()
-
-def remove_delisted(codelist):
-    public_codelist = get_public_codelist()
-    return [i for i in codelist if i in public_codelist]
-
 def null_checker(main_db, n):  # check if there are no data in nth quarter before from now
     tg_qt = nth_quarter_before(n)
-    codelist = remove_delisted(main_db['code'].unique())
+    codelist = main_db['code'].unique()
 
     # Keep only necessary columns
     df = main_db[['code', tg_qt]].copy()
@@ -517,7 +494,6 @@ def get_listed():
 
     listed = listed.drop(['Representative', 'HomePage', 'Region'], axis=1)
     return listed
-
 
 def get_pr_changes(price_db_file):
     pr_db = pd.read_feather(price_db_file)
@@ -659,7 +635,6 @@ def git_timestamp():
     else:
         return True
 
-
 def get_main_financial_reports_db():
     pd_ = os.path.dirname(os.path.dirname(os.path.abspath(__file__))) # ..
     # main_db_file = os.path.join(pd_, 'data_collection/data/financial_reports_main.feather') 
@@ -681,7 +656,11 @@ def save_main_financial_reports_db(main_db):
     main_db_file2 = os.path.join(pd_, 'data_collection/data/financial_reports_main2.feather') 
     main_db_file3 = os.path.join(pd_, 'data_collection/data/financial_reports_main3.feather') 
 
-    main_db1, main_db2, main_db3 = np.array_split(main_db, 3, axis=0)
+    CHUNK_SIZE = int(len(main_db)/3)
+    main_db1 = main_db.iloc[:CHUNK_SIZE]
+    main_db2 = main_db.iloc[CHUNK_SIZE:CHUNK_SIZE*2]
+    main_db3 = main_db.iloc[CHUNK_SIZE*2:]
+    
     main_db1.to_feather(main_db_file1)
     main_db2.to_feather(main_db_file2)
     main_db3.to_feather(main_db_file3)
@@ -706,7 +685,6 @@ def get_dbs(check_time=True):
         qa_db = None
     return main_db, df_krx, qa_db #, price_db
     
-
 def get_quarterly_data(code, fr_db, unit=KRW_UNIT):  # fr_db = main_db or financial_reports_main
     quarter_cols= [s for s in fr_db.columns.values if 'Q' in s]
     quarter_cols.sort()
