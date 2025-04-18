@@ -1,214 +1,1 @@
-Updating KRX data...
-Updating between dates: 2025-04-09 / 2025-04-17
------------------------------
-2025-04-17 10:54:41.750613
-Full rescan codes are 22 items: 
-['003120', '004650', '006740', '011080', '032960', '034230', '036690', '037350', '082660', '090850', '101390', '106520', '192820', '208640', '215090', '226440', '232530', '234300', '290120', '323410', '336060', '458650']
-Partial rescan codes are 10 items: 
-['013340', '043090', '093380', '338100', '357120', '357250', '365550', '432320', '448730', '293490']
-Financial data collection log >> 
-2025-04-17 10:54:41.910489, no: 0, code 003120 in process
-2025-04-17 10:54:58.029035, no: 1, code 004650 in process
-2025-04-17 10:55:14.900981, no: 2, code 006740 in process
-2025-04-17 10:55:31.550986, no: 3, code 011080 in process
-2025-04-17 10:55:48.927606, no: 4, code 032960 in process
-2025-04-17 10:56:05.991900, no: 5, code 034230 in process
-2025-04-17 10:56:23.132916, no: 6, code 036690 in process
-2025-04-17 10:56:39.808990, no: 7, code 037350 in process
-2025-04-17 10:56:56.679033, no: 8, code 082660 in process
-2025-04-17 10:57:19.300717, no: 9, code 090850 in process
-2025-04-17 10:57:35.914887, no: 10, code 101390 in process
-2025-04-17 10:57:53.103993, no: 11, code 106520 in process
-2025-04-17 10:58:10.525971, no: 12, code 192820 in process
-2025-04-17 10:58:33.385146, no: 13, code 208640 in process
-2025-04-17 10:58:49.394471, no: 14, code 215090 in process
-2025-04-17 10:59:03.817575, no: 15, code 226440 in process
-2025-04-17 10:59:17.550987, no: 16, code 232530 in process
-----> no: 16, code 232530 data not available, could be a financial institution
-2025-04-17 10:59:23.859893, no: 17, code 234300 in process
-2025-04-17 10:59:38.063922, no: 18, code 290120 in process
-2025-04-17 10:59:51.826323, no: 19, code 323410 in process
-2025-04-17 10:59:59.115989, no: 20, code 336060 in process
-2025-04-17 11:00:08.646034, no: 21, code 458650 in process
-Financial data collection log >> 
-2025-04-17 11:00:14.690162, no: 0, code 013340 in process
-----> no: 0, code 013340 data not available, could be a financial institution
-2025-04-17 11:00:20.893292, no: 1, code 043090 in process
-2025-04-17 11:00:28.611627, no: 2, code 093380 in process
-2025-04-17 11:00:36.235754, no: 3, code 338100 in process
-2025-04-17 11:00:42.179812, no: 4, code 357120 in process
-2025-04-17 11:00:48.275507, no: 5, code 357250 in process
-2025-04-17 11:00:54.193061, no: 6, code 365550 in process
-2025-04-17 11:01:00.007947, no: 7, code 432320 in process
-2025-04-17 11:01:05.878192, no: 8, code 448730 in process
-2025-04-17 11:01:11.706152, no: 9, code 293490 in process
-== Update finished ==
-updating market prices...
-Updating outstanding shares information...
-Processing outstanding shares data for 2025-04-16... 0/150
-Processing outstanding shares data for 2025-04-17... 1/150
-2025-04-17 QA DB: updating ['003120', '004650', '006740', '011080', '032960', '034230', '036690', '037350', '082660', '090850', '101390', '106520', '192820', '208640', '215090', '226440', '232530', '234300', '290120', '323410', '336060', '458650', '013340', '043090', '093380', '338100', '357120', '357250', '365550', '432320', '448730', '293490']
-003120
-004650
-006740
-011080
-032960
-034230
-036690
-037350
-082660
-090850
-101390
-106520
-192820
-208640
-215090
-226440
-232530
-234300
-290120
-323410
-336060
-458650
-013340
-043090
-093380
-338100
-357120
-357250
-365550
-432320
-448730
-293490
-003120 | 1/32
-004650 | 2/32
-006740 | 3/32
-011080 | 4/32
-032960 | 5/32
-034230 | 6/32
-036690 | 7/32
-037350 | 8/32
-082660 | 9/32
-090850 | 10/32
-101390 | 11/32
-106520 | 12/32
-192820 | 13/32
-208640 | 14/32
-215090 | 15/32
-226440 | 16/32
-232530 | 17/32
-2025-04-17 11:05:29.185736 | 232530 | quarterly data of 232530 is empty.
-234300 | 18/32
-290120 | 19/32
-323410 | 20/32
-336060 | 21/32
-458650 | 22/32
-2025-04-17 11:05:53.209272 | 458650 | quarterly data of 458650 is empty.
-013340 | 23/32
-2025-04-17 11:05:54.644765 | 013340 | quarterly data of 013340 is empty.
-043090 | 24/32
-093380 | 25/32
-338100 | 26/32
-357120 | 27/32
-357250 | 28/32
-365550 | 29/32
-432320 | 30/32
-448730 | 31/32
-2025-04-17 11:06:25.480113 | 448730 | quarterly data of 448730 is empty.
-293490 | 32/32
-/home/andy/projects/trader/data_collection/dc13_RateChanges.py:20: DeprecationWarning: DataFrameGroupBy.apply operated on the grouping columns. This behavior is deprecated, and in a future version of pandas the grouping columns will be excluded from the operation. Either pass `include_groups=False` to exclude the groupings or explicitly select the grouping columns after groupby to silence this warning.
-  wg = listed.groupby('Category').apply(_weighted_avg, rate = p)
-/home/andy/projects/trader/data_collection/dc13_RateChanges.py:20: DeprecationWarning: DataFrameGroupBy.apply operated on the grouping columns. This behavior is deprecated, and in a future version of pandas the grouping columns will be excluded from the operation. Either pass `include_groups=False` to exclude the groupings or explicitly select the grouping columns after groupby to silence this warning.
-  wg = listed.groupby('Category').apply(_weighted_avg, rate = p)
-/home/andy/projects/trader/data_collection/dc13_RateChanges.py:20: DeprecationWarning: DataFrameGroupBy.apply operated on the grouping columns. This behavior is deprecated, and in a future version of pandas the grouping columns will be excluded from the operation. Either pass `include_groups=False` to exclude the groupings or explicitly select the grouping columns after groupby to silence this warning.
-  wg = listed.groupby('Category').apply(_weighted_avg, rate = p)
-/home/andy/projects/trader/data_collection/dc13_RateChanges.py:20: DeprecationWarning: DataFrameGroupBy.apply operated on the grouping columns. This behavior is deprecated, and in a future version of pandas the grouping columns will be excluded from the operation. Either pass `include_groups=False` to exclude the groupings or explicitly select the grouping columns after groupby to silence this warning.
-  wg = listed.groupby('Category').apply(_weighted_avg, rate = p)
-/home/andy/projects/trader/data_collection/dc13_RateChanges.py:20: DeprecationWarning: DataFrameGroupBy.apply operated on the grouping columns. This behavior is deprecated, and in a future version of pandas the grouping columns will be excluded from the operation. Either pass `include_groups=False` to exclude the groupings or explicitly select the grouping columns after groupby to silence this warning.
-  wg = listed.groupby('Category').apply(_weighted_avg, rate = p)
-sending incremental file list
-daily_update.json
-          1,324  73%    0.00kB/s    0:00:00            1,795 100%  459.96kB/s    0:00:00 (xfr#1, to-chk=0/2)
-
-sent 753 bytes  received 53 bytes  537.33 bytes/sec
-total size is 1,795  speedup is 2.23
-sending incremental file list
-003120.png
-         32,768   6%    0.00kB/s    0:00:00          519,933 100%   77.43MB/s    0:00:00 (xfr#1, to-chk=2445/2593)
-004650.png
-         32,768   7%    5.21MB/s    0:00:00          461,303 100%   24.44MB/s    0:00:00 (xfr#2, to-chk=2387/2593)
-006740.png
-         32,768   9%    1.56MB/s    0:00:00          362,723 100%   11.16MB/s    0:00:00 (xfr#3, to-chk=2306/2593)
-011080.png
-         32,768   7% 1000.00kB/s    0:00:00          464,319 100%    8.86MB/s    0:00:00 (xfr#4, to-chk=2195/2593)
-032960.png
-         32,768   5%  627.45kB/s    0:00:00          600,235 100%    7.07MB/s    0:00:00 (xfr#5, to-chk=1907/2593)
-034230.png
-         32,768   7%  385.54kB/s    0:00:01          456,645 100%    3.66MB/s    0:00:00 (xfr#6, to-chk=1878/2593)
-036690.png
-         32,768   6%  264.46kB/s    0:00:01          526,271 100%    2.60MB/s    0:00:00 (xfr#7, to-chk=1830/2593)
-037350.png
-         32,768   7%  164.95kB/s    0:00:02          455,945 100%    1.83MB/s    0:00:00 (xfr#8, to-chk=1818/2593)
-043090.png
-         32,768   7%  134.45kB/s    0:00:03          437,305 100%    1.39MB/s    0:00:00 (xfr#9, to-chk=1741/2593)
-082660.png
-         32,768   6%  106.67kB/s    0:00:04          497,544 100%    1.36MB/s    0:00:00 (xfr#10, to-chk=1344/2593)
-090850.png
-         32,768   6%   91.43kB/s    0:00:05          492,848 100%    1.10MB/s    0:00:00 (xfr#11, to-chk=1258/2593)
-093380.png
-         32,768  11%   75.12kB/s    0:00:03          284,211 100%  620.92kB/s    0:00:00 (xfr#12, to-chk=1227/2593)
-101390.png
-         32,768   6%   71.27kB/s    0:00:07          541,429 100%    1.01MB/s    0:00:00 (xfr#13, to-chk=1156/2593)
-106520.png
-         32,768   6%   62.38kB/s    0:00:07          518,835 100%  873.58kB/s    0:00:00 (xfr#14, to-chk=1118/2593)
-192820.png
-         32,768   6%   55.17kB/s    0:00:08          484,279 100%  745.94kB/s    0:00:00 (xfr#15, to-chk=843/2593)
-208640.png
-         32,768   6%   50.39kB/s    0:00:09          526,990 100%  749.11kB/s    0:00:00 (xfr#16, to-chk=785/2593)
-215090.png
-         30,660  26%   43.52kB/s    0:00:01          115,547 100%  161.20kB/s    0:00:00 (xfr#17, to-chk=758/2593)
-226440.png
-         32,768   8%   45.58kB/s    0:00:07          388,087 100%  422.51kB/s    0:00:00 (xfr#18, to-chk=705/2593)
-234300.png
-         32,768   6%   35.63kB/s    0:00:12          476,195 100%  495.77kB/s    0:00:00 (xfr#19, to-chk=685/2593)
-290120.png
-         32,768   7%   34.08kB/s    0:00:11          360,448  83%  347.14kB/s    0:00:00          433,429 100%  416.60kB/s    0:00:01 (xfr#20, to-chk=525/2593)
-293490.png
-         32,768  10%   10.42MB/s    0:00:00          318,985 100%   27.66MB/s    0:00:00 (xfr#21, to-chk=509/2593)
-323410.png
-         32,768  15% 1000.00kB/s    0:00:00          211,477 100%    5.76MB/s    0:00:00 (xfr#22, to-chk=409/2593)
-336060.png
-         32,768   8%  888.89kB/s    0:00:00          385,450 100%    4.04MB/s    0:00:00 (xfr#23, to-chk=384/2593)
-338100.png
-         32,768  16%  351.65kB/s    0:00:00          203,229 100%    1.75MB/s    0:00:00 (xfr#24, to-chk=379/2593)
-357120.png
-         32,768  16%  285.71kB/s    0:00:00          197,479 100%    1.47MB/s    0:00:00 (xfr#25, to-chk=329/2593)
-357250.png
-         32,768  16%  250.00kB/s    0:00:00          193,437 100%    1.25MB/s    0:00:00 (xfr#26, to-chk=327/2593)
-365550.png
-         32,768  16%  197.53kB/s    0:00:00          195,326 100%    1.05MB/s    0:00:00 (xfr#27, to-chk=305/2593)
-432320.png
-         32,768  16%  178.77kB/s    0:00:00          202,649 100%  970.10kB/s    0:00:00 (xfr#28, to-chk=158/2593)
-rate_changes.png
-         32,768  16%  156.10kB/s    0:00:01          196,561 100%  816.83kB/s    0:00:00 (xfr#29, to-chk=0/2593)
-
-sent 11,030,123 bytes  received 95,023 bytes  4,450,058.40 bytes/sec
-total size is 1,059,582,218  speedup is 95.24
-[main 7ad1914] 2025-04-17 upload done from linux machine
- 14 files changed, 250 insertions(+)
- create mode 100644 data_collection/data/df_krx.db
- create mode 100644 data_collection/data/df_krx.feather
- create mode 100644 data_collection/log/autorun.log
- create mode 100644 data_collection/log/data_collection.log
- create mode 100644 data_collection/log/plot_gen_control_exceptions.log
- create mode 100644 data_collection/log/quarterly_analysis_db.log
-To https://github.com/iburn78/trader
-   c5f7c8a..7ad1914  main -> main
-rtcwake: write error
-[?2004h(venv) ]0;andy@andy-ThinkPad-T450s: ~/projects/trader/data_collection[01;32mandy@andy-ThinkPad-T450s[00m:[01;34m~/projects/trader/data_collection[00m$ gi tpu[K[K[K[Kt pull 
-[?2004lFrom https://github.com/iburn78/trader
-   7ad1914..c870e7c  main       -> origin/main
-[?2004h(venv) ]0;andy@andy-ThinkPad-T450s: ~/projects/trader/data_collection[01;32mandy@andy-ThinkPad-T450s[00m:[01;34m~/projects/trader/data_collection[00m$ vim autorun.sh q[K[K
-[?2004lVim: Warning: Output is not to a terminal
-[?2004h(venv) ]0;andy@andy-ThinkPad-T450s: ~/projects/trader/data_collection[01;32mandy@andy-ThinkPad-T450s[00m:[01;34m~/projects/trader/data_collection[00m$ exit
-[?2004lexit
+(previous log removed: 2025-04-17)

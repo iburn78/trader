@@ -97,12 +97,55 @@ def compare_logic(period, data_dict, criteria_dict):
             comment[idx] += 'I' # Increasing
     
     return res, comment
-
+#%% 
 # visualize datadict 
 # overall score datadict
 # price trend, PER/PBR
 # PER trend (refer to the already made code)
 
+def _preprocess_showdata(data_dict):
+    data_dict = data_dict.copy()
+    rv = data_dict['revenue_growth']
+    # print('revenue growth(%):', data_dict['revenue_growth'][0])
+    # print('revenue dip(#):', data_dict['revenue_growth'][1])
+    del data_dict['revenue_growth']
+
+    stats = pd.DataFrame(data_dict, index = ['mean', 'cv', 'slope', 'acc']).T
+    stats.index = stats.index.str.replace('_stats', '')
+    stats.index = stats.index.str.replace('_ratio', '')
+    stats.index = stats.index.str.replace('_', '.')
+    # print(stats)
+    def format_value(val):
+        if pd.isna(val):
+            return "–"
+        return f"{int(val):,}" if abs(val) > 100 else f"{val:.2f}"
+
+    stats = stats.style.format(format_value)
+    return rv, stats
+
+def show_data(code, qa_db, period:int = None):
+    if period is not None:
+        period = str(period) + 'Q'
+        data_dict = qa_db.loc[code, period]
+        if pd.isna(data_dict) == True:
+            print('No data')
+            ##### move to the next
+            return
+        meta = qa_db.loc[code, 'meta']
+        rv, stats = _preprocess_showdata(data_dict)
+
+        print(meta['name'], code, '/', period, '/', meta['last_quarter'])
+        print('revenue growth(%), dip(#):', rv[0], rv[1])
+        display(stats)
+        # stats.to_html()
+    else:
+        pass
+
+
+code = '005930'
+show_data(code, qa_db, 24)
+
+#%% 
 for code in qa_db.index[:]:
     data_dict = qa_db.loc[code, '24Q']
     period = 16
