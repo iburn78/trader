@@ -1,3 +1,4 @@
+#%% 
 import pandas as pd
 import numpy as np
 import os
@@ -50,37 +51,43 @@ def _preprocess_showdata(data_dict):
     return rv, stats, styled
 
 # visualize datadict (Only works in jupyter notebook)
-def show_qdata(code, period:int, only:bool = False, qa_db = qa_db):
-    ps = str(period) + 'Q'
-    data_dict = qa_db.loc[code, ps]
+def show_qdata(code, period:str, only:bool = False, qa_db = qa_db):
+    data_dict = qa_db.loc[code, period]
     if pd.isna(data_dict) or len(data_dict) == 0:
-        print('No data for', period)
+        # print('No data for', period)
         return None
     meta = qa_db.loc[code, 'meta']
     rv, stats, styled = _preprocess_showdata(data_dict)
+    p = int(period.replace("Q", ""))
 
     if only == False:
         print(meta['name'], code, '/', 'period', period, '/', 'LQ:', meta['last_quarter'])
         print(f'revenue growth:   {rv[0]} %') 
-        print(f'dip (times):      {rv[1]} ({int(rv[1]/period*100)}%)')
+        print(f'dip (times):      {rv[1]} ({int(rv[1]/p*100)}%)')
         print(f"op margin:        {stats.loc['opmargin', 'mean']} %")
         print(f"debt to equity:   {stats.loc['debt.to.equity', 'mean']} %")
     display(styled)
     return None
 
-def show_summary_data(code, period: int = None, qa_db = qa_db):
-    periods = [int(i.replace('Q', '')) for i in qa_db.columns if 'Q' in i] if period is None else [period]
+def get_periods(qa_db = qa_db): 
+    return [i for i in qa_db.columns if 'Q' in i]
+
+def show_summary_data(code, period:str = None, qa_db = qa_db):
+    if period is None:
+        periods = get_periods()
+    else: 
+        periods = [period]
     meta = qa_db.loc[code, 'meta']
     
     summary = []  # collect rows of data across periods
-    for p in periods:
-        ps = str(p) + 'Q'
-        data_dict = qa_db.loc[code, ps]
+    for period in periods:
+        data_dict = qa_db.loc[code, period]
         if pd.isna(data_dict) or len(data_dict) == 0:
             continue
         rv, stats, _ = _preprocess_showdata(data_dict)
+        p = int(period.replace("Q", ""))
         row = {
-            'period': ps,
+            'period': period,
             'revenue_growth': rv[0],
             'dip': f"{rv[1]} ({int(rv[1]/p*100)}%)",
             'opmargin': stats.loc['opmargin', 'mean'],
@@ -88,7 +95,7 @@ def show_summary_data(code, period: int = None, qa_db = qa_db):
         }
         summary.append(row)
 
-    if not summary:
+    if len(summary) == 0:
         print('No data found for any period.')
         return
 
@@ -111,11 +118,11 @@ def show_summary_data(code, period: int = None, qa_db = qa_db):
     display(styled)
     
 # visualize datadict (Only works in jupyter notebook)
-def show_data(code, period:int = None, qa_db = qa_db): 
+def show_data(code, period:str = None, qa_db = qa_db): 
     if period is None:
         show_summary_data(code)
-        for period in[int(i.replace('Q', '')) for i in qa_db.columns if 'Q' in i]:
-            print('period:', str(period) + 'Q')
+        for period in get_periods():
+            print('period:', period)
             show_qdata(code, period, only = True)
     else:
         show_qdata(code, period)
