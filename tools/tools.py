@@ -437,6 +437,11 @@ def generate_krx_data(sql_db_creation=True):
 
     return df_krx
 
+def get_df_krx():
+    pd_ = os.path.dirname(os.path.dirname(os.path.abspath(__file__)))
+    df_krx = pd.read_feather(os.path.join(pd_, 'data_collection/data/df_krx.feather'))
+    return df_krx
+
 def log_print(log_file, message):
     print(message)
     with open(log_file, 'a') as f: # a new file would be created if there is no log_file / otherwise it will append with "a" option
