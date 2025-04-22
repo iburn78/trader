@@ -279,3 +279,41 @@ updating market prices...
 Updating outstanding shares information...
 Processing outstanding shares data for 2025-04-18... 0/150
 Processing outstanding shares data for 2025-04-21... 1/150
+Updating KRX data...
+Updating between dates: 2025-04-15 / 2025-04-23
+-----------------------------
+2025-04-23 00:00:19.503885
+Full rescan codes are 10 items: 
+['034230', '042670', '093640', '149980', '192820', '208640', '340810', '348080', '394800', '432320']
+Partial rescan codes are 8 items: 
+['039790', '070300', '212310', '288490', '900100', '900250', '900340', '293490']
+Financial data collection log >> 
+2025-04-23 00:00:19.572652, no: 0, code 034230 in process
+2025-04-23 00:00:36.839343, no: 1, code 042670 in process
+2025-04-23 00:00:54.299163, no: 2, code 093640 in process
+2025-04-23 00:01:10.418759, no: 3, code 149980 in process
+2025-04-23 00:01:26.984301, no: 4, code 192820 in process
+2025-04-23 00:01:44.292554, no: 5, code 208640 in process
+2025-04-23 00:02:00.998249, no: 6, code 340810 in process
+2025-04-23 00:02:08.809755, no: 7, code 348080 in process
+2025-04-23 00:02:18.083542, no: 8, code 394800 in process
+2025-04-23 00:02:23.944596, no: 9, code 432320 in process
+Financial data collection log >> 
+2025-04-23 00:02:30.134314, no: 0, code 039790 in process
+2025-04-23 00:02:37.704603, no: 1, code 070300 in process
+2025-04-23 00:02:45.227065, no: 2, code 212310 in process
+----> no: 2, code 212310 data not available, could be a financial institution
+2025-04-23 00:02:51.665398, no: 3, code 288490 in process
+----> no: 3, code 288490 data not available, could be a financial institution
+2025-04-23 00:02:57.959109, no: 4, code 900100 in process
+----> no: 4, code 900100 currency not in KRW, skipping
+2025-04-23 00:03:03.635601, no: 5, code 900250 in process
+----> no: 5, code 900250 currency not in KRW, skipping
+2025-04-23 00:03:09.281608, no: 6, code 900340 in process
+----> no: 6, code 900340 currency not in KRW, skipping
+2025-04-23 00:03:14.842774, no: 7, code 293490 in process
+== Update finished ==
+updating market prices...
+Updating outstanding shares information...
+Processing outstanding shares data for 2025-04-21... 0/150
+Processing outstanding shares data for 2025-04-22... 1/150
