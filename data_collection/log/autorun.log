@@ -1042,3 +1042,134 @@ rate_changes.png
 
 sent 4,153,348 bytes  received 35,071 bytes  2,792,279.33 bytes/sec
 total size is 1,059,388,796  speedup is 252.93
+[main 9bb92d5] 2025-04-23 upload done from linux machine
+ 14 files changed, 170 insertions(+)
+ rewrite data_collection/data/df_krx.db (84%)
+ rewrite data_collection/data/df_krx.feather (84%)
+To https://github.com/iburn78/trader
+   64b6d57..9bb92d5  main -> main
+rtcwake: write error
+https://github.com/iburn78/trader URL에서
+   9bb92d5..545a3f1  main       -> origin/main
+업데이트 중 9bb92d5..545a3f1
+Fast-forward
+ data_collection/dc17_QuarterlyAnalysisDB.py   |  16 +--
+ data_collection/dc18_CC_tools.py              |   3 +
+ data_collection/dc18_CompanyClassification.py | 184 +++++++++++++++++---------
+ tools/tools.py                                |  29 +++-
+ 4 files changed, 154 insertions(+), 78 deletions(-)
+Updating KRX data...
+Updating between dates: 2025-04-16 / 2025-04-24
+-----------------------------
+2025-04-24 00:00:18.753310
+Full rescan codes are 9 items: 
+['042670', '093640', '149980', '192820', '206950', '340810', '348080', '394800', '432320']
+Partial rescan codes are 9 items: 
+['039790', '070300', '212310', '288490', '900100', '900250', '900310', '900340', '293490']
+Financial data collection log >> 
+2025-04-24 00:00:18.822311, no: 0, code 042670 in process
+2025-04-24 00:00:33.744086, no: 1, code 093640 in process
+2025-04-24 00:00:48.881122, no: 2, code 149980 in process
+2025-04-24 00:01:03.454083, no: 3, code 192820 in process
+2025-04-24 00:01:18.153308, no: 4, code 206950 in process
+----> no: 4, code 206950 data not available, could be a financial institution
+2025-04-24 00:01:24.206340, no: 5, code 340810 in process
+2025-04-24 00:01:31.482326, no: 6, code 348080 in process
+2025-04-24 00:01:40.154132, no: 7, code 394800 in process
+2025-04-24 00:01:45.879549, no: 8, code 432320 in process
+Financial data collection log >> 
+2025-04-24 00:01:51.902999, no: 0, code 039790 in process
+2025-04-24 00:01:59.161690, no: 1, code 070300 in process
+2025-04-24 00:02:06.317295, no: 2, code 212310 in process
+----> no: 2, code 212310 data not available, could be a financial institution
+2025-04-24 00:02:12.378967, no: 3, code 288490 in process
+----> no: 3, code 288490 data not available, could be a financial institution
+2025-04-24 00:02:18.444000, no: 4, code 900100 in process
+----> no: 4, code 900100 currency not in KRW, skipping
+2025-04-24 00:02:23.895980, no: 5, code 900250 in process
+----> no: 5, code 900250 currency not in KRW, skipping
+2025-04-24 00:02:29.341375, no: 6, code 900310 in process
+----> no: 6, code 900310 currency not in KRW, skipping
+2025-04-24 00:02:34.774438, no: 7, code 900340 in process
+----> no: 7, code 900340 currency not in KRW, skipping
+2025-04-24 00:02:40.214691, no: 8, code 293490 in process
+== Update finished ==
+updating market prices...
+Updating outstanding shares information...
+Processing outstanding shares data for 2025-04-22... 0/150
+Processing outstanding shares data for 2025-04-23... 1/150
+2025-04-24 QA DB: updating ['042670', '093640', '149980', '192820', '206950', '340810', '348080', '394800', '432320', '039790', '070300', '212310', '288490', '900100', '900250', '900310', '900340', '293490']
+042670
+093640
+149980
+192820
+206950
+340810
+348080
+394800
+432320
+039790
+070300
+212310
+288490
+900100
+900250
+900310
+900340
+293490
+042670 | 1/18
+093640 | 2/18
+149980 | 3/18
+192820 | 4/18
+206950 | 5/18
+2025-04-24 00:04:57.095643 | 206950 | quarterly data of 206950 is empty.
+340810 | 6/18
+348080 | 7/18
+394800 | 8/18
+2025-04-24 00:05:07.917242 | 394800 | quarterly data of 394800 is empty.
+432320 | 9/18
+2025-04-24 00:05:09.315551 | 432320 | quarterly data of 432320 is empty.
+039790 | 10/18
+2025-04-24 00:05:11.502860 | 039790 | '039790'
+070300 | 11/18
+212310 | 12/18
+2025-04-24 00:05:16.650218 | 212310 | quarterly data of 212310 is empty.
+288490 | 13/18
+2025-04-24 00:05:18.036035 | 288490 | quarterly data of 288490 is empty.
+900100 | 14/18
+2025-04-24 00:05:19.425262 | 900100 | quarterly data of 900100 is empty.
+900250 | 15/18
+2025-04-24 00:05:20.800652 | 900250 | quarterly data of 900250 is empty.
+900310 | 16/18
+2025-04-24 00:05:22.177077 | 900310 | quarterly data of 900310 is empty.
+900340 | 17/18
+2025-04-24 00:05:23.598895 | 900340 | quarterly data of 900340 is empty.
+293490 | 18/18
+sending incremental file list
+daily_update.json
+          1,186 100%    0.00kB/s    0:00:00            1,186 100%    0.00kB/s    0:00:00 (xfr#1, to-chk=0/2)
+
+sent 1,307 bytes  received 47 bytes  902.67 bytes/sec
+total size is 1,186  speedup is 0.88
+sending incremental file list
+042670.png
+         32,768   7%    0.00kB/s    0:00:00          459,047 100%   81.31MB/s    0:00:00 (xfr#1, to-chk=1743/2592)
+070300.png
+         32,768  11%    6.25MB/s    0:00:00          278,321 100%   33.18MB/s    0:00:00 (xfr#2, to-chk=1435/2592)
+093640.png
+         32,768  12%    3.47MB/s    0:00:00          263,828 100%   20.97MB/s    0:00:00 (xfr#3, to-chk=1224/2592)
+149980.png
+         32,768   6%    2.40MB/s    0:00:00          517,068 100%   24.66MB/s    0:00:00 (xfr#4, to-chk=935/2592)
+192820.png
+         32,768   6%    1.56MB/s    0:00:00          484,114 100%   16.49MB/s    0:00:00 (xfr#5, to-chk=842/2592)
+293490.png
+         32,768  10%    1.08MB/s    0:00:00          319,167 100%    8.95MB/s    0:00:00 (xfr#6, to-chk=508/2592)
+340810.png
+         32,768  13%  914.29kB/s    0:00:00          234,986 100%    5.34MB/s    0:00:00 (xfr#7, to-chk=370/2592)
+348080.png
+         32,768   9%  615.38kB/s    0:00:00          355,063 100%    3.85MB/s    0:00:00 (xfr#8, to-chk=358/2592)
+rate_changes.png
+         32,768  17%  355.56kB/s    0:00:00          192,346 100%    1.71MB/s    0:00:00 (xfr#9, to-chk=0/2592)
+
+sent 3,072,947 bytes  received 26,747 bytes  2,066,462.67 bytes/sec
+total size is 1,059,388,856  speedup is 341.77
