@@ -4,6 +4,14 @@ import numpy as np
 import os
 from trader.tools.tools import get_dbs, get_quarterly_data, basic_stats, rounder, log_print
 
+KEY_ACCOUNT = 'operating_income'
+MIN_QUARTERS = 8  # Minimum quarters of data required
+MAX_QUARTERS = 24  # Maximum quarters to analyze 
+STEPS = 4  # Number of quarters to reduce analysis window
+REVENUE_DIP_THRESHOLD = -5.0  # Threshold for a significant revenue dip (%, quarter)
+TODAY = pd.Timestamp.today().strftime('%Y-%m-%d')
+INITIAL_SIZE = 2500 # initial size of the codelist
+
 def calculate_stats(df):
     # 1. Revenue Growth and Stability
     ry = df['revenue'].dropna()
@@ -108,14 +116,6 @@ if __name__ == "__main__":
     plot_gen_control_file = os.path.join(pd_, 'data_collection/data/plot_gen_control.npy')
     log_file = os.path.join(pd_, 'data_collection/log/quarterly_analysis_db.log')
 
-    KEY_ACCOUNT = 'operating_income'
-    MIN_QUARTERS = 8  # Minimum quarters of data required
-    MAX_QUARTERS = 24  # Maximum quarters to analyze 
-    STEPS = 4  # Number of quarters to reduce analysis window
-    REVENUE_DIP_THRESHOLD = -5.0  # Threshold for a significant revenue dip (%, quarter)
-    TODAY = pd.Timestamp.today().strftime('%Y-%m-%d')
-
-    INITIAL_SIZE = 2500 # initial size of the codelist
     if qa_db is None:
         log_print(log_file, f'{TODAY} QA DB: initialization with {INITIAL_SIZE} codes')
         codelist = df_krx.index.tolist()[0:2500]

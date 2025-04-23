@@ -126,3 +126,6 @@ def show_data(code, period:str = None, qa_db = qa_db):
             show_qdata(code, period, only = True)
     else:
         show_qdata(code, period)
+
+
+

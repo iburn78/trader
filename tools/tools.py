@@ -616,6 +616,15 @@ def nth_quarter_before(n: int = 0):
     t_ = pd.Timestamp.now()-pd.DateOffset(months=3*n)
     return f'{t_.year}_{t_.quarter}Q'
 
+def prev_quarter_str(date):
+    y, q = date.year, (date.month - 1) // 3 + 1
+    if q == 1:
+        y -= 1
+        q = 4
+    else:
+        q -= 1
+    return f"{y}_{q}Q"
+
 def rank_counter(n, lang='E'):
     if lang=='E': 
         if 11 <= n % 100 <= 13:  # Special case for 11th, 12th, 13th
@@ -677,20 +686,30 @@ def get_dbs(check_time=True):
             raise Exception('git timestamp check failed')
 
     pd_ = os.path.dirname(os.path.dirname(os.path.abspath(__file__))) # ..
-    # price_db_file = os.path.join(pd_, 'data_collection/data/price_DB.feather') 
     df_krx_file = os.path.join(pd_, 'data_collection/data/df_krx.feather') 
     qa_db_file = os.path.join(pd_, 'data_collection/data/qa_db.pkl') 
 
     main_db = get_main_financial_reports_db()
-    # price_db = pd.read_feather(price_db_file)
     df_krx = pd.read_feather(df_krx_file)
     try: 
         qa_db = pd.read_pickle(qa_db_file) # pickle format preserves exactly as it the dataframe was saved
     except:
         qa_db = None
-    return main_db, df_krx, qa_db #, price_db
+    return main_db, df_krx, qa_db 
+
+def get_price_db(): 
+    pd_ = os.path.dirname(os.path.dirname(os.path.abspath(__file__))) # ..
+    price_db_file = os.path.join(pd_, 'data_collection/data/price_DB.feather') 
+    price_db = pd.read_feather(price_db_file)
+    return price_db
+
+def get_outshare_db():
+    pd_ = os.path.dirname(os.path.dirname(os.path.abspath(__file__))) # ..
+    outshare_DB_path = os.path.join(pd_, 'data_collection/data/outshare_DB.feather')
+    outshare_DB = pd.read_feather(outshare_DB_path)
+    return outshare_DB
     
-def get_quarterly_data(code, fr_db, unit=KRW_UNIT):  # fr_db = main_db or financial_reports_main
+def get_quarterly_data(code, fr_db, unit=KRW_UNIT, native=False):  # fr_db = main_db or financial_reports_main
     quarter_cols= [s for s in fr_db.columns.values if 'Q' in s]
     quarter_cols.sort()
     fs_div_mode = 'CFS'
@@ -700,6 +719,8 @@ def get_quarterly_data(code, fr_db, unit=KRW_UNIT):  # fr_db = main_db or financ
         y = fr_db.loc[(fr_db['code']==code) & (fr_db['fs_div']==fs_div_mode), ['account']+quarter_cols].drop_duplicates().set_index(['account'])
     if y.isnull().all().all():
         return None
+    if native: 
+        return y.dropna(axis=1, how='all')
 
     # date_updated = str(fr_db.loc[(fr_db['code']==code) & (fr_db['fs_div']==fs_div_mode), 'date_updated'].values[0])
     y.columns = [s.replace('2020','XX').replace('20','').replace('XX','20').replace('_','.').replace('Q','') for s in quarter_cols]

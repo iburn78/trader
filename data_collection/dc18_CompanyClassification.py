@@ -1,5 +1,6 @@
 #%% 
-from trader.tools.tools import get_df_krx
+from trader.tools.tools import get_df_krx, get_price_db
+from trader.data_collection.dc17_QuarterlyAnalysisDB import MAX_QUARTERS
 from trader.data_collection.dc18_CC_tools import *
 
 cv_threshold_prime = 0.4
@@ -17,15 +18,15 @@ criteria_dict = {
     'liquid_debt_ratio_stats': [np.nan, cv_threshold, np.nan, np.nan], # percent
     'debt_to_equity_ratio_stats': [200, cv_threshold, np.nan, np.nan] # percent
 }
-score = [5, 2, 2, 5, 1, 1, 1, 1, 1, 1, 1] # weights for each criteria
-N = 10 # top to add
+weight = [5, 2, 2, 5, 1, 1, 1, 1, 1, 1, 1] # weights for each criteria
+top_N = 30 # top to add
 
 def compare_logic(data_dict, criteria_dict, period:str):
     key = list(data_dict.keys())
     if key != list(criteria_dict.keys()):
         raise ValueError("Key mismatch between data_dict and criteria_dict")
 
-    res = [0] * len(data_dict.keys())
+    score = [0] * len(data_dict.keys())
     comment = [''] * len(data_dict.keys())
 
     # revenue growth
@@ -38,11 +39,11 @@ def compare_logic(data_dict, criteria_dict, period:str):
     ]
     if all(conditions):
         if data[0] >= crit[0][0]:
-            res[idx] = score[idx]
+            score[idx] = weight[idx]
         elif data[0] >= crit[0][1]:
-            res[idx] = round(score[idx]*(data[0]-crit[0][1])/(crit[0][0]-crit[0][1]), 1)
+            score[idx] = round(weight[idx]*(data[0]-crit[0][1])/(crit[0][0]-crit[0][1]), 1)
         else:
-            res[idx] = 0
+            score[idx] = 0
     if data[1] == 0:
         comment[idx] += 'N' # No negative growth'
 
@@ -55,7 +56,7 @@ def compare_logic(data_dict, criteria_dict, period:str):
             data[2] >= crit[2], # slope
         ]
         if all(conditions):
-            res[idx] = score[idx]
+            score[idx] = weight[idx]
         if data[3] >= 0:
             comment[idx] += 'A' # Acceration
 
@@ -69,11 +70,11 @@ def compare_logic(data_dict, criteria_dict, period:str):
         ]
         if all(conditions):
             if data[0] >= crit[0][0]:
-                res[idx] = score[idx]
+                score[idx] = weight[idx]
             elif data[0] >= crit[0][1]:
-                res[idx] = round(score[idx]*(data[0]-crit[0][1])/(crit[0][0]-crit[0][1]), 1)
+                score[idx] = round(weight[idx]*(data[0]-crit[0][1])/(crit[0][0]-crit[0][1]), 1)
             else:
-                res[idx] = 0
+                score[idx] = 0
         if data[3] >= 0:
             comment[idx] += 'A' # Acceration
 
@@ -85,7 +86,7 @@ def compare_logic(data_dict, criteria_dict, period:str):
             data[1] <= crit[1], # cv
         ]
         if all(conditions):
-            res[idx] = score[idx]
+            score[idx] = weight[idx]
 
     # debt_to_equity_ratio_stats
     for idx in [10]:
@@ -96,77 +97,128 @@ def compare_logic(data_dict, criteria_dict, period:str):
             data[1] <= crit[1], # cv
         ]
         if all(conditions):
-            res[idx] = score[idx]
+            score[idx] = weight[idx]
         if data[2] >= 0:
             comment[idx] += 'I' # Increasing
     
-    return res, comment
+    return score, comment
 
 def classify_companies(codelist, criteria_dict, period:str, qa_db=qa_db):
     selected_companies = []
-    res_dict = {}
+    scores_dict = {}
     for code in codelist:
         data_dict = qa_db.loc[code, period]
         if pd.isna(data_dict) == False:
-            res, comment = compare_logic(data_dict, criteria_dict, period)
-            if res.count(0) == 0:
+            scores, comment = compare_logic(data_dict, criteria_dict, period)
+            if scores.count(0) == 0:
                 selected = True
                 selected_companies.append(code)
-                # print(code, selected, sum(res), res, comment)
+                # print(code, selected, sum(scores), scores, comment)
             else: 
                 selected = False
                 pass
-            # print(code, selected, sum(res), res, comment)
-            res_dict[code] = {
+            # print(code, selected, sum(scores), scores, comment)
+            scores_dict[code] = {
                 'selected': selected,
-                'score': sum(res),
-                'result': res,
+                'score': sum(scores),
+                'result': scores,
                 'comment': comment
             }
-    res_df = pd.DataFrame.from_dict(res_dict, orient='index')
-    res_df = res_df.sort_values(by='score', ascending=False) 
-    return selected_companies, res_df
+    scores_df = pd.DataFrame.from_dict(scores_dict, orient='index')
+    scores_df = scores_df.sort_values(by='score', ascending=False) 
+    return selected_companies, scores_df
 
-#%% 
-df_krx = get_df_krx()
-codelist = qa_db.index.tolist()
-periods = get_periods()
+def get_score_trend(criteria_dict = criteria_dict, qa_db = qa_db, top_N = top_N):
+    df_krx = get_df_krx()
+    codelist = qa_db.index.tolist()
+    periods = get_periods()
 
-all_selected_companies = []
-all_res_df = {}
-for period in periods:
-    selected_companies, res_df  = classify_companies(codelist, criteria_dict, period)
-    all_selected_companies += selected_companies
-    all_res_df[period] = res_df
-
-# print(all_res_df['24Q'])
-#%%
-
-top_codes = []
-for period in periods: 
-    top_codes += all_res_df[period].index[:N].tolist()
-
-codelist = list(set(all_selected_companies + top_codes))
-
-score_trend_df = pd.DataFrame(index = all_selected_companies, columns = ['name', 'selected', 'top'+str(N)]+periods)
-for code in score_trend_df.index:
-    score_trend_df.loc[code, 'name'] = df_krx.loc[code, 'Name']
-    selected = ''
-    top = ''
+    all_selected_companies = []
+    all_scores_dict = {}
     for period in periods:
-        if code in all_res_df[period].index:
-            score_trend_df.loc[code, period] = all_res_df[period].loc[code, 'score']
-            selected += 'T' if all_res_df[period].loc[code, 'selected'] else '-'
-            top += 'Y' if code in all_res_df[period].index[:N] else '-'
-        else:
-            selected += '_'
-            top += '_'
-    score_trend_df.loc[code, 'selected'] = selected
-    score_trend_df.loc[code, 'top'+str(N)] = top
-display(score_trend_df)
+        selected_companies, scores_df  = classify_companies(codelist, criteria_dict, period)
+        all_selected_companies += selected_companies
+        all_scores_dict[period] = scores_df
 
-# price trend, PER/PBR
-# PER trend (refer to the already made code)
+    top_codes = []
+    for period in periods: 
+        top_codes += all_scores_dict[period].index[:top_N].tolist()
+
+    codelist = list(set(all_selected_companies + top_codes))
+
+    score_trend_df = pd.DataFrame(index = codelist, columns = ['name', 'selected', 'top'+str(top_N)]+periods)
+    for code in score_trend_df.index:
+        score_trend_df.loc[code, 'name'] = df_krx.loc[code, 'Name']
+        selected = ''
+        top = ''
+        for period in periods:
+            if code in all_scores_dict[period].index:
+                score_trend_df.loc[code, period] = all_scores_dict[period].loc[code, 'score']
+                selected += 'T' if all_scores_dict[period].loc[code, 'selected'] else '-'
+                top += 'Y' if code in all_scores_dict[period].index[:top_N] else '-'
+            else:
+                selected += ' '
+                top += ' '
+        score_trend_df.loc[code, 'selected'] = selected
+        score_trend_df.loc[code, 'top'+str(top_N)] = top
+
+    return score_trend_df, all_scores_dict
+
+# score_trend, all_scores_dict = get_score_trend()
+# display(score_trend.head(50))
 # %%
-show_data('417790') 
-# display(all_res_df['20Q'])
+from trader.tools.tools import get_main_financial_reports_db, get_quarterly_data,  get_price_db, get_outshare_db, prev_quarter_str
+import pandas as pd
+import numpy as np
+
+fr_db = get_main_financial_reports_db()
+pr_db = get_price_db()
+outshare_DB = get_outshare_db()
+target_account = 'net_income'
+
+# different version of L4_addition function from anaysis project
+def L4_rolling_addition(fh, target_account=target_account):
+    # Add L4 key account to the financial report database.
+    new_row = {'account':'L4_'+target_account }
+    target_row = fh.loc[target_account]
+
+    for i in range(3, len(fh.columns)):
+        previous_4_quarters = fh.columns[i-3:i+1]
+        rolling_sum = target_row[previous_4_quarters].sum()
+        new_row[fh.columns[i]] = rolling_sum
+
+    new_row_df = pd.DataFrame([new_row]).set_index('account')
+    fh = pd.concat([fh, new_row_df])
+    return fh 
+
+# get price, marcap, PER, PBR
+def get_market_performance_db(code, fr_db, pr_db, outshare_DB, target_account=target_account, MAX_QUARTERS=MAX_QUARTERS):
+    fh = get_quarterly_data(code, fr_db, native=True)
+    fh = fh.L4_rolling_addition(fh, target_account)
+    init_loc = fh.columns.get_loc(fh.loc['L4_'+ target_account].first_valid_index())
+    start_loc = max(max(len(fh.columns) - MAX_QUARTERS, 0), init_loc)
+    start_day  = pd.Period(fh.columns[start_loc][:5].replace('_', ''), freq='Q').start_time.strftime('%Y-%m-%d')
+
+    # market performance
+    mp_db = pd.DataFrame()
+    mp_db['price'] = pr_db[code].loc[pr_db.index >= start_day]
+    mp_db.index = pd.to_datetime(mp_db.index)
+    shares = outshare_DB[code].iloc[-1]
+    mp_db['marcap'] = mp_db['price'] * shares 
+    r_ = fh.loc['L4_' + target_account].dropna()
+    latest_l4 = r_.iloc[-1] if not r_.empty else np.nan
+    mp_db['L4'] = mp_db.index.map(lambda d: fh.at['L4_'+target_account, prev_quarter_str(d)] if prev_quarter_str(d) in fh.columns else latest_l4)
+    mp_db['PER'] = mp_db['marcap'] / mp_db['L4']
+
+    b_ = fh.loc['equity'].dropna()
+    latest_b = b_.iloc[-1] if not b_.empty else np.nan
+    mp_db['equity'] = mp_db.index.map(lambda d: fh.at['equity', prev_quarter_str(d)] if prev_quarter_str(d) in fh.columns else latest_b)
+    mp_db['PBR'] = mp_db['marcap'] / mp_db['equity']
+
+    return mp_db
+
+def market_performance_analysis(fr_db, pr_db, outshare_DB, target_account=target_account, MAX_QUARTERS=MAX_QUARTERS):
+    code = '005930' # Samsung Electronics
+    mp_db = get_market_performance_db(code, fr_db, pr_db, outshare_DB)
+
+    # display(mp_db.tail(50))
