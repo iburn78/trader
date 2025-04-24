@@ -1173,3 +1173,134 @@ rate_changes.png
 
 sent 3,072,947 bytes  received 26,747 bytes  2,066,462.67 bytes/sec
 total size is 1,059,388,856  speedup is 341.77
+[main 1bdc26a] 2025-04-24 upload done from linux machine
+ 14 files changed, 182 insertions(+)
+ rewrite data_collection/data/df_krx.db (84%)
+ rewrite data_collection/data/df_krx.feather (84%)
+To https://github.com/iburn78/trader
+   545a3f1..1bdc26a  main -> main
+rtcwake: write error
+이미 업데이트 상태입니다.
+Updating KRX data...
+Updating between dates: 2025-04-17 / 2025-04-25
+-----------------------------
+2025-04-25 00:00:19.572503
+Full rescan codes are 12 items: 
+['000400', '002690', '035600', '042670', '093640', '149980', '206950', '340810', '348080', '368030', '394800', '432320']
+Partial rescan codes are 9 items: 
+['039790', '070300', '212310', '288490', '900100', '900250', '900310', '900340', '293490']
+Financial data collection log >> 
+2025-04-25 00:00:19.807473, no: 0, code 000400 in process
+2025-04-25 00:00:27.276850, no: 1, code 002690 in process
+2025-04-25 00:00:43.583818, no: 2, code 035600 in process
+2025-04-25 00:01:00.409228, no: 3, code 042670 in process
+2025-04-25 00:01:17.140964, no: 4, code 093640 in process
+2025-04-25 00:01:38.353838, no: 5, code 149980 in process
+2025-04-25 00:01:55.593188, no: 6, code 206950 in process
+----> no: 6, code 206950 data not available, could be a financial institution
+2025-04-25 00:02:01.821220, no: 7, code 340810 in process
+2025-04-25 00:02:09.517144, no: 8, code 348080 in process
+2025-04-25 00:02:18.871678, no: 9, code 368030 in process
+----> no: 9, code 368030 data not available, could be a financial institution
+2025-04-25 00:02:25.306691, no: 10, code 394800 in process
+2025-04-25 00:02:31.216036, no: 11, code 432320 in process
+Financial data collection log >> 
+2025-04-25 00:02:37.610037, no: 0, code 039790 in process
+2025-04-25 00:02:45.144733, no: 1, code 070300 in process
+2025-04-25 00:02:52.548834, no: 2, code 212310 in process
+----> no: 2, code 212310 data not available, could be a financial institution
+2025-04-25 00:02:58.926819, no: 3, code 288490 in process
+----> no: 3, code 288490 data not available, could be a financial institution
+2025-04-25 00:03:05.276701, no: 4, code 900100 in process
+----> no: 4, code 900100 currency not in KRW, skipping
+2025-04-25 00:03:10.644512, no: 5, code 900250 in process
+----> no: 5, code 900250 currency not in KRW, skipping
+2025-04-25 00:03:16.095752, no: 6, code 900310 in process
+----> no: 6, code 900310 currency not in KRW, skipping
+2025-04-25 00:03:21.481829, no: 7, code 900340 in process
+----> no: 7, code 900340 currency not in KRW, skipping
+2025-04-25 00:03:26.890717, no: 8, code 293490 in process
+== Update finished ==
+updating market prices...
+Updating outstanding shares information...
+Processing outstanding shares data for 2025-04-23... 0/150
+Processing outstanding shares data for 2025-04-24... 1/150
+2025-04-25 QA DB: updating ['000400', '002690', '035600', '042670', '093640', '149980', '206950', '340810', '348080', '368030', '394800', '432320', '039790', '070300', '212310', '288490', '900100', '900250', '900310', '900340', '293490']
+000400
+002690
+035600
+042670
+093640
+149980
+206950
+340810
+348080
+368030
+394800
+432320
+039790
+'039790'
+000400 | 1/21
+002690 | 2/21
+035600 | 3/21
+042670 | 4/21
+093640 | 5/21
+149980 | 6/21
+206950 | 7/21
+2025-04-25 00:05:53.925948 | 206950 | quarterly data of 206950 is empty.
+340810 | 8/21
+348080 | 9/21
+368030 | 10/21
+2025-04-25 00:06:04.325460 | 368030 | quarterly data of 368030 is empty.
+394800 | 11/21
+2025-04-25 00:06:05.764374 | 394800 | quarterly data of 394800 is empty.
+432320 | 12/21
+2025-04-25 00:06:07.195451 | 432320 | quarterly data of 432320 is empty.
+039790 | 13/21
+2025-04-25 00:06:09.409157 | 039790 | '039790'
+070300 | 14/21
+212310 | 15/21
+2025-04-25 00:06:14.796459 | 212310 | quarterly data of 212310 is empty.
+288490 | 16/21
+2025-04-25 00:06:16.183258 | 288490 | quarterly data of 288490 is empty.
+900100 | 17/21
+2025-04-25 00:06:17.582226 | 900100 | quarterly data of 900100 is empty.
+900250 | 18/21
+2025-04-25 00:06:18.977723 | 900250 | quarterly data of 900250 is empty.
+900310 | 19/21
+2025-04-25 00:06:20.356824 | 900310 | quarterly data of 900310 is empty.
+900340 | 20/21
+2025-04-25 00:06:21.756162 | 900340 | quarterly data of 900340 is empty.
+293490 | 21/21
+sending incremental file list
+daily_update.json
+          1,376 100%    0.00kB/s    0:00:00            1,376 100%    0.00kB/s    0:00:00 (xfr#1, to-chk=0/2)
+
+sent 1,498 bytes  received 47 bytes  1,030.00 bytes/sec
+total size is 1,376  speedup is 0.89
+sending incremental file list
+000400.png
+         32,768  16%    0.00kB/s    0:00:00          201,353 100%   80.39MB/s    0:00:00 (xfr#1, to-chk=2570/2592)
+002690.png
+         32,768   6%   15.62MB/s    0:00:00          517,231 100%   61.66MB/s    0:00:00 (xfr#2, to-chk=2469/2592)
+035600.png
+         32,768   7%    3.47MB/s    0:00:00          447,447 100%   26.67MB/s    0:00:00 (xfr#3, to-chk=1859/2592)
+042670.png
+         32,768   7%    1.95MB/s    0:00:00          459,716 100%   14.61MB/s    0:00:00 (xfr#4, to-chk=1743/2592)
+070300.png
+         32,768  11%    1.01MB/s    0:00:00          280,031 100%    7.22MB/s    0:00:00 (xfr#5, to-chk=1435/2592)
+093640.png
+         32,768  12%  842.11kB/s    0:00:00          263,125 100%    5.12MB/s    0:00:00 (xfr#6, to-chk=1224/2592)
+149980.png
+         32,768   6%  640.00kB/s    0:00:00          517,214 100%    3.01MB/s    0:00:00 (xfr#7, to-chk=935/2592)
+293490.png
+         32,768  10%  192.77kB/s    0:00:01          319,464 100%    1.42MB/s    0:00:00 (xfr#8, to-chk=508/2592)
+340810.png
+         32,768  14%  148.84kB/s    0:00:01          233,735 100%  871.21kB/s    0:00:00 (xfr#9, to-chk=370/2592)
+348080.png
+         32,768   9%  122.14kB/s    0:00:02          355,170 100%  990.99kB/s    0:00:00 (xfr#10, to-chk=358/2592)
+rate_changes.png
+         32,768  16%   91.17kB/s    0:00:01          196,464 100%  485.72kB/s    0:00:00 (xfr#11, to-chk=0/2592)
+
+sent 3,854,184 bytes  received 32,557 bytes  2,591,160.67 bytes/sec
+total size is 1,059,394,073  speedup is 272.57
