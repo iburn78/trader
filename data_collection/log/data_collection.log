@@ -401,3 +401,48 @@ updating market prices...
 Updating outstanding shares information...
 Processing outstanding shares data for 2025-04-23... 0/150
 Processing outstanding shares data for 2025-04-24... 1/150
+Updating KRX data...
+Updating between dates: 2025-04-18 / 2025-04-26
+-----------------------------
+2025-04-26 00:00:19.474952
+Full rescan codes are 10 items: 
+['000400', '002690', '035600', '042670', '093640', '149980', '183410', '206950', '340810', '368030']
+Partial rescan codes are 10 items: 
+['039790', '212310', '457390', '900070', '900100', '900140', '900250', '900310', '900340', '293490']
+Financial data collection log >> 
+2025-04-26 00:00:19.543267, no: 0, code 000400 in process
+2025-04-26 00:00:27.163561, no: 1, code 002690 in process
+2025-04-26 00:00:43.831217, no: 2, code 035600 in process
+2025-04-26 00:01:00.923845, no: 3, code 042670 in process
+2025-04-26 00:01:18.025397, no: 4, code 093640 in process
+2025-04-26 00:01:34.494132, no: 5, code 149980 in process
+2025-04-26 00:01:52.330793, no: 6, code 183410 in process
+----> no: 6, code 183410 data not available, could be a financial institution
+2025-04-26 00:01:58.760642, no: 7, code 206950 in process
+----> no: 7, code 206950 data not available, could be a financial institution
+2025-04-26 00:02:05.082602, no: 8, code 340810 in process
+2025-04-26 00:02:12.911686, no: 9, code 368030 in process
+----> no: 9, code 368030 data not available, could be a financial institution
+Financial data collection log >> 
+2025-04-26 00:02:19.365049, no: 0, code 039790 in process
+2025-04-26 00:02:26.945935, no: 1, code 212310 in process
+----> no: 1, code 212310 data not available, could be a financial institution
+2025-04-26 00:02:33.296323, no: 2, code 457390 in process
+2025-04-26 00:02:40.968829, no: 3, code 900070 in process
+----> no: 3, code 900070 currency not in KRW, skipping
+2025-04-26 00:02:46.321851, no: 4, code 900100 in process
+----> no: 4, code 900100 currency not in KRW, skipping
+2025-04-26 00:02:51.749078, no: 5, code 900140 in process
+----> no: 5, code 900140 currency not in KRW, skipping
+2025-04-26 00:02:57.134906, no: 6, code 900250 in process
+----> no: 6, code 900250 currency not in KRW, skipping
+2025-04-26 00:03:02.500374, no: 7, code 900310 in process
+----> no: 7, code 900310 currency not in KRW, skipping
+2025-04-26 00:03:07.872426, no: 8, code 900340 in process
+----> no: 8, code 900340 currency not in KRW, skipping
+2025-04-26 00:03:13.281101, no: 9, code 293490 in process
+== Update finished ==
+updating market prices...
+Updating outstanding shares information...
+Processing outstanding shares data for 2025-04-24... 0/150
+Processing outstanding shares data for 2025-04-25... 1/150
