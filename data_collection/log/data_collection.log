@@ -446,3 +446,38 @@ updating market prices...
 Updating outstanding shares information...
 Processing outstanding shares data for 2025-04-24... 0/150
 Processing outstanding shares data for 2025-04-25... 1/150
+Updating KRX data...
+Updating between dates: 2025-04-19 / 2025-04-27
+-----------------------------
+2025-04-27 00:00:18.604671
+Full rescan codes are 7 items: 
+['000400', '002690', '035600', '149980', '183410', '206950', '368030']
+Partial rescan codes are 6 items: 
+['900070', '900100', '900140', '900310', '900340', '293490']
+Financial data collection log >> 
+2025-04-27 00:00:18.673591, no: 0, code 000400 in process
+2025-04-27 00:00:26.145176, no: 1, code 002690 in process
+2025-04-27 00:00:40.607482, no: 2, code 035600 in process
+2025-04-27 00:00:55.374266, no: 3, code 149980 in process
+2025-04-27 00:01:10.162541, no: 4, code 183410 in process
+----> no: 4, code 183410 data not available, could be a financial institution
+2025-04-27 00:01:16.242873, no: 5, code 206950 in process
+----> no: 5, code 206950 data not available, could be a financial institution
+2025-04-27 00:01:22.295316, no: 6, code 368030 in process
+----> no: 6, code 368030 data not available, could be a financial institution
+Financial data collection log >> 
+2025-04-27 00:01:28.468186, no: 0, code 900070 in process
+----> no: 0, code 900070 currency not in KRW, skipping
+2025-04-27 00:01:33.914533, no: 1, code 900100 in process
+----> no: 1, code 900100 currency not in KRW, skipping
+2025-04-27 00:01:39.231185, no: 2, code 900140 in process
+----> no: 2, code 900140 currency not in KRW, skipping
+2025-04-27 00:01:44.539796, no: 3, code 900310 in process
+----> no: 3, code 900310 currency not in KRW, skipping
+2025-04-27 00:01:49.857805, no: 4, code 900340 in process
+----> no: 4, code 900340 currency not in KRW, skipping
+2025-04-27 00:01:55.184391, no: 5, code 293490 in process
+== Update finished ==
+updating market prices...
+Updating outstanding shares information...
+Processing outstanding shares data for 2025-04-25... 0/150

@@ -1431,3 +1431,108 @@ rate_changes.png
 
 sent 3,437,996 bytes  received 29,100 bytes  2,311,397.33 bytes/sec
 total size is 1,059,386,635  speedup is 305.55
+[main 0d0ce46] 2025-04-26 upload done from linux machine
+ 13 files changed, 185 insertions(+)
+ rewrite data_collection/data/df_krx.db (84%)
+ rewrite data_collection/data/df_krx.feather (84%)
+To https://github.com/iburn78/trader
+   58d1d14..0d0ce46  main -> main
+rtcwake: write error
+https://github.com/iburn78/trader URL에서
+   0d0ce46..e31ba0a  main       -> origin/main
+업데이트 중 0d0ce46..e31ba0a
+Fast-forward
+ data_collection/dc18_CompanyClassification.py | 45 +++++++++++++++++++++++----
+ 1 file changed, 39 insertions(+), 6 deletions(-)
+Updating KRX data...
+Updating between dates: 2025-04-19 / 2025-04-27
+-----------------------------
+2025-04-27 00:00:18.604671
+Full rescan codes are 7 items: 
+['000400', '002690', '035600', '149980', '183410', '206950', '368030']
+Partial rescan codes are 6 items: 
+['900070', '900100', '900140', '900310', '900340', '293490']
+Financial data collection log >> 
+2025-04-27 00:00:18.673591, no: 0, code 000400 in process
+2025-04-27 00:00:26.145176, no: 1, code 002690 in process
+2025-04-27 00:00:40.607482, no: 2, code 035600 in process
+2025-04-27 00:00:55.374266, no: 3, code 149980 in process
+2025-04-27 00:01:10.162541, no: 4, code 183410 in process
+----> no: 4, code 183410 data not available, could be a financial institution
+2025-04-27 00:01:16.242873, no: 5, code 206950 in process
+----> no: 5, code 206950 data not available, could be a financial institution
+2025-04-27 00:01:22.295316, no: 6, code 368030 in process
+----> no: 6, code 368030 data not available, could be a financial institution
+Financial data collection log >> 
+2025-04-27 00:01:28.468186, no: 0, code 900070 in process
+----> no: 0, code 900070 currency not in KRW, skipping
+2025-04-27 00:01:33.914533, no: 1, code 900100 in process
+----> no: 1, code 900100 currency not in KRW, skipping
+2025-04-27 00:01:39.231185, no: 2, code 900140 in process
+----> no: 2, code 900140 currency not in KRW, skipping
+2025-04-27 00:01:44.539796, no: 3, code 900310 in process
+----> no: 3, code 900310 currency not in KRW, skipping
+2025-04-27 00:01:49.857805, no: 4, code 900340 in process
+----> no: 4, code 900340 currency not in KRW, skipping
+2025-04-27 00:01:55.184391, no: 5, code 293490 in process
+== Update finished ==
+updating market prices...
+Updating outstanding shares information...
+Processing outstanding shares data for 2025-04-25... 0/150
+2025-04-27 QA DB: updating ['000400', '002690', '035600', '149980', '183410', '206950', '368030', '900070', '900100', '900140', '900310', '900340', '293490']
+000400
+002690
+035600
+149980
+183410
+206950
+368030
+900070
+900100
+900140
+900310
+900340
+293490
+000400 | 1/13
+002690 | 2/13
+035600 | 3/13
+149980 | 4/13
+183410 | 5/13
+2025-04-27 00:03:44.772881 | 183410 | quarterly data of 183410 is empty.
+206950 | 6/13
+2025-04-27 00:03:46.351874 | 206950 | quarterly data of 206950 is empty.
+368030 | 7/13
+2025-04-27 00:03:47.751827 | 368030 | quarterly data of 368030 is empty.
+900070 | 8/13
+2025-04-27 00:03:49.151862 | 900070 | quarterly data of 900070 is empty.
+900100 | 9/13
+2025-04-27 00:03:50.553011 | 900100 | quarterly data of 900100 is empty.
+900140 | 10/13
+2025-04-27 00:03:51.956066 | 900140 | quarterly data of 900140 is empty.
+900310 | 11/13
+2025-04-27 00:03:53.350810 | 900310 | quarterly data of 900310 is empty.
+900340 | 12/13
+2025-04-27 00:03:54.747263 | 900340 | quarterly data of 900340 is empty.
+293490 | 13/13
+sending incremental file list
+daily_update.json
+          1,179 100%    0.00kB/s    0:00:00            1,179 100%    0.00kB/s    0:00:00 (xfr#1, to-chk=0/2)
+
+sent 1,300 bytes  received 53 bytes  902.00 bytes/sec
+total size is 1,179  speedup is 0.87
+sending incremental file list
+000400.png
+         32,768  16%    0.00kB/s    0:00:00          200,711 100%   53.39MB/s    0:00:00 (xfr#1, to-chk=2570/2592)
+002690.png
+         32,768   6%   10.42MB/s    0:00:00          518,069 100%   49.41MB/s    0:00:00 (xfr#2, to-chk=2469/2592)
+035600.png
+         32,768   7%    3.12MB/s    0:00:00          447,559 100%   26.68MB/s    0:00:00 (xfr#3, to-chk=1859/2592)
+149980.png
+         32,768   6%    1.84MB/s    0:00:00          516,965 100%   21.44MB/s    0:00:00 (xfr#4, to-chk=935/2592)
+293490.png
+         32,768  10%    1.30MB/s    0:00:00          319,694 100%    9.83MB/s    0:00:00 (xfr#5, to-chk=508/2592)
+rate_changes.png
+            700   0%   22.05kB/s    0:00:08          194,867 100%    5.99MB/s    0:00:00 (xfr#6, to-chk=0/2592)
+
+sent 2,064,630 bytes  received 18,846 bytes  4,166,952.00 bytes/sec
+total size is 1,059,386,892  speedup is 508.47
