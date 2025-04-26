@@ -164,8 +164,7 @@ def get_score_trend(criteria_dict = criteria_dict, qa_db = qa_db, top_N = top_N)
 
     return score_trend_df, all_scores_dict
 
-# score_trend, all_scores_dict = get_score_trend()
-# display(score_trend.head(50))
+
 # %%
 from trader.tools.tools import get_main_financial_reports_db, get_quarterly_data,  get_price_db, get_outshare_db, prev_quarter_str
 import pandas as pd
@@ -194,7 +193,7 @@ def L4_rolling_addition(fh, target_account=target_account):
 # get price, marcap, PER, PBR
 def get_market_performance_db(code, fr_db, pr_db, outshare_DB, target_account=target_account, MAX_QUARTERS=MAX_QUARTERS):
     fh = get_quarterly_data(code, fr_db, native=True)
-    fh = fh.L4_rolling_addition(fh, target_account)
+    fh = L4_rolling_addition(fh, target_account)
     init_loc = fh.columns.get_loc(fh.loc['L4_'+ target_account].first_valid_index())
     start_loc = max(max(len(fh.columns) - MAX_QUARTERS, 0), init_loc)
     start_day  = pd.Period(fh.columns[start_loc][:5].replace('_', ''), freq='Q').start_time.strftime('%Y-%m-%d')
@@ -214,11 +213,45 @@ def get_market_performance_db(code, fr_db, pr_db, outshare_DB, target_account=ta
     latest_b = b_.iloc[-1] if not b_.empty else np.nan
     mp_db['equity'] = mp_db.index.map(lambda d: fh.at['equity', prev_quarter_str(d)] if prev_quarter_str(d) in fh.columns else latest_b)
     mp_db['PBR'] = mp_db['marcap'] / mp_db['equity']
+    mp_db = mp_db.apply(pd.to_numeric, errors='coerce')
 
     return mp_db
 
-def market_performance_analysis(fr_db, pr_db, outshare_DB, target_account=target_account, MAX_QUARTERS=MAX_QUARTERS):
-    code = '005930' # Samsung Electronics
-    mp_db = get_market_performance_db(code, fr_db, pr_db, outshare_DB)
 
-    # display(mp_db.tail(50))
+# %%
+score_trend, all_scores_dict = get_score_trend()
+# display(score_trend.head(50))
+
+#%% 
+
+# Peer comparison of PER and PBR (need to know the peer groups)
+# Low absolute value of PBR and PER
+# Drop in price, PER, PBR (all time low etc.)
+# Valuation of the company from other methods
+# Industry outlook and analysis
+# Timing analysis
+def market_performance_assessment(mp_db):
+    return True
+
+def market_performance_collective_analysis(fr_db, pr_db, outshare_DB, target_account=target_account, MAX_QUARTERS=MAX_QUARTERS):
+    code = '251970' 
+    mp_db = get_market_performance_db(code, fr_db, pr_db, outshare_DB)
+    return mp_db
+
+import matplotlib.pyplot as plt
+def mp_plot(mp_db, columns=['price', 'PER', 'PBR']):
+    fig, axes = plt.subplots(len(columns), 1, figsize=(12, 4 * len(columns)), sharex=True)
+    
+    if len(columns) == 1:
+        axes = [axes]
+    
+    for ax, col in zip(axes, columns):
+        mp_db[col].plot(ax=ax, title=col, grid=True, fontsize=12)
+        ax.set_ylabel(col)
+    
+    plt.tight_layout()
+    plt.show()
+    # plt.savefig("----.png")
+
+# a = market_performance_collective_analysis(fr_db, pr_db, outshare_DB)
+# mp_plot(a)
