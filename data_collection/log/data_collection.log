@@ -481,3 +481,38 @@ Financial data collection log >>
 updating market prices...
 Updating outstanding shares information...
 Processing outstanding shares data for 2025-04-25... 0/150
+Updating KRX data...
+Updating between dates: 2025-04-20 / 2025-04-28
+-----------------------------
+2025-04-28 00:00:19.549446
+Full rescan codes are 7 items: 
+['000400', '002690', '035600', '149980', '183410', '206950', '368030']
+Partial rescan codes are 6 items: 
+['900070', '900100', '900140', '900310', '900340', '293490']
+Financial data collection log >> 
+2025-04-28 00:00:19.625563, no: 0, code 000400 in process
+2025-04-28 00:00:27.207751, no: 1, code 002690 in process
+2025-04-28 00:00:44.046508, no: 2, code 035600 in process
+2025-04-28 00:01:01.965060, no: 3, code 149980 in process
+2025-04-28 00:01:19.036500, no: 4, code 183410 in process
+----> no: 4, code 183410 data not available, could be a financial institution
+2025-04-28 00:01:25.397132, no: 5, code 206950 in process
+----> no: 5, code 206950 data not available, could be a financial institution
+2025-04-28 00:01:31.674806, no: 6, code 368030 in process
+----> no: 6, code 368030 data not available, could be a financial institution
+Financial data collection log >> 
+2025-04-28 00:01:38.116803, no: 0, code 900070 in process
+----> no: 0, code 900070 currency not in KRW, skipping
+2025-04-28 00:01:43.540575, no: 1, code 900100 in process
+----> no: 1, code 900100 currency not in KRW, skipping
+2025-04-28 00:01:48.944673, no: 2, code 900140 in process
+----> no: 2, code 900140 currency not in KRW, skipping
+2025-04-28 00:01:54.344588, no: 3, code 900310 in process
+----> no: 3, code 900310 currency not in KRW, skipping
+2025-04-28 00:01:59.850439, no: 4, code 900340 in process
+----> no: 4, code 900340 currency not in KRW, skipping
+2025-04-28 00:02:05.328564, no: 5, code 293490 in process
+== Update finished ==
+updating market prices...
+Updating outstanding shares information...
+Processing outstanding shares data for 2025-04-25... 0/150
