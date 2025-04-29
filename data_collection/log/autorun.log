@@ -1758,3 +1758,142 @@ rate_changes.png
 
 sent 2,900,392 bytes  received 23,322 bytes  1,949,142.67 bytes/sec
 total size is 1,059,519,785  speedup is 362.39
+[main b584b46] 2025-04-29 upload done from linux machine
+ 14 files changed, 180 insertions(+)
+ rewrite data_collection/data/df_krx.db (84%)
+ rewrite data_collection/data/df_krx.feather (84%)
+To https://github.com/iburn78/trader
+   61ec650..b584b46  main -> main
+rtcwake: write error
+이미 업데이트 상태입니다.
+Updating KRX data...
+Updating between dates: 2025-04-22 / 2025-04-30
+-----------------------------
+2025-04-30 00:00:20.167434
+Full rescan codes are 12 items: 
+['000400', '002690', '035600', '174900', '180060', '183410', '206950', '212310', '246710', '254160', '299480', '368030']
+Partial rescan codes are 7 items: 
+['900070', '900100', '900140', '900260', '900310', '900340', '293490']
+Financial data collection log >> 
+2025-04-30 00:00:20.236889, no: 0, code 000400 in process
+2025-04-30 00:00:28.433655, no: 1, code 002690 in process
+2025-04-30 00:00:45.668519, no: 2, code 035600 in process
+2025-04-30 00:01:03.278195, no: 3, code 174900 in process
+2025-04-30 00:01:17.625886, no: 4, code 180060 in process
+----> no: 4, code 180060 data not available, could be a financial institution
+2025-04-30 00:01:23.893468, no: 5, code 183410 in process
+----> no: 5, code 183410 data not available, could be a financial institution
+2025-04-30 00:01:30.207134, no: 6, code 206950 in process
+----> no: 6, code 206950 data not available, could be a financial institution
+2025-04-30 00:01:36.526209, no: 7, code 212310 in process
+----> no: 7, code 212310 data not available, could be a financial institution
+2025-04-30 00:01:42.985366, no: 8, code 246710 in process
+2025-04-30 00:01:56.391645, no: 9, code 254160 in process
+----> no: 9, code 254160 data not available, could be a financial institution
+2025-04-30 00:02:02.637158, no: 10, code 299480 in process
+----> no: 10, code 299480 data not available, could be a financial institution
+2025-04-30 00:02:09.065471, no: 11, code 368030 in process
+----> no: 11, code 368030 data not available, could be a financial institution
+Financial data collection log >> 
+2025-04-30 00:02:15.627156, no: 0, code 900070 in process
+----> no: 0, code 900070 currency not in KRW, skipping
+2025-04-30 00:02:21.020509, no: 1, code 900100 in process
+----> no: 1, code 900100 currency not in KRW, skipping
+2025-04-30 00:02:26.331021, no: 2, code 900140 in process
+----> no: 2, code 900140 currency not in KRW, skipping
+2025-04-30 00:02:31.688746, no: 3, code 900260 in process
+----> no: 3, code 900260 currency not in KRW, skipping
+2025-04-30 00:02:37.797905, no: 4, code 900310 in process
+----> no: 4, code 900310 currency not in KRW, skipping
+2025-04-30 00:02:43.158823, no: 5, code 900340 in process
+----> no: 5, code 900340 currency not in KRW, skipping
+2025-04-30 00:02:48.516885, no: 6, code 293490 in process
+== Update finished ==
+updating market prices...
+Updating outstanding shares information...
+Processing outstanding shares data for 2025-04-28... 0/150
+Processing outstanding shares data for 2025-04-29... 1/150
+2025-04-30 QA DB: updating ['000400', '002690', '035600', '174900', '180060', '183410', '206950', '212310', '246710', '254160', '299480', '368030', '900070', '900100', '900140', '900260', '900310', '900340', '293490']
+000400
+002690
+035600
+174900
+180060
+183410
+206950
+212310
+246710
+254160
+299480
+368030
+900070
+900100
+900140
+900260
+900310
+900340
+293490
+/home/andy/projects/trader/tools/tools.py:221: UserWarning: No artists with labels found to put in legend.  Note that artists whose label start with an underscore are ignored when legend() is called with no argument.
+  axl = ax.legend(loc='upper left')
+/home/andy/projects/trader/tools/tools.py:242: UserWarning: No artists with labels found to put in legend.  Note that artists whose label start with an underscore are ignored when legend() is called with no argument.
+  axrl = axr.legend(loc='upper left')
+/home/andy/projects/trader/tools/tools.py:252: UserWarning: Attempting to set identical low and high xlims makes transformation singular; automatically expanding.
+  ax.set_xlim(-0.5, len(x) - 0.5)
+/home/andy/projects/trader/tools/tools.py:253: UserWarning: Attempting to set identical low and high xlims makes transformation singular; automatically expanding.
+  axr.set_xlim(-0.5, len(x) - 0.5)
+000400 | 1/19
+002690 | 2/19
+035600 | 3/19
+174900 | 4/19
+180060 | 5/19
+2025-04-30 00:05:10.199537 | 180060 | quarterly data of 180060 is empty.
+183410 | 6/19
+2025-04-30 00:05:11.631529 | 183410 | quarterly data of 183410 is empty.
+206950 | 7/19
+2025-04-30 00:05:13.066601 | 206950 | quarterly data of 206950 is empty.
+212310 | 8/19
+2025-04-30 00:05:14.511721 | 212310 | quarterly data of 212310 is empty.
+246710 | 9/19
+254160 | 10/19
+2025-04-30 00:05:18.878750 | 254160 | quarterly data of 254160 is empty.
+299480 | 11/19
+2025-04-30 00:05:20.263311 | 299480 | quarterly data of 299480 is empty.
+368030 | 12/19
+2025-04-30 00:05:21.660049 | 368030 | quarterly data of 368030 is empty.
+900070 | 13/19
+2025-04-30 00:05:23.044697 | 900070 | quarterly data of 900070 is empty.
+900100 | 14/19
+2025-04-30 00:05:24.430121 | 900100 | quarterly data of 900100 is empty.
+900140 | 15/19
+2025-04-30 00:05:25.815750 | 900140 | quarterly data of 900140 is empty.
+900260 | 16/19
+2025-04-30 00:05:27.206918 | 900260 | quarterly data of 900260 is empty.
+900310 | 17/19
+2025-04-30 00:05:28.590425 | 900310 | quarterly data of 900310 is empty.
+900340 | 18/19
+2025-04-30 00:05:29.977770 | 900340 | quarterly data of 900340 is empty.
+293490 | 19/19
+sending incremental file list
+daily_update.json
+          1,432 100%    0.00kB/s    0:00:00            1,432 100%    0.00kB/s    0:00:00 (xfr#1, to-chk=0/2)
+
+sent 1,554 bytes  received 47 bytes  1,067.33 bytes/sec
+total size is 1,432  speedup is 0.89
+sending incremental file list
+000400.png
+         32,768  16%    0.00kB/s    0:00:00          201,243 100%   80.34MB/s    0:00:00 (xfr#1, to-chk=2571/2593)
+002690.png
+         32,768   6%   10.42MB/s    0:00:00          517,956 100%   44.91MB/s    0:00:00 (xfr#2, to-chk=2470/2593)
+035600.png
+         32,768   7%    2.40MB/s    0:00:00          448,141 100%   18.58MB/s    0:00:00 (xfr#3, to-chk=1860/2593)
+174900.png
+         32,768   6%    1.25MB/s    0:00:00          538,298 100%   13.51MB/s    0:00:00 (xfr#4, to-chk=891/2593)
+246710.png
+         32,768  29%  800.00kB/s    0:00:00          109,260 100%    2.54MB/s    0:00:00 (xfr#5, to-chk=647/2593)
+293490.png
+         32,768  10%  780.49kB/s    0:00:00          319,366 100%    5.75MB/s    0:00:00 (xfr#6, to-chk=508/2593)
+rate_changes.png
+         32,768  17%  592.59kB/s    0:00:00          190,174 100%    2.30MB/s    0:00:00 (xfr#7, to-chk=0/2593)
+
+sent 2,353,782 bytes  received 19,871 bytes  1,582,435.33 bytes/sec
+total size is 1,059,517,202  speedup is 446.37
