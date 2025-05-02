@@ -724,3 +724,63 @@ Financial data collection log >>
 updating market prices...
 Updating outstanding shares information...
 Processing outstanding shares data for 2025-04-30... 0/150
+Updating KRX data...
+Updating between dates: 2025-04-23 / 2025-05-03
+-----------------------------
+2025-05-03 00:00:18.529380
+Full rescan codes are 18 items: 
+['000400', '002690', '006350', '009280', '035600', '036840', '046440', '052960', '174900', '180060', '183410', '206950', '212310', '246710', '254160', '284620', '299480', '368030']
+Partial rescan codes are 11 items: 
+['006400', '063440', '219750', '900070', '900110', '900140', '900260', '900270', '900300', '900310', '293490']
+Financial data collection log >> 
+2025-05-03 00:00:18.604522, no: 0, code 000400 in process
+2025-05-03 00:00:25.776446, no: 1, code 002690 in process
+2025-05-03 00:00:41.564943, no: 2, code 006350 in process
+2025-05-03 00:00:48.773487, no: 3, code 009280 in process
+----> no: 3, code 009280 data not available, could be a financial institution
+2025-05-03 00:00:55.102738, no: 4, code 035600 in process
+2025-05-03 00:01:11.110116, no: 5, code 036840 in process
+----> no: 5, code 036840 data not available, could be a financial institution
+2025-05-03 00:01:17.355142, no: 6, code 046440 in process
+2025-05-03 00:01:33.140508, no: 7, code 052960 in process
+----> no: 7, code 052960 data not available, could be a financial institution
+2025-05-03 00:01:39.285489, no: 8, code 174900 in process
+2025-05-03 00:01:53.033191, no: 9, code 180060 in process
+----> no: 9, code 180060 data not available, could be a financial institution
+2025-05-03 00:01:59.270963, no: 10, code 183410 in process
+----> no: 10, code 183410 data not available, could be a financial institution
+2025-05-03 00:02:05.475022, no: 11, code 206950 in process
+----> no: 11, code 206950 data not available, could be a financial institution
+2025-05-03 00:02:11.698913, no: 12, code 212310 in process
+----> no: 12, code 212310 data not available, could be a financial institution
+2025-05-03 00:02:17.966393, no: 13, code 246710 in process
+2025-05-03 00:02:30.348915, no: 14, code 254160 in process
+----> no: 14, code 254160 data not available, could be a financial institution
+2025-05-03 00:02:36.470321, no: 15, code 284620 in process
+2025-05-03 00:02:50.468836, no: 16, code 299480 in process
+----> no: 16, code 299480 data not available, could be a financial institution
+2025-05-03 00:02:56.697824, no: 17, code 368030 in process
+----> no: 17, code 368030 data not available, could be a financial institution
+Financial data collection log >> 
+2025-05-03 00:03:03.052118, no: 0, code 006400 in process
+2025-05-03 00:03:10.322627, no: 1, code 063440 in process
+2025-05-03 00:03:17.678765, no: 2, code 219750 in process
+2025-05-03 00:03:25.063379, no: 3, code 900070 in process
+----> no: 3, code 900070 currency not in KRW, skipping
+2025-05-03 00:03:30.440508, no: 4, code 900110 in process
+----> no: 4, code 900110 currency not in KRW, skipping
+2025-05-03 00:03:35.897774, no: 5, code 900140 in process
+----> no: 5, code 900140 currency not in KRW, skipping
+2025-05-03 00:03:41.240117, no: 6, code 900260 in process
+----> no: 6, code 900260 currency not in KRW, skipping
+2025-05-03 00:03:46.590685, no: 7, code 900270 in process
+----> no: 7, code 900270 currency not in KRW, skipping
+2025-05-03 00:03:51.930572, no: 8, code 900300 in process
+----> no: 8, code 900300 currency not in KRW, skipping
+2025-05-03 00:03:57.289953, no: 9, code 900310 in process
+----> no: 9, code 900310 currency not in KRW, skipping
+2025-05-03 00:04:02.712824, no: 10, code 293490 in process
+updating market prices...
+Updating outstanding shares information...
+Processing outstanding shares data for 2025-04-30... 0/150
+Processing outstanding shares data for 2025-05-02... 1/150
