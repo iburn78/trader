@@ -2219,3 +2219,112 @@ rate_changes.png
 
 sent 257,430 bytes  received 1,681 bytes  518,222.00 bytes/sec
 total size is 1,059,520,393  speedup is 4,089.06
+[main 9799aeb] 2025-05-03 upload done from linux machine
+ 9 files changed, 168 insertions(+)
+ rewrite data_collection/category.xlsx (69%)
+ rewrite data_collection/data/df_krx.db (85%)
+ rewrite data_collection/data/df_krx.feather (84%)
+To https://github.com/iburn78/trader
+   294ec7e..9799aeb  main -> main
+rtcwake: write error
+이미 업데이트 상태입니다.
+Updating KRX data...
+Updating between dates: 2025-04-23 / 2025-05-04
+-----------------------------
+2025-05-04 00:00:18.369612
+Full rescan codes are 18 items: 
+['000400', '002690', '006350', '009280', '035600', '036840', '046440', '052960', '174900', '180060', '183410', '206950', '212310', '246710', '254160', '284620', '299480', '368030']
+Partial rescan codes are 11 items: 
+['006400', '063440', '219750', '900070', '900110', '900140', '900260', '900270', '900300', '900310', '293490']
+Financial data collection log >> 
+2025-05-04 00:00:18.444941, no: 0, code 000400 in process
+2025-05-04 00:00:25.437247, no: 1, code 002690 in process
+2025-05-04 00:00:39.909944, no: 2, code 006350 in process
+2025-05-04 00:00:46.930717, no: 3, code 009280 in process
+----> no: 3, code 009280 data not available, could be a financial institution
+2025-05-04 00:00:53.050163, no: 4, code 035600 in process
+2025-05-04 00:01:07.901137, no: 5, code 036840 in process
+----> no: 5, code 036840 data not available, could be a financial institution
+2025-05-04 00:01:13.943134, no: 6, code 046440 in process
+2025-05-04 00:01:28.564223, no: 7, code 052960 in process
+----> no: 7, code 052960 data not available, could be a financial institution
+2025-05-04 00:01:34.619149, no: 8, code 174900 in process
+2025-05-04 00:01:47.295474, no: 9, code 180060 in process
+----> no: 9, code 180060 data not available, could be a financial institution
+2025-05-04 00:01:53.368643, no: 10, code 183410 in process
+----> no: 10, code 183410 data not available, could be a financial institution
+2025-05-04 00:01:59.520084, no: 11, code 206950 in process
+----> no: 11, code 206950 data not available, could be a financial institution
+2025-05-04 00:02:05.584703, no: 12, code 212310 in process
+----> no: 12, code 212310 data not available, could be a financial institution
+2025-05-04 00:02:11.694887, no: 13, code 246710 in process
+2025-05-04 00:02:23.422261, no: 14, code 254160 in process
+----> no: 14, code 254160 data not available, could be a financial institution
+2025-05-04 00:02:29.623640, no: 15, code 284620 in process
+2025-05-04 00:02:41.936317, no: 16, code 299480 in process
+----> no: 16, code 299480 data not available, could be a financial institution
+2025-05-04 00:02:48.020543, no: 17, code 368030 in process
+----> no: 17, code 368030 data not available, could be a financial institution
+Financial data collection log >> 
+2025-05-04 00:02:54.285052, no: 0, code 006400 in process
+2025-05-04 00:03:01.488682, no: 1, code 063440 in process
+2025-05-04 00:03:08.681247, no: 2, code 219750 in process
+2025-05-04 00:03:15.793139, no: 3, code 900070 in process
+----> no: 3, code 900070 currency not in KRW, skipping
+2025-05-04 00:03:21.093135, no: 4, code 900110 in process
+----> no: 4, code 900110 currency not in KRW, skipping
+2025-05-04 00:03:26.406221, no: 5, code 900140 in process
+----> no: 5, code 900140 currency not in KRW, skipping
+2025-05-04 00:03:31.742306, no: 6, code 900260 in process
+----> no: 6, code 900260 currency not in KRW, skipping
+2025-05-04 00:03:37.085436, no: 7, code 900270 in process
+----> no: 7, code 900270 currency not in KRW, skipping
+2025-05-04 00:03:42.397719, no: 8, code 900300 in process
+----> no: 8, code 900300 currency not in KRW, skipping
+2025-05-04 00:03:47.704612, no: 9, code 900310 in process
+----> no: 9, code 900310 currency not in KRW, skipping
+2025-05-04 00:03:53.056070, no: 10, code 293490 in process
+Traceback (most recent call last):
+  File "/home/andy/projects/trader/data_collection/dc05_CompanyHealth.py", line 362, in <module>
+    update_main_db(log_file, main_db, plot_gen_control_file)
+  File "/home/andy/projects/trader/data_collection/dc05_CompanyHealth.py", line 331, in update_main_db
+    main_db = merge_update(main_db, db_f, db_p)
+  File "/home/andy/projects/trader/tools/tools.py", line 410, in merge_update
+    A.loc[F.index] = F
+  File "/home/andy/projects/trader/venv/lib/python3.10/site-packages/pandas/core/indexing.py", line 907, in __setitem__
+    indexer = self._get_setitem_indexer(key)
+  File "/home/andy/projects/trader/venv/lib/python3.10/site-packages/pandas/core/indexing.py", line 780, in _get_setitem_indexer
+    return self._convert_to_indexer(key, axis=0)
+  File "/home/andy/projects/trader/venv/lib/python3.10/site-packages/pandas/core/indexing.py", line 1522, in _convert_to_indexer
+    return self._get_listlike_indexer(key, axis)[1]
+  File "/home/andy/projects/trader/venv/lib/python3.10/site-packages/pandas/core/indexing.py", line 1558, in _get_listlike_indexer
+    keyarr, indexer = ax._get_indexer_strict(key, axis_name)
+  File "/home/andy/projects/trader/venv/lib/python3.10/site-packages/pandas/core/indexes/multi.py", line 2766, in _get_indexer_strict
+    return super()._get_indexer_strict(key, axis_name)
+  File "/home/andy/projects/trader/venv/lib/python3.10/site-packages/pandas/core/indexes/base.py", line 6200, in _get_indexer_strict
+    self._raise_if_missing(keyarr, indexer, axis_name)
+  File "/home/andy/projects/trader/venv/lib/python3.10/site-packages/pandas/core/indexes/multi.py", line 2786, in _raise_if_missing
+    return super()._raise_if_missing(key, indexer, axis_name)
+  File "/home/andy/projects/trader/venv/lib/python3.10/site-packages/pandas/core/indexes/base.py", line 6252, in _raise_if_missing
+    raise KeyError(f"{not_found} not in index")
+KeyError: "[('006350', 'CFS', '유동자산'), ('006350', 'CFS', '비유동자산'), ('006350', 'CFS', '자산총계'), ('006350', 'CFS', '유동부채'), ('006350', 'CFS', '비유동부채'), ('006350', 'CFS', '부채총계'), ('006350', 'CFS', '자본금'), ('006350', 'CFS', '이익잉여금'), ('006350', 'CFS', '자본총계'), ('006350', 'CFS', '매출액'), ('006350', 'CFS', '영업이익'), ('006350', 'CFS', '법인세차감전 순이익'), ('006350', 'CFS', '당기순이익'), ('006350', 'OFS', '유동자산'), ('006350', 'OFS', '비유동자산'), ('006350', 'OFS', '자산총계'), ('006350', 'OFS', '유동부채'), ('006350', 'OFS', '비유동부채'), ('006350', 'OFS', '부채총계'), ('006350', 'OFS', '자본금'), ('006350', 'OFS', '이익잉여금'), ('006350', 'OFS', '자본총계'), ('006350', 'OFS', '매출액'), ('006350', 'OFS', '영업이익'), ('006350', 'OFS', '법인세차감전 순이익'), ('006350', 'OFS', '당기순이익')] not in index"
+updating market prices...
+Updating outstanding shares information...
+Processing outstanding shares data for 2025-05-02... 0/150
+2025-05-04 QA DB: ***** plot_gen_control.npy does not exist. *****
+Traceback (most recent call last):
+  File "/home/andy/projects/trader/data_collection/dc07_VisualizeHealth.py", line 13, in <module>
+    raise FileNotFoundError('***** plot_gen_control.npy does not exist. *****')
+FileNotFoundError: ***** plot_gen_control.npy does not exist. *****
+sending incremental file list
+daily_update.json
+          1,213 100%    0.00kB/s    0:00:00            1,213 100%    0.00kB/s    0:00:00 (xfr#1, to-chk=0/2)
+
+sent 1,334 bytes  received 53 bytes  924.67 bytes/sec
+total size is 1,213  speedup is 0.87
+sending incremental file list
+rate_changes.png
+            700   0%    0.00kB/s    0:00:00          193,365 100%  183.74MB/s    0:00:00 (xfr#1, to-chk=0/2593)
+
+sent 65,134 bytes  received 1,699 bytes  133,666.00 bytes/sec
+total size is 1,059,520,393  speedup is 15,853.25
