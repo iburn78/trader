@@ -283,7 +283,7 @@ def _generate_update_db(log_file, end_day, full_rescan_code, partial_rescan_code
     
     return db_f, db_p
 
-def update_main_db(log_file, main_db, plot_gen_control_file=None):
+def update_main_db(log_file, main_db, df_krx, plot_gen_control_file=None):
     try: 
         log_print(log_file, 'Updating KRX data...')
         warnings.filterwarnings("ignore")
@@ -304,6 +304,7 @@ def update_main_db(log_file, main_db, plot_gen_control_file=None):
     # end_day = '2023-11-15'
 
     full_rescan_code, partial_rescan_code = _generate_update_codelist(log_file, start_day, end_day)
+
     # include codes that does not have 2 quarters previous data, while have 3 quarters data
     cp2 = null_checker(main_db, 2)
     cp3 = null_checker(main_db, 3)
@@ -313,6 +314,7 @@ def update_main_db(log_file, main_db, plot_gen_control_file=None):
         if c not in partial_rescan_code:
             partial_rescan_code.append(c)
 
+    # exclude codes that are already scanned
     tg_qt = nth_quarter_before(1)  # last quarter 
     main_db_codelist = main_db['code'].unique()
     if tg_qt in main_db.columns:
@@ -324,6 +326,19 @@ def update_main_db(log_file, main_db, plot_gen_control_file=None):
             else:
                 target_list.append(code)
         partial_rescan_code = target_list
+    
+    # exclude codes that are not in df_krx
+    full_list = []
+    for code in full_rescan_code: 
+        if code in df_krx.index:
+            full_list.append(code)
+    full_rescan_code = full_list
+
+    partial_list = []
+    for code in partial_rescan_code:
+        if code in df_krx.index:
+            partial_list.append(code) 
+    partial_rescan_code = partial_list 
 
     db_f, db_p = _generate_update_db(log_file, end_day, full_rescan_code, partial_rescan_code)
 
@@ -358,5 +373,6 @@ if __name__ == '__main__':
     log_file = os.path.join(cd_, 'log/data_collection.log')
     plot_gen_control_file = os.path.join(cd_, 'data/plot_gen_control.npy')
     main_db = get_main_financial_reports_db()
+    df_krx = get_df_krx()
 
-    update_main_db(log_file, main_db, plot_gen_control_file)
+    update_main_db(log_file, main_db, df_krx, plot_gen_control_file)
