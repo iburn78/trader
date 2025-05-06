@@ -961,3 +961,42 @@ Financial data collection log >>
 updating market prices...
 Updating outstanding shares information...
 Processing outstanding shares data for 2025-05-02... 0/150
+Updating KRX data...
+Updating between dates: 2025-04-23 / 2025-05-07
+-----------------------------
+2025-05-07 00:00:18.765694
+Full rescan codes are 7 items: 
+['000400', '002690', '035600', '046440', '174900', '246710', '284620']
+Partial rescan codes are 11 items: 
+['006400', '063440', '219750', '900070', '900110', '900140', '900260', '900270', '900300', '900310', '293490']
+Financial data collection log >> 
+2025-05-07 00:00:18.837959, no: 0, code 000400 in process
+2025-05-07 00:00:25.957005, no: 1, code 002690 in process
+2025-05-07 00:00:40.372092, no: 2, code 035600 in process
+2025-05-07 00:00:55.113424, no: 3, code 046440 in process
+2025-05-07 00:01:09.744799, no: 4, code 174900 in process
+2025-05-07 00:01:22.377467, no: 5, code 246710 in process
+2025-05-07 00:01:33.906543, no: 6, code 284620 in process
+Financial data collection log >> 
+2025-05-07 00:01:46.240632, no: 0, code 006400 in process
+2025-05-07 00:01:53.267022, no: 1, code 063440 in process
+2025-05-07 00:02:00.436609, no: 2, code 219750 in process
+2025-05-07 00:02:07.785751, no: 3, code 900070 in process
+----> no: 3, code 900070 currency not in KRW, skipping
+2025-05-07 00:02:13.099590, no: 4, code 900110 in process
+----> no: 4, code 900110 currency not in KRW, skipping
+2025-05-07 00:02:18.549867, no: 5, code 900140 in process
+----> no: 5, code 900140 currency not in KRW, skipping
+2025-05-07 00:02:23.866337, no: 6, code 900260 in process
+----> no: 6, code 900260 currency not in KRW, skipping
+2025-05-07 00:02:29.170160, no: 7, code 900270 in process
+----> no: 7, code 900270 currency not in KRW, skipping
+2025-05-07 00:02:34.489989, no: 8, code 900300 in process
+----> no: 8, code 900300 currency not in KRW, skipping
+2025-05-07 00:02:39.805067, no: 9, code 900310 in process
+----> no: 9, code 900310 currency not in KRW, skipping
+2025-05-07 00:02:45.109840, no: 10, code 293490 in process
+== Update finished ==
+updating market prices...
+Updating outstanding shares information...
+Processing outstanding shares data for 2025-05-02... 0/150

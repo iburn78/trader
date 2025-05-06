@@ -2540,3 +2540,141 @@ rate_changes.png
 
 sent 65,134 bytes  received 1,699 bytes  44,555.33 bytes/sec
 total size is 1,059,520,393  speedup is 15,853.25
+[main 65ce774] 2025-05-06 upload done from linux machine
+ 5 files changed, 166 insertions(+)
+To https://github.com/iburn78/trader
+   550e607..65ce774  main -> main
+rtcwake: write error
+https://github.com/iburn78/trader URL에서
+   65ce774..202acaa  main       -> origin/main
+업데이트 중 65ce774..202acaa
+Fast-forward
+ data_collection/dc05_CompanyHealth.py | 20 ++++++++++++++++++--
+ data_collection/temp_03.py            |  0
+ 2 files changed, 18 insertions(+), 2 deletions(-)
+ create mode 100644 data_collection/temp_03.py
+Updating KRX data...
+Updating between dates: 2025-04-23 / 2025-05-07
+-----------------------------
+2025-05-07 00:00:18.765694
+Full rescan codes are 7 items: 
+['000400', '002690', '035600', '046440', '174900', '246710', '284620']
+Partial rescan codes are 11 items: 
+['006400', '063440', '219750', '900070', '900110', '900140', '900260', '900270', '900300', '900310', '293490']
+Financial data collection log >> 
+2025-05-07 00:00:18.837959, no: 0, code 000400 in process
+2025-05-07 00:00:25.957005, no: 1, code 002690 in process
+2025-05-07 00:00:40.372092, no: 2, code 035600 in process
+2025-05-07 00:00:55.113424, no: 3, code 046440 in process
+2025-05-07 00:01:09.744799, no: 4, code 174900 in process
+2025-05-07 00:01:22.377467, no: 5, code 246710 in process
+2025-05-07 00:01:33.906543, no: 6, code 284620 in process
+Financial data collection log >> 
+2025-05-07 00:01:46.240632, no: 0, code 006400 in process
+2025-05-07 00:01:53.267022, no: 1, code 063440 in process
+2025-05-07 00:02:00.436609, no: 2, code 219750 in process
+2025-05-07 00:02:07.785751, no: 3, code 900070 in process
+----> no: 3, code 900070 currency not in KRW, skipping
+2025-05-07 00:02:13.099590, no: 4, code 900110 in process
+----> no: 4, code 900110 currency not in KRW, skipping
+2025-05-07 00:02:18.549867, no: 5, code 900140 in process
+----> no: 5, code 900140 currency not in KRW, skipping
+2025-05-07 00:02:23.866337, no: 6, code 900260 in process
+----> no: 6, code 900260 currency not in KRW, skipping
+2025-05-07 00:02:29.170160, no: 7, code 900270 in process
+----> no: 7, code 900270 currency not in KRW, skipping
+2025-05-07 00:02:34.489989, no: 8, code 900300 in process
+----> no: 8, code 900300 currency not in KRW, skipping
+2025-05-07 00:02:39.805067, no: 9, code 900310 in process
+----> no: 9, code 900310 currency not in KRW, skipping
+2025-05-07 00:02:45.109840, no: 10, code 293490 in process
+== Update finished ==
+updating market prices...
+Updating outstanding shares information...
+Processing outstanding shares data for 2025-05-02... 0/150
+2025-05-07 QA DB: updating ['000400', '002690', '035600', '046440', '174900', '246710', '284620', '006400', '063440', '219750', '900070', '900110', '900140', '900260', '900270', '900300', '900310', '293490']
+000400
+002690
+035600
+046440
+174900
+246710
+284620
+006400
+063440
+219750
+900070
+900110
+900140
+900260
+900270
+900300
+900310
+293490
+/home/andy/projects/trader/tools/tools.py:221: UserWarning: No artists with labels found to put in legend.  Note that artists whose label start with an underscore are ignored when legend() is called with no argument.
+  axl = ax.legend(loc='upper left')
+/home/andy/projects/trader/tools/tools.py:242: UserWarning: No artists with labels found to put in legend.  Note that artists whose label start with an underscore are ignored when legend() is called with no argument.
+  axrl = axr.legend(loc='upper left')
+/home/andy/projects/trader/tools/tools.py:252: UserWarning: Attempting to set identical low and high xlims makes transformation singular; automatically expanding.
+  ax.set_xlim(-0.5, len(x) - 0.5)
+/home/andy/projects/trader/tools/tools.py:253: UserWarning: Attempting to set identical low and high xlims makes transformation singular; automatically expanding.
+  axr.set_xlim(-0.5, len(x) - 0.5)
+000400 | 1/18
+002690 | 2/18
+035600 | 3/18
+046440 | 4/18
+174900 | 5/18
+246710 | 6/18
+284620 | 7/18
+006400 | 8/18
+063440 | 9/18
+219750 | 10/18
+900070 | 11/18
+2025-05-07 00:05:26.003985 | 900070 | quarterly data of 900070 is empty.
+900110 | 12/18
+2025-05-07 00:05:27.413726 | 900110 | quarterly data of 900110 is empty.
+900140 | 13/18
+2025-05-07 00:05:28.989060 | 900140 | quarterly data of 900140 is empty.
+900260 | 14/18
+2025-05-07 00:05:30.404946 | 900260 | quarterly data of 900260 is empty.
+900270 | 15/18
+2025-05-07 00:05:31.820975 | 900270 | quarterly data of 900270 is empty.
+900300 | 16/18
+2025-05-07 00:05:33.231607 | 900300 | quarterly data of 900300 is empty.
+900310 | 17/18
+2025-05-07 00:05:34.642356 | 900310 | quarterly data of 900310 is empty.
+293490 | 18/18
+sending incremental file list
+daily_update.json
+          1,009 100%    0.00kB/s    0:00:00            1,009 100%    0.00kB/s    0:00:00 (xfr#1, to-chk=0/2)
+
+sent 1,131 bytes  received 47 bytes  785.33 bytes/sec
+total size is 1,009  speedup is 0.86
+sending incremental file list
+000400.png
+         32,768  16%    0.00kB/s    0:00:00          201,367 100%   80.39MB/s    0:00:00 (xfr#1, to-chk=2571/2593)
+002690.png
+         32,768   6%   15.62MB/s    0:00:00          517,378 100%   54.82MB/s    0:00:00 (xfr#2, to-chk=2470/2593)
+006400.png
+         32,768   7%    3.12MB/s    0:00:00          448,863 100%   26.75MB/s    0:00:00 (xfr#3, to-chk=2313/2593)
+035600.png
+         32,768   7%    1.84MB/s    0:00:00          447,568 100%   18.56MB/s    0:00:00 (xfr#4, to-chk=1860/2593)
+046440.png
+         32,768   6%    1.30MB/s    0:00:00          469,135 100%   12.78MB/s    0:00:00 (xfr#5, to-chk=1703/2593)
+063440.png
+         32,768   5%  888.89kB/s    0:00:00          574,544 100%    8.06MB/s    0:00:00 (xfr#6, to-chk=1529/2593)
+174900.png
+         32,768   6%  463.77kB/s    0:00:01          538,337 100%    3.89MB/s    0:00:00 (xfr#7, to-chk=891/2593)
+219750.png
+         32,768   6%  226.95kB/s    0:00:02          509,272 100%    2.57MB/s    0:00:00 (xfr#8, to-chk=735/2593)
+246710.png
+         32,768  30%  168.42kB/s    0:00:00          109,135 100%  519.89kB/s    0:00:00 (xfr#9, to-chk=647/2593)
+284620.png
+         32,768   8%  156.10kB/s    0:00:02          393,382 100%    1.48MB/s    0:00:00 (xfr#10, to-chk=539/2593)
+293490.png
+         32,768  10%  125.98kB/s    0:00:02          319,832 100%    1.07MB/s    0:00:00 (xfr#11, to-chk=508/2593)
+rate_changes.png
+            700   0%    2.40kB/s    0:01:20          193,365 100%  662.57kB/s    0:00:00 (xfr#12, to-chk=0/2593)
+
+sent 4,589,230 bytes  received 39,982 bytes  3,086,141.33 bytes/sec
+total size is 1,059,534,705  speedup is 228.88
