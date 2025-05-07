@@ -1000,3 +1000,30 @@ Financial data collection log >>
 updating market prices...
 Updating outstanding shares information...
 Processing outstanding shares data for 2025-05-02... 0/150
+Updating KRX data...
+Updating between dates: 2025-04-30 / 2025-05-08
+-----------------------------
+2025-05-08 00:00:20.879725
+Full rescan codes are 2 items: 
+['046440', '284620']
+Partial rescan codes are 7 items: 
+['011080', '333620', '396470', '900110', '900270', '900300', '293490']
+Financial data collection log >> 
+2025-05-08 00:00:20.954100, no: 0, code 046440 in process
+2025-05-08 00:00:38.136377, no: 1, code 284620 in process
+Financial data collection log >> 
+2025-05-08 00:00:52.307086, no: 0, code 011080 in process
+2025-05-08 00:00:59.828524, no: 1, code 333620 in process
+2025-05-08 00:01:07.405392, no: 2, code 396470 in process
+2025-05-08 00:01:14.595514, no: 3, code 900110 in process
+----> no: 3, code 900110 currency not in KRW, skipping
+2025-05-08 00:01:20.017780, no: 4, code 900270 in process
+----> no: 4, code 900270 currency not in KRW, skipping
+2025-05-08 00:01:25.405641, no: 5, code 900300 in process
+----> no: 5, code 900300 currency not in KRW, skipping
+2025-05-08 00:01:30.820460, no: 6, code 293490 in process
+== Update finished ==
+updating market prices...
+Updating outstanding shares information...
+Processing outstanding shares data for 2025-05-02... 0/150
+Processing outstanding shares data for 2025-05-07... 1/150

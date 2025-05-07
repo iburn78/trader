@@ -2678,3 +2678,82 @@ rate_changes.png
 
 sent 4,589,230 bytes  received 39,982 bytes  3,086,141.33 bytes/sec
 total size is 1,059,534,705  speedup is 228.88
+[main 17bed74] 2025-05-07 upload done from linux machine
+ 10 files changed, 185 insertions(+)
+To https://github.com/iburn78/trader
+   202acaa..17bed74  main -> main
+rtcwake: write error
+이미 업데이트 상태입니다.
+Updating KRX data...
+Updating between dates: 2025-04-30 / 2025-05-08
+-----------------------------
+2025-05-08 00:00:20.879725
+Full rescan codes are 2 items: 
+['046440', '284620']
+Partial rescan codes are 7 items: 
+['011080', '333620', '396470', '900110', '900270', '900300', '293490']
+Financial data collection log >> 
+2025-05-08 00:00:20.954100, no: 0, code 046440 in process
+2025-05-08 00:00:38.136377, no: 1, code 284620 in process
+Financial data collection log >> 
+2025-05-08 00:00:52.307086, no: 0, code 011080 in process
+2025-05-08 00:00:59.828524, no: 1, code 333620 in process
+2025-05-08 00:01:07.405392, no: 2, code 396470 in process
+2025-05-08 00:01:14.595514, no: 3, code 900110 in process
+----> no: 3, code 900110 currency not in KRW, skipping
+2025-05-08 00:01:20.017780, no: 4, code 900270 in process
+----> no: 4, code 900270 currency not in KRW, skipping
+2025-05-08 00:01:25.405641, no: 5, code 900300 in process
+----> no: 5, code 900300 currency not in KRW, skipping
+2025-05-08 00:01:30.820460, no: 6, code 293490 in process
+== Update finished ==
+updating market prices...
+Updating outstanding shares information...
+Processing outstanding shares data for 2025-05-02... 0/150
+Processing outstanding shares data for 2025-05-07... 1/150
+2025-05-08 QA DB: updating ['046440', '284620', '011080', '333620', '396470', '900110', '900270', '900300', '293490']
+046440
+284620
+011080
+333620
+396470
+900110
+900270
+900300
+293490
+046440 | 1/9
+284620 | 2/9
+011080 | 3/9
+333620 | 4/9
+396470 | 5/9
+900110 | 6/9
+2025-05-08 00:03:43.383895 | 900110 | quarterly data of 900110 is empty.
+900270 | 7/9
+2025-05-08 00:03:44.792427 | 900270 | quarterly data of 900270 is empty.
+900300 | 8/9
+2025-05-08 00:03:46.200553 | 900300 | quarterly data of 900300 is empty.
+293490 | 9/9
+sending incremental file list
+daily_update.json
+          1,067 100%    0.00kB/s    0:00:00            1,067 100%    0.00kB/s    0:00:00 (xfr#1, to-chk=0/2)
+
+sent 1,189 bytes  received 47 bytes  2,472.00 bytes/sec
+total size is 1,067  speedup is 0.86
+sending incremental file list
+011080.png
+         32,768   6%    0.00kB/s    0:00:00          474,844 100%   84.32MB/s    0:00:00 (xfr#1, to-chk=2195/2593)
+046440.png
+         32,768   6%    5.21MB/s    0:00:00          469,508 100%   40.71MB/s    0:00:00 (xfr#2, to-chk=1703/2593)
+284620.png
+         32,768   8%    2.84MB/s    0:00:00          392,775 100%   17.03MB/s    0:00:00 (xfr#3, to-chk=539/2593)
+293490.png
+         32,768  10%    1.36MB/s    0:00:00          319,283 100%    9.52MB/s    0:00:00 (xfr#4, to-chk=508/2593)
+333620.png
+         32,768   8%  969.70kB/s    0:00:00          399,262 100%    7.93MB/s    0:00:00 (xfr#5, to-chk=389/2593)
+396470.png
+         32,768  11%  640.00kB/s    0:00:00          279,896 100%    4.38MB/s    0:00:00 (xfr#6, to-chk=230/2593)
+rate_changes.png
+         32,768  17%  516.13kB/s    0:00:00          191,463 100%    2.20MB/s    0:00:00 (xfr#7, to-chk=0/2593)
+
+sent 2,591,906 bytes  received 21,635 bytes  1,742,360.67 bytes/sec
+total size is 1,059,558,075  speedup is 405.41
