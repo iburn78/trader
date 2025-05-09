@@ -1051,3 +1051,41 @@ updating market prices...
 Updating outstanding shares information...
 Processing outstanding shares data for 2025-05-07... 0/150
 Processing outstanding shares data for 2025-05-08... 1/150
+Updating KRX data...
+Updating between dates: 2025-05-02 / 2025-05-10
+-----------------------------
+2025-05-10 00:00:24.206004
+Full rescan codes are 5 items: 
+['046440', '187660', '443060', '473980', '498390']
+Partial rescan codes are 18 items: 
+['004770', '006340', '015360', '025320', '117670', '134380', '150840', '198940', '203450', '229000', '263810', '303360', '307180', '310210', '321260', '340810', '473980', '293490']
+Financial data collection log >> 
+2025-05-10 00:00:24.277702, no: 0, code 046440 in process
+2025-05-10 00:00:41.719947, no: 1, code 187660 in process
+2025-05-10 00:00:52.212904, no: 2, code 443060 in process
+2025-05-10 00:00:58.947594, no: 3, code 473980 in process
+2025-05-10 00:01:05.012441, no: 4, code 498390 in process
+Financial data collection log >> 
+2025-05-10 00:01:11.033535, no: 0, code 004770 in process
+2025-05-10 00:01:18.508091, no: 1, code 006340 in process
+2025-05-10 00:01:25.970892, no: 2, code 015360 in process
+2025-05-10 00:01:33.461888, no: 3, code 025320 in process
+2025-05-10 00:01:41.109104, no: 4, code 117670 in process
+2025-05-10 00:01:48.643206, no: 5, code 134380 in process
+2025-05-10 00:01:55.945028, no: 6, code 150840 in process
+2025-05-10 00:02:03.591223, no: 7, code 198940 in process
+2025-05-10 00:02:11.271993, no: 8, code 203450 in process
+2025-05-10 00:02:18.848702, no: 9, code 229000 in process
+2025-05-10 00:02:26.479409, no: 10, code 263810 in process
+2025-05-10 00:02:34.367283, no: 11, code 303360 in process
+2025-05-10 00:02:42.062594, no: 12, code 307180 in process
+2025-05-10 00:02:49.645672, no: 13, code 310210 in process
+2025-05-10 00:02:57.310730, no: 14, code 321260 in process
+2025-05-10 00:03:04.769695, no: 15, code 340810 in process
+2025-05-10 00:03:12.474647, no: 16, code 473980 in process
+2025-05-10 00:03:18.536520, no: 17, code 293490 in process
+== Update finished ==
+updating market prices...
+Updating outstanding shares information...
+Processing outstanding shares data for 2025-05-08... 0/150
+Processing outstanding shares data for 2025-05-09... 1/150
