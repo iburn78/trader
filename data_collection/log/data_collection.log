@@ -1131,3 +1131,76 @@ Financial data collection log >>
 updating market prices...
 Updating outstanding shares information...
 Processing outstanding shares data for 2025-05-09... 0/150
+Updating KRX data...
+Updating between dates: 2025-05-05 / 2025-05-13
+-----------------------------
+2025-05-13 00:00:32.767092
+Full rescan codes are 4 items: 
+['187660', '443060', '473980', '498390']
+Partial rescan codes are 54 items: 
+['003570', '011330', '018700', '030520', '035150', '036530', '036580', '044990', '054670', '064960', '067920', '068330', '078130', '080530', '095610', '100840', '108490', '121890', '136490', '143540', '145270', '204840', '252990', '254490', '257720', '262260', '263810', '268280', '299660', '300080', '328130', '336570', '340810', '372910', '376300', '418470', '430220', '435570', '437780', '438580', '439250', '439410', '440110', '440820', '441270', '444920', '446150', '458870', '460930', '473050', '476060', '482630', '493790', '293490']
+Financial data collection log >> 
+2025-05-13 00:00:32.840862, no: 0, code 187660 in process
+2025-05-13 00:00:43.040136, no: 1, code 443060 in process
+2025-05-13 00:00:49.560707, no: 2, code 473980 in process
+2025-05-13 00:00:55.556475, no: 3, code 498390 in process
+Financial data collection log >> 
+2025-05-13 00:01:01.592921, no: 0, code 003570 in process
+2025-05-13 00:01:09.159281, no: 1, code 011330 in process
+2025-05-13 00:01:16.688865, no: 2, code 018700 in process
+2025-05-13 00:01:24.202948, no: 3, code 030520 in process
+2025-05-13 00:01:31.706495, no: 4, code 035150 in process
+2025-05-13 00:01:39.228507, no: 5, code 036530 in process
+2025-05-13 00:01:46.895597, no: 6, code 036580 in process
+2025-05-13 00:01:54.490509, no: 7, code 044990 in process
+2025-05-13 00:02:00.648690, no: 8, code 054670 in process
+2025-05-13 00:02:08.149440, no: 9, code 064960 in process
+2025-05-13 00:02:15.476506, no: 10, code 067920 in process
+2025-05-13 00:02:22.953148, no: 11, code 068330 in process
+2025-05-13 00:02:30.234606, no: 12, code 078130 in process
+2025-05-13 00:02:37.665270, no: 13, code 080530 in process
+2025-05-13 00:02:45.149543, no: 14, code 095610 in process
+2025-05-13 00:02:52.774021, no: 15, code 100840 in process
+2025-05-13 00:03:00.315796, no: 16, code 108490 in process
+2025-05-13 00:03:07.816477, no: 17, code 121890 in process
+2025-05-13 00:03:15.093208, no: 18, code 136490 in process
+2025-05-13 00:03:22.572338, no: 19, code 143540 in process
+2025-05-13 00:03:30.074086, no: 20, code 145270 in process
+2025-05-13 00:03:37.771076, no: 21, code 204840 in process
+2025-05-13 00:03:45.378368, no: 22, code 252990 in process
+2025-05-13 00:03:52.793352, no: 23, code 254490 in process
+2025-05-13 00:04:00.324452, no: 24, code 257720 in process
+2025-05-13 00:04:07.835107, no: 25, code 262260 in process
+2025-05-13 00:04:15.233611, no: 26, code 263810 in process
+2025-05-13 00:04:22.837857, no: 27, code 268280 in process
+2025-05-13 00:04:30.273148, no: 28, code 299660 in process
+2025-05-13 00:04:38.273411, no: 29, code 300080 in process
+2025-05-13 00:04:46.350616, no: 30, code 328130 in process
+2025-05-13 00:04:53.794863, no: 31, code 336570 in process
+2025-05-13 00:05:01.297601, no: 32, code 340810 in process
+2025-05-13 00:05:08.836804, no: 33, code 372910 in process
+2025-05-13 00:05:16.393434, no: 34, code 376300 in process
+2025-05-13 00:05:23.866549, no: 35, code 418470 in process
+2025-05-13 00:05:31.223488, no: 36, code 430220 in process
+2025-05-13 00:05:38.992641, no: 37, code 435570 in process
+2025-05-13 00:05:45.053214, no: 38, code 437780 in process
+2025-05-13 00:05:52.391780, no: 39, code 438580 in process
+2025-05-13 00:05:59.695878, no: 40, code 439250 in process
+2025-05-13 00:06:06.992741, no: 41, code 439410 in process
+2025-05-13 00:06:14.221208, no: 42, code 440110 in process
+2025-05-13 00:06:21.781744, no: 43, code 440820 in process
+2025-05-13 00:06:29.218407, no: 44, code 441270 in process
+2025-05-13 00:06:36.584760, no: 45, code 444920 in process
+2025-05-13 00:06:44.190764, no: 46, code 446150 in process
+2025-05-13 00:06:51.557267, no: 47, code 458870 in process
+2025-05-13 00:06:58.384174, no: 48, code 460930 in process
+2025-05-13 00:07:05.506144, no: 49, code 473050 in process
+2025-05-13 00:07:12.466526, no: 50, code 476060 in process
+2025-05-13 00:07:18.451975, no: 51, code 482630 in process
+2025-05-13 00:07:24.467638, no: 52, code 493790 in process
+2025-05-13 00:07:30.554488, no: 53, code 293490 in process
+== Update finished ==
+updating market prices...
+Updating outstanding shares information...
+Processing outstanding shares data for 2025-05-09... 0/150
+Processing outstanding shares data for 2025-05-12... 1/150
