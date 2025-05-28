@@ -407,6 +407,8 @@ def merge_update(A, F, P=None, index_cols=['code', 'fs_div', 'account_nm']):
     A = pd.concat([A, P.loc[new_idx_P]], axis=0)
 
     # 3. Overwrite or insert all rows from F
+    new_idx = A.index.append(F.index.difference(A.index))
+    A = A.reindex(new_idx)
     A.loc[F.index] = F
     A = A.reset_index()
     return A

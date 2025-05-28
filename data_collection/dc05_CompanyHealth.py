@@ -297,7 +297,7 @@ def update_main_db(log_file, main_db, df_krx, plot_gen_control_file=None):
     main_db = main_db[main_db['code'].isin(df_krx.index)]
 
     start_day = main_db['date_updated'].max()
-    start_day = (pd.to_datetime(start_day) - datetime.timedelta(days=7)).strftime('%Y-%m-%d')
+    start_day = (pd.to_datetime(start_day) - datetime.timedelta(days=14)).strftime('%Y-%m-%d')
     end_day = datetime.datetime.today().strftime('%Y-%m-%d')
     # to manually assign the period: (up to three months)
     # start_day = '2023-11-14'
@@ -362,17 +362,40 @@ def update_main_db(log_file, main_db, df_krx, plot_gen_control_file=None):
     return None
 
 def single_company_data_collect(code, fs_div=None):
-    dart = OpenDartReader(DART_APIS[0])
+    dart = OpenDartReader(DART_APIS[1])
     record, message = _collect_financial_reports(dart, code)
     if fs_div != None:
         record = record.loc[record['fs_div']==fs_div]
     return _sort_columns_financial_reports(record)
 
-if __name__ == '__main__': 
-    cd_ = os.path.dirname(os.path.abspath(__file__)) # .   
-    log_file = os.path.join(cd_, 'log/data_collection.log')
-    plot_gen_control_file = os.path.join(cd_, 'data/plot_gen_control.npy')
-    main_db = get_main_financial_reports_db()
-    df_krx = get_df_krx()
+# if __name__ == '__main__': 
+#     cd_ = os.path.dirname(os.path.abspath(__file__)) # .   
+#     log_file = os.path.join(cd_, 'log/data_collection.log')
+#     plot_gen_control_file = os.path.join(cd_, 'data/plot_gen_control.npy')
+#     main_db = get_main_financial_reports_db()
+#     df_krx = get_df_krx()
 
-    update_main_db(log_file, main_db, df_krx, plot_gen_control_file)
+#     update_main_db(log_file, main_db, df_krx, plot_gen_control_file)
+
+
+
+#%% 
+df = get_df_krx()
+#%%
+# print(df.loc['452450'])
+code = '452450'
+r = single_company_data_collect(code)
+
+# %%
+display(r)
+# %%
+code = '484810'
+code = '462860'
+r = single_company_data_collect(code)
+# %%
+main_db = get_main_financial_reports_db()
+#%% 
+display(main_db.loc[main_db['code']==code])
+
+# %%
+display(main_db.columns)
