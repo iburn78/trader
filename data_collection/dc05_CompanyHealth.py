@@ -240,6 +240,8 @@ def _generate_financial_reports_set(sector, duration, log_file, date_updated):
 
                 time.sleep(sleep_time*error_trial)
 
+    if len(financial_reports) == 0:
+        return pd.DataFrame()
     final = pd.concat(financial_reports, ignore_index=True)
     return final
 
