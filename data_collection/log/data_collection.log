@@ -30968,3 +30968,31 @@ Updating KRX data...
 Updating between dates: 2025-05-02 / 2025-05-29
 No new data to update
 updating market prices...
+Updating KRX data...
+Updating between dates: 2025-05-02 / 2025-05-29
+No new data to update
+-----------------------------
+2025-05-29 09:17:58.061332
+No full rescan codes
+Partial rescan codes are 1 items: 
+['293490']
+Financial data collection log >> 
+2025-05-29 09:17:58.135685, no: 0, code 293490 in process
+----> no: 0, code 293490 data not available, could be a financial institution
+updating market prices...
+Updating KRX data...
+Updating between dates: 2025-05-02 / 2025-05-29
+No new data to update
+-----------------------------
+2025-05-29 09:45:58.969827
+No full rescan codes
+Partial rescan codes are 1 items: 
+['293490']
+Financial data collection log >> 
+2025-05-29 09:45:59.044792, no: 0, code 293490 in process
+----> no: 0, code 293490 data not available, could be a financial institution
+** Nothing to update - main_db not updated **
+updating market prices...
+Updating outstanding shares information...
+Processing outstanding shares data for 2025-05-28... 0/150
+Processing outstanding shares data for 2025-05-29... 1/150

@@ -43,4 +43,85 @@ Traceback (most recent call last):
     context.load_verify_locations(ca_certs, ca_cert_dir, ca_cert_data)
 KeyboardInterrupt
 
-[?2004h(venv) ]0;andy@andy-ThinkPad-T450s: ~/projects/trader/data_collection[01;32mandy@andy-ThinkPad-T450s[00m:[01;34m~/projects/trader/data_collection[00m$ 
+[?2004h(venv) ]0;andy@andy-ThinkPad-T450s: ~/projects/trader/data_collection[01;32mandy@andy-ThinkPad-T450s[00m:[01;34m~/projects/trader/data_collection[00m$ Updating KRX data...
+Updating between dates: 2025-05-02 / 2025-05-29
+No new data to update
+-----------------------------
+2025-05-29 09:17:58.061332
+No full rescan codes
+Partial rescan codes are 1 items: 
+['293490']
+Financial data collection log >> 
+2025-05-29 09:17:58.135685, no: 0, code 293490 in process
+----> no: 0, code 293490 data not available, could be a financial institution
+Traceback (most recent call last):
+  File "/home/andy/projects/trader/data_collection/dc05_CompanyHealth.py", line 378, in <module>
+    update_main_db(log_file, main_db, df_krx, plot_gen_control_file)
+  File "/home/andy/projects/trader/data_collection/dc05_CompanyHealth.py", line 343, in update_main_db
+    db_f, db_p = _generate_update_db(log_file, end_day, full_rescan_code, partial_rescan_code)
+  File "/home/andy/projects/trader/data_collection/dc05_CompanyHealth.py", line 280, in _generate_update_db
+    db_p = _generate_financial_reports_set(partial_rescan_code, 2, log_file, end_day) # 1 year
+  File "/home/andy/projects/trader/data_collection/dc05_CompanyHealth.py", line 243, in _generate_financial_reports_set
+    final = pd.concat(financial_reports, ignore_index=True)
+  File "/home/andy/projects/trader/venv/lib/python3.10/site-packages/pandas/core/reshape/concat.py", line 382, in concat
+    op = _Concatenator(
+  File "/home/andy/projects/trader/venv/lib/python3.10/site-packages/pandas/core/reshape/concat.py", line 445, in __init__
+    objs, keys = self._clean_keys_and_objs(objs, keys)
+  File "/home/andy/projects/trader/venv/lib/python3.10/site-packages/pandas/core/reshape/concat.py", line 507, in _clean_keys_and_objs
+    raise ValueError("No objects to concatenate")
+ValueError: No objects to concatenate
+updating market prices...
+Traceback (most recent call last):
+  File "/home/andy/projects/trader/data_collection/dc06_GenPriceDB.py", line 172, in <module>
+    gen_market_DB(price_DB_path, volume_DB_path, START_DATE, log_file=log_file)
+  File "/home/andy/projects/trader/data_collection/dc06_GenPriceDB.py", line 64, in gen_market_DB
+    price_DB = update_DB(price_DB, date_snapshot, date, 'Close')
+  File "/home/andy/projects/trader/data_collection/dc06_GenPriceDB.py", line 36, in update_DB
+    DB = date_snapshot.combine_first(DB)
+  File "/home/andy/projects/trader/venv/lib/python3.10/site-packages/pandas/core/frame.py", line 8848, in combine_first
+    combined = self.combine(other, combiner, overwrite=False)
+  File "/home/andy/projects/trader/venv/lib/python3.10/site-packages/pandas/core/frame.py", line 8734, in combine
+    this_mask = isna(series)
+  File "/home/andy/projects/trader/venv/lib/python3.10/site-packages/pandas/core/dtypes/missing.py", line 178, in isna
+    return _isna(obj)
+  File "/home/andy/projects/trader/venv/lib/python3.10/site-packages/pandas/core/dtypes/missing.py", line 216, in _isna
+    result = _isna_array(obj._values, inf_as_na=inf_as_na)
+  File "/home/andy/projects/trader/venv/lib/python3.10/site-packages/pandas/core/dtypes/missing.py", line 292, in _isna_array
+    result = _isna_string_dtype(values, inf_as_na=inf_as_na)
+  File "/home/andy/projects/trader/venv/lib/python3.10/site-packages/pandas/core/dtypes/missing.py", line 313, in _isna_string_dtype
+    result = libmissing.isnaobj(values, inf_as_na=inf_as_na)
+KeyboardInterrupt
+
+[?2004h(venv) ]0;andy@andy-ThinkPad-T450s: ~/projects/trader/data_collection[01;32mandy@andy-ThinkPad-T450s[00m:[01;34m~/projects/trader/data_collection[00m$ Updating KRX data...
+Updating between dates: 2025-05-02 / 2025-05-29
+No new data to update
+-----------------------------
+2025-05-29 09:45:58.969827
+No full rescan codes
+Partial rescan codes are 1 items: 
+['293490']
+Financial data collection log >> 
+2025-05-29 09:45:59.044792, no: 0, code 293490 in process
+----> no: 0, code 293490 data not available, could be a financial institution
+** Nothing to update - main_db not updated **
+updating market prices...
+Updating outstanding shares information...
+Processing outstanding shares data for 2025-05-28... 0/150
+Processing outstanding shares data for 2025-05-29... 1/150
+2025-05-29 QA DB: ***** plot_gen_control.npy does not exist. *****
+Traceback (most recent call last):
+  File "/home/andy/projects/trader/data_collection/dc07_VisualizeHealth.py", line 13, in <module>
+    raise FileNotFoundError('***** plot_gen_control.npy does not exist. *****')
+FileNotFoundError: ***** plot_gen_control.npy does not exist. *****
+sending incremental file list
+daily_update.json
+            409 100%    0.00kB/s    0:00:00              409 100%    0.00kB/s    0:00:00 (xfr#1, to-chk=0/2)
+
+sent 531 bytes  received 41 bytes  1,144.00 bytes/sec
+total size is 409  speedup is 0.72
+sending incremental file list
+rate_changes.png
+         32,768  17%    0.00kB/s    0:00:00          191,317 100%   50.40MB/s    0:00:00 (xfr#1, to-chk=0/2620)
+
+sent 256,074 bytes  received 1,705 bytes  515,558.00 bytes/sec
+total size is 1,069,627,020  speedup is 4,149.40
