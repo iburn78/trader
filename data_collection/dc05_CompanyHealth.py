@@ -297,7 +297,7 @@ def update_main_db(log_file, main_db, df_krx, plot_gen_control_file=None):
     main_db = main_db[main_db['code'].isin(df_krx.index)]
 
     start_day = main_db['date_updated'].max()
-    start_day = (pd.to_datetime(start_day) - datetime.timedelta(days=7)).strftime('%Y-%m-%d')
+    start_day = (pd.to_datetime(start_day) - datetime.timedelta(days=14)).strftime('%Y-%m-%d')
     end_day = datetime.datetime.today().strftime('%Y-%m-%d')
     # to manually assign the period: (up to three months)
     # start_day = '2023-11-14'
@@ -362,7 +362,7 @@ def update_main_db(log_file, main_db, df_krx, plot_gen_control_file=None):
     return None
 
 def single_company_data_collect(code, fs_div=None):
-    dart = OpenDartReader(DART_APIS[0])
+    dart = OpenDartReader(DART_APIS[1])
     record, message = _collect_financial_reports(dart, code)
     if fs_div != None:
         record = record.loc[record['fs_div']==fs_div]

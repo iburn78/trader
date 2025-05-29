@@ -1,7 +1,10 @@
 #%% 
-from trader.tools.tools import get_df_krx, get_price_db
+from trader.tools.tools import get_main_financial_reports_db, get_df_krx, get_quarterly_data,  get_price_db, get_outshare_db, prev_quarter_str
 from trader.data_collection.dc17_QuarterlyAnalysisDB import MAX_QUARTERS
 from trader.data_collection.dc18_CC_tools import *
+import matplotlib.pyplot as plt
+import pandas as pd
+import numpy as np
 
 cv_threshold_prime = 0.4
 cv_threshold = 1.0
@@ -165,10 +168,6 @@ def get_score_trend(criteria_dict = criteria_dict, qa_db = qa_db, top_N = top_N)
     return score_trend_df, all_scores_dict
 
 
-# %%
-from trader.tools.tools import get_main_financial_reports_db, get_quarterly_data,  get_price_db, get_outshare_db, prev_quarter_str
-import pandas as pd
-import numpy as np
 
 fr_db = get_main_financial_reports_db()
 pr_db = get_price_db()
@@ -217,13 +216,18 @@ def get_market_performance_db(code, fr_db, pr_db, outshare_DB, target_account=ta
 
     return mp_db
 
+def mp_plot(mp_db, columns=['price', 'PER', 'PBR']):
+    fig, axes = plt.subplots(len(columns), 1, figsize=(12, 4 * len(columns)), sharex=True)
+    if len(columns) == 1:
+        axes = [axes]
+    for ax, col in zip(axes, columns):
+        mp_db[col].plot(ax=ax, title=col, grid=True, fontsize=12)
+    plt.tight_layout()
+    plt.show()
+    # plt.savefig("----.png")
 
-# %%
-score_trend, all_scores_dict = get_score_trend()
-# display(score_trend.head(50))
 
 #%% 
-
 # Peer comparison of PER and PBR (need to know the peer groups)
 # Low absolute value of PBR and PER
 # Drop in price, PER, PBR (all time low etc.)
@@ -233,25 +237,10 @@ score_trend, all_scores_dict = get_score_trend()
 def market_performance_assessment(mp_db):
     return True
 
-def market_performance_collective_analysis(fr_db, pr_db, outshare_DB, target_account=target_account, MAX_QUARTERS=MAX_QUARTERS):
+def market_performance_collective_analysis(fr_db, pr_db, outshare_DB):
     code = '251970' 
     mp_db = get_market_performance_db(code, fr_db, pr_db, outshare_DB)
     return mp_db
 
-import matplotlib.pyplot as plt
-def mp_plot(mp_db, columns=['price', 'PER', 'PBR']):
-    fig, axes = plt.subplots(len(columns), 1, figsize=(12, 4 * len(columns)), sharex=True)
-    
-    if len(columns) == 1:
-        axes = [axes]
-    
-    for ax, col in zip(axes, columns):
-        mp_db[col].plot(ax=ax, title=col, grid=True, fontsize=12)
-        ax.set_ylabel(col)
-    
-    plt.tight_layout()
-    plt.show()
-    # plt.savefig("----.png")
-
-# a = market_performance_collective_analysis(fr_db, pr_db, outshare_DB)
-# mp_plot(a)
+score_trend, all_scores_dict = get_score_trend()
+mp_db = market_performance_collective_analysis(fr_db, pr_db, outshare_DB)
