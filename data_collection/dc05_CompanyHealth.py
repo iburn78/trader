@@ -249,7 +249,7 @@ def _generate_update_codelist(log_file, start_day, end_day):
     ls = dart.list(start=start_day, end=end_day, kind='A') # works only withn three month gap between start_day and end_day
     if len(ls) == 0: 
         log_print(log_file, 'No new data to update')
-        return pd.DataFrame() # return an empty dataframe
+        return [], []
 
     full_rescan_code = ls.loc[ls['report_nm'].str.contains(MODIFIED_REPORT)]['stock_code'].values
     full_rescan_code = np.unique(full_rescan_code[full_rescan_code.astype(bool)]).tolist()
