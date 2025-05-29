@@ -246,7 +246,7 @@ def _generate_financial_reports_set(sector, duration, log_file, date_updated):
     return final
 
 def _generate_update_codelist(log_file, start_day, end_day): 
-    dart = OpenDartReader(DART_APIS[0])
+    dart = OpenDartReader(DART_APIS[2])
     log_print(log_file, 'Updating between dates: '+ str(start_day) + ' / ' + str(end_day))
     ls = dart.list(start=start_day, end=end_day, kind='A') # works only withn three month gap between start_day and end_day
     if len(ls) == 0: 
@@ -360,7 +360,7 @@ def update_main_db(log_file, main_db, df_krx, plot_gen_control_file=None):
         log_print(log_file, '== Update finished ==')
     else:
         log_print(log_file, '** Nothing to update - main_db not updated **')
-    
+        np.save(plot_gen_control_file, [])
     return None
 
 def single_company_data_collect(code, fs_div=None):
