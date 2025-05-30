@@ -407,10 +407,12 @@ def merge_update(A, F, P=None, index_cols=['code', 'fs_div', 'account_nm']):
     A = pd.concat([A, P.loc[new_idx_P]], axis=0)
 
     # 3. Overwrite or insert all rows from F
-    new_idx = A.index.append(F.index.difference(A.index))
-    A = A.reindex(new_idx)
-    A.loc[F.index] = F
+    # Drop rows from A that are being replaced
+    A = A.drop(F.index.intersection(A.index), errors='ignore')
+    # Append F — it will insert or replace
+    A = pd.concat([A, F])
     A = A.reset_index()
+
     return A
 
 def generate_krx_data(sql_db_creation=True): 
