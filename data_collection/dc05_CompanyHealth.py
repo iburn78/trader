@@ -299,7 +299,7 @@ def update_main_db(log_file, main_db, df_krx, plot_gen_control_file=None):
     main_db = main_db[main_db['code'].isin(df_krx.index)]
 
     start_day = main_db['date_updated'].max()
-    start_day = (pd.to_datetime(start_day) - datetime.timedelta(days=14)).strftime('%Y-%m-%d')
+    start_day = (pd.to_datetime(start_day) - datetime.timedelta(days=7)).strftime('%Y-%m-%d')
     end_day = datetime.datetime.today().strftime('%Y-%m-%d')
     # to manually assign the period: (up to three months)
     # start_day = '2023-11-14'
@@ -317,17 +317,17 @@ def update_main_db(log_file, main_db, df_krx, plot_gen_control_file=None):
             partial_rescan_code.append(c)
 
     # exclude codes that are already scanned
-    # tg_qt = nth_quarter_before(1)  # last quarter 
-    # main_db_codelist = main_db['code'].unique()
-    # if tg_qt in main_db.columns:
-    #     target_list = []
-    #     for code in partial_rescan_code: 
-    #         if code in main_db_codelist: 
-    #             if main_db.loc[main_db['code']==code, tg_qt].isna().all():
-    #                 target_list.append(code)
-    #         else:
-    #             target_list.append(code)
-    #     partial_rescan_code = target_list
+    tg_qt = nth_quarter_before(1)  # last quarter 
+    main_db_codelist = main_db['code'].unique()
+    if tg_qt in main_db.columns:
+        target_list = []
+        for code in partial_rescan_code: 
+            if code in main_db_codelist: 
+                if main_db.loc[main_db['code']==code, tg_qt].isna().all():
+                    target_list.append(code)
+            else:
+                target_list.append(code)
+        partial_rescan_code = target_list
     
     # exclude codes that are not in df_krx
     full_list = []
