@@ -18975,3 +18975,102 @@ rate_changes.png
 
 sent 10,302,158 bytes  received 89,281 bytes  4,156,575.60 bytes/sec
 total size is 1,073,446,962  speedup is 103.30
+[main 08bd30a] 2025-06-01 upload done from linux machine
+ 13 files changed, 422 insertions(+)
+To https://github.com/iburn78/trader
+   c580d19..08bd30a  main -> main
+rtcwake: write error
+https://github.com/iburn78/trader URL에서
+   08bd30a..5180b90  main       -> origin/main
+업데이트 중 08bd30a..5180b90
+Fast-forward
+ tools/tools.py | 7 ++++++-
+ 1 file changed, 6 insertions(+), 1 deletion(-)
+Updating KRX data...
+Updating between dates: 2025-05-25 / 2025-06-02
+-----------------------------
+2025-06-02 00:00:20.949430
+Full rescan codes are 20 items: 
+['000370', '000400', '000880', '001740', '003240', '003690', '016100', '031210', '031510', '032830', '082640', '085620', '088350', '105560', '138040', '154030', '234920', '373200', '417970', '484810']
+Partial rescan codes are 14 items: 
+['900070', '900100', '900110', '900120', '900140', '900250', '900260', '900270', '900290', '900300', '900310', '900340', '950170', '950210']
+Financial data collection log >> 
+2025-06-02 00:00:21.023932, no: 0, code 000370 in process
+2025-06-02 00:00:28.280703, no: 1, code 000400 in process
+2025-06-02 00:00:35.590996, no: 2, code 000880 in process
+2025-06-02 00:00:50.282234, no: 3, code 001740 in process
+2025-06-02 00:01:05.086519, no: 4, code 003240 in process
+2025-06-02 00:01:19.812344, no: 5, code 003690 in process
+2025-06-02 00:01:27.094858, no: 6, code 016100 in process
+2025-06-02 00:01:41.788817, no: 7, code 031210 in process
+2025-06-02 00:01:47.613726, no: 8, code 031510 in process
+2025-06-02 00:02:02.248754, no: 9, code 032830 in process
+2025-06-02 00:02:09.646754, no: 10, code 082640 in process
+2025-06-02 00:02:16.912730, no: 11, code 085620 in process
+2025-06-02 00:02:24.178211, no: 12, code 088350 in process
+2025-06-02 00:02:31.460982, no: 13, code 105560 in process
+2025-06-02 00:02:38.741249, no: 14, code 138040 in process
+2025-06-02 00:02:45.999455, no: 15, code 154030 in process
+2025-06-02 00:02:52.636138, no: 16, code 234920 in process
+2025-06-02 00:03:06.344545, no: 17, code 373200 in process
+2025-06-02 00:03:15.208255, no: 18, code 417970 in process
+2025-06-02 00:03:23.308594, no: 19, code 484810 in process
+Financial data collection log >> 
+2025-06-02 00:03:29.295738, no: 0, code 900070 in process
+----> no: 0, code 900070 currency not in KRW, skipping
+2025-06-02 00:03:34.590817, no: 1, code 900100 in process
+----> no: 1, code 900100 currency not in KRW, skipping
+2025-06-02 00:03:39.886272, no: 2, code 900110 in process
+----> no: 2, code 900110 currency not in KRW, skipping
+2025-06-02 00:03:45.174943, no: 3, code 900120 in process
+----> no: 3, code 900120 currency not in KRW, skipping
+2025-06-02 00:03:50.592246, no: 4, code 900140 in process
+----> no: 4, code 900140 currency not in KRW, skipping
+2025-06-02 00:03:55.900785, no: 5, code 900250 in process
+----> no: 5, code 900250 currency not in KRW, skipping
+2025-06-02 00:04:01.207551, no: 6, code 900260 in process
+----> no: 6, code 900260 currency not in KRW, skipping
+2025-06-02 00:04:06.515760, no: 7, code 900270 in process
+----> no: 7, code 900270 currency not in KRW, skipping
+2025-06-02 00:04:11.813025, no: 8, code 900290 in process
+----> no: 8, code 900290 currency not in KRW, skipping
+2025-06-02 00:04:17.261033, no: 9, code 900300 in process
+----> no: 9, code 900300 currency not in KRW, skipping
+2025-06-02 00:04:22.556814, no: 10, code 900310 in process
+----> no: 10, code 900310 currency not in KRW, skipping
+2025-06-02 00:04:27.867734, no: 11, code 900340 in process
+----> no: 11, code 900340 currency not in KRW, skipping
+2025-06-02 00:04:33.162154, no: 12, code 950170 in process
+----> no: 12, code 950170 currency not in KRW, skipping
+2025-06-02 00:04:38.600146, no: 13, code 950210 in process
+----> no: 13, code 950210 currency not in KRW, skipping
+Traceback (most recent call last):
+  File "/home/andy/projects/trader/data_collection/dc05_CompanyHealth.py", line 380, in <module>
+    update_main_db(log_file, main_db, df_krx, plot_gen_control_file)
+  File "/home/andy/projects/trader/data_collection/dc05_CompanyHealth.py", line 348, in update_main_db
+    main_db = merge_update(main_db, db_f, db_p)
+  File "/home/andy/projects/trader/tools/tools.py", line 400, in merge_update
+    P.set_index(index_cols, inplace=True)
+  File "/home/andy/projects/trader/venv/lib/python3.10/site-packages/pandas/core/frame.py", line 6122, in set_index
+    raise KeyError(f"None of {missing} are in the columns")
+KeyError: "None of ['code', 'fs_div', 'account_nm'] are in the columns"
+updating market prices...
+Updating outstanding shares information...
+Processing outstanding shares data for 2025-05-30... 0/150
+2025-06-02 QA DB: ***** plot_gen_control.npy does not exist. *****
+Traceback (most recent call last):
+  File "/home/andy/projects/trader/data_collection/dc07_VisualizeHealth.py", line 13, in <module>
+    raise FileNotFoundError('***** plot_gen_control.npy does not exist. *****')
+FileNotFoundError: ***** plot_gen_control.npy does not exist. *****
+sending incremental file list
+daily_update.json
+          1,311  44%    0.00kB/s    0:00:00            2,926 100%    1.54MB/s    0:00:00 (xfr#1, to-chk=0/2)
+
+sent 1,193 bytes  received 77 bytes  2,540.00 bytes/sec
+total size is 2,926  speedup is 2.30
+sending incremental file list
+rate_changes.png
+            700   0%    0.00kB/s    0:00:00          191,490 100%  181.95MB/s    0:00:00 (xfr#1, to-chk=0/2629)
+
+sent 66,047 bytes  received 1,681 bytes  45,152.00 bytes/sec
+total size is 1,073,446,962  speedup is 15,849.38
