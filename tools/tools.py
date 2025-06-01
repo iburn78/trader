@@ -410,7 +410,12 @@ def merge_update(A, F, P=None, index_cols=['code', 'fs_div', 'account_nm']):
     # Drop rows from A that are being replaced
     A = A.drop(F.index.intersection(A.index), errors='ignore')
     # Append F — it will insert or replace
-    A = pd.concat([A, F])
+    # make sure to drop all-NA columns to avoid FutureWarning
+    if not F.empty:
+        F_filtered = F.dropna(axis=1, how='all')
+        if not F_filtered.empty:
+            A = pd.concat([A, F_filtered])
+    # Reset index to make it a regular DataFrame
     A = A.reset_index()
 
     return A
