@@ -396,25 +396,29 @@ def merge_update(A, F, P=None, index_cols=['code', 'fs_div', 'account_nm']):
 
     # Set index
     A.set_index(index_cols, inplace=True)
-    F.set_index(index_cols, inplace=True)
-    P.set_index(index_cols, inplace=True)
+    
+    if not P.empty:
+        P.set_index(index_cols, inplace=True)
+        # Update A with non-NA values from P where index matches
+        A.update(P)
 
-    # 1. Update A with non-NA values from P where index matches
-    A.update(P)
+        # Add new rows from P not in A
+        new_idx_P = P.index.difference(A.index)
+        A = pd.concat([A, P.loc[new_idx_P]], axis=0)
 
-    # 2. Add new rows from P not in A
-    new_idx_P = P.index.difference(A.index)
-    A = pd.concat([A, P.loc[new_idx_P]], axis=0)
-
-    # 3. Overwrite or insert all rows from F
-    # Drop rows from A that are being replaced
-    A = A.drop(F.index.intersection(A.index), errors='ignore')
-    # Append F — it will insert or replace
-    # make sure to drop all-NA columns to avoid FutureWarning
     if not F.empty:
+        F.set_index(index_cols, inplace=True)
+        # Overwrite or insert all rows from F
+
+        # (Step 1) Drop rows from A that are being replaced
+        A = A.drop(F.index.intersection(A.index), errors='ignore')
+
+        # (Step 2) Append F — it will insert or replace
+        # make sure to drop all-NA columns to avoid FutureWarning
         F_filtered = F.dropna(axis=1, how='all')
         if not F_filtered.empty:
             A = pd.concat([A, F_filtered])
+
     # Reset index to make it a regular DataFrame
     A = A.reset_index()
 
