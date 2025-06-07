@@ -1,13 +1,22 @@
 #%% 
+# CCA: Company Classification Analysis
 import pandas as pd
-import numpy as np
 import os
 
-pd_ = os.path.dirname(os.path.dirname(os.path.abspath(__file__))) # ..
-qa_db_file = os.path.join(pd_, 'data_collection/data/qa_db.pkl') 
-qa_db = pd.read_pickle(qa_db_file)
+def get_qa_db(): 
+    pd_ = os.path.dirname(os.path.dirname(os.path.abspath(__file__))) # ..
+    qa_db_file = os.path.join(pd_, 'data_collection/data/qa_db.pkl') 
+    return pd.read_pickle(qa_db_file)
 
-# visualize datadict (Only works in jupyter notebook)
+def get_periods(qa_db): 
+    return [i for i in qa_db.columns if 'Q' in i]
+
+# ----------------------------------------------------------
+# BELOW: visualize datadict (Only works in jupyter notebook)
+# ----------------------------------------------------------
+
+qa_db = get_qa_db()
+
 def _preprocess_showdata(data_dict):
     data_dict = data_dict.copy()
     rv = data_dict['revenue_growth']
@@ -69,9 +78,8 @@ def show_qdata(code, period:str, only:bool = False, qa_db = qa_db):
     display(styled)
     return None
 
-def get_periods(qa_db = qa_db): 
-    return [i for i in qa_db.columns if 'Q' in i]
 
+# visualize datadict (Only works in jupyter notebook)
 def show_summary_data(code, period:str = None, qa_db = qa_db):
     if period is None:
         periods = get_periods()

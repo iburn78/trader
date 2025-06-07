@@ -1,7 +1,9 @@
 #%% 
+# CCA: Company Classification Analysis
+import io
 from trader.tools.tools import get_main_financial_reports_db, get_df_krx, get_quarterly_data,  get_price_db, get_outshare_db, prev_quarter_str
 from trader.data_collection.dc17_QuarterlyAnalysisDB import MAX_QUARTERS
-from trader.data_collection.dc18_CC_tools import *
+from trader.data_collection.dc18_CCA_tools import *
 import matplotlib.pyplot as plt
 import pandas as pd
 import numpy as np
@@ -23,6 +25,13 @@ criteria_dict = {
 }
 weight = [5, 2, 2, 5, 1, 1, 1, 1, 1, 1, 1] # weights for each criteria
 top_N = 30 # top to add
+
+# qa_db = get_qa_db() # done in CCA_tools
+df_krx = get_df_krx()
+fr_db = get_main_financial_reports_db()
+pr_db = get_price_db()
+outshare_DB = get_outshare_db()
+target_account = 'net_income'
 
 def compare_logic(data_dict, criteria_dict, period:str):
     key = list(data_dict.keys())
@@ -131,10 +140,9 @@ def classify_companies(codelist, criteria_dict, period:str, qa_db=qa_db):
     scores_df = scores_df.sort_values(by='score', ascending=False) 
     return selected_companies, scores_df
 
-def get_score_trend(criteria_dict = criteria_dict, qa_db = qa_db, top_N = top_N):
-    df_krx = get_df_krx()
+def get_score_trend(criteria_dict = criteria_dict, df_krx = df_krx, qa_db = qa_db, top_N = top_N):
     codelist = qa_db.index.tolist()
-    periods = get_periods()
+    periods = get_periods(qa_db)
 
     all_selected_companies = []
     all_scores_dict = {}
@@ -165,16 +173,11 @@ def get_score_trend(criteria_dict = criteria_dict, qa_db = qa_db, top_N = top_N)
         score_trend_df.loc[code, 'selected'] = selected
         score_trend_df.loc[code, 'top'+str(top_N)] = top
 
+    score_trend_df['avg'] = pd.to_numeric(score_trend_df[periods].mean(axis=1)).round(2)
+    score_trend_df = score_trend_df.sort_values(by='avg', ascending=False)
     return score_trend_df, all_scores_dict
 
-
-
-fr_db = get_main_financial_reports_db()
-pr_db = get_price_db()
-outshare_DB = get_outshare_db()
-target_account = 'net_income'
-
-# different version of L4_addition function from anaysis project
+# this is a different version of L4_addition function from anaysis project
 def L4_rolling_addition(fh, target_account=target_account):
     # Add L4 key account to the financial report database.
     new_row = {'account':'L4_'+target_account }
@@ -216,6 +219,7 @@ def get_market_performance_db(code, fr_db, pr_db, outshare_DB, target_account=ta
 
     return mp_db
 
+
 def mp_plot(mp_db, columns=['price', 'PER', 'PBR']):
     fig, axes = plt.subplots(len(columns), 1, figsize=(12, 4 * len(columns)), sharex=True)
     if len(columns) == 1:
@@ -223,24 +227,44 @@ def mp_plot(mp_db, columns=['price', 'PER', 'PBR']):
     for ax, col in zip(axes, columns):
         mp_db[col].plot(ax=ax, title=col, grid=True, fontsize=12)
     plt.tight_layout()
-    plt.show()
+    img_stream = io.BytesIO()
+    plt.savefig(img_stream, format='png', bbox_inches='tight')
+    plt.close(fig)
+    img_stream.seek(0)
+    return img_stream
+    # plt.show()
     # plt.savefig("----.png")
 
 
 #%% 
-# Peer comparison of PER and PBR (need to know the peer groups)
-# Low absolute value of PBR and PER
-# Drop in price, PER, PBR (all time low etc.)
-# Valuation of the company from other methods
-# Industry outlook and analysis
-# Timing analysis
-def market_performance_assessment(mp_db):
-    return True
-
-def market_performance_collective_analysis(fr_db, pr_db, outshare_DB):
-    code = '251970' 
-    mp_db = get_market_performance_db(code, fr_db, pr_db, outshare_DB)
-    return mp_db
-
 score_trend, all_scores_dict = get_score_trend()
-mp_db = market_performance_collective_analysis(fr_db, pr_db, outshare_DB)
+
+#%% 
+from pptx import Presentation
+from pptx.util import Inches
+from PIL import Image
+
+cd_ = os.path.dirname(os.path.abspath(__file__)) # .
+today_str = pd.Timestamp.today().strftime('%Y-%m-%d')
+CCA_template = os.path.join(cd_, 'CCA/CCA_template.pptx')
+CCA_result = os.path.join(cd_, f'CCA/CCA_result_{today_str}.pptx')
+prs = Presentation(CCA_template)
+periods = get_periods(qa_db)
+
+for code in score_trend.index[:2]:
+    slide = prs.slides.add_slide(prs.slide_layouts[0])
+    mp_db = get_market_performance_db(code, fr_db, pr_db, outshare_DB)
+    img_stream = mp_plot(mp_db)
+    slide.shapes.add_picture(img_stream, Inches(0.1), Inches(0.5), height=Inches(6))
+    for ph in slide.placeholders: 
+        if ph.name == 'Text Placeholder 1':
+            ph.text = df_krx.loc[code, 'Name'] + f" ({code})"
+        if ph.name == 'Text Placeholder 2':
+            ph.text = today_str
+        if ph.name == 'Text Placeholder 4':
+            txt = score_trend.loc[[code]][periods+['avg']].to_string(index=False)
+            rank = str(score_trend.index.get_loc(code) + 1)
+            ph.text = 'rank:' + rank + '   selected:' + score_trend.loc[code, 'selected'] + '   ' + 'top30:' + score_trend.loc[code, 'top30'] + '\n' + txt
+
+prs.save(CCA_result)
+
