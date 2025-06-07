@@ -20118,3 +20118,90 @@ rate_changes.png
 
 sent 5,814,115 bytes  received 51,458 bytes  2,346,229.20 bytes/sec
 total size is 1,073,448,455  speedup is 183.01
+[main 9b2d7ae] 2025-06-07 upload done from linux machine
+ 10 files changed, 244 insertions(+)
+To https://github.com/iburn78/trader
+   29fe27a..9b2d7ae  main -> main
+rtcwake: write error
+https://github.com/iburn78/trader URL에서
+   9b2d7ae..a203f3d  main       -> origin/main
+업데이트 중 9b2d7ae..a203f3d
+Fast-forward
+ data_collection/CCA/CCA_result_2025-06-07.pptx     | Bin 0 -> 308933 bytes
+ data_collection/CCA/CCA_template.pptx              | Bin 0 -> 20212 bytes
+ .../{dc18_CompanyClassification.py => dc18_CCA.py} |  78 ++++++++++++++-------
+ .../{dc18_CC_tools.py => dc18_CCA_tools.py}        |  22 ++++--
+ data_collection/dc19_CCA_next.py                   |   6 ++
+ 5 files changed, 72 insertions(+), 34 deletions(-)
+ create mode 100644 data_collection/CCA/CCA_result_2025-06-07.pptx
+ create mode 100644 data_collection/CCA/CCA_template.pptx
+ rename data_collection/{dc18_CompanyClassification.py => dc18_CCA.py} (82%)
+ rename data_collection/{dc18_CC_tools.py => dc18_CCA_tools.py} (89%)
+ create mode 100644 data_collection/dc19_CCA_next.py
+Updating KRX data...
+Updating between dates: 2025-05-31 / 2025-06-08
+-----------------------------
+2025-06-08 00:00:17.564876
+Full rescan codes are 7 items: 
+['000300', '000540', '002410', '017940', '102460', '317240', '336680']
+Partial rescan codes are 1 items: 
+['377190']
+Financial data collection log >> 
+2025-06-08 00:00:17.735685, no: 0, code 000300 in process
+2025-06-08 00:00:32.567588, no: 1, code 000540 in process
+2025-06-08 00:00:39.915946, no: 2, code 002410 in process
+2025-06-08 00:00:54.730574, no: 3, code 017940 in process
+2025-06-08 00:01:09.376300, no: 4, code 102460 in process
+2025-06-08 00:01:23.932276, no: 5, code 317240 in process
+2025-06-08 00:01:33.777917, no: 6, code 336680 in process
+Financial data collection log >> 
+2025-06-08 00:01:39.839494, no: 0, code 377190 in process
+== Update finished ==
+updating market prices...
+Updating outstanding shares information...
+Processing outstanding shares data for 2025-06-05... 0/150
+2025-06-08 QA DB: updating ['000300', '000540', '002410', '017940', '102460', '317240', '336680', '377190']
+000300
+000540
+002410
+017940
+102460
+317240
+336680
+377190
+000300 | 1/8
+000540 | 2/8
+002410 | 3/8
+017940 | 4/8
+102460 | 5/8
+317240 | 6/8
+336680 | 7/8
+377190 | 8/8
+sending incremental file list
+daily_update.json
+            752 100%    0.00kB/s    0:00:00              752 100%    0.00kB/s    0:00:00 (xfr#1, to-chk=0/2)
+
+sent 874 bytes  received 59 bytes  1,866.00 bytes/sec
+total size is 752  speedup is 0.81
+sending incremental file list
+000300.png
+         32,768   7%    0.00kB/s    0:00:00          431,937 100%   54.38MB/s    0:00:00 (xfr#1, to-chk=2611/2629)
+000540.png
+         32,768  14%    3.91MB/s    0:00:00          227,532 100%   21.70MB/s    0:00:00 (xfr#2, to-chk=2600/2629)
+002410.png
+         32,768   6%    2.84MB/s    0:00:00          489,359 100%   27.45MB/s    0:00:00 (xfr#3, to-chk=2514/2629)
+017940.png
+         32,768   7%    1.74MB/s    0:00:00          432,886 100%   15.29MB/s    0:00:00 (xfr#4, to-chk=2110/2629)
+102460.png
+         32,768   7%    1.12MB/s    0:00:00          418,844 100%   10.24MB/s    0:00:00 (xfr#5, to-chk=1176/2629)
+317240.png
+         32,768   8%  820.51kB/s    0:00:00          404,402 100%    8.57MB/s    0:00:00 (xfr#6, to-chk=466/2629)
+336680.png
+         32,768  21%  711.11kB/s    0:00:00          153,623 100%    3.12MB/s    0:00:00 (xfr#7, to-chk=408/2629)
+377190.png
+         32,768  18%  524.59kB/s    0:00:00          181,881 100%    2.38MB/s    0:00:00 (xfr#8, to-chk=302/2629)
+rate_changes.png
+            700   0%    9.24kB/s    0:00:19          184,454 100%    2.38MB/s    0:00:00 (xfr#9, to-chk=0/2629)
+
+sent 2,802,596 bytes  received 25,293 bytes  1,885,259.33 bytes/sec
+total size is 1,073,448,125  speedup is 379.59
