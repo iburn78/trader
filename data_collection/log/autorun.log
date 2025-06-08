@@ -20205,3 +20205,9 @@ rate_changes.png
 
 sent 2,802,596 bytes  received 25,293 bytes  1,885,259.33 bytes/sec
 total size is 1,073,448,125  speedup is 379.59
+[main e6aeb3f] 2025-06-08 upload done from linux machine
+ 8 files changed, 110 insertions(+)
+ rewrite data_collection/category.xlsx (99%)
+To https://github.com/iburn78/trader
+   a203f3d..e6aeb3f  main -> main
+rtcwake: write error
