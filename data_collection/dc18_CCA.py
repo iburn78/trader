@@ -2,11 +2,14 @@
 # CCA: Company Classification Analysis
 import io
 from trader.tools.tools import get_main_financial_reports_db, get_df_krx, get_quarterly_data,  get_price_db, get_outshare_db, prev_quarter_str
+from trader.tools.tools import plot_company_financial_summary2
 from trader.data_collection.dc17_QuarterlyAnalysisDB import MAX_QUARTERS
 from trader.data_collection.dc18_CCA_tools import *
 import matplotlib.pyplot as plt
 import pandas as pd
 import numpy as np
+from pptx import Presentation
+from pptx.util import Inches
 
 cv_threshold_prime = 0.4
 cv_threshold = 1.0
@@ -236,35 +239,48 @@ def mp_plot(mp_db, columns=['price', 'PER', 'PBR']):
     # plt.savefig("----.png")
 
 
-#%% 
-score_trend, all_scores_dict = get_score_trend()
+def generate_PPT(score_trend, fr_db=fr_db, pr_db=pr_db, outshare_DB=outshare_DB, topN = 100):
+    cd_ = os.path.dirname(os.path.abspath(__file__)) # .
+    today_str = pd.Timestamp.today().strftime('%Y-%m-%d_%H%M')
+    CCA_template = os.path.join(cd_, 'CCA/CCA_template.pptx')
+    CCA_result = os.path.join(cd_, f'CCA/CCA_result_{today_str}.pptx')
+    prs = Presentation(CCA_template)
+    periods = get_periods(qa_db)
+
+    for code in score_trend.index[:topN]:
+        print("pricessing", code)
+        slide = prs.slides.add_slide(prs.slide_layouts[0])
+        mp_db = get_market_performance_db(code, fr_db, pr_db, outshare_DB)
+        img_stream = mp_plot(mp_db)
+        slide.shapes.add_picture(img_stream, Inches(0.1), Inches(0.5), height=Inches(6))
+        for ph in slide.placeholders: 
+            if ph.name == 'Text Placeholder 1':
+                ph.text = df_krx.loc[code, 'Name'] + f" ({code})"
+            if ph.name == 'Text Placeholder 2':
+                ph.text = today_str
+            if ph.name == 'Text Placeholder 3':
+                ph.text = openai_command(df_krx.loc[code, "Name"])
+            if ph.name == 'Text Placeholder 4':
+                txt = score_trend.loc[[code]][periods+['avg']].to_string(index=False)
+                rank = str(score_trend.index.get_loc(code) + 1)
+                ph.text = 'rank:' + rank + '   selected:' + score_trend.loc[code, 'selected'] + '   ' + 'top30:' + score_trend.loc[code, 'top30'] + '\n' + txt
+
+        slide = prs.slides.add_slide(prs.slide_layouts[1])
+        img_stream = plot_company_financial_summary2(fr_db, pr_db, code, None) 
+        slide.shapes.add_picture(img_stream, Inches(0.1), 0, height=prs.slide_height)
+
+        slide = prs.slides.add_slide(prs.slide_layouts[1])
+        img_path = gen_data_in_html(code)
+        slide.shapes.add_picture(img_path, 0, Inches(0.1), width=prs.slide_width)
+        os.remove(img_path)
+
+    prs.save(CCA_result)
+
 
 #%% 
-from pptx import Presentation
-from pptx.util import Inches
-from PIL import Image
+if __name__ == '__main__':
+    score_trend, _ = get_score_trend()
+    generate_PPT(score_trend, topN = 3)
 
-cd_ = os.path.dirname(os.path.abspath(__file__)) # .
-today_str = pd.Timestamp.today().strftime('%Y-%m-%d')
-CCA_template = os.path.join(cd_, 'CCA/CCA_template.pptx')
-CCA_result = os.path.join(cd_, f'CCA/CCA_result_{today_str}.pptx')
-prs = Presentation(CCA_template)
-periods = get_periods(qa_db)
 
-for code in score_trend.index[:2]:
-    slide = prs.slides.add_slide(prs.slide_layouts[0])
-    mp_db = get_market_performance_db(code, fr_db, pr_db, outshare_DB)
-    img_stream = mp_plot(mp_db)
-    slide.shapes.add_picture(img_stream, Inches(0.1), Inches(0.5), height=Inches(6))
-    for ph in slide.placeholders: 
-        if ph.name == 'Text Placeholder 1':
-            ph.text = df_krx.loc[code, 'Name'] + f" ({code})"
-        if ph.name == 'Text Placeholder 2':
-            ph.text = today_str
-        if ph.name == 'Text Placeholder 4':
-            txt = score_trend.loc[[code]][periods+['avg']].to_string(index=False)
-            rank = str(score_trend.index.get_loc(code) + 1)
-            ph.text = 'rank:' + rank + '   selected:' + score_trend.loc[code, 'selected'] + '   ' + 'top30:' + score_trend.loc[code, 'top30'] + '\n' + txt
-
-prs.save(CCA_result)
-
+# %%

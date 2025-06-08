@@ -10,6 +10,7 @@ import sqlite3
 from matplotlib import font_manager
 import platform
 import datetime
+import io
 
 def plot_company_financial_summary(db, code, path=None):
     quarter_cols= [s for s in db.columns.values if 'Q' in s]
@@ -99,7 +100,12 @@ def plot_company_financial_summary2(fr_db, pr_db, code, path=None):
     set_KoreanFonts()
     f.suptitle('Consolidated Financial Statement Summary - company: '+name+'('+code+') updated on '+date_updated, fontsize=14)
     if path==None: 
-        plt.show()
+        # plt.show()
+        img_stream = io.BytesIO()
+        plt.savefig(img_stream, format='png', bbox_inches='tight')
+        plt.close(f)
+        img_stream.seek(0)
+        return img_stream
     else: 
         plt.savefig(path)
         plt.close()
