@@ -20211,3 +20211,78 @@ total size is 1,073,448,125  speedup is 379.59
 To https://github.com/iburn78/trader
    a203f3d..e6aeb3f  main -> main
 rtcwake: write error
+https://github.com/iburn78/trader URL에서
+   8e07726..ad4bd4b  main       -> origin/main
+업데이트 중 8e07726..ad4bd4b
+Fast-forward
+ data_collection/CCA/CCA_result_2025-06-08_1632.pptx | Bin 1646423 -> 0 bytes
+ data_collection/dc18_CCA.py                         |   5 +++--
+ 2 files changed, 3 insertions(+), 2 deletions(-)
+ delete mode 100644 data_collection/CCA/CCA_result_2025-06-08_1632.pptx
+Updating KRX data...
+Updating between dates: 2025-06-01 / 2025-06-09
+-----------------------------
+2025-06-09 00:00:18.064960
+Full rescan codes are 7 items: 
+['000300', '000540', '002410', '017940', '102460', '317240', '336680']
+Partial rescan codes are 1 items: 
+['377190']
+Financial data collection log >> 
+2025-06-09 00:00:18.136894, no: 0, code 000300 in process
+2025-06-09 00:00:33.093789, no: 1, code 000540 in process
+2025-06-09 00:00:40.427794, no: 2, code 002410 in process
+2025-06-09 00:00:55.629830, no: 3, code 017940 in process
+2025-06-09 00:01:10.338474, no: 4, code 102460 in process
+2025-06-09 00:01:25.026665, no: 5, code 317240 in process
+2025-06-09 00:01:34.993911, no: 6, code 336680 in process
+Financial data collection log >> 
+2025-06-09 00:01:41.056209, no: 0, code 377190 in process
+== Update finished ==
+updating market prices...
+Updating outstanding shares information...
+Processing outstanding shares data for 2025-06-05... 0/150
+2025-06-09 QA DB: updating ['000300', '000540', '002410', '017940', '102460', '317240', '336680', '377190']
+000300
+000540
+002410
+017940
+102460
+317240
+336680
+377190
+000300 | 1/8
+000540 | 2/8
+002410 | 3/8
+017940 | 4/8
+102460 | 5/8
+317240 | 6/8
+336680 | 7/8
+377190 | 8/8
+sending incremental file list
+daily_update.json
+            752 100%    0.00kB/s    0:00:00              752 100%    0.00kB/s    0:00:00 (xfr#1, to-chk=0/2)
+
+sent 826 bytes  received 47 bytes  1,746.00 bytes/sec
+total size is 752  speedup is 0.86
+sending incremental file list
+000300.png
+         32,768   7%    0.00kB/s    0:00:00          431,922 100%   76.13MB/s    0:00:00 (xfr#1, to-chk=2611/2629)
+000540.png
+         32,768  14%    4.46MB/s    0:00:00          227,822 100%   18.11MB/s    0:00:00 (xfr#2, to-chk=2600/2629)
+002410.png
+         32,768   6%    2.40MB/s    0:00:00          489,972 100%   22.25MB/s    0:00:00 (xfr#3, to-chk=2514/2629)
+017940.png
+         32,768   7%    1.42MB/s    0:00:00          432,345 100%   15.27MB/s    0:00:00 (xfr#4, to-chk=2110/2629)
+102460.png
+         32,768   7%    1.12MB/s    0:00:00          419,355 100%   11.76MB/s    0:00:00 (xfr#5, to-chk=1176/2629)
+317240.png
+         32,768   8%  941.18kB/s    0:00:00          405,361 100%    8.79MB/s    0:00:00 (xfr#6, to-chk=466/2629)
+336680.png
+         32,768  21%  695.65kB/s    0:00:00          150,529 100%    2.71MB/s    0:00:00 (xfr#7, to-chk=408/2629)
+377190.png
+         32,768  18%  516.13kB/s    0:00:00          181,493 100%    2.25MB/s    0:00:00 (xfr#8, to-chk=302/2629)
+rate_changes.png
+            700   0%    8.88kB/s    0:00:20          184,454 100%    2.28MB/s    0:00:00 (xfr#9, to-chk=0/2629)
+
+sent 2,804,392 bytes  received 25,299 bytes  1,886,460.67 bytes/sec
+total size is 1,073,446,460  speedup is 379.35
