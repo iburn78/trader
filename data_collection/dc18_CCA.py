@@ -241,7 +241,8 @@ def mp_plot(mp_db, columns=['price', 'PER', 'PBR']):
 
 def generate_PPT(score_trend, fr_db=fr_db, pr_db=pr_db, outshare_DB=outshare_DB, topN = 100):
     cd_ = os.path.dirname(os.path.abspath(__file__)) # .
-    today_str = pd.Timestamp.today().strftime('%Y-%m-%d_%H%M')
+    today_str = pd.Timestamp.today().strftime('%Y-%m-%d')
+    # today_str = pd.Timestamp.today().strftime('%Y-%m-%d_%H%M')
     CCA_template = os.path.join(cd_, 'CCA/CCA_template.pptx')
     CCA_result = os.path.join(cd_, f'CCA/CCA_result_{today_str}.pptx')
     prs = Presentation(CCA_template)
@@ -280,7 +281,7 @@ def generate_PPT(score_trend, fr_db=fr_db, pr_db=pr_db, outshare_DB=outshare_DB,
 #%% 
 if __name__ == '__main__':
     score_trend, _ = get_score_trend()
-    generate_PPT(score_trend, topN = 3)
+    generate_PPT(score_trend, topN = 50)
 
 
 # %%
