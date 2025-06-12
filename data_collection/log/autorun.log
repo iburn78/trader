@@ -20520,3 +20520,96 @@ rate_changes.png
 
 sent 2,440,192 bytes  received 20,570 bytes  1,640,508.00 bytes/sec
 total size is 1,073,271,525  speedup is 436.15
+[main 7b0ab9e] 2025-06-12 upload done from linux machine
+ 14 files changed, 112 insertions(+)
+ rewrite data_collection/data/df_krx.db (85%)
+ rewrite data_collection/data/df_krx.feather (84%)
+To https://github.com/iburn78/trader
+   3d0606b..7b0ab9e  main -> main
+rtcwake: write error
+이미 업데이트 상태입니다.
+Updating KRX data...
+Updating between dates: 2025-06-05 / 2025-06-13
+-----------------------------
+2025-06-13 00:00:17.880345
+Full rescan codes are 7 items: 
+['002410', '188040', '258830', '316140', '336680', '357430', '417010']
+Partial rescan codes are 5 items: 
+['001720', '067010', '092440', '293940', '395400']
+Financial data collection log >> 
+2025-06-13 00:00:17.952924, no: 0, code 002410 in process
+2025-06-13 00:00:32.914493, no: 1, code 188040 in process
+2025-06-13 00:00:38.779582, no: 2, code 258830 in process
+2025-06-13 00:00:51.261176, no: 3, code 316140 in process
+2025-06-13 00:00:58.578230, no: 4, code 336680 in process
+2025-06-13 00:01:04.560288, no: 5, code 357430 in process
+2025-06-13 00:01:10.672352, no: 6, code 417010 in process
+Financial data collection log >> 
+2025-06-13 00:01:18.691551, no: 0, code 001720 in process
+2025-06-13 00:01:25.942387, no: 1, code 067010 in process
+2025-06-13 00:01:33.111201, no: 2, code 092440 in process
+2025-06-13 00:01:40.504837, no: 3, code 293940 in process
+2025-06-13 00:01:46.367165, no: 4, code 395400 in process
+== Update finished ==
+updating market prices...
+Updating outstanding shares information...
+Processing outstanding shares data for 2025-06-11... 0/150
+Processing outstanding shares data for 2025-06-12... 1/150
+2025-06-13 QA DB: updating ['002410', '188040', '258830', '316140', '336680', '357430', '417010', '001720', '067010', '092440', '293940', '395400']
+002410
+188040
+258830
+316140
+336680
+357430
+417010
+001720
+067010
+092440
+293940
+395400
+002410 | 1/12
+188040 | 2/12
+2025-06-13 00:03:35.521012 | 188040 | quarterly data of 188040 is empty.
+258830 | 3/12
+316140 | 4/12
+336680 | 5/12
+357430 | 6/12
+2025-06-13 00:03:50.054161 | 357430 | quarterly data of 357430 is empty.
+417010 | 7/12
+001720 | 8/12
+067010 | 9/12
+092440 | 10/12
+293940 | 11/12
+395400 | 12/12
+2025-06-13 00:04:17.084729 | 395400 | quarterly data of 395400 is empty.
+sending incremental file list
+daily_update.json
+          1,178 100%    0.00kB/s    0:00:00            1,178 100%    0.00kB/s    0:00:00 (xfr#1, to-chk=0/2)
+
+sent 1,300 bytes  received 47 bytes  898.00 bytes/sec
+total size is 1,178  speedup is 0.87
+sending incremental file list
+001720.png
+         32,768  17%    0.00kB/s    0:00:00          189,260 100%   49.75MB/s    0:00:00 (xfr#1, to-chk=2543/2628)
+002410.png
+         32,768   6%    7.81MB/s    0:00:00          489,670 100%   46.70MB/s    0:00:00 (xfr#2, to-chk=2513/2628)
+067010.png
+         32,768   6%    3.12MB/s    0:00:00          525,415 100%   29.47MB/s    0:00:00 (xfr#3, to-chk=1509/2628)
+092440.png
+         32,768   6%    1.84MB/s    0:00:00          483,342 100%   17.73MB/s    0:00:00 (xfr#4, to-chk=1272/2628)
+258830.png
+         32,768   7%    1.16MB/s    0:00:00          412,383 100%    9.59MB/s    0:00:00 (xfr#5, to-chk=643/2628)
+293940.png
+         32,768  18%  761.90kB/s    0:00:00          179,821 100%    3.50MB/s    0:00:00 (xfr#6, to-chk=533/2628)
+316140.png
+         32,768  13%  640.00kB/s    0:00:00          235,171 100%    3.80MB/s    0:00:00 (xfr#7, to-chk=467/2628)
+336680.png
+         32,768  21%  542.37kB/s    0:00:00          153,463 100%    2.06MB/s    0:00:00 (xfr#8, to-chk=407/2628)
+417010.png
+         32,768  11%  444.44kB/s    0:00:00          286,817 100%    2.51MB/s    0:00:00 (xfr#9, to-chk=221/2628)
+rate_changes.png
+         32,768  17%  290.91kB/s    0:00:00          189,221 100%    1.30MB/s    0:00:00 (xfr#10, to-chk=0/2628)
+
+sent 3,106,889 bytes  received 27,066 bytes  2,089,303.33 bytes/sec
+total size is 1,073,272,431  speedup is 342.47
