@@ -8838,3 +8838,40 @@ updating market prices...
 Updating outstanding shares information...
 Processing outstanding shares data for 2025-06-13... 0/150
 Processing outstanding shares data for 2025-06-16... 1/150
+Updating KRX data...
+Updating between dates: 2025-06-10 / 2025-06-18
+-----------------------------
+2025-06-18 00:00:19.109478
+Full rescan codes are 14 items: 
+['002630', '143210', '188040', '234340', '246710', '258830', '280360', '352820', '357430', '417010', '460860', '460870', '462980', '900290']
+Partial rescan codes are 7 items: 
+['001720', '021880', '067010', '092440', '293940', '395400', '432320']
+Financial data collection log >> 
+2025-06-18 00:00:19.180433, no: 0, code 002630 in process
+2025-06-18 00:00:33.020576, no: 1, code 143210 in process
+2025-06-18 00:00:47.303866, no: 2, code 188040 in process
+2025-06-18 00:00:53.169227, no: 3, code 234340 in process
+2025-06-18 00:01:04.607021, no: 4, code 246710 in process
+2025-06-18 00:01:16.390907, no: 5, code 258830 in process
+2025-06-18 00:01:28.871895, no: 6, code 280360 in process
+2025-06-18 00:01:41.937609, no: 7, code 352820 in process
+2025-06-18 00:01:51.897882, no: 8, code 357430 in process
+2025-06-18 00:01:58.038609, no: 9, code 417010 in process
+2025-06-18 00:02:06.244700, no: 10, code 460860 in process
+2025-06-18 00:02:13.747402, no: 11, code 460870 in process
+2025-06-18 00:02:19.704879, no: 12, code 462980 in process
+2025-06-18 00:02:25.715469, no: 13, code 900290 in process
+----> no: 13, code 900290 currency not in KRW, skipping
+Financial data collection log >> 
+2025-06-18 00:02:31.397246, no: 0, code 001720 in process
+2025-06-18 00:02:39.598908, no: 1, code 021880 in process
+2025-06-18 00:02:46.823226, no: 2, code 067010 in process
+2025-06-18 00:02:54.006018, no: 3, code 092440 in process
+2025-06-18 00:03:01.270909, no: 4, code 293940 in process
+2025-06-18 00:03:07.114872, no: 5, code 395400 in process
+2025-06-18 00:03:13.109878, no: 6, code 432320 in process
+== Update finished ==
+updating market prices...
+Updating outstanding shares information...
+Processing outstanding shares data for 2025-06-16... 0/150
+Processing outstanding shares data for 2025-06-17... 1/150
