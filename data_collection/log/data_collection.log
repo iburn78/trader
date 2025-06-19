@@ -8912,3 +8912,42 @@ updating market prices...
 Updating outstanding shares information...
 Processing outstanding shares data for 2025-06-17... 0/150
 Processing outstanding shares data for 2025-06-18... 1/150
+Updating KRX data...
+Updating between dates: 2025-06-12 / 2025-06-20
+-----------------------------
+2025-06-20 00:00:19.589383
+Full rescan codes are 11 items: 
+['002630', '143210', '234340', '246710', '280360', '352820', '432320', '460860', '460870', '462980', '900290']
+Partial rescan codes are 12 items: 
+['001720', '002630', '008110', '018500', '020180', '021880', '033200', '060310', '067010', '092440', '099750', '289080']
+Financial data collection log >> 
+2025-06-20 00:00:19.658554, no: 0, code 002630 in process
+2025-06-20 00:00:33.217183, no: 1, code 143210 in process
+2025-06-20 00:00:47.344161, no: 2, code 234340 in process
+2025-06-20 00:00:58.813064, no: 3, code 246710 in process
+2025-06-20 00:01:10.542076, no: 4, code 280360 in process
+2025-06-20 00:01:23.505587, no: 5, code 352820 in process
+2025-06-20 00:01:33.428141, no: 6, code 432320 in process
+2025-06-20 00:01:39.415833, no: 7, code 460860 in process
+2025-06-20 00:01:46.887628, no: 8, code 460870 in process
+2025-06-20 00:01:52.909942, no: 9, code 462980 in process
+2025-06-20 00:01:59.036549, no: 10, code 900290 in process
+----> no: 10, code 900290 currency not in KRW, skipping
+Financial data collection log >> 
+2025-06-20 00:02:04.745161, no: 0, code 001720 in process
+2025-06-20 00:02:12.214969, no: 1, code 002630 in process
+2025-06-20 00:02:19.501189, no: 2, code 008110 in process
+2025-06-20 00:02:26.818554, no: 3, code 018500 in process
+2025-06-20 00:02:34.067587, no: 4, code 020180 in process
+2025-06-20 00:02:41.309740, no: 5, code 021880 in process
+2025-06-20 00:02:48.621170, no: 6, code 033200 in process
+2025-06-20 00:02:55.990728, no: 7, code 060310 in process
+2025-06-20 00:03:03.239206, no: 8, code 067010 in process
+2025-06-20 00:03:10.483632, no: 9, code 092440 in process
+2025-06-20 00:03:17.788546, no: 10, code 099750 in process
+2025-06-20 00:03:25.168649, no: 11, code 289080 in process
+== Update finished ==
+updating market prices...
+Updating outstanding shares information...
+Processing outstanding shares data for 2025-06-18... 0/150
+Processing outstanding shares data for 2025-06-19... 1/150
