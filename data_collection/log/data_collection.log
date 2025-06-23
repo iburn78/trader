@@ -9064,3 +9064,41 @@ Financial data collection log >>
 updating market prices...
 Updating outstanding shares information...
 Processing outstanding shares data for 2025-06-20... 0/150
+Updating KRX data...
+Updating between dates: 2025-06-16 / 2025-06-24
+-----------------------------
+2025-06-24 00:00:18.665103
+Full rescan codes are 12 items: 
+['004990', '007370', '182400', '190650', '234340', '246710', '280360', '352820', '408920', '432320', '460860', '900290']
+Partial rescan codes are 10 items: 
+['002630', '008110', '018500', '020180', '021880', '033200', '060310', '099750', '289080', '396690']
+Financial data collection log >> 
+2025-06-24 00:00:18.740191, no: 0, code 004990 in process
+2025-06-24 00:00:30.297479, no: 1, code 007370 in process
+2025-06-24 00:00:45.132088, no: 2, code 182400 in process
+2025-06-24 00:00:59.967200, no: 3, code 190650 in process
+2025-06-24 00:01:07.207715, no: 4, code 234340 in process
+2025-06-24 00:01:18.329502, no: 5, code 246710 in process
+2025-06-24 00:01:30.027201, no: 6, code 280360 in process
+2025-06-24 00:01:42.917521, no: 7, code 352820 in process
+2025-06-24 00:01:52.847765, no: 8, code 408920 in process
+2025-06-24 00:02:00.791533, no: 9, code 432320 in process
+2025-06-24 00:02:06.805526, no: 10, code 460860 in process
+2025-06-24 00:02:14.314571, no: 11, code 900290 in process
+----> no: 11, code 900290 currency not in KRW, skipping
+Financial data collection log >> 
+2025-06-24 00:02:19.980786, no: 0, code 002630 in process
+2025-06-24 00:02:27.492527, no: 1, code 008110 in process
+2025-06-24 00:02:34.759015, no: 2, code 018500 in process
+2025-06-24 00:02:42.042702, no: 3, code 020180 in process
+2025-06-24 00:02:49.278271, no: 4, code 021880 in process
+2025-06-24 00:02:56.548534, no: 5, code 033200 in process
+2025-06-24 00:03:03.910886, no: 6, code 060310 in process
+2025-06-24 00:03:11.213683, no: 7, code 099750 in process
+2025-06-24 00:03:18.467532, no: 8, code 289080 in process
+2025-06-24 00:03:25.731824, no: 9, code 396690 in process
+== Update finished ==
+updating market prices...
+Updating outstanding shares information...
+Processing outstanding shares data for 2025-06-20... 0/150
+Processing outstanding shares data for 2025-06-23... 1/150
