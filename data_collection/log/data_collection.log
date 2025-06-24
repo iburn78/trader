@@ -9102,3 +9102,45 @@ updating market prices...
 Updating outstanding shares information...
 Processing outstanding shares data for 2025-06-20... 0/150
 Processing outstanding shares data for 2025-06-23... 1/150
+Updating KRX data...
+Updating between dates: 2025-06-17 / 2025-06-25
+-----------------------------
+2025-06-25 00:00:20.749580
+Full rescan codes are 9 items: 
+['004990', '007370', '182400', '190650', '198940', '280360', '408920', '432320', '460860']
+Partial rescan codes are 10 items: 
+['002630', '008110', '018500', '020180', '021880', '033200', '060310', '099750', '289080', '396690']
+Financial data collection log >> 
+2025-06-25 00:00:20.846025, no: 0, code 004990 in process
+2025-06-25 00:00:33.536759, no: 1, code 007370 in process
+----> no: 1, code 007370 unknown exception; process suspended and to be re-tried
+HTTPSConnectionPool(host='opendart.fss.or.kr', port=443): Max retries exceeded with url: /api/fnlttSinglAcnt.json?crtfc_key=5f29227b902e730a9350eacbf2dee9abd6f5623f&corp_code=00150536&bsns_year=2023&reprt_code=11014 (Caused by SSLError(SSLEOFError(8, '[SSL: UNEXPECTED_EOF_WHILE_READING] EOF occurred in violation of protocol (_ssl.c:1007)')))
+** API-changed **
+2025-06-25 00:00:51.361554, no: 1, code 007370 in process
+2025-06-25 00:01:05.872687, no: 2, code 182400 in process
+----> no: 2, code 182400 unknown exception; process suspended and to be re-tried
+HTTPSConnectionPool(host='opendart.fss.or.kr', port=443): Max retries exceeded with url: /api/fnlttSinglAcnt.json?crtfc_key=9c180c67fba16e9a8d8bf3a74112ce0a6dbdb907&corp_code=00977650&bsns_year=2025&reprt_code=11013 (Caused by SSLError(SSLEOFError(8, '[SSL: UNEXPECTED_EOF_WHILE_READING] EOF occurred in violation of protocol (_ssl.c:1007)')))
+** API-changed **
+2025-06-25 00:01:21.127086, no: 2, code 182400 in process
+2025-06-25 00:01:35.774013, no: 3, code 190650 in process
+2025-06-25 00:01:42.995269, no: 4, code 198940 in process
+2025-06-25 00:01:50.867650, no: 5, code 280360 in process
+2025-06-25 00:02:03.556130, no: 6, code 408920 in process
+2025-06-25 00:02:11.497008, no: 7, code 432320 in process
+2025-06-25 00:02:17.504189, no: 8, code 460860 in process
+Financial data collection log >> 
+2025-06-25 00:02:25.105390, no: 0, code 002630 in process
+2025-06-25 00:02:32.313141, no: 1, code 008110 in process
+2025-06-25 00:02:39.581770, no: 2, code 018500 in process
+2025-06-25 00:02:46.901990, no: 3, code 020180 in process
+2025-06-25 00:02:54.151578, no: 4, code 021880 in process
+2025-06-25 00:03:01.378882, no: 5, code 033200 in process
+2025-06-25 00:03:08.621396, no: 6, code 060310 in process
+2025-06-25 00:03:15.867588, no: 7, code 099750 in process
+2025-06-25 00:03:23.190585, no: 8, code 289080 in process
+2025-06-25 00:03:30.372606, no: 9, code 396690 in process
+== Update finished ==
+updating market prices...
+Updating outstanding shares information...
+Processing outstanding shares data for 2025-06-23... 0/150
+Processing outstanding shares data for 2025-06-24... 1/150
