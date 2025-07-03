@@ -27422,3 +27422,245 @@ rate_changes.png
 
 sent 12,334,099 bytes  received 104,991 bytes  3,554,025.71 bytes/sec
 total size is 1,078,292,832  speedup is 86.69
+[main e04a17f] 2025-07-03 upload done from linux machine
+ 14 files changed, 252 insertions(+)
+ rewrite data_collection/data/df_krx.db (85%)
+ rewrite data_collection/data/df_krx.feather (85%)
+To https://github.com/iburn78/trader
+   cbc4f40..e04a17f  main -> main
+rtcwake: write error
+이미 업데이트 상태입니다.
+Updating KRX data...
+Updating between dates: 2025-06-26 / 2025-07-04
+-----------------------------
+2025-07-04 00:00:22.845985
+Full rescan codes are 10 items: 
+['004000', '004150', '006090', '017390', '035610', '039420', '052420', '054920', '079970', '131180']
+Partial rescan codes are 27 items: 
+['950110', '001080', '001720', '002630', '005390', '008110', '018500', '020180', '021820', '021880', '024110', '030960', '032800', '033200', '050860', '060310', '067010', '092440', '093240', '097870', '099750', '169330', '189690', '190650', '289080', '334970', '471050']
+Financial data collection log >> 
+2025-07-04 00:00:22.922435, no: 0, code 004000 in process
+2025-07-04 00:00:38.158858, no: 1, code 004150 in process
+2025-07-04 00:00:54.098700, no: 2, code 006090 in process
+2025-07-04 00:01:08.860538, no: 3, code 017390 in process
+2025-07-04 00:01:25.379095, no: 4, code 035610 in process
+2025-07-04 00:01:41.085123, no: 5, code 039420 in process
+2025-07-04 00:01:57.244295, no: 6, code 052420 in process
+2025-07-04 00:02:12.587972, no: 7, code 054920 in process
+2025-07-04 00:02:27.773694, no: 8, code 079970 in process
+2025-07-04 00:02:43.309754, no: 9, code 131180 in process
+Financial data collection log >> 
+2025-07-04 00:02:58.569913, no: 0, code 950110 in process
+----> no: 0, code 950110 currency not in KRW, skipping
+2025-07-04 00:03:04.015595, no: 1, code 001080 in process
+2025-07-04 00:03:11.264739, no: 2, code 001720 in process
+2025-07-04 00:03:18.547738, no: 3, code 002630 in process
+2025-07-04 00:03:25.817230, no: 4, code 005390 in process
+2025-07-04 00:03:33.806134, no: 5, code 008110 in process
+2025-07-04 00:03:41.323131, no: 6, code 018500 in process
+2025-07-04 00:03:48.573335, no: 7, code 020180 in process
+2025-07-04 00:03:55.864726, no: 8, code 021820 in process
+2025-07-04 00:04:03.372269, no: 9, code 021880 in process
+2025-07-04 00:04:10.635545, no: 10, code 024110 in process
+2025-07-04 00:04:17.666357, no: 11, code 030960 in process
+2025-07-04 00:04:24.908241, no: 12, code 032800 in process
+2025-07-04 00:04:32.213960, no: 13, code 033200 in process
+2025-07-04 00:04:39.524440, no: 14, code 050860 in process
+2025-07-04 00:04:46.761989, no: 15, code 060310 in process
+2025-07-04 00:04:54.693090, no: 16, code 067010 in process
+2025-07-04 00:05:02.445074, no: 17, code 092440 in process
+2025-07-04 00:05:09.840617, no: 18, code 093240 in process
+2025-07-04 00:05:17.135100, no: 19, code 097870 in process
+2025-07-04 00:05:24.478355, no: 20, code 099750 in process
+2025-07-04 00:05:32.318994, no: 21, code 169330 in process
+2025-07-04 00:05:39.828269, no: 22, code 189690 in process
+2025-07-04 00:05:47.159661, no: 23, code 190650 in process
+2025-07-04 00:05:54.565904, no: 24, code 289080 in process
+2025-07-04 00:06:01.858418, no: 25, code 334970 in process
+2025-07-04 00:06:08.576208, no: 26, code 471050 in process
+== Update finished ==
+updating market prices...
+Updating outstanding shares information...
+Processing outstanding shares data for 2025-07-02... 0/150
+Processing outstanding shares data for 2025-07-03... 1/150
+2025-07-04 QA DB: updating ['004000', '004150', '006090', '017390', '035610', '039420', '052420', '054920', '079970', '131180', '950110', '001080', '001720', '002630', '005390', '008110', '018500', '020180', '021820', '021880', '024110', '030960', '032800', '033200', '050860', '060310', '067010', '092440', '093240', '097870', '099750', '169330', '189690', '190650', '289080', '334970', '471050']
+004000
+004150
+006090
+017390
+035610
+039420
+052420
+054920
+079970
+131180
+950110
+001080
+001720
+002630
+005390
+008110
+018500
+020180
+021820
+021880
+024110
+030960
+032800
+033200
+050860
+060310
+067010
+092440
+093240
+097870
+099750
+169330
+189690
+190650
+289080
+334970
+471050
+004000 | 1/37
+004150 | 2/37
+006090 | 3/37
+017390 | 4/37
+035610 | 5/37
+039420 | 6/37
+052420 | 7/37
+054920 | 8/37
+079970 | 9/37
+131180 | 10/37
+950110 | 11/37
+2025-07-04 00:09:24.529970 | 950110 | quarterly data of 950110 is empty.
+001080 | 12/37
+001720 | 13/37
+002630 | 14/37
+005390 | 15/37
+008110 | 16/37
+018500 | 17/37
+020180 | 18/37
+021820 | 19/37
+021880 | 20/37
+024110 | 21/37
+030960 | 22/37
+032800 | 23/37
+033200 | 24/37
+050860 | 25/37
+060310 | 26/37
+067010 | 27/37
+092440 | 28/37
+093240 | 29/37
+097870 | 30/37
+099750 | 31/37
+169330 | 32/37
+189690 | 33/37
+190650 | 34/37
+289080 | 35/37
+334970 | 36/37
+471050 | 37/37
+Traceback (most recent call last):
+  File "/home/andy/projects/trader/data_collection/dc13_RateChanges.py", line 4, in <module>
+    listed = get_listed()
+  File "/home/andy/projects/trader/tools/tools.py", line 491, in get_listed
+    listing_db = fdr.StockListing('KRX-DESC')
+  File "/home/andy/projects/trader/venv/lib/python3.10/site-packages/FinanceDataReader/data.py", line 156, in StockListing
+    return KrxStockListing(market).read()
+  File "/home/andy/projects/trader/venv/lib/python3.10/site-packages/FinanceDataReader/krx/listing.py", line 83, in read
+    df_listing['Code'] = df_listing['Code'].apply(lambda x: '{:06d}'.format(x))
+  File "/home/andy/projects/trader/venv/lib/python3.10/site-packages/pandas/core/series.py", line 4924, in apply
+    ).apply()
+  File "/home/andy/projects/trader/venv/lib/python3.10/site-packages/pandas/core/apply.py", line 1427, in apply
+    return self.apply_standard()
+  File "/home/andy/projects/trader/venv/lib/python3.10/site-packages/pandas/core/apply.py", line 1507, in apply_standard
+    mapped = obj._map_values(
+  File "/home/andy/projects/trader/venv/lib/python3.10/site-packages/pandas/core/base.py", line 921, in _map_values
+    return algorithms.map_array(arr, mapper, na_action=na_action, convert=convert)
+  File "/home/andy/projects/trader/venv/lib/python3.10/site-packages/pandas/core/algorithms.py", line 1743, in map_array
+    return lib.map_infer(values, mapper, convert=convert)
+  File "lib.pyx", line 2972, in pandas._libs.lib.map_infer
+  File "/home/andy/projects/trader/venv/lib/python3.10/site-packages/FinanceDataReader/krx/listing.py", line 83, in <lambda>
+    df_listing['Code'] = df_listing['Code'].apply(lambda x: '{:06d}'.format(x))
+ValueError: Unknown format code 'd' for object of type 'str'
+sending incremental file list
+daily_update.json
+          1,197 100%    0.00kB/s    0:00:00            1,197 100%    0.00kB/s    0:00:00 (xfr#1, to-chk=0/2)
+
+sent 1,114 bytes  received 47 bytes  774.00 bytes/sec
+total size is 1,197  speedup is 1.03
+sending incremental file list
+001080.png
+         32,768   9%    0.00kB/s    0:00:00          329,346 100%   70.71MB/s    0:00:00 (xfr#1, to-chk=2576/2629)
+001720.png
+         32,768  17%    6.25MB/s    0:00:00          187,925 100%   25.60MB/s    0:00:00 (xfr#2, to-chk=2544/2629)
+002630.png
+         32,768   8%    4.46MB/s    0:00:00          370,620 100%   25.25MB/s    0:00:00 (xfr#3, to-chk=2508/2629)
+004000.png
+         32,768   6%    2.08MB/s    0:00:00          473,144 100%   18.05MB/s    0:00:00 (xfr#4, to-chk=2446/2629)
+004150.png
+         32,768   8%    1.20MB/s    0:00:00          407,639 100%   10.23MB/s    0:00:00 (xfr#5, to-chk=2439/2629)
+005390.png
+         32,768  10%  820.51kB/s    0:00:00          320,388 100%    5.99MB/s    0:00:00 (xfr#6, to-chk=2392/2629)
+006090.png
+         32,768   7%  615.38kB/s    0:00:00          446,807 100%    5.61MB/s    0:00:00 (xfr#7, to-chk=2362/2629)
+008110.png
+         32,768   6%  410.26kB/s    0:00:01          495,647 100%    3.35MB/s    0:00:00 (xfr#8, to-chk=2305/2629)
+017390.png
+         32,768   6%  222.22kB/s    0:00:02          513,665 100%    2.65MB/s    0:00:00 (xfr#9, to-chk=2121/2629)
+018500.png
+         32,768   7%  160.00kB/s    0:00:02          409,716 100%    1.57MB/s    0:00:00 (xfr#10, to-chk=2101/2629)
+020180.png
+         32,768   6%  128.51kB/s    0:00:03          524,194 100%    1.69MB/s    0:00:00 (xfr#11, to-chk=2078/2629)
+021820.png
+         32,768   6%  107.74kB/s    0:00:04          489,401 100%    1.31MB/s    0:00:00 (xfr#12, to-chk=2067/2629)
+021880.png
+         32,768  13%   89.39kB/s    0:00:02          234,367 100%  589.88kB/s    0:00:00 (xfr#13, to-chk=2066/2629)
+024110.png
+         32,768  15%   82.26kB/s    0:00:02          215,633 100%  516.13kB/s    0:00:00 (xfr#14, to-chk=2041/2629)
+030960.png
+         32,768  11%   76.37kB/s    0:00:03          287,616 100%  622.78kB/s    0:00:00 (xfr#15, to-chk=1972/2629)
+032800.png
+         32,768  10%   70.80kB/s    0:00:03          314,101 100%  636.39kB/s    0:00:00 (xfr#16, to-chk=1948/2629)
+033200.png
+         32,768   6%   66.25kB/s    0:00:06          487,627 100%  875.36kB/s    0:00:00 (xfr#17, to-chk=1934/2629)
+035610.png
+         32,768   5%   58.82kB/s    0:00:09          570,530 100%  916.38kB/s    0:00:00 (xfr#18, to-chk=1894/2629)
+039420.png
+         32,768   5%   52.55kB/s    0:00:10          589,249 100%  856.31kB/s    0:00:00 (xfr#19, to-chk=1819/2629)
+050860.png
+         32,768  11%   46.72kB/s    0:00:05          289,850 100%  392.59kB/s    0:00:00 (xfr#20, to-chk=1694/2629)
+052420.png
+         32,768   6%   44.32kB/s    0:00:10          493,628 100%  583.61kB/s    0:00:00 (xfr#21, to-chk=1672/2629)
+054920.png
+         32,768   8%   38.74kB/s    0:00:09          396,851 100%  465.81kB/s    0:00:00 (xfr#22, to-chk=1625/2629)
+060310.png
+         32,768   8%   38.46kB/s    0:00:08          377,487 100%  422.27kB/s    0:00:00 (xfr#23, to-chk=1584/2629)
+067010.png
+         32,768   6%   36.61kB/s    0:00:13          525,630 100%  547.82kB/s    0:00:00 (xfr#24, to-chk=1510/2629)
+079970.png
+         32,768   5%   34.08kB/s    0:00:15          549,051 100%  536.72kB/s    0:00:00 (xfr#25, to-chk=1397/2629)
+092440.png
+         32,768   6%   32.00kB/s    0:00:14           65,536  13%   63.18kB/s    0:00:06          483,233 100%  444.78kB/s    0:00:01 (xfr#26, to-chk=1273/2629)
+093240.png
+         32,768  10%  653.06kB/s    0:00:00          298,229 100%    3.56MB/s    0:00:00 (xfr#27, to-chk=1263/2629)
+097870.png
+         32,768  10%  395.06kB/s    0:00:00          312,737 100%    2.39MB/s    0:00:00 (xfr#28, to-chk=1221/2629)
+099750.png
+         32,768   6%  253.97kB/s    0:00:01          503,874 100%    2.76MB/s    0:00:00 (xfr#29, to-chk=1208/2629)
+131180.png
+         32,768   6%  168.42kB/s    0:00:03          542,744 100%    2.17MB/s    0:00:00 (xfr#30, to-chk=1037/2629)
+169330.png
+         32,768  10%  125.00kB/s    0:00:02          304,512 100%  903.88kB/s    0:00:00 (xfr#31, to-chk=935/2629)
+189690.png
+         32,768  10%   97.26kB/s    0:00:02          317,582 100%  931.35kB/s    0:00:00 (xfr#32, to-chk=889/2629)
+190650.png
+         32,768  15%   96.10kB/s    0:00:01          213,660 100%  586.10kB/s    0:00:00 (xfr#33, to-chk=885/2629)
+289080.png
+         32,768  14%   89.64kB/s    0:00:02          228,186 100%  595.82kB/s    0:00:00 (xfr#34, to-chk=557/2629)
+334970.png
+         32,768   9%   82.69kB/s    0:00:03          352,133 100%  818.76kB/s    0:00:00 (xfr#35, to-chk=416/2629)
+471050.png
+         32,768  16%   76.19kB/s    0:00:02          198,527 100%  428.92kB/s    0:00:00 (xfr#36, to-chk=48/2629)
+
+sent 14,083,909 bytes  received 119,748 bytes  5,681,462.80 bytes/sec
+total size is 1,078,284,943  speedup is 75.92
