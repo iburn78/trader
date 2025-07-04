@@ -27664,3 +27664,89 @@ sending incremental file list
 
 sent 14,083,909 bytes  received 119,748 bytes  5,681,462.80 bytes/sec
 total size is 1,078,284,943  speedup is 75.92
+[main 67278f7] 2025-07-04 upload done from linux machine
+ 13 files changed, 297 insertions(+)
+ rewrite data_collection/data/df_krx.db (85%)
+ rewrite data_collection/data/df_krx.feather (84%)
+To https://github.com/iburn78/trader
+   e04a17f..67278f7  main -> main
+rtcwake: write error
+이미 업데이트 상태입니다.
+Updating KRX data...
+Generation of KRX data failed: Unknown format code 'd' for object of type 'str'
+Traceback (most recent call last):
+  File "/home/andy/projects/trader/data_collection/dc05_CompanyHealth.py", line 292, in update_main_db
+    df_krx = generate_krx_data()
+  File "/home/andy/projects/trader/tools/tools.py", line 435, in generate_krx_data
+    df_krx_desc = fdr.StockListing('KRX-DESC')
+  File "/home/andy/projects/trader/venv/lib/python3.10/site-packages/FinanceDataReader/data.py", line 156, in StockListing
+    return KrxStockListing(market).read()
+  File "/home/andy/projects/trader/venv/lib/python3.10/site-packages/FinanceDataReader/krx/listing.py", line 83, in read
+    df_listing['Code'] = df_listing['Code'].apply(lambda x: '{:06d}'.format(x))
+  File "/home/andy/projects/trader/venv/lib/python3.10/site-packages/pandas/core/series.py", line 4924, in apply
+    ).apply()
+  File "/home/andy/projects/trader/venv/lib/python3.10/site-packages/pandas/core/apply.py", line 1427, in apply
+    return self.apply_standard()
+  File "/home/andy/projects/trader/venv/lib/python3.10/site-packages/pandas/core/apply.py", line 1507, in apply_standard
+    mapped = obj._map_values(
+  File "/home/andy/projects/trader/venv/lib/python3.10/site-packages/pandas/core/base.py", line 921, in _map_values
+    return algorithms.map_array(arr, mapper, na_action=na_action, convert=convert)
+  File "/home/andy/projects/trader/venv/lib/python3.10/site-packages/pandas/core/algorithms.py", line 1743, in map_array
+    return lib.map_infer(values, mapper, convert=convert)
+  File "lib.pyx", line 2972, in pandas._libs.lib.map_infer
+  File "/home/andy/projects/trader/venv/lib/python3.10/site-packages/FinanceDataReader/krx/listing.py", line 83, in <lambda>
+    df_listing['Code'] = df_listing['Code'].apply(lambda x: '{:06d}'.format(x))
+ValueError: Unknown format code 'd' for object of type 'str'
+
+During handling of the above exception, another exception occurred:
+
+Traceback (most recent call last):
+  File "/home/andy/projects/trader/data_collection/dc05_CompanyHealth.py", line 380, in <module>
+    update_main_db(log_file, main_db, df_krx, plot_gen_control_file)
+  File "/home/andy/projects/trader/data_collection/dc05_CompanyHealth.py", line 296, in update_main_db
+    raise Exception('Generation of KRX data failed: '+str(e))
+Exception: Generation of KRX data failed: Unknown format code 'd' for object of type 'str'
+updating market prices...
+HTTP Error 429: Too Many Requests  - symbol "0037T0" not found or invalid periods
+Error retrieving full data for 0037T0: "None of [Index(['Close', 'Volume'], dtype='object')] are in the [columns]"
+Updating outstanding shares information...
+Processing outstanding shares data for 2025-07-03... 0/150
+Processing outstanding shares data for 2025-07-04... 1/150
+2025-07-05 QA DB: ***** plot_gen_control.npy does not exist. *****
+Traceback (most recent call last):
+  File "/home/andy/projects/trader/data_collection/dc07_VisualizeHealth.py", line 13, in <module>
+    raise FileNotFoundError('***** plot_gen_control.npy does not exist. *****')
+FileNotFoundError: ***** plot_gen_control.npy does not exist. *****
+Traceback (most recent call last):
+  File "/home/andy/projects/trader/data_collection/dc13_RateChanges.py", line 4, in <module>
+    listed = get_listed()
+  File "/home/andy/projects/trader/tools/tools.py", line 491, in get_listed
+    listing_db = fdr.StockListing('KRX-DESC')
+  File "/home/andy/projects/trader/venv/lib/python3.10/site-packages/FinanceDataReader/data.py", line 156, in StockListing
+    return KrxStockListing(market).read()
+  File "/home/andy/projects/trader/venv/lib/python3.10/site-packages/FinanceDataReader/krx/listing.py", line 83, in read
+    df_listing['Code'] = df_listing['Code'].apply(lambda x: '{:06d}'.format(x))
+  File "/home/andy/projects/trader/venv/lib/python3.10/site-packages/pandas/core/series.py", line 4924, in apply
+    ).apply()
+  File "/home/andy/projects/trader/venv/lib/python3.10/site-packages/pandas/core/apply.py", line 1427, in apply
+    return self.apply_standard()
+  File "/home/andy/projects/trader/venv/lib/python3.10/site-packages/pandas/core/apply.py", line 1507, in apply_standard
+    mapped = obj._map_values(
+  File "/home/andy/projects/trader/venv/lib/python3.10/site-packages/pandas/core/base.py", line 921, in _map_values
+    return algorithms.map_array(arr, mapper, na_action=na_action, convert=convert)
+  File "/home/andy/projects/trader/venv/lib/python3.10/site-packages/pandas/core/algorithms.py", line 1743, in map_array
+    return lib.map_infer(values, mapper, convert=convert)
+  File "lib.pyx", line 2972, in pandas._libs.lib.map_infer
+  File "/home/andy/projects/trader/venv/lib/python3.10/site-packages/FinanceDataReader/krx/listing.py", line 83, in <lambda>
+    df_listing['Code'] = df_listing['Code'].apply(lambda x: '{:06d}'.format(x))
+ValueError: Unknown format code 'd' for object of type 'str'
+sending incremental file list
+daily_update.json
+          1,363 100%    0.00kB/s    0:00:00            1,363 100%    0.00kB/s    0:00:00 (xfr#1, to-chk=0/2)
+
+sent 1,485 bytes  received 47 bytes  3,064.00 bytes/sec
+total size is 1,363  speedup is 0.89
+sending incremental file list
+
+sent 64,865 bytes  received 12 bytes  43,251.33 bytes/sec
+total size is 1,078,284,943  speedup is 16,620.45
