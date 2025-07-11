@@ -10411,3 +10411,67 @@ updating market prices...
 Updating outstanding shares information...
 Processing outstanding shares data for 2025-07-09... 0/150
 Processing outstanding shares data for 2025-07-10... 1/150
+Updating KRX data...
+Updating between dates: 2025-07-04 / 2025-07-12
+-----------------------------
+2025-07-12 00:00:24.765489
+Full rescan codes are 23 items: 
+['002450', '008420', '010400', '011560', '024940', '025880', '032960', '033790', '052300', '054040', '065690', '066790', '069460', '091340', '095270', '104200', '131180', '155650', '208350', '221840', '340440', '357230', '432430']
+Partial rescan codes are 26 items: 
+['448730', '001080', '001720', '002630', '005390', '008110', '018500', '020180', '021820', '021880', '030960', '032800', '033200', '050860', '060310', '067010', '092440', '093240', '097870', '099750', '169330', '189690', '190650', '289080', '334970', '471050']
+Financial data collection log >> 
+2025-07-12 00:00:24.836655, no: 0, code 002450 in process
+2025-07-12 00:00:41.125225, no: 1, code 008420 in process
+2025-07-12 00:00:56.105144, no: 2, code 010400 in process
+2025-07-12 00:01:08.539488, no: 3, code 011560 in process
+2025-07-12 00:01:23.963790, no: 4, code 024940 in process
+2025-07-12 00:01:39.289880, no: 5, code 025880 in process
+2025-07-12 00:01:54.979280, no: 6, code 032960 in process
+2025-07-12 00:02:10.161999, no: 7, code 033790 in process
+2025-07-12 00:02:25.255838, no: 8, code 052300 in process
+2025-07-12 00:02:41.850087, no: 9, code 054040 in process
+2025-07-12 00:02:57.210927, no: 10, code 065690 in process
+2025-07-12 00:03:12.207334, no: 11, code 066790 in process
+2025-07-12 00:03:27.616544, no: 12, code 069460 in process
+2025-07-12 00:03:42.454643, no: 13, code 091340 in process
+2025-07-12 00:03:57.824084, no: 14, code 095270 in process
+2025-07-12 00:04:13.451168, no: 15, code 104200 in process
+2025-07-12 00:04:28.388611, no: 16, code 131180 in process
+2025-07-12 00:04:43.525046, no: 17, code 155650 in process
+2025-07-12 00:04:59.357528, no: 18, code 208350 in process
+2025-07-12 00:05:14.122979, no: 19, code 221840 in process
+2025-07-12 00:05:29.257333, no: 20, code 340440 in process
+2025-07-12 00:05:38.631345, no: 21, code 357230 in process
+2025-07-12 00:05:48.583918, no: 22, code 432430 in process
+Financial data collection log >> 
+2025-07-12 00:05:56.195713, no: 0, code 448730 in process
+2025-07-12 00:06:02.045038, no: 1, code 001080 in process
+2025-07-12 00:06:09.403057, no: 2, code 001720 in process
+2025-07-12 00:06:18.734764, no: 3, code 002630 in process
+2025-07-12 00:06:26.000520, no: 4, code 005390 in process
+2025-07-12 00:06:33.367003, no: 5, code 008110 in process
+2025-07-12 00:06:40.722190, no: 6, code 018500 in process
+2025-07-12 00:06:48.070952, no: 7, code 020180 in process
+2025-07-12 00:06:55.459544, no: 8, code 021820 in process
+2025-07-12 00:07:03.193762, no: 9, code 021880 in process
+2025-07-12 00:07:10.504297, no: 10, code 030960 in process
+2025-07-12 00:07:17.791466, no: 11, code 032800 in process
+2025-07-12 00:07:25.111327, no: 12, code 033200 in process
+2025-07-12 00:07:32.652758, no: 13, code 050860 in process
+2025-07-12 00:07:39.969455, no: 14, code 060310 in process
+2025-07-12 00:07:47.331693, no: 15, code 067010 in process
+2025-07-12 00:07:54.748336, no: 16, code 092440 in process
+2025-07-12 00:08:02.052223, no: 17, code 093240 in process
+2025-07-12 00:08:09.425742, no: 18, code 097870 in process
+2025-07-12 00:08:16.836052, no: 19, code 099750 in process
+2025-07-12 00:08:24.107896, no: 20, code 169330 in process
+2025-07-12 00:08:31.569356, no: 21, code 189690 in process
+2025-07-12 00:08:39.044378, no: 22, code 190650 in process
+2025-07-12 00:08:46.369331, no: 23, code 289080 in process
+2025-07-12 00:08:53.683545, no: 24, code 334970 in process
+2025-07-12 00:09:00.420291, no: 25, code 471050 in process
+== Update finished ==
+updating market prices...
+Updating outstanding shares information...
+Processing outstanding shares data for 2025-07-10... 0/150
+Processing outstanding shares data for 2025-07-11... 1/150
