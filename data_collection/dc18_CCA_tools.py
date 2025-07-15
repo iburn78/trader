@@ -442,7 +442,7 @@ def generate_PPT(score_trend, codelist=None, fr_db=fr_db, pr_db=pr_db, outshare_
     prs = Presentation(CCA_template)
     periods = get_periods(qa_db)
 
-    for code in score_trend[:topN]:
+    for code in score_trend.index[:topN]:
         if codelist != None and code not in codelist: 
             continue
         print("pricessing", code)
@@ -460,7 +460,7 @@ def generate_PPT(score_trend, codelist=None, fr_db=fr_db, pr_db=pr_db, outshare_
             if ph.name == 'Text Placeholder 4':
                 txt = score_trend.loc[[code]][periods+['avg']].to_string(index=False)
                 rank = str(score_trend.index.get_loc(code) + 1)
-                ph.text = 'rank:' + rank + '   selected:' + score_trend.loc[code, 'selected'] + '   top30:' + score_trend.loc[code, 'top30'] + '   MarCap:' + int(df_krx.loc[df_krx['Code'] == code, 'Marcap'].iloc[0]/10**8) + '   PER:' + mp_db['PER'].iloc[-1] + '\n' + txt
+                ph.text = 'rank:' + rank + '   selected:' + score_trend.loc[code, 'selected'] + '   top30:' + score_trend.loc[code, 'top30'] + '   MarCap:' + str(df_krx.at[code, 'Marcap'] // 10**8) + '   PER:' + str(round(mp_db['PER'].iloc[-1], 2)) + '\n' + txt
 
         slide = prs.slides.add_slide(prs.slide_layouts[1])
         img_stream = plot_company_financial_summary2(fr_db, pr_db, code, None) 
