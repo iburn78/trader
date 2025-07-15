@@ -434,16 +434,17 @@ def mp_plot(mp_db, columns=['price', 'PER', 'PBR']):
     # plt.savefig("----.png")
 
 
-def generate_PPT(score_trend, fr_db=fr_db, pr_db=pr_db, outshare_DB=outshare_DB, topN = 100):
+def generate_PPT(score_trend, codelist=None, fr_db=fr_db, pr_db=pr_db, outshare_DB=outshare_DB, df_krx=df_krx, topN = 100):
     cd_ = os.path.dirname(os.path.abspath(__file__)) # .
-    today_str = pd.Timestamp.today().strftime('%Y-%m-%d')
-    # today_str = pd.Timestamp.today().strftime('%Y-%m-%d_%H%M')
+    today_str = pd.Timestamp.today().strftime('%Y-%m-%d_%H%M')
     CCA_template = os.path.join(cd_, 'CCA/CCA_template.pptx')
     CCA_result = os.path.join(cd_, f'CCA/CCA_result_{today_str}.pptx')
     prs = Presentation(CCA_template)
     periods = get_periods(qa_db)
 
-    for code in score_trend.index[:topN]:
+    for code in score_trend[:topN]:
+        if codelist != None and code not in codelist: 
+            continue
         print("pricessing", code)
         slide = prs.slides.add_slide(prs.slide_layouts[0])
         mp_db = get_market_performance_db(code, fr_db, pr_db, outshare_DB)
@@ -459,7 +460,7 @@ def generate_PPT(score_trend, fr_db=fr_db, pr_db=pr_db, outshare_DB=outshare_DB,
             if ph.name == 'Text Placeholder 4':
                 txt = score_trend.loc[[code]][periods+['avg']].to_string(index=False)
                 rank = str(score_trend.index.get_loc(code) + 1)
-                ph.text = 'rank:' + rank + '   selected:' + score_trend.loc[code, 'selected'] + '   ' + 'top30:' + score_trend.loc[code, 'top30'] + '\n' + txt
+                ph.text = 'rank:' + rank + '   selected:' + score_trend.loc[code, 'selected'] + '   top30:' + score_trend.loc[code, 'top30'] + '   MarCap:' + int(df_krx.loc[df_krx['Code'] == code, 'Marcap'].iloc[0]/10**8) + '   PER:' + mp_db['PER'].iloc[-1] + '\n' + txt
 
         slide = prs.slides.add_slide(prs.slide_layouts[1])
         img_stream = plot_company_financial_summary2(fr_db, pr_db, code, None) 
@@ -494,17 +495,3 @@ def openai_command(company_name, conf_file=CONF_FILE):
         ]
     )
     return chat_completion.choices[0].message.content
-
-
-# getting latest close PER
-def get_latest_close_PER(code):
-    mp_db = get_market_performance_db(code)
-    return mp_db['PER'].iloc[-1]
-
-
-# getting current realtime price
-def get_current_price_marcap(code):
-    df_krx = fdr.StockListing('KRX')
-    [cur_price, mar_cap] = df_krx.loc[df_krx['Code'] == code, ['Close', 'Marcap']].iloc[0]
-    mar_cap = mar_cap / 10**8
-    return cur_price, mar_cap
