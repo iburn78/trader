@@ -10656,3 +10656,70 @@ updating market prices...
 Updating outstanding shares information...
 Processing outstanding shares data for 2025-07-11... 0/150
 Processing outstanding shares data for 2025-07-14... 1/150
+Updating KRX data...
+Updating between dates: 2025-07-08 / 2025-07-16
+-----------------------------
+2025-07-16 00:00:24.312850
+Full rescan codes are 23 items: 
+['002220', '002450', '008420', '010400', '011560', '029530', '032960', '033790', '039440', '040350', '052300', '054040', '065690', '069460', '091340', '095270', '104200', '120030', '131180', '155650', '221840', '340440', '432430']
+Partial rescan codes are 29 items: 
+['004310', '334890', '448730', '481850', '001080', '001720', '002630', '005390', '008110', '018500', '020180', '021820', '021880', '030960', '032800', '033200', '050860', '060310', '067010', '092440', '093240', '097870', '099750', '169330', '189690', '190650', '289080', '334970', '471050']
+Financial data collection log >> 
+2025-07-16 00:00:24.389623, no: 0, code 002220 in process
+2025-07-16 00:00:39.875106, no: 1, code 002450 in process
+2025-07-16 00:00:56.453478, no: 2, code 008420 in process
+2025-07-16 00:01:11.661489, no: 3, code 010400 in process
+2025-07-16 00:01:25.441087, no: 4, code 011560 in process
+2025-07-16 00:01:40.787450, no: 5, code 029530 in process
+2025-07-16 00:01:57.222868, no: 6, code 032960 in process
+2025-07-16 00:02:12.599021, no: 7, code 033790 in process
+2025-07-16 00:02:28.846115, no: 8, code 039440 in process
+2025-07-16 00:02:44.344940, no: 9, code 040350 in process
+2025-07-16 00:03:01.000083, no: 10, code 052300 in process
+2025-07-16 00:03:16.207979, no: 11, code 054040 in process
+2025-07-16 00:03:32.872517, no: 12, code 065690 in process
+2025-07-16 00:03:48.498555, no: 13, code 069460 in process
+2025-07-16 00:04:04.420897, no: 14, code 091340 in process
+2025-07-16 00:04:19.957500, no: 15, code 095270 in process
+2025-07-16 00:04:36.255621, no: 16, code 104200 in process
+2025-07-16 00:04:51.529777, no: 17, code 120030 in process
+2025-07-16 00:05:06.575807, no: 18, code 131180 in process
+2025-07-16 00:05:21.734763, no: 19, code 155650 in process
+2025-07-16 00:05:37.205556, no: 20, code 221840 in process
+2025-07-16 00:05:52.789175, no: 21, code 340440 in process
+2025-07-16 00:06:01.852425, no: 22, code 432430 in process
+Financial data collection log >> 
+2025-07-16 00:06:09.333016, no: 0, code 004310 in process
+2025-07-16 00:06:17.145487, no: 1, code 334890 in process
+2025-07-16 00:06:23.192013, no: 2, code 448730 in process
+2025-07-16 00:06:29.123284, no: 3, code 481850 in process
+2025-07-16 00:06:35.082579, no: 4, code 001080 in process
+2025-07-16 00:06:42.437509, no: 5, code 001720 in process
+2025-07-16 00:06:50.082305, no: 6, code 002630 in process
+2025-07-16 00:06:57.408644, no: 7, code 005390 in process
+2025-07-16 00:07:04.852522, no: 8, code 008110 in process
+2025-07-16 00:07:12.343098, no: 9, code 018500 in process
+2025-07-16 00:07:21.122700, no: 10, code 020180 in process
+2025-07-16 00:07:28.423902, no: 11, code 021820 in process
+2025-07-16 00:07:35.869145, no: 12, code 021880 in process
+2025-07-16 00:07:43.309221, no: 13, code 030960 in process
+2025-07-16 00:07:51.550468, no: 14, code 032800 in process
+2025-07-16 00:07:58.931161, no: 15, code 033200 in process
+2025-07-16 00:08:06.391424, no: 16, code 050860 in process
+2025-07-16 00:08:13.709487, no: 17, code 060310 in process
+2025-07-16 00:08:21.056047, no: 18, code 067010 in process
+2025-07-16 00:08:28.351520, no: 19, code 092440 in process
+2025-07-16 00:08:35.791567, no: 20, code 093240 in process
+2025-07-16 00:08:43.339828, no: 21, code 097870 in process
+2025-07-16 00:08:50.879416, no: 22, code 099750 in process
+2025-07-16 00:08:58.876347, no: 23, code 169330 in process
+2025-07-16 00:09:06.232798, no: 24, code 189690 in process
+2025-07-16 00:09:13.634976, no: 25, code 190650 in process
+2025-07-16 00:09:20.969524, no: 26, code 289080 in process
+2025-07-16 00:09:29.560443, no: 27, code 334970 in process
+2025-07-16 00:09:36.388477, no: 28, code 471050 in process
+== Update finished ==
+updating market prices...
+Updating outstanding shares information...
+Processing outstanding shares data for 2025-07-14... 0/150
+Processing outstanding shares data for 2025-07-15... 1/150
