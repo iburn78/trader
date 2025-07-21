@@ -31108,3 +31108,310 @@ rate_changes.png
 
 sent 14,154,218 bytes  received 122,944 bytes  5,710,864.80 bytes/sec
 total size is 1,078,323,103  speedup is 75.53
+[main 59920c0] 2025-07-21 upload done from linux machine
+ 9 files changed, 282 insertions(+)
+To https://github.com/iburn78/trader
+   2bf73e0..59920c0  main -> main
+rtcwake: write error
+이미 업데이트 상태입니다.
+Updating KRX data...
+Updating between dates: 2025-07-14 / 2025-07-22
+-----------------------------
+2025-07-22 00:00:22.649541
+Full rescan codes are 12 items: 
+['002220', '019590', '024090', '029530', '039440', '040350', '041510', '046210', '120030', '338840', '340810', '451760']
+Partial rescan codes are 28 items: 
+['004310', '334890', '481850', '001080', '001720', '002630', '005390', '008110', '018500', '020180', '021820', '021880', '030960', '032800', '033200', '050860', '060310', '067010', '092440', '093240', '097870', '099750', '169330', '189690', '190650', '289080', '334970', '471050']
+Financial data collection log >> 
+2025-07-22 00:00:22.722799, no: 0, code 002220 in process
+2025-07-22 00:00:38.375841, no: 1, code 019590 in process
+2025-07-22 00:00:45.701110, no: 2, code 024090 in process
+2025-07-22 00:01:00.792818, no: 3, code 029530 in process
+2025-07-22 00:01:15.998379, no: 4, code 039440 in process
+2025-07-22 00:01:31.177863, no: 5, code 040350 in process
+----> no: 5, code 040350 unknown exception; process suspended and to be re-tried
+HTTPSConnectionPool(host='opendart.fss.or.kr', port=443): Max retries exceeded with url: /api/fnlttSinglAcnt.json?crtfc_key=5f29227b902e730a9350eacbf2dee9abd6f5623f&corp_code=00346407&bsns_year=2015&reprt_code=11011 (Caused by SSLError(SSLEOFError(8, '[SSL: UNEXPECTED_EOF_WHILE_READING] EOF occurred in violation of protocol (_ssl.c:1007)')))
+** API-changed **
+2025-07-22 00:01:47.505752, no: 5, code 040350 in process
+2025-07-22 00:02:03.124871, no: 6, code 041510 in process
+----> no: 6, code 041510 unknown exception; process suspended and to be re-tried
+HTTPSConnectionPool(host='opendart.fss.or.kr', port=443): Max retries exceeded with url: /api/fnlttSinglAcnt.json?crtfc_key=9c180c67fba16e9a8d8bf3a74112ce0a6dbdb907&corp_code=00260930&bsns_year=2021&reprt_code=11011 (Caused by SSLError(SSLEOFError(8, '[SSL: UNEXPECTED_EOF_WHILE_READING] EOF occurred in violation of protocol (_ssl.c:1007)')))
+** API-changed **
+2025-07-22 00:02:18.227979, no: 6, code 041510 in process
+2025-07-22 00:02:33.953191, no: 7, code 046210 in process
+----> no: 7, code 046210 unknown exception; process suspended and to be re-tried
+HTTPSConnectionPool(host='opendart.fss.or.kr', port=443): Max retries exceeded with url: /api/fnlttSinglAcnt.json?crtfc_key=a1fc27d1b9ed7efbdfee49e92b741635d3c76c26&corp_code=00172079&bsns_year=2023&reprt_code=11011 (Caused by SSLError(SSLEOFError(8, '[SSL: UNEXPECTED_EOF_WHILE_READING] EOF occurred in violation of protocol (_ssl.c:1007)')))
+** API-changed **
+2025-07-22 00:02:49.114745, no: 7, code 046210 in process
+2025-07-22 00:03:04.100766, no: 8, code 120030 in process
+----> no: 8, code 120030 unknown exception; process suspended and to be re-tried
+HTTPSConnectionPool(host='opendart.fss.or.kr', port=443): Max retries exceeded with url: /api/fnlttSinglAcnt.json?crtfc_key=5f29227b902e730a9350eacbf2dee9abd6f5623f&corp_code=00796994&bsns_year=2025&reprt_code=11013 (Caused by SSLError(SSLEOFError(8, '[SSL: UNEXPECTED_EOF_WHILE_READING] EOF occurred in violation of protocol (_ssl.c:1007)')))
+** API-changed **
+2025-07-22 00:03:19.109743, no: 8, code 120030 in process
+2025-07-22 00:03:33.835812, no: 9, code 338840 in process
+2025-07-22 00:03:41.202228, no: 10, code 340810 in process
+2025-07-22 00:03:48.811666, no: 11, code 451760 in process
+Financial data collection log >> 
+2025-07-22 00:03:56.081034, no: 0, code 004310 in process
+2025-07-22 00:04:03.104138, no: 1, code 334890 in process
+2025-07-22 00:04:09.012819, no: 2, code 481850 in process
+2025-07-22 00:04:14.909189, no: 3, code 001080 in process
+2025-07-22 00:04:22.349919, no: 4, code 001720 in process
+2025-07-22 00:04:29.705855, no: 5, code 002630 in process
+2025-07-22 00:04:37.005272, no: 6, code 005390 in process
+2025-07-22 00:04:44.335834, no: 7, code 008110 in process
+2025-07-22 00:04:51.700757, no: 8, code 018500 in process
+2025-07-22 00:04:59.241013, no: 9, code 020180 in process
+2025-07-22 00:05:06.567982, no: 10, code 021820 in process
+2025-07-22 00:05:13.928125, no: 11, code 021880 in process
+2025-07-22 00:05:21.326266, no: 12, code 030960 in process
+2025-07-22 00:05:28.720854, no: 13, code 032800 in process
+2025-07-22 00:05:36.094335, no: 14, code 033200 in process
+2025-07-22 00:05:43.466798, no: 15, code 050860 in process
+2025-07-22 00:05:50.791627, no: 16, code 060310 in process
+2025-07-22 00:05:58.179172, no: 17, code 067010 in process
+2025-07-22 00:06:05.505547, no: 18, code 092440 in process
+2025-07-22 00:06:12.855209, no: 19, code 093240 in process
+2025-07-22 00:06:20.288413, no: 20, code 097870 in process
+2025-07-22 00:06:27.613711, no: 21, code 099750 in process
+2025-07-22 00:06:34.995849, no: 22, code 169330 in process
+2025-07-22 00:06:42.494024, no: 23, code 189690 in process
+2025-07-22 00:06:49.881204, no: 24, code 190650 in process
+2025-07-22 00:06:57.180321, no: 25, code 289080 in process
+2025-07-22 00:07:04.449811, no: 26, code 334970 in process
+2025-07-22 00:07:11.158003, no: 27, code 471050 in process
+== Update finished ==
+updating market prices...
+Updating outstanding shares information...
+Processing outstanding shares data for 2025-07-18... 0/150
+Processing outstanding shares data for 2025-07-21... 1/150
+2025-07-22 QA DB: updating ['002220', '019590', '024090', '029530', '039440', '040350', '041510', '046210', '120030', '338840', '340810', '451760', '004310', '334890', '481850', '001080', '001720', '002630', '005390', '008110', '018500', '020180', '021820', '021880', '030960', '032800', '033200', '050860', '060310', '067010', '092440', '093240', '097870', '099750', '169330', '189690', '190650', '289080', '334970', '471050']
+002220
+019590
+024090
+029530
+039440
+040350
+041510
+046210
+120030
+338840
+340810
+451760
+004310
+334890
+481850
+001080
+001720
+002630
+005390
+008110
+018500
+020180
+021820
+021880
+030960
+032800
+033200
+050860
+060310
+067010
+092440
+093240
+097870
+099750
+169330
+189690
+190650
+289080
+334970
+471050
+002220 | 1/40
+019590 | 2/40
+024090 | 3/40
+029530 | 4/40
+039440 | 5/40
+040350 | 6/40
+041510 | 7/40
+046210 | 8/40
+120030 | 9/40
+338840 | 10/40
+340810 | 11/40
+451760 | 12/40
+004310 | 13/40
+334890 | 14/40
+481850 | 15/40
+001080 | 16/40
+001720 | 17/40
+002630 | 18/40
+005390 | 19/40
+008110 | 20/40
+018500 | 21/40
+020180 | 22/40
+021820 | 23/40
+021880 | 24/40
+030960 | 25/40
+032800 | 26/40
+033200 | 27/40
+050860 | 28/40
+060310 | 29/40
+067010 | 30/40
+092440 | 31/40
+093240 | 32/40
+097870 | 33/40
+099750 | 34/40
+169330 | 35/40
+189690 | 36/40
+190650 | 37/40
+289080 | 38/40
+334970 | 39/40
+471050 | 40/40
+Traceback (most recent call last):
+  File "/home/andy/projects/trader/venv/lib/python3.10/site-packages/urllib3/connection.py", line 203, in _new_conn
+    sock = connection.create_connection(
+  File "/home/andy/projects/trader/venv/lib/python3.10/site-packages/urllib3/util/connection.py", line 60, in create_connection
+    for res in socket.getaddrinfo(host, port, family, socket.SOCK_STREAM):
+  File "/usr/lib/python3.10/socket.py", line 955, in getaddrinfo
+    for res in _socket.getaddrinfo(host, port, family, type, proto, flags):
+socket.gaierror: [Errno -3] Temporary failure in name resolution
+
+The above exception was the direct cause of the following exception:
+
+Traceback (most recent call last):
+  File "/home/andy/projects/trader/venv/lib/python3.10/site-packages/urllib3/connectionpool.py", line 790, in urlopen
+    response = self._make_request(
+  File "/home/andy/projects/trader/venv/lib/python3.10/site-packages/urllib3/connectionpool.py", line 491, in _make_request
+    raise new_e
+  File "/home/andy/projects/trader/venv/lib/python3.10/site-packages/urllib3/connectionpool.py", line 467, in _make_request
+    self._validate_conn(conn)
+  File "/home/andy/projects/trader/venv/lib/python3.10/site-packages/urllib3/connectionpool.py", line 1096, in _validate_conn
+    conn.connect()
+  File "/home/andy/projects/trader/venv/lib/python3.10/site-packages/urllib3/connection.py", line 611, in connect
+    self.sock = sock = self._new_conn()
+  File "/home/andy/projects/trader/venv/lib/python3.10/site-packages/urllib3/connection.py", line 210, in _new_conn
+    raise NameResolutionError(self.host, self, e) from e
+urllib3.exceptions.NameResolutionError: <urllib3.connection.HTTPSConnection object at 0x757e1f8a3bb0>: Failed to resolve 'opendart.fss.or.kr' ([Errno -3] Temporary failure in name resolution)
+
+The above exception was the direct cause of the following exception:
+
+Traceback (most recent call last):
+  File "/home/andy/projects/trader/venv/lib/python3.10/site-packages/requests/adapters.py", line 486, in send
+    resp = conn.urlopen(
+  File "/home/andy/projects/trader/venv/lib/python3.10/site-packages/urllib3/connectionpool.py", line 844, in urlopen
+    retries = retries.increment(
+  File "/home/andy/projects/trader/venv/lib/python3.10/site-packages/urllib3/util/retry.py", line 515, in increment
+    raise MaxRetryError(_pool, url, reason) from reason  # type: ignore[arg-type]
+urllib3.exceptions.MaxRetryError: HTTPSConnectionPool(host='opendart.fss.or.kr', port=443): Max retries exceeded with url: /api/list.json?crtfc_key=5f29227b902e730a9350eacbf2dee9abd6f5623f&corp_code=&bgn_de=20250720&end_de=20250721&last_reprt_at=Y&page_no=1&page_count=100&pblntf_ty=A (Caused by NameResolutionError("<urllib3.connection.HTTPSConnection object at 0x757e1f8a3bb0>: Failed to resolve 'opendart.fss.or.kr' ([Errno -3] Temporary failure in name resolution)"))
+
+During handling of the above exception, another exception occurred:
+
+Traceback (most recent call last):
+  File "/home/andy/projects/trader/data_collection/dc16_DailyUpdate.py", line 41, in <module>
+    l1 = get_krx_unique_update_list(dart, yesterday, today)
+  File "/home/andy/projects/trader/tools/tools.py", line 580, in get_krx_unique_update_list
+    res = dart.list(start=start, end=end, kind='A') # works only withn three month gap between start_day and end_day
+  File "/home/andy/projects/trader/venv/lib/python3.10/site-packages/OpenDartReader/dart.py", line 64, in list
+    return dart_list.list(self.api_key, corp_code, start, end, kind, kind_detail, final)
+  File "/home/andy/projects/trader/venv/lib/python3.10/site-packages/OpenDartReader/dart_list.py", line 32, in list
+    r = requests.get(url, params=params)
+  File "/home/andy/projects/trader/venv/lib/python3.10/site-packages/requests/api.py", line 73, in get
+    return request("get", url, params=params, **kwargs)
+  File "/home/andy/projects/trader/venv/lib/python3.10/site-packages/requests/api.py", line 59, in request
+    return session.request(method=method, url=url, **kwargs)
+  File "/home/andy/projects/trader/venv/lib/python3.10/site-packages/requests/sessions.py", line 589, in request
+    resp = self.send(prep, **send_kwargs)
+  File "/home/andy/projects/trader/venv/lib/python3.10/site-packages/requests/sessions.py", line 703, in send
+    r = adapter.send(request, **kwargs)
+  File "/home/andy/projects/trader/venv/lib/python3.10/site-packages/requests/adapters.py", line 519, in send
+    raise ConnectionError(e, request=request)
+requests.exceptions.ConnectionError: HTTPSConnectionPool(host='opendart.fss.or.kr', port=443): Max retries exceeded with url: /api/list.json?crtfc_key=5f29227b902e730a9350eacbf2dee9abd6f5623f&corp_code=&bgn_de=20250720&end_de=20250721&last_reprt_at=Y&page_no=1&page_count=100&pblntf_ty=A (Caused by NameResolutionError("<urllib3.connection.HTTPSConnection object at 0x757e1f8a3bb0>: Failed to resolve 'opendart.fss.or.kr' ([Errno -3] Temporary failure in name resolution)"))
+sending incremental file list
+
+sent 75 bytes  received 12 bytes  174.00 bytes/sec
+total size is 1,081  speedup is 12.43
+sending incremental file list
+001080.png
+         32,768   9%    0.00kB/s    0:00:00          329,037 100%   94.18MB/s    0:00:00 (xfr#1, to-chk=2576/2629)
+001720.png
+         32,768  17%    7.81MB/s    0:00:00          188,116 100%   29.90MB/s    0:00:00 (xfr#2, to-chk=2544/2629)
+002220.png
+         32,768   6%    4.46MB/s    0:00:00          472,982 100%   32.22MB/s    0:00:00 (xfr#3, to-chk=2524/2629)
+002630.png
+         32,768   8%    2.23MB/s    0:00:00          370,592 100%   17.67MB/s    0:00:00 (xfr#4, to-chk=2508/2629)
+004310.png
+         32,768   6%    1.49MB/s    0:00:00          521,292 100%   15.06MB/s    0:00:00 (xfr#5, to-chk=2435/2629)
+005390.png
+         32,768  10%  941.18kB/s    0:00:00          321,829 100%    7.31MB/s    0:00:00 (xfr#6, to-chk=2392/2629)
+008110.png
+         32,768   6%  727.27kB/s    0:00:00          496,025 100%    6.96MB/s    0:00:00 (xfr#7, to-chk=2305/2629)
+018500.png
+         32,768   7%  410.26kB/s    0:00:00          409,770 100%    3.40MB/s    0:00:00 (xfr#8, to-chk=2101/2629)
+019590.png
+         32,768  15%  248.06kB/s    0:00:00          212,210 100%    1.41MB/s    0:00:00 (xfr#9, to-chk=2086/2629)
+020180.png
+         32,768   6%  222.22kB/s    0:00:02          524,377 100%    2.42MB/s    0:00:00 (xfr#10, to-chk=2078/2629)
+021820.png
+         32,768   6%  153.85kB/s    0:00:02          489,458 100%    1.74MB/s    0:00:00 (xfr#11, to-chk=2067/2629)
+021880.png
+         32,768  13%  118.96kB/s    0:00:01          234,161 100%  796.77kB/s    0:00:00 (xfr#12, to-chk=2066/2629)
+024090.png
+         32,768   8%  106.31kB/s    0:00:03          385,056 100%    1.10MB/s    0:00:00 (xfr#13, to-chk=2042/2629)
+029530.png
+         32,768   7%   92.22kB/s    0:00:04          466,132 100%    1.13MB/s    0:00:00 (xfr#14, to-chk=1985/2629)
+030960.png
+         32,768  11%   80.81kB/s    0:00:03          286,354 100%  656.44kB/s    0:00:00 (xfr#15, to-chk=1972/2629)
+032800.png
+         32,768  10%   74.94kB/s    0:00:03          313,556 100%  646.01kB/s    0:00:00 (xfr#16, to-chk=1948/2629)
+033200.png
+         32,768   6%   67.37kB/s    0:00:06          487,385 100%  911.80kB/s    0:00:00 (xfr#17, to-chk=1934/2629)
+039440.png
+         32,768   6%   61.30kB/s    0:00:07          495,614 100%  827.35kB/s    0:00:00 (xfr#18, to-chk=1818/2629)
+040350.png
+         32,768   5%   54.70kB/s    0:00:09          561,284 100%  847.19kB/s    0:00:00 (xfr#19, to-chk=1806/2629)
+041510.png
+         32,768   6%   48.41kB/s    0:00:09          485,584 100%  632.27kB/s    0:00:00 (xfr#20, to-chk=1798/2629)
+046210.png
+         32,768  13%   42.61kB/s    0:00:04          234,255 100%  298.65kB/s    0:00:00 (xfr#21, to-chk=1740/2629)
+050860.png
+         32,768  11%   41.72kB/s    0:00:06          288,062 100%  365.34kB/s    0:00:00 (xfr#22, to-chk=1694/2629)
+060310.png
+         32,768   8%   41.56kB/s    0:00:08          376,798 100%  429.87kB/s    0:00:00 (xfr#23, to-chk=1584/2629)
+067010.png
+         32,768   6%   37.34kB/s    0:00:13          526,691 100%  574.69kB/s    0:00:00 (xfr#24, to-chk=1510/2629)
+092440.png
+         32,768   6%   35.71kB/s    0:00:12          483,550 100%  500.23kB/s    0:00:00 (xfr#25, to-chk=1273/2629)
+093240.png
+         32,768  10%   33.86kB/s    0:00:07          299,652 100%  299.82kB/s    0:00:00 (xfr#26, to-chk=1263/2629)
+097870.png
+         32,768  10%   32.39kB/s    0:00:08          131,072  42%  128.00kB/s    0:00:01          310,858 100%  299.09kB/s    0:00:01 (xfr#27, to-chk=1221/2629)
+099750.png
+         32,768   6%    1.95MB/s    0:00:00          504,081 100%    6.24MB/s    0:00:00 (xfr#28, to-chk=1208/2629)
+120030.png
+         32,768   6%  415.58kB/s    0:00:01          523,070 100%    3.61MB/s    0:00:00 (xfr#29, to-chk=1093/2629)
+169330.png
+         32,768  10%  230.22kB/s    0:00:01          304,818 100%    1.70MB/s    0:00:00 (xfr#30, to-chk=935/2629)
+189690.png
+         32,768  10%  186.05kB/s    0:00:01          318,968 100%    1.41MB/s    0:00:00 (xfr#31, to-chk=889/2629)
+190650.png
+         32,768  15%  147.47kB/s    0:00:01          215,456 100%  895.35kB/s    0:00:00 (xfr#32, to-chk=885/2629)
+289080.png
+         32,768  14%  136.17kB/s    0:00:01          229,848 100%  850.23kB/s    0:00:00 (xfr#33, to-chk=557/2629)
+334890.png
+         32,768  13%  120.75kB/s    0:00:01          245,861 100%  689.94kB/s    0:00:00 (xfr#34, to-chk=417/2629)
+334970.png
+         32,768   9%   91.69kB/s    0:00:03          352,693 100%  975.71kB/s    0:00:00 (xfr#35, to-chk=416/2629)
+338840.png
+         32,768  10%   90.40kB/s    0:00:03          308,611 100%  784.84kB/s    0:00:00 (xfr#36, to-chk=404/2629)
+340810.png
+         32,768  13%   83.33kB/s    0:00:02          243,948 100%  574.05kB/s    0:00:00 (xfr#37, to-chk=398/2629)
+451760.png
+         32,768  13%   77.11kB/s    0:00:02          248,618 100%  560.72kB/s    0:00:00 (xfr#38, to-chk=116/2629)
+471050.png
+         32,768  16%   71.75kB/s    0:00:02          198,302 100%  418.26kB/s    0:00:00 (xfr#39, to-chk=48/2629)
+481850.png
+         32,768  17%   69.11kB/s    0:00:02          192,125 100%  391.70kB/s    0:00:00 (xfr#40, to-chk=16/2629)
+rate_changes.png
+         32,768  16%   64.91kB/s    0:00:02          192,810 100%  367.76kB/s    0:00:00 (xfr#41, to-chk=0/2629)
+
+sent 14,669,644 bytes  received 124,631 bytes  4,226,935.71 bytes/sec
+total size is 1,078,452,370  speedup is 72.90
