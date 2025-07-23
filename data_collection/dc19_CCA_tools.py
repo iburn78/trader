@@ -1,6 +1,7 @@
 #%% 
 # CCA: Company Classification Analysis
 from trader.tools.tools import get_df_krx
+from trader.data_collection.dc18_Info_DB import get_company_issues, save_GPT_response
 import FinanceDataReader as fdr
 import pandas as pd
 import numpy as np
@@ -445,7 +446,7 @@ def generate_PPT(score_trend, codelist=None, fr_db=fr_db, pr_db=pr_db, outshare_
     for code in score_trend.index[:topN]:
         if codelist != None and code not in codelist: 
             continue
-        print("pricessing", code)
+        print("processing", code)
         slide = prs.slides.add_slide(prs.slide_layouts[0])
         mp_db = get_market_performance_db(code, fr_db, pr_db, outshare_DB)
         img_stream = mp_plot(mp_db)
@@ -456,22 +457,25 @@ def generate_PPT(score_trend, codelist=None, fr_db=fr_db, pr_db=pr_db, outshare_
             if ph.name == 'Text Placeholder 2':
                 ph.text = today_str
             if ph.name == 'Text Placeholder 3':
-                ph.text = openai_command(df_krx.loc[code, "Name"])
-            if ph.name == 'Text Placeholder 4':
                 txt = score_trend.loc[[code]][periods+['avg']].to_string(index=False)
                 rank = str(score_trend.index.get_loc(code) + 1)
                 ph.text = 'rank:' + rank + ', select:' + score_trend.loc[code, 'selected'] + ', top30:' + score_trend.loc[code, 'top30'] + ', MCap:' + str(df_krx.at[code, 'Marcap'] // 10**8) + ', PER:' + str(round(mp_db['PER'].iloc[-1], 2)) + '\n' + txt
 
         slide = prs.slides.add_slide(prs.slide_layouts[1])
+        ph = next(iter(slide.placeholders)) 
+        ph.text = openai_command(code)
+
+        slide = prs.slides.add_slide(prs.slide_layouts[2])
         img_stream = plot_company_financial_summary2(fr_db, pr_db, code, None) 
         slide.shapes.add_picture(img_stream, Inches(0.1), 0, height=prs.slide_height)
 
-        slide = prs.slides.add_slide(prs.slide_layouts[1])
+        slide = prs.slides.add_slide(prs.slide_layouts[2])
         img_path = gen_data_in_html(code)
         slide.shapes.add_picture(img_path, 0, Inches(0.1), width=prs.slide_width)
         os.remove(img_path)
 
     prs.save(CCA_result)
+    print("PPT generation completed...")
 
 # open ai original
 # def openai_command(company_name, conf_file=CONF_FILE):  
@@ -499,7 +503,8 @@ def generate_PPT(score_trend, codelist=None, fr_db=fr_db, pr_db=pr_db, outshare_
 #     return chat_completion.choices[0].message.content
 
 # perplexity
-def openai_command(company_name, conf_file=CONF_FILE):
+def openai_command(code, conf_file=CONF_FILE):
+    company_name = df_krx.loc[code, "Name"]
     with open(conf_file, 'r') as json_file:
         config = json.load(json_file)
         api_key = config['perplexity']
@@ -508,8 +513,36 @@ def openai_command(company_name, conf_file=CONF_FILE):
         api_key=api_key, 
         base_url = "https://api.perplexity.ai" 
     )
-    content_command = f"{company_name} is a listed company in Korea. Give me brief description (1) what is this company's business, (2) why this company's performance is good for the last quarters, (3) what are the key 3 issues ths company is facing?"
-    format_command = "Answer in Korean language, and use only plain text. Total length of answers should not exceed 500 words."
+
+    content_command = (
+        f"{company_name}({code}) is a listed company in Korea. Provide a detailed and specific explanation of "
+        "(1) what this company's core business is, "
+        "(2) why the company has shown strong performance in recent quarters, and "
+        "(3) what the top 3 key issues the company is currently facing. "
+    )
+
+    format_command = (
+        "Answer in Korean using plain text. "
+        "Avoid vague or high-level generalizations. "
+        "The total length must not exceed 700 words. "
+    )
+
+    info, prev, date_prev = get_company_issues(code)
+    if info:
+        info_command = (
+            "The following is additional information. "
+            "Cross-check its validity and use it only if it is important and accurate.\n"
+        )
+        info = info_command + info
+
+    if prev:
+        prev_command = (
+            f"The following is your previous response to the identical query about the company on {date_prev}. "
+            "Refer to it, but update your answer with any new developments since then.\n"
+        )
+        prev = prev_command + prev
+
+    prompt = f"{content_command}\n{format_command}\n\n{info}\n\n{prev}"
 
     chat_completion = client.chat.completions.create(
         model="sonar-pro", # perplexity
@@ -517,12 +550,19 @@ def openai_command(company_name, conf_file=CONF_FILE):
             {
                 "role": "user",
                 "content": (
-                    content_command + " " + format_command
+                    prompt
                 )
             }
-        ], 
-        search_mode="web", 
-        stream=False, 
-        return_citations=True
+        ] 
     )
-    return chat_completion.choices[0].message.content
+    try:
+        citations = getattr(chat_completion, 'citations', [])
+        if citations is []:
+            citations = getattr(chat_completion, 'search_results', [])
+    except:
+        citations = []
+    
+    response = chat_completion.choices[0].message.content + "\n\n" + "\n".join(citations)
+    save_GPT_response(code, response)
+
+    return response
