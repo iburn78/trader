@@ -460,7 +460,7 @@ def generate_PPT(score_trend, codelist=None, fr_db=fr_db, pr_db=pr_db, outshare_
             if ph.name == 'Text Placeholder 4':
                 txt = score_trend.loc[[code]][periods+['avg']].to_string(index=False)
                 rank = str(score_trend.index.get_loc(code) + 1)
-                ph.text = 'rank:' + rank + '   selected:' + score_trend.loc[code, 'selected'] + '   top30:' + score_trend.loc[code, 'top30'] + '   MarCap:' + str(df_krx.at[code, 'Marcap'] // 10**8) + '   PER:' + str(round(mp_db['PER'].iloc[-1], 2)) + '\n' + txt
+                ph.text = 'rank:' + rank + ', select:' + score_trend.loc[code, 'selected'] + ', top30:' + score_trend.loc[code, 'top30'] + ', MCap:' + str(df_krx.at[code, 'Marcap'] // 10**8) + ', PER:' + str(round(mp_db['PER'].iloc[-1], 2)) + '\n' + txt
 
         slide = prs.slides.add_slide(prs.slide_layouts[1])
         img_stream = plot_company_financial_summary2(fr_db, pr_db, code, None) 
@@ -473,18 +473,46 @@ def generate_PPT(score_trend, codelist=None, fr_db=fr_db, pr_db=pr_db, outshare_
 
     prs.save(CCA_result)
 
+# open ai original
+# def openai_command(company_name, conf_file=CONF_FILE):  
+#     with open(conf_file, 'r') as json_file:
+#         config = json.load(json_file)
+#         api_key = config['openai']
 
+#     client = OpenAI(
+#         api_key=api_key
+#     )
+#     content_command = f"{company_name} is a listed company in Korea. Give me brief description (1) what is this company's business, (2) why this company's performance is good for the last quarters, (3) what are the key 3 issues ths company is facing?"
+#     format_command = "Answer in Korean language, and use only plain text. Total length of answers should not exceed 500 words."
+
+#     chat_completion = client.chat.completions.create(
+#         model="gpt-4o-mini", 
+#         messages=[
+#             {
+#                 "role": "user",
+#                 "content": (
+#                     content_command + " " + format_command
+#                 )
+#             }
+#         ]
+#     )
+#     return chat_completion.choices[0].message.content
+
+# perplexity
 def openai_command(company_name, conf_file=CONF_FILE):
     with open(conf_file, 'r') as json_file:
         config = json.load(json_file)
-        api_key = config['openai']
+        api_key = config['perplexity']
 
-    client = OpenAI(api_key=api_key)
+    client = OpenAI(
+        api_key=api_key, 
+        base_url = "https://api.perplexity.ai" 
+    )
     content_command = f"{company_name} is a listed company in Korea. Give me brief description (1) what is this company's business, (2) why this company's performance is good for the last quarters, (3) what are the key 3 issues ths company is facing?"
     format_command = "Answer in Korean language, and use only plain text. Total length of answers should not exceed 500 words."
 
     chat_completion = client.chat.completions.create(
-        model="gpt-4o-mini",
+        model="sonar-pro", # perplexity
         messages=[
             {
                 "role": "user",
@@ -492,6 +520,9 @@ def openai_command(company_name, conf_file=CONF_FILE):
                     content_command + " " + format_command
                 )
             }
-        ]
+        ], 
+        search_mode="web", 
+        stream=False, 
+        return_citations=True
     )
     return chat_completion.choices[0].message.content
