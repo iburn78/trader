@@ -10959,3 +10959,177 @@ Financial data collection log >>
 updating market prices...
 Updating outstanding shares information...
 Processing outstanding shares data for 2025-07-18... 0/150
+Updating KRX data...
+Updating between dates: 2025-07-13 / 2025-07-21
+-----------------------------
+2025-07-21 00:00:23.077858
+Full rescan codes are 11 items: 
+['002220', '024090', '029530', '039440', '040350', '041510', '046210', '120030', '338840', '340810', '451760']
+Partial rescan codes are 28 items: 
+['004310', '334890', '481850', '001080', '001720', '002630', '005390', '008110', '018500', '020180', '021820', '021880', '030960', '032800', '033200', '050860', '060310', '067010', '092440', '093240', '097870', '099750', '169330', '189690', '190650', '289080', '334970', '471050']
+Financial data collection log >> 
+2025-07-21 00:00:23.150037, no: 0, code 002220 in process
+2025-07-21 00:00:38.204933, no: 1, code 024090 in process
+2025-07-21 00:00:53.220162, no: 2, code 029530 in process
+2025-07-21 00:01:08.122298, no: 3, code 039440 in process
+2025-07-21 00:01:23.012290, no: 4, code 040350 in process
+2025-07-21 00:01:37.989717, no: 5, code 041510 in process
+2025-07-21 00:01:52.691601, no: 6, code 046210 in process
+2025-07-21 00:02:07.247495, no: 7, code 120030 in process
+2025-07-21 00:02:21.783404, no: 8, code 338840 in process
+2025-07-21 00:02:29.033265, no: 9, code 340810 in process
+2025-07-21 00:02:36.576604, no: 10, code 451760 in process
+Financial data collection log >> 
+2025-07-21 00:02:43.841104, no: 0, code 004310 in process
+2025-07-21 00:02:50.933230, no: 1, code 334890 in process
+2025-07-21 00:02:56.771943, no: 2, code 481850 in process
+2025-07-21 00:03:02.712142, no: 3, code 001080 in process
+2025-07-21 00:03:09.923731, no: 4, code 001720 in process
+2025-07-21 00:03:17.207310, no: 5, code 002630 in process
+2025-07-21 00:03:24.414353, no: 6, code 005390 in process
+2025-07-21 00:03:31.707555, no: 7, code 008110 in process
+2025-07-21 00:03:39.048678, no: 8, code 018500 in process
+2025-07-21 00:03:46.652032, no: 9, code 020180 in process
+2025-07-21 00:03:53.913330, no: 10, code 021820 in process
+2025-07-21 00:04:01.139439, no: 11, code 021880 in process
+2025-07-21 00:04:08.361855, no: 12, code 030960 in process
+2025-07-21 00:04:15.582492, no: 13, code 032800 in process
+2025-07-21 00:04:22.903313, no: 14, code 033200 in process
+2025-07-21 00:04:30.162146, no: 15, code 050860 in process
+2025-07-21 00:04:37.456350, no: 16, code 060310 in process
+2025-07-21 00:04:44.689822, no: 17, code 067010 in process
+2025-07-21 00:04:51.925792, no: 18, code 092440 in process
+2025-07-21 00:04:59.235346, no: 19, code 093240 in process
+2025-07-21 00:05:06.520419, no: 20, code 097870 in process
+2025-07-21 00:05:13.797339, no: 21, code 099750 in process
+2025-07-21 00:05:21.084708, no: 22, code 169330 in process
+2025-07-21 00:05:28.465306, no: 23, code 189690 in process
+2025-07-21 00:05:35.775443, no: 24, code 190650 in process
+2025-07-21 00:05:43.089640, no: 25, code 289080 in process
+2025-07-21 00:05:50.341361, no: 26, code 334970 in process
+2025-07-21 00:05:56.996193, no: 27, code 471050 in process
+== Update finished ==
+updating market prices...
+Updating outstanding shares information...
+Processing outstanding shares data for 2025-07-18... 0/150
+Updating KRX data...
+Updating between dates: 2025-07-14 / 2025-07-22
+-----------------------------
+2025-07-22 00:00:22.649541
+Full rescan codes are 12 items: 
+['002220', '019590', '024090', '029530', '039440', '040350', '041510', '046210', '120030', '338840', '340810', '451760']
+Partial rescan codes are 28 items: 
+['004310', '334890', '481850', '001080', '001720', '002630', '005390', '008110', '018500', '020180', '021820', '021880', '030960', '032800', '033200', '050860', '060310', '067010', '092440', '093240', '097870', '099750', '169330', '189690', '190650', '289080', '334970', '471050']
+Financial data collection log >> 
+2025-07-22 00:00:22.722799, no: 0, code 002220 in process
+2025-07-22 00:00:38.375841, no: 1, code 019590 in process
+2025-07-22 00:00:45.701110, no: 2, code 024090 in process
+2025-07-22 00:01:00.792818, no: 3, code 029530 in process
+2025-07-22 00:01:15.998379, no: 4, code 039440 in process
+2025-07-22 00:01:31.177863, no: 5, code 040350 in process
+----> no: 5, code 040350 unknown exception; process suspended and to be re-tried
+HTTPSConnectionPool(host='opendart.fss.or.kr', port=443): Max retries exceeded with url: /api/fnlttSinglAcnt.json?crtfc_key=5f29227b902e730a9350eacbf2dee9abd6f5623f&corp_code=00346407&bsns_year=2015&reprt_code=11011 (Caused by SSLError(SSLEOFError(8, '[SSL: UNEXPECTED_EOF_WHILE_READING] EOF occurred in violation of protocol (_ssl.c:1007)')))
+** API-changed **
+2025-07-22 00:01:47.505752, no: 5, code 040350 in process
+2025-07-22 00:02:03.124871, no: 6, code 041510 in process
+----> no: 6, code 041510 unknown exception; process suspended and to be re-tried
+HTTPSConnectionPool(host='opendart.fss.or.kr', port=443): Max retries exceeded with url: /api/fnlttSinglAcnt.json?crtfc_key=9c180c67fba16e9a8d8bf3a74112ce0a6dbdb907&corp_code=00260930&bsns_year=2021&reprt_code=11011 (Caused by SSLError(SSLEOFError(8, '[SSL: UNEXPECTED_EOF_WHILE_READING] EOF occurred in violation of protocol (_ssl.c:1007)')))
+** API-changed **
+2025-07-22 00:02:18.227979, no: 6, code 041510 in process
+2025-07-22 00:02:33.953191, no: 7, code 046210 in process
+----> no: 7, code 046210 unknown exception; process suspended and to be re-tried
+HTTPSConnectionPool(host='opendart.fss.or.kr', port=443): Max retries exceeded with url: /api/fnlttSinglAcnt.json?crtfc_key=a1fc27d1b9ed7efbdfee49e92b741635d3c76c26&corp_code=00172079&bsns_year=2023&reprt_code=11011 (Caused by SSLError(SSLEOFError(8, '[SSL: UNEXPECTED_EOF_WHILE_READING] EOF occurred in violation of protocol (_ssl.c:1007)')))
+** API-changed **
+2025-07-22 00:02:49.114745, no: 7, code 046210 in process
+2025-07-22 00:03:04.100766, no: 8, code 120030 in process
+----> no: 8, code 120030 unknown exception; process suspended and to be re-tried
+HTTPSConnectionPool(host='opendart.fss.or.kr', port=443): Max retries exceeded with url: /api/fnlttSinglAcnt.json?crtfc_key=5f29227b902e730a9350eacbf2dee9abd6f5623f&corp_code=00796994&bsns_year=2025&reprt_code=11013 (Caused by SSLError(SSLEOFError(8, '[SSL: UNEXPECTED_EOF_WHILE_READING] EOF occurred in violation of protocol (_ssl.c:1007)')))
+** API-changed **
+2025-07-22 00:03:19.109743, no: 8, code 120030 in process
+2025-07-22 00:03:33.835812, no: 9, code 338840 in process
+2025-07-22 00:03:41.202228, no: 10, code 340810 in process
+2025-07-22 00:03:48.811666, no: 11, code 451760 in process
+Financial data collection log >> 
+2025-07-22 00:03:56.081034, no: 0, code 004310 in process
+2025-07-22 00:04:03.104138, no: 1, code 334890 in process
+2025-07-22 00:04:09.012819, no: 2, code 481850 in process
+2025-07-22 00:04:14.909189, no: 3, code 001080 in process
+2025-07-22 00:04:22.349919, no: 4, code 001720 in process
+2025-07-22 00:04:29.705855, no: 5, code 002630 in process
+2025-07-22 00:04:37.005272, no: 6, code 005390 in process
+2025-07-22 00:04:44.335834, no: 7, code 008110 in process
+2025-07-22 00:04:51.700757, no: 8, code 018500 in process
+2025-07-22 00:04:59.241013, no: 9, code 020180 in process
+2025-07-22 00:05:06.567982, no: 10, code 021820 in process
+2025-07-22 00:05:13.928125, no: 11, code 021880 in process
+2025-07-22 00:05:21.326266, no: 12, code 030960 in process
+2025-07-22 00:05:28.720854, no: 13, code 032800 in process
+2025-07-22 00:05:36.094335, no: 14, code 033200 in process
+2025-07-22 00:05:43.466798, no: 15, code 050860 in process
+2025-07-22 00:05:50.791627, no: 16, code 060310 in process
+2025-07-22 00:05:58.179172, no: 17, code 067010 in process
+2025-07-22 00:06:05.505547, no: 18, code 092440 in process
+2025-07-22 00:06:12.855209, no: 19, code 093240 in process
+2025-07-22 00:06:20.288413, no: 20, code 097870 in process
+2025-07-22 00:06:27.613711, no: 21, code 099750 in process
+2025-07-22 00:06:34.995849, no: 22, code 169330 in process
+2025-07-22 00:06:42.494024, no: 23, code 189690 in process
+2025-07-22 00:06:49.881204, no: 24, code 190650 in process
+2025-07-22 00:06:57.180321, no: 25, code 289080 in process
+2025-07-22 00:07:04.449811, no: 26, code 334970 in process
+2025-07-22 00:07:11.158003, no: 27, code 471050 in process
+== Update finished ==
+updating market prices...
+Updating outstanding shares information...
+Processing outstanding shares data for 2025-07-18... 0/150
+Processing outstanding shares data for 2025-07-21... 1/150
+Updating KRX data...
+Updating between dates: 2025-07-15 / 2025-07-23
+-----------------------------
+2025-07-23 00:00:21.970895
+Full rescan codes are 10 items: 
+['002220', '019590', '024090', '029530', '041510', '046210', '120030', '338840', '340810', '451760']
+Partial rescan codes are 25 items: 
+['001080', '001720', '002630', '005390', '008110', '018500', '020180', '021820', '021880', '030960', '032800', '033200', '050860', '060310', '067010', '092440', '093240', '097870', '099750', '169330', '189690', '190650', '289080', '334970', '471050']
+Financial data collection log >> 
+2025-07-23 00:00:22.042700, no: 0, code 002220 in process
+2025-07-23 00:00:37.237028, no: 1, code 019590 in process
+2025-07-23 00:00:44.577941, no: 2, code 024090 in process
+2025-07-23 00:00:59.671744, no: 3, code 029530 in process
+2025-07-23 00:01:14.685589, no: 4, code 041510 in process
+2025-07-23 00:01:29.850733, no: 5, code 046210 in process
+2025-07-23 00:01:44.542356, no: 6, code 120030 in process
+2025-07-23 00:01:59.066938, no: 7, code 338840 in process
+2025-07-23 00:02:06.296348, no: 8, code 340810 in process
+2025-07-23 00:02:13.813794, no: 9, code 451760 in process
+Financial data collection log >> 
+2025-07-23 00:02:20.942161, no: 0, code 001080 in process
+2025-07-23 00:02:33.302394, no: 1, code 001720 in process
+2025-07-23 00:02:41.128950, no: 2, code 002630 in process
+2025-07-23 00:02:48.520602, no: 3, code 005390 in process
+2025-07-23 00:02:55.814137, no: 4, code 008110 in process
+2025-07-23 00:03:03.070938, no: 5, code 018500 in process
+2025-07-23 00:03:10.304777, no: 6, code 020180 in process
+2025-07-23 00:03:17.528842, no: 7, code 021820 in process
+2025-07-23 00:03:24.784448, no: 8, code 021880 in process
+2025-07-23 00:03:32.084877, no: 9, code 030960 in process
+2025-07-23 00:03:39.524361, no: 10, code 032800 in process
+2025-07-23 00:03:46.876570, no: 11, code 033200 in process
+2025-07-23 00:03:54.174456, no: 12, code 050860 in process
+2025-07-23 00:04:01.406068, no: 13, code 060310 in process
+2025-07-23 00:04:08.762954, no: 14, code 067010 in process
+2025-07-23 00:04:16.001149, no: 15, code 092440 in process
+2025-07-23 00:04:23.316900, no: 16, code 093240 in process
+2025-07-23 00:04:30.590571, no: 17, code 097870 in process
+2025-07-23 00:04:37.914146, no: 18, code 099750 in process
+2025-07-23 00:04:45.199799, no: 19, code 169330 in process
+2025-07-23 00:04:52.501178, no: 20, code 189690 in process
+2025-07-23 00:04:59.792062, no: 21, code 190650 in process
+2025-07-23 00:05:07.208050, no: 22, code 289080 in process
+2025-07-23 00:05:14.457964, no: 23, code 334970 in process
+2025-07-23 00:05:21.099939, no: 24, code 471050 in process
+== Update finished ==
+updating market prices...
+Updating outstanding shares information...
+Processing outstanding shares data for 2025-07-21... 0/150
+Processing outstanding shares data for 2025-07-22... 1/150
