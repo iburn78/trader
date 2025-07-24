@@ -2,13 +2,14 @@
 # CCA: Company Classification Analysis
 from trader.tools.tools import get_df_krx
 from trader.data_collection.dc18_Info_DB import get_company_issues, save_GPT_response
-import FinanceDataReader as fdr
 import pandas as pd
 import numpy as np
 import os
 from html2image import Html2Image
 from openai import OpenAI
 import json
+import re
+from datetime import datetime, timedelta
 
 # ----------------------------------------------------------
 # BELOW: Classification Logic
@@ -505,14 +506,6 @@ def generate_PPT(score_trend, codelist=None, fr_db=fr_db, pr_db=pr_db, outshare_
 # perplexity
 def openai_command(code, conf_file=CONF_FILE):
     company_name = df_krx.loc[code, "Name"]
-    with open(conf_file, 'r') as json_file:
-        config = json.load(json_file)
-        api_key = config['perplexity']
-
-    client = OpenAI(
-        api_key=api_key, 
-        base_url = "https://api.perplexity.ai" 
-    )
 
     content_command = (
         f"{company_name}({code}) is a listed company in Korea. Provide a detailed and specific explanation of "
@@ -528,6 +521,11 @@ def openai_command(code, conf_file=CONF_FILE):
     )
 
     info, prev, date_prev = get_company_issues(code)
+
+    # if the prev gpt response is saved within 7 days, pass
+    if datetime.today() - datetime.strptime(date_prev, '%Y-%m-%d') < timedelta(days=7):
+        return prev
+
     if info:
         info_command = (
             "The following is additional information. "
@@ -542,7 +540,17 @@ def openai_command(code, conf_file=CONF_FILE):
         )
         prev = prev_command + prev
 
-    prompt = f"{content_command}\n{format_command}\n\n{info}\n\n{prev}"
+    extras = "\n\n".join(filter(None, [info, prev]))
+    prompt = f"{content_command}\n{format_command}\n\n{extras}"
+
+    with open(conf_file, 'r') as json_file:
+        config = json.load(json_file)
+        api_key = config['perplexity']
+
+    client = OpenAI(
+        api_key=api_key, 
+        base_url = "https://api.perplexity.ai" 
+    )
 
     chat_completion = client.chat.completions.create(
         model="sonar-pro", # perplexity
@@ -557,12 +565,20 @@ def openai_command(code, conf_file=CONF_FILE):
     )
     try:
         citations = getattr(chat_completion, 'citations', [])
-        if citations is []:
+        if not citations:
             citations = getattr(chat_completion, 'search_results', [])
     except:
         citations = []
     
-    response = chat_completion.choices[0].message.content + "\n\n" + "\n".join(citations)
+    response = chat_completion.choices[0].message.content
+    response = simple_text_formatting(response)
+    response = response + "\n\n" + "\n".join(citations)
     save_GPT_response(code, response)
 
     return response
+
+def simple_text_formatting(text):
+    text = re.sub(r"\*\*(.+?)\*\*", r"[\1]", text)                  # **bold** → [bold]
+    text = re.sub(r"^-{3,}\s*$", "\n", text, flags=re.MULTILINE)    # line of 3+ dashes → empty line
+    text = re.sub(r"(\n\s*){3,}", "\n\n", text)                     # 3+ empty/whitespace lines → 1 empty line
+    return text.strip()
