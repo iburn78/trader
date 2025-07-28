@@ -10,6 +10,7 @@ from openai import OpenAI
 import json
 import re
 from datetime import datetime, timedelta
+import FinanceDataReader as fdr
 
 # ----------------------------------------------------------
 # BELOW: Classification Logic
@@ -247,10 +248,13 @@ def gen_qdata(code, period:str, qa_db = qa_db):
     meta = qa_db.loc[code, 'meta']
     rv, stats, styled = _preprocess_showdata(data_dict)
     p = int(period.replace("Q", ""))
-
+    try:
+        pct = round(rv[1]/p*100, 1)
+    except:
+        pct = "err"
     desc = meta['name'] + ' ' + code + ' / period: ' + period + ' / LQ: ' + meta['last_quarter'] + '\n'
     desc += f'revenue growth:   {rv[0]} %' + '\n'
-    desc += f'dip (times):      {rv[1]} ({int(rv[1]/p*100)}%)' + '\n'
+    desc += f'dip (times):      {rv[1]} ({pct}%)' + '\n'
     desc += f"op margin:        {stats.loc['opmargin', 'mean']} %" + '\n'
     desc += f"debt to equity:   {stats.loc['debt.to.equity', 'mean']} %" 
 
@@ -270,10 +274,14 @@ def gen_summary(code, period:str = None, qa_db = qa_db):
             continue
         rv, stats, _ = _preprocess_showdata(data_dict)
         p = int(period.replace("Q", ""))
+        try:
+            pct = round(rv[1]/p*100, 1)
+        except:
+            pct = "err"
         row = {
             'period': period,
             'revenue_growth': rv[0],
-            'dip': f"{rv[1]} ({int(rv[1]/p*100)}%)",
+            'dip': f"{rv[1]} {pct}%",
             'opmargin': stats.loc['opmargin', 'mean'],
             'debt.to.equity': stats.loc['debt.to.equity', 'mean']
         }
@@ -300,7 +308,7 @@ def gen_summary(code, period:str = None, qa_db = qa_db):
 
     return desc, styled
     
-def gen_data_in_html(code, qa_db = qa_db): 
+def gen_data_in_html(code):
     summary_desc, summary_df = gen_summary(code)
     summary_desc = summary_desc.replace('\n', '<br>')
     summary_df = summary_df.to_html()
@@ -348,8 +356,9 @@ def gen_data_in_html(code, qa_db = qa_db):
     </html>
     """
     cd_ = os.path.dirname(os.path.abspath(__file__))
-    temp_html = os.path.join(cd_, 'CCA/temp/temp.html')
     img_path = os.path.join(cd_, 'CCA/temp/')
+    temp_html = os.path.join(img_path, 'temp.html')
+    os.makedirs(img_path, exist_ok=True)
     filename = 'temp.png'
     with open("CCA/temp/temp.html", "w", encoding="utf-8") as f:
         f.write(full_html)  
@@ -360,8 +369,61 @@ def gen_data_in_html(code, qa_db = qa_db):
 
     return os.path.join(img_path, filename)
 
+
+def styled_df_to_image(df):
+
+    # Apply conditional formatting: negative numbers in bold red
+    def style_negative(v):
+        if isinstance(v, (int, float)) and v < 0:
+            return 'color: red; font-weight: bold;'
+        return ''
+
+    styled_df = df.style.map(style_negative) \
+    .format(lambda x: ('{0}'.format(x)).rstrip('0').rstrip('.') if isinstance(x, float) else x) \
+    .set_table_attributes('border="1" class="dataframe"') \
+    .set_table_styles([
+        {'selector': 'th', 'props': [('font-size', '12px'), ('text-align', 'center')]},
+        {'selector': 'td', 'props': [('font-size', '12px'), ('text-align', 'center')]},
+    ])
+
+    # Convert styled DataFrame to HTML
+    full_html = f"""
+    <html>
+    <head>
+    <meta charset="utf-8">
+    <style>
+        body {{ font-family: Arial; font-size: 12px; margin: 0; padding: 5px; background: white; }}
+        table {{ border-collapse: collapse; width: 100%; }}
+        th, td {{ border: 1px solid #ccc; padding: 2px; text-align: center; }}
+    </style>
+    </head>
+    <body>
+        {styled_df.to_html()}
+        <br>
+        Run as of {datetime.now().strftime("%Y-%m-%d_%H:%M")}. <br>
+        Note: If the databases have not been updated, PER, PBR, market cap, etc., may reflect the values as of the last database update (usually last night). Only the price shown in this table reflects the current run-time value.
+    </body>
+    </html>
+    """
+
+    cd_ = os.path.dirname(os.path.abspath(__file__))
+    img_path = os.path.join(cd_, 'CCA/temp/')
+    temp_html = os.path.join(img_path, 'temp.html')
+    os.makedirs(img_path, exist_ok=True)
+    filename = 'temp.png'
+    with open(temp_html, "w", encoding="utf-8") as f:
+        f.write(full_html)
+
+    hti = Html2Image(output_path=img_path)
+    hti.screenshot(html_file=temp_html, save_as=filename, size=(900, 1200))
+    os.remove(temp_html)
+
+    return os.path.join(img_path, filename)
+
+
+
 # ----------------------------------------------------------
-# BELOW: PPT Generation
+# BELOW: Post processing and PPT Generation
 # ----------------------------------------------------------
 
 import io
@@ -435,32 +497,86 @@ def mp_plot(mp_db, columns=['price', 'PER', 'PBR']):
     # plt.show()
     # plt.savefig("----.png")
 
+def get_late_prices(codelist, days=7):
+    start_date = (datetime.today() - timedelta(days=days)).strftime('%Y-%m-%d')
+    res = pd.DataFrame()
 
-def generate_PPT(score_trend, codelist=None, fr_db=fr_db, pr_db=pr_db, outshare_DB=outshare_DB, df_krx=df_krx, topN = 100):
-    cd_ = os.path.dirname(os.path.abspath(__file__)) # .
-    today_str = pd.Timestamp.today().strftime('%Y-%m-%d_%H%M')
-    CCA_template = os.path.join(cd_, 'CCA/CCA_template.pptx')
-    CCA_result = os.path.join(cd_, f'CCA/CCA_result_{today_str}.pptx')
-    prs = Presentation(CCA_template)
+    for code in codelist:
+        df = fdr.DataReader(code, start_date)['Close']
+        df.name = code  # name the Series as the stock code
+        res = pd.concat([res, df], axis=1)
+
+    res = res.T
+    res.columns = pd.to_datetime(res.columns).strftime("%m-%d")
+    return res  # transpose to have stock codes as index and dates as columns
+
+def get_codelist_summary(codelist, days=7, df_krx=df_krx):
+    last_prices = get_late_prices(codelist, days)
+    pr_changes = (last_prices.pct_change(axis=1) * 100).round(2).dropna(axis=1)
+    pr_changes.insert(0, 'name', '')
+    for code in pr_changes.index:
+        pr_changes.loc[code, 'name'] = df_krx.loc[code, "Name"]
+        pr_changes.loc[code, 'price'] = last_prices.loc[code, last_prices.columns[-1]]
+        pr_changes.loc[code, 'marcap'] = df_krx.loc[code, "Marcap"]/10**8
+    pr_changes['marcap'] = pr_changes['marcap'].round().astype(int)
+    return pr_changes
+
+def post_process(score_trend, qa_db=qa_db, fr_db=fr_db, pr_db=pr_db, outshare_DB=outshare_DB, df_krx=df_krx, top_N = top_N):
+    data_dict = {}
+    mp_db_dict = {}
     periods = get_periods(qa_db)
 
-    for code in score_trend.index[:topN]:
-        if codelist != None and code not in codelist: 
-            continue
+    cls = get_codelist_summary(score_trend.index)
+    for code in score_trend.index: 
         print("processing", code)
-        slide = prs.slides.add_slide(prs.slide_layouts[0])
         mp_db = get_market_performance_db(code, fr_db, pr_db, outshare_DB)
-        img_stream = mp_plot(mp_db)
+        mp_db_dict[code] = mp_db
+        cls.loc[code, 'PER'] = round(mp_db['PER'].iloc[-1], 2)
+        rank = str(score_trend.index.get_loc(code) + 1)
+        cls.loc[code, 'rank'] = rank 
+        txt = score_trend.loc[[code]][periods+['avg']].to_string(index=False)
+        cls.loc[code, 'note'] = 'rank:' + rank + ', select:' + score_trend.loc[code, 'selected'] + f', top{str(top_N)}:' + score_trend.loc[code, f'top{str(top_N)}'] + ', MCap:' + str(df_krx.at[code, 'Marcap'] // 10**8) + ', PER:' + str(round(mp_db['PER'].iloc[-1], 2)) + '\n' + txt
+
+    data_dict['codelist_summary'] = cls
+    data_dict['mp_db_dict'] = mp_db_dict
+
+    # codelist selection logic ------------------
+    PER_limit = 10
+    scodelist = cls.loc[(cls['PER'] > 0) & (cls['PER'] < PER_limit)].index
+    data_dict['select_codelist'] = scodelist
+    data_dict['select_codelist_summary'] = cls.loc[cls.index.isin(scodelist)].drop('note', axis=1)
+
+
+    return data_dict
+
+def generate_PPT(data_dict, fr_db=fr_db, pr_db=pr_db):
+
+    cd_ = os.path.dirname(os.path.abspath(__file__)) # .
+    CCA_folder = 'CCA'
+    today_str = pd.Timestamp.today().strftime('%Y-%m-%d_%H%M')
+    CCA_template = os.path.join(cd_, CCA_folder, 'CCA_template.pptx')
+    CCA_result = os.path.join(cd_, CCA_folder, f'CCA_result_{today_str}.pptx')
+    prs = Presentation(CCA_template)
+
+    # Codelist summary page 
+    slide = prs.slides.add_slide(prs.slide_layouts[2])
+    img_path = styled_df_to_image(data_dict['select_codelist_summary'])
+    slide.shapes.add_picture(img_path, 0, Inches(0.1), width=prs.slide_width*0.55)
+    os.remove(img_path)
+
+    # Per code pages 
+    for code in data_dict['select_codelist']:
+        print("slide generating for", code)
+        slide = prs.slides.add_slide(prs.slide_layouts[0])
+        img_stream = mp_plot(data_dict['mp_db_dict'][code])
         slide.shapes.add_picture(img_stream, Inches(0.1), Inches(0.5), height=Inches(6))
         for ph in slide.placeholders: 
             if ph.name == 'Text Placeholder 1':
-                ph.text = df_krx.loc[code, 'Name'] + f" ({code})"
+                ph.text = data_dict['codelist_summary'].loc[code, 'name']
             if ph.name == 'Text Placeholder 2':
                 ph.text = today_str
             if ph.name == 'Text Placeholder 3':
-                txt = score_trend.loc[[code]][periods+['avg']].to_string(index=False)
-                rank = str(score_trend.index.get_loc(code) + 1)
-                ph.text = 'rank:' + rank + ', select:' + score_trend.loc[code, 'selected'] + ', top30:' + score_trend.loc[code, 'top30'] + ', MCap:' + str(df_krx.at[code, 'Marcap'] // 10**8) + ', PER:' + str(round(mp_db['PER'].iloc[-1], 2)) + '\n' + txt
+                ph.text = data_dict['codelist_summary'].loc[code, 'note']
 
         slide = prs.slides.add_slide(prs.slide_layouts[1])
         ph = next(iter(slide.placeholders)) 
@@ -524,7 +640,8 @@ def openai_command(code, conf_file=CONF_FILE):
 
     # if the prev gpt response is saved within 7 days, pass
     if datetime.today() - datetime.strptime(date_prev, '%Y-%m-%d') < timedelta(days=7):
-        return prev
+        if prev:
+            return prev
 
     if info:
         info_command = (
