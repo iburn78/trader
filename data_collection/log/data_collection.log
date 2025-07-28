@@ -11380,3 +11380,60 @@ Financial data collection log >>
 updating market prices...
 Updating outstanding shares information...
 Processing outstanding shares data for 2025-07-25... 0/150
+Updating KRX data...
+Updating between dates: 2025-07-21 / 2025-07-29
+-----------------------------
+2025-07-29 00:00:23.220122
+Full rescan codes are 10 items: 
+['011170', '019590', '033270', '049960', '066430', '066670', '089600', '171090', '317400', '471050']
+Partial rescan codes are 25 items: 
+['001080', '001720', '002630', '005390', '008110', '018500', '020180', '021820', '021880', '030960', '032800', '033200', '050860', '060310', '067010', '092440', '093240', '097870', '099750', '169330', '189690', '190650', '289080', '334970', '471050']
+Financial data collection log >> 
+2025-07-29 00:00:23.290728, no: 0, code 011170 in process
+----> no: 0, code 011170 unknown exception; process suspended and to be re-tried
+('Connection aborted.', RemoteDisconnected('Remote end closed connection without response'))
+** API-changed **
+2025-07-29 00:02:00.287273, no: 0, code 011170 in process
+----> no: 0, code 011170 unknown exception; process suspended and to be re-tried
+("Connection broken: InvalidChunkLength(got length b'', 0 bytes read)", InvalidChunkLength(got length b'', 0 bytes read))
+** API-changed **
+2025-07-29 00:03:40.546194, no: 0, code 011170 in process
+----> no: 0, code 011170 unknown exception; process suspended and to be re-tried
+('Connection aborted.', RemoteDisconnected('Remote end closed connection without response'))
+** API-changed **
+2025-07-29 00:05:30.407104, no: 0, code 011170 in process
+----> no: 0, code 011170 unknown exception; process suspended and to be re-tried
+("Connection broken: InvalidChunkLength(got length b'', 0 bytes read)", InvalidChunkLength(got length b'', 0 bytes read))
+** API-changed **
+2025-07-29 00:07:21.495971, no: 0, code 011170 in process
+----> no: 0, code 011170 unknown exception; process suspended and to be re-tried
+('Connection aborted.', RemoteDisconnected('Remote end closed connection without response'))
+** API-changed **
+2025-07-29 00:09:19.544045, no: 0, code 011170 in process
+----> no: 0, code 011170 unknown exception; process suspended and to be re-tried
+("Connection broken: InvalidChunkLength(got length b'', 0 bytes read)", InvalidChunkLength(got length b'', 0 bytes read))
+** API-changed **
+2025-07-29 00:11:21.378553, no: 0, code 011170 in process
+----> no: 0, code 011170 unknown exception; process suspended and to be re-tried
+("Connection broken: InvalidChunkLength(got length b'', 0 bytes read)", InvalidChunkLength(got length b'', 0 bytes read))
+** API-changed **
+2025-07-29 00:13:28.258565, no: 0, code 011170 in process
+----> no: 0, code 011170 unknown exception; process suspended and to be re-tried
+("Connection broken: InvalidChunkLength(got length b'', 0 bytes read)", InvalidChunkLength(got length b'', 0 bytes read))
+** API-changed **
+2025-07-29 00:15:39.243512, no: 0, code 011170 in process
+----> no: 0, code 011170 unknown exception; process suspended and to be re-tried
+("Connection broken: InvalidChunkLength(got length b'', 0 bytes read)", InvalidChunkLength(got length b'', 0 bytes read))
+** API-changed **
+2025-07-29 00:17:54.275638, no: 0, code 011170 in process
+----> no: 0, code 011170 unknown exception; process suspended and to be re-tried
+("Connection broken: InvalidChunkLength(got length b'', 0 bytes read)", InvalidChunkLength(got length b'', 0 bytes read))
+** API-changed **
+2025-07-29 00:20:16.481627, no: 0, code 011170 in process
+----> no: 0, code 011170 unknown exception; process suspended and to be re-tried
+("Connection broken: InvalidChunkLength(got length b'', 0 bytes read)", InvalidChunkLength(got length b'', 0 bytes read))
+** ERROR TRIAL LIMIT REACHED - Entire Process Halted **
+updating market prices...
+Updating outstanding shares information...
+Processing outstanding shares data for 2025-07-25... 0/150
+Processing outstanding shares data for 2025-07-28... 1/150

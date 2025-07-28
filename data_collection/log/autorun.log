@@ -32684,3 +32684,155 @@ rate_changes.png
 
 sent 11,737,748 bytes  received 102,083 bytes  4,735,932.40 bytes/sec
 total size is 1,078,466,407  speedup is 91.09
+[main 315b348] 2025-07-28 upload done from linux machine
+ 9 files changed, 244 insertions(+)
+To https://github.com/iburn78/trader
+   c74ad6e..315b348  main -> main
+rtcwake: write error
+https://github.com/iburn78/trader URL에서
+   315b348..a10ba76  main       -> origin/main
+업데이트 중 315b348..a10ba76
+Fast-forward
+ data_collection/CCA/info_db.xlsx  | Bin 40446 -> 92508 bytes
+ data_collection/CCA/temp/data.pkl | Bin 0 -> 8432208 bytes
+ data_collection/CCA/temp/note.txt |   2 +
+ data_collection/dc19_CCA_tools.py | 159 +++++++++++++++++++++++++++++++++-----
+ data_collection/dc20_CCA.py       |  15 +++-
+ 5 files changed, 152 insertions(+), 24 deletions(-)
+ create mode 100644 data_collection/CCA/temp/data.pkl
+ create mode 100644 data_collection/CCA/temp/note.txt
+Updating KRX data...
+Updating between dates: 2025-07-21 / 2025-07-29
+-----------------------------
+2025-07-29 00:00:23.220122
+Full rescan codes are 10 items: 
+['011170', '019590', '033270', '049960', '066430', '066670', '089600', '171090', '317400', '471050']
+Partial rescan codes are 25 items: 
+['001080', '001720', '002630', '005390', '008110', '018500', '020180', '021820', '021880', '030960', '032800', '033200', '050860', '060310', '067010', '092440', '093240', '097870', '099750', '169330', '189690', '190650', '289080', '334970', '471050']
+Financial data collection log >> 
+2025-07-29 00:00:23.290728, no: 0, code 011170 in process
+----> no: 0, code 011170 unknown exception; process suspended and to be re-tried
+('Connection aborted.', RemoteDisconnected('Remote end closed connection without response'))
+** API-changed **
+2025-07-29 00:02:00.287273, no: 0, code 011170 in process
+----> no: 0, code 011170 unknown exception; process suspended and to be re-tried
+("Connection broken: InvalidChunkLength(got length b'', 0 bytes read)", InvalidChunkLength(got length b'', 0 bytes read))
+** API-changed **
+2025-07-29 00:03:40.546194, no: 0, code 011170 in process
+----> no: 0, code 011170 unknown exception; process suspended and to be re-tried
+('Connection aborted.', RemoteDisconnected('Remote end closed connection without response'))
+** API-changed **
+2025-07-29 00:05:30.407104, no: 0, code 011170 in process
+----> no: 0, code 011170 unknown exception; process suspended and to be re-tried
+("Connection broken: InvalidChunkLength(got length b'', 0 bytes read)", InvalidChunkLength(got length b'', 0 bytes read))
+** API-changed **
+2025-07-29 00:07:21.495971, no: 0, code 011170 in process
+----> no: 0, code 011170 unknown exception; process suspended and to be re-tried
+('Connection aborted.', RemoteDisconnected('Remote end closed connection without response'))
+** API-changed **
+2025-07-29 00:09:19.544045, no: 0, code 011170 in process
+----> no: 0, code 011170 unknown exception; process suspended and to be re-tried
+("Connection broken: InvalidChunkLength(got length b'', 0 bytes read)", InvalidChunkLength(got length b'', 0 bytes read))
+** API-changed **
+2025-07-29 00:11:21.378553, no: 0, code 011170 in process
+----> no: 0, code 011170 unknown exception; process suspended and to be re-tried
+("Connection broken: InvalidChunkLength(got length b'', 0 bytes read)", InvalidChunkLength(got length b'', 0 bytes read))
+** API-changed **
+2025-07-29 00:13:28.258565, no: 0, code 011170 in process
+----> no: 0, code 011170 unknown exception; process suspended and to be re-tried
+("Connection broken: InvalidChunkLength(got length b'', 0 bytes read)", InvalidChunkLength(got length b'', 0 bytes read))
+** API-changed **
+2025-07-29 00:15:39.243512, no: 0, code 011170 in process
+----> no: 0, code 011170 unknown exception; process suspended and to be re-tried
+("Connection broken: InvalidChunkLength(got length b'', 0 bytes read)", InvalidChunkLength(got length b'', 0 bytes read))
+** API-changed **
+2025-07-29 00:17:54.275638, no: 0, code 011170 in process
+----> no: 0, code 011170 unknown exception; process suspended and to be re-tried
+("Connection broken: InvalidChunkLength(got length b'', 0 bytes read)", InvalidChunkLength(got length b'', 0 bytes read))
+** API-changed **
+2025-07-29 00:20:16.481627, no: 0, code 011170 in process
+----> no: 0, code 011170 unknown exception; process suspended and to be re-tried
+("Connection broken: InvalidChunkLength(got length b'', 0 bytes read)", InvalidChunkLength(got length b'', 0 bytes read))
+** ERROR TRIAL LIMIT REACHED - Entire Process Halted **
+Traceback (most recent call last):
+  File "/home/andy/projects/trader/venv/lib/python3.10/site-packages/urllib3/response.py", line 712, in _error_catcher
+    yield
+  File "/home/andy/projects/trader/venv/lib/python3.10/site-packages/urllib3/response.py", line 1071, in read_chunked
+    self._update_chunk_length()
+  File "/home/andy/projects/trader/venv/lib/python3.10/site-packages/urllib3/response.py", line 1006, in _update_chunk_length
+    raise InvalidChunkLength(self, line) from None
+urllib3.exceptions.InvalidChunkLength: InvalidChunkLength(got length b'', 0 bytes read)
+
+The above exception was the direct cause of the following exception:
+
+Traceback (most recent call last):
+  File "/home/andy/projects/trader/venv/lib/python3.10/site-packages/requests/models.py", line 816, in generate
+    yield from self.raw.stream(chunk_size, decode_content=True)
+  File "/home/andy/projects/trader/venv/lib/python3.10/site-packages/urllib3/response.py", line 931, in stream
+    yield from self.read_chunked(amt, decode_content=decode_content)
+  File "/home/andy/projects/trader/venv/lib/python3.10/site-packages/urllib3/response.py", line 1059, in read_chunked
+    with self._error_catcher():
+  File "/usr/lib/python3.10/contextlib.py", line 153, in __exit__
+    self.gen.throw(typ, value, traceback)
+  File "/home/andy/projects/trader/venv/lib/python3.10/site-packages/urllib3/response.py", line 729, in _error_catcher
+    raise ProtocolError(f"Connection broken: {e!r}", e) from e
+urllib3.exceptions.ProtocolError: ("Connection broken: InvalidChunkLength(got length b'', 0 bytes read)", InvalidChunkLength(got length b'', 0 bytes read))
+
+During handling of the above exception, another exception occurred:
+
+Traceback (most recent call last):
+  File "/home/andy/projects/trader/data_collection/dc05_CompanyHealth.py", line 211, in _generate_financial_reports_set
+    record, message = _collect_financial_reports(dart, code, duration, date_updated)
+  File "/home/andy/projects/trader/data_collection/dc05_CompanyHealth.py", line 108, in _collect_financial_reports
+    prev_year_rec = dart.finstate(code, y-1, reprt_code=reprt_code_dict[4]) 
+  File "/home/andy/projects/trader/venv/lib/python3.10/site-packages/OpenDartReader/dart.py", line 110, in finstate
+    return dart_finstate.finstate(self.api_key, corp_code, bsns_year, reprt_code)
+  File "/home/andy/projects/trader/venv/lib/python3.10/site-packages/OpenDartReader/dart_finstate.py", line 23, in finstate
+    r = requests.get(url, params=params)
+  File "/home/andy/projects/trader/venv/lib/python3.10/site-packages/requests/api.py", line 73, in get
+    return request("get", url, params=params, **kwargs)
+  File "/home/andy/projects/trader/venv/lib/python3.10/site-packages/requests/api.py", line 59, in request
+    return session.request(method=method, url=url, **kwargs)
+  File "/home/andy/projects/trader/venv/lib/python3.10/site-packages/requests/sessions.py", line 589, in request
+    resp = self.send(prep, **send_kwargs)
+  File "/home/andy/projects/trader/venv/lib/python3.10/site-packages/requests/sessions.py", line 747, in send
+    r.content
+  File "/home/andy/projects/trader/venv/lib/python3.10/site-packages/requests/models.py", line 899, in content
+    self._content = b"".join(self.iter_content(CONTENT_CHUNK_SIZE)) or b""
+  File "/home/andy/projects/trader/venv/lib/python3.10/site-packages/requests/models.py", line 818, in generate
+    raise ChunkedEncodingError(e)
+requests.exceptions.ChunkedEncodingError: ("Connection broken: InvalidChunkLength(got length b'', 0 bytes read)", InvalidChunkLength(got length b'', 0 bytes read))
+
+During handling of the above exception, another exception occurred:
+
+Traceback (most recent call last):
+  File "/home/andy/projects/trader/data_collection/dc05_CompanyHealth.py", line 380, in <module>
+    update_main_db(log_file, main_db, df_krx, plot_gen_control_file)
+  File "/home/andy/projects/trader/data_collection/dc05_CompanyHealth.py", line 345, in update_main_db
+    db_f, db_p = _generate_update_db(log_file, end_day, full_rescan_code, partial_rescan_code)
+  File "/home/andy/projects/trader/data_collection/dc05_CompanyHealth.py", line 270, in _generate_update_db
+    db_f = _generate_financial_reports_set(full_rescan_code, None, log_file, end_day)
+  File "/home/andy/projects/trader/data_collection/dc05_CompanyHealth.py", line 239, in _generate_financial_reports_set
+    raise Exception('ERROR TRIAL LIMIT REACHED - Entire Process Halted')  # no catch, thus propagates to halt the program. 
+Exception: ERROR TRIAL LIMIT REACHED - Entire Process Halted
+updating market prices...
+Updating outstanding shares information...
+Processing outstanding shares data for 2025-07-25... 0/150
+Processing outstanding shares data for 2025-07-28... 1/150
+2025-07-29 QA DB: ***** plot_gen_control.npy does not exist. *****
+Traceback (most recent call last):
+  File "/home/andy/projects/trader/data_collection/dc07_VisualizeHealth.py", line 13, in <module>
+    raise FileNotFoundError('***** plot_gen_control.npy does not exist. *****')
+FileNotFoundError: ***** plot_gen_control.npy does not exist. *****
+sending incremental file list
+daily_update.json
+          1,114 100%    0.00kB/s    0:00:00            1,114 100%    0.00kB/s    0:00:00 (xfr#1, to-chk=0/2)
+
+sent 1,142 bytes  received 47 bytes  792.67 bytes/sec
+total size is 1,114  speedup is 0.94
+sending incremental file list
+rate_changes.png
+         32,768  17%    0.00kB/s    0:00:00          189,793 100%   74.88MB/s    0:00:00 (xfr#1, to-chk=0/2629)
+
+sent 254,751 bytes  received 1,735 bytes  512,972.00 bytes/sec
+total size is 1,078,458,493  speedup is 4,204.75
