@@ -549,7 +549,7 @@ def post_process(score_trend, qa_db=qa_db, fr_db=fr_db, pr_db=pr_db, outshare_DB
 
     return data_dict
 
-def generate_PPT(data_dict, fr_db=fr_db, pr_db=pr_db):
+def generate_PPT(data_dict, fr_db=fr_db, pr_db=pr_db, summary_only = False):
 
     cd_ = os.path.dirname(os.path.abspath(__file__)) # .
     CCA_folder = 'CCA'
@@ -565,31 +565,32 @@ def generate_PPT(data_dict, fr_db=fr_db, pr_db=pr_db):
     os.remove(img_path)
 
     # Per code pages 
-    for code in data_dict['select_codelist']:
-        print("slide generating for", code)
-        slide = prs.slides.add_slide(prs.slide_layouts[0])
-        img_stream = mp_plot(data_dict['mp_db_dict'][code])
-        slide.shapes.add_picture(img_stream, Inches(0.1), Inches(0.5), height=Inches(6))
-        for ph in slide.placeholders: 
-            if ph.name == 'Text Placeholder 1':
-                ph.text = data_dict['codelist_summary'].loc[code, 'name']
-            if ph.name == 'Text Placeholder 2':
-                ph.text = today_str
-            if ph.name == 'Text Placeholder 3':
-                ph.text = data_dict['codelist_summary'].loc[code, 'note']
+    if not summary_only: 
+        for code in data_dict['select_codelist']:
+            print("slide generating for", code)
+            slide = prs.slides.add_slide(prs.slide_layouts[0])
+            img_stream = mp_plot(data_dict['mp_db_dict'][code])
+            slide.shapes.add_picture(img_stream, Inches(0.1), Inches(0.5), height=Inches(6))
+            for ph in slide.placeholders: 
+                if ph.name == 'Text Placeholder 1':
+                    ph.text = data_dict['codelist_summary'].loc[code, 'name']
+                if ph.name == 'Text Placeholder 2':
+                    ph.text = today_str
+                if ph.name == 'Text Placeholder 3':
+                    ph.text = data_dict['codelist_summary'].loc[code, 'note']
 
-        slide = prs.slides.add_slide(prs.slide_layouts[1])
-        ph = next(iter(slide.placeholders)) 
-        ph.text = openai_command(code)
+            slide = prs.slides.add_slide(prs.slide_layouts[1])
+            ph = next(iter(slide.placeholders)) 
+            ph.text = openai_command(code)
 
-        slide = prs.slides.add_slide(prs.slide_layouts[2])
-        img_stream = plot_company_financial_summary2(fr_db, pr_db, code, None) 
-        slide.shapes.add_picture(img_stream, Inches(0.1), 0, height=prs.slide_height)
+            slide = prs.slides.add_slide(prs.slide_layouts[2])
+            img_stream = plot_company_financial_summary2(fr_db, pr_db, code, None) 
+            slide.shapes.add_picture(img_stream, Inches(0.1), 0, height=prs.slide_height)
 
-        slide = prs.slides.add_slide(prs.slide_layouts[2])
-        img_path = gen_data_in_html(code)
-        slide.shapes.add_picture(img_path, 0, Inches(0.1), width=prs.slide_width)
-        os.remove(img_path)
+            slide = prs.slides.add_slide(prs.slide_layouts[2])
+            img_path = gen_data_in_html(code)
+            slide.shapes.add_picture(img_path, 0, Inches(0.1), width=prs.slide_width)
+            os.remove(img_path)
 
     prs.save(CCA_result)
     print("PPT generation completed...")

@@ -24,6 +24,9 @@ def _initialization(codelist, START_DATE):
 
     return pdb, vdb
 
+def get_prices(codelist, START_DATE):
+    return _initialization(codelist, START_DATE)
+
 def log_message(message, log_file=None):
     if log_file:
         log_print(log_file, message)

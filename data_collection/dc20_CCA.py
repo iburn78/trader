@@ -12,5 +12,7 @@ with open('CCA/temp/data.pkl', 'wb') as f:
 with open('CCA/temp/data.pkl', 'rb') as f:
     data_dict = pickle.load(f)
 
-generate_PPT(data_dict)
+generate_PPT(data_dict, summary_only = False)
+
+#%% 
 
