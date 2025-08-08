@@ -11966,3 +11966,69 @@ updating market prices...
 Updating outstanding shares information...
 Processing outstanding shares data for 2025-08-06... 0/150
 Processing outstanding shares data for 2025-08-07... 1/150
+Updating KRX data...
+Updating between dates: 2025-08-01 / 2025-08-09
+-----------------------------
+2025-08-09 00:00:25.205574
+Full rescan codes are 16 items: 
+['001080', '003010', '005110', '011330', '013360', '015360', '021820', '035200', '051390', '065510', '083790', '102460', '166480', '222080', '271560', '434480']
+Partial rescan codes are 35 items: 
+['001720', '003800', '053080', '071950', '290560', '297570', '311320', '448760', '462020', '469480', '475430', '001080', '002630', '005390', '008110', '018500', '020180', '021820', '021880', '030960', '032800', '033200', '050860', '060310', '067010', '092440', '093240', '097870', '099750', '169330', '189690', '190650', '289080', '334970', '471050']
+Financial data collection log >> 
+2025-08-09 00:00:25.281090, no: 0, code 001080 in process
+2025-08-09 00:00:37.839476, no: 1, code 003010 in process
+2025-08-09 00:00:53.842010, no: 2, code 005110 in process
+2025-08-09 00:01:09.984987, no: 3, code 011330 in process
+2025-08-09 00:01:25.292074, no: 4, code 013360 in process
+2025-08-09 00:01:40.786141, no: 5, code 015360 in process
+2025-08-09 00:01:56.487546, no: 6, code 021820 in process
+2025-08-09 00:02:10.899026, no: 7, code 035200 in process
+2025-08-09 00:02:26.429876, no: 8, code 051390 in process
+2025-08-09 00:02:42.064245, no: 9, code 065510 in process
+2025-08-09 00:02:57.966729, no: 10, code 083790 in process
+2025-08-09 00:03:13.470928, no: 11, code 102460 in process
+2025-08-09 00:03:29.153815, no: 12, code 166480 in process
+2025-08-09 00:03:47.901971, no: 13, code 222080 in process
+2025-08-09 00:04:02.791973, no: 14, code 271560 in process
+2025-08-09 00:04:17.117974, no: 15, code 434480 in process
+Financial data collection log >> 
+2025-08-09 00:04:25.119048, no: 0, code 001720 in process
+2025-08-09 00:04:32.484833, no: 1, code 003800 in process
+2025-08-09 00:04:39.678296, no: 2, code 053080 in process
+2025-08-09 00:04:47.022452, no: 3, code 071950 in process
+2025-08-09 00:04:54.422275, no: 4, code 290560 in process
+2025-08-09 00:05:01.549665, no: 5, code 297570 in process
+2025-08-09 00:05:08.610679, no: 6, code 311320 in process
+2025-08-09 00:05:15.807118, no: 7, code 448760 in process
+2025-08-09 00:05:22.877424, no: 8, code 462020 in process
+2025-08-09 00:05:29.913071, no: 9, code 469480 in process
+2025-08-09 00:05:37.012134, no: 10, code 475430 in process
+2025-08-09 00:05:42.730616, no: 11, code 001080 in process
+2025-08-09 00:05:50.331227, no: 12, code 002630 in process
+2025-08-09 00:05:57.669056, no: 13, code 005390 in process
+2025-08-09 00:06:05.053966, no: 14, code 008110 in process
+2025-08-09 00:06:12.579585, no: 15, code 018500 in process
+2025-08-09 00:06:20.195543, no: 16, code 020180 in process
+2025-08-09 00:06:27.566105, no: 17, code 021820 in process
+2025-08-09 00:06:34.997920, no: 18, code 021880 in process
+2025-08-09 00:06:42.379157, no: 19, code 030960 in process
+2025-08-09 00:06:49.781036, no: 20, code 032800 in process
+2025-08-09 00:06:57.228962, no: 21, code 033200 in process
+2025-08-09 00:07:04.751802, no: 22, code 050860 in process
+2025-08-09 00:07:12.085881, no: 23, code 060310 in process
+2025-08-09 00:07:19.530132, no: 24, code 067010 in process
+2025-08-09 00:07:26.809521, no: 25, code 092440 in process
+2025-08-09 00:07:34.210974, no: 26, code 093240 in process
+2025-08-09 00:07:41.592421, no: 27, code 097870 in process
+2025-08-09 00:07:49.721039, no: 28, code 099750 in process
+2025-08-09 00:07:57.216138, no: 29, code 169330 in process
+2025-08-09 00:08:04.692621, no: 30, code 189690 in process
+2025-08-09 00:08:12.106183, no: 31, code 190650 in process
+2025-08-09 00:08:19.457395, no: 32, code 289080 in process
+2025-08-09 00:08:26.909178, no: 33, code 334970 in process
+2025-08-09 00:08:33.599661, no: 34, code 471050 in process
+== Update finished ==
+updating market prices...
+Updating outstanding shares information...
+Processing outstanding shares data for 2025-08-07... 0/150
+Processing outstanding shares data for 2025-08-08... 1/150
