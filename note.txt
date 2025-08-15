@@ -134,8 +134,12 @@
                     date_str = date_req
 
         # Package Error to be fixed in 2025-07-04 ### (as STR is now included in code like '0037T0')
+        
         # df_listing['Code'] = df_listing['Code'].apply(lambda x: '{:06d}'.format(x))
         df_listing['Code'] = df_listing['Code'].apply(lambda x: str(x).zfill(6))
+                
+        # if re.match(r'\d{5}[0-9A-Z]', code): 
+        if re.match(r'^\d{5}[0-9KLMN]$', code) or re.match(r'^\d{4}[A-Z]\d$', code):
 
 ### 
 - Quick fix

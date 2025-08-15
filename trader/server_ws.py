@@ -4,8 +4,8 @@ import asyncio
 import kis_auth as ka 
 import pandas as pd
 from io import StringIO
-from trader.tools_ws import *
-from trader.analysis_class import *
+from trader.trader.tools_ws import *
+from trader.trader.analysis_class import *
 
 # Allow nested event loops in Jupyter Notebook
 # import nest_asyncio
