@@ -9,7 +9,7 @@ Created on Wed Feb 15 16:57:19 2023
 import kis_auth as kis
 import time
 import pandas as pd
-from datetime import datetime
+from datetime import datetime, timedelta
 
 #====|  [국내주식] 주문/계좌  |===========================================================================================================================
 

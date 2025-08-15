@@ -9,10 +9,7 @@ data_dict = post_process(score_trend)
 with open('CCA/temp/data.pkl', 'wb') as f:
     pickle.dump(data_dict, f)
 
-with open('CCA/temp/data.pkl', 'rb') as f:
-    data_dict = pickle.load(f)
+# with open('CCA/temp/data.pkl', 'rb') as f:
+#     data_dict = pickle.load(f)
 
 generate_PPT(data_dict, summary_only = False)
-
-#%% 
-

@@ -1,7 +1,7 @@
 import asyncio
 import kis_domstk as kd
-from trader.tools_ws import read_pickle, write_pickle
-from trader.analysis_class import *   
+from trader.trader.tools_ws import read_pickle, write_pickle
+from trader.trader.analysis_class import *   
 
 def independent_actions(): 
     res = kd.get_inquire_balance_obj()
@@ -97,12 +97,12 @@ async def main():
         await shutdown(tasks, writer)
 
 if __name__ == "__main__":
-    # try: 
-    #     asyncio.run(main())
-    # except KeyboardInterrupt:
-    #     print("KeyboardInterrupt: Shutting down...")
-    import kis_auth as ka
-    import sys
-    svr = sys.argv[1]
-    ka.auth(svr=svr)  # 인증서버 및 계좌 선택 (prod:실전_main, auto:실전_autotrading, vps:개발)
-    independent_actions()
+    try: 
+        asyncio.run(main())
+    except KeyboardInterrupt:
+        print("KeyboardInterrupt: Shutting down...")
+    # import kis_auth as ka
+    # import sys
+    # svr = sys.argv[1]
+    # ka.auth(svr=svr)  # 인증서버 및 계좌 선택 (prod:실전_main, auto:실전_autotrading, vps:개발)
+    # independent_actions()
