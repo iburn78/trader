@@ -197,6 +197,7 @@ def _generate_financial_reports_set(sector, duration, log_file, date_updated):
     sleep_time = 5 # seconds
     for ix, code in enumerate(sector):
         retry_required = True
+        API_change_tried = False
         while retry_required:
             try:
                 current_progress = str(datetime.datetime.now()) + ', no: ' + str(ix) + ', code ' + code+' in process' # / '+df_krx['Name'][code]
@@ -214,6 +215,11 @@ def _generate_financial_reports_set(sector, duration, log_file, date_updated):
                 elif message == 'Data Not Available':
                     current_progress = '----> no: ' + str(ix) + ', code ' + code+' data not available, could be a financial institution' # / '+df_krx['Name'][code]
                     log_print(log_file, current_progress)
+                    if not API_change_tried:
+                        dart_ind += 1
+                        dart = OpenDartReader(DART_APIS[dart_ind%3])
+                        API_change_tried = True
+                        continue
                 elif message == 'Currency Not in KRW':
                     current_progress = '----> no: ' + str(ix) + ', code ' + code+' currency not in KRW, skipping' # / '+df_krx['Name'][code]
                     log_print(log_file, current_progress)
