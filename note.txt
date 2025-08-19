@@ -160,16 +160,11 @@ ppd_ = os.path.dirname(os.path.dirname(os.path.dirname(os.path.abspath(__file__)
 td_ = ''
 os.path.join(pd_, td_)
 
-
 ### 
 git lfs installed
 (you only need to install in each local machines, and the command is the same)
 - size and bandwidth limit exists... 
 - don't use lfs, and keep file size under 50 MB
-
-
-
-
 
 #### 
 dart.py in OpenDartReader
@@ -200,6 +195,3 @@ dart.py in OpenDartReader
             df = self.corp_codes[self.corp_codes['corp_name'].str.lower() == corp_lower]
 
         return None if df.empty else df.iloc[0]['corp_code']
-
-- 'Data Not Available' error seems need fixed
-- API change not occuring... API limit reached...
