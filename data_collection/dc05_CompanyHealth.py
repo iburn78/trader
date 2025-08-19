@@ -9,6 +9,7 @@ import pandas as pd
 import numpy as np
 import datetime, time
 import warnings
+import gc
 
 def _collect_financial_reports(dart, code, duration=None, date_updated=None): # duration as years
 
@@ -266,32 +267,49 @@ def _generate_update_codelist(log_file, start_day, end_day):
 
     return full_rescan_code, partial_rescan_code
 
-def _generate_update_db(log_file, end_day, full_rescan_code, partial_rescan_code): 
-    db_f = pd.DataFrame()
-    db_p = pd.DataFrame()
-    if len(full_rescan_code) > 0 and len(partial_rescan_code) > 0:
-        status = '\nFull rescan codes are {} items: \n{}'.format(len(full_rescan_code), full_rescan_code) + '\nPartial rescan codes are {} items: \n{}'.format(len(partial_rescan_code), partial_rescan_code)
-        status = '-----------------------------\n'+str(datetime.datetime.today())+status
-        log_print(log_file, status)
-        db_f = _generate_financial_reports_set(full_rescan_code, None, log_file, end_day)
-        db_p = _generate_financial_reports_set(partial_rescan_code, 2, log_file, end_day) # 1 year
-        # res = pd.concat([db_f, db_p], ignore_index=True)
-    elif len(full_rescan_code) > 0 and len(partial_rescan_code) == 0: 
-        status = '\nFull rescan codes are {} items: \n{}'.format(len(full_rescan_code), full_rescan_code) + '\nNo partial rescan codes'
-        status = '-----------------------------\n'+str(datetime.datetime.today())+status
-        log_print(log_file, status)
-        db_f = _generate_financial_reports_set(full_rescan_code, None, log_file, end_day)
-    elif len(full_rescan_code) == 0 and len(partial_rescan_code) > 0: 
-        status = '\nNo full rescan codes' + '\nPartial rescan codes are {} items: \n{}'.format(len(partial_rescan_code), partial_rescan_code)
-        status = '-----------------------------\n'+str(datetime.datetime.today())+status
-        log_print(log_file, status)
-        db_p = _generate_financial_reports_set(partial_rescan_code, 2, log_file, end_day) # 1 year
-    else:
-        log_print(log_file, 'No new data to update')
-    
-    return db_f, db_p
+def _update_code_checker(log_file, main_db, df_krx, full_rescan_code, partial_rescan_code):
+    # include codes that does not have 2 quarters previous data, while have 3 quarters data
+    cp2 = null_checker(main_db, 2)
+    cp3 = null_checker(main_db, 3)
+    to_add_partially = [i for i in cp2 if i not in cp3]
+    partial_rescan_code = list(set(partial_rescan_code) | set(to_add_partially)) # union
+
+    # exclude codes that are already scanned
+    tg_qt = nth_quarter_before(1)  # last quarter 
+    if tg_qt in main_db.columns:
+        # Filter main_db once to get which codes are completely NaN for last quarter
+        valid_codes = main_db.groupby('code')[tg_qt].apply(lambda x: x.isna().all())
+        # Keep only codes that are either not in main_db or have all NaN for tg_qt
+        partial_rescan_code = [
+            c for c in partial_rescan_code
+            if c not in valid_codes.index or valid_codes[c]
+        ] 
+
+    # exclude codes that are not in df_krx
+    df_krx_index_set = set(df_krx.index)  # O(1) search while df_krx.index is O(log n) search (not much meaningful if n is less than 10000 for example)
+    full_rescan_code = [c for c in full_rescan_code if c in df_krx_index_set]
+    partial_rescan_code = [c for c in partial_rescan_code if c in df_krx_index_set]
+
+    if full_rescan_code:
+        log_print(log_file, '\nFull rescan codes are {} items: \n{}'.format(len(full_rescan_code), full_rescan_code))
+    else: 
+        log_print(log_file, 'No new full rescan code to update')
+
+    if partial_rescan_code:
+        log_print(log_file, '\nPartial rescan codes are {} items: \n{}'.format(len(partial_rescan_code), partial_rescan_code))
+    else: 
+        log_print(log_file, 'No new partial rescan code to update')
+
+    return full_rescan_code, partial_rescan_code
+
+def _plot_ctrl(plot_gen_control_file, code_list):
+    if plot_gen_control_file is None: return 
+    if os.path.exists(plot_gen_control_file):
+        code_list = np.unique(np.concatenate((code_list, np.load(plot_gen_control_file, allow_pickle=True))))
+    np.save(plot_gen_control_file, code_list)
 
 def update_main_db(log_file, main_db, df_krx, plot_gen_control_file=None):
+    log_print(log_file, 'Company health data collection initiated at '+str(datetime.datetime.today()))
     try: 
         log_print(log_file, 'Updating KRX data...')
         warnings.filterwarnings("ignore")
@@ -312,62 +330,41 @@ def update_main_db(log_file, main_db, df_krx, plot_gen_control_file=None):
     # end_day = '2023-11-15'
 
     full_rescan_code, partial_rescan_code = _generate_update_codelist(log_file, start_day, end_day)
+    full_rescan_code, partial_rescan_code = _update_code_checker(log_file, main_db, df_krx, full_rescan_code, partial_rescan_code)
 
-    # include codes that does not have 2 quarters previous data, while have 3 quarters data
-    cp2 = null_checker(main_db, 2)
-    cp3 = null_checker(main_db, 3)
-    to_add_partially = [i for i in cp2 if i not in cp3]
+    if not full_rescan_code and not partial_rescan_code:
+        log_print(log_file, '** Nothing to update - main_db not updated **')
+        _plot_ctrl(plot_gen_control_file, [])
+        return None
 
-    for c in to_add_partially:
-        if c not in partial_rescan_code:
-            partial_rescan_code.append(c)
+    BATCH_SIZE = 100
 
-    # exclude codes that are already scanned
-    tg_qt = nth_quarter_before(1)  # last quarter 
-    main_db_codelist = main_db['code'].unique()
-    if tg_qt in main_db.columns:
-        target_list = []
-        for code in partial_rescan_code: 
-            if code in main_db_codelist: 
-                if main_db.loc[main_db['code']==code, tg_qt].isna().all():
-                    target_list.append(code)
-            else:
-                target_list.append(code)
-        partial_rescan_code = target_list
-    
-    # exclude codes that are not in df_krx
-    full_list = []
-    for code in full_rescan_code: 
-        if code in df_krx.index:
-            full_list.append(code)
-    full_rescan_code = full_list
-
-    partial_list = []
-    for code in partial_rescan_code:
-        if code in df_krx.index:
-            partial_list.append(code) 
-    partial_rescan_code = partial_list 
-
-    db_f, db_p = _generate_update_db(log_file, end_day, full_rescan_code, partial_rescan_code)
-
-    if len(db_f) > 0 or len(db_p) > 0:
-        main_db = merge_update(main_db, db_f, db_p)
+    for i in range(0, len(full_rescan_code), BATCH_SIZE):
+        log_print(log_file, f"full_rescan batch operation: {i}")
+        batch_codes = full_rescan_code[i:i+BATCH_SIZE]
+        db_f = _generate_financial_reports_set(batch_codes, None, log_file, end_day)
+        main_db = merge_update(main_db, db_f, None) 
         main_db = _sort_columns_financial_reports(main_db)
         save_main_financial_reports_db(main_db)
+        _plot_ctrl(plot_gen_control_file, batch_codes)
 
-        if plot_gen_control_file != None:
-            if os.path.exists(plot_gen_control_file):
-                plot_ctrl = np.concatenate((full_rescan_code+partial_rescan_code, np.load(plot_gen_control_file, allow_pickle=True)))
-                plot_ctrl = np.unique(plot_ctrl)
-            else: 
-                plot_ctrl = full_rescan_code + partial_rescan_code
-            np.save(plot_gen_control_file, plot_ctrl)
+        del db_f
+        gc.collect()
 
-        log_print(log_file, '== Update finished ==')
-    else:
-        log_print(log_file, '** Nothing to update - main_db not updated **')
-        np.save(plot_gen_control_file, [])
-    return None
+    for i in range(0, len(partial_rescan_code), BATCH_SIZE):
+        log_print(log_file, f"partial_rescan batch operation: {i}")
+        batch_codes = partial_rescan_code[i:i+BATCH_SIZE]
+        db_p = _generate_financial_reports_set(batch_codes, 2, log_file, end_day) # 2 years
+        main_db = merge_update(main_db, None, db_p)
+        main_db = _sort_columns_financial_reports(main_db)
+        save_main_financial_reports_db(main_db)
+        _plot_ctrl(plot_gen_control_file, batch_codes)
+
+        del db_p
+        gc.collect()
+
+    log_print(log_file, '== Update finished ==')
+
 
 def single_company_data_collect(code, fs_div=None):
     dart = OpenDartReader(DART_APIS[1])
