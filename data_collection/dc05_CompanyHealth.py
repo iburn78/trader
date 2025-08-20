@@ -341,7 +341,7 @@ def update_main_db(log_file, main_db, df_krx, plot_gen_control_file=None):
         _plot_ctrl(plot_gen_control_file, [])
         return None
 
-    BATCH_SIZE = 100
+    BATCH_SIZE = 10
 
     for i in range(0, len(full_rescan_code), BATCH_SIZE):
         log_print(log_file, f"full_rescan batch operation: {i}")

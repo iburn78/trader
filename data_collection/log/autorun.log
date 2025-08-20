@@ -211,3 +211,10 @@ rate_changes.png
 
 sent 253,369 bytes  received 1,699 bytes  170,045.33 bytes/sec
 total size is 1,083,566,631  speedup is 4,248.15
+[main 4e2b965] 2025-08-20 upload done from linux machine
+ 9 files changed, 397 insertions(+)
+ rewrite data_collection/data/df_krx.db (84%)
+ rewrite data_collection/data/df_krx.feather (85%)
+To https://github.com/iburn78/trader
+   9ab32c4..4e2b965  main -> main
+rtcwake: write error
