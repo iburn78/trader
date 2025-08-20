@@ -290,20 +290,19 @@ def _update_code_checker(log_file, main_db, df_krx, full_rescan_code, partial_re
     full_rescan_code = [c for c in full_rescan_code if c in df_krx_index_set]
     partial_rescan_code = [c for c in partial_rescan_code if c in df_krx_index_set]
 
-    if full_rescan_code:
-        log_print(log_file, '\nFull rescan codes are {} items: \n{}'.format(len(full_rescan_code), full_rescan_code))
-    else: 
-        log_print(log_file, 'No new full rescan code to update')
+    def code_print(log_file, code_list, desc, chunk_size=100): # desc: full or partial
+        log_print(log_file, f'{desc.upper()} rescan codes:') 
+        if code_list:
+            log_print(log_file, f'Total {len(code_list)} items.')
+            # split into chunks 
+            for i in range(0, len(code_list), chunk_size):
+                chunk = code_list[i:i+chunk_size]
+                log_print(log_file, f'[{i}–{i+len(chunk)-1}] {chunk}')
+        else: 
+            log_print(log_file, 'Nothing to update.')
 
-    if partial_rescan_code:
-        log_print(log_file, f'\nPartial rescan codes are {len(partial_rescan_code)} items:')
-
-        # split into chunks of 500
-        for i in range(0, len(partial_rescan_code), 100):
-            chunk = partial_rescan_code[i:i+100]
-            log_print(log_file, f'[{i}–{i+len(chunk)-1}] {chunk}')
-    else: 
-        log_print(log_file, 'No new partial rescan code to update')
+    code_print(log_file, full_rescan_code, 'full')
+    code_print(log_file, partial_rescan_code, 'partial')
 
     return full_rescan_code, partial_rescan_code
 
