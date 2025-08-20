@@ -296,7 +296,12 @@ def _update_code_checker(log_file, main_db, df_krx, full_rescan_code, partial_re
         log_print(log_file, 'No new full rescan code to update')
 
     if partial_rescan_code:
-        log_print(log_file, '\nPartial rescan codes are {} items: \n{}'.format(len(partial_rescan_code), partial_rescan_code))
+        log_print(log_file, f'\nPartial rescan codes are {len(partial_rescan_code)} items:')
+
+        # split into chunks of 500
+        for i in range(0, len(partial_rescan_code), 100):
+            chunk = partial_rescan_code[i:i+100]
+            log_print(log_file, f'[{i}–{i+len(chunk)-1}] {chunk}')
     else: 
         log_print(log_file, 'No new partial rescan code to update')
 
