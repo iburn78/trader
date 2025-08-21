@@ -2,11 +2,8 @@
 # -*- coding: utf-8 -*-
 """
 Created on Wed Feb 15 16:57:19 2023
-
 @author: Administrator
 """
-#====|  토큰 발급에 필요한 API 호출 샘플 아래 참고하시기 바랍니다.  |=====================
-#====|  토큰 발급에 필요한 API 호출 샘플 아래 참고하시기 바랍니다.  |=====================
 #====|  토큰 발급에 필요한 API 호출 샘플 아래 참고하시기 바랍니다.  |=====================
 #====|  API 호출 공통 함수 포함                                  |=====================
 
@@ -14,9 +11,7 @@ import copy
 import yaml
 import requests
 import json
-
 import os
-
 from collections import namedtuple
 from datetime import datetime
 
@@ -53,7 +48,6 @@ def save_token(my_token, my_expired, token_file):
     with open(token_file, 'w', encoding='utf-8') as f:
         f.write(f'token: {my_token}\n')
         f.write(f'valid-date: {valid_date}\n')
-
 
 # 토큰 확인 (토큰값, 토큰 유효시간_1일, 6시간 이내 발급신청시는 기존 토큰값과 동일, 발급시 알림톡 발송)
 def read_token(token_file):
@@ -100,10 +94,8 @@ def _setTRENV(cfg):
     global _TRENV
     _TRENV = nt1(**d)
 
-
 def isPaperTrading():  # 모의투자 매매
     return _isPaper
-
 
 # 인증서버 및 계좌 선택 (prod:실전_main, auto:실전_autotrading, vps:개발)
 def changeTREnv(token_key, svr='vps', product=_cfg['my_prod']):
@@ -192,7 +184,7 @@ def auth(svr='vps', product=_cfg['my_prod'], url=None):
     # 발급토큰 정보 포함해서 헤더값 저장 관리, API 호출시 필요
     changeTREnv(f"Bearer {my_token}", svr, product)
 
-    _base_headers["authorization"] = _TRENV.my_token
+    _base_headers["authorization"] = _TRENV.my_token  # Bearer keyword 필요
     _base_headers["appkey"] = _TRENV.my_app
     _base_headers["appsecret"] = _TRENV.my_sec
 
@@ -202,10 +194,8 @@ def auth(svr='vps', product=_cfg['my_prod'], url=None):
     if (_DEBUG):
         print(f'[{_last_auth_time}] => get AUTH Key completed!')
 
-
 def getEnv():
     return _cfg
-
 
 def getTREnv():
     return _TRENV

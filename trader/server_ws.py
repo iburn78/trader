@@ -4,17 +4,13 @@ import asyncio
 import kis_auth as ka 
 import pandas as pd
 from io import StringIO
-from trader.trader.tools_ws import *
-from trader.trader.analysis_class import *
-
-# Allow nested event loops in Jupyter Notebook
-# import nest_asyncio
-# nest_asyncio.apply()
+from tools_ws import *
+from analysis_class import *
 
 # ----------------------------------------------
 # -- Auth and Config
 # ----------------------------------------------
-ka.auth(svr='auto')  # 인증서버 및 계좌 선택 (prod:실전_main, auto:실전_autotrading, vps:개발)
+ka.auth(svr='vps')  # 인증서버 및 계좌 선택 (prod:실전_main, auto:실전_autotrading, vps:개발)
 
 __today__ = pd.Timestamp.now().strftime("%Y%m%d")
 __DEBUG__ = False  
@@ -23,12 +19,10 @@ _HTS_ID = ka.getTREnv().hts_id
 _iv = None  # for 복호화
 _ekey = None  # for 복호화
 
-
 # ----------------------------------------------
 # -- Analysis targets
 # ----------------------------------------------
 target_stocks = ('005930', '000660',) 
-
 
 # ----------------------------------------------
 # -- Data Structure
@@ -37,7 +31,6 @@ target_stocks = ('005930', '000660',)
 contract_sub_df = dict()  # 실시간 국내주식 체결 결과를 종목별로 저장하기 위한 container
 bid_ask_sub_df = dict()   # 실시간 국내주식 호가 결과를 종목별로 저장하기 위한 container
 executed_df = pd.DataFrame(data=None, columns=contract_cols)  # 체결통보 저장용 DF
-
 
 # ----------------------------------------------
 # -- Custom Strategy Implementation
@@ -181,7 +174,9 @@ async def on_message(ws, data):
     # print('on_message=', data)
     global _iv, _ekey
     if data[0] in ('0', '1'):  # 0: not encrypted, 1: encrypted | 실시간체결 or 실시간호가
-        _dparse(data)
+        print(data)
+        a = _dparse(data)
+        print(a)
     else:  # system message or PINGPONG
         rsp, _iv, _ekey = get_sys_resp(data, _iv, _ekey)
         if rsp.isPingPong:
@@ -315,7 +310,7 @@ async def main():
     tasks = [
         asyncio.create_task(run_websocket_client()),
         asyncio.create_task(server.serve_forever()),
-        # asyncio.create_task(generate_notice()),
+        asyncio.create_task(generate_notice()),
     ]
 
     try:

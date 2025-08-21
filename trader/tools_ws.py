@@ -80,7 +80,7 @@ contract_cols = ['MKSC_SHRN_ISCD',
                  'MRKT_TRTM_CLS_CODE',
                  'VI_STND_PRC']
 
-# 실시간 국내주식호가 column eader
+# 실시간 국내주식호가 column header
 bid_ask_cols = ['MKSC_SHRN_ISCD',
                 'TICK_HOUR',  # pandas time conversion 편의를 위해 이 필드만 이름을 통일한다
                 'HOUR_CLS_CODE',  # 시간 구분 코드(0 : 장중 )

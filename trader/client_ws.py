@@ -1,11 +1,6 @@
 import asyncio
-import kis_domstk as kd
-from trader.trader.tools_ws import read_pickle, write_pickle
-from trader.trader.analysis_class import *   
-
-def independent_actions(): 
-    res = kd.get_inquire_balance_obj()
-    print(res)
+from tools_ws import read_pickle, write_pickle
+from analysis_class import *   
 
 # Central function to read messages from the server
 async def read_from_server(reader):
@@ -101,8 +96,3 @@ if __name__ == "__main__":
         asyncio.run(main())
     except KeyboardInterrupt:
         print("KeyboardInterrupt: Shutting down...")
-    # import kis_auth as ka
-    # import sys
-    # svr = sys.argv[1]
-    # ka.auth(svr=svr)  # 인증서버 및 계좌 선택 (prod:실전_main, auto:실전_autotrading, vps:개발)
-    # independent_actions()
