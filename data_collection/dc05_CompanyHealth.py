@@ -297,7 +297,7 @@ def _update_code_checker(log_file, main_db, df_krx, full_rescan_code, partial_re
             # split into chunks 
             for i in range(0, len(code_list), chunk_size):
                 chunk = code_list[i:i+chunk_size]
-                log_print(log_file, f'[{i}–{i+len(chunk)-1}] {chunk}')
+                log_print(log_file, f'[{i}-{i+len(chunk)-1}] {chunk}')
         else: 
             log_print(log_file, 'Nothing to update.')
 
