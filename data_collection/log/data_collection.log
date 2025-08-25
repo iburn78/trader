@@ -3513,3 +3513,67 @@ Financial data collection log >>
 updating market prices...
 Updating outstanding shares information...
 Processing outstanding shares data for 2025-08-22... 0/150
+Company health data collection initiated at 2025-08-26 02:00:05.931255
+Updating KRX data...
+Updating between dates: 2025-08-18 / 2025-08-26
+FULL rescan codes:
+Total 27 items.
+[0-26] ['000240', '000760', '004720', '012170', '014970', '019680', '024850', '032680', '037330', '038950', '048410', '082210', '084010', '121850', '122690', '137310', '213500', '236810', '240600', '294630', '302430', '340360', '377460', '381970', '388790', '396470', '452430']
+PARTIAL rescan codes:
+Total 15 items.
+[0-14] ['030960', '050860', '334970', '093240', '900310', '189690', '021820', '062040', '001080', '0010V0', '032800', '169330', '005390', '097870', '450330']
+full_rescan batch operation: 0
+Financial data collection log >> 
+2025-08-26 02:00:18.035720, no: 0, code 000240 in process
+2025-08-26 02:00:34.805008, no: 1, code 000760 in process
+2025-08-26 02:00:50.550348, no: 2, code 004720 in process
+2025-08-26 02:01:07.694781, no: 3, code 012170 in process
+2025-08-26 02:01:24.508963, no: 4, code 014970 in process
+2025-08-26 02:01:41.577245, no: 5, code 019680 in process
+2025-08-26 02:01:58.667895, no: 6, code 024850 in process
+2025-08-26 02:02:07.484351, no: 7, code 032680 in process
+2025-08-26 02:02:24.201555, no: 8, code 037330 in process
+2025-08-26 02:02:40.790471, no: 9, code 038950 in process
+2025-08-26 02:02:57.577171, no: 10, code 048410 in process
+2025-08-26 02:03:14.329938, no: 11, code 082210 in process
+2025-08-26 02:03:30.922416, no: 12, code 084010 in process
+2025-08-26 02:03:47.866651, no: 13, code 121850 in process
+2025-08-26 02:04:05.125042, no: 14, code 122690 in process
+2025-08-26 02:04:22.469453, no: 15, code 137310 in process
+2025-08-26 02:04:33.521050, no: 16, code 213500 in process
+2025-08-26 02:04:50.238831, no: 17, code 236810 in process
+2025-08-26 02:05:01.350665, no: 18, code 240600 in process
+2025-08-26 02:05:09.331782, no: 19, code 294630 in process
+2025-08-26 02:05:21.444958, no: 20, code 302430 in process
+2025-08-26 02:05:34.782894, no: 21, code 340360 in process
+2025-08-26 02:05:44.863475, no: 22, code 377460 in process
+2025-08-26 02:05:54.575706, no: 23, code 381970 in process
+2025-08-26 02:06:04.059735, no: 24, code 388790 in process
+2025-08-26 02:06:12.466177, no: 25, code 396470 in process
+2025-08-26 02:06:19.865067, no: 26, code 452430 in process
+partial_rescan batch operation: 0
+Financial data collection log >> 
+2025-08-26 02:06:34.637238, no: 0, code 030960 in process
+2025-08-26 02:06:42.162539, no: 1, code 050860 in process
+2025-08-26 02:06:49.655924, no: 2, code 334970 in process
+2025-08-26 02:06:56.490048, no: 3, code 093240 in process
+2025-08-26 02:07:04.004202, no: 4, code 900310 in process
+----> no: 4, code 900310 currency not in KRW, skipping
+2025-08-26 02:07:09.362738, no: 5, code 189690 in process
+2025-08-26 02:07:16.916418, no: 6, code 021820 in process
+2025-08-26 02:07:24.626866, no: 7, code 062040 in process
+2025-08-26 02:07:31.244676, no: 8, code 001080 in process
+2025-08-26 02:07:38.947045, no: 9, code 0010V0 in process
+----> no: 9, code 0010V0 data not available, could be a financial institution
+2025-08-26 02:07:40.312897, no: 9, code 0010V0 in process
+----> no: 9, code 0010V0 data not available, could be a financial institution
+2025-08-26 02:07:46.566080, no: 10, code 032800 in process
+2025-08-26 02:07:54.226936, no: 11, code 169330 in process
+2025-08-26 02:08:02.269541, no: 12, code 005390 in process
+2025-08-26 02:08:10.170753, no: 13, code 097870 in process
+2025-08-26 02:08:17.825493, no: 14, code 450330 in process
+== Update finished ==
+updating market prices...
+Updating outstanding shares information...
+Processing outstanding shares data for 2025-08-22... 0/150
+Processing outstanding shares data for 2025-08-25... 1/150
