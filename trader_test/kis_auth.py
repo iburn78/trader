@@ -80,7 +80,7 @@ def _getBaseHeader():
 
 # 가져오기 : 앱키, 앱시크리트, 종합계좌번호(계좌번호 중 숫자8자리), 계좌상품코드(계좌번호 중 숫자2자리), 토큰, 도메인
 def _setTRENV(cfg):
-    nt1 = namedtuple('KISEnv', ['my_app', 'my_sec', 'my_acct', 'my_prod', 'my_token', 'my_url', 'hts_id'])
+    nt1 = namedtuple('KISEnv', ['my_app', 'my_sec', 'my_acct', 'my_prod', 'my_token', 'my_url', 'my_htsid'])
     d = {
         'my_app': cfg['my_app'],  # 앱키
         'my_sec': cfg['my_sec'],  # 앱시크리트
@@ -88,7 +88,7 @@ def _setTRENV(cfg):
         'my_prod': cfg['my_prod'],  # 계좌상품코드(2자리)
         'my_token': cfg['my_token'],  # 토큰
         'my_url': cfg['my_url'],  # 실전 도메인 (https://openapi.koreainvestment.com:9443) # 모의 도메인 (https://openapivts.koreainvestment.com:29443)
-        'hts_id': cfg['hts_id']  # HTS_ID
+        'my_htsid': cfg['my_htsid']  # my_htsid
     }  
 
     global _TRENV
@@ -128,7 +128,7 @@ def changeTREnv(token_key, svr='vps', product=_cfg['my_prod']):
     cfg['my_prod'] = product
     cfg['my_token'] = token_key
     cfg['my_url'] = _cfg[svr]
-    cfg['hts_id'] = _cfg['hts_id']
+    cfg['my_htsid'] = _cfg['my_htsid']
 
     # print(cfg)
     _setTRENV(cfg)

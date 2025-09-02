@@ -31,7 +31,7 @@ criteria_dict = {
     'debt_to_equity_ratio_stats': [200, cv_threshold, np.nan, np.nan] # percent
 }
 weight = [5, 2, 2, 5, 1, 1, 1, 1, 1, 1, 1] # weights for each criteria
-top_N = 30 # top to add
+top_N = 100 # top to add
 
 # ----------------------------------------------------------
 # BELOW: Classification defs
@@ -541,7 +541,7 @@ def post_process(score_trend, qa_db=qa_db, fr_db=fr_db, pr_db=pr_db, outshare_DB
     data_dict['mp_db_dict'] = mp_db_dict
 
     # codelist selection logic ------------------
-    PER_limit = 10
+    PER_limit = 1000
     scodelist = cls.loc[(cls['PER'] > 0) & (cls['PER'] < PER_limit)].index
     data_dict['select_codelist'] = scodelist
     data_dict['select_codelist_summary'] = cls.loc[cls.index.isin(scodelist)].drop('note', axis=1)

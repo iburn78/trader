@@ -15,7 +15,7 @@ ka.auth(svr='vps')  # 인증서버 및 계좌 선택 (prod:실전_main, auto:실
 __today__ = pd.Timestamp.now().strftime("%Y%m%d")
 __DEBUG__ = False  
 _connect_key = get_approval()  # websocket 연결Key
-_HTS_ID = ka.getTREnv().hts_id
+_HTS_ID = ka.getTREnv().my_htsid
 _iv = None  # for 복호화
 _ekey = None  # for 복호화
 
