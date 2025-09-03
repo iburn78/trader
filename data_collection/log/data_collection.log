@@ -4136,3 +4136,75 @@ updating market prices...
 Updating outstanding shares information...
 Processing outstanding shares data for 2025-09-01... 0/150
 Processing outstanding shares data for 2025-09-02... 1/150
+Company health data collection initiated at 2025-09-04 02:00:05.942535
+Updating KRX data...
+Updating between dates: 2025-08-27 / 2025-09-04
+FULL rescan codes:
+Total 25 items.
+[0-24] ['000370', '000400', '000540', '000880', '000950', '001720', '003690', '005440', '014130', '020000', '023910', '057050', '069920', '079430', '082640', '085620', '088350', '126560', '138040', '248070', '258830', '318160', '452400', '462980', '471050']
+PARTIAL rescan codes:
+Total 20 items.
+[0-19] ['900300', '097870', '900270', '021820', '900100', '050860', '001080', '900140', '032800', '900340', '093240', '900070', '169330', '900250', '030960', '900260', '189690', '334970', '005390', '900110']
+full_rescan batch operation: 0
+Financial data collection log >> 
+2025-09-04 02:00:18.049729, no: 0, code 000370 in process
+2025-09-04 02:00:26.471827, no: 1, code 000400 in process
+2025-09-04 02:00:34.542273, no: 2, code 000540 in process
+2025-09-04 02:00:42.490092, no: 3, code 000880 in process
+2025-09-04 02:00:59.129342, no: 4, code 000950 in process
+2025-09-04 02:01:15.627481, no: 5, code 001720 in process
+2025-09-04 02:01:23.549421, no: 6, code 003690 in process
+2025-09-04 02:01:31.464117, no: 7, code 005440 in process
+2025-09-04 02:01:47.914737, no: 8, code 014130 in process
+2025-09-04 02:02:06.799042, no: 9, code 020000 in process
+2025-09-04 02:02:23.167071, no: 10, code 023910 in process
+2025-09-04 02:02:46.339773, no: 11, code 057050 in process
+2025-09-04 02:03:02.722884, no: 12, code 069920 in process
+2025-09-04 02:03:19.288779, no: 13, code 079430 in process
+2025-09-04 02:03:35.772224, no: 14, code 082640 in process
+2025-09-04 02:03:43.895276, no: 15, code 085620 in process
+2025-09-04 02:03:51.848168, no: 16, code 088350 in process
+2025-09-04 02:04:00.041268, no: 17, code 126560 in process
+2025-09-04 02:04:16.478117, no: 18, code 138040 in process
+2025-09-04 02:04:24.425926, no: 19, code 248070 in process
+2025-09-04 02:04:35.208732, no: 20, code 258830 in process
+2025-09-04 02:04:49.006007, no: 21, code 318160 in process
+2025-09-04 02:04:57.593873, no: 22, code 452400 in process
+2025-09-04 02:05:05.234730, no: 23, code 462980 in process
+2025-09-04 02:05:12.030736, no: 24, code 471050 in process
+partial_rescan batch operation: 0
+Financial data collection log >> 
+2025-09-04 02:05:27.662095, no: 0, code 900300 in process
+----> no: 0, code 900300 currency not in KRW, skipping
+2025-09-04 02:05:33.076972, no: 1, code 097870 in process
+2025-09-04 02:05:39.075516, no: 2, code 900270 in process
+----> no: 2, code 900270 currency not in KRW, skipping
+2025-09-04 02:05:44.411916, no: 3, code 021820 in process
+2025-09-04 02:05:50.757529, no: 4, code 900100 in process
+----> no: 4, code 900100 currency not in KRW, skipping
+2025-09-04 02:05:56.344314, no: 5, code 050860 in process
+2025-09-04 02:06:02.377543, no: 6, code 001080 in process
+2025-09-04 02:06:08.662647, no: 7, code 900140 in process
+----> no: 7, code 900140 currency not in KRW, skipping
+2025-09-04 02:06:14.036915, no: 8, code 032800 in process
+2025-09-04 02:06:20.450383, no: 9, code 900340 in process
+----> no: 9, code 900340 currency not in KRW, skipping
+2025-09-04 02:06:25.957371, no: 10, code 093240 in process
+2025-09-04 02:06:32.254384, no: 11, code 900070 in process
+----> no: 11, code 900070 currency not in KRW, skipping
+2025-09-04 02:06:37.798704, no: 12, code 169330 in process
+2025-09-04 02:06:43.877335, no: 13, code 900250 in process
+----> no: 13, code 900250 currency not in KRW, skipping
+2025-09-04 02:06:49.232443, no: 14, code 030960 in process
+2025-09-04 02:06:55.229242, no: 15, code 900260 in process
+----> no: 15, code 900260 currency not in KRW, skipping
+2025-09-04 02:07:00.580064, no: 16, code 189690 in process
+2025-09-04 02:07:06.602378, no: 17, code 334970 in process
+2025-09-04 02:07:12.565815, no: 18, code 005390 in process
+2025-09-04 02:07:18.579422, no: 19, code 900110 in process
+----> no: 19, code 900110 currency not in KRW, skipping
+== Update finished ==
+updating market prices...
+Updating outstanding shares information...
+Processing outstanding shares data for 2025-09-02... 0/150
+Processing outstanding shares data for 2025-09-03... 1/150
