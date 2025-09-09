@@ -4469,3 +4469,44 @@ updating market prices...
 Updating outstanding shares information...
 Processing outstanding shares data for 2025-09-05... 0/150
 Processing outstanding shares data for 2025-09-08... 1/150
+Company health data collection initiated at 2025-09-10 02:00:05.861237
+Updating KRX data...
+Updating between dates: 2025-09-02 / 2025-09-10
+FULL rescan codes:
+Total 12 items.
+[0-11] ['003070', '013890', '016250', '023910', '066980', '101670', '222810', '225430', '258830', '273060', '284620', '450050']
+PARTIAL rescan codes:
+Total 11 items.
+[0-10] ['097870', '169330', '030960', '021820', '189690', '050860', '001080', '005390', '093240', '334970', '032800']
+full_rescan batch operation: 0
+Financial data collection log >> 
+2025-09-10 02:00:17.913572, no: 0, code 003070 in process
+2025-09-10 02:00:28.979612, no: 1, code 013890 in process
+2025-09-10 02:00:43.174857, no: 2, code 016250 in process
+2025-09-10 02:00:59.518348, no: 3, code 023910 in process
+2025-09-10 02:01:15.761664, no: 4, code 066980 in process
+2025-09-10 02:01:35.492702, no: 5, code 101670 in process
+2025-09-10 02:01:54.124989, no: 6, code 222810 in process
+2025-09-10 02:02:10.404667, no: 7, code 225430 in process
+2025-09-10 02:02:23.633472, no: 8, code 258830 in process
+2025-09-10 02:02:37.419335, no: 9, code 273060 in process
+2025-09-10 02:02:48.446875, no: 10, code 284620 in process
+2025-09-10 02:03:02.083952, no: 11, code 450050 in process
+partial_rescan batch operation: 0
+Financial data collection log >> 
+2025-09-10 02:03:17.293730, no: 0, code 097870 in process
+2025-09-10 02:03:23.454560, no: 1, code 169330 in process
+2025-09-10 02:03:29.617758, no: 2, code 030960 in process
+2025-09-10 02:03:36.176888, no: 3, code 021820 in process
+2025-09-10 02:03:42.689551, no: 4, code 189690 in process
+2025-09-10 02:03:49.020737, no: 5, code 050860 in process
+2025-09-10 02:03:55.364071, no: 6, code 001080 in process
+2025-09-10 02:04:01.326364, no: 7, code 005390 in process
+2025-09-10 02:04:07.340756, no: 8, code 093240 in process
+2025-09-10 02:04:13.323292, no: 9, code 334970 in process
+2025-09-10 02:04:19.284037, no: 10, code 032800 in process
+== Update finished ==
+updating market prices...
+Updating outstanding shares information...
+Processing outstanding shares data for 2025-09-08... 0/150
+Processing outstanding shares data for 2025-09-09... 1/150
