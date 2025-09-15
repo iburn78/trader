@@ -4695,3 +4695,40 @@ Financial data collection log >>
 updating market prices...
 Updating outstanding shares information...
 Processing outstanding shares data for 2025-09-12... 0/150
+Company health data collection initiated at 2025-09-16 02:00:06.121188
+Updating KRX data...
+Updating between dates: 2025-09-08 / 2025-09-16
+FULL rescan codes:
+Total 7 items.
+[0-6] ['003070', '013890', '140670', '159010', '222810', '438700', '450050']
+PARTIAL rescan codes:
+Total 12 items.
+[0-11] ['030960', '001080', '093240', '032800', '005390', '169330', '334970', '400760', '021820', '097870', '189690', '050860']
+full_rescan batch operation: 0
+Financial data collection log >> 
+2025-09-16 02:00:18.060989, no: 0, code 003070 in process
+2025-09-16 02:00:30.173926, no: 1, code 013890 in process
+2025-09-16 02:00:47.328253, no: 2, code 140670 in process
+2025-09-16 02:01:05.671729, no: 3, code 159010 in process
+2025-09-16 02:01:15.422364, no: 4, code 222810 in process
+2025-09-16 02:01:31.436890, no: 5, code 438700 in process
+2025-09-16 02:01:39.319177, no: 6, code 450050 in process
+partial_rescan batch operation: 0
+Financial data collection log >> 
+2025-09-16 02:01:54.806291, no: 0, code 030960 in process
+2025-09-16 02:02:01.126507, no: 1, code 001080 in process
+2025-09-16 02:02:07.766668, no: 2, code 093240 in process
+2025-09-16 02:02:14.392418, no: 3, code 032800 in process
+2025-09-16 02:02:20.980211, no: 4, code 005390 in process
+2025-09-16 02:02:27.885267, no: 5, code 169330 in process
+2025-09-16 02:02:34.983242, no: 6, code 334970 in process
+2025-09-16 02:02:41.944211, no: 7, code 400760 in process
+2025-09-16 02:02:48.374598, no: 8, code 021820 in process
+2025-09-16 02:02:54.694049, no: 9, code 097870 in process
+2025-09-16 02:03:01.036195, no: 10, code 189690 in process
+2025-09-16 02:03:07.658221, no: 11, code 050860 in process
+== Update finished ==
+updating market prices...
+Updating outstanding shares information...
+Processing outstanding shares data for 2025-09-12... 0/150
+Processing outstanding shares data for 2025-09-15... 1/150
