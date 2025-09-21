@@ -4906,3 +4906,37 @@ Financial data collection log >>
 updating market prices...
 Updating outstanding shares information...
 Processing outstanding shares data for 2025-09-19... 0/150
+Company health data collection initiated at 2025-09-22 02:00:05.607893
+Updating KRX data...
+Updating between dates: 2025-09-14 / 2025-09-22
+FULL rescan codes:
+Total 5 items.
+[0-4] ['001080', '060980', '078600', '159010', '438700']
+PARTIAL rescan codes:
+Total 11 items.
+[0-10] ['093240', '050860', '097870', '189690', '032800', '334970', '030960', '005390', '021820', '169330', '950210']
+full_rescan batch operation: 0
+Financial data collection log >> 
+2025-09-22 02:00:18.166071, no: 0, code 001080 in process
+2025-09-22 02:00:25.848095, no: 1, code 060980 in process
+2025-09-22 02:00:43.882617, no: 2, code 078600 in process
+2025-09-22 02:01:01.231880, no: 3, code 159010 in process
+2025-09-22 02:01:10.746091, no: 4, code 438700 in process
+partial_rescan batch operation: 0
+Financial data collection log >> 
+2025-09-22 02:01:27.466800, no: 0, code 093240 in process
+2025-09-22 02:01:33.436174, no: 1, code 050860 in process
+2025-09-22 02:01:39.367087, no: 2, code 097870 in process
+2025-09-22 02:01:45.667040, no: 3, code 189690 in process
+2025-09-22 02:01:51.862911, no: 4, code 032800 in process
+2025-09-22 02:01:58.096450, no: 5, code 334970 in process
+2025-09-22 02:02:04.427410, no: 6, code 030960 in process
+2025-09-22 02:02:10.813386, no: 7, code 005390 in process
+2025-09-22 02:02:17.089694, no: 8, code 021820 in process
+2025-09-22 02:02:23.290551, no: 9, code 169330 in process
+2025-09-22 02:02:29.551664, no: 10, code 950210 in process
+----> no: 10, code 950210 currency not in KRW, skipping
+== Update finished ==
+updating market prices...
+Updating outstanding shares information...
+Processing outstanding shares data for 2025-09-19... 0/150
