@@ -18706,3 +18706,111 @@ rate_changes.png
 
 sent 4,205,650 bytes  received 36,041 bytes  2,827,794.00 bytes/sec
 total size is 1,106,868,770  speedup is 260.95
+[main daa6ea8] 2025-09-25 upload done from linux machine
+ 14 files changed, 144 insertions(+)
+ rewrite data_collection/data/df_krx.db (85%)
+ rewrite data_collection/data/df_krx.feather (85%)
+To https://github.com/iburn78/trader
+   26c0d82..daa6ea8  main -> main
+rtcwake: write error
+이미 업데이트 상태입니다.
+Company health data collection initiated at 2025-09-26 02:00:05.794047
+Updating KRX data...
+Updating between dates: 2025-09-18 / 2025-09-26
+FULL rescan codes:
+Total 3 items.
+[0-2] ['001080', '078600', '950210']
+PARTIAL rescan codes:
+Total 11 items.
+[0-10] ['021820', '189690', '030960', '097870', '093240', '169330', '005390', '050860', '395400', '032800', '334970']
+full_rescan batch operation: 0
+Financial data collection log >> 
+2025-09-26 02:00:18.720597, no: 0, code 001080 in process
+2025-09-26 02:00:26.106840, no: 1, code 078600 in process
+2025-09-26 02:00:42.459346, no: 2, code 950210 in process
+----> no: 2, code 950210 currency not in KRW, skipping
+partial_rescan batch operation: 0
+Financial data collection log >> 
+2025-09-26 02:00:56.404665, no: 0, code 021820 in process
+2025-09-26 02:01:02.449135, no: 1, code 189690 in process
+2025-09-26 02:01:08.482466, no: 2, code 030960 in process
+2025-09-26 02:01:14.464025, no: 3, code 097870 in process
+2025-09-26 02:01:20.435185, no: 4, code 093240 in process
+2025-09-26 02:01:26.442228, no: 5, code 169330 in process
+2025-09-26 02:01:32.452142, no: 6, code 005390 in process
+2025-09-26 02:01:38.482247, no: 7, code 050860 in process
+2025-09-26 02:01:44.437145, no: 8, code 395400 in process
+2025-09-26 02:01:50.627368, no: 9, code 032800 in process
+2025-09-26 02:01:56.627467, no: 10, code 334970 in process
+== Update finished ==
+updating market prices...
+Updating outstanding shares information...
+Processing outstanding shares data for 2025-09-24... 0/150
+Processing outstanding shares data for 2025-09-25... 1/150
+2025-09-26 QA DB: updating ['001080', '005390', '021820', '030960', '032800', '050860', '078600', '093240', '097870', '169330', '189690', '334970', '395400', '950210']
+001080
+005390
+021820
+030960
+032800
+050860
+078600
+093240
+097870
+169330
+189690
+334970
+395400
+950210
+001080 | 1/14
+005390 | 2/14
+021820 | 3/14
+030960 | 4/14
+032800 | 5/14
+050860 | 6/14
+078600 | 7/14
+093240 | 8/14
+097870 | 9/14
+169330 | 10/14
+189690 | 11/14
+334970 | 12/14
+395400 | 13/14
+2025-09-26 02:04:26.404872 | 395400 | quarterly data of 395400 is empty.
+950210 | 14/14
+2025-09-26 02:04:28.003514 | 950210 | quarterly data of 950210 is empty.
+sending incremental file list
+daily_update.json
+          1,018 100%    0.00kB/s    0:00:00            1,018 100%    0.00kB/s    0:00:00 (xfr#1, to-chk=0/2)
+
+sent 1,140 bytes  received 47 bytes  791.33 bytes/sec
+total size is 1,018  speedup is 0.86
+sending incremental file list
+001080.png
+         32,768  28%    0.00kB/s    0:00:00          116,491 100%   79.84MB/s    0:00:00 (xfr#1, to-chk=2646/2701)
+005390.png
+         32,768  10%   15.62MB/s    0:00:00          316,615 100%   50.32MB/s    0:00:00 (xfr#2, to-chk=2457/2701)
+021820.png
+         32,768   6%    4.46MB/s    0:00:00          499,166 100%   36.62MB/s    0:00:00 (xfr#3, to-chk=2132/2701)
+030960.png
+         32,768  11%    2.23MB/s    0:00:00          296,712 100%   15.72MB/s    0:00:00 (xfr#4, to-chk=2037/2701)
+032800.png
+         32,768  10%    1.64MB/s    0:00:00          323,577 100%   13.42MB/s    0:00:00 (xfr#5, to-chk=2013/2701)
+050860.png
+         32,768  11%    1.36MB/s    0:00:00          293,971 100%    9.67MB/s    0:00:00 (xfr#6, to-chk=1759/2701)
+078600.png
+         32,768   7%    1.04MB/s    0:00:00          456,676 100%   10.37MB/s    0:00:00 (xfr#7, to-chk=1480/2701)
+093240.png
+         32,768  10%  744.19kB/s    0:00:00          310,285 100%    3.75MB/s    0:00:00 (xfr#8, to-chk=1328/2701)
+097870.png
+         32,768   9%  395.06kB/s    0:00:00          338,357 100%    2.46MB/s    0:00:00 (xfr#9, to-chk=1286/2701)
+169330.png
+         32,768  10%  213.33kB/s    0:00:01          323,386 100%    1.61MB/s    0:00:00 (xfr#10, to-chk=997/2701)
+189690.png
+         32,768   9%  164.95kB/s    0:00:01          335,093 100%    1.30MB/s    0:00:00 (xfr#11, to-chk=948/2701)
+334970.png
+         32,768   9%  121.67kB/s    0:00:02          362,814 100%    1.13MB/s    0:00:00 (xfr#12, to-chk=469/2701)
+rate_changes.png
+         32,768  16%  103.90kB/s    0:00:01          198,044 100%  551.00kB/s    0:00:00 (xfr#13, to-chk=0/2701)
+
+sent 4,239,459 bytes  received 36,005 bytes  2,850,309.33 bytes/sec
+total size is 1,106,871,951  speedup is 258.89
