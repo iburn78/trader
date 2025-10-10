@@ -5570,3 +5570,33 @@ Financial data collection log >>
 updating market prices...
 Updating outstanding shares information...
 Processing outstanding shares data for 2025-10-02... 0/150
+Company health data collection initiated at 2025-10-11 02:00:05.791553
+Updating KRX data...
+Updating between dates: 2025-10-03 / 2025-10-11
+No new data to update
+FULL rescan codes:
+Nothing to update.
+PARTIAL rescan codes:
+Total 14 items.
+[0-13] ['227100', '020180', '033200', '018500', '001720', '067010', '190650', '002630', '099750', '060310', '092440', '289080', '021880', '008110']
+partial_rescan batch operation: 0
+Financial data collection log >> 
+2025-10-11 02:00:18.051888, no: 0, code 227100 in process
+2025-10-11 02:00:25.668906, no: 1, code 020180 in process
+2025-10-11 02:00:33.167717, no: 2, code 033200 in process
+2025-10-11 02:00:40.639903, no: 3, code 018500 in process
+2025-10-11 02:00:48.158084, no: 4, code 001720 in process
+2025-10-11 02:00:55.710876, no: 5, code 067010 in process
+2025-10-11 02:01:03.219251, no: 6, code 190650 in process
+2025-10-11 02:01:10.702047, no: 7, code 002630 in process
+2025-10-11 02:01:18.177255, no: 8, code 099750 in process
+2025-10-11 02:01:25.687265, no: 9, code 060310 in process
+2025-10-11 02:01:33.233928, no: 10, code 092440 in process
+2025-10-11 02:01:40.878907, no: 11, code 289080 in process
+2025-10-11 02:01:48.512833, no: 12, code 021880 in process
+2025-10-11 02:01:56.125782, no: 13, code 008110 in process
+== Update finished ==
+updating market prices...
+Updating outstanding shares information...
+Processing outstanding shares data for 2025-10-02... 0/150
+Processing outstanding shares data for 2025-10-10... 1/150
