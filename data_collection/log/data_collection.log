@@ -5763,3 +5763,41 @@ updating market prices...
 Updating outstanding shares information...
 Processing outstanding shares data for 2025-10-14... 0/150
 Processing outstanding shares data for 2025-10-15... 1/150
+Company health data collection initiated at 2025-10-17 02:00:06.360774
+Updating KRX data...
+Updating between dates: 2025-10-09 / 2025-10-17
+FULL rescan codes:
+Total 3 items.
+[0-2] ['001840', '311390', '365550']
+PARTIAL rescan codes:
+Total 17 items.
+[0-16] ['008110', '018500', '092440', '001720', '033200', '067010', '099750', '357250', '289080', '060310', '357120', '002630', '338100', '020180', '190650', '021880', '227100']
+full_rescan batch operation: 0
+Financial data collection log >> 
+2025-10-17 02:00:18.703969, no: 0, code 001840 in process
+2025-10-17 02:00:34.592060, no: 1, code 311390 in process
+2025-10-17 02:00:46.769441, no: 2, code 365550 in process
+partial_rescan batch operation: 0
+Financial data collection log >> 
+2025-10-17 02:01:02.761139, no: 0, code 008110 in process
+2025-10-17 02:01:10.214757, no: 1, code 018500 in process
+2025-10-17 02:01:17.649513, no: 2, code 092440 in process
+2025-10-17 02:01:25.095552, no: 3, code 001720 in process
+2025-10-17 02:01:32.757402, no: 4, code 033200 in process
+2025-10-17 02:01:40.234156, no: 5, code 067010 in process
+2025-10-17 02:01:47.676346, no: 6, code 099750 in process
+2025-10-17 02:01:55.163143, no: 7, code 357250 in process
+2025-10-17 02:02:01.264640, no: 8, code 289080 in process
+2025-10-17 02:02:08.691630, no: 9, code 060310 in process
+2025-10-17 02:02:16.132758, no: 10, code 357120 in process
+2025-10-17 02:02:22.267987, no: 11, code 002630 in process
+2025-10-17 02:02:29.728991, no: 12, code 338100 in process
+2025-10-17 02:02:35.805161, no: 13, code 020180 in process
+2025-10-17 02:02:43.311193, no: 14, code 190650 in process
+2025-10-17 02:02:50.730569, no: 15, code 021880 in process
+2025-10-17 02:02:58.230846, no: 16, code 227100 in process
+== Update finished ==
+updating market prices...
+Updating outstanding shares information...
+Processing outstanding shares data for 2025-10-15... 0/150
+Processing outstanding shares data for 2025-10-16... 1/150
