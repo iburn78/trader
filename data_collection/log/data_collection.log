@@ -5840,3 +5840,41 @@ updating market prices...
 Updating outstanding shares information...
 Processing outstanding shares data for 2025-10-16... 0/150
 Processing outstanding shares data for 2025-10-17... 1/150
+Company health data collection initiated at 2025-10-19 02:00:05.737003
+Updating KRX data...
+Updating between dates: 2025-10-11 / 2025-10-19
+FULL rescan codes:
+Total 4 items.
+[0-3] ['000720', '001840', '311390', '365550']
+PARTIAL rescan codes:
+Total 17 items.
+[0-16] ['002630', '001720', '338100', '092440', '008110', '067010', '060310', '357250', '357120', '099750', '020180', '021880', '033200', '190650', '018500', '289080', '227100']
+full_rescan batch operation: 0
+Financial data collection log >> 
+2025-10-19 02:00:17.601801, no: 0, code 000720 in process
+2025-10-19 02:00:33.799264, no: 1, code 001840 in process
+2025-10-19 02:00:49.699601, no: 2, code 311390 in process
+2025-10-19 02:01:01.936377, no: 3, code 365550 in process
+partial_rescan batch operation: 0
+Financial data collection log >> 
+2025-10-19 02:01:16.780362, no: 0, code 002630 in process
+2025-10-19 02:01:24.234585, no: 1, code 001720 in process
+2025-10-19 02:01:32.021134, no: 2, code 338100 in process
+2025-10-19 02:01:38.140687, no: 3, code 092440 in process
+2025-10-19 02:01:45.648921, no: 4, code 008110 in process
+2025-10-19 02:01:58.292287, no: 5, code 067010 in process
+2025-10-19 02:02:05.756159, no: 6, code 060310 in process
+2025-10-19 02:02:13.194126, no: 7, code 357250 in process
+2025-10-19 02:02:19.275396, no: 8, code 357120 in process
+2025-10-19 02:02:25.521557, no: 9, code 099750 in process
+2025-10-19 02:02:33.088907, no: 10, code 020180 in process
+2025-10-19 02:02:40.574104, no: 11, code 021880 in process
+2025-10-19 02:02:48.070046, no: 12, code 033200 in process
+2025-10-19 02:02:55.524949, no: 13, code 190650 in process
+2025-10-19 02:03:03.031549, no: 14, code 018500 in process
+2025-10-19 02:03:10.536112, no: 15, code 289080 in process
+2025-10-19 02:03:18.004428, no: 16, code 227100 in process
+== Update finished ==
+updating market prices...
+Updating outstanding shares information...
+Processing outstanding shares data for 2025-10-17... 0/150
