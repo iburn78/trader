@@ -22088,3 +22088,142 @@ rate_changes.png
 
 sent 7,340,622 bytes  received 62,377 bytes  4,935,332.67 bytes/sec
 total size is 1,106,570,145  speedup is 149.48
+[main a826d86] 2025-10-22 upload done from linux machine
+ 13 files changed, 178 insertions(+)
+ rewrite data_collection/data/df_krx.db (85%)
+ rewrite data_collection/data/df_krx.feather (84%)
+To https://github.com/iburn78/trader
+   ccd305a..a826d86  main -> main
+rtcwake: write error
+이미 업데이트 상태입니다.
+Company health data collection initiated at 2025-10-23 02:00:05.825779
+Updating KRX data...
+Updating between dates: 2025-10-15 / 2025-10-23
+FULL rescan codes:
+Total 3 items.
+[0-2] ['000720', '311390', '365550']
+PARTIAL rescan codes:
+Total 17 items.
+[0-16] ['008110', '060310', '092440', '357120', '021880', '227100', '002630', '357250', '067010', '020180', '289080', '338100', '001720', '190650', '099750', '018500', '033200']
+full_rescan batch operation: 0
+Financial data collection log >> 
+2025-10-23 02:00:17.420695, no: 0, code 000720 in process
+2025-10-23 02:00:33.758862, no: 1, code 311390 in process
+2025-10-23 02:00:46.235704, no: 2, code 365550 in process
+partial_rescan batch operation: 0
+Financial data collection log >> 
+2025-10-23 02:01:00.803844, no: 0, code 008110 in process
+2025-10-23 02:01:08.721931, no: 1, code 060310 in process
+2025-10-23 02:01:16.429001, no: 2, code 092440 in process
+2025-10-23 02:01:23.965863, no: 3, code 357120 in process
+2025-10-23 02:01:30.101224, no: 4, code 021880 in process
+2025-10-23 02:01:37.635788, no: 5, code 227100 in process
+2025-10-23 02:01:45.103893, no: 6, code 002630 in process
+2025-10-23 02:01:52.615882, no: 7, code 357250 in process
+2025-10-23 02:01:58.764985, no: 8, code 067010 in process
+2025-10-23 02:02:06.224834, no: 9, code 020180 in process
+2025-10-23 02:02:13.683313, no: 10, code 289080 in process
+2025-10-23 02:02:21.189418, no: 11, code 338100 in process
+2025-10-23 02:02:27.351973, no: 12, code 001720 in process
+2025-10-23 02:02:34.861970, no: 13, code 190650 in process
+2025-10-23 02:02:42.360775, no: 14, code 099750 in process
+2025-10-23 02:02:49.914064, no: 15, code 018500 in process
+2025-10-23 02:02:57.394974, no: 16, code 033200 in process
+== Update finished ==
+updating market prices...
+Updating outstanding shares information...
+Processing outstanding shares data for 2025-10-21... 0/150
+Processing outstanding shares data for 2025-10-22... 1/150
+2025-10-23 QA DB: updating ['000720', '001720', '002630', '008110', '018500', '020180', '021880', '033200', '060310', '067010', '092440', '099750', '190650', '227100', '289080', '311390', '338100', '357120', '357250', '365550']
+000720
+001720
+002630
+008110
+018500
+020180
+021880
+033200
+060310
+067010
+092440
+099750
+190650
+227100
+289080
+311390
+338100
+357120
+357250
+365550
+000720 | 1/20
+001720 | 2/20
+002630 | 3/20
+008110 | 4/20
+018500 | 5/20
+020180 | 6/20
+021880 | 7/20
+033200 | 8/20
+060310 | 9/20
+067010 | 10/20
+092440 | 11/20
+099750 | 12/20
+190650 | 13/20
+227100 | 14/20
+289080 | 15/20
+311390 | 16/20
+338100 | 17/20
+357120 | 18/20
+357250 | 19/20
+365550 | 20/20
+sending incremental file list
+daily_update.json
+            864 100%    0.00kB/s    0:00:00              864 100%    0.00kB/s    0:00:00 (xfr#1, to-chk=0/2)
+
+sent 826 bytes  received 47 bytes  1,746.00 bytes/sec
+total size is 864  speedup is 0.99
+sending incremental file list
+000720.png
+         32,768   7%    0.00kB/s    0:00:00          414,486 100%   91.01MB/s    0:00:00 (xfr#1, to-chk=2663/2701)
+001720.png
+         32,768  16%    6.25MB/s    0:00:00          194,468 100%   26.49MB/s    0:00:00 (xfr#2, to-chk=2613/2701)
+002630.png
+         32,768   8%    3.91MB/s    0:00:00          371,391 100%   27.25MB/s    0:00:00 (xfr#3, to-chk=2577/2701)
+008110.png
+         32,768   6%    2.40MB/s    0:00:00          504,949 100%   24.08MB/s    0:00:00 (xfr#4, to-chk=2370/2701)
+018500.png
+         32,768   7%    1.56MB/s    0:00:00          410,467 100%   15.06MB/s    0:00:00 (xfr#5, to-chk=2166/2701)
+020180.png
+         32,768   6%    1.16MB/s    0:00:00          528,117 100%   12.59MB/s    0:00:00 (xfr#6, to-chk=2143/2701)
+021880.png
+         32,768  13%  744.19kB/s    0:00:00          246,994 100%    3.37MB/s    0:00:00 (xfr#7, to-chk=2131/2701)
+033200.png
+         32,768   6%  450.70kB/s    0:00:01          494,921 100%    3.60MB/s    0:00:00 (xfr#8, to-chk=1999/2701)
+060310.png
+         32,768   8%  242.42kB/s    0:00:01          382,499 100%    2.22MB/s    0:00:00 (xfr#9, to-chk=1649/2701)
+067010.png
+         32,768   6%  179.78kB/s    0:00:02          532,411 100%    2.11MB/s    0:00:00 (xfr#10, to-chk=1575/2701)
+092440.png
+         32,768   6%  132.78kB/s    0:00:03          491,918 100%    1.62MB/s    0:00:00 (xfr#11, to-chk=1338/2701)
+099750.png
+         32,768   6%  105.61kB/s    0:00:04          515,790 100%    1.40MB/s    0:00:00 (xfr#12, to-chk=1272/2701)
+190650.png
+         32,768  14%   90.65kB/s    0:00:02          223,378 100%  569.56kB/s    0:00:00 (xfr#13, to-chk=944/2701)
+227100.png
+         32,768   7%   83.33kB/s    0:00:04          429,945 100%  891.44kB/s    0:00:00 (xfr#14, to-chk=791/2701)
+289080.png
+         32,768  13%   67.51kB/s    0:00:03          238,135 100%  478.51kB/s    0:00:00 (xfr#15, to-chk=614/2701)
+311390.png
+         32,768  10%   65.04kB/s    0:00:04          309,916 100%  610.19kB/s    0:00:00 (xfr#16, to-chk=531/2701)
+338100.png
+         32,768  14%   62.99kB/s    0:00:03          227,783 100%  423.70kB/s    0:00:00 (xfr#17, to-chk=459/2701)
+357120.png
+         32,768  14%   60.84kB/s    0:00:03          219,103 100%  384.83kB/s    0:00:00 (xfr#18, to-chk=408/2701)
+357250.png
+         32,768  14%   57.55kB/s    0:00:03          225,635 100%  384.55kB/s    0:00:00 (xfr#19, to-chk=406/2701)
+365550.png
+         32,768  28%   54.61kB/s    0:00:01          114,971 100%  191.27kB/s    0:00:00 (xfr#20, to-chk=383/2701)
+rate_changes.png
+         32,768  16%   53.16kB/s    0:00:03          193,995 100%  306.06kB/s    0:00:00 (xfr#21, to-chk=0/2701)
+
+sent 7,335,723 bytes  received 62,455 bytes  4,932,118.67 bytes/sec
+total size is 1,106,565,273  speedup is 149.57
