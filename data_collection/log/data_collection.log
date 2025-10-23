@@ -6031,3 +6031,40 @@ updating market prices...
 Updating outstanding shares information...
 Processing outstanding shares data for 2025-10-21... 0/150
 Processing outstanding shares data for 2025-10-22... 1/150
+Company health data collection initiated at 2025-10-24 02:00:06.524057
+Updating KRX data...
+Updating between dates: 2025-10-16 / 2025-10-24
+FULL rescan codes:
+Total 2 items.
+[0-1] ['000720', '311390']
+PARTIAL rescan codes:
+Total 16 items.
+[0-15] ['060310', '018500', '092440', '900290', '227100', '020180', '190650', '067010', '033200', '002630', '021880', '099750', '289080', '008110', '432320', '001720']
+full_rescan batch operation: 0
+Financial data collection log >> 
+2025-10-24 02:00:18.852123, no: 0, code 000720 in process
+2025-10-24 02:00:35.649682, no: 1, code 311390 in process
+partial_rescan batch operation: 0
+Financial data collection log >> 
+2025-10-24 02:00:55.915006, no: 0, code 060310 in process
+2025-10-24 02:01:03.357202, no: 1, code 018500 in process
+2025-10-24 02:01:10.830395, no: 2, code 092440 in process
+2025-10-24 02:01:18.319954, no: 3, code 900290 in process
+----> no: 3, code 900290 currency not in KRW, skipping
+2025-10-24 02:01:23.528056, no: 4, code 227100 in process
+2025-10-24 02:01:30.949925, no: 5, code 020180 in process
+2025-10-24 02:01:38.375771, no: 6, code 190650 in process
+2025-10-24 02:01:45.821989, no: 7, code 067010 in process
+2025-10-24 02:01:53.176370, no: 8, code 033200 in process
+2025-10-24 02:02:00.644700, no: 9, code 002630 in process
+2025-10-24 02:02:08.058064, no: 10, code 021880 in process
+2025-10-24 02:02:15.536827, no: 11, code 099750 in process
+2025-10-24 02:02:22.956685, no: 12, code 289080 in process
+2025-10-24 02:02:30.413862, no: 13, code 008110 in process
+2025-10-24 02:02:37.862297, no: 14, code 432320 in process
+2025-10-24 02:02:43.951259, no: 15, code 001720 in process
+== Update finished ==
+updating market prices...
+Updating outstanding shares information...
+Processing outstanding shares data for 2025-10-22... 0/150
+Processing outstanding shares data for 2025-10-23... 1/150
