@@ -6215,3 +6215,43 @@ updating market prices...
 Updating outstanding shares information...
 Processing outstanding shares data for 2025-10-24... 0/150
 Processing outstanding shares data for 2025-10-27... 1/150
+Company health data collection initiated at 2025-10-29 02:00:06.652280
+Updating KRX data...
+Updating between dates: 2025-10-21 / 2025-10-29
+FULL rescan codes:
+Total 3 items.
+[0-2] ['011700', '432320', '444530']
+PARTIAL rescan codes:
+Total 17 items.
+[0-16] ['008110', '001720', '067010', '289080', '044990', '002630', '099750', '021880', '227100', '190650', '092440', '900290', '900120', '060310', '020180', '033200', '018500']
+full_rescan batch operation: 0
+Financial data collection log >> 
+2025-10-29 02:00:18.648308, no: 0, code 011700 in process
+2025-10-29 02:00:34.912020, no: 1, code 432320 in process
+2025-10-29 02:00:41.193366, no: 2, code 444530 in process
+partial_rescan batch operation: 0
+Financial data collection log >> 
+2025-10-29 02:00:57.181199, no: 0, code 008110 in process
+2025-10-29 02:01:04.775042, no: 1, code 001720 in process
+2025-10-29 02:01:12.486273, no: 2, code 067010 in process
+2025-10-29 02:01:19.935957, no: 3, code 289080 in process
+2025-10-29 02:01:27.492632, no: 4, code 044990 in process
+2025-10-29 02:01:34.137344, no: 5, code 002630 in process
+2025-10-29 02:01:41.572319, no: 6, code 099750 in process
+2025-10-29 02:01:49.064473, no: 7, code 021880 in process
+2025-10-29 02:01:56.558247, no: 8, code 227100 in process
+2025-10-29 02:02:04.119361, no: 9, code 190650 in process
+2025-10-29 02:02:11.664188, no: 10, code 092440 in process
+2025-10-29 02:02:19.190789, no: 11, code 900290 in process
+----> no: 11, code 900290 currency not in KRW, skipping
+2025-10-29 02:02:24.405152, no: 12, code 900120 in process
+----> no: 12, code 900120 currency not in KRW, skipping
+2025-10-29 02:02:29.600881, no: 13, code 060310 in process
+2025-10-29 02:02:37.099567, no: 14, code 020180 in process
+2025-10-29 02:02:44.584545, no: 15, code 033200 in process
+2025-10-29 02:02:52.155827, no: 16, code 018500 in process
+== Update finished ==
+updating market prices...
+Updating outstanding shares information...
+Processing outstanding shares data for 2025-10-27... 0/150
+Processing outstanding shares data for 2025-10-28... 1/150
