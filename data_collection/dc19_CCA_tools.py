@@ -549,7 +549,7 @@ def post_process(score_trend, qa_db=qa_db, fr_db=fr_db, pr_db=pr_db, outshare_DB
 
     return data_dict
 
-def generate_PPT(data_dict, fr_db=fr_db, pr_db=pr_db, summary_only = False):
+def generate_PPT(data_dict, fr_db=fr_db, pr_db=pr_db, summary_only = False, top_N: int = top_N):
 
     cd_ = os.path.dirname(os.path.abspath(__file__)) # .
     CCA_folder = 'CCA'
@@ -566,7 +566,8 @@ def generate_PPT(data_dict, fr_db=fr_db, pr_db=pr_db, summary_only = False):
 
     # Per code pages 
     if not summary_only: 
-        for code in data_dict['select_codelist']:
+        if top_N is None: top_N = len(data_dict['select_codelist'])
+        for code in data_dict['select_codelist'][:top_N]:
             print("slide generating for", code)
             slide = prs.slides.add_slide(prs.slide_layouts[0])
             img_stream = mp_plot(data_dict['mp_db_dict'][code])
