@@ -6442,3 +6442,38 @@ Financial data collection log >>
 updating market prices...
 Updating outstanding shares information...
 Processing outstanding shares data for 2025-10-31... 0/150
+Company health data collection initiated at 2025-11-04 02:00:05.704701
+Updating KRX data...
+Updating between dates: 2025-10-27 / 2025-11-04
+FULL rescan codes:
+Nothing to update.
+PARTIAL rescan codes:
+Total 18 items.
+[0-17] ['002630', '067010', '099750', '950170', '227100', '060310', '482680', '001720', '014950', '018500', '033200', '190650', '008110', '289080', '020180', '900120', '021880', '092440']
+partial_rescan batch operation: 0
+Financial data collection log >> 
+2025-11-04 02:00:17.487704, no: 0, code 002630 in process
+2025-11-04 02:00:24.993232, no: 1, code 067010 in process
+2025-11-04 02:00:32.469312, no: 2, code 099750 in process
+2025-11-04 02:00:40.066138, no: 3, code 950170 in process
+----> no: 3, code 950170 currency not in KRW, skipping
+2025-11-04 02:00:45.428908, no: 4, code 227100 in process
+2025-11-04 02:00:52.972279, no: 5, code 060310 in process
+2025-11-04 02:01:00.536228, no: 6, code 482680 in process
+2025-11-04 02:01:07.336112, no: 7, code 001720 in process
+2025-11-04 02:01:15.367930, no: 8, code 014950 in process
+2025-11-04 02:01:21.349493, no: 9, code 018500 in process
+2025-11-04 02:01:28.860950, no: 10, code 033200 in process
+2025-11-04 02:01:37.408282, no: 11, code 190650 in process
+2025-11-04 02:01:44.996445, no: 12, code 008110 in process
+2025-11-04 02:01:52.515537, no: 13, code 289080 in process
+2025-11-04 02:02:00.082988, no: 14, code 020180 in process
+2025-11-04 02:02:07.547899, no: 15, code 900120 in process
+----> no: 15, code 900120 currency not in KRW, skipping
+2025-11-04 02:02:12.757295, no: 16, code 021880 in process
+2025-11-04 02:02:20.290233, no: 17, code 092440 in process
+== Update finished ==
+updating market prices...
+Updating outstanding shares information...
+Processing outstanding shares data for 2025-10-31... 0/150
+Processing outstanding shares data for 2025-11-03... 1/150
