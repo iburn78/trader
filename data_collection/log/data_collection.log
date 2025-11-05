@@ -6516,3 +6516,39 @@ updating market prices...
 Updating outstanding shares information...
 Processing outstanding shares data for 2025-11-03... 0/150
 Processing outstanding shares data for 2025-11-04... 1/150
+Company health data collection initiated at 2025-11-06 02:00:05.930965
+Updating KRX data...
+Updating between dates: 2025-10-29 / 2025-11-06
+FULL rescan codes:
+Nothing to update.
+PARTIAL rescan codes:
+Total 20 items.
+[0-19] ['032350', '001720', '099750', '033200', '190650', '067010', '227100', '020180', '121850', '018500', '289080', '014950', '382800', '060310', '092440', '008110', '002630', '021880', '950170', '417500']
+partial_rescan batch operation: 0
+Financial data collection log >> 
+2025-11-06 02:00:17.843958, no: 0, code 032350 in process
+2025-11-06 02:00:25.255423, no: 1, code 001720 in process
+2025-11-06 02:00:32.830125, no: 2, code 099750 in process
+2025-11-06 02:00:40.387269, no: 3, code 033200 in process
+2025-11-06 02:00:47.946847, no: 4, code 190650 in process
+2025-11-06 02:00:55.431222, no: 5, code 067010 in process
+2025-11-06 02:01:02.823251, no: 6, code 227100 in process
+2025-11-06 02:01:10.417727, no: 7, code 020180 in process
+2025-11-06 02:01:17.840430, no: 8, code 121850 in process
+2025-11-06 02:01:25.011906, no: 9, code 018500 in process
+2025-11-06 02:01:32.478541, no: 10, code 289080 in process
+2025-11-06 02:01:40.001896, no: 11, code 014950 in process
+2025-11-06 02:01:45.912963, no: 12, code 382800 in process
+2025-11-06 02:01:53.032601, no: 13, code 060310 in process
+2025-11-06 02:02:00.536244, no: 14, code 092440 in process
+2025-11-06 02:02:08.052806, no: 15, code 008110 in process
+2025-11-06 02:02:15.534435, no: 16, code 002630 in process
+2025-11-06 02:02:23.004258, no: 17, code 021880 in process
+2025-11-06 02:02:30.510116, no: 18, code 950170 in process
+----> no: 18, code 950170 currency not in KRW, skipping
+2025-11-06 02:02:35.869434, no: 19, code 417500 in process
+== Update finished ==
+updating market prices...
+Updating outstanding shares information...
+Processing outstanding shares data for 2025-11-04... 0/150
+Processing outstanding shares data for 2025-11-05... 1/150
