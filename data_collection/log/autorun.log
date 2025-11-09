@@ -24487,3 +24487,644 @@ rate_changes.png
 
 sent 6,081,588 bytes  received 53,210 bytes  4,089,865.33 bytes/sec
 total size is 1,106,804,181  speedup is 180.41
+[main 01ab8a2] 2025-11-09 upload done from linux machine
+ 11 files changed, 162 insertions(+)
+To https://github.com/iburn78/trader
+   a2d66ad..01ab8a2  main -> main
+rtcwake: write error
+이미 업데이트 상태입니다.
+
+A module that was compiled using NumPy 1.x cannot be run in
+NumPy 2.2.6 as it may crash. To support both 1.x and 2.x
+versions of NumPy, modules must be compiled with NumPy 2.0.
+Some module may need to rebuild instead e.g. with 'pybind11>=2.12'.
+
+If you are a user of the module, the easiest solution will be to
+downgrade to 'numpy<2' or try to upgrade the affected module.
+We expect that some modules will need time to support NumPy 2.
+
+Traceback (most recent call last):  File "/home/andy/projects/trader/data_collection/dc05_CompanyHealth.py", line 4, in <module>
+    import OpenDartReader
+  File "/home/andy/projects/trader/venv/lib/python3.10/site-packages/OpenDartReader/__init__.py", line 4, in <module>
+    from .dart import *
+  File "/home/andy/projects/trader/venv/lib/python3.10/site-packages/OpenDartReader/dart.py", line 11, in <module>
+    import pandas as pd
+  File "/home/andy/projects/trader/venv/lib/python3.10/site-packages/pandas/__init__.py", line 26, in <module>
+    from pandas.compat import (
+  File "/home/andy/projects/trader/venv/lib/python3.10/site-packages/pandas/compat/__init__.py", line 27, in <module>
+    from pandas.compat.pyarrow import (
+  File "/home/andy/projects/trader/venv/lib/python3.10/site-packages/pandas/compat/pyarrow.py", line 8, in <module>
+    import pyarrow as pa
+  File "/home/andy/projects/trader/venv/lib/python3.10/site-packages/pyarrow/__init__.py", line 65, in <module>
+    import pyarrow.lib as _lib
+AttributeError: _ARRAY_API not found
+
+A module that was compiled using NumPy 1.x cannot be run in
+NumPy 2.2.6 as it may crash. To support both 1.x and 2.x
+versions of NumPy, modules must be compiled with NumPy 2.0.
+Some module may need to rebuild instead e.g. with 'pybind11>=2.12'.
+
+If you are a user of the module, the easiest solution will be to
+downgrade to 'numpy<2' or try to upgrade the affected module.
+We expect that some modules will need time to support NumPy 2.
+
+Traceback (most recent call last):  File "/home/andy/projects/trader/data_collection/dc05_CompanyHealth.py", line 4, in <module>
+    import OpenDartReader
+  File "/home/andy/projects/trader/venv/lib/python3.10/site-packages/OpenDartReader/__init__.py", line 4, in <module>
+    from .dart import *
+  File "/home/andy/projects/trader/venv/lib/python3.10/site-packages/OpenDartReader/dart.py", line 11, in <module>
+    import pandas as pd
+  File "/home/andy/projects/trader/venv/lib/python3.10/site-packages/pandas/__init__.py", line 49, in <module>
+    from pandas.core.api import (
+  File "/home/andy/projects/trader/venv/lib/python3.10/site-packages/pandas/core/api.py", line 9, in <module>
+    from pandas.core.dtypes.dtypes import (
+  File "/home/andy/projects/trader/venv/lib/python3.10/site-packages/pandas/core/dtypes/dtypes.py", line 24, in <module>
+    from pandas._libs import (
+  File "/home/andy/projects/trader/venv/lib/python3.10/site-packages/pyarrow/__init__.py", line 65, in <module>
+    import pyarrow.lib as _lib
+AttributeError: _ARRAY_API not found
+
+A module that was compiled using NumPy 1.x cannot be run in
+NumPy 2.2.6 as it may crash. To support both 1.x and 2.x
+versions of NumPy, modules must be compiled with NumPy 2.0.
+Some module may need to rebuild instead e.g. with 'pybind11>=2.12'.
+
+If you are a user of the module, the easiest solution will be to
+downgrade to 'numpy<2' or try to upgrade the affected module.
+We expect that some modules will need time to support NumPy 2.
+
+Traceback (most recent call last):  File "/home/andy/projects/trader/data_collection/dc05_CompanyHealth.py", line 384, in <module>
+    main_db = get_main_financial_reports_db()
+  File "/home/andy/projects/trader/tools/tools.py", line 684, in get_main_financial_reports_db
+    main_db1 = pd.read_feather(main_db_file1)
+  File "/home/andy/projects/trader/venv/lib/python3.10/site-packages/pandas/io/feather_format.py", line 112, in read_feather
+    import_optional_dependency("pyarrow")
+  File "/home/andy/projects/trader/venv/lib/python3.10/site-packages/pandas/compat/_optional.py", line 135, in import_optional_dependency
+    module = importlib.import_module(name)
+  File "/usr/lib/python3.10/importlib/__init__.py", line 126, in import_module
+    return _bootstrap._gcd_import(name[level:], package, level)
+  File "/home/andy/projects/trader/venv/lib/python3.10/site-packages/pyarrow/__init__.py", line 65, in <module>
+    import pyarrow.lib as _lib
+AttributeError: _ARRAY_API not found
+Traceback (most recent call last):
+  File "/home/andy/projects/trader/venv/lib/python3.10/site-packages/pandas/compat/_optional.py", line 135, in import_optional_dependency
+    module = importlib.import_module(name)
+  File "/usr/lib/python3.10/importlib/__init__.py", line 126, in import_module
+    return _bootstrap._gcd_import(name[level:], package, level)
+  File "<frozen importlib._bootstrap>", line 1050, in _gcd_import
+  File "<frozen importlib._bootstrap>", line 1027, in _find_and_load
+  File "<frozen importlib._bootstrap>", line 1006, in _find_and_load_unlocked
+  File "<frozen importlib._bootstrap>", line 688, in _load_unlocked
+  File "<frozen importlib._bootstrap_external>", line 883, in exec_module
+  File "<frozen importlib._bootstrap>", line 241, in _call_with_frames_removed
+  File "/home/andy/projects/trader/venv/lib/python3.10/site-packages/pyarrow/__init__.py", line 65, in <module>
+    import pyarrow.lib as _lib
+  File "pyarrow/lib.pyx", line 36, in init pyarrow.lib
+ImportError: numpy.core.multiarray failed to import
+
+During handling of the above exception, another exception occurred:
+
+Traceback (most recent call last):
+  File "/home/andy/projects/trader/data_collection/dc05_CompanyHealth.py", line 384, in <module>
+    main_db = get_main_financial_reports_db()
+  File "/home/andy/projects/trader/tools/tools.py", line 684, in get_main_financial_reports_db
+    main_db1 = pd.read_feather(main_db_file1)
+  File "/home/andy/projects/trader/venv/lib/python3.10/site-packages/pandas/io/feather_format.py", line 112, in read_feather
+    import_optional_dependency("pyarrow")
+  File "/home/andy/projects/trader/venv/lib/python3.10/site-packages/pandas/compat/_optional.py", line 138, in import_optional_dependency
+    raise ImportError(msg)
+ImportError: Missing optional dependency 'pyarrow'.  Use pip or conda to install pyarrow.
+
+A module that was compiled using NumPy 1.x cannot be run in
+NumPy 2.2.6 as it may crash. To support both 1.x and 2.x
+versions of NumPy, modules must be compiled with NumPy 2.0.
+Some module may need to rebuild instead e.g. with 'pybind11>=2.12'.
+
+If you are a user of the module, the easiest solution will be to
+downgrade to 'numpy<2' or try to upgrade the affected module.
+We expect that some modules will need time to support NumPy 2.
+
+Traceback (most recent call last):  File "/home/andy/projects/trader/data_collection/dc06_GenPriceDB.py", line 4, in <module>
+    import pandas as pd
+  File "/home/andy/projects/trader/venv/lib/python3.10/site-packages/pandas/__init__.py", line 26, in <module>
+    from pandas.compat import (
+  File "/home/andy/projects/trader/venv/lib/python3.10/site-packages/pandas/compat/__init__.py", line 27, in <module>
+    from pandas.compat.pyarrow import (
+  File "/home/andy/projects/trader/venv/lib/python3.10/site-packages/pandas/compat/pyarrow.py", line 8, in <module>
+    import pyarrow as pa
+  File "/home/andy/projects/trader/venv/lib/python3.10/site-packages/pyarrow/__init__.py", line 65, in <module>
+    import pyarrow.lib as _lib
+AttributeError: _ARRAY_API not found
+
+A module that was compiled using NumPy 1.x cannot be run in
+NumPy 2.2.6 as it may crash. To support both 1.x and 2.x
+versions of NumPy, modules must be compiled with NumPy 2.0.
+Some module may need to rebuild instead e.g. with 'pybind11>=2.12'.
+
+If you are a user of the module, the easiest solution will be to
+downgrade to 'numpy<2' or try to upgrade the affected module.
+We expect that some modules will need time to support NumPy 2.
+
+Traceback (most recent call last):  File "/home/andy/projects/trader/data_collection/dc06_GenPriceDB.py", line 4, in <module>
+    import pandas as pd
+  File "/home/andy/projects/trader/venv/lib/python3.10/site-packages/pandas/__init__.py", line 49, in <module>
+    from pandas.core.api import (
+  File "/home/andy/projects/trader/venv/lib/python3.10/site-packages/pandas/core/api.py", line 9, in <module>
+    from pandas.core.dtypes.dtypes import (
+  File "/home/andy/projects/trader/venv/lib/python3.10/site-packages/pandas/core/dtypes/dtypes.py", line 24, in <module>
+    from pandas._libs import (
+  File "/home/andy/projects/trader/venv/lib/python3.10/site-packages/pyarrow/__init__.py", line 65, in <module>
+    import pyarrow.lib as _lib
+AttributeError: _ARRAY_API not found
+
+A module that was compiled using NumPy 1.x cannot be run in
+NumPy 2.2.6 as it may crash. To support both 1.x and 2.x
+versions of NumPy, modules must be compiled with NumPy 2.0.
+Some module may need to rebuild instead e.g. with 'pybind11>=2.12'.
+
+If you are a user of the module, the easiest solution will be to
+downgrade to 'numpy<2' or try to upgrade the affected module.
+We expect that some modules will need time to support NumPy 2.
+
+Traceback (most recent call last):  File "/home/andy/projects/trader/data_collection/dc06_GenPriceDB.py", line 175, in <module>
+    gen_market_DB(price_DB_path, volume_DB_path, START_DATE, log_file=log_file)
+  File "/home/andy/projects/trader/data_collection/dc06_GenPriceDB.py", line 50, in gen_market_DB
+    price_DB = pd.read_feather(price_DB_path)
+  File "/home/andy/projects/trader/venv/lib/python3.10/site-packages/pandas/io/feather_format.py", line 112, in read_feather
+    import_optional_dependency("pyarrow")
+  File "/home/andy/projects/trader/venv/lib/python3.10/site-packages/pandas/compat/_optional.py", line 135, in import_optional_dependency
+    module = importlib.import_module(name)
+  File "/usr/lib/python3.10/importlib/__init__.py", line 126, in import_module
+    return _bootstrap._gcd_import(name[level:], package, level)
+  File "/home/andy/projects/trader/venv/lib/python3.10/site-packages/pyarrow/__init__.py", line 65, in <module>
+    import pyarrow.lib as _lib
+AttributeError: _ARRAY_API not found
+updating market prices...
+Traceback (most recent call last):
+  File "/home/andy/projects/trader/venv/lib/python3.10/site-packages/pandas/compat/_optional.py", line 135, in import_optional_dependency
+    module = importlib.import_module(name)
+  File "/usr/lib/python3.10/importlib/__init__.py", line 126, in import_module
+    return _bootstrap._gcd_import(name[level:], package, level)
+  File "<frozen importlib._bootstrap>", line 1050, in _gcd_import
+  File "<frozen importlib._bootstrap>", line 1027, in _find_and_load
+  File "<frozen importlib._bootstrap>", line 1006, in _find_and_load_unlocked
+  File "<frozen importlib._bootstrap>", line 688, in _load_unlocked
+  File "<frozen importlib._bootstrap_external>", line 883, in exec_module
+  File "<frozen importlib._bootstrap>", line 241, in _call_with_frames_removed
+  File "/home/andy/projects/trader/venv/lib/python3.10/site-packages/pyarrow/__init__.py", line 65, in <module>
+    import pyarrow.lib as _lib
+  File "pyarrow/lib.pyx", line 36, in init pyarrow.lib
+ImportError: numpy.core.multiarray failed to import
+
+During handling of the above exception, another exception occurred:
+
+Traceback (most recent call last):
+  File "/home/andy/projects/trader/data_collection/dc06_GenPriceDB.py", line 175, in <module>
+    gen_market_DB(price_DB_path, volume_DB_path, START_DATE, log_file=log_file)
+  File "/home/andy/projects/trader/data_collection/dc06_GenPriceDB.py", line 50, in gen_market_DB
+    price_DB = pd.read_feather(price_DB_path)
+  File "/home/andy/projects/trader/venv/lib/python3.10/site-packages/pandas/io/feather_format.py", line 112, in read_feather
+    import_optional_dependency("pyarrow")
+  File "/home/andy/projects/trader/venv/lib/python3.10/site-packages/pandas/compat/_optional.py", line 138, in import_optional_dependency
+    raise ImportError(msg)
+ImportError: Missing optional dependency 'pyarrow'.  Use pip or conda to install pyarrow.
+
+A module that was compiled using NumPy 1.x cannot be run in
+NumPy 2.2.6 as it may crash. To support both 1.x and 2.x
+versions of NumPy, modules must be compiled with NumPy 2.0.
+Some module may need to rebuild instead e.g. with 'pybind11>=2.12'.
+
+If you are a user of the module, the easiest solution will be to
+downgrade to 'numpy<2' or try to upgrade the affected module.
+We expect that some modules will need time to support NumPy 2.
+
+Traceback (most recent call last):  File "/home/andy/projects/trader/data_collection/dc17_QuarterlyAnalysisDB.py", line 2, in <module>
+    import pandas as pd
+  File "/home/andy/projects/trader/venv/lib/python3.10/site-packages/pandas/__init__.py", line 26, in <module>
+    from pandas.compat import (
+  File "/home/andy/projects/trader/venv/lib/python3.10/site-packages/pandas/compat/__init__.py", line 27, in <module>
+    from pandas.compat.pyarrow import (
+  File "/home/andy/projects/trader/venv/lib/python3.10/site-packages/pandas/compat/pyarrow.py", line 8, in <module>
+    import pyarrow as pa
+  File "/home/andy/projects/trader/venv/lib/python3.10/site-packages/pyarrow/__init__.py", line 65, in <module>
+    import pyarrow.lib as _lib
+AttributeError: _ARRAY_API not found
+
+A module that was compiled using NumPy 1.x cannot be run in
+NumPy 2.2.6 as it may crash. To support both 1.x and 2.x
+versions of NumPy, modules must be compiled with NumPy 2.0.
+Some module may need to rebuild instead e.g. with 'pybind11>=2.12'.
+
+If you are a user of the module, the easiest solution will be to
+downgrade to 'numpy<2' or try to upgrade the affected module.
+We expect that some modules will need time to support NumPy 2.
+
+Traceback (most recent call last):  File "/home/andy/projects/trader/data_collection/dc17_QuarterlyAnalysisDB.py", line 2, in <module>
+    import pandas as pd
+  File "/home/andy/projects/trader/venv/lib/python3.10/site-packages/pandas/__init__.py", line 49, in <module>
+    from pandas.core.api import (
+  File "/home/andy/projects/trader/venv/lib/python3.10/site-packages/pandas/core/api.py", line 9, in <module>
+    from pandas.core.dtypes.dtypes import (
+  File "/home/andy/projects/trader/venv/lib/python3.10/site-packages/pandas/core/dtypes/dtypes.py", line 24, in <module>
+    from pandas._libs import (
+  File "/home/andy/projects/trader/venv/lib/python3.10/site-packages/pyarrow/__init__.py", line 65, in <module>
+    import pyarrow.lib as _lib
+AttributeError: _ARRAY_API not found
+
+A module that was compiled using NumPy 1.x cannot be run in
+NumPy 2.2.6 as it may crash. To support both 1.x and 2.x
+versions of NumPy, modules must be compiled with NumPy 2.0.
+Some module may need to rebuild instead e.g. with 'pybind11>=2.12'.
+
+If you are a user of the module, the easiest solution will be to
+downgrade to 'numpy<2' or try to upgrade the affected module.
+We expect that some modules will need time to support NumPy 2.
+
+Traceback (most recent call last):  File "/home/andy/projects/trader/data_collection/dc17_QuarterlyAnalysisDB.py", line 112, in <module>
+    fr_db, df_krx, qa_db = get_dbs(check_time=False) # in autorun, git-commit is done daily
+  File "/home/andy/projects/trader/tools/tools.py", line 716, in get_dbs
+    main_db = get_main_financial_reports_db()
+  File "/home/andy/projects/trader/tools/tools.py", line 684, in get_main_financial_reports_db
+    main_db1 = pd.read_feather(main_db_file1)
+  File "/home/andy/projects/trader/venv/lib/python3.10/site-packages/pandas/io/feather_format.py", line 112, in read_feather
+    import_optional_dependency("pyarrow")
+  File "/home/andy/projects/trader/venv/lib/python3.10/site-packages/pandas/compat/_optional.py", line 135, in import_optional_dependency
+    module = importlib.import_module(name)
+  File "/usr/lib/python3.10/importlib/__init__.py", line 126, in import_module
+    return _bootstrap._gcd_import(name[level:], package, level)
+  File "/home/andy/projects/trader/venv/lib/python3.10/site-packages/pyarrow/__init__.py", line 65, in <module>
+    import pyarrow.lib as _lib
+AttributeError: _ARRAY_API not found
+Traceback (most recent call last):
+  File "/home/andy/projects/trader/venv/lib/python3.10/site-packages/pandas/compat/_optional.py", line 135, in import_optional_dependency
+    module = importlib.import_module(name)
+  File "/usr/lib/python3.10/importlib/__init__.py", line 126, in import_module
+    return _bootstrap._gcd_import(name[level:], package, level)
+  File "<frozen importlib._bootstrap>", line 1050, in _gcd_import
+  File "<frozen importlib._bootstrap>", line 1027, in _find_and_load
+  File "<frozen importlib._bootstrap>", line 1006, in _find_and_load_unlocked
+  File "<frozen importlib._bootstrap>", line 688, in _load_unlocked
+  File "<frozen importlib._bootstrap_external>", line 883, in exec_module
+  File "<frozen importlib._bootstrap>", line 241, in _call_with_frames_removed
+  File "/home/andy/projects/trader/venv/lib/python3.10/site-packages/pyarrow/__init__.py", line 65, in <module>
+    import pyarrow.lib as _lib
+  File "pyarrow/lib.pyx", line 36, in init pyarrow.lib
+ImportError: numpy.core.multiarray failed to import
+
+During handling of the above exception, another exception occurred:
+
+Traceback (most recent call last):
+  File "/home/andy/projects/trader/data_collection/dc17_QuarterlyAnalysisDB.py", line 112, in <module>
+    fr_db, df_krx, qa_db = get_dbs(check_time=False) # in autorun, git-commit is done daily
+  File "/home/andy/projects/trader/tools/tools.py", line 716, in get_dbs
+    main_db = get_main_financial_reports_db()
+  File "/home/andy/projects/trader/tools/tools.py", line 684, in get_main_financial_reports_db
+    main_db1 = pd.read_feather(main_db_file1)
+  File "/home/andy/projects/trader/venv/lib/python3.10/site-packages/pandas/io/feather_format.py", line 112, in read_feather
+    import_optional_dependency("pyarrow")
+  File "/home/andy/projects/trader/venv/lib/python3.10/site-packages/pandas/compat/_optional.py", line 138, in import_optional_dependency
+    raise ImportError(msg)
+ImportError: Missing optional dependency 'pyarrow'.  Use pip or conda to install pyarrow.
+
+A module that was compiled using NumPy 1.x cannot be run in
+NumPy 2.2.6 as it may crash. To support both 1.x and 2.x
+versions of NumPy, modules must be compiled with NumPy 2.0.
+Some module may need to rebuild instead e.g. with 'pybind11>=2.12'.
+
+If you are a user of the module, the easiest solution will be to
+downgrade to 'numpy<2' or try to upgrade the affected module.
+We expect that some modules will need time to support NumPy 2.
+
+Traceback (most recent call last):  File "/home/andy/projects/trader/data_collection/dc07_VisualizeHealth.py", line 3, in <module>
+    from trader.tools.tools import *
+  File "/home/andy/projects/trader/tools/tools.py", line 4, in <module>
+    import seaborn as sns
+  File "/home/andy/projects/trader/venv/lib/python3.10/site-packages/seaborn/__init__.py", line 2, in <module>
+    from .rcmod import *  # noqa: F401,F403
+  File "/home/andy/projects/trader/venv/lib/python3.10/site-packages/seaborn/rcmod.py", line 5, in <module>
+    from . import palettes
+  File "/home/andy/projects/trader/venv/lib/python3.10/site-packages/seaborn/palettes.py", line 9, in <module>
+    from .utils import desaturate, get_color_cycle
+  File "/home/andy/projects/trader/venv/lib/python3.10/site-packages/seaborn/utils.py", line 11, in <module>
+    import pandas as pd
+  File "/home/andy/projects/trader/venv/lib/python3.10/site-packages/pandas/__init__.py", line 26, in <module>
+    from pandas.compat import (
+  File "/home/andy/projects/trader/venv/lib/python3.10/site-packages/pandas/compat/__init__.py", line 27, in <module>
+    from pandas.compat.pyarrow import (
+  File "/home/andy/projects/trader/venv/lib/python3.10/site-packages/pandas/compat/pyarrow.py", line 8, in <module>
+    import pyarrow as pa
+  File "/home/andy/projects/trader/venv/lib/python3.10/site-packages/pyarrow/__init__.py", line 65, in <module>
+    import pyarrow.lib as _lib
+AttributeError: _ARRAY_API not found
+
+A module that was compiled using NumPy 1.x cannot be run in
+NumPy 2.2.6 as it may crash. To support both 1.x and 2.x
+versions of NumPy, modules must be compiled with NumPy 2.0.
+Some module may need to rebuild instead e.g. with 'pybind11>=2.12'.
+
+If you are a user of the module, the easiest solution will be to
+downgrade to 'numpy<2' or try to upgrade the affected module.
+We expect that some modules will need time to support NumPy 2.
+
+Traceback (most recent call last):  File "/home/andy/projects/trader/data_collection/dc07_VisualizeHealth.py", line 3, in <module>
+    from trader.tools.tools import *
+  File "/home/andy/projects/trader/tools/tools.py", line 4, in <module>
+    import seaborn as sns
+  File "/home/andy/projects/trader/venv/lib/python3.10/site-packages/seaborn/__init__.py", line 2, in <module>
+    from .rcmod import *  # noqa: F401,F403
+  File "/home/andy/projects/trader/venv/lib/python3.10/site-packages/seaborn/rcmod.py", line 5, in <module>
+    from . import palettes
+  File "/home/andy/projects/trader/venv/lib/python3.10/site-packages/seaborn/palettes.py", line 9, in <module>
+    from .utils import desaturate, get_color_cycle
+  File "/home/andy/projects/trader/venv/lib/python3.10/site-packages/seaborn/utils.py", line 11, in <module>
+    import pandas as pd
+  File "/home/andy/projects/trader/venv/lib/python3.10/site-packages/pandas/__init__.py", line 49, in <module>
+    from pandas.core.api import (
+  File "/home/andy/projects/trader/venv/lib/python3.10/site-packages/pandas/core/api.py", line 9, in <module>
+    from pandas.core.dtypes.dtypes import (
+  File "/home/andy/projects/trader/venv/lib/python3.10/site-packages/pandas/core/dtypes/dtypes.py", line 24, in <module>
+    from pandas._libs import (
+  File "/home/andy/projects/trader/venv/lib/python3.10/site-packages/pyarrow/__init__.py", line 65, in <module>
+    import pyarrow.lib as _lib
+AttributeError: _ARRAY_API not found
+
+A module that was compiled using NumPy 1.x cannot be run in
+NumPy 2.2.6 as it may crash. To support both 1.x and 2.x
+versions of NumPy, modules must be compiled with NumPy 2.0.
+Some module may need to rebuild instead e.g. with 'pybind11>=2.12'.
+
+If you are a user of the module, the easiest solution will be to
+downgrade to 'numpy<2' or try to upgrade the affected module.
+We expect that some modules will need time to support NumPy 2.
+
+Traceback (most recent call last):  File "/home/andy/projects/trader/data_collection/dc07_VisualizeHealth.py", line 9, in <module>
+    main_db = get_main_financial_reports_db()
+  File "/home/andy/projects/trader/tools/tools.py", line 684, in get_main_financial_reports_db
+    main_db1 = pd.read_feather(main_db_file1)
+  File "/home/andy/projects/trader/venv/lib/python3.10/site-packages/pandas/io/feather_format.py", line 112, in read_feather
+    import_optional_dependency("pyarrow")
+  File "/home/andy/projects/trader/venv/lib/python3.10/site-packages/pandas/compat/_optional.py", line 135, in import_optional_dependency
+    module = importlib.import_module(name)
+  File "/usr/lib/python3.10/importlib/__init__.py", line 126, in import_module
+    return _bootstrap._gcd_import(name[level:], package, level)
+  File "/home/andy/projects/trader/venv/lib/python3.10/site-packages/pyarrow/__init__.py", line 65, in <module>
+    import pyarrow.lib as _lib
+AttributeError: _ARRAY_API not found
+Traceback (most recent call last):
+  File "/home/andy/projects/trader/venv/lib/python3.10/site-packages/pandas/compat/_optional.py", line 135, in import_optional_dependency
+    module = importlib.import_module(name)
+  File "/usr/lib/python3.10/importlib/__init__.py", line 126, in import_module
+    return _bootstrap._gcd_import(name[level:], package, level)
+  File "<frozen importlib._bootstrap>", line 1050, in _gcd_import
+  File "<frozen importlib._bootstrap>", line 1027, in _find_and_load
+  File "<frozen importlib._bootstrap>", line 1006, in _find_and_load_unlocked
+  File "<frozen importlib._bootstrap>", line 688, in _load_unlocked
+  File "<frozen importlib._bootstrap_external>", line 883, in exec_module
+  File "<frozen importlib._bootstrap>", line 241, in _call_with_frames_removed
+  File "/home/andy/projects/trader/venv/lib/python3.10/site-packages/pyarrow/__init__.py", line 65, in <module>
+    import pyarrow.lib as _lib
+  File "pyarrow/lib.pyx", line 36, in init pyarrow.lib
+ImportError: numpy.core.multiarray failed to import
+
+During handling of the above exception, another exception occurred:
+
+Traceback (most recent call last):
+  File "/home/andy/projects/trader/data_collection/dc07_VisualizeHealth.py", line 9, in <module>
+    main_db = get_main_financial_reports_db()
+  File "/home/andy/projects/trader/tools/tools.py", line 684, in get_main_financial_reports_db
+    main_db1 = pd.read_feather(main_db_file1)
+  File "/home/andy/projects/trader/venv/lib/python3.10/site-packages/pandas/io/feather_format.py", line 112, in read_feather
+    import_optional_dependency("pyarrow")
+  File "/home/andy/projects/trader/venv/lib/python3.10/site-packages/pandas/compat/_optional.py", line 138, in import_optional_dependency
+    raise ImportError(msg)
+ImportError: Missing optional dependency 'pyarrow'.  Use pip or conda to install pyarrow.
+
+A module that was compiled using NumPy 1.x cannot be run in
+NumPy 2.2.6 as it may crash. To support both 1.x and 2.x
+versions of NumPy, modules must be compiled with NumPy 2.0.
+Some module may need to rebuild instead e.g. with 'pybind11>=2.12'.
+
+If you are a user of the module, the easiest solution will be to
+downgrade to 'numpy<2' or try to upgrade the affected module.
+We expect that some modules will need time to support NumPy 2.
+
+Traceback (most recent call last):  File "/home/andy/projects/trader/data_collection/dc13_RateChanges.py", line 2, in <module>
+    from trader.tools.tools import *
+  File "/home/andy/projects/trader/tools/tools.py", line 4, in <module>
+    import seaborn as sns
+  File "/home/andy/projects/trader/venv/lib/python3.10/site-packages/seaborn/__init__.py", line 2, in <module>
+    from .rcmod import *  # noqa: F401,F403
+  File "/home/andy/projects/trader/venv/lib/python3.10/site-packages/seaborn/rcmod.py", line 5, in <module>
+    from . import palettes
+  File "/home/andy/projects/trader/venv/lib/python3.10/site-packages/seaborn/palettes.py", line 9, in <module>
+    from .utils import desaturate, get_color_cycle
+  File "/home/andy/projects/trader/venv/lib/python3.10/site-packages/seaborn/utils.py", line 11, in <module>
+    import pandas as pd
+  File "/home/andy/projects/trader/venv/lib/python3.10/site-packages/pandas/__init__.py", line 26, in <module>
+    from pandas.compat import (
+  File "/home/andy/projects/trader/venv/lib/python3.10/site-packages/pandas/compat/__init__.py", line 27, in <module>
+    from pandas.compat.pyarrow import (
+  File "/home/andy/projects/trader/venv/lib/python3.10/site-packages/pandas/compat/pyarrow.py", line 8, in <module>
+    import pyarrow as pa
+  File "/home/andy/projects/trader/venv/lib/python3.10/site-packages/pyarrow/__init__.py", line 65, in <module>
+    import pyarrow.lib as _lib
+AttributeError: _ARRAY_API not found
+
+A module that was compiled using NumPy 1.x cannot be run in
+NumPy 2.2.6 as it may crash. To support both 1.x and 2.x
+versions of NumPy, modules must be compiled with NumPy 2.0.
+Some module may need to rebuild instead e.g. with 'pybind11>=2.12'.
+
+If you are a user of the module, the easiest solution will be to
+downgrade to 'numpy<2' or try to upgrade the affected module.
+We expect that some modules will need time to support NumPy 2.
+
+Traceback (most recent call last):  File "/home/andy/projects/trader/data_collection/dc13_RateChanges.py", line 2, in <module>
+    from trader.tools.tools import *
+  File "/home/andy/projects/trader/tools/tools.py", line 4, in <module>
+    import seaborn as sns
+  File "/home/andy/projects/trader/venv/lib/python3.10/site-packages/seaborn/__init__.py", line 2, in <module>
+    from .rcmod import *  # noqa: F401,F403
+  File "/home/andy/projects/trader/venv/lib/python3.10/site-packages/seaborn/rcmod.py", line 5, in <module>
+    from . import palettes
+  File "/home/andy/projects/trader/venv/lib/python3.10/site-packages/seaborn/palettes.py", line 9, in <module>
+    from .utils import desaturate, get_color_cycle
+  File "/home/andy/projects/trader/venv/lib/python3.10/site-packages/seaborn/utils.py", line 11, in <module>
+    import pandas as pd
+  File "/home/andy/projects/trader/venv/lib/python3.10/site-packages/pandas/__init__.py", line 49, in <module>
+    from pandas.core.api import (
+  File "/home/andy/projects/trader/venv/lib/python3.10/site-packages/pandas/core/api.py", line 9, in <module>
+    from pandas.core.dtypes.dtypes import (
+  File "/home/andy/projects/trader/venv/lib/python3.10/site-packages/pandas/core/dtypes/dtypes.py", line 24, in <module>
+    from pandas._libs import (
+  File "/home/andy/projects/trader/venv/lib/python3.10/site-packages/pyarrow/__init__.py", line 65, in <module>
+    import pyarrow.lib as _lib
+AttributeError: _ARRAY_API not found
+
+A module that was compiled using NumPy 1.x cannot be run in
+NumPy 2.2.6 as it may crash. To support both 1.x and 2.x
+versions of NumPy, modules must be compiled with NumPy 2.0.
+Some module may need to rebuild instead e.g. with 'pybind11>=2.12'.
+
+If you are a user of the module, the easiest solution will be to
+downgrade to 'numpy<2' or try to upgrade the affected module.
+We expect that some modules will need time to support NumPy 2.
+
+Traceback (most recent call last):  File "/home/andy/projects/trader/data_collection/dc13_RateChanges.py", line 9, in <module>
+    pr_changes, cur_day = get_pr_changes(price_db_file)
+  File "/home/andy/projects/trader/tools/tools.py", line 528, in get_pr_changes
+    pr_db = pd.read_feather(price_db_file)
+  File "/home/andy/projects/trader/venv/lib/python3.10/site-packages/pandas/io/feather_format.py", line 112, in read_feather
+    import_optional_dependency("pyarrow")
+  File "/home/andy/projects/trader/venv/lib/python3.10/site-packages/pandas/compat/_optional.py", line 135, in import_optional_dependency
+    module = importlib.import_module(name)
+  File "/usr/lib/python3.10/importlib/__init__.py", line 126, in import_module
+    return _bootstrap._gcd_import(name[level:], package, level)
+  File "/home/andy/projects/trader/venv/lib/python3.10/site-packages/pyarrow/__init__.py", line 65, in <module>
+    import pyarrow.lib as _lib
+AttributeError: _ARRAY_API not found
+Traceback (most recent call last):
+  File "/home/andy/projects/trader/venv/lib/python3.10/site-packages/pandas/compat/_optional.py", line 135, in import_optional_dependency
+    module = importlib.import_module(name)
+  File "/usr/lib/python3.10/importlib/__init__.py", line 126, in import_module
+    return _bootstrap._gcd_import(name[level:], package, level)
+  File "<frozen importlib._bootstrap>", line 1050, in _gcd_import
+  File "<frozen importlib._bootstrap>", line 1027, in _find_and_load
+  File "<frozen importlib._bootstrap>", line 1006, in _find_and_load_unlocked
+  File "<frozen importlib._bootstrap>", line 688, in _load_unlocked
+  File "<frozen importlib._bootstrap_external>", line 883, in exec_module
+  File "<frozen importlib._bootstrap>", line 241, in _call_with_frames_removed
+  File "/home/andy/projects/trader/venv/lib/python3.10/site-packages/pyarrow/__init__.py", line 65, in <module>
+    import pyarrow.lib as _lib
+  File "pyarrow/lib.pyx", line 36, in init pyarrow.lib
+ImportError: numpy.core.multiarray failed to import
+
+During handling of the above exception, another exception occurred:
+
+Traceback (most recent call last):
+  File "/home/andy/projects/trader/data_collection/dc13_RateChanges.py", line 9, in <module>
+    pr_changes, cur_day = get_pr_changes(price_db_file)
+  File "/home/andy/projects/trader/tools/tools.py", line 528, in get_pr_changes
+    pr_db = pd.read_feather(price_db_file)
+  File "/home/andy/projects/trader/venv/lib/python3.10/site-packages/pandas/io/feather_format.py", line 112, in read_feather
+    import_optional_dependency("pyarrow")
+  File "/home/andy/projects/trader/venv/lib/python3.10/site-packages/pandas/compat/_optional.py", line 138, in import_optional_dependency
+    raise ImportError(msg)
+ImportError: Missing optional dependency 'pyarrow'.  Use pip or conda to install pyarrow.
+
+A module that was compiled using NumPy 1.x cannot be run in
+NumPy 2.2.6 as it may crash. To support both 1.x and 2.x
+versions of NumPy, modules must be compiled with NumPy 2.0.
+Some module may need to rebuild instead e.g. with 'pybind11>=2.12'.
+
+If you are a user of the module, the easiest solution will be to
+downgrade to 'numpy<2' or try to upgrade the affected module.
+We expect that some modules will need time to support NumPy 2.
+
+Traceback (most recent call last):  File "/home/andy/projects/trader/data_collection/dc16_DailyUpdate.py", line 3, in <module>
+    from trader.tools.tools import *
+  File "/home/andy/projects/trader/tools/tools.py", line 4, in <module>
+    import seaborn as sns
+  File "/home/andy/projects/trader/venv/lib/python3.10/site-packages/seaborn/__init__.py", line 2, in <module>
+    from .rcmod import *  # noqa: F401,F403
+  File "/home/andy/projects/trader/venv/lib/python3.10/site-packages/seaborn/rcmod.py", line 5, in <module>
+    from . import palettes
+  File "/home/andy/projects/trader/venv/lib/python3.10/site-packages/seaborn/palettes.py", line 9, in <module>
+    from .utils import desaturate, get_color_cycle
+  File "/home/andy/projects/trader/venv/lib/python3.10/site-packages/seaborn/utils.py", line 11, in <module>
+    import pandas as pd
+  File "/home/andy/projects/trader/venv/lib/python3.10/site-packages/pandas/__init__.py", line 26, in <module>
+    from pandas.compat import (
+  File "/home/andy/projects/trader/venv/lib/python3.10/site-packages/pandas/compat/__init__.py", line 27, in <module>
+    from pandas.compat.pyarrow import (
+  File "/home/andy/projects/trader/venv/lib/python3.10/site-packages/pandas/compat/pyarrow.py", line 8, in <module>
+    import pyarrow as pa
+  File "/home/andy/projects/trader/venv/lib/python3.10/site-packages/pyarrow/__init__.py", line 65, in <module>
+    import pyarrow.lib as _lib
+AttributeError: _ARRAY_API not found
+
+A module that was compiled using NumPy 1.x cannot be run in
+NumPy 2.2.6 as it may crash. To support both 1.x and 2.x
+versions of NumPy, modules must be compiled with NumPy 2.0.
+Some module may need to rebuild instead e.g. with 'pybind11>=2.12'.
+
+If you are a user of the module, the easiest solution will be to
+downgrade to 'numpy<2' or try to upgrade the affected module.
+We expect that some modules will need time to support NumPy 2.
+
+Traceback (most recent call last):  File "/home/andy/projects/trader/data_collection/dc16_DailyUpdate.py", line 3, in <module>
+    from trader.tools.tools import *
+  File "/home/andy/projects/trader/tools/tools.py", line 4, in <module>
+    import seaborn as sns
+  File "/home/andy/projects/trader/venv/lib/python3.10/site-packages/seaborn/__init__.py", line 2, in <module>
+    from .rcmod import *  # noqa: F401,F403
+  File "/home/andy/projects/trader/venv/lib/python3.10/site-packages/seaborn/rcmod.py", line 5, in <module>
+    from . import palettes
+  File "/home/andy/projects/trader/venv/lib/python3.10/site-packages/seaborn/palettes.py", line 9, in <module>
+    from .utils import desaturate, get_color_cycle
+  File "/home/andy/projects/trader/venv/lib/python3.10/site-packages/seaborn/utils.py", line 11, in <module>
+    import pandas as pd
+  File "/home/andy/projects/trader/venv/lib/python3.10/site-packages/pandas/__init__.py", line 49, in <module>
+    from pandas.core.api import (
+  File "/home/andy/projects/trader/venv/lib/python3.10/site-packages/pandas/core/api.py", line 9, in <module>
+    from pandas.core.dtypes.dtypes import (
+  File "/home/andy/projects/trader/venv/lib/python3.10/site-packages/pandas/core/dtypes/dtypes.py", line 24, in <module>
+    from pandas._libs import (
+  File "/home/andy/projects/trader/venv/lib/python3.10/site-packages/pyarrow/__init__.py", line 65, in <module>
+    import pyarrow.lib as _lib
+AttributeError: _ARRAY_API not found
+
+A module that was compiled using NumPy 1.x cannot be run in
+NumPy 2.2.6 as it may crash. To support both 1.x and 2.x
+versions of NumPy, modules must be compiled with NumPy 2.0.
+Some module may need to rebuild instead e.g. with 'pybind11>=2.12'.
+
+If you are a user of the module, the easiest solution will be to
+downgrade to 'numpy<2' or try to upgrade the affected module.
+We expect that some modules will need time to support NumPy 2.
+
+Traceback (most recent call last):  File "/home/andy/projects/trader/data_collection/dc16_DailyUpdate.py", line 12, in <module>
+    price_DB = pd.read_feather(price_DB_path)
+  File "/home/andy/projects/trader/venv/lib/python3.10/site-packages/pandas/io/feather_format.py", line 112, in read_feather
+    import_optional_dependency("pyarrow")
+  File "/home/andy/projects/trader/venv/lib/python3.10/site-packages/pandas/compat/_optional.py", line 135, in import_optional_dependency
+    module = importlib.import_module(name)
+  File "/usr/lib/python3.10/importlib/__init__.py", line 126, in import_module
+    return _bootstrap._gcd_import(name[level:], package, level)
+  File "/home/andy/projects/trader/venv/lib/python3.10/site-packages/pyarrow/__init__.py", line 65, in <module>
+    import pyarrow.lib as _lib
+AttributeError: _ARRAY_API not found
+Traceback (most recent call last):
+  File "/home/andy/projects/trader/venv/lib/python3.10/site-packages/pandas/compat/_optional.py", line 135, in import_optional_dependency
+    module = importlib.import_module(name)
+  File "/usr/lib/python3.10/importlib/__init__.py", line 126, in import_module
+    return _bootstrap._gcd_import(name[level:], package, level)
+  File "<frozen importlib._bootstrap>", line 1050, in _gcd_import
+  File "<frozen importlib._bootstrap>", line 1027, in _find_and_load
+  File "<frozen importlib._bootstrap>", line 1006, in _find_and_load_unlocked
+  File "<frozen importlib._bootstrap>", line 688, in _load_unlocked
+  File "<frozen importlib._bootstrap_external>", line 883, in exec_module
+  File "<frozen importlib._bootstrap>", line 241, in _call_with_frames_removed
+  File "/home/andy/projects/trader/venv/lib/python3.10/site-packages/pyarrow/__init__.py", line 65, in <module>
+    import pyarrow.lib as _lib
+  File "pyarrow/lib.pyx", line 36, in init pyarrow.lib
+ImportError: numpy.core.multiarray failed to import
+
+During handling of the above exception, another exception occurred:
+
+Traceback (most recent call last):
+  File "/home/andy/projects/trader/data_collection/dc16_DailyUpdate.py", line 12, in <module>
+    price_DB = pd.read_feather(price_DB_path)
+  File "/home/andy/projects/trader/venv/lib/python3.10/site-packages/pandas/io/feather_format.py", line 112, in read_feather
+    import_optional_dependency("pyarrow")
+  File "/home/andy/projects/trader/venv/lib/python3.10/site-packages/pandas/compat/_optional.py", line 138, in import_optional_dependency
+    raise ImportError(msg)
+ImportError: Missing optional dependency 'pyarrow'.  Use pip or conda to install pyarrow.
+sending incremental file list
+
+sent 75 bytes  received 12 bytes  58.00 bytes/sec
+total size is 1,493  speedup is 17.16
+sending incremental file list
+
+sent 66,757 bytes  received 12 bytes  44,512.67 bytes/sec
+total size is 1,106,804,181  speedup is 16,576.62
