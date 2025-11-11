@@ -6762,3 +6762,82 @@ Financial data collection log >>
 updating market prices...
 Updating outstanding shares information...
 Processing outstanding shares data for 2025-11-10... 0/150
+Company health data collection initiated at 2025-11-12 02:00:05.846574
+Updating KRX data...
+Updating between dates: 2025-11-04 / 2025-11-12
+FULL rescan codes:
+Total 1 items.
+[0-0] ['011700']
+PARTIAL rescan codes:
+Total 51 items.
+[0-50] ['020180', '455910', '001620', '096610', '008110', '002630', '950140', '186230', '277070', '203450', '388870', '451700', '092440', '060310', '289080', '481890', '099750', '032580', '057880', '021880', '950220', '018500', '149950', '432470', '025770', '227100', '420570', '001720', '300080', '244460', '058430', '204840', '067010', '466910', '053080', '190650', '396270', '039840', '225570', '137400', '277410', '476060', '069140', '011500', '290560', '257370', '298380', '033200', '262840', '0030R0', '457940']
+full_rescan batch operation: 0
+Financial data collection log >> 
+2025-11-12 02:00:17.984157, no: 0, code 011700 in process
+partial_rescan batch operation: 0
+Financial data collection log >> 
+2025-11-12 02:00:44.066355, no: 0, code 020180 in process
+2025-11-12 02:00:51.582838, no: 1, code 455910 in process
+2025-11-12 02:00:58.716675, no: 2, code 001620 in process
+2025-11-12 02:01:05.971018, no: 3, code 096610 in process
+2025-11-12 02:01:13.231116, no: 4, code 008110 in process
+2025-11-12 02:01:20.823692, no: 5, code 002630 in process
+2025-11-12 02:01:28.305382, no: 6, code 950140 in process
+----> no: 6, code 950140 currency not in KRW, skipping
+2025-11-12 02:01:33.509015, no: 7, code 186230 in process
+2025-11-12 02:01:40.840587, no: 8, code 277070 in process
+2025-11-12 02:01:48.142698, no: 9, code 203450 in process
+2025-11-12 02:01:55.356634, no: 10, code 388870 in process
+2025-11-12 02:02:02.601396, no: 11, code 451700 in process
+2025-11-12 02:02:09.774655, no: 12, code 092440 in process
+2025-11-12 02:02:17.276008, no: 13, code 060310 in process
+2025-11-12 02:02:24.742625, no: 14, code 289080 in process
+2025-11-12 02:02:32.269628, no: 15, code 481890 in process
+2025-11-12 02:02:39.147533, no: 16, code 099750 in process
+2025-11-12 02:02:46.644339, no: 17, code 032580 in process
+2025-11-12 02:02:53.771468, no: 18, code 057880 in process
+2025-11-12 02:03:00.983146, no: 19, code 021880 in process
+2025-11-12 02:03:08.577384, no: 20, code 950220 in process
+----> no: 20, code 950220 currency not in KRW, skipping
+2025-11-12 02:03:13.785335, no: 21, code 018500 in process
+2025-11-12 02:03:21.353014, no: 22, code 149950 in process
+2025-11-12 02:03:28.517888, no: 23, code 432470 in process
+2025-11-12 02:03:35.881543, no: 24, code 025770 in process
+2025-11-12 02:03:43.177421, no: 25, code 227100 in process
+2025-11-12 02:03:50.956853, no: 26, code 420570 in process
+2025-11-12 02:03:58.201418, no: 27, code 001720 in process
+2025-11-12 02:04:05.648627, no: 28, code 300080 in process
+2025-11-12 02:04:12.881349, no: 29, code 244460 in process
+2025-11-12 02:04:20.088667, no: 30, code 058430 in process
+----> no: 30, code 058430 unknown exception; process suspended and to be re-tried
+HTTPSConnectionPool(host='opendart.fss.or.kr', port=443): Read timed out. (read timeout=None)
+** API-changed **
+2025-11-12 02:20:16.594890, no: 30, code 058430 in process
+2025-11-12 02:20:24.371927, no: 31, code 204840 in process
+2025-11-12 02:20:31.563768, no: 32, code 067010 in process
+2025-11-12 02:20:38.996328, no: 33, code 466910 in process
+2025-11-12 02:20:46.209307, no: 34, code 053080 in process
+2025-11-12 02:20:53.511951, no: 35, code 190650 in process
+2025-11-12 02:21:01.043868, no: 36, code 396270 in process
+2025-11-12 02:21:08.274377, no: 37, code 039840 in process
+2025-11-12 02:21:15.482730, no: 38, code 225570 in process
+2025-11-12 02:21:22.708750, no: 39, code 137400 in process
+2025-11-12 02:21:29.884675, no: 40, code 277410 in process
+2025-11-12 02:21:37.093184, no: 41, code 476060 in process
+2025-11-12 02:21:43.691581, no: 42, code 069140 in process
+2025-11-12 02:21:50.927041, no: 43, code 011500 in process
+2025-11-12 02:21:58.045812, no: 44, code 290560 in process
+2025-11-12 02:22:05.166629, no: 45, code 257370 in process
+2025-11-12 02:22:12.302810, no: 46, code 298380 in process
+2025-11-12 02:22:19.589086, no: 47, code 033200 in process
+2025-11-12 02:22:27.055045, no: 48, code 262840 in process
+2025-11-12 02:22:34.249065, no: 49, code 0030R0 in process
+----> no: 49, code 0030R0 data not available, could be a financial institution
+2025-11-12 02:22:35.536442, no: 49, code 0030R0 in process
+----> no: 49, code 0030R0 data not available, could be a financial institution
+2025-11-12 02:22:41.769457, no: 50, code 457940 in process
+== Update finished ==
+updating market prices...
+Updating outstanding shares information...
+Processing outstanding shares data for 2025-11-10... 0/150
+Processing outstanding shares data for 2025-11-11... 1/150
