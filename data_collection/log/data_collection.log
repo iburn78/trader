@@ -6841,3 +6841,145 @@ updating market prices...
 Updating outstanding shares information...
 Processing outstanding shares data for 2025-11-10... 0/150
 Processing outstanding shares data for 2025-11-11... 1/150
+Company health data collection initiated at 2025-11-13 02:00:05.586873
+Updating KRX data...
+Updating between dates: 2025-11-05 / 2025-11-13
+FULL rescan codes:
+Total 4 items.
+[0-3] ['003230', '011700', '198940', '336570']
+PARTIAL rescan codes:
+Total 112 items.
+[0-99] ['119850', '024060', '440110', '001720', '187790', '013720', '101360', '035150', '235980', '092440', '008110', '049630', '067010', '0044K0', '099520', '010170', '039490', '036930', '078520', '036530', '130740', '054920', '045340', '092200', '082920', '147830', '100840', '005670', '222420', '452670', '021880', '0030R0', '434480', '030520', '219420', '033100', '450940', '020180', '060310', '003800', '145270', '006880', '265740', '472850', '121890', '950140', '332370', '143240', '003570', '039200', '289930', '228670', '044780', '033200', '474660', '060590', '065510', '950220', '448760', '356860', '338220', '336680', '093520', '229000', '018500', '040610', '002630', '055490', '417310', '060280', '071320', '190650', '452280', '493790', '205100', '099220', '006340', '153460', '028670', '070590', '136490', '396470', '339770', '099750', '002450', '036640', '136480', '289080', '093190', '025560', '272110', '290740', '038620', '251120', '372910', '069080', '013000', '170790', '298830', '007720']
+[100-111] ['042660', '321260', '227100', '059270', '067920', '317450', '417860', '444920', '064960', '067900', '473050', '222080']
+full_rescan batch operation: 0
+Financial data collection log >> 
+2025-11-13 02:00:18.415118, no: 0, code 003230 in process
+2025-11-13 02:00:34.485112, no: 1, code 011700 in process
+2025-11-13 02:00:50.798602, no: 2, code 198940 in process
+2025-11-13 02:00:59.498806, no: 3, code 336570 in process
+partial_rescan batch operation: 0
+Financial data collection log >> 
+2025-11-13 02:01:18.331838, no: 0, code 119850 in process
+2025-11-13 02:01:25.554567, no: 1, code 024060 in process
+2025-11-13 02:01:32.738828, no: 2, code 440110 in process
+2025-11-13 02:01:39.995531, no: 3, code 001720 in process
+2025-11-13 02:01:47.434354, no: 4, code 187790 in process
+2025-11-13 02:01:54.647429, no: 5, code 013720 in process
+2025-11-13 02:02:01.829184, no: 6, code 101360 in process
+2025-11-13 02:02:09.139468, no: 7, code 035150 in process
+2025-11-13 02:02:16.345747, no: 8, code 235980 in process
+2025-11-13 02:02:23.668051, no: 9, code 092440 in process
+2025-11-13 02:02:31.223756, no: 10, code 008110 in process
+2025-11-13 02:02:38.744857, no: 11, code 049630 in process
+2025-11-13 02:02:45.876043, no: 12, code 067010 in process
+2025-11-13 02:02:53.286446, no: 13, code 0044K0 in process
+2025-11-13 02:02:59.395183, no: 14, code 099520 in process
+2025-11-13 02:03:06.771022, no: 15, code 010170 in process
+2025-11-13 02:03:13.976555, no: 16, code 039490 in process
+2025-11-13 02:03:21.198830, no: 17, code 036930 in process
+2025-11-13 02:03:28.384865, no: 18, code 078520 in process
+2025-11-13 02:03:35.559935, no: 19, code 036530 in process
+2025-11-13 02:03:42.835197, no: 20, code 130740 in process
+2025-11-13 02:03:50.078877, no: 21, code 054920 in process
+2025-11-13 02:03:57.302131, no: 22, code 045340 in process
+2025-11-13 02:04:04.532570, no: 23, code 092200 in process
+2025-11-13 02:04:11.737746, no: 24, code 082920 in process
+2025-11-13 02:04:18.956732, no: 25, code 147830 in process
+2025-11-13 02:04:26.093494, no: 26, code 100840 in process
+2025-11-13 02:04:33.263664, no: 27, code 005670 in process
+2025-11-13 02:04:40.426591, no: 28, code 222420 in process
+2025-11-13 02:04:47.810278, no: 29, code 452670 in process
+2025-11-13 02:04:54.982768, no: 30, code 021880 in process
+2025-11-13 02:05:02.472866, no: 31, code 0030R0 in process
+----> no: 31, code 0030R0 data not available, could be a financial institution
+2025-11-13 02:05:03.752436, no: 31, code 0030R0 in process
+----> no: 31, code 0030R0 data not available, could be a financial institution
+2025-11-13 02:05:09.937211, no: 32, code 434480 in process
+2025-11-13 02:05:17.257672, no: 33, code 030520 in process
+2025-11-13 02:05:24.501870, no: 34, code 219420 in process
+2025-11-13 02:05:31.726326, no: 35, code 033100 in process
+2025-11-13 02:05:38.890070, no: 36, code 450940 in process
+2025-11-13 02:05:46.021171, no: 37, code 020180 in process
+2025-11-13 02:05:53.562872, no: 38, code 060310 in process
+2025-11-13 02:06:01.020457, no: 39, code 003800 in process
+2025-11-13 02:06:08.233843, no: 40, code 145270 in process
+2025-11-13 02:06:15.478206, no: 41, code 006880 in process
+2025-11-13 02:06:22.740976, no: 42, code 265740 in process
+2025-11-13 02:06:29.960807, no: 43, code 472850 in process
+2025-11-13 02:06:37.183707, no: 44, code 121890 in process
+2025-11-13 02:06:44.458060, no: 45, code 950140 in process
+----> no: 45, code 950140 currency not in KRW, skipping
+2025-11-13 02:06:49.660223, no: 46, code 332370 in process
+2025-11-13 02:06:56.876467, no: 47, code 143240 in process
+2025-11-13 02:07:04.138341, no: 48, code 003570 in process
+2025-11-13 02:07:11.368832, no: 49, code 039200 in process
+2025-11-13 02:07:18.559381, no: 50, code 289930 in process
+2025-11-13 02:07:25.103287, no: 51, code 228670 in process
+2025-11-13 02:07:32.251751, no: 52, code 044780 in process
+2025-11-13 02:07:39.434829, no: 53, code 033200 in process
+2025-11-13 02:07:46.912906, no: 54, code 474660 in process
+2025-11-13 02:07:54.085507, no: 55, code 060590 in process
+2025-11-13 02:08:01.260231, no: 56, code 065510 in process
+2025-11-13 02:08:08.454707, no: 57, code 950220 in process
+----> no: 57, code 950220 currency not in KRW, skipping
+2025-11-13 02:08:13.667830, no: 58, code 448760 in process
+2025-11-13 02:08:20.843870, no: 59, code 356860 in process
+2025-11-13 02:08:28.076483, no: 60, code 338220 in process
+2025-11-13 02:08:35.310879, no: 61, code 336680 in process
+2025-11-13 02:08:41.992871, no: 62, code 093520 in process
+2025-11-13 02:08:49.147679, no: 63, code 229000 in process
+2025-11-13 02:08:56.351445, no: 64, code 018500 in process
+2025-11-13 02:09:03.862533, no: 65, code 040610 in process
+2025-11-13 02:09:11.017762, no: 66, code 002630 in process
+2025-11-13 02:09:18.419946, no: 67, code 055490 in process
+2025-11-13 02:09:25.615447, no: 68, code 417310 in process
+2025-11-13 02:09:31.723412, no: 69, code 060280 in process
+2025-11-13 02:09:38.860431, no: 70, code 071320 in process
+2025-11-13 02:09:46.089007, no: 71, code 190650 in process
+2025-11-13 02:09:53.544870, no: 72, code 452280 in process
+2025-11-13 02:10:00.738816, no: 73, code 493790 in process
+2025-11-13 02:10:07.311382, no: 74, code 205100 in process
+2025-11-13 02:10:14.543604, no: 75, code 099220 in process
+2025-11-13 02:10:21.760859, no: 76, code 006340 in process
+2025-11-13 02:10:29.001503, no: 77, code 153460 in process
+2025-11-13 02:10:36.133858, no: 78, code 028670 in process
+2025-11-13 02:10:43.434853, no: 79, code 070590 in process
+2025-11-13 02:10:50.695466, no: 80, code 136490 in process
+2025-11-13 02:10:57.922642, no: 81, code 396470 in process
+2025-11-13 02:11:05.128615, no: 82, code 339770 in process
+2025-11-13 02:11:12.307830, no: 83, code 099750 in process
+2025-11-13 02:11:19.780289, no: 84, code 002450 in process
+2025-11-13 02:11:26.921020, no: 85, code 036640 in process
+2025-11-13 02:11:34.089179, no: 86, code 136480 in process
+2025-11-13 02:11:41.296648, no: 87, code 289080 in process
+2025-11-13 02:11:48.738315, no: 88, code 093190 in process
+2025-11-13 02:11:55.924729, no: 89, code 025560 in process
+2025-11-13 02:12:03.153917, no: 90, code 272110 in process
+2025-11-13 02:12:10.346594, no: 91, code 290740 in process
+2025-11-13 02:12:17.526831, no: 92, code 038620 in process
+2025-11-13 02:12:24.707589, no: 93, code 251120 in process
+2025-11-13 02:12:31.853951, no: 94, code 372910 in process
+2025-11-13 02:12:39.083445, no: 95, code 069080 in process
+2025-11-13 02:12:46.297260, no: 96, code 013000 in process
+2025-11-13 02:12:53.426005, no: 97, code 170790 in process
+2025-11-13 02:13:00.582682, no: 98, code 298830 in process
+2025-11-13 02:13:07.742105, no: 99, code 007720 in process
+partial_rescan batch operation: 100
+Financial data collection log >> 
+2025-11-13 02:13:53.088801, no: 0, code 042660 in process
+2025-11-13 02:14:00.225545, no: 1, code 321260 in process
+2025-11-13 02:14:07.359538, no: 2, code 227100 in process
+2025-11-13 02:14:14.808250, no: 3, code 059270 in process
+2025-11-13 02:14:21.944840, no: 4, code 067920 in process
+2025-11-13 02:14:29.048099, no: 5, code 317450 in process
+2025-11-13 02:14:34.830679, no: 6, code 417860 in process
+2025-11-13 02:14:41.975247, no: 7, code 444920 in process
+2025-11-13 02:14:49.054872, no: 8, code 064960 in process
+2025-11-13 02:14:56.219353, no: 9, code 067900 in process
+2025-11-13 02:15:03.456559, no: 10, code 473050 in process
+2025-11-13 02:15:10.588867, no: 11, code 222080 in process
+== Update finished ==
+updating market prices...
+Updating outstanding shares information...
+Processing outstanding shares data for 2025-11-11... 0/150
+Processing outstanding shares data for 2025-11-12... 1/150
