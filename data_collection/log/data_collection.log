@@ -11183,3 +11183,45 @@ updating market prices...
 Updating outstanding shares information...
 Processing outstanding shares data for 2025-11-20... 0/150
 Processing outstanding shares data for 2025-11-21... 1/150
+Company health data collection initiated at 2025-11-23 02:00:06.504415
+Updating KRX data...
+Updating between dates: 2025-11-15 / 2025-11-23
+FULL rescan codes:
+Total 21 items.
+[0-20] ['008290', '009440', '010620', '026040', '044180', '054940', '059090', '066430', '067370', '079970', '083790', '094940', '101400', '224060', '273060', '336370', '340930', '388210', '464080', '465480', '481850']
+PARTIAL rescan codes:
+Total 3 items.
+[0-2] ['227100', '900310', '334890']
+full_rescan batch operation: 0
+Financial data collection log >> 
+2025-11-23 02:00:19.973449, no: 0, code 008290 in process
+2025-11-23 02:00:36.352200, no: 1, code 009440 in process
+2025-11-23 02:00:53.560141, no: 2, code 010620 in process
+2025-11-23 02:01:09.522330, no: 3, code 026040 in process
+2025-11-23 02:01:25.538399, no: 4, code 044180 in process
+2025-11-23 02:01:41.609923, no: 5, code 054940 in process
+2025-11-23 02:01:57.986091, no: 6, code 059090 in process
+2025-11-23 02:02:14.498990, no: 7, code 066430 in process
+2025-11-23 02:02:30.209783, no: 8, code 067370 in process
+2025-11-23 02:02:39.114753, no: 9, code 079970 in process
+2025-11-23 02:02:55.211249, no: 10, code 083790 in process
+2025-11-23 02:03:11.337543, no: 11, code 094940 in process
+2025-11-23 02:03:27.230251, no: 12, code 101400 in process
+2025-11-23 02:03:43.624632, no: 13, code 224060 in process
+2025-11-23 02:04:00.142534, no: 14, code 273060 in process
+2025-11-23 02:04:11.335044, no: 15, code 336370 in process
+2025-11-23 02:04:23.346099, no: 16, code 340930 in process
+2025-11-23 02:04:34.168388, no: 17, code 388210 in process
+2025-11-23 02:04:40.249234, no: 18, code 464080 in process
+2025-11-23 02:04:47.390517, no: 19, code 465480 in process
+2025-11-23 02:04:53.972158, no: 20, code 481850 in process
+partial_rescan batch operation: 0
+Financial data collection log >> 
+2025-11-23 02:05:09.127420, no: 0, code 227100 in process
+2025-11-23 02:05:16.645552, no: 1, code 900310 in process
+----> no: 1, code 900310 currency not in KRW, skipping
+2025-11-23 02:05:21.841242, no: 2, code 334890 in process
+== Update finished ==
+updating market prices...
+Updating outstanding shares information...
+Processing outstanding shares data for 2025-11-21... 0/150
