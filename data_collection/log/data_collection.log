@@ -11311,3 +11311,42 @@ updating market prices...
 Updating outstanding shares information...
 Processing outstanding shares data for 2025-11-21... 0/150
 Processing outstanding shares data for 2025-11-24... 1/150
+Company health data collection initiated at 2025-11-26 02:00:05.590004
+Updating KRX data...
+Updating between dates: 2025-11-18 / 2025-11-26
+FULL rescan codes:
+Total 15 items.
+[0-14] ['008290', '009440', '044180', '054940', '059090', '067160', '079970', '168330', '224060', '336370', '353590', '353810', '388210', '464080', '481850']
+PARTIAL rescan codes:
+Total 5 items.
+[0-4] ['334890', '240550', '100660', '227100', '900310']
+full_rescan batch operation: 0
+Financial data collection log >> 
+2025-11-26 02:00:18.553604, no: 0, code 008290 in process
+2025-11-26 02:00:34.607270, no: 1, code 009440 in process
+2025-11-26 02:00:50.954561, no: 2, code 044180 in process
+2025-11-26 02:01:07.730202, no: 3, code 054940 in process
+2025-11-26 02:01:23.791388, no: 4, code 059090 in process
+2025-11-26 02:01:39.819857, no: 5, code 067160 in process
+2025-11-26 02:01:56.175402, no: 6, code 079970 in process
+2025-11-26 02:02:12.196442, no: 7, code 168330 in process
+2025-11-26 02:02:28.151987, no: 8, code 224060 in process
+2025-11-26 02:02:44.342490, no: 9, code 336370 in process
+2025-11-26 02:02:56.440190, no: 10, code 353590 in process
+2025-11-26 02:03:06.248653, no: 11, code 353810 in process
+2025-11-26 02:03:17.507479, no: 12, code 388210 in process
+2025-11-26 02:03:23.586259, no: 13, code 464080 in process
+2025-11-26 02:03:30.686029, no: 14, code 481850 in process
+partial_rescan batch operation: 0
+Financial data collection log >> 
+2025-11-26 02:03:45.864854, no: 0, code 334890 in process
+2025-11-26 02:03:51.933097, no: 1, code 240550 in process
+2025-11-26 02:03:58.572013, no: 2, code 100660 in process
+2025-11-26 02:04:05.668021, no: 3, code 227100 in process
+2025-11-26 02:04:13.110136, no: 4, code 900310 in process
+----> no: 4, code 900310 currency not in KRW, skipping
+== Update finished ==
+updating market prices...
+Updating outstanding shares information...
+Processing outstanding shares data for 2025-11-24... 0/150
+Processing outstanding shares data for 2025-11-25... 1/150
