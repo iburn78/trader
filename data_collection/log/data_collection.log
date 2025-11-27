@@ -11388,3 +11388,43 @@ updating market prices...
 Updating outstanding shares information...
 Processing outstanding shares data for 2025-11-25... 0/150
 Processing outstanding shares data for 2025-11-26... 1/150
+Company health data collection initiated at 2025-11-28 02:00:05.776469
+Updating KRX data...
+Updating between dates: 2025-11-20 / 2025-11-28
+FULL rescan codes:
+Total 14 items.
+[0-13] ['000370', '008290', '009440', '044180', '059090', '067160', '073640', '079970', '168330', '295310', '336370', '353590', '353810', '481850']
+PARTIAL rescan codes:
+Total 6 items.
+[0-5] ['469610', '900310', '227100', '397810', '334890', '900100']
+full_rescan batch operation: 0
+Financial data collection log >> 
+2025-11-28 02:00:17.585506, no: 0, code 000370 in process
+2025-11-28 02:00:25.762236, no: 1, code 008290 in process
+2025-11-28 02:00:41.989973, no: 2, code 009440 in process
+2025-11-28 02:00:58.473100, no: 3, code 044180 in process
+2025-11-28 02:01:14.756962, no: 4, code 059090 in process
+2025-11-28 02:01:31.021276, no: 5, code 067160 in process
+2025-11-28 02:01:47.138297, no: 6, code 073640 in process
+2025-11-28 02:02:03.997934, no: 7, code 079970 in process
+2025-11-28 02:02:20.379482, no: 8, code 168330 in process
+2025-11-28 02:02:36.480571, no: 9, code 295310 in process
+2025-11-28 02:02:43.648038, no: 10, code 336370 in process
+2025-11-28 02:02:55.681962, no: 11, code 353590 in process
+2025-11-28 02:03:05.360481, no: 12, code 353810 in process
+2025-11-28 02:03:16.676915, no: 13, code 481850 in process
+partial_rescan batch operation: 0
+Financial data collection log >> 
+2025-11-28 02:03:31.208010, no: 0, code 469610 in process
+2025-11-28 02:03:37.154977, no: 1, code 900310 in process
+----> no: 1, code 900310 currency not in KRW, skipping
+2025-11-28 02:03:42.343651, no: 2, code 227100 in process
+2025-11-28 02:03:49.784966, no: 3, code 397810 in process
+2025-11-28 02:03:55.968674, no: 4, code 334890 in process
+2025-11-28 02:04:02.052175, no: 5, code 900100 in process
+----> no: 5, code 900100 currency not in KRW, skipping
+== Update finished ==
+updating market prices...
+Updating outstanding shares information...
+Processing outstanding shares data for 2025-11-26... 0/150
+Processing outstanding shares data for 2025-11-27... 1/150
