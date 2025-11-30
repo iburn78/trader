@@ -11535,3 +11535,50 @@ Financial data collection log >>
 updating market prices...
 Updating outstanding shares information...
 Processing outstanding shares data for 2025-11-28... 0/150
+Company health data collection initiated at 2025-12-01 02:00:05.810448
+Updating KRX data...
+Updating between dates: 2025-11-23 / 2025-12-01
+FULL rescan codes:
+Total 19 items.
+[0-18] ['000370', '000400', '000540', '000880', '003690', '023910', '049470', '067160', '073640', '082640', '085620', '088350', '138040', '168330', '184230', '295310', '353590', '353810', '424960']
+PARTIAL rescan codes:
+Total 6 items.
+[0-5] ['900260', '900140', '900340', '227100', '950210', '900100']
+full_rescan batch operation: 0
+Financial data collection log >> 
+2025-12-01 02:00:17.591223, no: 0, code 000370 in process
+2025-12-01 02:00:25.707145, no: 1, code 000400 in process
+2025-12-01 02:00:33.734678, no: 2, code 000540 in process
+2025-12-01 02:00:41.773518, no: 3, code 000880 in process
+2025-12-01 02:00:58.487368, no: 4, code 003690 in process
+2025-12-01 02:01:06.621153, no: 5, code 023910 in process
+2025-12-01 02:01:22.862662, no: 6, code 049470 in process
+2025-12-01 02:01:39.047883, no: 7, code 067160 in process
+2025-12-01 02:01:55.243289, no: 8, code 073640 in process
+2025-12-01 02:02:11.432875, no: 9, code 082640 in process
+2025-12-01 02:02:19.515335, no: 10, code 085620 in process
+2025-12-01 02:02:27.595295, no: 11, code 088350 in process
+2025-12-01 02:02:35.651592, no: 12, code 138040 in process
+2025-12-01 02:02:43.737500, no: 13, code 168330 in process
+2025-12-01 02:02:59.924814, no: 14, code 184230 in process
+2025-12-01 02:03:16.202743, no: 15, code 295310 in process
+2025-12-01 02:03:23.476954, no: 16, code 353590 in process
+2025-12-01 02:03:33.316217, no: 17, code 353810 in process
+2025-12-01 02:03:44.645125, no: 18, code 424960 in process
+partial_rescan batch operation: 0
+Financial data collection log >> 
+2025-12-01 02:04:01.710145, no: 0, code 900260 in process
+----> no: 0, code 900260 currency not in KRW, skipping
+2025-12-01 02:04:07.050145, no: 1, code 900140 in process
+----> no: 1, code 900140 currency not in KRW, skipping
+2025-12-01 02:04:12.383136, no: 2, code 900340 in process
+----> no: 2, code 900340 currency not in KRW, skipping
+2025-12-01 02:04:17.720142, no: 3, code 227100 in process
+2025-12-01 02:04:25.291402, no: 4, code 950210 in process
+----> no: 4, code 950210 currency not in KRW, skipping
+2025-12-01 02:04:30.498512, no: 5, code 900100 in process
+----> no: 5, code 900100 currency not in KRW, skipping
+== Update finished ==
+updating market prices...
+Updating outstanding shares information...
+Processing outstanding shares data for 2025-11-28... 0/150
