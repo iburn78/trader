@@ -11655,3 +11655,73 @@ updating market prices...
 Updating outstanding shares information...
 Processing outstanding shares data for 2025-11-28... 0/150
 Processing outstanding shares data for 2025-12-01... 1/150
+Company health data collection initiated at 2025-12-03 02:00:05.870924
+Updating KRX data...
+Updating between dates: 2025-11-25 / 2025-12-03
+FULL rescan codes:
+Total 25 items.
+[0-24] ['000040', '000370', '000400', '000540', '000880', '002760', '003690', '008290', '016790', '023910', '025860', '049470', '067160', '073640', '082640', '085620', '088350', '138040', '168330', '184230', '295310', '353590', '353810', '412540', '424960']
+PARTIAL rescan codes:
+Total 15 items.
+[0-14] ['0015N0', '900300', '900250', '900340', '227100', '900110', '950210', '900100', '900270', '900140', '900290', '900070', '900260', '900120', '293940']
+full_rescan batch operation: 0
+Financial data collection log >> 
+2025-12-03 02:00:17.753625, no: 0, code 000040 in process
+2025-12-03 02:00:34.714182, no: 1, code 000370 in process
+2025-12-03 02:00:42.828758, no: 2, code 000400 in process
+2025-12-03 02:00:50.840142, no: 3, code 000540 in process
+2025-12-03 02:00:58.876132, no: 4, code 000880 in process
+2025-12-03 02:01:15.416139, no: 5, code 002760 in process
+2025-12-03 02:01:31.516418, no: 6, code 003690 in process
+2025-12-03 02:01:39.602061, no: 7, code 008290 in process
+2025-12-03 02:01:55.891918, no: 8, code 016790 in process
+2025-12-03 02:02:09.446406, no: 9, code 023910 in process
+2025-12-03 02:02:25.411370, no: 10, code 025860 in process
+2025-12-03 02:02:42.057847, no: 11, code 049470 in process
+2025-12-03 02:02:58.142849, no: 12, code 067160 in process
+2025-12-03 02:03:14.570305, no: 13, code 073640 in process
+2025-12-03 02:03:31.301699, no: 14, code 082640 in process
+2025-12-03 02:03:39.365308, no: 15, code 085620 in process
+2025-12-03 02:03:47.463561, no: 16, code 088350 in process
+2025-12-03 02:03:55.583884, no: 17, code 138040 in process
+2025-12-03 02:04:03.681958, no: 18, code 168330 in process
+2025-12-03 02:04:20.731128, no: 19, code 184230 in process
+2025-12-03 02:04:37.329838, no: 20, code 295310 in process
+2025-12-03 02:04:44.597953, no: 21, code 353590 in process
+2025-12-03 02:04:54.526178, no: 22, code 353810 in process
+2025-12-03 02:05:05.940572, no: 23, code 412540 in process
+2025-12-03 02:05:13.334960, no: 24, code 424960 in process
+partial_rescan batch operation: 0
+Financial data collection log >> 
+2025-12-03 02:05:30.353989, no: 0, code 0015N0 in process
+2025-12-03 02:05:36.275356, no: 1, code 900300 in process
+----> no: 1, code 900300 currency not in KRW, skipping
+2025-12-03 02:05:41.604691, no: 2, code 900250 in process
+----> no: 2, code 900250 currency not in KRW, skipping
+2025-12-03 02:05:47.001112, no: 3, code 900340 in process
+----> no: 3, code 900340 currency not in KRW, skipping
+2025-12-03 02:05:52.342186, no: 4, code 227100 in process
+2025-12-03 02:05:59.956163, no: 5, code 900110 in process
+----> no: 5, code 900110 currency not in KRW, skipping
+2025-12-03 02:06:05.316934, no: 6, code 950210 in process
+----> no: 6, code 950210 currency not in KRW, skipping
+2025-12-03 02:06:10.515072, no: 7, code 900100 in process
+----> no: 7, code 900100 currency not in KRW, skipping
+2025-12-03 02:06:15.870165, no: 8, code 900270 in process
+----> no: 8, code 900270 currency not in KRW, skipping
+2025-12-03 02:06:21.226483, no: 9, code 900140 in process
+----> no: 9, code 900140 currency not in KRW, skipping
+2025-12-03 02:06:26.567604, no: 10, code 900290 in process
+----> no: 10, code 900290 currency not in KRW, skipping
+2025-12-03 02:06:31.757839, no: 11, code 900070 in process
+----> no: 11, code 900070 currency not in KRW, skipping
+2025-12-03 02:06:37.088227, no: 12, code 900260 in process
+----> no: 12, code 900260 currency not in KRW, skipping
+2025-12-03 02:06:42.419220, no: 13, code 900120 in process
+----> no: 13, code 900120 currency not in KRW, skipping
+2025-12-03 02:06:47.616200, no: 14, code 293940 in process
+== Update finished ==
+updating market prices...
+Updating outstanding shares information...
+Processing outstanding shares data for 2025-12-01... 0/150
+Processing outstanding shares data for 2025-12-02... 1/150
