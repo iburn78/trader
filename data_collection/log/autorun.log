@@ -48743,3 +48743,265 @@ rate_changes.png
 
 sent 7,340,741 bytes  received 62,796 bytes  4,935,691.33 bytes/sec
 total size is 1,116,887,753  speedup is 150.86
+[main 57d86ab] 2025-12-04 upload done from linux machine
+ 14 files changed, 348 insertions(+)
+ rewrite data_collection/data/df_krx.db (85%)
+ rewrite data_collection/data/df_krx.feather (84%)
+To https://github.com/iburn78/trader
+   05c59f9..57d86ab  main -> main
+rtcwake: write error
+이미 업데이트 상태입니다.
+Company health data collection initiated at 2025-12-05 02:00:05.963179
+Updating KRX data...
+Updating between dates: 2025-11-27 / 2025-12-05
+FULL rescan codes:
+Total 21 items.
+[0-20] ['000040', '000400', '000540', '000880', '002760', '003690', '008290', '016790', '023910', '025860', '049470', '073640', '082640', '085620', '088350', '138040', '182400', '184230', '321820', '412540', '424960']
+PARTIAL rescan codes:
+Total 14 items.
+[0-13] ['900270', '900300', '900250', '950210', '900070', '900290', '900260', '900100', '900120', '900340', '900110', '227100', '293940', '900140']
+full_rescan batch operation: 0
+Financial data collection log >> 
+2025-12-05 02:00:17.739646, no: 0, code 000040 in process
+2025-12-05 02:00:34.107426, no: 1, code 000400 in process
+2025-12-05 02:00:42.496129, no: 2, code 000540 in process
+2025-12-05 02:00:50.559063, no: 3, code 000880 in process
+2025-12-05 02:01:06.810521, no: 4, code 002760 in process
+2025-12-05 02:01:23.061086, no: 5, code 003690 in process
+2025-12-05 02:01:31.167567, no: 6, code 008290 in process
+2025-12-05 02:01:48.379566, no: 7, code 016790 in process
+2025-12-05 02:02:02.309093, no: 8, code 023910 in process
+2025-12-05 02:02:19.348961, no: 9, code 025860 in process
+2025-12-05 02:02:35.475675, no: 10, code 049470 in process
+2025-12-05 02:02:52.447388, no: 11, code 073640 in process
+2025-12-05 02:03:08.777286, no: 12, code 082640 in process
+2025-12-05 02:03:16.856874, no: 13, code 085620 in process
+2025-12-05 02:03:24.958545, no: 14, code 088350 in process
+2025-12-05 02:03:33.027368, no: 15, code 138040 in process
+2025-12-05 02:03:41.104712, no: 16, code 182400 in process
+2025-12-05 02:03:58.441596, no: 17, code 184230 in process
+2025-12-05 02:04:14.478583, no: 18, code 321820 in process
+2025-12-05 02:04:26.393121, no: 19, code 412540 in process
+2025-12-05 02:04:33.707899, no: 20, code 424960 in process
+partial_rescan batch operation: 0
+Financial data collection log >> 
+2025-12-05 02:04:50.630392, no: 0, code 900270 in process
+----> no: 0, code 900270 currency not in KRW, skipping
+2025-12-05 02:04:56.154284, no: 1, code 900300 in process
+----> no: 1, code 900300 currency not in KRW, skipping
+2025-12-05 02:05:01.488497, no: 2, code 900250 in process
+----> no: 2, code 900250 currency not in KRW, skipping
+2025-12-05 02:05:06.851911, no: 3, code 950210 in process
+----> no: 3, code 950210 currency not in KRW, skipping
+2025-12-05 02:05:12.059162, no: 4, code 900070 in process
+----> no: 4, code 900070 currency not in KRW, skipping
+2025-12-05 02:05:17.415290, no: 5, code 900290 in process
+----> no: 5, code 900290 currency not in KRW, skipping
+2025-12-05 02:05:22.608950, no: 6, code 900260 in process
+----> no: 6, code 900260 currency not in KRW, skipping
+2025-12-05 02:05:28.001320, no: 7, code 900100 in process
+----> no: 7, code 900100 currency not in KRW, skipping
+2025-12-05 02:05:33.339330, no: 8, code 900120 in process
+----> no: 8, code 900120 currency not in KRW, skipping
+2025-12-05 02:05:38.539131, no: 9, code 900340 in process
+----> no: 9, code 900340 currency not in KRW, skipping
+2025-12-05 02:05:43.867775, no: 10, code 900110 in process
+----> no: 10, code 900110 currency not in KRW, skipping
+2025-12-05 02:05:49.210151, no: 11, code 227100 in process
+2025-12-05 02:05:56.855943, no: 12, code 293940 in process
+2025-12-05 02:06:02.502811, no: 13, code 900140 in process
+----> no: 13, code 900140 currency not in KRW, skipping
+== Update finished ==
+updating market prices...
+Updating outstanding shares information...
+Processing outstanding shares data for 2025-12-03... 0/150
+Processing outstanding shares data for 2025-12-04... 1/150
+2025-12-05 QA DB: updating ['000040', '000400', '000540', '000880', '002760', '003690', '008290', '016790', '023910', '025860', '049470', '073640', '082640', '085620', '088350', '138040', '182400', '184230', '227100', '293940', '321820', '412540', '424960', '900070', '900100', '900110', '900120', '900140', '900250', '900260', '900270', '900290', '900300', '900340', '950210']
+000040
+000400
+000540
+000880
+002760
+003690
+008290
+016790
+023910
+025860
+049470
+073640
+082640
+085620
+088350
+138040
+182400
+184230
+227100
+293940
+321820
+412540
+424960
+900070
+900100
+900110
+900120
+900140
+900250
+900260
+900270
+900290
+900300
+900340
+950210
+/home/andy/projects/trader/tools/tools.py:227: UserWarning: No artists with labels found to put in legend.  Note that artists whose label start with an underscore are ignored when legend() is called with no argument.
+  axl = ax.legend(loc='upper left')
+/home/andy/projects/trader/tools/tools.py:248: UserWarning: No artists with labels found to put in legend.  Note that artists whose label start with an underscore are ignored when legend() is called with no argument.
+  axrl = axr.legend(loc='upper left')
+/home/andy/projects/trader/tools/tools.py:258: UserWarning: Attempting to set identical low and high xlims makes transformation singular; automatically expanding.
+  ax.set_xlim(-0.5, len(x) - 0.5)
+/home/andy/projects/trader/tools/tools.py:259: UserWarning: Attempting to set identical low and high xlims makes transformation singular; automatically expanding.
+  axr.set_xlim(-0.5, len(x) - 0.5)
+/home/andy/projects/trader/tools/tools.py:227: UserWarning: No artists with labels found to put in legend.  Note that artists whose label start with an underscore are ignored when legend() is called with no argument.
+  axl = ax.legend(loc='upper left')
+/home/andy/projects/trader/tools/tools.py:248: UserWarning: No artists with labels found to put in legend.  Note that artists whose label start with an underscore are ignored when legend() is called with no argument.
+  axrl = axr.legend(loc='upper left')
+/home/andy/projects/trader/tools/tools.py:258: UserWarning: Attempting to set identical low and high xlims makes transformation singular; automatically expanding.
+  ax.set_xlim(-0.5, len(x) - 0.5)
+/home/andy/projects/trader/tools/tools.py:259: UserWarning: Attempting to set identical low and high xlims makes transformation singular; automatically expanding.
+  axr.set_xlim(-0.5, len(x) - 0.5)
+/home/andy/projects/trader/tools/tools.py:227: UserWarning: No artists with labels found to put in legend.  Note that artists whose label start with an underscore are ignored when legend() is called with no argument.
+  axl = ax.legend(loc='upper left')
+/home/andy/projects/trader/tools/tools.py:248: UserWarning: No artists with labels found to put in legend.  Note that artists whose label start with an underscore are ignored when legend() is called with no argument.
+  axrl = axr.legend(loc='upper left')
+/home/andy/projects/trader/tools/tools.py:258: UserWarning: Attempting to set identical low and high xlims makes transformation singular; automatically expanding.
+  ax.set_xlim(-0.5, len(x) - 0.5)
+/home/andy/projects/trader/tools/tools.py:259: UserWarning: Attempting to set identical low and high xlims makes transformation singular; automatically expanding.
+  axr.set_xlim(-0.5, len(x) - 0.5)
+/home/andy/projects/trader/tools/tools.py:227: UserWarning: No artists with labels found to put in legend.  Note that artists whose label start with an underscore are ignored when legend() is called with no argument.
+  axl = ax.legend(loc='upper left')
+/home/andy/projects/trader/tools/tools.py:248: UserWarning: No artists with labels found to put in legend.  Note that artists whose label start with an underscore are ignored when legend() is called with no argument.
+  axrl = axr.legend(loc='upper left')
+/home/andy/projects/trader/tools/tools.py:258: UserWarning: Attempting to set identical low and high xlims makes transformation singular; automatically expanding.
+  ax.set_xlim(-0.5, len(x) - 0.5)
+/home/andy/projects/trader/tools/tools.py:259: UserWarning: Attempting to set identical low and high xlims makes transformation singular; automatically expanding.
+  axr.set_xlim(-0.5, len(x) - 0.5)
+/home/andy/projects/trader/tools/tools.py:227: UserWarning: No artists with labels found to put in legend.  Note that artists whose label start with an underscore are ignored when legend() is called with no argument.
+  axl = ax.legend(loc='upper left')
+/home/andy/projects/trader/tools/tools.py:248: UserWarning: No artists with labels found to put in legend.  Note that artists whose label start with an underscore are ignored when legend() is called with no argument.
+  axrl = axr.legend(loc='upper left')
+/home/andy/projects/trader/tools/tools.py:258: UserWarning: Attempting to set identical low and high xlims makes transformation singular; automatically expanding.
+  ax.set_xlim(-0.5, len(x) - 0.5)
+/home/andy/projects/trader/tools/tools.py:259: UserWarning: Attempting to set identical low and high xlims makes transformation singular; automatically expanding.
+  axr.set_xlim(-0.5, len(x) - 0.5)
+/home/andy/projects/trader/tools/tools.py:227: UserWarning: No artists with labels found to put in legend.  Note that artists whose label start with an underscore are ignored when legend() is called with no argument.
+  axl = ax.legend(loc='upper left')
+/home/andy/projects/trader/tools/tools.py:248: UserWarning: No artists with labels found to put in legend.  Note that artists whose label start with an underscore are ignored when legend() is called with no argument.
+  axrl = axr.legend(loc='upper left')
+/home/andy/projects/trader/tools/tools.py:258: UserWarning: Attempting to set identical low and high xlims makes transformation singular; automatically expanding.
+  ax.set_xlim(-0.5, len(x) - 0.5)
+/home/andy/projects/trader/tools/tools.py:259: UserWarning: Attempting to set identical low and high xlims makes transformation singular; automatically expanding.
+  axr.set_xlim(-0.5, len(x) - 0.5)
+000040 | 1/35
+000400 | 2/35
+000540 | 3/35
+000880 | 4/35
+002760 | 5/35
+003690 | 6/35
+008290 | 7/35
+016790 | 8/35
+023910 | 9/35
+025860 | 10/35
+049470 | 11/35
+073640 | 12/35
+082640 | 13/35
+085620 | 14/35
+088350 | 15/35
+138040 | 16/35
+182400 | 17/35
+184230 | 18/35
+227100 | 19/35
+293940 | 20/35
+321820 | 21/35
+412540 | 22/35
+424960 | 23/35
+900070 | 24/35
+2025-12-05 02:10:21.468323 | 900070 | quarterly data of 900070 is empty.
+900100 | 25/35
+2025-12-05 02:10:22.874671 | 900100 | quarterly data of 900100 is empty.
+900110 | 26/35
+2025-12-05 02:10:24.268152 | 900110 | quarterly data of 900110 is empty.
+900120 | 27/35
+2025-12-05 02:10:25.663768 | 900120 | quarterly data of 900120 is empty.
+900140 | 28/35
+2025-12-05 02:10:27.058241 | 900140 | quarterly data of 900140 is empty.
+900250 | 29/35
+2025-12-05 02:10:28.453545 | 900250 | quarterly data of 900250 is empty.
+900260 | 30/35
+2025-12-05 02:10:29.849375 | 900260 | quarterly data of 900260 is empty.
+900270 | 31/35
+2025-12-05 02:10:31.245178 | 900270 | quarterly data of 900270 is empty.
+900290 | 32/35
+2025-12-05 02:10:32.645891 | 900290 | quarterly data of 900290 is empty.
+900300 | 33/35
+2025-12-05 02:10:34.044960 | 900300 | quarterly data of 900300 is empty.
+900340 | 34/35
+2025-12-05 02:10:35.444475 | 900340 | quarterly data of 900340 is empty.
+950210 | 35/35
+2025-12-05 02:10:36.839703 | 950210 | quarterly data of 950210 is empty.
+sending incremental file list
+daily_update.json
+          1,386  47%    0.00kB/s    0:00:00            2,898 100%    1.44MB/s    0:00:00 (xfr#1, to-chk=0/2)
+
+sent 936 bytes  received 65 bytes  2,002.00 bytes/sec
+total size is 2,898  speedup is 2.90
+sending incremental file list
+000040.png
+         32,768   7%    0.00kB/s    0:00:00          456,930 100%   80.90MB/s    0:00:00 (xfr#1, to-chk=2716/2719)
+000400.png
+         32,768  18%    5.21MB/s    0:00:00          173,662 100%   20.70MB/s    0:00:00 (xfr#2, to-chk=2697/2719)
+000540.png
+         32,768  17%    3.91MB/s    0:00:00          186,132 100%   16.14MB/s    0:00:00 (xfr#3, to-chk=2689/2719)
+000880.png
+         32,768   8%    2.84MB/s    0:00:00          377,104 100%   22.48MB/s    0:00:00 (xfr#4, to-chk=2676/2719)
+002760.png
+         32,768   6%    1.84MB/s    0:00:00          507,432 100%   21.04MB/s    0:00:00 (xfr#5, to-chk=2587/2719)
+003690.png
+         32,768  19%    1.30MB/s    0:00:00          166,890 100%    6.12MB/s    0:00:00 (xfr#6, to-chk=2539/2719)
+008290.png
+         32,768  11%    1.20MB/s    0:00:00          277,660 100%    8.83MB/s    0:00:00 (xfr#7, to-chk=2380/2719)
+016790.png
+         32,768  12%    1.01MB/s    0:00:00          268,104 100%    7.10MB/s    0:00:00 (xfr#8, to-chk=2207/2719)
+023910.png
+         32,768   7%  666.67kB/s    0:00:00          464,133 100%    4.86MB/s    0:00:00 (xfr#9, to-chk=2123/2719)
+025860.png
+         32,768   8%  347.83kB/s    0:00:01          404,636 100%    2.78MB/s    0:00:00 (xfr#10, to-chk=2092/2719)
+049470.png
+         32,768   7%  230.22kB/s    0:00:01          423,206 100%    2.17MB/s    0:00:00 (xfr#11, to-chk=1786/2719)
+073640.png
+         32,768   6%  171.12kB/s    0:00:02          492,520 100%    1.89MB/s    0:00:00 (xfr#12, to-chk=1515/2719)
+082640.png
+         32,768  17%  128.51kB/s    0:00:01          182,378 100%  672.09kB/s    0:00:00 (xfr#13, to-chk=1454/2719)
+085620.png
+         32,768  19%  114.70kB/s    0:00:01          165,229 100%  545.12kB/s    0:00:00 (xfr#14, to-chk=1423/2719)
+088350.png
+         32,768  18%  108.11kB/s    0:00:01          180,674 100%  567.33kB/s    0:00:00 (xfr#15, to-chk=1396/2719)
+138040.png
+         32,768  17%  102.89kB/s    0:00:01          184,131 100%  546.55kB/s    0:00:00 (xfr#16, to-chk=1087/2719)
+182400.png
+         32,768   7%   93.29kB/s    0:00:04          461,028 100%    1.00MB/s    0:00:00 (xfr#17, to-chk=976/2719)
+184230.png
+         32,768   6%   73.06kB/s    0:00:06          535,185 100%    1.08MB/s    0:00:00 (xfr#18, to-chk=972/2719)
+227100.png
+         32,768   7%   67.65kB/s    0:00:05          430,037 100%  818.63kB/s    0:00:00 (xfr#19, to-chk=801/2719)
+293940.png
+         32,768  15%   62.38kB/s    0:00:02          209,655 100%  390.73kB/s    0:00:00 (xfr#20, to-chk=600/2719)
+321820.png
+         32,768   8%   59.48kB/s    0:00:06          406,457 100%  678.51kB/s    0:00:00 (xfr#21, to-chk=508/2719)
+412540.png
+         32,768  14%   54.61kB/s    0:00:03          231,277 100%  374.55kB/s    0:00:00 (xfr#22, to-chk=280/2719)
+424960.png
+         32,768  10%   51.86kB/s    0:00:05          313,363 100%  471.52kB/s    0:00:00 (xfr#23, to-chk=243/2719)
+rate_changes.png
+         32,768  16%   49.31kB/s    0:00:03          196,070 100%  287.93kB/s    0:00:00 (xfr#24, to-chk=0/2719)
+
+sent 7,748,582 bytes  received 66,794 bytes  5,210,250.67 bytes/sec
+total size is 1,116,822,296  speedup is 142.90
