@@ -307,3 +307,45 @@ Financial data collection log >>
 updating market prices...
 Updating outstanding shares information...
 Processing outstanding shares data for 2025-12-05... 0/150
+Company health data collection initiated at 2025-12-08 02:00:05.731651
+Updating KRX data...
+Updating between dates: 2025-11-30 / 2025-12-08
+FULL rescan codes:
+Total 8 items.
+[0-7] ['000040', '002760', '008290', '016790', '025860', '182400', '321820', '412540']
+PARTIAL rescan codes:
+Total 10 items.
+[0-9] ['293940', '900070', '227100', '900250', '900300', '900290', '900120', '900270', '900110', '377190']
+full_rescan batch operation: 0
+Financial data collection log >> 
+2025-12-08 02:00:17.600241, no: 0, code 000040 in process
+2025-12-08 02:00:33.784425, no: 1, code 002760 in process
+2025-12-08 02:00:49.649342, no: 2, code 008290 in process
+2025-12-08 02:01:05.527605, no: 3, code 016790 in process
+2025-12-08 02:01:19.048484, no: 4, code 025860 in process
+2025-12-08 02:01:35.032042, no: 5, code 182400 in process
+2025-12-08 02:01:51.130880, no: 6, code 321820 in process
+2025-12-08 02:02:01.911463, no: 7, code 412540 in process
+partial_rescan batch operation: 0
+Financial data collection log >> 
+2025-12-08 02:02:19.787671, no: 0, code 293940 in process
+2025-12-08 02:02:25.447452, no: 1, code 900070 in process
+----> no: 1, code 900070 currency not in KRW, skipping
+2025-12-08 02:02:30.777452, no: 2, code 227100 in process
+2025-12-08 02:02:38.323361, no: 3, code 900250 in process
+----> no: 3, code 900250 currency not in KRW, skipping
+2025-12-08 02:02:43.658437, no: 4, code 900300 in process
+----> no: 4, code 900300 currency not in KRW, skipping
+2025-12-08 02:02:48.988994, no: 5, code 900290 in process
+----> no: 5, code 900290 currency not in KRW, skipping
+2025-12-08 02:02:54.179331, no: 6, code 900120 in process
+----> no: 6, code 900120 currency not in KRW, skipping
+2025-12-08 02:02:59.375337, no: 7, code 900270 in process
+----> no: 7, code 900270 currency not in KRW, skipping
+2025-12-08 02:03:04.704361, no: 8, code 900110 in process
+----> no: 8, code 900110 currency not in KRW, skipping
+2025-12-08 02:03:10.041833, no: 9, code 377190 in process
+== Update finished ==
+updating market prices...
+Updating outstanding shares information...
+Processing outstanding shares data for 2025-12-05... 0/150
