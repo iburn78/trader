@@ -1965,3 +1965,90 @@ rate_changes.png
 
 sent 1,935,233 bytes  received 16,149 bytes  3,902,764.00 bytes/sec
 total size is 1,116,870,596  speedup is 572.35
+[main 57aa942] 2025-12-15 upload done from linux machine
+ 11 files changed, 84 insertions(+)
+To https://github.com/iburn78/trader
+   7ae4f98..57aa942  main -> main
+rtcwake: write error
+이미 업데이트 상태입니다.
+/home/andy/projects/trader/tools/tools.py:414: FutureWarning: Setting an item of incompatible dtype is deprecated and will raise in a future error of pandas. Value '<FloatingArray>
+[<NA>, <NA>, <NA>, <NA>, <NA>, <NA>, <NA>, <NA>, <NA>, <NA>,
+ ...
+ <NA>, <NA>, <NA>, <NA>, <NA>, <NA>, <NA>, <NA>, <NA>, <NA>]
+Length: 2758028, dtype: Float64' has dtype incompatible with float64, please explicitly cast to a compatible dtype first.
+  A.update(P)
+Company health data collection initiated at 2025-12-16 02:00:06.561201
+Updating KRX data...
+Updating between dates: 2025-12-08 / 2025-12-16
+FULL rescan codes:
+Total 4 items.
+[0-3] ['002790', '026960', '199480', '299170']
+PARTIAL rescan codes:
+Total 5 items.
+[0-4] ['008870', '395400', '227100', '432320', '396690']
+full_rescan batch operation: 0
+Financial data collection log >> 
+2025-12-16 02:00:18.953991, no: 0, code 002790 in process
+2025-12-16 02:00:35.264208, no: 1, code 026960 in process
+2025-12-16 02:00:52.282955, no: 2, code 199480 in process
+2025-12-16 02:01:00.102027, no: 3, code 299170 in process
+partial_rescan batch operation: 0
+Financial data collection log >> 
+2025-12-16 02:01:23.147854, no: 0, code 008870 in process
+2025-12-16 02:01:29.426209, no: 1, code 395400 in process
+2025-12-16 02:01:35.089347, no: 2, code 227100 in process
+2025-12-16 02:01:42.676174, no: 3, code 432320 in process
+2025-12-16 02:01:48.338353, no: 4, code 396690 in process
+== Update finished ==
+updating market prices...
+Updating outstanding shares information...
+Processing outstanding shares data for 2025-12-12... 0/150
+Processing outstanding shares data for 2025-12-15... 1/150
+2025-12-16 QA DB: updating ['002790', '008870', '026960', '199480', '227100', '299170', '395400', '396690', '432320']
+002790
+008870
+026960
+199480
+227100
+299170
+395400
+396690
+432320
+002790 | 1/9
+008870 | 2/9
+026960 | 3/9
+199480 | 4/9
+227100 | 5/9
+299170 | 6/9
+395400 | 7/9
+2025-12-16 02:04:04.930085 | 395400 | quarterly data of 395400 is empty.
+396690 | 8/9
+432320 | 9/9
+sending incremental file list
+daily_update.json
+            999 100%    0.00kB/s    0:00:00              999 100%    0.00kB/s    0:00:00 (xfr#1, to-chk=0/2)
+
+sent 1,121 bytes  received 41 bytes  774.67 bytes/sec
+total size is 999  speedup is 0.86
+sending incremental file list
+002790.png
+         32,768   7%    0.00kB/s    0:00:00          447,326 100%   65.89MB/s    0:00:00 (xfr#1, to-chk=2585/2720)
+008870.png
+         32,768  10%    4.46MB/s    0:00:00          307,988 100%   26.70MB/s    0:00:00 (xfr#2, to-chk=2369/2720)
+026960.png
+         32,768   7%    2.60MB/s    0:00:00          422,812 100%   23.72MB/s    0:00:00 (xfr#3, to-chk=2080/2720)
+199480.png
+         32,768  12%    1.74MB/s    0:00:00          268,592 100%   12.20MB/s    0:00:00 (xfr#4, to-chk=925/2720)
+227100.png
+         32,768   7%    1.42MB/s    0:00:00          429,514 100%   14.63MB/s    0:00:00 (xfr#5, to-chk=801/2720)
+299170.png
+         32,768   8%    1.12MB/s    0:00:00          380,013 100%   10.35MB/s    0:00:00 (xfr#6, to-chk=579/2720)
+396690.png
+         32,768  14%  888.89kB/s    0:00:00          219,308 100%    4.27MB/s    0:00:00 (xfr#7, to-chk=306/2720)
+432320.png
+         32,768  29%  640.00kB/s    0:00:00          112,291 100%    1.67MB/s    0:00:00 (xfr#8, to-chk=229/2720)
+rate_changes.png
+         32,768  16%  492.31kB/s    0:00:00          197,482 100%    2.19MB/s    0:00:00 (xfr#9, to-chk=0/2720)
+
+sent 2,853,544 bytes  received 23,875 bytes  1,918,279.33 bytes/sec
+total size is 1,116,896,724  speedup is 388.16
