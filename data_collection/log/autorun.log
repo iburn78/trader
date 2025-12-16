@@ -2052,3 +2052,91 @@ rate_changes.png
 
 sent 2,853,544 bytes  received 23,875 bytes  1,918,279.33 bytes/sec
 total size is 1,116,896,724  speedup is 388.16
+[main 8e35c9f] 2025-12-16 upload done from linux machine
+ 14 files changed, 116 insertions(+)
+ rewrite data_collection/data/df_krx.db (86%)
+ rewrite data_collection/data/df_krx.feather (85%)
+To https://github.com/iburn78/trader
+   57aa942..8e35c9f  main -> main
+rtcwake: write error
+이미 업데이트 상태입니다.
+Company health data collection initiated at 2025-12-17 02:00:06.031306
+Updating KRX data...
+Updating between dates: 2025-12-09 / 2025-12-17
+FULL rescan codes:
+Total 4 items.
+[0-3] ['002790', '026960', '199480', '299170']
+PARTIAL rescan codes:
+Total 6 items.
+[0-5] ['084440', '432320', '017250', '395400', '396690', '227100']
+full_rescan batch operation: 0
+Financial data collection log >> 
+2025-12-17 02:00:17.924880, no: 0, code 002790 in process
+2025-12-17 02:00:34.276194, no: 1, code 026960 in process
+2025-12-17 02:00:51.152678, no: 2, code 199480 in process
+2025-12-17 02:00:58.230306, no: 3, code 299170 in process
+partial_rescan batch operation: 0
+Financial data collection log >> 
+2025-12-17 02:01:19.704214, no: 0, code 084440 in process
+2025-12-17 02:01:26.019686, no: 1, code 432320 in process
+2025-12-17 02:01:31.730291, no: 2, code 017250 in process
+2025-12-17 02:01:38.019020, no: 3, code 395400 in process
+2025-12-17 02:01:43.696295, no: 4, code 396690 in process
+2025-12-17 02:01:49.353252, no: 5, code 227100 in process
+== Update finished ==
+updating market prices...
+Updating outstanding shares information...
+Processing outstanding shares data for 2025-12-15... 0/150
+Processing outstanding shares data for 2025-12-16... 1/150
+2025-12-17 QA DB: updating ['002790', '017250', '026960', '084440', '199480', '227100', '299170', '395400', '396690', '432320']
+002790
+017250
+026960
+084440
+199480
+227100
+299170
+395400
+396690
+432320
+002790 | 1/10
+017250 | 2/10
+026960 | 3/10
+084440 | 4/10
+199480 | 5/10
+227100 | 6/10
+299170 | 7/10
+395400 | 8/10
+2025-12-17 02:04:13.260037 | 395400 | quarterly data of 395400 is empty.
+396690 | 9/10
+432320 | 10/10
+sending incremental file list
+daily_update.json
+          1,173 100%    0.00kB/s    0:00:00            1,173 100%    0.00kB/s    0:00:00 (xfr#1, to-chk=0/2)
+
+sent 1,000 bytes  received 47 bytes  698.00 bytes/sec
+total size is 1,173  speedup is 1.12
+sending incremental file list
+002790.png
+         32,768   7%    0.00kB/s    0:00:00          447,354 100%   79.08MB/s    0:00:00 (xfr#1, to-chk=2585/2720)
+017250.png
+         32,768   9%    5.21MB/s    0:00:00          335,819 100%   32.03MB/s    0:00:00 (xfr#2, to-chk=2200/2720)
+026960.png
+         32,768   7%    3.12MB/s    0:00:00          423,134 100%   25.22MB/s    0:00:00 (xfr#3, to-chk=2080/2720)
+084440.png
+         32,768   9%    1.84MB/s    0:00:00          344,927 100%   15.66MB/s    0:00:00 (xfr#4, to-chk=1433/2720)
+199480.png
+         32,768  12%    1.42MB/s    0:00:00          269,867 100%   10.29MB/s    0:00:00 (xfr#5, to-chk=925/2720)
+227100.png
+         32,768   7%    1.20MB/s    0:00:00          430,027 100%   12.43MB/s    0:00:00 (xfr#6, to-chk=801/2720)
+299170.png
+         32,768   8%  941.18kB/s    0:00:00          378,648 100%    5.56MB/s    0:00:00 (xfr#7, to-chk=579/2720)
+396690.png
+         32,768  14%  477.61kB/s    0:00:00          220,202 100%    2.19MB/s    0:00:00 (xfr#8, to-chk=306/2720)
+432320.png
+         32,768  28%  329.90kB/s    0:00:00          115,913 100%    1.13MB/s    0:00:00 (xfr#9, to-chk=229/2720)
+rate_changes.png
+         32,768  16%  288.29kB/s    0:00:00          197,377 100%    1.49MB/s    0:00:00 (xfr#10, to-chk=0/2720)
+
+sent 3,230,919 bytes  received 26,920 bytes  6,515,678.00 bytes/sec
+total size is 1,116,948,766  speedup is 342.85
