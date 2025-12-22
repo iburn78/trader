@@ -31,7 +31,7 @@ criteria_dict = {
     'debt_to_equity_ratio_stats': [200, cv_threshold, np.nan, np.nan] # percent
 }
 weight = [5, 2, 2, 5, 1, 1, 1, 1, 1, 1, 1] # weights for each criteria
-top_N = 100 # top to add
+top_N = 50 # top to add
 
 # ----------------------------------------------------------
 # BELOW: Classification defs
@@ -458,8 +458,11 @@ def L4_rolling_addition(fh, target_account=target_account):
 def get_market_performance_db(code, fr_db=fr_db, pr_db=pr_db, outshare_DB=outshare_DB, target_account=target_account, MAX_QUARTERS=MAX_QUARTERS):
     fh = get_quarterly_data(code, fr_db, native=True)
     fh = L4_rolling_addition(fh, target_account)
-    init_loc = fh.columns.get_loc(fh.loc['L4_'+ target_account].first_valid_index())
-    start_loc = max(max(len(fh.columns) - MAX_QUARTERS, 0), init_loc)
+    try:
+        init_loc = fh.columns.get_loc(fh.loc['L4_'+ target_account].first_valid_index())
+        start_loc = max(max(len(fh.columns) - MAX_QUARTERS, 0), init_loc)
+    except:
+        start_loc = 0
     start_day  = pd.Period(fh.columns[start_loc][:5].replace('_', ''), freq='Q').start_time.strftime('%Y-%m-%d')
 
     # market performance
@@ -478,6 +481,8 @@ def get_market_performance_db(code, fr_db=fr_db, pr_db=pr_db, outshare_DB=outsha
     mp_db['equity'] = mp_db.index.map(lambda d: fh.at['equity', prev_quarter_str(d)] if prev_quarter_str(d) in fh.columns else latest_b)
     mp_db['PBR'] = mp_db['marcap'] / mp_db['equity']
     mp_db = mp_db.apply(pd.to_numeric, errors='coerce')
+
+    print(mp_db)
 
     return mp_db
 
@@ -582,7 +587,8 @@ def generate_PPT(data_dict, fr_db=fr_db, pr_db=pr_db, summary_only = False, top_
 
             slide = prs.slides.add_slide(prs.slide_layouts[1])
             ph = next(iter(slide.placeholders)) 
-            ph.text = openai_command(code)
+            ph.text = ""
+            # ph.text = openai_command(code)
 
             slide = prs.slides.add_slide(prs.slide_layouts[2])
             img_stream = plot_company_financial_summary2(fr_db, pr_db, code, None) 
@@ -680,7 +686,7 @@ def openai_command(code, conf_file=CONF_FILE):
                     prompt
                 )
             }
-        ] 
+        ],
     )
     try:
         citations = getattr(chat_completion, 'citations', [])
