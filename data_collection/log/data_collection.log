@@ -725,3 +725,33 @@ Financial data collection log >>
 updating market prices...
 Updating outstanding shares information...
 Processing outstanding shares data for 2025-12-19... 0/150
+Company health data collection initiated at 2025-12-23 02:00:05.970157
+Updating KRX data...
+Updating between dates: 2025-12-15 / 2025-12-23
+FULL rescan codes:
+Total 5 items.
+[0-4] ['000880', '017250', '065660', '179900', '199480']
+PARTIAL rescan codes:
+Total 7 items.
+[0-6] ['396690', '357430', '432320', '478340', '003610', '154030', '227100']
+full_rescan batch operation: 0
+Financial data collection log >> 
+2025-12-23 02:00:17.829888, no: 0, code 000880 in process
+2025-12-23 02:00:34.199053, no: 1, code 017250 in process
+2025-12-23 02:00:42.209134, no: 2, code 065660 in process
+2025-12-23 02:00:58.386260, no: 3, code 179900 in process
+2025-12-23 02:01:12.851769, no: 4, code 199480 in process
+partial_rescan batch operation: 0
+Financial data collection log >> 
+2025-12-23 02:01:29.899698, no: 0, code 396690 in process
+2025-12-23 02:01:35.561361, no: 1, code 357430 in process
+2025-12-23 02:01:41.606508, no: 2, code 432320 in process
+2025-12-23 02:01:47.250669, no: 3, code 478340 in process
+2025-12-23 02:01:53.179368, no: 4, code 003610 in process
+2025-12-23 02:01:59.678026, no: 5, code 154030 in process
+2025-12-23 02:02:05.985307, no: 6, code 227100 in process
+== Update finished ==
+updating market prices...
+Updating outstanding shares information...
+Processing outstanding shares data for 2025-12-19... 0/150
+Processing outstanding shares data for 2025-12-22... 1/150
