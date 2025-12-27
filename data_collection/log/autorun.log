@@ -2907,3 +2907,51 @@ rate_changes.png
 
 sent 1,574,551 bytes  received 13,310 bytes  3,175,722.00 bytes/sec
 total size is 1,117,183,298  speedup is 703.58
+[main baa392f] 2025-12-27 upload done from linux machine
+ 12 files changed, 74 insertions(+)
+ rewrite data_collection/data/df_krx.db (85%)
+ rewrite data_collection/data/df_krx.feather (84%)
+To https://github.com/iburn78/trader
+   f633e8c..baa392f  main -> main
+rtcwake: write error
+이미 업데이트 상태입니다.
+Company health data collection initiated at 2025-12-28 02:00:05.790753
+Updating KRX data...
+Updating between dates: 2025-12-20 / 2025-12-28
+FULL rescan codes:
+Total 1 items.
+[0-0] ['065660']
+PARTIAL rescan codes:
+Total 1 items.
+[0-0] ['227100']
+full_rescan batch operation: 0
+Financial data collection log >> 
+2025-12-28 02:00:17.503906, no: 0, code 065660 in process
+partial_rescan batch operation: 0
+Financial data collection log >> 
+2025-12-28 02:00:43.570275, no: 0, code 227100 in process
+== Update finished ==
+updating market prices...
+Updating outstanding shares information...
+Processing outstanding shares data for 2025-12-26... 0/150
+2025-12-28 QA DB: updating ['065660', '227100']
+065660
+227100
+065660 | 1/2
+227100 | 2/2
+sending incremental file list
+daily_update.json
+            593 100%    0.00kB/s    0:00:00              593 100%    0.00kB/s    0:00:00 (xfr#1, to-chk=0/2)
+
+sent 715 bytes  received 41 bytes  1,512.00 bytes/sec
+total size is 593  speedup is 0.78
+sending incremental file list
+065660.png
+         32,768   6%    0.00kB/s    0:00:00          474,231 100%   46.78MB/s    0:00:00 (xfr#1, to-chk=1610/2722)
+227100.png
+         32,768   7%    3.12MB/s    0:00:00          429,935 100%   27.33MB/s    0:00:00 (xfr#2, to-chk=802/2722)
+rate_changes.png
+            700   0%   45.57kB/s    0:00:04          198,262 100%   11.82MB/s    0:00:00 (xfr#3, to-chk=0/2722)
+
+sent 972,875 bytes  received 9,541 bytes  654,944.00 bytes/sec
+total size is 1,117,183,380  speedup is 1,137.18
