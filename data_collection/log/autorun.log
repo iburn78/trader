@@ -3807,3 +3807,85 @@ sending incremental file list
 
 sent 67,218 bytes  received 12 bytes  44,820.00 bytes/sec
 total size is 1,117,007,779  speedup is 16,614.72
+[main c5d1e96] 2026-01-05 upload done from linux machine
+ 4 files changed, 87 insertions(+)
+To https://github.com/iburn78/trader
+   4deffef..c5d1e96  main -> main
+rtcwake: write error
+이미 업데이트 상태입니다.
+Company health data collection initiated at 2026-01-06 02:00:05.574540
+Updating KRX data...
+Generation of KRX data failed: Expecting value: line 1 column 1 (char 0)
+Traceback (most recent call last):
+  File "/home/andy/projects/trader/data_collection/dc05_CompanyHealth.py", line 320, in update_main_db
+    df_krx = generate_krx_data()
+  File "/home/andy/projects/trader/tools/tools.py", line 441, in generate_krx_data
+    df_krx = fdr.StockListing('KRX')
+  File "/home/andy/projects/trader/venv/lib/python3.10/site-packages/FinanceDataReader/data.py", line 154, in StockListing
+    return KrxMarcapListing(market).read(date_req)
+  File "/home/andy/projects/trader/venv/lib/python3.10/site-packages/FinanceDataReader/krx/listing.py", line 39, in read
+    j = json.loads(requests.post(url, headers=self.headers, data=data).text)
+  File "/usr/lib/python3.10/json/__init__.py", line 346, in loads
+    return _default_decoder.decode(s)
+  File "/usr/lib/python3.10/json/decoder.py", line 337, in decode
+    obj, end = self.raw_decode(s, idx=_w(s, 0).end())
+  File "/usr/lib/python3.10/json/decoder.py", line 355, in raw_decode
+    raise JSONDecodeError("Expecting value", s, err.value) from None
+json.decoder.JSONDecodeError: Expecting value: line 1 column 1 (char 0)
+
+During handling of the above exception, another exception occurred:
+
+Traceback (most recent call last):
+  File "/home/andy/projects/trader/data_collection/dc05_CompanyHealth.py", line 387, in <module>
+    update_main_db(log_file, main_db, df_krx, plot_gen_control_file)
+  File "/home/andy/projects/trader/data_collection/dc05_CompanyHealth.py", line 324, in update_main_db
+    raise Exception('Generation of KRX data failed: '+str(e))
+Exception: Generation of KRX data failed: Expecting value: line 1 column 1 (char 0)
+updating market prices...
+Traceback (most recent call last):
+  File "/home/andy/projects/trader/data_collection/dc06_GenPriceDB.py", line 175, in <module>
+    gen_market_DB(price_DB_path, volume_DB_path, START_DATE, log_file=log_file)
+  File "/home/andy/projects/trader/data_collection/dc06_GenPriceDB.py", line 46, in gen_market_DB
+    market_snapshot = fdr.StockListing('KRX')[['Code', 'Market', 'Stocks']]
+  File "/home/andy/projects/trader/venv/lib/python3.10/site-packages/FinanceDataReader/data.py", line 154, in StockListing
+    return KrxMarcapListing(market).read(date_req)
+  File "/home/andy/projects/trader/venv/lib/python3.10/site-packages/FinanceDataReader/krx/listing.py", line 39, in read
+    j = json.loads(requests.post(url, headers=self.headers, data=data).text)
+  File "/usr/lib/python3.10/json/__init__.py", line 346, in loads
+    return _default_decoder.decode(s)
+  File "/usr/lib/python3.10/json/decoder.py", line 337, in decode
+    obj, end = self.raw_decode(s, idx=_w(s, 0).end())
+  File "/usr/lib/python3.10/json/decoder.py", line 355, in raw_decode
+    raise JSONDecodeError("Expecting value", s, err.value) from None
+json.decoder.JSONDecodeError: Expecting value: line 1 column 1 (char 0)
+2026-01-06 QA DB: ***** plot_gen_control.npy does not exist. *****
+Traceback (most recent call last):
+  File "/home/andy/projects/trader/data_collection/dc07_VisualizeHealth.py", line 13, in <module>
+    raise FileNotFoundError('***** plot_gen_control.npy does not exist. *****')
+FileNotFoundError: ***** plot_gen_control.npy does not exist. *****
+Traceback (most recent call last):
+  File "/home/andy/projects/trader/data_collection/dc13_RateChanges.py", line 4, in <module>
+    listed = get_listed()
+  File "/home/andy/projects/trader/tools/tools.py", line 515, in get_listed
+    stock_info = fdr.StockListing('KRX')
+  File "/home/andy/projects/trader/venv/lib/python3.10/site-packages/FinanceDataReader/data.py", line 154, in StockListing
+    return KrxMarcapListing(market).read(date_req)
+  File "/home/andy/projects/trader/venv/lib/python3.10/site-packages/FinanceDataReader/krx/listing.py", line 39, in read
+    j = json.loads(requests.post(url, headers=self.headers, data=data).text)
+  File "/usr/lib/python3.10/json/__init__.py", line 346, in loads
+    return _default_decoder.decode(s)
+  File "/usr/lib/python3.10/json/decoder.py", line 337, in decode
+    obj, end = self.raw_decode(s, idx=_w(s, 0).end())
+  File "/usr/lib/python3.10/json/decoder.py", line 355, in raw_decode
+    raise JSONDecodeError("Expecting value", s, err.value) from None
+json.decoder.JSONDecodeError: Expecting value: line 1 column 1 (char 0)
+sending incremental file list
+daily_update.json
+            678 100%    0.00kB/s    0:00:00              678 100%    0.00kB/s    0:00:00 (xfr#1, to-chk=0/2)
+
+sent 800 bytes  received 41 bytes  1,682.00 bytes/sec
+total size is 678  speedup is 0.81
+sending incremental file list
+
+sent 67,218 bytes  received 12 bytes  44,820.00 bytes/sec
+total size is 1,117,007,779  speedup is 16,614.72
