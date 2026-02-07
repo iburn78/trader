@@ -2717,3 +2717,56 @@ updating market prices...
 Updating outstanding shares information...
 Processing outstanding shares data for 2026-02-05... 0/150
 Processing outstanding shares data for 2026-02-06... 1/150
+Company health data collection initiated at 2026-02-08 02:00:06.610455
+Updating KRX data...
+Updating between dates: 2026-01-31 / 2026-02-08
+FULL rescan codes:
+Total 2 items.
+[0-1] ['013890', '068790']
+PARTIAL rescan codes:
+Total 34 items.
+[0-33] ['001720', '330590', '190650', '396690', '101390', '008110', '377190', '217620', '033200', '018500', '002630', '451800', '092440', '400760', '338100', '099750', '0030R0', '404990', '350520', '021880', '357250', '088260', '060310', '481850', '432320', '293940', '067010', '334890', '357430', '357120', '289080', '348950', '020180', '365550']
+full_rescan batch operation: 0
+Financial data collection log >> 
+2026-02-08 02:00:19.995297, no: 0, code 013890 in process
+2026-02-08 02:00:34.502821, no: 1, code 068790 in process
+partial_rescan batch operation: 0
+Financial data collection log >> 
+2026-02-08 02:01:04.812282, no: 0, code 001720 in process
+2026-02-08 02:01:10.554208, no: 1, code 330590 in process
+2026-02-08 02:01:16.227964, no: 2, code 190650 in process
+2026-02-08 02:01:21.908341, no: 3, code 396690 in process
+2026-02-08 02:01:27.771266, no: 4, code 101390 in process
+2026-02-08 02:01:35.399272, no: 5, code 008110 in process
+2026-02-08 02:01:41.078296, no: 6, code 377190 in process
+2026-02-08 02:01:46.709904, no: 7, code 217620 in process
+2026-02-08 02:01:54.194100, no: 8, code 033200 in process
+2026-02-08 02:01:59.868138, no: 9, code 018500 in process
+2026-02-08 02:02:05.516024, no: 10, code 002630 in process
+2026-02-08 02:02:11.172232, no: 11, code 451800 in process
+2026-02-08 02:02:16.903187, no: 12, code 092440 in process
+2026-02-08 02:02:22.550139, no: 13, code 400760 in process
+2026-02-08 02:02:28.303499, no: 14, code 338100 in process
+2026-02-08 02:02:33.935529, no: 15, code 099750 in process
+2026-02-08 02:02:39.612937, no: 16, code 0030R0 in process
+2026-02-08 02:02:45.275423, no: 17, code 404990 in process
+2026-02-08 02:02:50.965341, no: 18, code 350520 in process
+2026-02-08 02:02:56.625187, no: 19, code 021880 in process
+2026-02-08 02:03:02.285367, no: 20, code 357250 in process
+2026-02-08 02:03:07.928186, no: 21, code 088260 in process
+2026-02-08 02:03:13.574885, no: 22, code 060310 in process
+2026-02-08 02:03:19.209226, no: 23, code 481850 in process
+2026-02-08 02:03:24.869186, no: 24, code 432320 in process
+2026-02-08 02:03:30.541068, no: 25, code 293940 in process
+2026-02-08 02:03:36.175076, no: 26, code 067010 in process
+2026-02-08 02:03:41.809139, no: 27, code 334890 in process
+2026-02-08 02:03:47.454411, no: 28, code 357430 in process
+2026-02-08 02:03:53.136370, no: 29, code 357120 in process
+2026-02-08 02:03:58.792522, no: 30, code 289080 in process
+2026-02-08 02:04:04.441949, no: 31, code 348950 in process
+2026-02-08 02:04:10.219702, no: 32, code 020180 in process
+2026-02-08 02:04:15.844057, no: 33, code 365550 in process
+== Update finished ==
+updating market prices...
+Updating outstanding shares information...
+Processing outstanding shares data for 2026-02-06... 0/150
