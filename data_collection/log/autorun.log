@@ -11825,3 +11825,172 @@ rsync error: unexplained error (code 255) at io.c(232) [sender=3.2.7]
 ssh: connect to host tnpartners.net port 22: Connection timed out
 rsync: connection unexpectedly closed (0 bytes received so far) [sender]
 rsync error: unexplained error (code 255) at io.c(232) [sender=3.2.7]
+[main b03b4ad] 2026-02-13 upload done from linux machine
+ 13 files changed, 198 insertions(+)
+ rewrite data_collection/data/df_krx.db (84%)
+ rewrite data_collection/data/df_krx.feather (84%)
+To https://github.com/iburn78/trader
+   940dc2b..b03b4ad  main -> main
+ssh: connect to host tnpartners.net port 22: Connection timed out
+lost connection
+ssh: connect to host tnpartners.net port 22: Connection timed out
+lost connection
+rtcwake: write error
+이미 업데이트 상태입니다.
+Company health data collection initiated at 2026-02-14 02:00:05.853911
+Updating KRX data...
+Updating between dates: 2026-02-06 / 2026-02-14
+FULL rescan codes:
+Total 2 items.
+[0-1] ['013890', '037030']
+PARTIAL rescan codes:
+Total 41 items.
+[0-40] ['377190', '032800', '020180', '004310', '033200', '451800', '093240', '099750', '357430', '396690', '334890', '404990', '293940', '008110', '030960', '338100', '481850', '169330', '002630', '021820', '357120', '088260', '330590', '101390', '190650', '400760', '001720', '348950', '092440', '357250', '350520', '217620', '050860', '018500', '189690', '289080', '067010', '334970', '365550', '432320', '417310']
+full_rescan batch operation: 0
+Financial data collection log >> 
+2026-02-14 02:00:18.359646, no: 0, code 013890 in process
+2026-02-14 02:00:34.051427, no: 1, code 037030 in process
+partial_rescan batch operation: 0
+Financial data collection log >> 
+2026-02-14 02:00:56.285115, no: 0, code 377190 in process
+2026-02-14 02:01:01.944419, no: 1, code 032800 in process
+2026-02-14 02:01:09.258233, no: 2, code 020180 in process
+2026-02-14 02:01:16.659389, no: 3, code 004310 in process
+2026-02-14 02:01:23.903381, no: 4, code 033200 in process
+2026-02-14 02:01:31.130765, no: 5, code 451800 in process
+2026-02-14 02:01:36.799717, no: 6, code 093240 in process
+2026-02-14 02:01:44.045393, no: 7, code 099750 in process
+2026-02-14 02:01:51.356363, no: 8, code 357430 in process
+2026-02-14 02:01:57.054501, no: 9, code 396690 in process
+2026-02-14 02:02:02.748571, no: 10, code 334890 in process
+2026-02-14 02:02:08.407752, no: 11, code 404990 in process
+2026-02-14 02:02:14.068424, no: 12, code 293940 in process
+2026-02-14 02:02:19.745049, no: 13, code 008110 in process
+2026-02-14 02:02:27.174330, no: 14, code 030960 in process
+2026-02-14 02:02:34.393784, no: 15, code 338100 in process
+2026-02-14 02:02:40.059168, no: 16, code 481850 in process
+2026-02-14 02:02:45.716243, no: 17, code 169330 in process
+2026-02-14 02:02:52.934560, no: 18, code 002630 in process
+2026-02-14 02:03:00.240320, no: 19, code 021820 in process
+2026-02-14 02:03:07.492689, no: 20, code 357120 in process
+2026-02-14 02:03:13.166394, no: 21, code 088260 in process
+2026-02-14 02:03:18.853780, no: 22, code 330590 in process
+2026-02-14 02:03:24.508786, no: 23, code 101390 in process
+2026-02-14 02:03:32.487911, no: 24, code 190650 in process
+2026-02-14 02:03:38.202633, no: 25, code 400760 in process
+2026-02-14 02:03:43.868802, no: 26, code 001720 in process
+2026-02-14 02:03:51.163507, no: 27, code 348950 in process
+2026-02-14 02:03:56.885795, no: 28, code 092440 in process
+2026-02-14 02:04:04.073833, no: 29, code 357250 in process
+2026-02-14 02:04:09.801357, no: 30, code 350520 in process
+2026-02-14 02:04:15.458308, no: 31, code 217620 in process
+2026-02-14 02:04:22.947726, no: 32, code 050860 in process
+2026-02-14 02:04:30.176740, no: 33, code 018500 in process
+2026-02-14 02:04:37.370743, no: 34, code 189690 in process
+2026-02-14 02:04:44.573480, no: 35, code 289080 in process
+2026-02-14 02:04:51.752303, no: 36, code 067010 in process
+2026-02-14 02:04:57.405620, no: 37, code 334970 in process
+2026-02-14 02:05:04.595047, no: 38, code 365550 in process
+2026-02-14 02:05:10.291635, no: 39, code 432320 in process
+2026-02-14 02:05:15.987442, no: 40, code 417310 in process
+== Update finished ==
+updating market prices...
+Updating outstanding shares information...
+Processing outstanding shares data for 2026-02-12... 0/150
+Processing outstanding shares data for 2026-02-13... 1/150
+2026-02-14 QA DB: updating ['001720', '002630', '004310', '008110', '013890', '018500', '020180', '021820', '030960', '032800', '033200', '037030', '050860', '067010', '088260', '092440', '093240', '099750', '101390', '169330', '189690', '190650', '217620', '289080', '293940', '330590', '334890', '334970', '338100', '348950', '350520', '357120', '357250', '357430', '365550', '377190', '396690', '400760', '404990', '417310', '432320', '451800', '481850']
+001720
+002630
+004310
+008110
+013890
+018500
+020180
+021820
+030960
+032800
+033200
+037030
+050860
+067010
+088260
+092440
+093240
+099750
+101390
+169330
+189690
+190650
+217620
+289080
+293940
+330590
+334890
+334970
+338100
+348950
+350520
+357120
+357250
+357430
+365550
+377190
+396690
+400760
+404990
+417310
+432320
+451800
+481850
+001720 | 1/43
+002630 | 2/43
+004310 | 3/43
+008110 | 4/43
+013890 | 5/43
+018500 | 6/43
+020180 | 7/43
+021820 | 8/43
+030960 | 9/43
+032800 | 10/43
+033200 | 11/43
+037030 | 12/43
+050860 | 13/43
+067010 | 14/43
+088260 | 15/43
+092440 | 16/43
+093240 | 17/43
+099750 | 18/43
+101390 | 19/43
+169330 | 20/43
+189690 | 21/43
+190650 | 22/43
+217620 | 23/43
+289080 | 24/43
+293940 | 25/43
+330590 | 26/43
+334890 | 27/43
+334970 | 28/43
+338100 | 29/43
+348950 | 30/43
+350520 | 31/43
+357120 | 32/43
+357250 | 33/43
+357430 | 34/43
+365550 | 35/43
+377190 | 36/43
+396690 | 37/43
+400760 | 38/43
+404990 | 39/43
+417310 | 40/43
+2026-02-14 02:11:02.934082 | 417310 | quarterly data of 417310 is empty.
+432320 | 41/43
+451800 | 42/43
+481850 | 43/43
+ssh: connect to host tnpartners.net port 22: Connection timed out
+lost connection
+ssh: connect to host tnpartners.net port 22: Connection timed out
+rsync: connection unexpectedly closed (0 bytes received so far) [sender]
+rsync error: unexplained error (code 255) at io.c(232) [sender=3.2.7]
+ssh: connect to host tnpartners.net port 22: Connection timed out
+rsync: connection unexpectedly closed (0 bytes received so far) [sender]
+rsync error: unexplained error (code 255) at io.c(232) [sender=3.2.7]
