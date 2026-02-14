@@ -14769,4 +14769,12 @@ usage: git [--version] [--help] [-C <path>] [-c <name>=<value>]
            <command> [<args>]
 [?2004h(venv) ]0;andy@andy-ThinkPad-T450s: ~/projects/trader[01;32mandy@andy-ThinkPad-T450s[00m:[01;34m~/projects/trader[00m$ git status
 [?2004l[?2004h(venv) ]0;andy@andy-ThinkPad-T450s: ~/projects/trader[01;32mandy@andy-ThinkPad-T450s[00m:[01;34m~/projects/trader[00m$ gacp
-[?2004l
+[?2004lTo https://github.com/iburn78/trader
+   8c2cf52..0aa2224  main -> main
+[?2004h(venv) ]0;andy@andy-ThinkPad-T450s: ~/projects/trader[01;32mandy@andy-ThinkPad-T450s[00m:[01;34m~/projects/trader[00m$ git status
+[?2004l[?2004h(venv) ]0;andy@andy-ThinkPad-T450s: ~/projects/trader[01;32mandy@andy-ThinkPad-T450s[00m:[01;34m~/projects/trader[00m$ ex[K[Kdeactivate
+[?2004l[?2004h]0;andy@andy-ThinkPad-T450s: ~/projects/trader[01;32mandy@andy-ThinkPad-T450s[00m:[01;34m~/projects/trader[00m$ git status
+[?2004l[?2004h]0;andy@andy-ThinkPad-T450s: ~/projects/trader[01;32mandy@andy-ThinkPad-T450s[00m:[01;34m~/projects/trader[00m$ ls
+[?2004lls: write error: Bad file descriptor
+[?2004h]0;andy@andy-ThinkPad-T450s: ~/projects/trader[01;32mandy@andy-ThinkPad-T450s[00m:[01;34m~/projects/trader[00m$ ls[K[Kexit
+[?2004llogout
