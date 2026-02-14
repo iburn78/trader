@@ -29,12 +29,12 @@ source ~/projects/trader/venv/bin/activate
 cd ~/projects/trader/data_collection
 
 # Run Python scripts
-# python dc05_CompanyHealth.py
-# python dc06_GenPriceDB.py
-# python dc17_QuarterlyAnalysisDB.py
-# python dc07_VisualizeHealth.py
-# python dc13_RateChanges.py
-# python dc16_DailyUpdate.py
+python dc05_CompanyHealth.py
+python dc06_GenPriceDB.py
+python dc17_QuarterlyAnalysisDB.py
+python dc07_VisualizeHealth.py
+python dc13_RateChanges.py
+python dc16_DailyUpdate.py
 
 # CP and Rsync commands
 cp "${info_directory}df_krx.db" $tnp_data_directory
