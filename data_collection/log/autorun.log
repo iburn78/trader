@@ -11994,3 +11994,14 @@ rsync error: unexplained error (code 255) at io.c(232) [sender=3.2.7]
 ssh: connect to host tnpartners.net port 22: Connection timed out
 rsync: connection unexpectedly closed (0 bytes received so far) [sender]
 rsync error: unexplained error (code 255) at io.c(232) [sender=3.2.7]
+[main 554f9b6] 2026-02-14 upload done from linux machine
+ 14 files changed, 232 insertions(+)
+ rewrite data_collection/data/df_krx.db (85%)
+ rewrite data_collection/data/df_krx.feather (85%)
+To https://github.com/iburn78/trader
+   b03b4ad..554f9b6  main -> main
+ssh: connect to host tnpartners.net port 22: Connection timed out
+lost connection
+ssh: connect to host tnpartners.net port 22: Connection timed out
+lost connection
+rtcwake: write error
