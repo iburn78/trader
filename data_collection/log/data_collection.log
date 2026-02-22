@@ -3432,3 +3432,42 @@ Financial data collection log >>
 updating market prices...
 Updating outstanding shares information...
 Processing outstanding shares data for 2026-02-20... 0/150
+Company health data collection initiated at 2026-02-23 02:00:07.233663
+Updating KRX data...
+Updating between dates: 2026-02-15 / 2026-02-23
+FULL rescan codes:
+Total 2 items.
+[0-1] ['100840', '483650']
+PARTIAL rescan codes:
+Total 20 items.
+[0-19] ['217620', '293940', '330590', '350520', '365550', '088260', '432320', '481850', '357250', '377190', '101390', '338100', '404990', '396690', '348950', '400760', '357430', '334890', '357120', '451800']
+full_rescan batch operation: 0
+Financial data collection log >> 
+2026-02-23 02:00:20.342984, no: 0, code 100840 in process
+2026-02-23 02:00:37.613606, no: 1, code 483650 in process
+partial_rescan batch operation: 0
+Financial data collection log >> 
+2026-02-23 02:00:54.796172, no: 0, code 217620 in process
+2026-02-23 02:01:02.622499, no: 1, code 293940 in process
+2026-02-23 02:01:08.276825, no: 2, code 330590 in process
+2026-02-23 02:01:14.218238, no: 3, code 350520 in process
+2026-02-23 02:01:20.052672, no: 4, code 365550 in process
+2026-02-23 02:01:25.938247, no: 5, code 088260 in process
+2026-02-23 02:01:31.610500, no: 6, code 432320 in process
+2026-02-23 02:01:37.254399, no: 7, code 481850 in process
+2026-02-23 02:01:42.890372, no: 8, code 357250 in process
+2026-02-23 02:01:48.531093, no: 9, code 377190 in process
+2026-02-23 02:01:54.242425, no: 10, code 101390 in process
+2026-02-23 02:02:01.721635, no: 11, code 338100 in process
+2026-02-23 02:02:07.380109, no: 12, code 404990 in process
+2026-02-23 02:02:13.025529, no: 13, code 396690 in process
+2026-02-23 02:02:18.677130, no: 14, code 348950 in process
+2026-02-23 02:02:24.406925, no: 15, code 400760 in process
+2026-02-23 02:02:30.065744, no: 16, code 357430 in process
+2026-02-23 02:02:35.731214, no: 17, code 334890 in process
+2026-02-23 02:02:41.403586, no: 18, code 357120 in process
+2026-02-23 02:02:47.208987, no: 19, code 451800 in process
+== Update finished ==
+updating market prices...
+Updating outstanding shares information...
+Processing outstanding shares data for 2026-02-20... 0/150
