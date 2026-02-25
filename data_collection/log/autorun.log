@@ -16161,3 +16161,135 @@ rate_changes.png
 
 sent 5,864,380 bytes  received 478 bytes  11,729,716.00 bytes/sec
 total size is 1,117,352,953  speedup is 190.52
+[main f4b65fb] 2026-02-25 upload done from linux machine
+ 13 files changed, 170 insertions(+)
+ rewrite data_collection/data/df_krx.db (84%)
+ rewrite data_collection/data/df_krx.feather (84%)
+To https://github.com/iburn78/trader
+   6dbac7b..f4b65fb  main -> main
+이미 업데이트 상태입니다.
+Company health data collection initiated at 2026-02-26 02:00:05.831650
+Updating KRX data...
+Updating between dates: 2026-02-18 / 2026-02-26
+FULL rescan codes:
+Total 4 items.
+[0-3] ['036530', '100840', '258610', '483650']
+PARTIAL rescan codes:
+Total 20 items.
+[0-19] ['451800', '357430', '365550', '338100', '432320', '088260', '217620', '101390', '348950', '350520', '357250', '377190', '293940', '357120', '330590', '481850', '334890', '396690', '404990', '400760']
+full_rescan batch operation: 0
+Financial data collection log >> 
+2026-02-26 02:00:17.886676, no: 0, code 036530 in process
+2026-02-26 02:00:35.211563, no: 1, code 100840 in process
+2026-02-26 02:00:52.262957, no: 2, code 258610 in process
+2026-02-26 02:01:07.005498, no: 3, code 483650 in process
+partial_rescan batch operation: 0
+Financial data collection log >> 
+2026-02-26 02:01:21.510838, no: 0, code 451800 in process
+2026-02-26 02:01:27.189815, no: 1, code 357430 in process
+2026-02-26 02:01:32.886026, no: 2, code 365550 in process
+2026-02-26 02:01:38.564993, no: 3, code 338100 in process
+2026-02-26 02:01:44.247118, no: 4, code 432320 in process
+2026-02-26 02:01:49.922547, no: 5, code 088260 in process
+2026-02-26 02:01:55.625255, no: 6, code 217620 in process
+2026-02-26 02:02:03.185273, no: 7, code 101390 in process
+2026-02-26 02:02:10.752099, no: 8, code 348950 in process
+2026-02-26 02:02:16.486937, no: 9, code 350520 in process
+2026-02-26 02:02:22.177192, no: 10, code 357250 in process
+2026-02-26 02:02:27.871939, no: 11, code 377190 in process
+2026-02-26 02:02:33.558416, no: 12, code 293940 in process
+2026-02-26 02:02:39.229467, no: 13, code 357120 in process
+2026-02-26 02:02:44.888423, no: 14, code 330590 in process
+2026-02-26 02:02:50.527542, no: 15, code 481850 in process
+2026-02-26 02:02:56.225244, no: 16, code 334890 in process
+2026-02-26 02:03:01.972186, no: 17, code 396690 in process
+2026-02-26 02:03:07.702089, no: 18, code 404990 in process
+2026-02-26 02:03:13.382595, no: 19, code 400760 in process
+== Update finished ==
+updating market prices...
+Updating outstanding shares information...
+Processing outstanding shares data for 2026-02-24... 0/150
+Processing outstanding shares data for 2026-02-25... 1/150
+2026-02-26 QA DB: updating ['036530', '088260', '100840', '101390', '217620', '258610', '293940', '330590', '334890', '338100', '348950', '350520', '357120', '357250', '357430', '365550', '377190', '396690', '400760', '404990', '432320', '451800', '481850', '483650']
+036530
+088260
+100840
+101390
+217620
+258610
+293940
+330590
+334890
+338100
+348950
+350520
+357120
+357250
+357430
+365550
+377190
+396690
+400760
+404990
+432320
+451800
+481850
+483650
+036530 | 1/24
+088260 | 2/24
+100840 | 3/24
+101390 | 4/24
+217620 | 5/24
+258610 | 6/24
+293940 | 7/24
+330590 | 8/24
+334890 | 9/24
+338100 | 10/24
+348950 | 11/24
+350520 | 12/24
+357120 | 13/24
+357250 | 14/24
+357430 | 15/24
+365550 | 16/24
+377190 | 17/24
+396690 | 18/24
+400760 | 19/24
+404990 | 20/24
+432320 | 21/24
+451800 | 22/24
+481850 | 23/24
+483650 | 24/24
+sending incremental file list
+daily_update.json
+
+sent 1,073 bytes  received 35 bytes  2,216.00 bytes/sec
+total size is 951  speedup is 0.86
+sending incremental file list
+036530.png
+088260.png
+100840.png
+101390.png
+217620.png
+258610.png
+293940.png
+330590.png
+334890.png
+338100.png
+348950.png
+350520.png
+357120.png
+357250.png
+357430.png
+365550.png
+377190.png
+396690.png
+400760.png
+404990.png
+432320.png
+451800.png
+481850.png
+483650.png
+rate_changes.png
+
+sent 6,327,241 bytes  received 497 bytes  4,218,492.00 bytes/sec
+total size is 1,117,317,258  speedup is 176.57
