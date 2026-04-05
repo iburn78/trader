@@ -312,7 +312,7 @@ def _plot_ctrl(plot_gen_control_file, code_list):
         code_list = np.unique(np.concatenate((code_list, np.load(plot_gen_control_file, allow_pickle=True))))
     np.save(plot_gen_control_file, code_list)
 
-def update_main_db(log_file, main_db, df_krx, plot_gen_control_file=None):
+def update_main_db(log_file, main_db, plot_gen_control_file=None):
     log_print(log_file, 'Company health data collection initiated at '+str(datetime.datetime.today()))
     try: 
         log_print(log_file, 'Updating KRX data...')
@@ -382,6 +382,5 @@ if __name__ == '__main__':
     log_file = os.path.join(cd_, 'log/data_collection.log')
     plot_gen_control_file = os.path.join(cd_, 'data/plot_gen_control.npy')
     main_db = get_main_financial_reports_db()
-    df_krx = get_df_krx()
 
-    update_main_db(log_file, main_db, df_krx, plot_gen_control_file)
+    update_main_db(log_file, main_db, plot_gen_control_file)
