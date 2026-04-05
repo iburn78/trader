@@ -5,30 +5,70 @@ import pandas as pd
 import FinanceDataReader as fdr
 from trader.tools.tools import *
 
-def _initialization(codelist, START_DATE): 
+from concurrent.futures import ThreadPoolExecutor
+from functools import partial
+
+
+# parallel download version: 8 request is usually safe
+# NEED REVIEW !!! ###_
+def _fetch(code, START_DATE):
+    try:
+        print(code)
+        res = fdr.DataReader(code, START_DATE)[['Close', 'Volume']]
+        return code, res
+    except Exception as e:
+        print(f"Error retrieving data for {code}: {e}")
+        return None
+
+# parallel download version: 8 request is usually safe
+# NEED REVIEW !!! ###_
+def _initialization(codelist, START_DATE, workers=8) -> tuple:
     price_data = {}
     volume_data = {}
 
-    for code in codelist:
-        print(code)
-        try:
-            res = fdr.DataReader(code, START_DATE)[['Close', 'Volume']]
+    fetch = partial(_fetch, START_DATE=START_DATE)
+
+    with ThreadPoolExecutor(max_workers=workers) as executor:
+        results = executor.map(fetch, codelist)
+
+        for result in results:
+            if result is None:
+                continue
+
+            code, res = result
             price_data[code] = res['Close']
             volume_data[code] = res['Volume']
-        except Exception as e:
-            print(f"Error retrieving data for {code}: {e}")
-            continue  # Skip the code if there's an error
 
     pdb = pd.concat(price_data, axis=1)
     vdb = pd.concat(volume_data, axis=1)
 
     return pdb, vdb
 
+# prev original _initiazliation
+# def _initialization(codelist, START_DATE) -> tuple: 
+#     price_data = {}
+#     volume_data = {}
+
+#     for code in codelist:
+#         print(code)
+#         try:
+#             res = fdr.DataReader(code, START_DATE)[['Close', 'Volume']]
+#             price_data[code] = res['Close']
+#             volume_data[code] = res['Volume']
+#         except Exception as e:
+#             print(f"Error retrieving data for {code}: {e}")
+#             continue  # Skip the code if there's an error
+
+#     pdb = pd.concat(price_data, axis=1)
+#     vdb = pd.concat(volume_data, axis=1)
+
+#     return pdb, vdb
+
 def get_prices(codelist, START_DATE):
     return _initialization(codelist, START_DATE)
 
 def log_message(message, log_file=None):
-    if log_file:
+    if log_file is not None:
         log_print(log_file, message)
     else:
         print(message)
@@ -37,6 +77,12 @@ def update_DB(DB, snapshot, date, column):
     date_snapshot = snapshot[['Code', column]].set_index('Code').T
     date_snapshot.index = [date]  
     DB = date_snapshot.combine_first(DB)
+
+    row = snapshot.set_index('Code')[column]
+    # ensure new columns exist
+    DB = DB.reindex(columns=DB.columns.union(row.index))
+    DB.loc[date, row.index] = row
+
     return DB
 
 def gen_market_DB(price_DB_path, volume_DB_path, START_DATE, log_file=None):
@@ -48,7 +94,11 @@ def gen_market_DB(price_DB_path, volume_DB_path, START_DATE, log_file=None):
     
     try:
         price_DB = pd.read_feather(price_DB_path)
+        price_DB = price_DB.set_index('index')
+        price_DB.index = pd.to_datetime(price_DB.index)
         volume_DB = pd.read_feather(volume_DB_path)
+        volume_DB = volume_DB.set_index('index')
+        volume_DB.index = pd.to_datetime(volume_DB.index)
     except FileNotFoundError:  # Handle if files don't exist
         price_DB, volume_DB = _initialization(market_snapshot['Code'], START_DATE)
 
@@ -76,6 +126,10 @@ def gen_market_DB(price_DB_path, volume_DB_path, START_DATE, log_file=None):
         except Exception as e:
             print(f"Error retrieving full data for {code}: {e}")
             continue  # Skip if there is an error
+    
+    # remove delisted
+    price_DB = price_DB.dropna(axis=1, subset=[price_DB.index[-1]])
+    volume_DB = volume_DB.dropna(axis=1, subset=[volume_DB.index[-1]])
 
     # Ensure data types are correct
     price_DB = price_DB.astype('float')
@@ -88,18 +142,21 @@ def gen_market_DB(price_DB_path, volume_DB_path, START_DATE, log_file=None):
     return True
 
 def _update_outshare_db(outshare_DB, new_data):
-    """Update the outstanding shares database with new data."""
-    # Drop rows in outshare_DB that have matching indices in new_data
-    outshare_DB = outshare_DB.drop(new_data.index, errors='ignore')
 
-    # Concatenate the new data with the remaining outshare_DB
-    outshare_DB = pd.concat([outshare_DB, new_data], axis=0)
+    new_data = new_data.astype(float)
 
-    # Optionally, sort by index
-    outshare_DB = outshare_DB.sort_index(ascending=True)
+    # append
+    outshare_DB = pd.concat([outshare_DB, new_data])
 
-    # Ensure data types are correct
-    outshare_DB = outshare_DB.astype('float')
+    # remove duplicates
+    outshare_DB = outshare_DB[~outshare_DB.index.duplicated(keep="last")]
+
+    # keep chronological order
+    outshare_DB = outshare_DB.sort_index()
+
+    # remove delisted stocks
+    last = outshare_DB.index[-1]
+    outshare_DB = outshare_DB.dropna(axis=1, subset=[last])
 
     return outshare_DB
 
@@ -116,6 +173,8 @@ def gen_OutstandingShares_DB(outshare_DB_path, START_DATE, log_file=None):
     try:
         # Load existing outstanding shares DB
         outshare_DB = pd.read_feather(outshare_DB_path)
+        outshare_DB = outshare_DB.set_index('index')
+        outshare_DB.index = pd.to_datetime(outshare_DB.index)
         update_start_date = outshare_DB.index[-1]  # Start updating from the last available date
     except FileNotFoundError:  # If the file doesn't exist, create an empty DataFrame
         outshare_DB = pd.DataFrame(index=pd.to_datetime([]))  # Empty DataFrame with DateTime index
@@ -164,9 +223,11 @@ def gen_OutstandingShares_DB(outshare_DB_path, START_DATE, log_file=None):
     return True
 
 if __name__ == '__main__': 
+
     START_DATE = '2014-01-01'
 
     cd_ = os.path.dirname(os.path.abspath(__file__)) # .   
+
     price_DB_path = os.path.join(cd_, 'data/price_DB.feather')
     volume_DB_path = os.path.join(cd_, 'data/volume_DB.feather')
     outshare_DB_path = os.path.join(cd_, 'data/outshare_DB.feather')
