@@ -94,11 +94,7 @@ def gen_market_DB(price_DB_path, volume_DB_path, START_DATE, log_file=None):
     
     try:
         price_DB = pd.read_feather(price_DB_path)
-        price_DB = price_DB.set_index('index')
-        price_DB.index = pd.to_datetime(price_DB.index)
         volume_DB = pd.read_feather(volume_DB_path)
-        volume_DB = volume_DB.set_index('index')
-        volume_DB.index = pd.to_datetime(volume_DB.index)
     except FileNotFoundError:  # Handle if files don't exist
         price_DB, volume_DB = _initialization(market_snapshot['Code'], START_DATE)
 
