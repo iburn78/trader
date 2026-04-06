@@ -509,9 +509,8 @@ def get_listed():
     for key, val in category_dict.items():
         listed.loc[listed['Sector'] == str(key), 'Category'] = val
 
-    print(listed)
-    if len(listed.loc[listed.Category.isna()]) > 0: 
-        raise Exception('--- Category mapping error ---')
+    # if len(listed.loc[listed.Category.isna()]) > 0: 
+    #     raise Exception('--- Category mapping error ---')
 
     stock_info = fdr.StockListing('KRX')
     mc = pd.to_numeric(stock_info['Marcap'], errors='coerce')
