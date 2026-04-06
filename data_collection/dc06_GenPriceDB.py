@@ -169,8 +169,6 @@ def gen_OutstandingShares_DB(outshare_DB_path, START_DATE, log_file=None):
     try:
         # Load existing outstanding shares DB
         outshare_DB = pd.read_feather(outshare_DB_path)
-        outshare_DB = outshare_DB.set_index('index')
-        outshare_DB.index = pd.to_datetime(outshare_DB.index)
         update_start_date = outshare_DB.index[-1]  # Start updating from the last available date
     except FileNotFoundError:  # If the file doesn't exist, create an empty DataFrame
         outshare_DB = pd.DataFrame(index=pd.to_datetime([]))  # Empty DataFrame with DateTime index
