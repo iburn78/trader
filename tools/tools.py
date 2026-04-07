@@ -494,6 +494,8 @@ def null_checker(main_db, n):  # check if there are no data in nth quarter befor
 
 def get_listed():
     listing_db = fdr.StockListing('KRX-DESC')
+    # sector information is no longer available
+    # print(listing_db.Sector.unique())
 
     listed = listing_db.loc[listing_db.ListingDate.notna()].copy()
     category_dict = pd.read_excel('category.xlsx').set_index('Sector')['Category'].to_dict()
@@ -509,8 +511,9 @@ def get_listed():
     for key, val in category_dict.items():
         listed.loc[listed['Sector'] == str(key), 'Category'] = val
 
-    # if len(listed.loc[listed.Category.isna()]) > 0: 
-    #     raise Exception('--- Category mapping error ---')
+    print(listed.loc[listed.Category.isna()])
+    if len(listed.loc[listed.Category.isna()]) > 0: 
+        raise Exception('--- Category mapping error ---')
 
     stock_info = fdr.StockListing('KRX')
     mc = pd.to_numeric(stock_info['Marcap'], errors='coerce')
