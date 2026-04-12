@@ -58259,3 +58259,267 @@ sending incremental file list
 
 sent 18,227,163 bytes  received 852 bytes  36,456,030.00 bytes/sec
 total size is 1,123,859,697  speedup is 61.66
+[main 810f680] 2026-04-12 upload done from linux machine
+ 8 files changed, 298 insertions(+)
+To https://github.com/iburn78/trader
+   90c8ee5..810f680  main -> main
+이미 업데이트 상태입니다.
+Company health data collection initiated at 2026-04-13 02:00:05.988309
+Updating KRX data...
+Updating between dates: 2026-04-05 / 2026-04-13
+FULL rescan codes:
+Total 17 items.
+[0-16] ['000300', '001720', '002210', '007330', '016800', '046070', '054540', '099320', '101930', '138040', '168360', '208710', '245620', '256840', '332570', '451250', '483650']
+PARTIAL rescan codes:
+Total 32 items.
+[0-31] ['276040', '032980', '288330', '304840', '011000', '241820', '101390', '119650', '123570', '082660', '313760', '019660', '064090', '043220', '106080', '418250', '393970', '017040', '049180', '448730', '352770', '006490', '043100', '001470', '175250', '245620', '031860', '309710', '007330', '0010F0', '002210', '009620']
+full_rescan batch operation: 0
+Financial data collection log >> 
+2026-04-13 02:00:12.695231, no: 0, code 000300 in process
+----> no: 0, code 000300 unknown exception; process suspended and to be re-tried
+HTTPSConnectionPool(host='opendart.fss.or.kr', port=443): Max retries exceeded with url: /api/fnlttSinglAcnt.json?crtfc_key=5f29227b902e730a9350eacbf2dee9abd6f5623f&corp_code=00126089&bsns_year=2014&reprt_code=11011 (Caused by NameResolutionError("<urllib3.connection.HTTPSConnection object at 0x7826985915d0>: Failed to resolve 'opendart.fss.or.kr' ([Errno -3] Temporary failure in name resolution)"))
+** API-changed **
+2026-04-13 02:00:41.362676, no: 0, code 000300 in process
+----> no: 0, code 000300 unknown exception; process suspended and to be re-tried
+HTTPSConnectionPool(host='opendart.fss.or.kr', port=443): Max retries exceeded with url: /api/fnlttSinglAcnt.json?crtfc_key=9c180c67fba16e9a8d8bf3a74112ce0a6dbdb907&corp_code=00126089&bsns_year=2026&reprt_code=11013 (Caused by NameResolutionError("<urllib3.connection.HTTPSConnection object at 0x782698591ff0>: Failed to resolve 'opendart.fss.or.kr' ([Errno -3] Temporary failure in name resolution)"))
+** API-changed **
+2026-04-13 02:00:51.490320, no: 0, code 000300 in process
+----> no: 0, code 000300 unknown exception; process suspended and to be re-tried
+HTTPSConnectionPool(host='opendart.fss.or.kr', port=443): Max retries exceeded with url: /api/fnlttSinglAcnt.json?crtfc_key=a1fc27d1b9ed7efbdfee49e92b741635d3c76c26&corp_code=00126089&bsns_year=2026&reprt_code=11013 (Caused by NameResolutionError("<urllib3.connection.HTTPSConnection object at 0x782698593ca0>: Failed to resolve 'opendart.fss.or.kr' ([Errno -3] Temporary failure in name resolution)"))
+** API-changed **
+2026-04-13 02:01:06.627697, no: 0, code 000300 in process
+----> no: 0, code 000300 unknown exception; process suspended and to be re-tried
+HTTPSConnectionPool(host='opendart.fss.or.kr', port=443): Max retries exceeded with url: /api/fnlttSinglAcnt.json?crtfc_key=5f29227b902e730a9350eacbf2dee9abd6f5623f&corp_code=00126089&bsns_year=2026&reprt_code=11013 (Caused by NameResolutionError("<urllib3.connection.HTTPSConnection object at 0x7826985923e0>: Failed to resolve 'opendart.fss.or.kr' ([Errno -3] Temporary failure in name resolution)"))
+** API-changed **
+2026-04-13 02:01:26.760088, no: 0, code 000300 in process
+----> no: 0, code 000300 unknown exception; process suspended and to be re-tried
+HTTPSConnectionPool(host='opendart.fss.or.kr', port=443): Max retries exceeded with url: /api/fnlttSinglAcnt.json?crtfc_key=9c180c67fba16e9a8d8bf3a74112ce0a6dbdb907&corp_code=00126089&bsns_year=2026&reprt_code=11013 (Caused by NameResolutionError("<urllib3.connection.HTTPSConnection object at 0x782698590220>: Failed to resolve 'opendart.fss.or.kr' ([Errno -3] Temporary failure in name resolution)"))
+** API-changed **
+2026-04-13 02:01:51.903446, no: 0, code 000300 in process
+----> no: 0, code 000300 unknown exception; process suspended and to be re-tried
+HTTPSConnectionPool(host='opendart.fss.or.kr', port=443): Max retries exceeded with url: /api/fnlttSinglAcnt.json?crtfc_key=a1fc27d1b9ed7efbdfee49e92b741635d3c76c26&corp_code=00126089&bsns_year=2026&reprt_code=11013 (Caused by NameResolutionError("<urllib3.connection.HTTPSConnection object at 0x782698591240>: Failed to resolve 'opendart.fss.or.kr' ([Errno -3] Temporary failure in name resolution)"))
+** API-changed **
+2026-04-13 02:02:22.051725, no: 0, code 000300 in process
+----> no: 0, code 000300 unknown exception; process suspended and to be re-tried
+HTTPSConnectionPool(host='opendart.fss.or.kr', port=443): Max retries exceeded with url: /api/fnlttSinglAcnt.json?crtfc_key=5f29227b902e730a9350eacbf2dee9abd6f5623f&corp_code=00126089&bsns_year=2026&reprt_code=11013 (Caused by NameResolutionError("<urllib3.connection.HTTPSConnection object at 0x782698590b80>: Failed to resolve 'opendart.fss.or.kr' ([Errno -3] Temporary failure in name resolution)"))
+** API-changed **
+2026-04-13 02:02:57.205242, no: 0, code 000300 in process
+----> no: 0, code 000300 unknown exception; process suspended and to be re-tried
+HTTPSConnectionPool(host='opendart.fss.or.kr', port=443): Max retries exceeded with url: /api/fnlttSinglAcnt.json?crtfc_key=9c180c67fba16e9a8d8bf3a74112ce0a6dbdb907&corp_code=00126089&bsns_year=2026&reprt_code=11013 (Caused by NameResolutionError("<urllib3.connection.HTTPSConnection object at 0x7826c23b80a0>: Failed to resolve 'opendart.fss.or.kr' ([Errno -3] Temporary failure in name resolution)"))
+** API-changed **
+2026-04-13 02:03:37.378162, no: 0, code 000300 in process
+----> no: 0, code 000300 unknown exception; process suspended and to be re-tried
+HTTPSConnectionPool(host='opendart.fss.or.kr', port=443): Max retries exceeded with url: /api/fnlttSinglAcnt.json?crtfc_key=a1fc27d1b9ed7efbdfee49e92b741635d3c76c26&corp_code=00126089&bsns_year=2026&reprt_code=11013 (Caused by NameResolutionError("<urllib3.connection.HTTPSConnection object at 0x782698591990>: Failed to resolve 'opendart.fss.or.kr' ([Errno -3] Temporary failure in name resolution)"))
+** API-changed **
+2026-04-13 02:04:22.540950, no: 0, code 000300 in process
+----> no: 0, code 000300 unknown exception; process suspended and to be re-tried
+HTTPSConnectionPool(host='opendart.fss.or.kr', port=443): Max retries exceeded with url: /api/fnlttSinglAcnt.json?crtfc_key=5f29227b902e730a9350eacbf2dee9abd6f5623f&corp_code=00126089&bsns_year=2026&reprt_code=11013 (Caused by NameResolutionError("<urllib3.connection.HTTPSConnection object at 0x7826985909d0>: Failed to resolve 'opendart.fss.or.kr' ([Errno -3] Temporary failure in name resolution)"))
+** API-changed **
+2026-04-13 02:05:12.708565, no: 0, code 000300 in process
+----> no: 0, code 000300 unknown exception; process suspended and to be re-tried
+HTTPSConnectionPool(host='opendart.fss.or.kr', port=443): Max retries exceeded with url: /api/fnlttSinglAcnt.json?crtfc_key=9c180c67fba16e9a8d8bf3a74112ce0a6dbdb907&corp_code=00126089&bsns_year=2026&reprt_code=11013 (Caused by NameResolutionError("<urllib3.connection.HTTPSConnection object at 0x782698592680>: Failed to resolve 'opendart.fss.or.kr' ([Errno -3] Temporary failure in name resolution)"))
+** ERROR TRIAL LIMIT REACHED - Entire Process Halted **
+Traceback (most recent call last):
+  File "/home/andy/projects/trader/venv/lib/python3.10/site-packages/urllib3/connection.py", line 203, in _new_conn
+    sock = connection.create_connection(
+  File "/home/andy/projects/trader/venv/lib/python3.10/site-packages/urllib3/util/connection.py", line 60, in create_connection
+    for res in socket.getaddrinfo(host, port, family, socket.SOCK_STREAM):
+  File "/usr/lib/python3.10/socket.py", line 955, in getaddrinfo
+    for res in _socket.getaddrinfo(host, port, family, type, proto, flags):
+socket.gaierror: [Errno -3] Temporary failure in name resolution
+
+The above exception was the direct cause of the following exception:
+
+Traceback (most recent call last):
+  File "/home/andy/projects/trader/venv/lib/python3.10/site-packages/urllib3/connectionpool.py", line 790, in urlopen
+    response = self._make_request(
+  File "/home/andy/projects/trader/venv/lib/python3.10/site-packages/urllib3/connectionpool.py", line 491, in _make_request
+    raise new_e
+  File "/home/andy/projects/trader/venv/lib/python3.10/site-packages/urllib3/connectionpool.py", line 467, in _make_request
+    self._validate_conn(conn)
+  File "/home/andy/projects/trader/venv/lib/python3.10/site-packages/urllib3/connectionpool.py", line 1096, in _validate_conn
+    conn.connect()
+  File "/home/andy/projects/trader/venv/lib/python3.10/site-packages/urllib3/connection.py", line 611, in connect
+    self.sock = sock = self._new_conn()
+  File "/home/andy/projects/trader/venv/lib/python3.10/site-packages/urllib3/connection.py", line 210, in _new_conn
+    raise NameResolutionError(self.host, self, e) from e
+urllib3.exceptions.NameResolutionError: <urllib3.connection.HTTPSConnection object at 0x782698592680>: Failed to resolve 'opendart.fss.or.kr' ([Errno -3] Temporary failure in name resolution)
+
+The above exception was the direct cause of the following exception:
+
+Traceback (most recent call last):
+  File "/home/andy/projects/trader/venv/lib/python3.10/site-packages/requests/adapters.py", line 486, in send
+    resp = conn.urlopen(
+  File "/home/andy/projects/trader/venv/lib/python3.10/site-packages/urllib3/connectionpool.py", line 844, in urlopen
+    retries = retries.increment(
+  File "/home/andy/projects/trader/venv/lib/python3.10/site-packages/urllib3/util/retry.py", line 515, in increment
+    raise MaxRetryError(_pool, url, reason) from reason  # type: ignore[arg-type]
+urllib3.exceptions.MaxRetryError: HTTPSConnectionPool(host='opendart.fss.or.kr', port=443): Max retries exceeded with url: /api/fnlttSinglAcnt.json?crtfc_key=9c180c67fba16e9a8d8bf3a74112ce0a6dbdb907&corp_code=00126089&bsns_year=2026&reprt_code=11013 (Caused by NameResolutionError("<urllib3.connection.HTTPSConnection object at 0x782698592680>: Failed to resolve 'opendart.fss.or.kr' ([Errno -3] Temporary failure in name resolution)"))
+
+During handling of the above exception, another exception occurred:
+
+Traceback (most recent call last):
+  File "/home/andy/projects/trader/data_collection/dc05_CompanyHealth.py", line 213, in _generate_financial_reports_set
+    record, message = _collect_financial_reports(dart, code, duration, date_updated)
+  File "/home/andy/projects/trader/data_collection/dc05_CompanyHealth.py", line 60, in _collect_financial_reports
+    rec = dart.finstate(code, y, reprt_code=reprt_code_dict[q])
+  File "/home/andy/projects/trader/venv/lib/python3.10/site-packages/OpenDartReader/dart.py", line 128, in finstate
+    return dart_finstate.finstate(self.api_key, corp_code, bsns_year, reprt_code)
+  File "/home/andy/projects/trader/venv/lib/python3.10/site-packages/OpenDartReader/dart_finstate.py", line 23, in finstate
+    r = requests.get(url, params=params)
+  File "/home/andy/projects/trader/venv/lib/python3.10/site-packages/requests/api.py", line 73, in get
+    return request("get", url, params=params, **kwargs)
+  File "/home/andy/projects/trader/venv/lib/python3.10/site-packages/requests/api.py", line 59, in request
+    return session.request(method=method, url=url, **kwargs)
+  File "/home/andy/projects/trader/venv/lib/python3.10/site-packages/requests/sessions.py", line 589, in request
+    resp = self.send(prep, **send_kwargs)
+  File "/home/andy/projects/trader/venv/lib/python3.10/site-packages/requests/sessions.py", line 703, in send
+    r = adapter.send(request, **kwargs)
+  File "/home/andy/projects/trader/venv/lib/python3.10/site-packages/requests/adapters.py", line 519, in send
+    raise ConnectionError(e, request=request)
+requests.exceptions.ConnectionError: HTTPSConnectionPool(host='opendart.fss.or.kr', port=443): Max retries exceeded with url: /api/fnlttSinglAcnt.json?crtfc_key=9c180c67fba16e9a8d8bf3a74112ce0a6dbdb907&corp_code=00126089&bsns_year=2026&reprt_code=11013 (Caused by NameResolutionError("<urllib3.connection.HTTPSConnection object at 0x782698592680>: Failed to resolve 'opendart.fss.or.kr' ([Errno -3] Temporary failure in name resolution)"))
+
+During handling of the above exception, another exception occurred:
+
+Traceback (most recent call last):
+  File "/home/andy/projects/trader/data_collection/dc05_CompanyHealth.py", line 386, in <module>
+    update_main_db(log_file, main_db, plot_gen_control_file)
+  File "/home/andy/projects/trader/data_collection/dc05_CompanyHealth.py", line 349, in update_main_db
+    db_f = _generate_financial_reports_set(batch_codes, None, log_file, end_day)
+  File "/home/andy/projects/trader/data_collection/dc05_CompanyHealth.py", line 246, in _generate_financial_reports_set
+    raise Exception('ERROR TRIAL LIMIT REACHED - Entire Process Halted')  # no catch, thus propagates to halt the program. 
+Exception: ERROR TRIAL LIMIT REACHED - Entire Process Halted
+updating market prices...
+Traceback (most recent call last):
+  File "/home/andy/projects/trader/venv/lib/python3.10/site-packages/urllib3/connection.py", line 203, in _new_conn
+    sock = connection.create_connection(
+  File "/home/andy/projects/trader/venv/lib/python3.10/site-packages/urllib3/util/connection.py", line 60, in create_connection
+    for res in socket.getaddrinfo(host, port, family, socket.SOCK_STREAM):
+  File "/usr/lib/python3.10/socket.py", line 955, in getaddrinfo
+    for res in _socket.getaddrinfo(host, port, family, type, proto, flags):
+socket.gaierror: [Errno -3] Temporary failure in name resolution
+
+The above exception was the direct cause of the following exception:
+
+Traceback (most recent call last):
+  File "/home/andy/projects/trader/venv/lib/python3.10/site-packages/urllib3/connectionpool.py", line 790, in urlopen
+    response = self._make_request(
+  File "/home/andy/projects/trader/venv/lib/python3.10/site-packages/urllib3/connectionpool.py", line 491, in _make_request
+    raise new_e
+  File "/home/andy/projects/trader/venv/lib/python3.10/site-packages/urllib3/connectionpool.py", line 467, in _make_request
+    self._validate_conn(conn)
+  File "/home/andy/projects/trader/venv/lib/python3.10/site-packages/urllib3/connectionpool.py", line 1096, in _validate_conn
+    conn.connect()
+  File "/home/andy/projects/trader/venv/lib/python3.10/site-packages/urllib3/connection.py", line 611, in connect
+    self.sock = sock = self._new_conn()
+  File "/home/andy/projects/trader/venv/lib/python3.10/site-packages/urllib3/connection.py", line 210, in _new_conn
+    raise NameResolutionError(self.host, self, e) from e
+urllib3.exceptions.NameResolutionError: <urllib3.connection.HTTPSConnection object at 0x7086a6710bb0>: Failed to resolve 'fchart.stock.naver.com' ([Errno -3] Temporary failure in name resolution)
+
+The above exception was the direct cause of the following exception:
+
+Traceback (most recent call last):
+  File "/home/andy/projects/trader/venv/lib/python3.10/site-packages/requests/adapters.py", line 486, in send
+    resp = conn.urlopen(
+  File "/home/andy/projects/trader/venv/lib/python3.10/site-packages/urllib3/connectionpool.py", line 844, in urlopen
+    retries = retries.increment(
+  File "/home/andy/projects/trader/venv/lib/python3.10/site-packages/urllib3/util/retry.py", line 515, in increment
+    raise MaxRetryError(_pool, url, reason) from reason  # type: ignore[arg-type]
+urllib3.exceptions.MaxRetryError: HTTPSConnectionPool(host='fchart.stock.naver.com', port=443): Max retries exceeded with url: /sise.nhn?timeframe=day&count=6000&requestType=0&symbol=005930 (Caused by NameResolutionError("<urllib3.connection.HTTPSConnection object at 0x7086a6710bb0>: Failed to resolve 'fchart.stock.naver.com' ([Errno -3] Temporary failure in name resolution)"))
+
+During handling of the above exception, another exception occurred:
+
+Traceback (most recent call last):
+  File "/home/andy/projects/trader/data_collection/dc06_GenPriceDB.py", line 230, in <module>
+    gen_market_DB(price_DB_path, volume_DB_path, START_DATE, log_file=log_file)
+  File "/home/andy/projects/trader/data_collection/dc06_GenPriceDB.py", line 91, in gen_market_DB
+    market_dates = fdr.DataReader('005930', START_DATE).index
+  File "/home/andy/projects/trader/venv/lib/python3.10/site-packages/FinanceDataReader/data.py", line 104, in DataReader
+    return NaverDailyReader(codes, start, end).read()
+  File "/home/andy/projects/trader/venv/lib/python3.10/site-packages/FinanceDataReader/naver/data.py", line 33, in read
+    return _naver_data_reader(self.code, self.start, self.end)
+  File "/home/andy/projects/trader/venv/lib/python3.10/site-packages/FinanceDataReader/naver/data.py", line 9, in _naver_data_reader
+    r = requests.get(url + symbol)
+  File "/home/andy/projects/trader/venv/lib/python3.10/site-packages/requests/api.py", line 73, in get
+    return request("get", url, params=params, **kwargs)
+  File "/home/andy/projects/trader/venv/lib/python3.10/site-packages/requests/api.py", line 59, in request
+    return session.request(method=method, url=url, **kwargs)
+  File "/home/andy/projects/trader/venv/lib/python3.10/site-packages/requests/sessions.py", line 589, in request
+    resp = self.send(prep, **send_kwargs)
+  File "/home/andy/projects/trader/venv/lib/python3.10/site-packages/requests/sessions.py", line 703, in send
+    r = adapter.send(request, **kwargs)
+  File "/home/andy/projects/trader/venv/lib/python3.10/site-packages/requests/adapters.py", line 519, in send
+    raise ConnectionError(e, request=request)
+requests.exceptions.ConnectionError: HTTPSConnectionPool(host='fchart.stock.naver.com', port=443): Max retries exceeded with url: /sise.nhn?timeframe=day&count=6000&requestType=0&symbol=005930 (Caused by NameResolutionError("<urllib3.connection.HTTPSConnection object at 0x7086a6710bb0>: Failed to resolve 'fchart.stock.naver.com' ([Errno -3] Temporary failure in name resolution)"))
+2026-04-13 QA DB: ***** plot_gen_control.npy does not exist. *****
+Traceback (most recent call last):
+  File "/home/andy/projects/trader/data_collection/dc07_VisualizeHealth.py", line 13, in <module>
+    raise FileNotFoundError('***** plot_gen_control.npy does not exist. *****')
+FileNotFoundError: ***** plot_gen_control.npy does not exist. *****
+Traceback (most recent call last):
+  File "/home/andy/projects/trader/venv/lib/python3.10/site-packages/urllib3/connection.py", line 203, in _new_conn
+    sock = connection.create_connection(
+  File "/home/andy/projects/trader/venv/lib/python3.10/site-packages/urllib3/util/connection.py", line 60, in create_connection
+    for res in socket.getaddrinfo(host, port, family, socket.SOCK_STREAM):
+  File "/usr/lib/python3.10/socket.py", line 955, in getaddrinfo
+    for res in _socket.getaddrinfo(host, port, family, type, proto, flags):
+socket.gaierror: [Errno -3] Temporary failure in name resolution
+
+The above exception was the direct cause of the following exception:
+
+Traceback (most recent call last):
+  File "/home/andy/projects/trader/venv/lib/python3.10/site-packages/urllib3/connectionpool.py", line 790, in urlopen
+    response = self._make_request(
+  File "/home/andy/projects/trader/venv/lib/python3.10/site-packages/urllib3/connectionpool.py", line 491, in _make_request
+    raise new_e
+  File "/home/andy/projects/trader/venv/lib/python3.10/site-packages/urllib3/connectionpool.py", line 467, in _make_request
+    self._validate_conn(conn)
+  File "/home/andy/projects/trader/venv/lib/python3.10/site-packages/urllib3/connectionpool.py", line 1096, in _validate_conn
+    conn.connect()
+  File "/home/andy/projects/trader/venv/lib/python3.10/site-packages/urllib3/connection.py", line 611, in connect
+    self.sock = sock = self._new_conn()
+  File "/home/andy/projects/trader/venv/lib/python3.10/site-packages/urllib3/connection.py", line 210, in _new_conn
+    raise NameResolutionError(self.host, self, e) from e
+urllib3.exceptions.NameResolutionError: <urllib3.connection.HTTPSConnection object at 0x757344c9bca0>: Failed to resolve 'opendart.fss.or.kr' ([Errno -3] Temporary failure in name resolution)
+
+The above exception was the direct cause of the following exception:
+
+Traceback (most recent call last):
+  File "/home/andy/projects/trader/venv/lib/python3.10/site-packages/requests/adapters.py", line 486, in send
+    resp = conn.urlopen(
+  File "/home/andy/projects/trader/venv/lib/python3.10/site-packages/urllib3/connectionpool.py", line 844, in urlopen
+    retries = retries.increment(
+  File "/home/andy/projects/trader/venv/lib/python3.10/site-packages/urllib3/util/retry.py", line 515, in increment
+    raise MaxRetryError(_pool, url, reason) from reason  # type: ignore[arg-type]
+urllib3.exceptions.MaxRetryError: HTTPSConnectionPool(host='opendart.fss.or.kr', port=443): Max retries exceeded with url: /api/list.json?crtfc_key=5f29227b902e730a9350eacbf2dee9abd6f5623f&corp_code=&bgn_de=20260411&end_de=20260412&last_reprt_at=Y&page_no=1&page_count=100&pblntf_ty=A (Caused by NameResolutionError("<urllib3.connection.HTTPSConnection object at 0x757344c9bca0>: Failed to resolve 'opendart.fss.or.kr' ([Errno -3] Temporary failure in name resolution)"))
+
+During handling of the above exception, another exception occurred:
+
+Traceback (most recent call last):
+  File "/home/andy/projects/trader/data_collection/dc16_DailyUpdate.py", line 41, in <module>
+    l1 = get_krx_unique_update_list(dart, yesterday, today)
+  File "/home/andy/projects/trader/tools/tools.py", line 588, in get_krx_unique_update_list
+    res = dart.list(start=start, end=end, kind='A') # works only withn three month gap between start_day and end_day
+  File "/home/andy/projects/trader/venv/lib/python3.10/site-packages/OpenDartReader/dart.py", line 64, in list
+    return dart_list.list(self.api_key, corp_code, start, end, kind, kind_detail, final)
+  File "/home/andy/projects/trader/venv/lib/python3.10/site-packages/OpenDartReader/dart_list.py", line 32, in list
+    r = requests.get(url, params=params)
+  File "/home/andy/projects/trader/venv/lib/python3.10/site-packages/requests/api.py", line 73, in get
+    return request("get", url, params=params, **kwargs)
+  File "/home/andy/projects/trader/venv/lib/python3.10/site-packages/requests/api.py", line 59, in request
+    return session.request(method=method, url=url, **kwargs)
+  File "/home/andy/projects/trader/venv/lib/python3.10/site-packages/requests/sessions.py", line 589, in request
+    resp = self.send(prep, **send_kwargs)
+  File "/home/andy/projects/trader/venv/lib/python3.10/site-packages/requests/sessions.py", line 703, in send
+    r = adapter.send(request, **kwargs)
+  File "/home/andy/projects/trader/venv/lib/python3.10/site-packages/requests/adapters.py", line 519, in send
+    raise ConnectionError(e, request=request)
+requests.exceptions.ConnectionError: HTTPSConnectionPool(host='opendart.fss.or.kr', port=443): Max retries exceeded with url: /api/list.json?crtfc_key=5f29227b902e730a9350eacbf2dee9abd6f5623f&corp_code=&bgn_de=20260411&end_de=20260412&last_reprt_at=Y&page_no=1&page_count=100&pblntf_ty=A (Caused by NameResolutionError("<urllib3.connection.HTTPSConnection object at 0x757344c9bca0>: Failed to resolve 'opendart.fss.or.kr' ([Errno -3] Temporary failure in name resolution)"))
+sending incremental file list
+
+sent 75 bytes  received 12 bytes  174.00 bytes/sec
+total size is 2,428  speedup is 27.91
+sending incremental file list
+
+sent 67,306 bytes  received 12 bytes  134,636.00 bytes/sec
+total size is 1,123,859,697  speedup is 16,694.79
