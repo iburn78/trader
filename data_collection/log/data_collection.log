@@ -15694,3 +15694,72 @@ HTTPSConnectionPool(host='opendart.fss.or.kr', port=443): Max retries exceeded w
 HTTPSConnectionPool(host='opendart.fss.or.kr', port=443): Max retries exceeded with url: /api/fnlttSinglAcnt.json?crtfc_key=9c180c67fba16e9a8d8bf3a74112ce0a6dbdb907&corp_code=00126089&bsns_year=2026&reprt_code=11013 (Caused by NameResolutionError("<urllib3.connection.HTTPSConnection object at 0x782698592680>: Failed to resolve 'opendart.fss.or.kr' ([Errno -3] Temporary failure in name resolution)"))
 ** ERROR TRIAL LIMIT REACHED - Entire Process Halted **
 updating market prices...
+Company health data collection initiated at 2026-04-14 02:00:05.906902
+Updating KRX data...
+Updating between dates: 2026-04-05 / 2026-04-14
+FULL rescan codes:
+Total 19 items.
+[0-18] ['000300', '001720', '002210', '007330', '016800', '035000', '046070', '054540', '081150', '099320', '101930', '138040', '168360', '208710', '245620', '256840', '332570', '451250', '483650']
+PARTIAL rescan codes:
+Total 32 items.
+[0-31] ['245620', '241820', '017040', '106080', '049180', '082660', '276040', '019660', '119650', '007330', '064090', '352770', '001470', '031860', '418250', '309710', '175250', '032980', '043100', '448730', '043220', '313760', '011000', '123570', '0010F0', '006490', '393970', '304840', '002210', '009620', '101390', '288330']
+full_rescan batch operation: 0
+Financial data collection log >> 
+2026-04-14 02:00:12.491902, no: 0, code 000300 in process
+2026-04-14 02:00:30.030784, no: 1, code 001720 in process
+2026-04-14 02:00:39.091811, no: 2, code 002210 in process
+2026-04-14 02:00:56.488047, no: 3, code 007330 in process
+2026-04-14 02:01:04.963853, no: 4, code 016800 in process
+2026-04-14 02:01:22.280047, no: 5, code 035000 in process
+2026-04-14 02:01:39.599344, no: 6, code 046070 in process
+2026-04-14 02:01:57.219796, no: 7, code 054540 in process
+2026-04-14 02:02:14.747864, no: 8, code 081150 in process
+2026-04-14 02:02:32.680746, no: 9, code 099320 in process
+2026-04-14 02:02:50.387325, no: 10, code 101930 in process
+2026-04-14 02:03:07.991151, no: 11, code 138040 in process
+2026-04-14 02:03:16.618856, no: 12, code 168360 in process
+2026-04-14 02:03:25.905290, no: 13, code 208710 in process
+2026-04-14 02:03:48.245463, no: 14, code 245620 in process
+2026-04-14 02:04:02.937208, no: 15, code 256840 in process
+2026-04-14 02:04:28.379723, no: 16, code 332570 in process
+2026-04-14 02:04:41.685712, no: 17, code 451250 in process
+2026-04-14 02:04:49.770988, no: 18, code 483650 in process
+partial_rescan batch operation: 0
+Financial data collection log >> 
+2026-04-14 02:05:04.103491, no: 0, code 245620 in process
+2026-04-14 02:05:11.658774, no: 1, code 241820 in process
+2026-04-14 02:05:19.341077, no: 2, code 017040 in process
+2026-04-14 02:05:26.980183, no: 3, code 106080 in process
+2026-04-14 02:05:34.471090, no: 4, code 049180 in process
+2026-04-14 02:05:42.107045, no: 5, code 082660 in process
+2026-04-14 02:05:49.771316, no: 6, code 276040 in process
+2026-04-14 02:05:57.389238, no: 7, code 019660 in process
+2026-04-14 02:06:04.894896, no: 8, code 119650 in process
+2026-04-14 02:06:12.535092, no: 9, code 007330 in process
+2026-04-14 02:06:20.103937, no: 10, code 064090 in process
+2026-04-14 02:06:27.696731, no: 11, code 352770 in process
+2026-04-14 02:06:35.210568, no: 12, code 001470 in process
+2026-04-14 02:06:42.774666, no: 13, code 031860 in process
+2026-04-14 02:06:50.375407, no: 14, code 418250 in process
+2026-04-14 02:06:57.968854, no: 15, code 309710 in process
+2026-04-14 02:07:04.492891, no: 16, code 175250 in process
+2026-04-14 02:07:12.143006, no: 17, code 032980 in process
+2026-04-14 02:07:19.730934, no: 18, code 043100 in process
+2026-04-14 02:07:27.301592, no: 19, code 448730 in process
+2026-04-14 02:07:33.162673, no: 20, code 043220 in process
+2026-04-14 02:07:40.742992, no: 21, code 313760 in process
+2026-04-14 02:07:48.283956, no: 22, code 011000 in process
+2026-04-14 02:07:55.864938, no: 23, code 123570 in process
+2026-04-14 02:08:03.365569, no: 24, code 0010F0 in process
+2026-04-14 02:08:09.221312, no: 25, code 006490 in process
+2026-04-14 02:08:16.800991, no: 26, code 393970 in process
+2026-04-14 02:08:23.632613, no: 27, code 304840 in process
+2026-04-14 02:08:31.245475, no: 28, code 002210 in process
+2026-04-14 02:08:38.795365, no: 29, code 009620 in process
+2026-04-14 02:08:46.388188, no: 30, code 101390 in process
+2026-04-14 02:08:53.997665, no: 31, code 288330 in process
+== Update finished ==
+updating market prices...
+Updating outstanding shares information...
+Processing outstanding shares data for 2026-04-10... 0/150
+Processing outstanding shares data for 2026-04-13... 1/150

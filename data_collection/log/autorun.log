@@ -58523,3 +58523,238 @@ sending incremental file list
 
 sent 67,306 bytes  received 12 bytes  134,636.00 bytes/sec
 total size is 1,123,859,697  speedup is 16,694.79
+[main 5f19021] 2026-04-13 upload done from linux machine
+ 4 files changed, 321 insertions(+)
+fatal: 'https://github.com/iburn78/trader/'에 접근할 수 없습니다: Could not resolve host: github.com
+이미 업데이트 상태입니다.
+Company health data collection initiated at 2026-04-14 02:00:05.906902
+Updating KRX data...
+Updating between dates: 2026-04-05 / 2026-04-14
+FULL rescan codes:
+Total 19 items.
+[0-18] ['000300', '001720', '002210', '007330', '016800', '035000', '046070', '054540', '081150', '099320', '101930', '138040', '168360', '208710', '245620', '256840', '332570', '451250', '483650']
+PARTIAL rescan codes:
+Total 32 items.
+[0-31] ['245620', '241820', '017040', '106080', '049180', '082660', '276040', '019660', '119650', '007330', '064090', '352770', '001470', '031860', '418250', '309710', '175250', '032980', '043100', '448730', '043220', '313760', '011000', '123570', '0010F0', '006490', '393970', '304840', '002210', '009620', '101390', '288330']
+full_rescan batch operation: 0
+Financial data collection log >> 
+2026-04-14 02:00:12.491902, no: 0, code 000300 in process
+2026-04-14 02:00:30.030784, no: 1, code 001720 in process
+2026-04-14 02:00:39.091811, no: 2, code 002210 in process
+2026-04-14 02:00:56.488047, no: 3, code 007330 in process
+2026-04-14 02:01:04.963853, no: 4, code 016800 in process
+2026-04-14 02:01:22.280047, no: 5, code 035000 in process
+2026-04-14 02:01:39.599344, no: 6, code 046070 in process
+2026-04-14 02:01:57.219796, no: 7, code 054540 in process
+2026-04-14 02:02:14.747864, no: 8, code 081150 in process
+2026-04-14 02:02:32.680746, no: 9, code 099320 in process
+2026-04-14 02:02:50.387325, no: 10, code 101930 in process
+2026-04-14 02:03:07.991151, no: 11, code 138040 in process
+2026-04-14 02:03:16.618856, no: 12, code 168360 in process
+2026-04-14 02:03:25.905290, no: 13, code 208710 in process
+2026-04-14 02:03:48.245463, no: 14, code 245620 in process
+2026-04-14 02:04:02.937208, no: 15, code 256840 in process
+2026-04-14 02:04:28.379723, no: 16, code 332570 in process
+2026-04-14 02:04:41.685712, no: 17, code 451250 in process
+2026-04-14 02:04:49.770988, no: 18, code 483650 in process
+partial_rescan batch operation: 0
+Financial data collection log >> 
+2026-04-14 02:05:04.103491, no: 0, code 245620 in process
+2026-04-14 02:05:11.658774, no: 1, code 241820 in process
+2026-04-14 02:05:19.341077, no: 2, code 017040 in process
+2026-04-14 02:05:26.980183, no: 3, code 106080 in process
+2026-04-14 02:05:34.471090, no: 4, code 049180 in process
+2026-04-14 02:05:42.107045, no: 5, code 082660 in process
+2026-04-14 02:05:49.771316, no: 6, code 276040 in process
+2026-04-14 02:05:57.389238, no: 7, code 019660 in process
+2026-04-14 02:06:04.894896, no: 8, code 119650 in process
+2026-04-14 02:06:12.535092, no: 9, code 007330 in process
+2026-04-14 02:06:20.103937, no: 10, code 064090 in process
+2026-04-14 02:06:27.696731, no: 11, code 352770 in process
+2026-04-14 02:06:35.210568, no: 12, code 001470 in process
+2026-04-14 02:06:42.774666, no: 13, code 031860 in process
+2026-04-14 02:06:50.375407, no: 14, code 418250 in process
+2026-04-14 02:06:57.968854, no: 15, code 309710 in process
+2026-04-14 02:07:04.492891, no: 16, code 175250 in process
+2026-04-14 02:07:12.143006, no: 17, code 032980 in process
+2026-04-14 02:07:19.730934, no: 18, code 043100 in process
+2026-04-14 02:07:27.301592, no: 19, code 448730 in process
+2026-04-14 02:07:33.162673, no: 20, code 043220 in process
+2026-04-14 02:07:40.742992, no: 21, code 313760 in process
+2026-04-14 02:07:48.283956, no: 22, code 011000 in process
+2026-04-14 02:07:55.864938, no: 23, code 123570 in process
+2026-04-14 02:08:03.365569, no: 24, code 0010F0 in process
+2026-04-14 02:08:09.221312, no: 25, code 006490 in process
+2026-04-14 02:08:16.800991, no: 26, code 393970 in process
+2026-04-14 02:08:23.632613, no: 27, code 304840 in process
+2026-04-14 02:08:31.245475, no: 28, code 002210 in process
+2026-04-14 02:08:38.795365, no: 29, code 009620 in process
+2026-04-14 02:08:46.388188, no: 30, code 101390 in process
+2026-04-14 02:08:53.997665, no: 31, code 288330 in process
+== Update finished ==
+updating market prices...
+Updating outstanding shares information...
+Processing outstanding shares data for 2026-04-10... 0/150
+Processing outstanding shares data for 2026-04-13... 1/150
+2026-04-14 QA DB: updating ['000300', '0010F0', '001470', '001720', '002210', '006490', '007330', '009620', '011000', '016800', '017040', '019660', '031860', '032980', '035000', '043100', '043220', '046070', '049180', '054540', '064090', '081150', '082660', '099320', '101390', '101930', '106080', '119650', '123570', '138040', '168360', '175250', '208710', '241820', '245620', '256840', '276040', '288330', '304840', '309710', '313760', '332570', '352770', '393970', '418250', '448730', '451250', '483650']
+000300
+0010F0
+001470
+001720
+002210
+006490
+007330
+009620
+011000
+016800
+017040
+019660
+031860
+032980
+035000
+043100
+043220
+046070
+049180
+054540
+064090
+081150
+082660
+099320
+101390
+101930
+106080
+119650
+123570
+138040
+168360
+175250
+208710
+241820
+245620
+256840
+276040
+288330
+304840
+309710
+313760
+332570
+352770
+393970
+418250
+448730
+451250
+483650
+/home/andy/projects/trader/tools/tools.py:227: UserWarning: No artists with labels found to put in legend.  Note that artists whose label start with an underscore are ignored when legend() is called with no argument.
+  axl = ax.legend(loc='upper left')
+/home/andy/projects/trader/tools/tools.py:248: UserWarning: No artists with labels found to put in legend.  Note that artists whose label start with an underscore are ignored when legend() is called with no argument.
+  axrl = axr.legend(loc='upper left')
+/home/andy/projects/trader/tools/tools.py:258: UserWarning: Attempting to set identical low and high xlims makes transformation singular; automatically expanding.
+  ax.set_xlim(-0.5, len(x) - 0.5)
+/home/andy/projects/trader/tools/tools.py:259: UserWarning: Attempting to set identical low and high xlims makes transformation singular; automatically expanding.
+  axr.set_xlim(-0.5, len(x) - 0.5)
+000300 | 1/48
+0010F0 | 2/48
+2026-04-14 02:10:54.430373 | 0010F0 | quarterly data of 0010F0 is empty.
+001470 | 3/48
+001720 | 4/48
+002210 | 5/48
+006490 | 6/48
+007330 | 7/48
+009620 | 8/48
+011000 | 9/48
+016800 | 10/48
+017040 | 11/48
+019660 | 12/48
+031860 | 13/48
+032980 | 14/48
+035000 | 15/48
+043100 | 16/48
+043220 | 17/48
+046070 | 18/48
+049180 | 19/48
+054540 | 20/48
+064090 | 21/48
+081150 | 22/48
+082660 | 23/48
+099320 | 24/48
+101390 | 25/48
+101930 | 26/48
+106080 | 27/48
+119650 | 28/48
+123570 | 29/48
+138040 | 30/48
+168360 | 31/48
+175250 | 32/48
+208710 | 33/48
+241820 | 34/48
+245620 | 35/48
+256840 | 36/48
+276040 | 37/48
+288330 | 38/48
+304840 | 39/48
+309710 | 40/48
+313760 | 41/48
+332570 | 42/48
+352770 | 43/48
+393970 | 44/48
+418250 | 45/48
+448730 | 46/48
+2026-04-14 02:15:50.862487 | 448730 | quarterly data of 448730 is empty.
+451250 | 47/48
+483650 | 48/48
+sending incremental file list
+daily_update.json
+
+sent 2,520 bytes  received 35 bytes  5,110.00 bytes/sec
+total size is 2,398  speedup is 0.94
+sending incremental file list
+000300.png
+001470.png
+001720.png
+002210.png
+006490.png
+007330.png
+009620.png
+011000.png
+016800.png
+017040.png
+019660.png
+031860.png
+032980.png
+035000.png
+043100.png
+043220.png
+046070.png
+049180.png
+054540.png
+064090.png
+081150.png
+082660.png
+099320.png
+101390.png
+101930.png
+106080.png
+119650.png
+123570.png
+138040.png
+168360.png
+175250.png
+208710.png
+241820.png
+245620.png
+256840.png
+276040.png
+288330.png
+304840.png
+309710.png
+313760.png
+332570.png
+352770.png
+393970.png
+418250.png
+451250.png
+483650.png
+
+sent 18,978,497 bytes  received 890 bytes  37,958,774.00 bytes/sec
+total size is 1,123,835,415  speedup is 59.21
