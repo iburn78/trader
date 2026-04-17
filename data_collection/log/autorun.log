@@ -59284,3 +59284,115 @@ sending incremental file list
 
 sent 7,048,198 bytes  received 400 bytes  14,097,196.00 bytes/sec
 total size is 1,123,777,291  speedup is 159.43
+[main 4b0b3f2] 2026-04-17 upload done from linux machine
+ 13 files changed, 160 insertions(+)
+ rewrite data_collection/data/df_krx.db (82%)
+ rewrite data_collection/data/df_krx.feather (83%)
+ rewrite data_collection/data/outshare_DB.feather (65%)
+To https://github.com/iburn78/trader
+   aabc593..4b0b3f2  main -> main
+이미 업데이트 상태입니다.
+Company health data collection initiated at 2026-04-18 02:00:06.611057
+Updating KRX data...
+Updating between dates: 2026-04-10 / 2026-04-18
+FULL rescan codes:
+Total 12 items.
+[0-11] ['000300', '013360', '022100', '027050', '035000', '037330', '054540', '081150', '092790', '101670', '168360', '332570']
+PARTIAL rescan codes:
+Total 7 items.
+[0-6] ['338100', '357120', '357250', '093380', '365550', '082660', '241820']
+full_rescan batch operation: 0
+Financial data collection log >> 
+2026-04-18 02:00:13.666036, no: 0, code 000300 in process
+2026-04-18 02:00:31.409202, no: 1, code 013360 in process
+2026-04-18 02:00:48.995027, no: 2, code 022100 in process
+2026-04-18 02:01:07.663046, no: 3, code 027050 in process
+2026-04-18 02:01:25.389836, no: 4, code 035000 in process
+2026-04-18 02:01:42.918117, no: 5, code 037330 in process
+2026-04-18 02:02:00.739577, no: 6, code 054540 in process
+2026-04-18 02:02:18.566952, no: 7, code 081150 in process
+2026-04-18 02:02:35.783989, no: 8, code 092790 in process
+2026-04-18 02:02:45.340949, no: 9, code 101670 in process
+2026-04-18 02:03:02.871033, no: 10, code 168360 in process
+2026-04-18 02:03:12.208732, no: 11, code 332570 in process
+partial_rescan batch operation: 0
+Financial data collection log >> 
+2026-04-18 02:03:31.408552, no: 0, code 338100 in process
+2026-04-18 02:03:37.246999, no: 1, code 357120 in process
+2026-04-18 02:03:43.099936, no: 2, code 357250 in process
+2026-04-18 02:03:48.975082, no: 3, code 093380 in process
+2026-04-18 02:03:56.519242, no: 4, code 365550 in process
+2026-04-18 02:04:02.402082, no: 5, code 082660 in process
+2026-04-18 02:04:10.096523, no: 6, code 241820 in process
+== Update finished ==
+updating market prices...
+Updating outstanding shares information...
+Processing outstanding shares data for 2026-04-16... 0/150
+Processing outstanding shares data for 2026-04-17... 1/150
+2026-04-18 QA DB: updating ['000300', '013360', '022100', '027050', '035000', '037330', '054540', '081150', '082660', '092790', '093380', '101670', '168360', '241820', '332570', '338100', '357120', '357250', '365550']
+000300
+013360
+022100
+027050
+035000
+037330
+054540
+081150
+082660
+092790
+093380
+101670
+168360
+241820
+332570
+338100
+357120
+357250
+365550
+000300 | 1/19
+013360 | 2/19
+022100 | 3/19
+027050 | 4/19
+035000 | 5/19
+037330 | 6/19
+054540 | 7/19
+081150 | 8/19
+082660 | 9/19
+092790 | 10/19
+093380 | 11/19
+101670 | 12/19
+168360 | 13/19
+241820 | 14/19
+332570 | 15/19
+338100 | 16/19
+357120 | 17/19
+357250 | 18/19
+365550 | 19/19
+sending incremental file list
+daily_update.json
+
+sent 1,379 bytes  received 35 bytes  2,828.00 bytes/sec
+total size is 1,257  speedup is 0.89
+sending incremental file list
+000300.png
+013360.png
+022100.png
+027050.png
+035000.png
+037330.png
+054540.png
+081150.png
+082660.png
+092790.png
+093380.png
+101670.png
+168360.png
+241820.png
+332570.png
+338100.png
+357120.png
+357250.png
+365550.png
+
+sent 6,698,688 bytes  received 383 bytes  13,398,142.00 bytes/sec
+total size is 1,123,728,947  speedup is 167.74

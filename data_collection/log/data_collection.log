@@ -15921,3 +15921,40 @@ updating market prices...
 Updating outstanding shares information...
 Processing outstanding shares data for 2026-04-15... 0/150
 Processing outstanding shares data for 2026-04-16... 1/150
+Company health data collection initiated at 2026-04-18 02:00:06.611057
+Updating KRX data...
+Updating between dates: 2026-04-10 / 2026-04-18
+FULL rescan codes:
+Total 12 items.
+[0-11] ['000300', '013360', '022100', '027050', '035000', '037330', '054540', '081150', '092790', '101670', '168360', '332570']
+PARTIAL rescan codes:
+Total 7 items.
+[0-6] ['338100', '357120', '357250', '093380', '365550', '082660', '241820']
+full_rescan batch operation: 0
+Financial data collection log >> 
+2026-04-18 02:00:13.666036, no: 0, code 000300 in process
+2026-04-18 02:00:31.409202, no: 1, code 013360 in process
+2026-04-18 02:00:48.995027, no: 2, code 022100 in process
+2026-04-18 02:01:07.663046, no: 3, code 027050 in process
+2026-04-18 02:01:25.389836, no: 4, code 035000 in process
+2026-04-18 02:01:42.918117, no: 5, code 037330 in process
+2026-04-18 02:02:00.739577, no: 6, code 054540 in process
+2026-04-18 02:02:18.566952, no: 7, code 081150 in process
+2026-04-18 02:02:35.783989, no: 8, code 092790 in process
+2026-04-18 02:02:45.340949, no: 9, code 101670 in process
+2026-04-18 02:03:02.871033, no: 10, code 168360 in process
+2026-04-18 02:03:12.208732, no: 11, code 332570 in process
+partial_rescan batch operation: 0
+Financial data collection log >> 
+2026-04-18 02:03:31.408552, no: 0, code 338100 in process
+2026-04-18 02:03:37.246999, no: 1, code 357120 in process
+2026-04-18 02:03:43.099936, no: 2, code 357250 in process
+2026-04-18 02:03:48.975082, no: 3, code 093380 in process
+2026-04-18 02:03:56.519242, no: 4, code 365550 in process
+2026-04-18 02:04:02.402082, no: 5, code 082660 in process
+2026-04-18 02:04:10.096523, no: 6, code 241820 in process
+== Update finished ==
+updating market prices...
+Updating outstanding shares information...
+Processing outstanding shares data for 2026-04-16... 0/150
+Processing outstanding shares data for 2026-04-17... 1/150
