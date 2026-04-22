@@ -59815,3 +59815,111 @@ sending incremental file list
 
 sent 5,314,659 bytes  received 328 bytes  3,543,324.67 bytes/sec
 total size is 1,123,677,656  speedup is 211.42
+[main 19aa80a] 2026-04-22 upload done from linux machine
+ 13 files changed, 162 insertions(+)
+ rewrite data_collection/data/df_krx.db (82%)
+ rewrite data_collection/data/df_krx.feather (84%)
+To https://github.com/iburn78/trader
+   48b6054..19aa80a  main -> main
+이미 업데이트 상태입니다.
+Company health data collection initiated at 2026-04-23 02:00:06.147584
+Updating KRX data...
+Updating between dates: 2026-04-15 / 2026-04-23
+FULL rescan codes:
+Total 10 items.
+[0-9] ['009300', '013360', '022100', '037330', '085620', '101670', '175250', '222110', '336680', '900100']
+PARTIAL rescan codes:
+Total 6 items.
+[0-5] ['900100', '432320', '082660', '241820', '900250', '900310']
+full_rescan batch operation: 0
+Financial data collection log >> 
+2026-04-23 02:00:13.018455, no: 0, code 009300 in process
+2026-04-23 02:00:30.774034, no: 1, code 013360 in process
+2026-04-23 02:00:48.557394, no: 2, code 022100 in process
+2026-04-23 02:01:06.873083, no: 3, code 037330 in process
+2026-04-23 02:01:24.690431, no: 4, code 085620 in process
+2026-04-23 02:01:33.262998, no: 5, code 101670 in process
+2026-04-23 02:01:50.706444, no: 6, code 175250 in process
+2026-04-23 02:02:05.498083, no: 7, code 222110 in process
+2026-04-23 02:02:23.192041, no: 8, code 336680 in process
+2026-04-23 02:02:30.248083, no: 9, code 900100 in process
+----> no: 9, code 900100 currency not in KRW, skipping
+partial_rescan batch operation: 0
+Financial data collection log >> 
+2026-04-23 02:02:42.896216, no: 0, code 900100 in process
+----> no: 0, code 900100 currency not in KRW, skipping
+2026-04-23 02:02:48.274034, no: 1, code 432320 in process
+2026-04-23 02:02:54.141076, no: 2, code 082660 in process
+2026-04-23 02:03:01.863632, no: 3, code 241820 in process
+2026-04-23 02:03:09.688541, no: 4, code 900250 in process
+----> no: 4, code 900250 currency not in KRW, skipping
+2026-04-23 02:03:15.072748, no: 5, code 900310 in process
+----> no: 5, code 900310 currency not in KRW, skipping
+== Update finished ==
+updating market prices...
+Updating outstanding shares information...
+Processing outstanding shares data for 2026-04-21... 0/150
+Processing outstanding shares data for 2026-04-22... 1/150
+2026-04-23 QA DB: updating ['009300', '013360', '022100', '037330', '082660', '085620', '101670', '175250', '222110', '241820', '336680', '432320', '900100', '900250', '900310']
+009300
+013360
+022100
+037330
+082660
+085620
+101670
+175250
+222110
+241820
+336680
+432320
+900100
+900250
+900310
+/home/andy/projects/trader/tools/tools.py:227: UserWarning: No artists with labels found to put in legend.  Note that artists whose label start with an underscore are ignored when legend() is called with no argument.
+  axl = ax.legend(loc='upper left')
+/home/andy/projects/trader/tools/tools.py:248: UserWarning: No artists with labels found to put in legend.  Note that artists whose label start with an underscore are ignored when legend() is called with no argument.
+  axrl = axr.legend(loc='upper left')
+/home/andy/projects/trader/tools/tools.py:258: UserWarning: Attempting to set identical low and high xlims makes transformation singular; automatically expanding.
+  ax.set_xlim(-0.5, len(x) - 0.5)
+/home/andy/projects/trader/tools/tools.py:259: UserWarning: Attempting to set identical low and high xlims makes transformation singular; automatically expanding.
+  axr.set_xlim(-0.5, len(x) - 0.5)
+009300 | 1/15
+013360 | 2/15
+022100 | 3/15
+037330 | 4/15
+082660 | 5/15
+085620 | 6/15
+101670 | 7/15
+175250 | 8/15
+222110 | 9/15
+241820 | 10/15
+336680 | 11/15
+432320 | 12/15
+900100 | 13/15
+2026-04-23 02:05:51.757517 | 900100 | quarterly data of 900100 is empty.
+900250 | 14/15
+2026-04-23 02:05:53.227186 | 900250 | quarterly data of 900250 is empty.
+900310 | 15/15
+2026-04-23 02:05:54.691052 | 900310 | quarterly data of 900310 is empty.
+sending incremental file list
+daily_update.json
+
+sent 1,343 bytes  received 35 bytes  2,756.00 bytes/sec
+total size is 1,221  speedup is 0.89
+sending incremental file list
+009300.png
+013360.png
+022100.png
+037330.png
+082660.png
+085620.png
+101670.png
+175250.png
+222110.png
+241820.png
+336680.png
+432320.png
+
+sent 4,496,649 bytes  received 252 bytes  8,993,802.00 bytes/sec
+total size is 1,123,598,057  speedup is 249.86
