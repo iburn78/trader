@@ -60385,3 +60385,125 @@ sending incremental file list
 
 sent 5,150,532 bytes  received 269 bytes  10,301,602.00 bytes/sec
 total size is 1,123,496,613  speedup is 218.12
+[main 84a8e37] 2026-04-27 upload done from linux machine
+ 8 files changed, 151 insertions(+)
+To https://github.com/iburn78/trader
+   e35baf5..84a8e37  main -> main
+이미 업데이트 상태입니다.
+Company health data collection initiated at 2026-04-28 02:00:05.779734
+Updating KRX data...
+Updating between dates: 2026-04-20 / 2026-04-28
+FULL rescan codes:
+Total 13 items.
+[0-12] ['009300', '044180', '056190', '066970', '085620', '090360', '096610', '101680', '119650', '175250', '222110', '336680', '900100']
+PARTIAL rescan codes:
+Total 7 items.
+[0-6] ['051360', '900310', '900100', '432320', '900250', '082660', '241820']
+full_rescan batch operation: 0
+Financial data collection log >> 
+2026-04-28 02:00:12.693982, no: 0, code 009300 in process
+2026-04-28 02:00:30.599085, no: 1, code 044180 in process
+2026-04-28 02:00:48.556479, no: 2, code 056190 in process
+2026-04-28 02:01:06.701144, no: 3, code 066970 in process
+2026-04-28 02:01:24.624276, no: 4, code 085620 in process
+2026-04-28 02:01:33.367084, no: 5, code 090360 in process
+2026-04-28 02:01:51.192100, no: 6, code 096610 in process
+2026-04-28 02:02:09.397280, no: 7, code 101680 in process
+2026-04-28 02:02:26.885601, no: 8, code 119650 in process
+2026-04-28 02:02:44.548934, no: 9, code 175250 in process
+2026-04-28 02:02:59.473087, no: 10, code 222110 in process
+2026-04-28 02:03:17.096084, no: 11, code 336680 in process
+2026-04-28 02:03:24.240045, no: 12, code 900100 in process
+----> no: 12, code 900100 currency not in KRW, skipping
+partial_rescan batch operation: 0
+Financial data collection log >> 
+2026-04-28 02:03:36.690289, no: 0, code 051360 in process
+2026-04-28 02:03:44.142103, no: 1, code 900310 in process
+----> no: 1, code 900310 currency not in KRW, skipping
+2026-04-28 02:03:49.532943, no: 2, code 900100 in process
+----> no: 2, code 900100 currency not in KRW, skipping
+2026-04-28 02:03:54.923441, no: 3, code 432320 in process
+2026-04-28 02:04:00.794024, no: 4, code 900250 in process
+----> no: 4, code 900250 currency not in KRW, skipping
+2026-04-28 02:04:06.169714, no: 5, code 082660 in process
+2026-04-28 02:04:13.922087, no: 6, code 241820 in process
+== Update finished ==
+updating market prices...
+Updating outstanding shares information...
+Processing outstanding shares data for 2026-04-24... 0/150
+Processing outstanding shares data for 2026-04-27... 1/150
+2026-04-28 QA DB: updating ['009300', '044180', '051360', '056190', '066970', '082660', '085620', '090360', '096610', '101680', '119650', '175250', '222110', '241820', '336680', '432320', '900100', '900250', '900310']
+009300
+044180
+051360
+056190
+066970
+082660
+085620
+090360
+096610
+101680
+119650
+175250
+222110
+241820
+336680
+432320
+900100
+900250
+900310
+/home/andy/projects/trader/tools/tools.py:227: UserWarning: No artists with labels found to put in legend.  Note that artists whose label start with an underscore are ignored when legend() is called with no argument.
+  axl = ax.legend(loc='upper left')
+/home/andy/projects/trader/tools/tools.py:248: UserWarning: No artists with labels found to put in legend.  Note that artists whose label start with an underscore are ignored when legend() is called with no argument.
+  axrl = axr.legend(loc='upper left')
+/home/andy/projects/trader/tools/tools.py:258: UserWarning: Attempting to set identical low and high xlims makes transformation singular; automatically expanding.
+  ax.set_xlim(-0.5, len(x) - 0.5)
+/home/andy/projects/trader/tools/tools.py:259: UserWarning: Attempting to set identical low and high xlims makes transformation singular; automatically expanding.
+  axr.set_xlim(-0.5, len(x) - 0.5)
+009300 | 1/19
+044180 | 2/19
+051360 | 3/19
+056190 | 4/19
+066970 | 5/19
+082660 | 6/19
+085620 | 7/19
+090360 | 8/19
+096610 | 9/19
+101680 | 10/19
+119650 | 11/19
+175250 | 12/19
+222110 | 13/19
+241820 | 14/19
+336680 | 15/19
+432320 | 16/19
+900100 | 17/19
+2026-04-28 02:07:35.523434 | 900100 | quarterly data of 900100 is empty.
+900250 | 18/19
+2026-04-28 02:07:36.979638 | 900250 | quarterly data of 900250 is empty.
+900310 | 19/19
+2026-04-28 02:07:38.437962 | 900310 | quarterly data of 900310 is empty.
+sending incremental file list
+daily_update.json
+
+sent 1,401 bytes  received 35 bytes  2,872.00 bytes/sec
+total size is 1,279  speedup is 0.89
+sending incremental file list
+009300.png
+044180.png
+051360.png
+056190.png
+066970.png
+082660.png
+085620.png
+090360.png
+096610.png
+101680.png
+119650.png
+175250.png
+222110.png
+241820.png
+336680.png
+432320.png
+
+sent 6,581,025 bytes  received 326 bytes  13,162,702.00 bytes/sec
+total size is 1,123,482,292  speedup is 170.71

@@ -16294,3 +16294,45 @@ Financial data collection log >>
 updating market prices...
 Updating outstanding shares information...
 Processing outstanding shares data for 2026-04-24... 0/150
+Company health data collection initiated at 2026-04-28 02:00:05.779734
+Updating KRX data...
+Updating between dates: 2026-04-20 / 2026-04-28
+FULL rescan codes:
+Total 13 items.
+[0-12] ['009300', '044180', '056190', '066970', '085620', '090360', '096610', '101680', '119650', '175250', '222110', '336680', '900100']
+PARTIAL rescan codes:
+Total 7 items.
+[0-6] ['051360', '900310', '900100', '432320', '900250', '082660', '241820']
+full_rescan batch operation: 0
+Financial data collection log >> 
+2026-04-28 02:00:12.693982, no: 0, code 009300 in process
+2026-04-28 02:00:30.599085, no: 1, code 044180 in process
+2026-04-28 02:00:48.556479, no: 2, code 056190 in process
+2026-04-28 02:01:06.701144, no: 3, code 066970 in process
+2026-04-28 02:01:24.624276, no: 4, code 085620 in process
+2026-04-28 02:01:33.367084, no: 5, code 090360 in process
+2026-04-28 02:01:51.192100, no: 6, code 096610 in process
+2026-04-28 02:02:09.397280, no: 7, code 101680 in process
+2026-04-28 02:02:26.885601, no: 8, code 119650 in process
+2026-04-28 02:02:44.548934, no: 9, code 175250 in process
+2026-04-28 02:02:59.473087, no: 10, code 222110 in process
+2026-04-28 02:03:17.096084, no: 11, code 336680 in process
+2026-04-28 02:03:24.240045, no: 12, code 900100 in process
+----> no: 12, code 900100 currency not in KRW, skipping
+partial_rescan batch operation: 0
+Financial data collection log >> 
+2026-04-28 02:03:36.690289, no: 0, code 051360 in process
+2026-04-28 02:03:44.142103, no: 1, code 900310 in process
+----> no: 1, code 900310 currency not in KRW, skipping
+2026-04-28 02:03:49.532943, no: 2, code 900100 in process
+----> no: 2, code 900100 currency not in KRW, skipping
+2026-04-28 02:03:54.923441, no: 3, code 432320 in process
+2026-04-28 02:04:00.794024, no: 4, code 900250 in process
+----> no: 4, code 900250 currency not in KRW, skipping
+2026-04-28 02:04:06.169714, no: 5, code 082660 in process
+2026-04-28 02:04:13.922087, no: 6, code 241820 in process
+== Update finished ==
+updating market prices...
+Updating outstanding shares information...
+Processing outstanding shares data for 2026-04-24... 0/150
+Processing outstanding shares data for 2026-04-27... 1/150
