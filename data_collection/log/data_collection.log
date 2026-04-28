@@ -16336,3 +16336,43 @@ updating market prices...
 Updating outstanding shares information...
 Processing outstanding shares data for 2026-04-24... 0/150
 Processing outstanding shares data for 2026-04-27... 1/150
+Company health data collection initiated at 2026-04-29 02:00:05.801450
+Updating KRX data...
+Updating between dates: 2026-04-21 / 2026-04-29
+FULL rescan codes:
+Total 11 items.
+[0-10] ['009300', '044180', '056190', '066970', '090360', '096610', '101680', '119650', '222110', '336680', '900100']
+PARTIAL rescan codes:
+Total 7 items.
+[0-6] ['432320', '900100', '900310', '082660', '900140', '241820', '143540']
+full_rescan batch operation: 0
+Financial data collection log >> 
+2026-04-29 02:00:12.694281, no: 0, code 009300 in process
+2026-04-29 02:00:30.621183, no: 1, code 044180 in process
+2026-04-29 02:00:48.565986, no: 2, code 056190 in process
+2026-04-29 02:01:07.196553, no: 3, code 066970 in process
+2026-04-29 02:01:25.138381, no: 4, code 090360 in process
+2026-04-29 02:01:42.802955, no: 5, code 096610 in process
+2026-04-29 02:02:01.162000, no: 6, code 101680 in process
+2026-04-29 02:02:18.750751, no: 7, code 119650 in process
+2026-04-29 02:02:37.107055, no: 8, code 222110 in process
+2026-04-29 02:02:54.790562, no: 9, code 336680 in process
+2026-04-29 02:03:01.933366, no: 10, code 900100 in process
+----> no: 10, code 900100 currency not in KRW, skipping
+partial_rescan batch operation: 0
+Financial data collection log >> 
+2026-04-29 02:03:14.307755, no: 0, code 432320 in process
+2026-04-29 02:03:20.196985, no: 1, code 900100 in process
+----> no: 1, code 900100 currency not in KRW, skipping
+2026-04-29 02:03:25.565995, no: 2, code 900310 in process
+----> no: 2, code 900310 currency not in KRW, skipping
+2026-04-29 02:03:30.973029, no: 3, code 082660 in process
+2026-04-29 02:03:38.621737, no: 4, code 900140 in process
+----> no: 4, code 900140 currency not in KRW, skipping
+2026-04-29 02:03:43.995093, no: 5, code 241820 in process
+2026-04-29 02:03:51.761227, no: 6, code 143540 in process
+== Update finished ==
+updating market prices...
+Updating outstanding shares information...
+Processing outstanding shares data for 2026-04-27... 0/150
+Processing outstanding shares data for 2026-04-28... 1/150
