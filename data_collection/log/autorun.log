@@ -60739,3 +60739,157 @@ sending incremental file list
 
 sent 6,835,399 bytes  received 326 bytes  13,671,450.00 bytes/sec
 total size is 1,123,430,838  speedup is 164.35
+[main 60a9801] 2026-04-30 upload done from linux machine
+ 13 files changed, 174 insertions(+)
+ rewrite data_collection/data/df_krx.db (83%)
+ rewrite data_collection/data/df_krx.feather (83%)
+To https://github.com/iburn78/trader
+   321167d..60a9801  main -> main
+이미 업데이트 상태입니다.
+Company health data collection initiated at 2026-05-01 02:00:06.569349
+Updating KRX data...
+Updating between dates: 2026-04-23 / 2026-05-01
+FULL rescan codes:
+Total 14 items.
+[0-13] ['002460', '009730', '011370', '044180', '056190', '066970', '090360', '091810', '092040', '096610', '101680', '119650', '187790', '219550']
+PARTIAL rescan codes:
+Total 14 items.
+[0-13] ['900110', '900300', '900260', '063440', '900140', '241820', '299900', '396470', '900070', '044990', '126730', '082660', '900270', '900340']
+full_rescan batch operation: 0
+Financial data collection log >> 
+2026-05-01 02:00:13.755893, no: 0, code 002460 in process
+2026-05-01 02:00:32.396445, no: 1, code 009730 in process
+2026-05-01 02:00:50.747086, no: 2, code 011370 in process
+2026-05-01 02:01:08.956997, no: 3, code 044180 in process
+2026-05-01 02:01:27.579527, no: 4, code 056190 in process
+2026-05-01 02:01:46.294759, no: 5, code 066970 in process
+2026-05-01 02:02:04.492255, no: 6, code 090360 in process
+2026-05-01 02:02:23.642084, no: 7, code 091810 in process
+2026-05-01 02:02:39.111418, no: 8, code 092040 in process
+2026-05-01 02:02:58.465732, no: 9, code 096610 in process
+2026-05-01 02:03:18.733888, no: 10, code 101680 in process
+2026-05-01 02:03:36.763075, no: 11, code 119650 in process
+2026-05-01 02:03:55.475482, no: 12, code 187790 in process
+2026-05-01 02:04:13.558375, no: 13, code 219550 in process
+partial_rescan batch operation: 0
+Financial data collection log >> 
+2026-05-01 02:04:38.291644, no: 0, code 900110 in process
+----> no: 0, code 900110 currency not in KRW, skipping
+2026-05-01 02:04:43.661303, no: 1, code 900300 in process
+----> no: 1, code 900300 currency not in KRW, skipping
+2026-05-01 02:04:49.089993, no: 2, code 900260 in process
+----> no: 2, code 900260 currency not in KRW, skipping
+2026-05-01 02:04:54.467935, no: 3, code 063440 in process
+2026-05-01 02:05:02.504109, no: 4, code 900140 in process
+----> no: 4, code 900140 currency not in KRW, skipping
+2026-05-01 02:05:07.900088, no: 5, code 241820 in process
+2026-05-01 02:05:16.233963, no: 6, code 299900 in process
+2026-05-01 02:05:23.722761, no: 7, code 396470 in process
+2026-05-01 02:05:31.204344, no: 8, code 900070 in process
+----> no: 8, code 900070 currency not in KRW, skipping
+2026-05-01 02:05:36.595247, no: 9, code 044990 in process
+2026-05-01 02:05:43.762167, no: 10, code 126730 in process
+2026-05-01 02:05:56.267993, no: 11, code 082660 in process
+2026-05-01 02:06:04.115060, no: 12, code 900270 in process
+----> no: 12, code 900270 currency not in KRW, skipping
+2026-05-01 02:06:09.529844, no: 13, code 900340 in process
+----> no: 13, code 900340 currency not in KRW, skipping
+== Update finished ==
+updating market prices...
+Updating outstanding shares information...
+Processing outstanding shares data for 2026-04-29... 0/150
+Processing outstanding shares data for 2026-04-30... 1/150
+2026-05-01 QA DB: updating ['002460', '009730', '011370', '044180', '044990', '056190', '063440', '066970', '082660', '090360', '091810', '092040', '096610', '101680', '119650', '126730', '187790', '219550', '241820', '299900', '396470', '900070', '900110', '900140', '900260', '900270', '900300', '900340']
+002460
+009730
+011370
+044180
+044990
+056190
+063440
+066970
+082660
+090360
+091810
+092040
+096610
+101680
+119650
+126730
+187790
+219550
+241820
+299900
+396470
+900070
+900110
+900140
+900260
+900270
+900300
+900340
+002460 | 1/28
+009730 | 2/28
+011370 | 3/28
+044180 | 4/28
+044990 | 5/28
+056190 | 6/28
+063440 | 7/28
+066970 | 8/28
+082660 | 9/28
+090360 | 10/28
+091810 | 11/28
+092040 | 12/28
+096610 | 13/28
+101680 | 14/28
+119650 | 15/28
+126730 | 16/28
+187790 | 17/28
+219550 | 18/28
+241820 | 19/28
+299900 | 20/28
+396470 | 21/28
+900070 | 22/28
+2026-05-01 02:10:13.894064 | 900070 | quarterly data of 900070 is empty.
+900110 | 23/28
+2026-05-01 02:10:15.377672 | 900110 | quarterly data of 900110 is empty.
+900140 | 24/28
+2026-05-01 02:10:16.852088 | 900140 | quarterly data of 900140 is empty.
+900260 | 25/28
+2026-05-01 02:10:18.493322 | 900260 | quarterly data of 900260 is empty.
+900270 | 26/28
+2026-05-01 02:10:19.970165 | 900270 | quarterly data of 900270 is empty.
+900300 | 27/28
+2026-05-01 02:10:21.610323 | 900300 | quarterly data of 900300 is empty.
+900340 | 28/28
+2026-05-01 02:10:23.095835 | 900340 | quarterly data of 900340 is empty.
+sending incremental file list
+daily_update.json
+
+sent 2,965 bytes  received 35 bytes  6,000.00 bytes/sec
+total size is 2,844  speedup is 0.95
+sending incremental file list
+002460.png
+009730.png
+011370.png
+044180.png
+044990.png
+056190.png
+063440.png
+066970.png
+082660.png
+090360.png
+091810.png
+092040.png
+096610.png
+101680.png
+119650.png
+126730.png
+187790.png
+219550.png
+241820.png
+299900.png
+396470.png
+
+sent 8,870,087 bytes  received 421 bytes  17,741,016.00 bytes/sec
+total size is 1,123,349,995  speedup is 126.64
