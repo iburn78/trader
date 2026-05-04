@@ -61232,3 +61232,119 @@ sending incremental file list
 
 sent 4,693,189 bytes  received 231 bytes  9,386,840.00 bytes/sec
 total size is 1,123,352,877  speedup is 239.35
+[main e49181d] 2026-05-04 upload done from linux machine
+ 8 files changed, 161 insertions(+)
+To https://github.com/iburn78/trader
+   40d9544..e49181d  main -> main
+이미 업데이트 상태입니다.
+Company health data collection initiated at 2026-05-05 02:00:05.827315
+Updating KRX data...
+Updating between dates: 2026-04-27 / 2026-05-05
+FULL rescan codes:
+Total 10 items.
+[0-9] ['002460', '009730', '011370', '029480', '056190', '091810', '092040', '096610', '187790', '219550']
+PARTIAL rescan codes:
+Total 9 items.
+[0-8] ['900140', '900260', '082660', '900340', '241820', '900270', '900300', '900070', '900110']
+full_rescan batch operation: 0
+Financial data collection log >> 
+2026-05-05 02:00:13.157540, no: 0, code 002460 in process
+2026-05-05 02:00:32.518741, no: 1, code 009730 in process
+2026-05-05 02:00:51.132690, no: 2, code 011370 in process
+2026-05-05 02:01:09.256815, no: 3, code 029480 in process
+2026-05-05 02:01:27.375409, no: 4, code 056190 in process
+2026-05-05 02:01:45.653444, no: 5, code 091810 in process
+2026-05-05 02:02:00.369488, no: 6, code 092040 in process
+2026-05-05 02:02:18.408087, no: 7, code 096610 in process
+2026-05-05 02:02:36.664322, no: 8, code 187790 in process
+2026-05-05 02:02:54.929882, no: 9, code 219550 in process
+partial_rescan batch operation: 0
+Financial data collection log >> 
+2026-05-05 02:03:19.759778, no: 0, code 900140 in process
+----> no: 0, code 900140 currency not in KRW, skipping
+2026-05-05 02:03:25.145234, no: 1, code 900260 in process
+----> no: 1, code 900260 currency not in KRW, skipping
+2026-05-05 02:03:30.531735, no: 2, code 082660 in process
+2026-05-05 02:03:38.477528, no: 3, code 900340 in process
+----> no: 3, code 900340 currency not in KRW, skipping
+2026-05-05 02:03:43.909748, no: 4, code 241820 in process
+2026-05-05 02:03:51.772177, no: 5, code 900270 in process
+----> no: 5, code 900270 currency not in KRW, skipping
+2026-05-05 02:03:57.152022, no: 6, code 900300 in process
+----> no: 6, code 900300 currency not in KRW, skipping
+2026-05-05 02:04:02.528832, no: 7, code 900070 in process
+----> no: 7, code 900070 currency not in KRW, skipping
+2026-05-05 02:04:07.903942, no: 8, code 900110 in process
+----> no: 8, code 900110 currency not in KRW, skipping
+== Update finished ==
+updating market prices...
+Updating outstanding shares information...
+Processing outstanding shares data for 2026-04-30... 0/150
+Processing outstanding shares data for 2026-05-04... 1/150
+2026-05-05 QA DB: updating ['002460', '009730', '011370', '029480', '056190', '082660', '091810', '092040', '096610', '187790', '219550', '241820', '900070', '900110', '900140', '900260', '900270', '900300', '900340']
+002460
+009730
+011370
+029480
+056190
+082660
+091810
+092040
+096610
+187790
+219550
+241820
+900070
+900110
+900140
+900260
+900270
+900300
+900340
+002460 | 1/19
+009730 | 2/19
+011370 | 3/19
+029480 | 4/19
+056190 | 5/19
+082660 | 6/19
+091810 | 7/19
+092040 | 8/19
+096610 | 9/19
+187790 | 10/19
+219550 | 11/19
+241820 | 12/19
+900070 | 13/19
+2026-05-05 02:06:52.078494 | 900070 | quarterly data of 900070 is empty.
+900110 | 14/19
+2026-05-05 02:06:53.538873 | 900110 | quarterly data of 900110 is empty.
+900140 | 15/19
+2026-05-05 02:06:55.152459 | 900140 | quarterly data of 900140 is empty.
+900260 | 16/19
+2026-05-05 02:06:56.609218 | 900260 | quarterly data of 900260 is empty.
+900270 | 17/19
+2026-05-05 02:06:58.059099 | 900270 | quarterly data of 900270 is empty.
+900300 | 18/19
+2026-05-05 02:06:59.507070 | 900300 | quarterly data of 900300 is empty.
+900340 | 19/19
+2026-05-05 02:07:01.121846 | 900340 | quarterly data of 900340 is empty.
+sending incremental file list
+daily_update.json
+
+sent 1,933 bytes  received 35 bytes  3,936.00 bytes/sec
+total size is 1,811  speedup is 0.92
+sending incremental file list
+002460.png
+009730.png
+011370.png
+029480.png
+056190.png
+082660.png
+091810.png
+092040.png
+096610.png
+187790.png
+219550.png
+241820.png
+
+sent 5,163,057 bytes  received 250 bytes  10,326,614.00 bytes/sec
+total size is 1,123,324,370  speedup is 217.56
