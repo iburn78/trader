@@ -61457,3 +61457,118 @@ sending incremental file list
 
 sent 4,200,986 bytes  received 212 bytes  8,402,396.00 bytes/sec
 total size is 1,123,318,422  speedup is 267.38
+[main 54b8146] 2026-05-06 upload done from linux machine
+ 8 files changed, 158 insertions(+)
+To https://github.com/iburn78/trader
+   4d56e12..54b8146  main -> main
+이미 업데이트 상태입니다.
+Company health data collection initiated at 2026-05-07 02:00:06.200122
+Updating KRX data...
+Updating between dates: 2026-04-29 / 2026-05-07
+FULL rescan codes:
+Total 9 items.
+[0-8] ['002210', '002460', '009730', '011370', '029480', '091810', '092040', '187790', '219550']
+PARTIAL rescan codes:
+Total 10 items.
+[0-9] ['900300', '900270', '900260', '149980', '082660', '241820', '900070', '900340', '460870', '900110']
+full_rescan batch operation: 0
+Financial data collection log >> 
+2026-05-07 02:00:13.869725, no: 0, code 002210 in process
+2026-05-07 02:00:33.437697, no: 1, code 002460 in process
+2026-05-07 02:00:51.551020, no: 2, code 009730 in process
+2026-05-07 02:01:11.034316, no: 3, code 011370 in process
+2026-05-07 02:01:30.366795, no: 4, code 029480 in process
+2026-05-07 02:01:48.811762, no: 5, code 091810 in process
+2026-05-07 02:02:04.135162, no: 6, code 092040 in process
+2026-05-07 02:02:22.434085, no: 7, code 187790 in process
+2026-05-07 02:02:41.776206, no: 8, code 219550 in process
+partial_rescan batch operation: 0
+Financial data collection log >> 
+2026-05-07 02:03:06.255568, no: 0, code 900300 in process
+----> no: 0, code 900300 currency not in KRW, skipping
+2026-05-07 02:03:11.642202, no: 1, code 900270 in process
+----> no: 1, code 900270 currency not in KRW, skipping
+2026-05-07 02:03:17.046649, no: 2, code 900260 in process
+----> no: 2, code 900260 currency not in KRW, skipping
+2026-05-07 02:03:22.446610, no: 3, code 149980 in process
+2026-05-07 02:03:30.071746, no: 4, code 082660 in process
+2026-05-07 02:03:38.001141, no: 5, code 241820 in process
+2026-05-07 02:03:45.851326, no: 6, code 900070 in process
+----> no: 6, code 900070 currency not in KRW, skipping
+2026-05-07 02:03:51.245218, no: 7, code 900340 in process
+----> no: 7, code 900340 currency not in KRW, skipping
+2026-05-07 02:03:56.617478, no: 8, code 460870 in process
+2026-05-07 02:04:03.679855, no: 9, code 900110 in process
+----> no: 9, code 900110 currency not in KRW, skipping
+== Update finished ==
+updating market prices...
+Updating outstanding shares information...
+Processing outstanding shares data for 2026-05-04... 0/150
+Processing outstanding shares data for 2026-05-06... 1/150
+2026-05-07 QA DB: updating ['002210', '002460', '009730', '011370', '029480', '082660', '091810', '092040', '149980', '187790', '219550', '241820', '460870', '900070', '900110', '900260', '900270', '900300', '900340']
+002210
+002460
+009730
+011370
+029480
+082660
+091810
+092040
+149980
+187790
+219550
+241820
+460870
+900070
+900110
+900260
+900270
+900300
+900340
+002210 | 1/19
+002460 | 2/19
+009730 | 3/19
+011370 | 4/19
+029480 | 5/19
+082660 | 6/19
+091810 | 7/19
+092040 | 8/19
+149980 | 9/19
+187790 | 10/19
+219550 | 11/19
+241820 | 12/19
+460870 | 13/19
+900070 | 14/19
+2026-05-07 02:06:59.895929 | 900070 | quarterly data of 900070 is empty.
+900110 | 15/19
+2026-05-07 02:07:01.373336 | 900110 | quarterly data of 900110 is empty.
+900260 | 16/19
+2026-05-07 02:07:02.847445 | 900260 | quarterly data of 900260 is empty.
+900270 | 17/19
+2026-05-07 02:07:04.318470 | 900270 | quarterly data of 900270 is empty.
+900300 | 18/19
+2026-05-07 02:07:05.791597 | 900300 | quarterly data of 900300 is empty.
+900340 | 19/19
+2026-05-07 02:07:07.266025 | 900340 | quarterly data of 900340 is empty.
+sending incremental file list
+daily_update.json
+
+sent 1,882 bytes  received 35 bytes  3,834.00 bytes/sec
+total size is 1,760  speedup is 0.92
+sending incremental file list
+002210.png
+002460.png
+009730.png
+011370.png
+029480.png
+082660.png
+091810.png
+092040.png
+149980.png
+187790.png
+219550.png
+241820.png
+460870.png
+
+sent 5,452,387 bytes  received 271 bytes  10,905,316.00 bytes/sec
+total size is 1,123,335,400  speedup is 206.02
