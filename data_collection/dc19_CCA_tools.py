@@ -426,6 +426,10 @@ def styled_df_to_image(df):
 # BELOW: Post processing and PPT Generation
 # ----------------------------------------------------------
 
+###_ ------------------------------------------------
+###_ below outshare_db should be fixed - inefficient and no longer maintains outshare_db
+###_ ------------------------------------------------
+
 import io
 from trader.tools.tools import get_main_financial_reports_db, get_quarterly_data, get_price_db, get_outshare_db, prev_quarter_str
 from trader.tools.tools import plot_company_financial_summary2

@@ -228,4 +228,6 @@ if __name__ == '__main__':
     log_file = os.path.join(cd_, 'log/data_collection.log')
 
     gen_market_DB(price_DB_path, volume_DB_path, START_DATE, log_file=log_file)
-    gen_OutstandingShares_DB(outshare_DB_path, START_DATE, log_file)
+    ###_ outshare_db API needs be fixed
+    ###_ and it is inefficient to maintain outshare db anyway
+    # gen_OutstandingShares_DB(outshare_DB_path, START_DATE, log_file)
