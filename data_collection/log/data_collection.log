@@ -16776,3 +16776,44 @@ Updating outstanding shares information...
 No existing outstanding shares DB found. Creating a new one...
 Processing outstanding shares data for 2014-02-17... 0/150
 updating market prices...
+Company health data collection initiated at 2026-05-09 02:00:05.872307
+Updating KRX data...
+Updating between dates: 2026-05-01 / 2026-05-09
+FULL rescan codes:
+Total 6 items.
+[0-5] ['002210', '029480', '033160', '052790', '175250', '382480']
+PARTIAL rescan codes:
+Total 20 items.
+[0-19] ['298380', '005670', '241820', '134380', '0030R0', '015360', '318020', '082660', '006340', '222420', '147760', '229000', '004770', '317330', '069140', '320000', '276730', '451220', '014940', '405920']
+full_rescan batch operation: 0
+Financial data collection log >> 
+2026-05-09 02:00:14.065593, no: 0, code 002210 in process
+2026-05-09 02:00:32.350463, no: 1, code 029480 in process
+2026-05-09 02:00:50.956394, no: 2, code 033160 in process
+2026-05-09 02:01:10.515762, no: 3, code 052790 in process
+2026-05-09 02:01:29.246362, no: 4, code 175250 in process
+2026-05-09 02:01:46.412674, no: 5, code 382480 in process
+partial_rescan batch operation: 0
+Financial data collection log >> 
+2026-05-09 02:02:05.342869, no: 0, code 298380 in process
+2026-05-09 02:02:12.934884, no: 1, code 005670 in process
+2026-05-09 02:02:20.667091, no: 2, code 241820 in process
+2026-05-09 02:02:28.734696, no: 3, code 134380 in process
+2026-05-09 02:02:37.388723, no: 4, code 0030R0 in process
+2026-05-09 02:02:44.442097, no: 5, code 015360 in process
+2026-05-09 02:02:52.011043, no: 6, code 318020 in process
+2026-05-09 02:03:00.619723, no: 7, code 082660 in process
+2026-05-09 02:03:08.679038, no: 8, code 006340 in process
+2026-05-09 02:03:16.347717, no: 9, code 222420 in process
+2026-05-09 02:03:23.955523, no: 10, code 147760 in process
+2026-05-09 02:03:31.568012, no: 11, code 229000 in process
+2026-05-09 02:03:39.132727, no: 12, code 004770 in process
+2026-05-09 02:03:46.718677, no: 13, code 317330 in process
+2026-05-09 02:03:54.297461, no: 14, code 069140 in process
+2026-05-09 02:04:01.855586, no: 15, code 320000 in process
+2026-05-09 02:04:09.481629, no: 16, code 276730 in process
+2026-05-09 02:04:17.162223, no: 17, code 451220 in process
+2026-05-09 02:04:24.766928, no: 18, code 014940 in process
+2026-05-09 02:04:32.475540, no: 19, code 405920 in process
+== Update finished ==
+updating market prices...
