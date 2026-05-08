@@ -61698,3 +61698,9 @@ sending incremental file list
 
 sent 7,474,977 bytes  received 364 bytes  14,950,682.00 bytes/sec
 total size is 1,123,402,574  speedup is 150.28
+[main 905befc] 2026-05-08 upload done from linux machine
+ 13 files changed, 174 insertions(+)
+ rewrite data_collection/data/df_krx.db (83%)
+ rewrite data_collection/data/df_krx.feather (83%)
+To https://github.com/iburn78/trader
+   915e679..905befc  main -> main
