@@ -59923,3 +59923,1778 @@ sending incremental file list
 
 sent 4,496,649 bytes  received 252 bytes  8,993,802.00 bytes/sec
 total size is 1,123,598,057  speedup is 249.86
+[main 1155fdb] 2026-04-23 upload done from linux machine
+ 12 files changed, 150 insertions(+)
+ rewrite data_collection/data/df_krx.db (82%)
+ rewrite data_collection/data/df_krx.feather (83%)
+To https://github.com/iburn78/trader
+   19aa80a..1155fdb  main -> main
+https://github.com/iburn78/trader URL에서
+   1155fdb..cd83548  main       -> origin/main
+업데이트 중 1155fdb..cd83548
+Fast-forward
+ requirements.txt | 123 +++++++++++++++++++++++++++++++++++++++++++++++++++++++
+ 1 file changed, 123 insertions(+)
+ create mode 100644 requirements.txt
+Company health data collection initiated at 2026-04-24 02:00:06.535558
+Updating KRX data...
+Updating between dates: 2026-04-16 / 2026-04-24
+FULL rescan codes:
+Total 12 items.
+[0-11] ['009300', '013360', '022100', '044180', '066970', '085620', '101680', '119650', '175250', '222110', '336680', '900100']
+PARTIAL rescan codes:
+Total 6 items.
+[0-5] ['900310', '900100', '900250', '432320', '082660', '241820']
+full_rescan batch operation: 0
+Financial data collection log >> 
+2026-04-24 02:00:13.411466, no: 0, code 009300 in process
+2026-04-24 02:00:31.000938, no: 1, code 013360 in process
+2026-04-24 02:00:48.511629, no: 2, code 022100 in process
+2026-04-24 02:01:05.937297, no: 3, code 044180 in process
+2026-04-24 02:01:23.376838, no: 4, code 066970 in process
+2026-04-24 02:01:41.138193, no: 5, code 085620 in process
+2026-04-24 02:01:50.041701, no: 6, code 101680 in process
+2026-04-24 02:02:07.325085, no: 7, code 119650 in process
+2026-04-24 02:02:24.984045, no: 8, code 175250 in process
+2026-04-24 02:02:39.674036, no: 9, code 222110 in process
+2026-04-24 02:02:56.978741, no: 10, code 336680 in process
+2026-04-24 02:03:03.984237, no: 11, code 900100 in process
+----> no: 11, code 900100 currency not in KRW, skipping
+partial_rescan batch operation: 0
+Financial data collection log >> 
+2026-04-24 02:03:16.615612, no: 0, code 900310 in process
+----> no: 0, code 900310 currency not in KRW, skipping
+2026-04-24 02:03:22.001737, no: 1, code 900100 in process
+----> no: 1, code 900100 currency not in KRW, skipping
+2026-04-24 02:03:27.362998, no: 2, code 900250 in process
+----> no: 2, code 900250 currency not in KRW, skipping
+2026-04-24 02:03:32.743573, no: 3, code 432320 in process
+2026-04-24 02:03:38.663007, no: 4, code 082660 in process
+2026-04-24 02:03:46.369031, no: 5, code 241820 in process
+== Update finished ==
+updating market prices...
+Updating outstanding shares information...
+Processing outstanding shares data for 2026-04-22... 0/150
+Processing outstanding shares data for 2026-04-23... 1/150
+2026-04-24 QA DB: updating ['009300', '013360', '022100', '044180', '066970', '082660', '085620', '101680', '119650', '175250', '222110', '241820', '336680', '432320', '900100', '900250', '900310']
+009300
+013360
+022100
+044180
+066970
+082660
+085620
+101680
+119650
+175250
+222110
+241820
+336680
+432320
+900100
+900250
+900310
+/home/andy/projects/trader/tools/tools.py:227: UserWarning: No artists with labels found to put in legend.  Note that artists whose label start with an underscore are ignored when legend() is called with no argument.
+  axl = ax.legend(loc='upper left')
+/home/andy/projects/trader/tools/tools.py:248: UserWarning: No artists with labels found to put in legend.  Note that artists whose label start with an underscore are ignored when legend() is called with no argument.
+  axrl = axr.legend(loc='upper left')
+/home/andy/projects/trader/tools/tools.py:258: UserWarning: Attempting to set identical low and high xlims makes transformation singular; automatically expanding.
+  ax.set_xlim(-0.5, len(x) - 0.5)
+/home/andy/projects/trader/tools/tools.py:259: UserWarning: Attempting to set identical low and high xlims makes transformation singular; automatically expanding.
+  axr.set_xlim(-0.5, len(x) - 0.5)
+009300 | 1/17
+013360 | 2/17
+022100 | 3/17
+044180 | 4/17
+066970 | 5/17
+082660 | 6/17
+085620 | 7/17
+101680 | 8/17
+119650 | 9/17
+175250 | 10/17
+222110 | 11/17
+241820 | 12/17
+336680 | 13/17
+432320 | 14/17
+900100 | 15/17
+2026-04-24 02:06:46.839274 | 900100 | quarterly data of 900100 is empty.
+900250 | 16/17
+2026-04-24 02:06:48.315209 | 900250 | quarterly data of 900250 is empty.
+900310 | 17/17
+2026-04-24 02:06:49.791467 | 900310 | quarterly data of 900310 is empty.
+sending incremental file list
+daily_update.json
+
+sent 1,524 bytes  received 35 bytes  3,118.00 bytes/sec
+total size is 1,402  speedup is 0.90
+sending incremental file list
+009300.png
+013360.png
+022100.png
+044180.png
+066970.png
+082660.png
+085620.png
+101680.png
+119650.png
+175250.png
+222110.png
+241820.png
+336680.png
+432320.png
+
+sent 5,530,503 bytes  received 288 bytes  3,687,194.00 bytes/sec
+total size is 1,123,499,109  speedup is 203.14
+[main 0e3f4f6] 2026-04-24 upload done from linux machine
+ 13 files changed, 166 insertions(+)
+ rewrite data_collection/data/df_krx.db (82%)
+ rewrite data_collection/data/df_krx.feather (83%)
+To https://github.com/iburn78/trader
+   cd83548..0e3f4f6  main -> main
+이미 업데이트 상태입니다.
+Company health data collection initiated at 2026-04-25 02:00:05.768866
+Updating KRX data...
+Updating between dates: 2026-04-17 / 2026-04-25
+FULL rescan codes:
+Total 13 items.
+[0-12] ['009300', '013360', '022100', '044180', '066970', '085620', '090360', '101680', '119650', '175250', '222110', '336680', '900100']
+PARTIAL rescan codes:
+Total 6 items.
+[0-5] ['900100', '082660', '900250', '241820', '432320', '900310']
+full_rescan batch operation: 0
+Financial data collection log >> 
+2026-04-25 02:00:12.693745, no: 0, code 009300 in process
+2026-04-25 02:00:30.628669, no: 1, code 013360 in process
+2026-04-25 02:00:48.448305, no: 2, code 022100 in process
+2026-04-25 02:01:06.340372, no: 3, code 044180 in process
+2026-04-25 02:01:24.160534, no: 4, code 066970 in process
+2026-04-25 02:01:41.966454, no: 5, code 085620 in process
+2026-04-25 02:01:50.681876, no: 6, code 090360 in process
+2026-04-25 02:02:08.436099, no: 7, code 101680 in process
+2026-04-25 02:02:26.209190, no: 8, code 119650 in process
+2026-04-25 02:02:44.265993, no: 9, code 175250 in process
+2026-04-25 02:02:58.833982, no: 10, code 222110 in process
+2026-04-25 02:03:16.326090, no: 11, code 336680 in process
+2026-04-25 02:03:23.382548, no: 12, code 900100 in process
+----> no: 12, code 900100 currency not in KRW, skipping
+partial_rescan batch operation: 0
+Financial data collection log >> 
+2026-04-25 02:03:35.929551, no: 0, code 900100 in process
+----> no: 0, code 900100 currency not in KRW, skipping
+2026-04-25 02:03:41.352081, no: 1, code 082660 in process
+2026-04-25 02:03:49.054756, no: 2, code 900250 in process
+----> no: 2, code 900250 currency not in KRW, skipping
+2026-04-25 02:03:54.463083, no: 3, code 241820 in process
+2026-04-25 02:04:02.138502, no: 4, code 432320 in process
+2026-04-25 02:04:07.984079, no: 5, code 900310 in process
+----> no: 5, code 900310 currency not in KRW, skipping
+== Update finished ==
+updating market prices...
+Updating outstanding shares information...
+Processing outstanding shares data for 2026-04-23... 0/150
+Processing outstanding shares data for 2026-04-24... 1/150
+2026-04-25 QA DB: updating ['009300', '013360', '022100', '044180', '066970', '082660', '085620', '090360', '101680', '119650', '175250', '222110', '241820', '336680', '432320', '900100', '900250', '900310']
+009300
+013360
+022100
+044180
+066970
+082660
+085620
+090360
+101680
+119650
+175250
+222110
+241820
+336680
+432320
+900100
+900250
+900310
+/home/andy/projects/trader/tools/tools.py:227: UserWarning: No artists with labels found to put in legend.  Note that artists whose label start with an underscore are ignored when legend() is called with no argument.
+  axl = ax.legend(loc='upper left')
+/home/andy/projects/trader/tools/tools.py:248: UserWarning: No artists with labels found to put in legend.  Note that artists whose label start with an underscore are ignored when legend() is called with no argument.
+  axrl = axr.legend(loc='upper left')
+/home/andy/projects/trader/tools/tools.py:258: UserWarning: Attempting to set identical low and high xlims makes transformation singular; automatically expanding.
+  ax.set_xlim(-0.5, len(x) - 0.5)
+/home/andy/projects/trader/tools/tools.py:259: UserWarning: Attempting to set identical low and high xlims makes transformation singular; automatically expanding.
+  axr.set_xlim(-0.5, len(x) - 0.5)
+009300 | 1/18
+013360 | 2/18
+022100 | 3/18
+044180 | 4/18
+066970 | 5/18
+082660 | 6/18
+085620 | 7/18
+090360 | 8/18
+101680 | 9/18
+119650 | 10/18
+175250 | 11/18
+222110 | 12/18
+241820 | 13/18
+336680 | 14/18
+432320 | 15/18
+900100 | 16/18
+2026-04-25 02:07:13.575598 | 900100 | quarterly data of 900100 is empty.
+900250 | 17/18
+2026-04-25 02:07:15.051587 | 900250 | quarterly data of 900250 is empty.
+900310 | 18/18
+2026-04-25 02:07:16.518780 | 900310 | quarterly data of 900310 is empty.
+sending incremental file list
+daily_update.json
+
+sent 1,462 bytes  received 35 bytes  2,994.00 bytes/sec
+total size is 1,340  speedup is 0.90
+sending incremental file list
+009300.png
+013360.png
+022100.png
+044180.png
+066970.png
+082660.png
+085620.png
+090360.png
+101680.png
+119650.png
+175250.png
+222110.png
+241820.png
+336680.png
+432320.png
+
+sent 6,000,916 bytes  received 307 bytes  4,000,815.33 bytes/sec
+total size is 1,123,503,290  speedup is 187.21
+[main 54f6d54] 2026-04-25 upload done from linux machine
+ 12 files changed, 165 insertions(+)
+ rewrite data_collection/data/df_krx.db (83%)
+ rewrite data_collection/data/df_krx.feather (83%)
+To https://github.com/iburn78/trader
+   0e3f4f6..54f6d54  main -> main
+이미 업데이트 상태입니다.
+Company health data collection initiated at 2026-04-26 02:00:05.720149
+Updating KRX data...
+Updating between dates: 2026-04-18 / 2026-04-26
+FULL rescan codes:
+Total 11 items.
+[0-10] ['009300', '044180', '066970', '085620', '090360', '101680', '119650', '175250', '222110', '336680', '900100']
+PARTIAL rescan codes:
+Total 6 items.
+[0-5] ['900310', '082660', '241820', '900100', '432320', '900250']
+full_rescan batch operation: 0
+Financial data collection log >> 
+2026-04-26 02:00:12.693296, no: 0, code 009300 in process
+2026-04-26 02:00:31.128855, no: 1, code 044180 in process
+2026-04-26 02:00:49.284463, no: 2, code 066970 in process
+2026-04-26 02:01:07.091802, no: 3, code 085620 in process
+2026-04-26 02:01:15.712933, no: 4, code 090360 in process
+2026-04-26 02:01:33.564719, no: 5, code 101680 in process
+2026-04-26 02:01:50.940300, no: 6, code 119650 in process
+2026-04-26 02:02:08.639486, no: 7, code 175250 in process
+2026-04-26 02:02:23.585147, no: 8, code 222110 in process
+2026-04-26 02:02:40.801441, no: 9, code 336680 in process
+2026-04-26 02:02:47.802778, no: 10, code 900100 in process
+----> no: 10, code 900100 currency not in KRW, skipping
+partial_rescan batch operation: 0
+Financial data collection log >> 
+2026-04-26 02:03:00.449554, no: 0, code 900310 in process
+----> no: 0, code 900310 currency not in KRW, skipping
+2026-04-26 02:03:05.817078, no: 1, code 082660 in process
+2026-04-26 02:03:13.452090, no: 2, code 241820 in process
+2026-04-26 02:03:21.437090, no: 3, code 900100 in process
+----> no: 3, code 900100 currency not in KRW, skipping
+2026-04-26 02:03:26.823505, no: 4, code 432320 in process
+2026-04-26 02:03:32.744085, no: 5, code 900250 in process
+----> no: 5, code 900250 currency not in KRW, skipping
+== Update finished ==
+updating market prices...
+Updating outstanding shares information...
+Processing outstanding shares data for 2026-04-24... 0/150
+2026-04-26 QA DB: updating ['009300', '044180', '066970', '082660', '085620', '090360', '101680', '119650', '175250', '222110', '241820', '336680', '432320', '900100', '900250', '900310']
+009300
+044180
+066970
+082660
+085620
+090360
+101680
+119650
+175250
+222110
+241820
+336680
+432320
+900100
+900250
+900310
+/home/andy/projects/trader/tools/tools.py:227: UserWarning: No artists with labels found to put in legend.  Note that artists whose label start with an underscore are ignored when legend() is called with no argument.
+  axl = ax.legend(loc='upper left')
+/home/andy/projects/trader/tools/tools.py:248: UserWarning: No artists with labels found to put in legend.  Note that artists whose label start with an underscore are ignored when legend() is called with no argument.
+  axrl = axr.legend(loc='upper left')
+/home/andy/projects/trader/tools/tools.py:258: UserWarning: Attempting to set identical low and high xlims makes transformation singular; automatically expanding.
+  ax.set_xlim(-0.5, len(x) - 0.5)
+/home/andy/projects/trader/tools/tools.py:259: UserWarning: Attempting to set identical low and high xlims makes transformation singular; automatically expanding.
+  axr.set_xlim(-0.5, len(x) - 0.5)
+009300 | 1/16
+044180 | 2/16
+066970 | 3/16
+082660 | 4/16
+085620 | 5/16
+090360 | 6/16
+101680 | 7/16
+119650 | 8/16
+175250 | 9/16
+222110 | 10/16
+241820 | 11/16
+336680 | 12/16
+432320 | 13/16
+900100 | 14/16
+2026-04-26 02:06:14.781785 | 900100 | quarterly data of 900100 is empty.
+900250 | 15/16
+2026-04-26 02:06:16.253407 | 900250 | quarterly data of 900250 is empty.
+900310 | 16/16
+2026-04-26 02:06:17.721235 | 900310 | quarterly data of 900310 is empty.
+sending incremental file list
+daily_update.json
+
+sent 1,197 bytes  received 35 bytes  2,464.00 bytes/sec
+total size is 1,075  speedup is 0.87
+sending incremental file list
+009300.png
+044180.png
+066970.png
+082660.png
+085620.png
+090360.png
+101680.png
+119650.png
+175250.png
+222110.png
+241820.png
+336680.png
+432320.png
+
+sent 5,153,730 bytes  received 269 bytes  10,307,998.00 bytes/sec
+total size is 1,123,499,811  speedup is 217.99
+[main e35baf5] 2026-04-26 upload done from linux machine
+ 8 files changed, 153 insertions(+)
+To https://github.com/iburn78/trader
+   54f6d54..e35baf5  main -> main
+이미 업데이트 상태입니다.
+Company health data collection initiated at 2026-04-27 02:00:05.823998
+Updating KRX data...
+Updating between dates: 2026-04-19 / 2026-04-27
+FULL rescan codes:
+Total 11 items.
+[0-10] ['009300', '044180', '066970', '085620', '090360', '101680', '119650', '175250', '222110', '336680', '900100']
+PARTIAL rescan codes:
+Total 6 items.
+[0-5] ['241820', '900100', '900250', '900310', '082660', '432320']
+full_rescan batch operation: 0
+Financial data collection log >> 
+2026-04-27 02:00:12.694124, no: 0, code 009300 in process
+2026-04-27 02:00:30.405003, no: 1, code 044180 in process
+2026-04-27 02:00:47.987765, no: 2, code 066970 in process
+2026-04-27 02:01:06.187073, no: 3, code 085620 in process
+2026-04-27 02:01:14.862616, no: 4, code 090360 in process
+2026-04-27 02:01:32.959024, no: 5, code 101680 in process
+2026-04-27 02:01:51.232676, no: 6, code 119650 in process
+2026-04-27 02:02:08.534030, no: 7, code 175250 in process
+2026-04-27 02:02:23.601959, no: 8, code 222110 in process
+2026-04-27 02:02:40.776523, no: 9, code 336680 in process
+2026-04-27 02:02:47.839756, no: 10, code 900100 in process
+----> no: 10, code 900100 currency not in KRW, skipping
+partial_rescan batch operation: 0
+Financial data collection log >> 
+2026-04-27 02:03:00.062388, no: 0, code 241820 in process
+2026-04-27 02:03:07.666739, no: 1, code 900100 in process
+----> no: 1, code 900100 currency not in KRW, skipping
+2026-04-27 02:03:13.040460, no: 2, code 900250 in process
+----> no: 2, code 900250 currency not in KRW, skipping
+2026-04-27 02:03:18.418544, no: 3, code 900310 in process
+----> no: 3, code 900310 currency not in KRW, skipping
+2026-04-27 02:03:23.802235, no: 4, code 082660 in process
+2026-04-27 02:03:31.592616, no: 5, code 432320 in process
+== Update finished ==
+updating market prices...
+Updating outstanding shares information...
+Processing outstanding shares data for 2026-04-24... 0/150
+2026-04-27 QA DB: updating ['009300', '044180', '066970', '082660', '085620', '090360', '101680', '119650', '175250', '222110', '241820', '336680', '432320', '900100', '900250', '900310']
+009300
+044180
+066970
+082660
+085620
+090360
+101680
+119650
+175250
+222110
+241820
+336680
+432320
+900100
+900250
+900310
+/home/andy/projects/trader/tools/tools.py:227: UserWarning: No artists with labels found to put in legend.  Note that artists whose label start with an underscore are ignored when legend() is called with no argument.
+  axl = ax.legend(loc='upper left')
+/home/andy/projects/trader/tools/tools.py:248: UserWarning: No artists with labels found to put in legend.  Note that artists whose label start with an underscore are ignored when legend() is called with no argument.
+  axrl = axr.legend(loc='upper left')
+/home/andy/projects/trader/tools/tools.py:258: UserWarning: Attempting to set identical low and high xlims makes transformation singular; automatically expanding.
+  ax.set_xlim(-0.5, len(x) - 0.5)
+/home/andy/projects/trader/tools/tools.py:259: UserWarning: Attempting to set identical low and high xlims makes transformation singular; automatically expanding.
+  axr.set_xlim(-0.5, len(x) - 0.5)
+009300 | 1/16
+044180 | 2/16
+066970 | 3/16
+082660 | 4/16
+085620 | 5/16
+090360 | 6/16
+101680 | 7/16
+119650 | 8/16
+175250 | 9/16
+222110 | 10/16
+241820 | 11/16
+336680 | 12/16
+432320 | 13/16
+900100 | 14/16
+2026-04-27 02:06:13.802258 | 900100 | quarterly data of 900100 is empty.
+900250 | 15/16
+2026-04-27 02:06:15.268222 | 900250 | quarterly data of 900250 is empty.
+900310 | 16/16
+2026-04-27 02:06:16.734787 | 900310 | quarterly data of 900310 is empty.
+sending incremental file list
+daily_update.json
+
+sent 1,157 bytes  received 35 bytes  2,384.00 bytes/sec
+total size is 1,035  speedup is 0.87
+sending incremental file list
+009300.png
+044180.png
+066970.png
+082660.png
+085620.png
+090360.png
+101680.png
+119650.png
+175250.png
+222110.png
+241820.png
+336680.png
+432320.png
+
+sent 5,150,532 bytes  received 269 bytes  10,301,602.00 bytes/sec
+total size is 1,123,496,613  speedup is 218.12
+[main 84a8e37] 2026-04-27 upload done from linux machine
+ 8 files changed, 151 insertions(+)
+To https://github.com/iburn78/trader
+   e35baf5..84a8e37  main -> main
+이미 업데이트 상태입니다.
+Company health data collection initiated at 2026-04-28 02:00:05.779734
+Updating KRX data...
+Updating between dates: 2026-04-20 / 2026-04-28
+FULL rescan codes:
+Total 13 items.
+[0-12] ['009300', '044180', '056190', '066970', '085620', '090360', '096610', '101680', '119650', '175250', '222110', '336680', '900100']
+PARTIAL rescan codes:
+Total 7 items.
+[0-6] ['051360', '900310', '900100', '432320', '900250', '082660', '241820']
+full_rescan batch operation: 0
+Financial data collection log >> 
+2026-04-28 02:00:12.693982, no: 0, code 009300 in process
+2026-04-28 02:00:30.599085, no: 1, code 044180 in process
+2026-04-28 02:00:48.556479, no: 2, code 056190 in process
+2026-04-28 02:01:06.701144, no: 3, code 066970 in process
+2026-04-28 02:01:24.624276, no: 4, code 085620 in process
+2026-04-28 02:01:33.367084, no: 5, code 090360 in process
+2026-04-28 02:01:51.192100, no: 6, code 096610 in process
+2026-04-28 02:02:09.397280, no: 7, code 101680 in process
+2026-04-28 02:02:26.885601, no: 8, code 119650 in process
+2026-04-28 02:02:44.548934, no: 9, code 175250 in process
+2026-04-28 02:02:59.473087, no: 10, code 222110 in process
+2026-04-28 02:03:17.096084, no: 11, code 336680 in process
+2026-04-28 02:03:24.240045, no: 12, code 900100 in process
+----> no: 12, code 900100 currency not in KRW, skipping
+partial_rescan batch operation: 0
+Financial data collection log >> 
+2026-04-28 02:03:36.690289, no: 0, code 051360 in process
+2026-04-28 02:03:44.142103, no: 1, code 900310 in process
+----> no: 1, code 900310 currency not in KRW, skipping
+2026-04-28 02:03:49.532943, no: 2, code 900100 in process
+----> no: 2, code 900100 currency not in KRW, skipping
+2026-04-28 02:03:54.923441, no: 3, code 432320 in process
+2026-04-28 02:04:00.794024, no: 4, code 900250 in process
+----> no: 4, code 900250 currency not in KRW, skipping
+2026-04-28 02:04:06.169714, no: 5, code 082660 in process
+2026-04-28 02:04:13.922087, no: 6, code 241820 in process
+== Update finished ==
+updating market prices...
+Updating outstanding shares information...
+Processing outstanding shares data for 2026-04-24... 0/150
+Processing outstanding shares data for 2026-04-27... 1/150
+2026-04-28 QA DB: updating ['009300', '044180', '051360', '056190', '066970', '082660', '085620', '090360', '096610', '101680', '119650', '175250', '222110', '241820', '336680', '432320', '900100', '900250', '900310']
+009300
+044180
+051360
+056190
+066970
+082660
+085620
+090360
+096610
+101680
+119650
+175250
+222110
+241820
+336680
+432320
+900100
+900250
+900310
+/home/andy/projects/trader/tools/tools.py:227: UserWarning: No artists with labels found to put in legend.  Note that artists whose label start with an underscore are ignored when legend() is called with no argument.
+  axl = ax.legend(loc='upper left')
+/home/andy/projects/trader/tools/tools.py:248: UserWarning: No artists with labels found to put in legend.  Note that artists whose label start with an underscore are ignored when legend() is called with no argument.
+  axrl = axr.legend(loc='upper left')
+/home/andy/projects/trader/tools/tools.py:258: UserWarning: Attempting to set identical low and high xlims makes transformation singular; automatically expanding.
+  ax.set_xlim(-0.5, len(x) - 0.5)
+/home/andy/projects/trader/tools/tools.py:259: UserWarning: Attempting to set identical low and high xlims makes transformation singular; automatically expanding.
+  axr.set_xlim(-0.5, len(x) - 0.5)
+009300 | 1/19
+044180 | 2/19
+051360 | 3/19
+056190 | 4/19
+066970 | 5/19
+082660 | 6/19
+085620 | 7/19
+090360 | 8/19
+096610 | 9/19
+101680 | 10/19
+119650 | 11/19
+175250 | 12/19
+222110 | 13/19
+241820 | 14/19
+336680 | 15/19
+432320 | 16/19
+900100 | 17/19
+2026-04-28 02:07:35.523434 | 900100 | quarterly data of 900100 is empty.
+900250 | 18/19
+2026-04-28 02:07:36.979638 | 900250 | quarterly data of 900250 is empty.
+900310 | 19/19
+2026-04-28 02:07:38.437962 | 900310 | quarterly data of 900310 is empty.
+sending incremental file list
+daily_update.json
+
+sent 1,401 bytes  received 35 bytes  2,872.00 bytes/sec
+total size is 1,279  speedup is 0.89
+sending incremental file list
+009300.png
+044180.png
+051360.png
+056190.png
+066970.png
+082660.png
+085620.png
+090360.png
+096610.png
+101680.png
+119650.png
+175250.png
+222110.png
+241820.png
+336680.png
+432320.png
+
+sent 6,581,025 bytes  received 326 bytes  13,162,702.00 bytes/sec
+total size is 1,123,482,292  speedup is 170.71
+[main 0f82e98] 2026-04-28 upload done from linux machine
+ 13 files changed, 168 insertions(+)
+ rewrite data_collection/data/df_krx.db (83%)
+ rewrite data_collection/data/df_krx.feather (83%)
+To https://github.com/iburn78/trader
+   84a8e37..0f82e98  main -> main
+이미 업데이트 상태입니다.
+Company health data collection initiated at 2026-04-29 02:00:05.801450
+Updating KRX data...
+Updating between dates: 2026-04-21 / 2026-04-29
+FULL rescan codes:
+Total 11 items.
+[0-10] ['009300', '044180', '056190', '066970', '090360', '096610', '101680', '119650', '222110', '336680', '900100']
+PARTIAL rescan codes:
+Total 7 items.
+[0-6] ['432320', '900100', '900310', '082660', '900140', '241820', '143540']
+full_rescan batch operation: 0
+Financial data collection log >> 
+2026-04-29 02:00:12.694281, no: 0, code 009300 in process
+2026-04-29 02:00:30.621183, no: 1, code 044180 in process
+2026-04-29 02:00:48.565986, no: 2, code 056190 in process
+2026-04-29 02:01:07.196553, no: 3, code 066970 in process
+2026-04-29 02:01:25.138381, no: 4, code 090360 in process
+2026-04-29 02:01:42.802955, no: 5, code 096610 in process
+2026-04-29 02:02:01.162000, no: 6, code 101680 in process
+2026-04-29 02:02:18.750751, no: 7, code 119650 in process
+2026-04-29 02:02:37.107055, no: 8, code 222110 in process
+2026-04-29 02:02:54.790562, no: 9, code 336680 in process
+2026-04-29 02:03:01.933366, no: 10, code 900100 in process
+----> no: 10, code 900100 currency not in KRW, skipping
+partial_rescan batch operation: 0
+Financial data collection log >> 
+2026-04-29 02:03:14.307755, no: 0, code 432320 in process
+2026-04-29 02:03:20.196985, no: 1, code 900100 in process
+----> no: 1, code 900100 currency not in KRW, skipping
+2026-04-29 02:03:25.565995, no: 2, code 900310 in process
+----> no: 2, code 900310 currency not in KRW, skipping
+2026-04-29 02:03:30.973029, no: 3, code 082660 in process
+2026-04-29 02:03:38.621737, no: 4, code 900140 in process
+----> no: 4, code 900140 currency not in KRW, skipping
+2026-04-29 02:03:43.995093, no: 5, code 241820 in process
+2026-04-29 02:03:51.761227, no: 6, code 143540 in process
+== Update finished ==
+updating market prices...
+Updating outstanding shares information...
+Processing outstanding shares data for 2026-04-27... 0/150
+Processing outstanding shares data for 2026-04-28... 1/150
+2026-04-29 QA DB: updating ['009300', '044180', '056190', '066970', '082660', '090360', '096610', '101680', '119650', '143540', '222110', '241820', '336680', '432320', '900100', '900140', '900310']
+009300
+044180
+056190
+066970
+082660
+090360
+096610
+101680
+119650
+143540
+222110
+241820
+336680
+432320
+900100
+900140
+900310
+009300 | 1/17
+044180 | 2/17
+056190 | 3/17
+066970 | 4/17
+082660 | 5/17
+090360 | 6/17
+096610 | 7/17
+101680 | 8/17
+119650 | 9/17
+143540 | 10/17
+222110 | 11/17
+241820 | 12/17
+336680 | 13/17
+432320 | 14/17
+900100 | 15/17
+2026-04-29 02:06:57.413826 | 900100 | quarterly data of 900100 is empty.
+900140 | 16/17
+2026-04-29 02:06:58.881614 | 900140 | quarterly data of 900140 is empty.
+900310 | 17/17
+2026-04-29 02:07:00.514820 | 900310 | quarterly data of 900310 is empty.
+sending incremental file list
+daily_update.json
+
+sent 1,479 bytes  received 35 bytes  3,028.00 bytes/sec
+total size is 1,357  speedup is 0.90
+sending incremental file list
+009300.png
+044180.png
+056190.png
+066970.png
+082660.png
+090360.png
+096610.png
+101680.png
+119650.png
+143540.png
+222110.png
+241820.png
+336680.png
+432320.png
+
+sent 6,018,716 bytes  received 288 bytes  12,038,008.00 bytes/sec
+total size is 1,123,483,356  speedup is 186.66
+[main 321167d] 2026-04-29 upload done from linux machine
+ 12 files changed, 152 insertions(+)
+ rewrite data_collection/data/df_krx.db (83%)
+ rewrite data_collection/data/df_krx.feather (84%)
+To https://github.com/iburn78/trader
+   0f82e98..321167d  main -> main
+이미 업데이트 상태입니다.
+Company health data collection initiated at 2026-04-30 02:00:05.890578
+Updating KRX data...
+Updating between dates: 2026-04-22 / 2026-04-30
+FULL rescan codes:
+Total 11 items.
+[0-10] ['009300', '009730', '044180', '056190', '066970', '090360', '096610', '101680', '119650', '187790', '222110']
+PARTIAL rescan codes:
+Total 10 items.
+[0-9] ['082660', '241820', '900140', '900110', '432320', '291230', '900310', '900340', '900260', '382800']
+full_rescan batch operation: 0
+Financial data collection log >> 
+2026-04-30 02:00:12.946929, no: 0, code 009300 in process
+2026-04-30 02:00:31.364715, no: 1, code 009730 in process
+2026-04-30 02:00:49.240792, no: 2, code 044180 in process
+2026-04-30 02:01:07.487430, no: 3, code 056190 in process
+2026-04-30 02:01:25.817168, no: 4, code 066970 in process
+2026-04-30 02:01:44.162514, no: 5, code 090360 in process
+2026-04-30 02:02:02.361933, no: 6, code 096610 in process
+2026-04-30 02:02:20.750852, no: 7, code 101680 in process
+2026-04-30 02:02:38.237988, no: 8, code 119650 in process
+2026-04-30 02:02:56.286037, no: 9, code 187790 in process
+2026-04-30 02:03:14.208443, no: 10, code 222110 in process
+partial_rescan batch operation: 0
+Financial data collection log >> 
+2026-04-30 02:03:39.788489, no: 0, code 082660 in process
+2026-04-30 02:03:47.605323, no: 1, code 241820 in process
+2026-04-30 02:03:55.808903, no: 2, code 900140 in process
+----> no: 2, code 900140 currency not in KRW, skipping
+2026-04-30 02:04:01.220860, no: 3, code 900110 in process
+----> no: 3, code 900110 currency not in KRW, skipping
+2026-04-30 02:04:06.589344, no: 4, code 432320 in process
+2026-04-30 02:04:12.504342, no: 5, code 291230 in process
+2026-04-30 02:04:20.119732, no: 6, code 900310 in process
+----> no: 6, code 900310 currency not in KRW, skipping
+2026-04-30 02:04:25.524676, no: 7, code 900340 in process
+----> no: 7, code 900340 currency not in KRW, skipping
+2026-04-30 02:04:30.921002, no: 8, code 900260 in process
+----> no: 8, code 900260 currency not in KRW, skipping
+2026-04-30 02:04:36.326460, no: 9, code 382800 in process
+== Update finished ==
+updating market prices...
+Updating outstanding shares information...
+Processing outstanding shares data for 2026-04-28... 0/150
+Processing outstanding shares data for 2026-04-29... 1/150
+2026-04-30 QA DB: updating ['009300', '009730', '044180', '056190', '066970', '082660', '090360', '096610', '101680', '119650', '187790', '222110', '241820', '291230', '382800', '432320', '900110', '900140', '900260', '900310', '900340']
+009300
+009730
+044180
+056190
+066970
+082660
+090360
+096610
+101680
+119650
+187790
+222110
+241820
+291230
+382800
+432320
+900110
+900140
+900260
+900310
+900340
+009300 | 1/21
+009730 | 2/21
+044180 | 3/21
+056190 | 4/21
+066970 | 5/21
+082660 | 6/21
+090360 | 7/21
+096610 | 8/21
+101680 | 9/21
+119650 | 10/21
+187790 | 11/21
+222110 | 12/21
+241820 | 13/21
+291230 | 14/21
+382800 | 15/21
+432320 | 16/21
+900110 | 17/21
+2026-04-30 02:08:06.076920 | 900110 | quarterly data of 900110 is empty.
+900140 | 18/21
+2026-04-30 02:08:07.544560 | 900140 | quarterly data of 900140 is empty.
+900260 | 19/21
+2026-04-30 02:08:09.009216 | 900260 | quarterly data of 900260 is empty.
+900310 | 20/21
+2026-04-30 02:08:10.482892 | 900310 | quarterly data of 900310 is empty.
+900340 | 21/21
+2026-04-30 02:08:11.950416 | 900340 | quarterly data of 900340 is empty.
+sending incremental file list
+daily_update.json
+
+sent 1,922 bytes  received 35 bytes  3,914.00 bytes/sec
+total size is 1,800  speedup is 0.92
+sending incremental file list
+009300.png
+009730.png
+044180.png
+056190.png
+066970.png
+082660.png
+090360.png
+096610.png
+101680.png
+119650.png
+187790.png
+222110.png
+241820.png
+291230.png
+382800.png
+432320.png
+
+sent 6,835,399 bytes  received 326 bytes  13,671,450.00 bytes/sec
+total size is 1,123,430,838  speedup is 164.35
+[main 60a9801] 2026-04-30 upload done from linux machine
+ 13 files changed, 174 insertions(+)
+ rewrite data_collection/data/df_krx.db (83%)
+ rewrite data_collection/data/df_krx.feather (83%)
+To https://github.com/iburn78/trader
+   321167d..60a9801  main -> main
+이미 업데이트 상태입니다.
+Company health data collection initiated at 2026-05-01 02:00:06.569349
+Updating KRX data...
+Updating between dates: 2026-04-23 / 2026-05-01
+FULL rescan codes:
+Total 14 items.
+[0-13] ['002460', '009730', '011370', '044180', '056190', '066970', '090360', '091810', '092040', '096610', '101680', '119650', '187790', '219550']
+PARTIAL rescan codes:
+Total 14 items.
+[0-13] ['900110', '900300', '900260', '063440', '900140', '241820', '299900', '396470', '900070', '044990', '126730', '082660', '900270', '900340']
+full_rescan batch operation: 0
+Financial data collection log >> 
+2026-05-01 02:00:13.755893, no: 0, code 002460 in process
+2026-05-01 02:00:32.396445, no: 1, code 009730 in process
+2026-05-01 02:00:50.747086, no: 2, code 011370 in process
+2026-05-01 02:01:08.956997, no: 3, code 044180 in process
+2026-05-01 02:01:27.579527, no: 4, code 056190 in process
+2026-05-01 02:01:46.294759, no: 5, code 066970 in process
+2026-05-01 02:02:04.492255, no: 6, code 090360 in process
+2026-05-01 02:02:23.642084, no: 7, code 091810 in process
+2026-05-01 02:02:39.111418, no: 8, code 092040 in process
+2026-05-01 02:02:58.465732, no: 9, code 096610 in process
+2026-05-01 02:03:18.733888, no: 10, code 101680 in process
+2026-05-01 02:03:36.763075, no: 11, code 119650 in process
+2026-05-01 02:03:55.475482, no: 12, code 187790 in process
+2026-05-01 02:04:13.558375, no: 13, code 219550 in process
+partial_rescan batch operation: 0
+Financial data collection log >> 
+2026-05-01 02:04:38.291644, no: 0, code 900110 in process
+----> no: 0, code 900110 currency not in KRW, skipping
+2026-05-01 02:04:43.661303, no: 1, code 900300 in process
+----> no: 1, code 900300 currency not in KRW, skipping
+2026-05-01 02:04:49.089993, no: 2, code 900260 in process
+----> no: 2, code 900260 currency not in KRW, skipping
+2026-05-01 02:04:54.467935, no: 3, code 063440 in process
+2026-05-01 02:05:02.504109, no: 4, code 900140 in process
+----> no: 4, code 900140 currency not in KRW, skipping
+2026-05-01 02:05:07.900088, no: 5, code 241820 in process
+2026-05-01 02:05:16.233963, no: 6, code 299900 in process
+2026-05-01 02:05:23.722761, no: 7, code 396470 in process
+2026-05-01 02:05:31.204344, no: 8, code 900070 in process
+----> no: 8, code 900070 currency not in KRW, skipping
+2026-05-01 02:05:36.595247, no: 9, code 044990 in process
+2026-05-01 02:05:43.762167, no: 10, code 126730 in process
+2026-05-01 02:05:56.267993, no: 11, code 082660 in process
+2026-05-01 02:06:04.115060, no: 12, code 900270 in process
+----> no: 12, code 900270 currency not in KRW, skipping
+2026-05-01 02:06:09.529844, no: 13, code 900340 in process
+----> no: 13, code 900340 currency not in KRW, skipping
+== Update finished ==
+updating market prices...
+Updating outstanding shares information...
+Processing outstanding shares data for 2026-04-29... 0/150
+Processing outstanding shares data for 2026-04-30... 1/150
+2026-05-01 QA DB: updating ['002460', '009730', '011370', '044180', '044990', '056190', '063440', '066970', '082660', '090360', '091810', '092040', '096610', '101680', '119650', '126730', '187790', '219550', '241820', '299900', '396470', '900070', '900110', '900140', '900260', '900270', '900300', '900340']
+002460
+009730
+011370
+044180
+044990
+056190
+063440
+066970
+082660
+090360
+091810
+092040
+096610
+101680
+119650
+126730
+187790
+219550
+241820
+299900
+396470
+900070
+900110
+900140
+900260
+900270
+900300
+900340
+002460 | 1/28
+009730 | 2/28
+011370 | 3/28
+044180 | 4/28
+044990 | 5/28
+056190 | 6/28
+063440 | 7/28
+066970 | 8/28
+082660 | 9/28
+090360 | 10/28
+091810 | 11/28
+092040 | 12/28
+096610 | 13/28
+101680 | 14/28
+119650 | 15/28
+126730 | 16/28
+187790 | 17/28
+219550 | 18/28
+241820 | 19/28
+299900 | 20/28
+396470 | 21/28
+900070 | 22/28
+2026-05-01 02:10:13.894064 | 900070 | quarterly data of 900070 is empty.
+900110 | 23/28
+2026-05-01 02:10:15.377672 | 900110 | quarterly data of 900110 is empty.
+900140 | 24/28
+2026-05-01 02:10:16.852088 | 900140 | quarterly data of 900140 is empty.
+900260 | 25/28
+2026-05-01 02:10:18.493322 | 900260 | quarterly data of 900260 is empty.
+900270 | 26/28
+2026-05-01 02:10:19.970165 | 900270 | quarterly data of 900270 is empty.
+900300 | 27/28
+2026-05-01 02:10:21.610323 | 900300 | quarterly data of 900300 is empty.
+900340 | 28/28
+2026-05-01 02:10:23.095835 | 900340 | quarterly data of 900340 is empty.
+sending incremental file list
+daily_update.json
+
+sent 2,965 bytes  received 35 bytes  6,000.00 bytes/sec
+total size is 2,844  speedup is 0.95
+sending incremental file list
+002460.png
+009730.png
+011370.png
+044180.png
+044990.png
+056190.png
+063440.png
+066970.png
+082660.png
+090360.png
+091810.png
+092040.png
+096610.png
+101680.png
+119650.png
+126730.png
+187790.png
+219550.png
+241820.png
+299900.png
+396470.png
+
+sent 8,870,087 bytes  received 421 bytes  17,741,016.00 bytes/sec
+total size is 1,123,349,995  speedup is 126.64
+[main a3d2b92] 2026-05-01 upload done from linux machine
+ 13 files changed, 215 insertions(+)
+ rewrite data_collection/data/df_krx.db (83%)
+ rewrite data_collection/data/df_krx.feather (84%)
+To https://github.com/iburn78/trader
+   60a9801..a3d2b92  main -> main
+이미 업데이트 상태입니다.
+Company health data collection initiated at 2026-05-02 02:00:05.745014
+Updating KRX data...
+Updating between dates: 2026-04-24 / 2026-05-02
+FULL rescan codes:
+Total 10 items.
+[0-9] ['002460', '009730', '011370', '056190', '090360', '091810', '092040', '096610', '187790', '219550']
+PARTIAL rescan codes:
+Total 9 items.
+[0-8] ['900300', '900070', '900260', '900270', '082660', '900340', '900110', '900140', '241820']
+full_rescan batch operation: 0
+Financial data collection log >> 
+2026-05-02 02:00:13.098236, no: 0, code 002460 in process
+2026-05-02 02:00:31.573376, no: 1, code 009730 in process
+2026-05-02 02:00:50.252703, no: 2, code 011370 in process
+2026-05-02 02:01:09.859944, no: 3, code 056190 in process
+2026-05-02 02:01:28.372527, no: 4, code 090360 in process
+2026-05-02 02:01:47.913445, no: 5, code 091810 in process
+2026-05-02 02:02:02.920207, no: 6, code 092040 in process
+2026-05-02 02:02:22.846011, no: 7, code 096610 in process
+2026-05-02 02:02:41.529938, no: 8, code 187790 in process
+2026-05-02 02:02:59.920171, no: 9, code 219550 in process
+partial_rescan batch operation: 0
+Financial data collection log >> 
+2026-05-02 02:03:25.315704, no: 0, code 900300 in process
+----> no: 0, code 900300 currency not in KRW, skipping
+2026-05-02 02:03:30.710744, no: 1, code 900070 in process
+----> no: 1, code 900070 currency not in KRW, skipping
+2026-05-02 02:03:36.127351, no: 2, code 900260 in process
+----> no: 2, code 900260 currency not in KRW, skipping
+2026-05-02 02:03:41.565136, no: 3, code 900270 in process
+----> no: 3, code 900270 currency not in KRW, skipping
+2026-05-02 02:03:47.268235, no: 4, code 082660 in process
+2026-05-02 02:03:55.202108, no: 5, code 900340 in process
+----> no: 5, code 900340 currency not in KRW, skipping
+2026-05-02 02:04:00.636772, no: 6, code 900110 in process
+----> no: 6, code 900110 currency not in KRW, skipping
+2026-05-02 02:04:06.013996, no: 7, code 900140 in process
+----> no: 7, code 900140 currency not in KRW, skipping
+2026-05-02 02:04:11.398550, no: 8, code 241820 in process
+== Update finished ==
+updating market prices...
+Updating outstanding shares information...
+Processing outstanding shares data for 2026-04-30... 0/150
+2026-05-02 QA DB: updating ['002460', '009730', '011370', '056190', '082660', '090360', '091810', '092040', '096610', '187790', '219550', '241820', '900070', '900110', '900140', '900260', '900270', '900300', '900340']
+002460
+009730
+011370
+056190
+082660
+090360
+091810
+092040
+096610
+187790
+219550
+241820
+900070
+900110
+900140
+900260
+900270
+900300
+900340
+002460 | 1/19
+009730 | 2/19
+011370 | 3/19
+056190 | 4/19
+082660 | 5/19
+090360 | 6/19
+091810 | 7/19
+092040 | 8/19
+096610 | 9/19
+187790 | 10/19
+219550 | 11/19
+241820 | 12/19
+900070 | 13/19
+2026-05-02 02:06:54.148426 | 900070 | quarterly data of 900070 is empty.
+900110 | 14/19
+2026-05-02 02:06:55.630591 | 900110 | quarterly data of 900110 is empty.
+900140 | 15/19
+2026-05-02 02:06:57.274714 | 900140 | quarterly data of 900140 is empty.
+900260 | 16/19
+2026-05-02 02:06:58.751884 | 900260 | quarterly data of 900260 is empty.
+900270 | 17/19
+2026-05-02 02:07:00.233192 | 900270 | quarterly data of 900270 is empty.
+900300 | 18/19
+2026-05-02 02:07:01.708357 | 900300 | quarterly data of 900300 is empty.
+900340 | 19/19
+2026-05-02 02:07:03.183541 | 900340 | quarterly data of 900340 is empty.
+sending incremental file list
+daily_update.json
+
+sent 2,429 bytes  received 35 bytes  4,928.00 bytes/sec
+total size is 2,307  speedup is 0.94
+sending incremental file list
+002460.png
+009730.png
+011370.png
+056190.png
+082660.png
+090360.png
+091810.png
+092040.png
+096610.png
+187790.png
+219550.png
+241820.png
+
+sent 5,158,176 bytes  received 250 bytes  3,438,950.67 bytes/sec
+total size is 1,123,351,409  speedup is 217.77
+[main cac3076] 2026-05-02 upload done from linux machine
+ 8 files changed, 168 insertions(+)
+To https://github.com/iburn78/trader
+   a3d2b92..cac3076  main -> main
+이미 업데이트 상태입니다.
+Company health data collection initiated at 2026-05-03 02:00:06.451741
+Updating KRX data...
+Updating between dates: 2026-04-25 / 2026-05-03
+FULL rescan codes:
+Total 9 items.
+[0-8] ['002460', '009730', '011370', '056190', '091810', '092040', '096610', '187790', '219550']
+PARTIAL rescan codes:
+Total 9 items.
+[0-8] ['900110', '900140', '900340', '900270', '900300', '082660', '900070', '241820', '900260']
+full_rescan batch operation: 0
+Financial data collection log >> 
+2026-05-03 02:00:14.196404, no: 0, code 002460 in process
+2026-05-03 02:00:32.552013, no: 1, code 009730 in process
+2026-05-03 02:00:51.022809, no: 2, code 011370 in process
+2026-05-03 02:01:09.454573, no: 3, code 056190 in process
+2026-05-03 02:01:28.147872, no: 4, code 091810 in process
+2026-05-03 02:01:43.370088, no: 5, code 092040 in process
+2026-05-03 02:02:02.030529, no: 6, code 096610 in process
+2026-05-03 02:02:21.745120, no: 7, code 187790 in process
+2026-05-03 02:02:40.176495, no: 8, code 219550 in process
+partial_rescan batch operation: 0
+Financial data collection log >> 
+2026-05-03 02:03:04.542877, no: 0, code 900110 in process
+----> no: 0, code 900110 currency not in KRW, skipping
+2026-05-03 02:03:09.940093, no: 1, code 900140 in process
+----> no: 1, code 900140 currency not in KRW, skipping
+2026-05-03 02:03:15.343777, no: 2, code 900340 in process
+----> no: 2, code 900340 currency not in KRW, skipping
+2026-05-03 02:03:20.725686, no: 3, code 900270 in process
+----> no: 3, code 900270 currency not in KRW, skipping
+2026-05-03 02:03:26.099003, no: 4, code 900300 in process
+----> no: 4, code 900300 currency not in KRW, skipping
+2026-05-03 02:03:31.498837, no: 5, code 082660 in process
+2026-05-03 02:03:39.451254, no: 6, code 900070 in process
+----> no: 6, code 900070 currency not in KRW, skipping
+2026-05-03 02:03:44.885126, no: 7, code 241820 in process
+2026-05-03 02:03:52.803355, no: 8, code 900260 in process
+----> no: 8, code 900260 currency not in KRW, skipping
+== Update finished ==
+updating market prices...
+Updating outstanding shares information...
+Processing outstanding shares data for 2026-04-30... 0/150
+2026-05-03 QA DB: updating ['002460', '009730', '011370', '056190', '082660', '091810', '092040', '096610', '187790', '219550', '241820', '900070', '900110', '900140', '900260', '900270', '900300', '900340']
+002460
+009730
+011370
+056190
+082660
+091810
+092040
+096610
+187790
+219550
+241820
+900070
+900110
+900140
+900260
+900270
+900300
+900340
+002460 | 1/18
+009730 | 2/18
+011370 | 3/18
+056190 | 4/18
+082660 | 5/18
+091810 | 6/18
+092040 | 7/18
+096610 | 8/18
+187790 | 9/18
+219550 | 10/18
+241820 | 11/18
+900070 | 12/18
+2026-05-03 02:06:24.515114 | 900070 | quarterly data of 900070 is empty.
+900110 | 13/18
+2026-05-03 02:06:25.991975 | 900110 | quarterly data of 900110 is empty.
+900140 | 14/18
+2026-05-03 02:06:27.468960 | 900140 | quarterly data of 900140 is empty.
+900260 | 15/18
+2026-05-03 02:06:28.946707 | 900260 | quarterly data of 900260 is empty.
+900270 | 16/18
+2026-05-03 02:06:30.423313 | 900270 | quarterly data of 900270 is empty.
+900300 | 17/18
+2026-05-03 02:06:31.900889 | 900300 | quarterly data of 900300 is empty.
+900340 | 18/18
+2026-05-03 02:06:33.377571 | 900340 | quarterly data of 900340 is empty.
+sending incremental file list
+daily_update.json
+
+sent 1,746 bytes  received 35 bytes  3,562.00 bytes/sec
+total size is 1,624  speedup is 0.91
+sending incremental file list
+002460.png
+009730.png
+011370.png
+056190.png
+082660.png
+091810.png
+092040.png
+096610.png
+187790.png
+219550.png
+241820.png
+
+sent 4,693,833 bytes  received 231 bytes  9,388,128.00 bytes/sec
+total size is 1,123,353,523  speedup is 239.31
+[main 40d9544] 2026-05-03 upload done from linux machine
+ 8 files changed, 161 insertions(+)
+To https://github.com/iburn78/trader
+   cac3076..40d9544  main -> main
+이미 업데이트 상태입니다.
+Company health data collection initiated at 2026-05-04 02:00:06.396925
+Updating KRX data...
+Updating between dates: 2026-04-26 / 2026-05-04
+FULL rescan codes:
+Total 9 items.
+[0-8] ['002460', '009730', '011370', '056190', '091810', '092040', '096610', '187790', '219550']
+PARTIAL rescan codes:
+Total 9 items.
+[0-8] ['900070', '900300', '900260', '900340', '241820', '900270', '082660', '900140', '900110']
+full_rescan batch operation: 0
+Financial data collection log >> 
+2026-05-04 02:00:14.104424, no: 0, code 002460 in process
+2026-05-04 02:00:33.041085, no: 1, code 009730 in process
+2026-05-04 02:00:52.446889, no: 2, code 011370 in process
+2026-05-04 02:01:10.742992, no: 3, code 056190 in process
+2026-05-04 02:01:30.358334, no: 4, code 091810 in process
+2026-05-04 02:01:45.548029, no: 5, code 092040 in process
+2026-05-04 02:02:04.437359, no: 6, code 096610 in process
+2026-05-04 02:02:23.450598, no: 7, code 187790 in process
+2026-05-04 02:02:42.421901, no: 8, code 219550 in process
+partial_rescan batch operation: 0
+Financial data collection log >> 
+2026-05-04 02:03:06.828167, no: 0, code 900070 in process
+----> no: 0, code 900070 currency not in KRW, skipping
+2026-05-04 02:03:12.208035, no: 1, code 900300 in process
+----> no: 1, code 900300 currency not in KRW, skipping
+2026-05-04 02:03:17.604896, no: 2, code 900260 in process
+----> no: 2, code 900260 currency not in KRW, skipping
+2026-05-04 02:03:22.993727, no: 3, code 900340 in process
+----> no: 3, code 900340 currency not in KRW, skipping
+2026-05-04 02:03:28.419857, no: 4, code 241820 in process
+2026-05-04 02:03:36.402942, no: 5, code 900270 in process
+----> no: 5, code 900270 currency not in KRW, skipping
+2026-05-04 02:03:41.838421, no: 6, code 082660 in process
+2026-05-04 02:03:49.779056, no: 7, code 900140 in process
+----> no: 7, code 900140 currency not in KRW, skipping
+2026-05-04 02:03:55.160690, no: 8, code 900110 in process
+----> no: 8, code 900110 currency not in KRW, skipping
+== Update finished ==
+updating market prices...
+Updating outstanding shares information...
+Processing outstanding shares data for 2026-04-30... 0/150
+2026-05-04 QA DB: updating ['002460', '009730', '011370', '056190', '082660', '091810', '092040', '096610', '187790', '219550', '241820', '900070', '900110', '900140', '900260', '900270', '900300', '900340']
+002460
+009730
+011370
+056190
+082660
+091810
+092040
+096610
+187790
+219550
+241820
+900070
+900110
+900140
+900260
+900270
+900300
+900340
+002460 | 1/18
+009730 | 2/18
+011370 | 3/18
+056190 | 4/18
+082660 | 5/18
+091810 | 6/18
+092040 | 7/18
+096610 | 8/18
+187790 | 9/18
+219550 | 10/18
+241820 | 11/18
+900070 | 12/18
+2026-05-04 02:06:29.478156 | 900070 | quarterly data of 900070 is empty.
+900110 | 13/18
+2026-05-04 02:06:31.117443 | 900110 | quarterly data of 900110 is empty.
+900140 | 14/18
+2026-05-04 02:06:32.590797 | 900140 | quarterly data of 900140 is empty.
+900260 | 15/18
+2026-05-04 02:06:34.060789 | 900260 | quarterly data of 900260 is empty.
+900270 | 16/18
+2026-05-04 02:06:35.529614 | 900270 | quarterly data of 900270 is empty.
+900300 | 17/18
+2026-05-04 02:06:36.999980 | 900300 | quarterly data of 900300 is empty.
+900340 | 18/18
+2026-05-04 02:06:38.470844 | 900340 | quarterly data of 900340 is empty.
+sending incremental file list
+daily_update.json
+
+sent 1,746 bytes  received 35 bytes  3,562.00 bytes/sec
+total size is 1,624  speedup is 0.91
+sending incremental file list
+002460.png
+009730.png
+011370.png
+056190.png
+082660.png
+091810.png
+092040.png
+096610.png
+187790.png
+219550.png
+241820.png
+
+sent 4,693,189 bytes  received 231 bytes  9,386,840.00 bytes/sec
+total size is 1,123,352,877  speedup is 239.35
+[main e49181d] 2026-05-04 upload done from linux machine
+ 8 files changed, 161 insertions(+)
+To https://github.com/iburn78/trader
+   40d9544..e49181d  main -> main
+이미 업데이트 상태입니다.
+Company health data collection initiated at 2026-05-05 02:00:05.827315
+Updating KRX data...
+Updating between dates: 2026-04-27 / 2026-05-05
+FULL rescan codes:
+Total 10 items.
+[0-9] ['002460', '009730', '011370', '029480', '056190', '091810', '092040', '096610', '187790', '219550']
+PARTIAL rescan codes:
+Total 9 items.
+[0-8] ['900140', '900260', '082660', '900340', '241820', '900270', '900300', '900070', '900110']
+full_rescan batch operation: 0
+Financial data collection log >> 
+2026-05-05 02:00:13.157540, no: 0, code 002460 in process
+2026-05-05 02:00:32.518741, no: 1, code 009730 in process
+2026-05-05 02:00:51.132690, no: 2, code 011370 in process
+2026-05-05 02:01:09.256815, no: 3, code 029480 in process
+2026-05-05 02:01:27.375409, no: 4, code 056190 in process
+2026-05-05 02:01:45.653444, no: 5, code 091810 in process
+2026-05-05 02:02:00.369488, no: 6, code 092040 in process
+2026-05-05 02:02:18.408087, no: 7, code 096610 in process
+2026-05-05 02:02:36.664322, no: 8, code 187790 in process
+2026-05-05 02:02:54.929882, no: 9, code 219550 in process
+partial_rescan batch operation: 0
+Financial data collection log >> 
+2026-05-05 02:03:19.759778, no: 0, code 900140 in process
+----> no: 0, code 900140 currency not in KRW, skipping
+2026-05-05 02:03:25.145234, no: 1, code 900260 in process
+----> no: 1, code 900260 currency not in KRW, skipping
+2026-05-05 02:03:30.531735, no: 2, code 082660 in process
+2026-05-05 02:03:38.477528, no: 3, code 900340 in process
+----> no: 3, code 900340 currency not in KRW, skipping
+2026-05-05 02:03:43.909748, no: 4, code 241820 in process
+2026-05-05 02:03:51.772177, no: 5, code 900270 in process
+----> no: 5, code 900270 currency not in KRW, skipping
+2026-05-05 02:03:57.152022, no: 6, code 900300 in process
+----> no: 6, code 900300 currency not in KRW, skipping
+2026-05-05 02:04:02.528832, no: 7, code 900070 in process
+----> no: 7, code 900070 currency not in KRW, skipping
+2026-05-05 02:04:07.903942, no: 8, code 900110 in process
+----> no: 8, code 900110 currency not in KRW, skipping
+== Update finished ==
+updating market prices...
+Updating outstanding shares information...
+Processing outstanding shares data for 2026-04-30... 0/150
+Processing outstanding shares data for 2026-05-04... 1/150
+2026-05-05 QA DB: updating ['002460', '009730', '011370', '029480', '056190', '082660', '091810', '092040', '096610', '187790', '219550', '241820', '900070', '900110', '900140', '900260', '900270', '900300', '900340']
+002460
+009730
+011370
+029480
+056190
+082660
+091810
+092040
+096610
+187790
+219550
+241820
+900070
+900110
+900140
+900260
+900270
+900300
+900340
+002460 | 1/19
+009730 | 2/19
+011370 | 3/19
+029480 | 4/19
+056190 | 5/19
+082660 | 6/19
+091810 | 7/19
+092040 | 8/19
+096610 | 9/19
+187790 | 10/19
+219550 | 11/19
+241820 | 12/19
+900070 | 13/19
+2026-05-05 02:06:52.078494 | 900070 | quarterly data of 900070 is empty.
+900110 | 14/19
+2026-05-05 02:06:53.538873 | 900110 | quarterly data of 900110 is empty.
+900140 | 15/19
+2026-05-05 02:06:55.152459 | 900140 | quarterly data of 900140 is empty.
+900260 | 16/19
+2026-05-05 02:06:56.609218 | 900260 | quarterly data of 900260 is empty.
+900270 | 17/19
+2026-05-05 02:06:58.059099 | 900270 | quarterly data of 900270 is empty.
+900300 | 18/19
+2026-05-05 02:06:59.507070 | 900300 | quarterly data of 900300 is empty.
+900340 | 19/19
+2026-05-05 02:07:01.121846 | 900340 | quarterly data of 900340 is empty.
+sending incremental file list
+daily_update.json
+
+sent 1,933 bytes  received 35 bytes  3,936.00 bytes/sec
+total size is 1,811  speedup is 0.92
+sending incremental file list
+002460.png
+009730.png
+011370.png
+029480.png
+056190.png
+082660.png
+091810.png
+092040.png
+096610.png
+187790.png
+219550.png
+241820.png
+
+sent 5,163,057 bytes  received 250 bytes  10,326,614.00 bytes/sec
+total size is 1,123,324,370  speedup is 217.56
+[main 4d56e12] 2026-05-05 upload done from linux machine
+ 12 files changed, 168 insertions(+)
+ rewrite data_collection/data/df_krx.db (83%)
+ rewrite data_collection/data/df_krx.feather (83%)
+To https://github.com/iburn78/trader
+   e49181d..4d56e12  main -> main
+이미 업데이트 상태입니다.
+Company health data collection initiated at 2026-05-06 02:00:05.704746
+Updating KRX data...
+Updating between dates: 2026-04-28 / 2026-05-06
+FULL rescan codes:
+Total 8 items.
+[0-7] ['002460', '009730', '011370', '029480', '091810', '092040', '187790', '219550']
+PARTIAL rescan codes:
+Total 9 items.
+[0-8] ['900140', '082660', '900110', '900300', '900260', '241820', '900340', '900070', '900270']
+full_rescan batch operation: 0
+Financial data collection log >> 
+2026-05-06 02:00:12.900170, no: 0, code 002460 in process
+2026-05-06 02:00:36.643325, no: 1, code 009730 in process
+2026-05-06 02:00:54.886053, no: 2, code 011370 in process
+2026-05-06 02:01:13.321860, no: 3, code 029480 in process
+2026-05-06 02:01:31.504221, no: 4, code 091810 in process
+2026-05-06 02:01:46.465649, no: 5, code 092040 in process
+2026-05-06 02:02:05.401736, no: 6, code 187790 in process
+2026-05-06 02:02:23.818097, no: 7, code 219550 in process
+partial_rescan batch operation: 0
+Financial data collection log >> 
+2026-05-06 02:02:47.780286, no: 0, code 900140 in process
+----> no: 0, code 900140 currency not in KRW, skipping
+2026-05-06 02:02:53.158073, no: 1, code 082660 in process
+2026-05-06 02:03:00.958310, no: 2, code 900110 in process
+----> no: 2, code 900110 currency not in KRW, skipping
+2026-05-06 02:03:06.334078, no: 3, code 900300 in process
+----> no: 3, code 900300 currency not in KRW, skipping
+2026-05-06 02:03:11.722088, no: 4, code 900260 in process
+----> no: 4, code 900260 currency not in KRW, skipping
+2026-05-06 02:03:17.114026, no: 5, code 241820 in process
+2026-05-06 02:03:25.012251, no: 6, code 900340 in process
+----> no: 6, code 900340 currency not in KRW, skipping
+2026-05-06 02:03:30.406026, no: 7, code 900070 in process
+----> no: 7, code 900070 currency not in KRW, skipping
+2026-05-06 02:03:35.790086, no: 8, code 900270 in process
+----> no: 8, code 900270 currency not in KRW, skipping
+== Update finished ==
+updating market prices...
+Updating outstanding shares information...
+Processing outstanding shares data for 2026-05-04... 0/150
+2026-05-06 QA DB: updating ['002460', '009730', '011370', '029480', '082660', '091810', '092040', '187790', '219550', '241820', '900070', '900110', '900140', '900260', '900270', '900300', '900340']
+002460
+009730
+011370
+029480
+082660
+091810
+092040
+187790
+219550
+241820
+900070
+900110
+900140
+900260
+900270
+900300
+900340
+002460 | 1/17
+009730 | 2/17
+011370 | 3/17
+029480 | 4/17
+082660 | 5/17
+091810 | 6/17
+092040 | 7/17
+187790 | 8/17
+219550 | 9/17
+241820 | 10/17
+900070 | 11/17
+2026-05-06 02:05:55.987160 | 900070 | quarterly data of 900070 is empty.
+900110 | 12/17
+2026-05-06 02:05:57.447006 | 900110 | quarterly data of 900110 is empty.
+900140 | 13/17
+2026-05-06 02:05:58.901947 | 900140 | quarterly data of 900140 is empty.
+900260 | 14/17
+2026-05-06 02:06:00.361211 | 900260 | quarterly data of 900260 is empty.
+900270 | 15/17
+2026-05-06 02:06:01.818149 | 900270 | quarterly data of 900270 is empty.
+900300 | 16/17
+2026-05-06 02:06:03.274477 | 900300 | quarterly data of 900300 is empty.
+900340 | 17/17
+2026-05-06 02:06:04.730734 | 900340 | quarterly data of 900340 is empty.
+sending incremental file list
+daily_update.json
+
+sent 1,813 bytes  received 35 bytes  3,696.00 bytes/sec
+total size is 1,691  speedup is 0.92
+sending incremental file list
+002460.png
+009730.png
+011370.png
+029480.png
+082660.png
+091810.png
+092040.png
+187790.png
+219550.png
+241820.png
+
+sent 4,200,986 bytes  received 212 bytes  8,402,396.00 bytes/sec
+total size is 1,123,318,422  speedup is 267.38
+[main 54b8146] 2026-05-06 upload done from linux machine
+ 8 files changed, 158 insertions(+)
+To https://github.com/iburn78/trader
+   4d56e12..54b8146  main -> main
+이미 업데이트 상태입니다.
+Company health data collection initiated at 2026-05-07 02:00:06.200122
+Updating KRX data...
+Updating between dates: 2026-04-29 / 2026-05-07
+FULL rescan codes:
+Total 9 items.
+[0-8] ['002210', '002460', '009730', '011370', '029480', '091810', '092040', '187790', '219550']
+PARTIAL rescan codes:
+Total 10 items.
+[0-9] ['900300', '900270', '900260', '149980', '082660', '241820', '900070', '900340', '460870', '900110']
+full_rescan batch operation: 0
+Financial data collection log >> 
+2026-05-07 02:00:13.869725, no: 0, code 002210 in process
+2026-05-07 02:00:33.437697, no: 1, code 002460 in process
+2026-05-07 02:00:51.551020, no: 2, code 009730 in process
+2026-05-07 02:01:11.034316, no: 3, code 011370 in process
+2026-05-07 02:01:30.366795, no: 4, code 029480 in process
+2026-05-07 02:01:48.811762, no: 5, code 091810 in process
+2026-05-07 02:02:04.135162, no: 6, code 092040 in process
+2026-05-07 02:02:22.434085, no: 7, code 187790 in process
+2026-05-07 02:02:41.776206, no: 8, code 219550 in process
+partial_rescan batch operation: 0
+Financial data collection log >> 
+2026-05-07 02:03:06.255568, no: 0, code 900300 in process
+----> no: 0, code 900300 currency not in KRW, skipping
+2026-05-07 02:03:11.642202, no: 1, code 900270 in process
+----> no: 1, code 900270 currency not in KRW, skipping
+2026-05-07 02:03:17.046649, no: 2, code 900260 in process
+----> no: 2, code 900260 currency not in KRW, skipping
+2026-05-07 02:03:22.446610, no: 3, code 149980 in process
+2026-05-07 02:03:30.071746, no: 4, code 082660 in process
+2026-05-07 02:03:38.001141, no: 5, code 241820 in process
+2026-05-07 02:03:45.851326, no: 6, code 900070 in process
+----> no: 6, code 900070 currency not in KRW, skipping
+2026-05-07 02:03:51.245218, no: 7, code 900340 in process
+----> no: 7, code 900340 currency not in KRW, skipping
+2026-05-07 02:03:56.617478, no: 8, code 460870 in process
+2026-05-07 02:04:03.679855, no: 9, code 900110 in process
+----> no: 9, code 900110 currency not in KRW, skipping
+== Update finished ==
+updating market prices...
+Updating outstanding shares information...
+Processing outstanding shares data for 2026-05-04... 0/150
+Processing outstanding shares data for 2026-05-06... 1/150
+2026-05-07 QA DB: updating ['002210', '002460', '009730', '011370', '029480', '082660', '091810', '092040', '149980', '187790', '219550', '241820', '460870', '900070', '900110', '900260', '900270', '900300', '900340']
+002210
+002460
+009730
+011370
+029480
+082660
+091810
+092040
+149980
+187790
+219550
+241820
+460870
+900070
+900110
+900260
+900270
+900300
+900340
+002210 | 1/19
+002460 | 2/19
+009730 | 3/19
+011370 | 4/19
+029480 | 5/19
+082660 | 6/19
+091810 | 7/19
+092040 | 8/19
+149980 | 9/19
+187790 | 10/19
+219550 | 11/19
+241820 | 12/19
+460870 | 13/19
+900070 | 14/19
+2026-05-07 02:06:59.895929 | 900070 | quarterly data of 900070 is empty.
+900110 | 15/19
+2026-05-07 02:07:01.373336 | 900110 | quarterly data of 900110 is empty.
+900260 | 16/19
+2026-05-07 02:07:02.847445 | 900260 | quarterly data of 900260 is empty.
+900270 | 17/19
+2026-05-07 02:07:04.318470 | 900270 | quarterly data of 900270 is empty.
+900300 | 18/19
+2026-05-07 02:07:05.791597 | 900300 | quarterly data of 900300 is empty.
+900340 | 19/19
+2026-05-07 02:07:07.266025 | 900340 | quarterly data of 900340 is empty.
+sending incremental file list
+daily_update.json
+
+sent 1,882 bytes  received 35 bytes  3,834.00 bytes/sec
+total size is 1,760  speedup is 0.92
+sending incremental file list
+002210.png
+002460.png
+009730.png
+011370.png
+029480.png
+082660.png
+091810.png
+092040.png
+149980.png
+187790.png
+219550.png
+241820.png
+460870.png
+
+sent 5,452,387 bytes  received 271 bytes  10,905,316.00 bytes/sec
+total size is 1,123,335,400  speedup is 206.02
+[main 915e679] 2026-05-07 upload done from linux machine
+ 12 files changed, 165 insertions(+)
+ rewrite data_collection/data/df_krx.db (83%)
+ rewrite data_collection/data/df_krx.feather (83%)
+To https://github.com/iburn78/trader
+   54b8146..915e679  main -> main
+이미 업데이트 상태입니다.
+Company health data collection initiated at 2026-05-08 02:00:05.928660
+Updating KRX data...
+Updating between dates: 2026-04-30 / 2026-05-08
+FULL rescan codes:
+Total 10 items.
+[0-9] ['002210', '002460', '011370', '029480', '052790', '091810', '092040', '175250', '219550', '382480']
+PARTIAL rescan codes:
+Total 12 items.
+[0-11] ['204210', '241820', '900070', '0088D0', '042500', '0030R0', '046970', '080530', '082660', '900300', '900270', '262840']
+full_rescan batch operation: 0
+Financial data collection log >> 
+2026-05-08 02:00:13.799565, no: 0, code 002210 in process
+2026-05-08 02:00:33.123834, no: 1, code 002460 in process
+2026-05-08 02:00:52.020725, no: 2, code 011370 in process
+2026-05-08 02:01:10.558611, no: 3, code 029480 in process
+2026-05-08 02:01:30.152816, no: 4, code 052790 in process
+2026-05-08 02:01:49.602007, no: 5, code 091810 in process
+2026-05-08 02:02:05.161960, no: 6, code 092040 in process
+2026-05-08 02:02:24.558600, no: 7, code 175250 in process
+2026-05-08 02:02:40.067978, no: 8, code 219550 in process
+2026-05-08 02:02:57.581631, no: 9, code 382480 in process
+partial_rescan batch operation: 0
+Financial data collection log >> 
+2026-05-08 02:03:15.923802, no: 0, code 204210 in process
+2026-05-08 02:03:23.585878, no: 1, code 241820 in process
+2026-05-08 02:03:31.607871, no: 2, code 900070 in process
+----> no: 2, code 900070 currency not in KRW, skipping
+2026-05-08 02:03:37.022180, no: 3, code 0088D0 in process
+2026-05-08 02:03:43.080790, no: 4, code 042500 in process
+2026-05-08 02:03:50.739102, no: 5, code 0030R0 in process
+2026-05-08 02:03:56.720973, no: 6, code 046970 in process
+2026-05-08 02:04:04.319974, no: 7, code 080530 in process
+2026-05-08 02:04:16.965608, no: 8, code 082660 in process
+2026-05-08 02:04:24.931381, no: 9, code 900300 in process
+----> no: 9, code 900300 currency not in KRW, skipping
+2026-05-08 02:04:30.340185, no: 10, code 900270 in process
+----> no: 10, code 900270 currency not in KRW, skipping
+2026-05-08 02:04:35.762242, no: 11, code 262840 in process
+== Update finished ==
+updating market prices...
+Updating outstanding shares information...
+Processing outstanding shares data for 2026-05-06... 0/150
+Processing outstanding shares data for 2026-05-07... 1/150
+2026-05-08 QA DB: updating ['002210', '002460', '0030R0', '0088D0', '011370', '029480', '042500', '046970', '052790', '080530', '082660', '091810', '092040', '175250', '204210', '219550', '241820', '262840', '382480', '900070', '900270', '900300']
+002210
+002460
+0030R0
+0088D0
+011370
+029480
+042500
+046970
+052790
+080530
+082660
+091810
+092040
+175250
+204210
+219550
+241820
+262840
+382480
+900070
+900270
+900300
+002210 | 1/22
+002460 | 2/22
+0030R0 | 3/22
+2026-05-08 02:06:19.646892 | 0030R0 | quarterly data of 0030R0 is empty.
+0088D0 | 4/22
+011370 | 5/22
+029480 | 6/22
+042500 | 7/22
+046970 | 8/22
+052790 | 9/22
+080530 | 10/22
+082660 | 11/22
+091810 | 12/22
+092040 | 13/22
+175250 | 14/22
+204210 | 15/22
+219550 | 16/22
+241820 | 17/22
+262840 | 18/22
+382480 | 19/22
+900070 | 20/22
+2026-05-08 02:08:04.356969 | 900070 | quarterly data of 900070 is empty.
+900270 | 21/22
+2026-05-08 02:08:05.610828 | 900270 | quarterly data of 900270 is empty.
+900300 | 22/22
+2026-05-08 02:08:06.864994 | 900300 | quarterly data of 900300 is empty.
+sending incremental file list
+daily_update.json
+
+sent 2,348 bytes  received 35 bytes  4,766.00 bytes/sec
+total size is 2,226  speedup is 0.93
+sending incremental file list
+002210.png
+002460.png
+0088D0.png
+011370.png
+029480.png
+042500.png
+046970.png
+052790.png
+080530.png
+082660.png
+091810.png
+092040.png
+175250.png
+204210.png
+219550.png
+241820.png
+262840.png
+382480.png
+
+sent 7,474,977 bytes  received 364 bytes  14,950,682.00 bytes/sec
+total size is 1,123,402,574  speedup is 150.28
