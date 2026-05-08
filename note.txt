@@ -115,6 +115,10 @@
 - fdr: prices are adjusted prices... (refer to the online manual Q&A section)
 
 - fdr: Modify listing.py and data.py to include date_req parameter
+    ------------------------------------
+    * important: the same applies to KrxMarcapListingCache, which saves data in csv.
+    * this seems only temporary though
+    ------------------------------------
     * this allows you to get market data for a specific date
     * date format: '20240101'
     [data.py]
