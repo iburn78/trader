@@ -61834,3 +61834,71 @@ sending incremental file list
 
 sent 10,797,048 bytes  received 495 bytes  21,595,086.00 bytes/sec
 total size is 1,123,494,140  speedup is 104.05
+[main 57b58ae] 2026-05-09 upload done from linux machine
+ 10 files changed, 173 insertions(+)
+ rewrite data_collection/data/df_krx.db (83%)
+ rewrite data_collection/data/df_krx.feather (83%)
+To https://github.com/iburn78/trader
+   949cce2..57b58ae  main -> main
+이미 업데이트 상태입니다.
+Company health data collection initiated at 2026-05-10 02:00:05.866231
+Updating KRX data...
+Updating between dates: 2026-05-02 / 2026-05-10
+FULL rescan codes:
+Total 6 items.
+[0-5] ['002210', '029480', '033160', '052790', '175250', '382480']
+PARTIAL rescan codes:
+Total 3 items.
+[0-2] ['082660', '0030R0', '241820']
+full_rescan batch operation: 0
+Financial data collection log >> 
+2026-05-10 02:00:13.336537, no: 0, code 002210 in process
+2026-05-10 02:00:33.325768, no: 1, code 029480 in process
+2026-05-10 02:00:53.468245, no: 2, code 033160 in process
+2026-05-10 02:01:13.511878, no: 3, code 052790 in process
+2026-05-10 02:01:33.485995, no: 4, code 175250 in process
+2026-05-10 02:01:50.594023, no: 5, code 382480 in process
+partial_rescan batch operation: 0
+Financial data collection log >> 
+2026-05-10 02:02:09.212345, no: 0, code 082660 in process
+2026-05-10 02:02:17.369360, no: 1, code 0030R0 in process
+2026-05-10 02:02:23.425390, no: 2, code 241820 in process
+== Update finished ==
+updating market prices...
+2026-05-10 QA DB: updating ['002210', '0030R0', '029480', '033160', '052790', '082660', '175250', '241820', '382480']
+002210
+0030R0
+029480
+033160
+052790
+082660
+175250
+241820
+382480
+002210 | 1/9
+0030R0 | 2/9
+2026-05-10 02:03:38.561203 | 0030R0 | quarterly data of 0030R0 is empty.
+029480 | 3/9
+033160 | 4/9
+052790 | 5/9
+082660 | 6/9
+175250 | 7/9
+241820 | 8/9
+382480 | 9/9
+sending incremental file list
+daily_update.json
+
+sent 2,610 bytes  received 35 bytes  5,290.00 bytes/sec
+total size is 2,488  speedup is 0.94
+sending incremental file list
+002210.png
+029480.png
+033160.png
+052790.png
+082660.png
+175250.png
+241820.png
+382480.png
+
+sent 3,487,659 bytes  received 178 bytes  6,975,674.00 bytes/sec
+total size is 1,123,493,498  speedup is 322.12

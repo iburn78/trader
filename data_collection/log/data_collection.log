@@ -16817,3 +16817,29 @@ Financial data collection log >>
 2026-05-09 02:04:32.475540, no: 19, code 405920 in process
 == Update finished ==
 updating market prices...
+updating market prices...
+updating market prices...
+Company health data collection initiated at 2026-05-10 02:00:05.866231
+Updating KRX data...
+Updating between dates: 2026-05-02 / 2026-05-10
+FULL rescan codes:
+Total 6 items.
+[0-5] ['002210', '029480', '033160', '052790', '175250', '382480']
+PARTIAL rescan codes:
+Total 3 items.
+[0-2] ['082660', '0030R0', '241820']
+full_rescan batch operation: 0
+Financial data collection log >> 
+2026-05-10 02:00:13.336537, no: 0, code 002210 in process
+2026-05-10 02:00:33.325768, no: 1, code 029480 in process
+2026-05-10 02:00:53.468245, no: 2, code 033160 in process
+2026-05-10 02:01:13.511878, no: 3, code 052790 in process
+2026-05-10 02:01:33.485995, no: 4, code 175250 in process
+2026-05-10 02:01:50.594023, no: 5, code 382480 in process
+partial_rescan batch operation: 0
+Financial data collection log >> 
+2026-05-10 02:02:09.212345, no: 0, code 082660 in process
+2026-05-10 02:02:17.369360, no: 1, code 0030R0 in process
+2026-05-10 02:02:23.425390, no: 2, code 241820 in process
+== Update finished ==
+updating market prices...
