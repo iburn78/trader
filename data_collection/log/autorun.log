@@ -61902,3 +61902,74 @@ sending incremental file list
 
 sent 3,487,659 bytes  received 178 bytes  6,975,674.00 bytes/sec
 total size is 1,123,493,498  speedup is 322.12
+[main 6e88b9d] 2026-05-10 upload done from linux machine
+ 8 files changed, 96 insertions(+)
+To https://github.com/iburn78/trader
+   57b58ae..6e88b9d  main -> main
+https://github.com/iburn78/trader URL에서
+   6e88b9d..ab7d47e  main       -> origin/main
+업데이트 중 6e88b9d..ab7d47e
+Fast-forward
+ data_collection/dc06_GenPriceDB.py | 145 +++++++++++++++++++++++++++++++++++++
+ 1 file changed, 145 insertions(+)
+Company health data collection initiated at 2026-05-11 02:00:05.991379
+Updating KRX data...
+Updating between dates: 2026-05-03 / 2026-05-11
+FULL rescan codes:
+Total 6 items.
+[0-5] ['002210', '029480', '033160', '052790', '175250', '382480']
+PARTIAL rescan codes:
+Total 3 items.
+[0-2] ['241820', '0030R0', '082660']
+full_rescan batch operation: 0
+Financial data collection log >> 
+2026-05-11 02:00:13.451047, no: 0, code 002210 in process
+2026-05-11 02:00:33.117564, no: 1, code 029480 in process
+2026-05-11 02:00:51.953642, no: 2, code 033160 in process
+2026-05-11 02:01:11.276596, no: 3, code 052790 in process
+2026-05-11 02:01:30.461628, no: 4, code 175250 in process
+2026-05-11 02:01:47.154262, no: 5, code 382480 in process
+partial_rescan batch operation: 0
+Financial data collection log >> 
+2026-05-11 02:02:05.155333, no: 0, code 241820 in process
+2026-05-11 02:02:13.100855, no: 1, code 0030R0 in process
+2026-05-11 02:02:19.102500, no: 2, code 082660 in process
+== Update finished ==
+updating market prices...
+2026-05-11 QA DB: updating ['002210', '0030R0', '029480', '033160', '052790', '082660', '175250', '241820', '382480']
+002210
+0030R0
+029480
+033160
+052790
+082660
+175250
+241820
+382480
+002210 | 1/9
+0030R0 | 2/9
+2026-05-11 02:03:33.623060 | 0030R0 | quarterly data of 0030R0 is empty.
+029480 | 3/9
+033160 | 4/9
+052790 | 5/9
+082660 | 6/9
+175250 | 7/9
+241820 | 8/9
+382480 | 9/9
+sending incremental file list
+daily_update.json
+
+sent 1,895 bytes  received 35 bytes  3,860.00 bytes/sec
+total size is 1,773  speedup is 0.92
+sending incremental file list
+002210.png
+029480.png
+033160.png
+052790.png
+082660.png
+175250.png
+241820.png
+382480.png
+
+sent 3,485,731 bytes  received 178 bytes  6,971,818.00 bytes/sec
+total size is 1,123,491,571  speedup is 322.30
