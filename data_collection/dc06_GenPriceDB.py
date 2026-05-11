@@ -8,23 +8,19 @@ from trader.tools.tools import *
 from concurrent.futures import ThreadPoolExecutor
 from functools import partial
 
-
 # parallel download version: 8 request is usually safe
-# NEED REVIEW !!! ###_
 def _fetch(code, START_DATE):
     try:
         print(code)
-        res = fdr.DataReader(code, START_DATE)[['Close', 'Volume']]
+        res = fdr.DataReader(code, START_DATE)['Close']
         return code, res
     except Exception as e:
         print(f"Error retrieving data for {code}: {e}")
         return None
 
 # parallel download version: 8 request is usually safe
-# NEED REVIEW !!! ###_
 def _initialization(codelist, START_DATE, workers=8) -> tuple:
     price_data = {}
-    volume_data = {}
 
     fetch = partial(_fetch, START_DATE=START_DATE)
 
@@ -36,33 +32,10 @@ def _initialization(codelist, START_DATE, workers=8) -> tuple:
                 continue
 
             code, res = result
-            price_data[code] = res['Close']
-            volume_data[code] = res['Volume']
+            price_data[code] = res
 
     pdb = pd.concat(price_data, axis=1)
-    vdb = pd.concat(volume_data, axis=1)
-
-    return pdb, vdb
-
-# prev original _initiazliation
-# def _initialization(codelist, START_DATE) -> tuple: 
-#     price_data = {}
-#     volume_data = {}
-
-#     for code in codelist:
-#         print(code)
-#         try:
-#             res = fdr.DataReader(code, START_DATE)[['Close', 'Volume']]
-#             price_data[code] = res['Close']
-#             volume_data[code] = res['Volume']
-#         except Exception as e:
-#             print(f"Error retrieving data for {code}: {e}")
-#             continue  # Skip the code if there's an error
-
-#     pdb = pd.concat(price_data, axis=1)
-#     vdb = pd.concat(volume_data, axis=1)
-
-#     return pdb, vdb
+    return pdb
 
 def get_prices(codelist, START_DATE):
     return _initialization(codelist, START_DATE)
@@ -74,18 +47,11 @@ def log_message(message, log_file=None):
         print(message)
 
 def update_DB(DB, snapshot, date, column):
-    date_snapshot = snapshot[['Code', column]].set_index('Code').T
-    date_snapshot.index = [date]  
-    DB = date_snapshot.combine_first(DB)
-
     row = snapshot.set_index('Code')[column]
-    # ensure new columns exist
-    DB = DB.reindex(columns=DB.columns.union(row.index))
     DB.loc[date, row.index] = row
-
     return DB
 
-def gen_market_DB(price_DB_path, volume_DB_path, START_DATE, log_file=None):
+def gen_market_DB(price_DB_path, START_DATE, log_file=None):
     log_message('updating market prices...', log_file)
 
     market_dates = fdr.DataReader('005930', START_DATE).index
@@ -94,9 +60,8 @@ def gen_market_DB(price_DB_path, volume_DB_path, START_DATE, log_file=None):
     
     try:
         price_DB = pd.read_feather(price_DB_path)
-        volume_DB = pd.read_feather(volume_DB_path)
     except FileNotFoundError:  # Handle if files don't exist
-        price_DB, volume_DB = _initialization(market_snapshot['Code'], START_DATE)
+        price_DB = _initialization(market_snapshot['Code'], START_DATE)
 
     # Get dates to update from last available date in price_DB
     dates_to_update = market_dates[market_dates.get_loc(price_DB.index[-1]):]
@@ -106,273 +71,37 @@ def gen_market_DB(price_DB_path, volume_DB_path, START_DATE, log_file=None):
     code_list_to_fully_replace = list(set(market_snapshot['Code']) - set(intersection['Code']))
 
     for date in dates_to_update:
-        date_snapshot = fdr.StockListing('KRX', date.strftime('%Y%m%d'))[['Code', 'Market', 'Close', 'Volume', 'Stocks']] 
+        # this is only available through CACHE from 2026-03-08
+        date_snapshot = fdr.StockListing('KRX', date.strftime('%Y%m%d'))[['Code', 'Market', 'Close', 'Volume', 'Amount', 'Marcap', 'Stocks']] 
         date_snapshot = date_snapshot.loc[date_snapshot['Market'].str.contains('KOSPI|KOSDAQ')]
 
-        # Update all DBs consistently
         price_DB = update_DB(price_DB, date_snapshot, date, 'Close')
-        volume_DB = update_DB(volume_DB, date_snapshot, date, 'Volume')
 
     # Replace the entire price/volume data for certain stocks
     for code in code_list_to_fully_replace:
         try:
-            res = fdr.DataReader(code, START_DATE)[['Close', 'Volume']]
-            price_DB[code] = res['Close']
-            volume_DB[code] = res['Volume']
+            res = fdr.DataReader(code, START_DATE)['Close']
+            price_DB[code] = res
         except Exception as e:
             print(f"Error retrieving full data for {code}: {e}")
             continue  # Skip if there is an error
     
     # remove delisted
     price_DB = price_DB.dropna(axis=1, subset=[price_DB.index[-1]])
-    volume_DB = volume_DB.dropna(axis=1, subset=[volume_DB.index[-1]])
-
-    # Ensure data types are correct
-    price_DB = price_DB.astype('float')
-    volume_DB = volume_DB.astype('float')
-
-    # Save the updated databases
-    price_DB.to_feather(price_DB_path)
-    volume_DB.to_feather(volume_DB_path)
-
-    return True
-
-
-def gen_market_DB_with_split_adjust(price_DB_path, volume_DB_path, START_DATE, log_file=None):
-    # this is a versioin of gen_market_DB, but checks oustanding shares("Stocks") and adjusts previous volumes
-
-    # for existing codes (splits, reverse splits, excessive bouns issues or stock dividends)
-    # - prices are fully redownloaded (i.e., already adjusted)
-    # - volumes are manually adjusted, but ONLY adjust what's existing in the volume_DB
-    #    * if not run everyday, adjustment may not be applied precisely
-    # for new codes (new IPOs)
-    # for droped codes (delisted)
-
-    log_message('updating market prices and volumes...', log_file)
-
-    # use representative code to get market dates
-    market_dates = fdr.DataReader('005930', START_DATE).index
-
-    # today's listing
-    market_snapshot = fdr.StockListing('KRX')[['Code', 'Market', 'Stocks']]
-    market_snapshot = market_snapshot.loc[market_snapshot['Market'].str.contains('KOSPI|KOSDAQ')]
-
-    try:
-        price_DB = pd.read_feather(price_DB_path)
-        volume_DB = pd.read_feather(volume_DB_path)
-    except FileNotFoundError:
-        price_DB, volume_DB = _initialization(market_snapshot['Code'], START_DATE)
-
-    # ensure datetime index
-    price_DB.index = pd.to_datetime(price_DB.index)
-    volume_DB.index = pd.to_datetime(volume_DB.index)
-
-    # dates to update
-    last_date = price_DB.index[-1]
-    dates_to_update = market_dates[market_dates.get_loc(last_date):]
-
-    # initial snapshot
-    prev_market_snapshot = fdr.StockListing(
-        'KRX',
-        dates_to_update[0].strftime('%Y%m%d')
-    )[["Code", "Market", "Stocks"]]
-
-    prev_market_snapshot = prev_market_snapshot[
-        prev_market_snapshot['Market'].str.contains('KOSPI|KOSDAQ')
-    ]
-
-    # stocks requiring full refresh
-    intersection = pd.merge(
-        prev_market_snapshot,
-        market_snapshot,
-        on=["Code", "Stocks"],
-        how="inner"
-    )
-
-    code_list_to_fully_replace = list(
-        set(market_snapshot['Code']) - set(intersection['Code'])
-    )
-
-    # ---------------------------------------------------------
-    # 1. BUILD ADJUSTMENT FACTOR (core fix)
-    # ---------------------------------------------------------
-    adjust_factor = pd.DataFrame(
-        1.0,
-        index=price_DB.index,
-        columns=price_DB.columns
-    )
-
-    prev_snapshot = prev_market_snapshot.set_index('Code')['Stocks']
-
-    for date in dates_to_update:
-        curr_snapshot = fdr.StockListing(
-            'KRX',
-            date.strftime('%Y%m%d')
-        )[["Code", "Market", "Stocks"]]
-
-        curr_snapshot = curr_snapshot[
-            curr_snapshot['Market'].str.contains('KOSPI|KOSDAQ')
-        ]
-
-        curr_snapshot = curr_snapshot.set_index('Code')['Stocks']
-
-        common = prev_snapshot.index.intersection(curr_snapshot.index)
-
-        for code in common:
-            if prev_snapshot[code] > 0:
-                ratio = curr_snapshot[code] / prev_snapshot[code]
-
-                # threshold logic
-                if ratio >= 1.5 or ratio <= 0.67:
-                    # backward apply to ALL past data
-                    adjust_factor.loc[:date, code] *= ratio
-
-        prev_snapshot = curr_snapshot
-
-    # ---------------------------------------------------------
-    # 2. UPDATE PRICE & VOLUME (raw update)
-    # ---------------------------------------------------------
-    for date in dates_to_update:
-        date_snapshot = fdr.StockListing(
-            'KRX',
-            date.strftime('%Y%m%d')
-        )[["Code", "Market", "Close", "Volume", "Stocks"]]
-
-        date_snapshot = date_snapshot[
-            date_snapshot['Market'].str.contains('KOSPI|KOSDAQ')
-        ]
-
-        price_DB = update_DB(price_DB, date_snapshot, date, 'Close')
-        volume_DB = update_DB(volume_DB, date_snapshot, date, 'Volume')
-
-    # ---------------------------------------------------------
-    # 3. FULL REFRESH FOR DELIST/STRUCTURAL BREAKS
-    # ---------------------------------------------------------
-    for code in code_list_to_fully_replace:
-        try:
-            res = fdr.DataReader(code, START_DATE)[['Close', 'Volume']]
-            price_DB[code] = res['Close']
-            volume_DB[code] = res['Volume']
-        except Exception as e:
-            print(f"Error retrieving full data for {code}: {e}")
-            continue
-
-    # ---------------------------------------------------------
-    # 4. APPLY VOLUME ADJUSTMENT (IMPORTANT FIX)
-    # ---------------------------------------------------------
-    volume_DB = volume_DB * adjust_factor
-
-    # ---------------------------------------------------------
-    # 5. CLEANUP
-    # ---------------------------------------------------------
-    price_DB = price_DB.dropna(axis=1, subset=[price_DB.index[-1]])
-    volume_DB = volume_DB.dropna(axis=1, subset=[volume_DB.index[-1]])
 
     price_DB = price_DB.astype('float')
-    volume_DB = volume_DB.astype('float')
-
     price_DB.to_feather(price_DB_path)
-    volume_DB.to_feather(volume_DB_path)
 
     return True
 
-
-def _update_outshare_db(outshare_DB, new_data):
-
-    new_data = new_data.astype(float)
-
-    # append
-    outshare_DB = pd.concat([outshare_DB, new_data])
-
-    # remove duplicates
-    outshare_DB = outshare_DB[~outshare_DB.index.duplicated(keep="last")]
-
-    # keep chronological order
-    outshare_DB = outshare_DB.sort_index()
-
-    # remove delisted stocks
-    last = outshare_DB.index[-1]
-    outshare_DB = outshare_DB.dropna(axis=1, subset=[last])
-
-    return outshare_DB
-
-def gen_OutstandingShares_DB(outshare_DB_path, START_DATE, log_file=None): 
-    log_message('Updating outstanding shares information...', log_file)
-
-    # Get market dates from a reference stock (e.g., Samsung '005930')
-    market_dates = fdr.DataReader('005930', START_DATE).index
-
-    # Fetch the initial snapshot of the market
-    market_snapshot = fdr.StockListing('KRX')[['Code', 'Market', 'Stocks']]
-    market_snapshot = market_snapshot.loc[market_snapshot['Market'].str.contains('KOSPI|KOSDAQ')]
-    
-    try:
-        # Load existing outstanding shares DB
-        outshare_DB = pd.read_feather(outshare_DB_path)
-        update_start_date = outshare_DB.index[-1]  # Start updating from the last available date
-    except FileNotFoundError:  # If the file doesn't exist, create an empty DataFrame
-        outshare_DB = pd.DataFrame(index=pd.to_datetime([]))  # Empty DataFrame with DateTime index
-        log_message("No existing outstanding shares DB found. Creating a new one...", log_file)
-        update_start_date = market_dates[0]  # Set the first market date as the starting point
-
-    # Get the list of dates to update starting from the last available date
-    dates_to_update = market_dates[market_dates.get_loc(update_start_date):]
-
-    snapshots = []
-    CUT_CHUNK = 150
-
-    for date in dates_to_update:
-        log_message(f"Processing outstanding shares data for {date.strftime('%Y-%m-%d')}... {len(snapshots)}/{CUT_CHUNK}", log_file)
-        
-        # Fetch stock listing data for the specific date
-        date_snapshot = fdr.StockListing('KRX', date.strftime('%Y%m%d'))[['Code', 'Market', 'Stocks']]
-        date_snapshot = date_snapshot.loc[date_snapshot['Market'].str.contains('KOSPI|KOSDAQ')]
-
-        # Prepare the snapshot for concatenation
-        date_snapshot = date_snapshot[['Code', 'Stocks']].set_index('Code').T
-        date_snapshot.index = [date]  # Set the current date as the index
-        
-        # Collect snapshots in a list
-        snapshots.append(date_snapshot)
-
-        # Process the snapshots in batches of 100
-        if len(snapshots) == CUT_CHUNK:
-            new_data = pd.concat(snapshots)
-            outshare_DB = _update_outshare_db(outshare_DB, new_data)
-
-            # Save the updated DB to a feather file
-            outshare_DB.to_feather(outshare_DB_path)
-
-            # Reset the snapshots list for the next batch
-            snapshots = []
-
-    # Concatenate and process any remaining snapshots
-    if snapshots:
-        new_data = pd.concat(snapshots)
-        outshare_DB = _update_outshare_db(outshare_DB, new_data)
-
-        # Save the updated DB to a feather file
-        outshare_DB.to_feather(outshare_DB_path)
-
-    return True
 
 if __name__ == '__main__': 
 
     START_DATE = '2014-01-01'
 
     cd_ = os.path.dirname(os.path.abspath(__file__)) # .   
-
+    log_file = os.path.join(cd_, 'log/data_collection.log')
     price_DB_path = os.path.join(cd_, 'data/price_DB.feather')
 
-    # the volume_DB is not split adjusted // fdr does not support it
-    # however, in this trader, volume_DB is not used (as of 2026-05-10)
+    gen_market_DB(price_DB_path, START_DATE, log_file=log_file)
 
-    volume_DB_path = os.path.join(cd_, 'data/volume_DB.feather')
-    outshare_DB_path = os.path.join(cd_, 'data/outshare_DB.feather')
-    log_file = os.path.join(cd_, 'log/data_collection.log')
-
-    gen_market_DB(price_DB_path, volume_DB_path, START_DATE, log_file=log_file)
-
-    ###_ outshare_db API needs be fixed
-    ###_ and it is inefficient to maintain outshare db anyway
-    # gen_OutstandingShares_DB(outshare_DB_path, START_DATE, log_file)
