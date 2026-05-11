@@ -16868,3 +16868,52 @@ Financial data collection log >>
 == Update finished ==
 updating market prices...
 updating market prices...
+Company health data collection initiated at 2026-05-12 02:00:06.503652
+Updating KRX data...
+Updating between dates: 2026-05-04 / 2026-05-12
+FULL rescan codes:
+Total 7 items.
+[0-6] ['002210', '029480', '033160', '052790', '175250', '330730', '382480']
+PARTIAL rescan codes:
+Total 26 items.
+[0-25] ['159010', '272110', '100220', '241820', '482630', '473050', '065650', '059100', '311320', '493790', '468760', '032580', '950140', '006880', '368770', '432470', '009190', '082660', '094170', '476060', '464680', '376270', '049630', '083450', '064850', '0030R0']
+full_rescan batch operation: 0
+Financial data collection log >> 
+2026-05-12 02:00:14.085754, no: 0, code 002210 in process
+2026-05-12 02:00:32.604453, no: 1, code 029480 in process
+2026-05-12 02:00:51.856084, no: 2, code 033160 in process
+2026-05-12 02:01:11.426413, no: 3, code 052790 in process
+2026-05-12 02:01:31.285990, no: 4, code 175250 in process
+2026-05-12 02:01:47.895126, no: 5, code 330730 in process
+2026-05-12 02:02:04.170673, no: 6, code 382480 in process
+partial_rescan batch operation: 0
+Financial data collection log >> 
+2026-05-12 02:02:22.404558, no: 0, code 159010 in process
+2026-05-12 02:02:30.281502, no: 1, code 272110 in process
+2026-05-12 02:02:38.127002, no: 2, code 100220 in process
+2026-05-12 02:02:45.760282, no: 3, code 241820 in process
+2026-05-12 02:02:54.003353, no: 4, code 482630 in process
+2026-05-12 02:03:01.229649, no: 5, code 473050 in process
+2026-05-12 02:03:08.793719, no: 6, code 065650 in process
+2026-05-12 02:03:16.427485, no: 7, code 059100 in process
+2026-05-12 02:03:24.194938, no: 8, code 311320 in process
+2026-05-12 02:03:32.304209, no: 9, code 493790 in process
+2026-05-12 02:03:39.508453, no: 10, code 468760 in process
+2026-05-12 02:03:47.173798, no: 11, code 032580 in process
+2026-05-12 02:03:55.110723, no: 12, code 950140 in process
+----> no: 12, code 950140 currency not in KRW, skipping
+2026-05-12 02:04:00.377828, no: 13, code 006880 in process
+2026-05-12 02:04:08.192097, no: 14, code 368770 in process
+2026-05-12 02:04:15.886136, no: 15, code 432470 in process
+2026-05-12 02:04:23.797334, no: 16, code 009190 in process
+2026-05-12 02:04:31.627087, no: 17, code 082660 in process
+2026-05-12 02:04:39.882329, no: 18, code 094170 in process
+2026-05-12 02:04:47.664800, no: 19, code 476060 in process
+2026-05-12 02:04:55.019985, no: 20, code 464680 in process
+2026-05-12 02:05:02.820086, no: 21, code 376270 in process
+2026-05-12 02:05:10.557084, no: 22, code 049630 in process
+2026-05-12 02:05:18.333028, no: 23, code 083450 in process
+2026-05-12 02:05:26.541226, no: 24, code 064850 in process
+2026-05-12 02:05:34.362510, no: 25, code 0030R0 in process
+== Update finished ==
+updating market prices...
