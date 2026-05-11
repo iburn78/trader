@@ -1,6 +1,3 @@
-# Generate price DB 
-# if price_DB and volume_DB are given then updates them, otherwise creates
-#%% 
 import pandas as pd
 import FinanceDataReader as fdr
 from trader.tools.tools import *
