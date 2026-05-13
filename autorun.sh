@@ -12,9 +12,9 @@ source venv/bin/activate
 
 # Run Python scripts
 cd "${trader}/data_collection"
-python CompanyHealth.py
-python GenMarketDB.py
-python VisualizeHealth.py
+python 00_CompanyHealth.py
+python 01_GenMarketDB.py
+python 02_VisualizeHealth.py
 
 date > "${trader}/data_collection/data/update_info.txt"
 cp "${trader}/data_collection/data/update_info.txt" "${tnp}/public/data/"
