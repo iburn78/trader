@@ -162,4 +162,4 @@ cython_debug/
 # trader specific files
 plots/
 .DS_Store
-
+docs_cache/
