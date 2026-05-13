@@ -160,14 +160,6 @@ cython_debug/
 #.idea/
 
 # trader specific files
-venv/
-docs_cache/
 plots/
-# log/
-token.dat
-config.json
-update_info.txt
-andy/
-analysis/data/
 
 
