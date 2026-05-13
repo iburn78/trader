@@ -452,12 +452,18 @@ def generate_krx_data(sql_db_creation=True):
 
     if sql_db_creation: 
         df_krx_sql = df_krx.copy()
-        conn = sqlite3.connect(os.path.join(pd_, 'data_collection/data/df_krx.db'))
+        plots_dir = os.path.join(pd_, 'data_collection/plots') # this db is used in TNP project 
+        os.makedirs(plots_dir, exist_ok=True)
+        conn = sqlite3.connect(os.path.join(plots_dir, 'df_krx.db'))
         df_krx_sql['ListingDate'] = df_krx_sql['ListingDate'].dt.strftime('%Y-%m-%d')
         df_krx_sql.to_sql('krx_data', conn, if_exists='replace')
 
         conn.commit()
         conn.close()
+
+        # also, leave a timestamp for TNP project 
+        with open(os.path.join(plots_dir, 'update_info.txt'), 'w') as f:
+            f.write(datetime.datetime.now().strftime('%Y-%m-%d %H:%M:%S'))
 
     return df_krx
 
