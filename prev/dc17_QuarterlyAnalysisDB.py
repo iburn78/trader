@@ -2,7 +2,7 @@
 import pandas as pd
 import numpy as np
 import os
-from trader.tools.tools import get_dbs, get_quarterly_data, basic_stats, rounder, log_print
+from tools.dc_tools import get_dbs, get_quarterly_data, basic_stats, rounder, log_print
 
 KEY_ACCOUNT = 'operating_income'
 MIN_QUARTERS = 8  # Minimum quarters of data required

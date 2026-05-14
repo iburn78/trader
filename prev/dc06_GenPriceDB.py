@@ -1,6 +1,6 @@
 import pandas as pd
 import FinanceDataReader as fdr
-from trader.tools.tools import *
+from tools.dc_tools import *
 
 from concurrent.futures import ThreadPoolExecutor
 from functools import partial

@@ -1,5 +1,5 @@
 #%%
-from trader.tools.tools import *
+from tools.dc_tools import *
 
 listed = get_listed()
 cd_ = os.path.dirname(os.path.abspath(__file__)) # .   

@@ -1,5 +1,5 @@
 #%% 
-from trader.tools.tools import set_KoreanFonts
+from tools.dc_tools import set_KoreanFonts
 from trader.tools.koreainvest_module import *
 from trader.analysis.analysis_tools import *
 import matplotlib.pyplot as plt

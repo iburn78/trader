@@ -3,7 +3,7 @@ from dataclasses import dataclass, asdict, field, fields
 from datetime import datetime
 import pandas as pd
 import os
-from trader.tools.tools import get_df_krx
+from tools.dc_tools import get_df_krx
 
 df_krx = get_df_krx()
 

@@ -4,7 +4,7 @@
 import OpenDartReader 
 import os
 from trader.tools.dictionary import ACCOUNT_NAME_DICTIONARY, BS_ACCOUNTS, IS_ACCOUNTS, DART_APIS, MODIFIED_REPORT
-from trader.tools.tools import * 
+from tools.dc_tools import * 
 import pandas as pd
 import numpy as np
 import datetime, time

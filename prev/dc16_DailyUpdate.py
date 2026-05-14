@@ -1,6 +1,6 @@
 #%%
 import json
-from trader.tools.tools import *
+from tools.dc_tools import *
 import OpenDartReader 
 from trader.tools.dictionary import DART_APIS
 

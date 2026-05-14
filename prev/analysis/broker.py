@@ -1,5 +1,5 @@
 #%% 
-from trader.tools.tools import generate_krx_data
+from tools.dc_tools import generate_krx_data
 from trader.tools.koreainvest_module import *
 from trader.analysis.analysis_tools import *
 

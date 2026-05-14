@@ -1,7 +1,7 @@
 #%%
 import os
 import FinanceDataReader as fdr
-from trader.tools.tools import generate_krx_data, get_main_financial_reports_db
+from tools.dc_tools import generate_krx_data, get_main_financial_reports_db
 from trader.tools.koreainvest_module import *
 import pandas as pd
 import time

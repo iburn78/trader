@@ -1,6 +1,6 @@
 #%% 
 # CCA: Company Classification Analysis
-from trader.tools.tools import get_df_krx
+from tools.dc_tools import get_df_krx
 from trader.data_collection.dc18_Info_DB import get_company_issues, save_GPT_response
 import pandas as pd
 import numpy as np
@@ -431,8 +431,8 @@ def styled_df_to_image(df):
 ###_ ------------------------------------------------
 
 import io
-from trader.tools.tools import get_main_financial_reports_db, get_quarterly_data, get_price_db, get_outshare_db, prev_quarter_str
-from trader.tools.tools import plot_company_financial_summary2
+from tools.dc_tools import get_main_financial_reports_db, get_quarterly_data, get_price_db, get_outshare_db, prev_quarter_str
+from tools.dc_tools import plot_company_financial_summary2
 from trader.data_collection.dc17_QuarterlyAnalysisDB import MAX_QUARTERS
 import matplotlib.pyplot as plt
 from pptx import Presentation
