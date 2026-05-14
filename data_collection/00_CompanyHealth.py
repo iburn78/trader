@@ -1,10 +1,13 @@
 #%%
 # Create a function to measure a financial health of a company 
 
-import OpenDartReader 
+try:
+    import OpenDartReader 
+except:
+    from opendartreader import OpenDartReader # newer version
 import os
 from trader.tools.dictionary import ACCOUNT_NAME_DICTIONARY, BS_ACCOUNTS, IS_ACCOUNTS, DART_APIS, MODIFIED_REPORT
-from tools.dc_tools import * 
+from trader.tools.dc_tools import * 
 import pandas as pd
 import numpy as np
 import datetime, time
