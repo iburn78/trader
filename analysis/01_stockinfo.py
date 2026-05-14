@@ -150,7 +150,7 @@ def _compute_single_regression(
     slope, intercept = np.polyfit(x,y,1)
     fit_values = intercept + slope*x
     
-    # saving fitted values is more efficient than recalc in plot
+    # saving fitted values for plots
     fit_ = pd.Series(
         fit_values,
         index=s.index,
@@ -262,7 +262,7 @@ def _get_opincome_stats(stockinfo: StockInfo, fr_data: pd.DataFrame):
     sd = stockinfo.meta['start_date']
     start_idx = fr_data.index.searchsorted(sd, side="right") - 1 # side "right" - 1 will give data from the quarter that start_date is in
 
-    opincome = fr_data['opincome']
+    opincome = fr_data.iloc[start_idx:]['opincome']
     x = np.arange(len(opincome))
     y = opincome.values.astype(float)
     opincome_slope, _ = np.polyfit(x, y, 1) # use only slope / intercept is misleading
@@ -298,7 +298,7 @@ def append_fr_data(stockinfo: StockInfo):
 
         'opincome': {
             'ltm': stockinfo.main_df['opincome_ltm'].iloc[-1],
-            'annualized_x4': stockinfo.main_df['opincome'].iloc[-1],
+            'annualized_x4': stockinfo.main_df['opincome'].iloc[-1]*4,
             'fwd': fwd_opincome,
             'slope': opincome_slope,
             'unit': KRW_UNIT_KR[KRW_UNIT],
@@ -327,11 +327,6 @@ def plot_stockinfo(
     figsize: tuple = (12, 6),
     use_ltm: bool = False,
 ):
-
-    import matplotlib.pyplot as plt
-    import matplotlib.dates as mdates
-    import numpy as np
-    from matplotlib.ticker import FuncFormatter
 
     fig, (ax1, ax2) = plt.subplots(
         2,
@@ -581,7 +576,7 @@ def plot_stockinfo(
 #%% 
 code = '005930'
 aggregation = 'm'
-start_date = '2022-01-01'
+start_date = '2024-01-01'
 
 stockinfo = build_stockinfo(code=code, aggregation=aggregation, start_date=start_date)
 stockinfo = append_fr_data(stockinfo)
@@ -592,9 +587,26 @@ plot_stockinfo(stockinfo, use_ltm = True)
 
 
 # %%
-stockinfo.meta
-stockinfo.ma_rate
-# %%
+print(stockinfo.meta)
+print(stockinfo.ma_rate)
+print(stockinfo.fr_stats)  ###_ check this... x4 needed atleast and opincome slope is wrong
 
-stockinfo.fr_stats  ###_ check this... x4 needed atleast and opincome slope is wrong
-# %%
+
+###### FIX DATE_REQ to be the FIRST ARGUMNENT IN MAC
+###### FIX DATE_REQ to be the FIRST ARGUMNENT IN MAC
+###### FIX DATE_REQ to be the FIRST ARGUMNENT IN MAC
+###### FIX DATE_REQ to be the FIRST ARGUMNENT IN MAC
+###### FIX DATE_REQ to be the FIRST ARGUMNENT IN MAC
+###### CHECK IN LINUX TOO
+###### CHECK IN LINUX TOO
+###### CHECK IN LINUX TOO
+###### CHECK IN LINUX TOO
+###### CHECK IN LINUX TOO
+##### check OpenDartReader note fix too
+##### check OpenDartReader note fix too
+##### check OpenDartReader note fix too
+##### check OpenDartReader note fix too   : 7 print commented out (5 lines)
+##### check OpenDartReader note fix too   : put pass 
+
+
+##### check floats fixed point
