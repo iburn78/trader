@@ -99,6 +99,7 @@
         # print(jo)  <- make this a comment 
         # print('전자공시의 재무데이터는 2015년 이후 데이터를 제공합니다') if bsns_year < 2015 else print()   <- make this a comment    
         ...
+        * may make all 'print' commented out
     
 - in OpenDartReader    
     dart_list.py - modify the following

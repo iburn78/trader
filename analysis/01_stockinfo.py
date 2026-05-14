@@ -589,24 +589,4 @@ plot_stockinfo(stockinfo, use_ltm = True)
 # %%
 print(stockinfo.meta)
 print(stockinfo.ma_rate)
-print(stockinfo.fr_stats)  ###_ check this... x4 needed atleast and opincome slope is wrong
-
-
-###### FIX DATE_REQ to be the FIRST ARGUMNENT IN MAC
-###### FIX DATE_REQ to be the FIRST ARGUMNENT IN MAC
-###### FIX DATE_REQ to be the FIRST ARGUMNENT IN MAC
-###### FIX DATE_REQ to be the FIRST ARGUMNENT IN MAC
-###### FIX DATE_REQ to be the FIRST ARGUMNENT IN MAC
-###### CHECK IN LINUX TOO
-###### CHECK IN LINUX TOO
-###### CHECK IN LINUX TOO
-###### CHECK IN LINUX TOO
-###### CHECK IN LINUX TOO
-##### check OpenDartReader note fix too
-##### check OpenDartReader note fix too
-##### check OpenDartReader note fix too
-##### check OpenDartReader note fix too   : 7 print commented out (5 lines)
-##### check OpenDartReader note fix too   : put pass 
-
-
-##### check floats fixed point
+print(stockinfo.fr_stats)  
