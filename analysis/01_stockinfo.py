@@ -44,10 +44,10 @@ DATECOLS = [
     pd.Timestamp(f'{year}-{quarter_map[q]}')
     for year, q in (col.split('_') for col in QCOLS)
 ]
+
 # =========================================================
 # data structure
 # =========================================================
-
 @dataclass
 class StockInfo:
     code: str
@@ -71,7 +71,7 @@ class StockInfo:
 )
 
 # =========================================================
-# operators
+# handling ma data
 # =========================================================
 def _get_ma_data(code: str, start_date = None): # MarCap, Amount, start_date in 'yyyy-mm-dd' format
     outshares = df_krx.at[code, 'Stocks']
@@ -189,37 +189,10 @@ def _compute_ma_rates(
 
     return rate, fitted
 
-def build_stockinfo(
-    code: str,
-    aggregation: Literal['d', 'w', 'm'] = 'w',
-    start_date = None
-) -> StockInfo:
-
-    _ma_data = _get_ma_data(code, start_date)
-    ma_data = _ma_aggregate_periods(_ma_data, aggregation) # aggregrated
-    ma_rate, ma_fitted = _compute_ma_rates(ma_data)
-    fr_stats = pd.DataFrame() # empty df for now
-    meta = {
-        'unit': KRW_UNIT,
-        'aggregation': aggregation,
-        'start_date': start_date,
-    }
-
-    return StockInfo(
-        code=code,
-        time=pd.Timestamp.now(),
-
-        main_df=ma_data,
-        ma_rate=ma_rate,
-        ma_fitted=ma_fitted,
-        fr_stats =fr_stats,
-        meta=meta
-    )
 
 # =========================================================
-# adding FR data
+# handling FR data
 # =========================================================
-
 def _get_fr_db_for_code(fr_main_db, code):
     # use CFS if data exists, and otherwise OFS (for that account)
     fr_target = fr_main_db.loc[fr_main_db['code']==code]
@@ -243,8 +216,7 @@ def _ffill_inf(df):
     df = df.ffill().dropna()
     return df
 
-# ltm: last twelve months
-def _build_fr_data(fr_main_db, code):
+def _get_fr_data(fr_main_db, code):
     fr_db_for_code = _get_fr_db_for_code(fr_main_db, code)
     row_r = _extract_account_data(fr_db_for_code, 'revenue')
     row_o = _extract_account_data(fr_db_for_code, 'operating_income')
@@ -252,17 +224,13 @@ def _build_fr_data(fr_main_db, code):
         'revenue': row_r,
         'opincome': row_o,
     })
-    fr_data['revenue_ltm'] = fr_data['revenue'].rolling(4).sum()
-    fr_data['opincome_ltm'] = fr_data['opincome'].rolling(4).sum()
-    fr_data['opmargin'] = fr_data['opincome']/fr_data['revenue']
-    fr_data['opmargin_ltm'] = fr_data['opincome_ltm']/fr_data['revenue_ltm']
-    return _ffill_inf(fr_data)
+    return fr_data
 
 def _get_opincome_stats(stockinfo: StockInfo, fr_data: pd.DataFrame):
     sd = stockinfo.meta['start_date']
-    start_idx = fr_data.index.searchsorted(sd, side="right") - 1 # side "right" - 1 will give data from the quarter that start_date is in
-
+    start_idx = max(0, fr_data.index.searchsorted(sd, side="right") - 1) # side "right" - 1 will give data from the quarter that start_date is in
     opincome = fr_data.iloc[start_idx:]['opincome']
+
     x = np.arange(len(opincome))
     y = opincome.values.astype(float)
     opincome_slope, _ = np.polyfit(x, y, 1) # use only slope / intercept is misleading
@@ -272,12 +240,22 @@ def _get_opincome_stats(stockinfo: StockInfo, fr_data: pd.DataFrame):
 
     return float(fwd_opincome), float(opincome_slope)
     
-
 # PER: assumes the same 4 quarters 
-def append_fr_data(stockinfo: StockInfo):
-    fr_data = _build_fr_data(fr_main_db, stockinfo.code)
+# ltm: last twelve months
+###_
+###_ be careful with trims... gets shorter and shorter when adding
+###_ align dates start_date and main_df data mismatch --- will later be a headache.
+###_ make modules clearer otherwise operations will not be easy... 
+
+def append_fr_data(stockinfo: StockInfo, fr_data):
+    fr_data['revenue_ltm'] = fr_data['revenue'].rolling(4).sum()
+    fr_data['opincome_ltm'] = fr_data['opincome'].rolling(4).sum()
+    fr_data['opmargin'] = fr_data['opincome']/fr_data['revenue']
+    fr_data['opmargin_ltm'] = fr_data['opincome_ltm']/fr_data['revenue_ltm']
+    fr_data = _ffill_inf(fr_data)
+
     stockinfo.main_df[fr_data.columns]=fr_data.reindex(stockinfo.main_df.index,method='ffill')
-    stockinfo.main_df['PER'] = stockinfo.main_df['marcap']/(4*stockinfo.main_df['opincome'])
+    stockinfo.main_df['PER'] = stockinfo.main_df['marcap']/(4*stockinfo.main_df['opincome']) # x4 applied here
     stockinfo.main_df['PER_ltm'] = stockinfo.main_df['marcap']/stockinfo.main_df['opincome_ltm']
     stockinfo.main_df = _ffill_inf(stockinfo.main_df)
 
@@ -285,20 +263,20 @@ def append_fr_data(stockinfo: StockInfo):
     PER_fwd = stockinfo.main_df['marcap'].iloc[-1]/fwd_opincome
     fr_stats = pd.DataFrame(
         index=['PER', 'opincome', 'opmargin'],
-        columns=['ltm', 'annualized_x4', 'fwd', 'slope', 'unit'],
+        columns=['ltm', 'qx4', 'fwd', 'slope', 'unit'],
     )
 
     _config = {
         'PER': {
             'ltm': stockinfo.main_df['PER_ltm'].iloc[-1],
-            'annualized_x4': stockinfo.main_df['PER'].iloc[-1],
+            'qx4': stockinfo.main_df['PER'].iloc[-1],
             'fwd': PER_fwd,
             'unit': 'times',
         },
 
         'opincome': {
             'ltm': stockinfo.main_df['opincome_ltm'].iloc[-1],
-            'annualized_x4': stockinfo.main_df['opincome'].iloc[-1]*4,
+            'qx4': stockinfo.main_df['opincome'].iloc[-1]*4,
             'fwd': fwd_opincome,
             'slope': opincome_slope,
             'unit': KRW_UNIT_KR[KRW_UNIT],
@@ -306,7 +284,7 @@ def append_fr_data(stockinfo: StockInfo):
 
         'opmargin': {
             'ltm': stockinfo.main_df['opmargin_ltm'].iloc[-1],
-            'annualized_x4': stockinfo.main_df['opmargin'].iloc[-1],
+            'qx4': stockinfo.main_df['opmargin'].iloc[-1],
             'unit': '%',
         },
     }
@@ -317,6 +295,40 @@ def append_fr_data(stockinfo: StockInfo):
 
     stockinfo.fr_stats = fr_stats
     return stockinfo
+
+# =========================================================
+# stockinfo operations
+# =========================================================
+def build_stockinfo(code: str, aggregation: Literal['d', 'w', 'm'], start_date) -> StockInfo:
+
+    _ma_data = _get_ma_data(code, start_date)
+    ma_data = _ma_aggregate_periods(_ma_data, aggregation) # aggregrated
+    ma_rate, ma_fitted = _compute_ma_rates(ma_data)
+    fr_stats = pd.DataFrame() # empty df for now
+    meta = {
+        'unit': KRW_UNIT,
+        'aggregation': aggregation,
+        'start_date': start_date,
+    }
+
+    return StockInfo(
+        code=code,
+        time=pd.Timestamp.now(),
+
+        main_df=ma_data,
+        ma_rate=ma_rate,
+        ma_fitted=ma_fitted,
+        fr_stats =fr_stats,
+        meta=meta
+    )
+
+def add_stockinfo(st1: StockInfo, st2: StockInfo):
+    # to add, key parameters and index should match
+    if st1.meta != st2.meta:
+        raise ValueError('Key parameters mismatch')
+    if not st1.main_df.index.equals(st2.main_df.index):
+        raise ValueError('main_df index mismatch')
+    
 
 
 # =========================================================
@@ -352,7 +364,7 @@ def plot_stockinfo(
         opincome_col = 'opincome'
         opmargin_col = 'opmargin'
         per_col = 'PER'
-        basis_text = f"annualized x4 in {KRW_UNIT_KR[KRW_UNIT]}"
+        basis_text = f"qx4 in {KRW_UNIT_KR[KRW_UNIT]}"
         income_mult = 4
 
     # =====================================================
@@ -498,8 +510,8 @@ def plot_stockinfo(
     )
 
     # ---- ZERO BASELINE
-    ax2.set_ylim(bottom=0)
-    ax2_r.set_ylim(bottom=0)
+    ax2.set_ylim(bottom=min(0, opincome.min()))
+    ax2_r.set_ylim(bottom=min(0, per.min()))
 
     # ---- annotations
     ax2.annotate(
@@ -574,23 +586,31 @@ def plot_stockinfo(
 
 
 #%% 
-code = '005930'
+code = '000660'
+code = '373220'
 aggregation = 'm'
-start_date = '2024-01-01'
+start_date = '2022-03-10'
 
 stockinfo = build_stockinfo(code=code, aggregation=aggregation, start_date=start_date)
-stockinfo = append_fr_data(stockinfo)
+fr_data = _get_fr_data(fr_main_db, stockinfo.code)
+stockinfo = append_fr_data(stockinfo, fr_data)
 
 # plot_stockinfo(stockinfo)
-plot_stockinfo(stockinfo, use_ltm = True)
+plot_stockinfo(stockinfo, use_ltm = False)
 
+b = stockinfo
 
 # %%
 print(stockinfo.meta)
 print(stockinfo.ma_rate)
 print(stockinfo.fr_stats)  
+print(stockinfo.main_df)
+# %%
+print(a.main_df.index)
+print(b.main_df.index)
+add_stockinfo(a, b)
 
 
-- figure from 2026
 
-
+###_ incase opincome is negative, graph should show negative too.
+# %%
