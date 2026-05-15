@@ -432,7 +432,7 @@ def styled_df_to_image(df):
 
 import io
 from tools.dc_tools import get_main_financial_reports_db, get_quarterly_data, get_price_db, get_outshare_db, prev_quarter_str
-from tools.dc_tools import plot_company_financial_summary2
+from tools.dc_tools import plot_company_financial_summary
 from trader.data_collection.dc17_QuarterlyAnalysisDB import MAX_QUARTERS
 import matplotlib.pyplot as plt
 from pptx import Presentation
@@ -595,7 +595,7 @@ def generate_PPT(data_dict, fr_db=fr_db, pr_db=pr_db, summary_only = False, top_
             # ph.text = openai_command(code)
 
             slide = prs.slides.add_slide(prs.slide_layouts[2])
-            img_stream = plot_company_financial_summary2(fr_db, pr_db, code, None) 
+            img_stream = plot_company_financial_summary(fr_db, pr_db, code, None) 
             slide.shapes.add_picture(img_stream, Inches(0.1), 0, height=prs.slide_height)
 
             slide = prs.slides.add_slide(prs.slide_layouts[2])

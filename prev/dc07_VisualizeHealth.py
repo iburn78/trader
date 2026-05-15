@@ -23,7 +23,7 @@ for i, code in enumerate(plot_ctrl):
     print('{} | {}/{}'.format(code, i+1, l))
     path = os.path.join(cd_, 'plots/'+code+'.png')
     try:
-        plot_company_financial_summary2(main_db, price_DB, code, path)
+        plot_company_financial_summary(main_db, price_DB, code, path)
     except Exception as error:
         log_print(log_file, str(datetime.datetime.now())+' | '+code+' | '+str(error))
         if os.path.exists(path):

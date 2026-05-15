@@ -35,7 +35,7 @@ for i, code in enumerate(codelist):
     print('{} | {}/{}'.format(code, i+1, l))
     path = os.path.join(cd_, 'plots/'+code+'.png')
     try:
-        plot_company_financial_summary2(main_db, price_DB, code, path)
+        plot_company_financial_summary(main_db, price_DB, code, path)
         pass
     except Exception as error:
         log_print(log_file, str(datetime.datetime.now())+' | '+code+' | '+str(error))

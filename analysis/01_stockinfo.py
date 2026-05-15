@@ -585,8 +585,12 @@ stockinfo = append_fr_data(stockinfo)
 plot_stockinfo(stockinfo, use_ltm = True)
 
 
-
 # %%
 print(stockinfo.meta)
 print(stockinfo.ma_rate)
 print(stockinfo.fr_stats)  
+
+
+- figure from 2026
+
+
