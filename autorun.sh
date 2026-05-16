@@ -1,7 +1,7 @@
 #!/bin/bash
 
-trader="/home/andy/projects/trader"
-tnp="/home/andy/projects/tnp"
+trader="$HOME/projects/trader"
+tnp="$HOME/projects/tnp"
 LOG_FILE="${trader}/data_collection/log/autorun.log"
 
 exec >> "$LOG_FILE" 2>&1
