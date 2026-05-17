@@ -1981,3 +1981,662 @@ update_info.txt
 
 sent 247,264,147 bytes  received 11,378 bytes  98,910,210.00 bytes/sec
 total size is 1,128,715,064  speedup is 4.56
+[main 1683331] 2026-05-17 upload done from linux machine
+ 8 files changed, 2643 insertions(+)
+ create mode 100644 data_collection/log/autorun.log
+ create mode 100644 data_collection/log/data_collection.log
+ create mode 100644 data_collection/log/plot_gen_control_exceptions.log
+To https://github.com/iburn78/trader
+   7b2cce1..1683331  main -> main
+https://github.com/iburn78/trader URL에서
+ * branch            main       -> FETCH_HEAD
+이미 업데이트 상태입니다.
+Company health data collection initiated at 2026-05-18 02:00:07.013076
+Updating KRX data...
+Updating between dates: 2026-05-10 / 2026-05-18
+FULL rescan codes:
+Total 71 items.
+[0-70] ['0004V0', '0009K0', '0015S0', '002960', '003460', '004720', '004970', '005850', '006800', '009270', '009830', '010770', '011070', '012690', '0126Z0', '014820', '024740', '026150', '027050', '038530', '041920', '051600', '059210', '060370', '060850', '065650', '065660', '071320', '076610', '089590', '090080', '090710', '091580', '096530', '100250', '107600', '111110', '111380', '115440', '124560', '139130', '175250', '187220', '188260', '207940', '208370', '214430', '215790', '217330', '241710', '246960', '248170', '259960', '261520', '272210', '298020', '306620', '330730', '373110', '375500', '376900', '383930', '403490', '417010', '424870', '432320', '443060', '452260', '452280', '475230', '487360']
+PARTIAL rescan codes:
+Total 116 items.
+[0-99] ['059090', '274090', '030530', '185750', '012750', '350520', '003690', '018290', '014790', '000120', '024800', '404990', '009200', '099440', '002460', '009150', '089470', '078340', '003300', '481850', '054930', '241560', '004270', '003610', '950220', '183300', '008700', '169330', '089590', '084690', '003920', '215000', '383800', '040300', '006800', '009580', '000270', '017900', '008870', '079370', '241820', '334970', '950190', '004090', '126700', '011330', '032830', '002100', '204270', '000400', '021820', '007860', '122450', '005160', '299030', '005960', '330590', '950200', '0126Z0', '017250', '032800', '093240', '017550', '298050', '105560', '000700', '001080', '000720', '190510', '005250', '002240', '033920', '102460', '251370', '016880', '293480', '000230', '063080', '050860', '064350', '009290', '348950', '005750', '198940', '189690', '230360', '053700', '234340', '042520', '018000', '041510', '950130', '001810', '005010', '412540', '017800', '085620', '084440', '400760', '088260']
+[100-115] ['000540', '030960', '060720', '068270', '263750', '950160', '437730', '259960', '066620', '009070', '095570', '260930', '950140', '103140', '001450', '097870']
+full_rescan batch operation: 0
+Financial data collection log >> 
+2026-05-18 02:00:30.137191, no: 0, code 0004V0 in process
+2026-05-18 02:00:36.495316, no: 1, code 0009K0 in process
+2026-05-18 02:00:42.895344, no: 2, code 0015S0 in process
+2026-05-18 02:00:48.936554, no: 3, code 002960 in process
+2026-05-18 02:01:07.165210, no: 4, code 003460 in process
+2026-05-18 02:01:16.848270, no: 5, code 004720 in process
+2026-05-18 02:01:36.145105, no: 6, code 004970 in process
+2026-05-18 02:01:54.222068, no: 7, code 005850 in process
+2026-05-18 02:02:12.233600, no: 8, code 006800 in process
+2026-05-18 02:02:20.944411, no: 9, code 009270 in process
+2026-05-18 02:02:38.917136, no: 10, code 009830 in process
+2026-05-18 02:02:57.274200, no: 11, code 010770 in process
+2026-05-18 02:03:15.548318, no: 12, code 011070 in process
+2026-05-18 02:03:33.399414, no: 13, code 012690 in process
+2026-05-18 02:03:52.326211, no: 14, code 0126Z0 in process
+2026-05-18 02:03:58.317212, no: 15, code 014820 in process
+2026-05-18 02:04:16.299149, no: 16, code 024740 in process
+2026-05-18 02:04:34.309215, no: 17, code 026150 in process
+2026-05-18 02:04:52.127924, no: 18, code 027050 in process
+2026-05-18 02:05:10.168080, no: 19, code 038530 in process
+2026-05-18 02:05:28.583930, no: 20, code 041920 in process
+2026-05-18 02:05:47.373351, no: 21, code 051600 in process
+2026-05-18 02:06:05.336777, no: 22, code 059210 in process
+2026-05-18 02:06:23.177999, no: 23, code 060370 in process
+2026-05-18 02:06:41.619604, no: 24, code 060850 in process
+2026-05-18 02:06:53.828127, no: 25, code 065650 in process
+2026-05-18 02:07:11.946549, no: 26, code 065660 in process
+2026-05-18 02:07:29.311494, no: 27, code 071320 in process
+2026-05-18 02:07:47.199173, no: 28, code 076610 in process
+2026-05-18 02:08:04.982342, no: 29, code 089590 in process
+2026-05-18 02:08:22.581201, no: 30, code 090080 in process
+2026-05-18 02:08:40.501969, no: 31, code 090710 in process
+2026-05-18 02:08:58.562143, no: 32, code 091580 in process
+2026-05-18 02:09:16.139800, no: 33, code 096530 in process
+2026-05-18 02:09:33.580658, no: 34, code 100250 in process
+2026-05-18 02:09:51.036153, no: 35, code 107600 in process
+2026-05-18 02:10:00.952145, no: 36, code 111110 in process
+2026-05-18 02:10:17.235466, no: 37, code 111380 in process
+2026-05-18 02:10:25.569170, no: 38, code 115440 in process
+2026-05-18 02:10:43.093657, no: 39, code 124560 in process
+2026-05-18 02:10:56.299217, no: 40, code 139130 in process
+2026-05-18 02:11:05.377859, no: 41, code 175250 in process
+2026-05-18 02:11:20.285634, no: 42, code 187220 in process
+2026-05-18 02:11:39.005558, no: 43, code 188260 in process
+2026-05-18 02:11:47.656565, no: 44, code 207940 in process
+2026-05-18 02:12:03.809962, no: 45, code 208370 in process
+2026-05-18 02:12:21.421166, no: 46, code 214430 in process
+2026-05-18 02:12:39.552953, no: 47, code 215790 in process
+2026-05-18 02:12:56.108512, no: 48, code 217330 in process
+2026-05-18 02:13:10.228199, no: 49, code 241710 in process
+2026-05-18 02:13:27.132264, no: 50, code 246960 in process
+2026-05-18 02:13:41.205734, no: 51, code 248170 in process
+2026-05-18 02:13:58.047647, no: 52, code 259960 in process
+2026-05-18 02:14:09.365461, no: 53, code 261520 in process
+2026-05-18 02:14:15.358642, no: 54, code 272210 in process
+2026-05-18 02:14:28.315588, no: 55, code 298020 in process
+2026-05-18 02:14:43.057076, no: 56, code 306620 in process
+2026-05-18 02:14:56.150015, no: 57, code 330730 in process
+2026-05-18 02:15:06.574587, no: 58, code 373110 in process
+2026-05-18 02:15:15.036605, no: 59, code 375500 in process
+2026-05-18 02:15:26.875114, no: 60, code 376900 in process
+2026-05-18 02:15:35.794572, no: 61, code 383930 in process
+2026-05-18 02:15:45.222638, no: 62, code 403490 in process
+2026-05-18 02:15:53.957689, no: 63, code 417010 in process
+2026-05-18 02:16:04.164492, no: 64, code 424870 in process
+2026-05-18 02:16:10.891320, no: 65, code 432320 in process
+2026-05-18 02:16:17.067146, no: 66, code 443060 in process
+2026-05-18 02:16:24.877676, no: 67, code 452260 in process
+2026-05-18 02:16:34.235109, no: 68, code 452280 in process
+2026-05-18 02:16:42.489214, no: 69, code 475230 in process
+2026-05-18 02:16:49.204700, no: 70, code 487360 in process
+partial_rescan batch operation: 0
+Financial data collection log >> 
+2026-05-18 02:17:04.192340, no: 0, code 059090 in process
+2026-05-18 02:17:11.639966, no: 1, code 274090 in process
+2026-05-18 02:17:19.002950, no: 2, code 030530 in process
+2026-05-18 02:17:26.354263, no: 3, code 185750 in process
+2026-05-18 02:17:33.744819, no: 4, code 012750 in process
+2026-05-18 02:17:41.096834, no: 5, code 350520 in process
+2026-05-18 02:17:46.932977, no: 6, code 003690 in process
+2026-05-18 02:17:54.333226, no: 7, code 018290 in process
+2026-05-18 02:18:01.737613, no: 8, code 014790 in process
+2026-05-18 02:18:09.032437, no: 9, code 000120 in process
+2026-05-18 02:18:16.441288, no: 10, code 024800 in process
+2026-05-18 02:18:23.775320, no: 11, code 404990 in process
+2026-05-18 02:18:30.308602, no: 12, code 009200 in process
+2026-05-18 02:18:37.607732, no: 13, code 099440 in process
+2026-05-18 02:18:44.977494, no: 14, code 002460 in process
+2026-05-18 02:18:52.380901, no: 15, code 009150 in process
+2026-05-18 02:19:00.122347, no: 16, code 089470 in process
+2026-05-18 02:19:07.499220, no: 17, code 078340 in process
+2026-05-18 02:19:14.967146, no: 18, code 003300 in process
+2026-05-18 02:19:22.601177, no: 19, code 481850 in process
+2026-05-18 02:19:28.429378, no: 20, code 054930 in process
+2026-05-18 02:19:35.632076, no: 21, code 241560 in process
+----> no: 21, code 241560 currency not in KRW, skipping
+2026-05-18 02:19:40.844803, no: 22, code 004270 in process
+2026-05-18 02:19:48.087906, no: 23, code 003610 in process
+2026-05-18 02:19:55.971084, no: 24, code 950220 in process
+----> no: 24, code 950220 currency not in KRW, skipping
+2026-05-18 02:20:01.192093, no: 25, code 183300 in process
+2026-05-18 02:20:08.557850, no: 26, code 008700 in process
+----> no: 26, code 008700 currency not in KRW, skipping
+2026-05-18 02:20:13.782686, no: 27, code 169330 in process
+2026-05-18 02:20:21.404366, no: 28, code 089590 in process
+2026-05-18 02:20:28.873911, no: 29, code 084690 in process
+2026-05-18 02:20:36.257931, no: 30, code 003920 in process
+2026-05-18 02:20:43.932329, no: 31, code 215000 in process
+2026-05-18 02:20:51.331280, no: 32, code 383800 in process
+2026-05-18 02:20:59.319343, no: 33, code 040300 in process
+2026-05-18 02:21:06.697689, no: 34, code 006800 in process
+2026-05-18 02:21:14.158216, no: 35, code 009580 in process
+2026-05-18 02:21:21.567392, no: 36, code 000270 in process
+2026-05-18 02:21:28.889216, no: 37, code 017900 in process
+2026-05-18 02:21:36.339067, no: 38, code 008870 in process
+2026-05-18 02:21:43.816075, no: 39, code 079370 in process
+2026-05-18 02:21:51.110708, no: 40, code 241820 in process
+2026-05-18 02:21:58.858732, no: 41, code 334970 in process
+2026-05-18 02:22:06.261890, no: 42, code 950190 in process
+----> no: 42, code 950190 currency not in KRW, skipping
+2026-05-18 02:22:11.487703, no: 43, code 004090 in process
+2026-05-18 02:22:18.846894, no: 44, code 126700 in process
+2026-05-18 02:22:26.163839, no: 45, code 011330 in process
+2026-05-18 02:22:33.426832, no: 46, code 032830 in process
+2026-05-18 02:22:40.704254, no: 47, code 002100 in process
+2026-05-18 02:22:48.019940, no: 48, code 204270 in process
+2026-05-18 02:22:55.274716, no: 49, code 000400 in process
+2026-05-18 02:23:02.581174, no: 50, code 021820 in process
+2026-05-18 02:23:09.964070, no: 51, code 007860 in process
+2026-05-18 02:23:17.250295, no: 52, code 122450 in process
+2026-05-18 02:23:24.491445, no: 53, code 005160 in process
+2026-05-18 02:23:31.825740, no: 54, code 299030 in process
+2026-05-18 02:23:39.127517, no: 55, code 005960 in process
+2026-05-18 02:23:46.405132, no: 56, code 330590 in process
+2026-05-18 02:23:52.233830, no: 57, code 950200 in process
+----> no: 57, code 950200 currency not in KRW, skipping
+2026-05-18 02:23:57.453385, no: 58, code 0126Z0 in process
+2026-05-18 02:24:03.458125, no: 59, code 017250 in process
+2026-05-18 02:24:10.858557, no: 60, code 032800 in process
+2026-05-18 02:24:18.345797, no: 61, code 093240 in process
+2026-05-18 02:24:25.730695, no: 62, code 017550 in process
+2026-05-18 02:24:33.139387, no: 63, code 298050 in process
+2026-05-18 02:24:40.402114, no: 64, code 105560 in process
+2026-05-18 02:24:47.737889, no: 65, code 000700 in process
+2026-05-18 02:24:55.086138, no: 66, code 001080 in process
+2026-05-18 02:25:02.476152, no: 67, code 000720 in process
+2026-05-18 02:25:09.779220, no: 68, code 190510 in process
+2026-05-18 02:25:17.137757, no: 69, code 005250 in process
+2026-05-18 02:25:24.382382, no: 70, code 002240 in process
+2026-05-18 02:25:31.729732, no: 71, code 033920 in process
+2026-05-18 02:25:39.969849, no: 72, code 102460 in process
+2026-05-18 02:25:47.258097, no: 73, code 251370 in process
+2026-05-18 02:25:54.596626, no: 74, code 016880 in process
+2026-05-18 02:26:02.035259, no: 75, code 293480 in process
+2026-05-18 02:26:09.326296, no: 76, code 000230 in process
+2026-05-18 02:26:16.635210, no: 77, code 063080 in process
+2026-05-18 02:26:24.017277, no: 78, code 050860 in process
+2026-05-18 02:26:31.799563, no: 79, code 064350 in process
+2026-05-18 02:26:39.071008, no: 80, code 009290 in process
+2026-05-18 02:26:46.363893, no: 81, code 348950 in process
+2026-05-18 02:26:52.210545, no: 82, code 005750 in process
+2026-05-18 02:26:59.628848, no: 83, code 198940 in process
+2026-05-18 02:27:07.119197, no: 84, code 189690 in process
+2026-05-18 02:27:14.595706, no: 85, code 230360 in process
+2026-05-18 02:27:21.938071, no: 86, code 053700 in process
+2026-05-18 02:27:29.317080, no: 87, code 234340 in process
+2026-05-18 02:27:36.623183, no: 88, code 042520 in process
+2026-05-18 02:27:44.061533, no: 89, code 018000 in process
+2026-05-18 02:27:52.087516, no: 90, code 041510 in process
+2026-05-18 02:27:59.489308, no: 91, code 950130 in process
+----> no: 91, code 950130 currency not in KRW, skipping
+2026-05-18 02:28:04.713700, no: 92, code 001810 in process
+2026-05-18 02:28:12.175241, no: 93, code 005010 in process
+2026-05-18 02:28:19.523883, no: 94, code 412540 in process
+2026-05-18 02:28:26.867102, no: 95, code 017800 in process
+2026-05-18 02:28:34.270514, no: 96, code 085620 in process
+2026-05-18 02:28:41.926771, no: 97, code 084440 in process
+2026-05-18 02:28:49.351722, no: 98, code 400760 in process
+2026-05-18 02:28:55.232257, no: 99, code 088260 in process
+partial_rescan batch operation: 100
+Financial data collection log >> 
+2026-05-18 02:29:34.696800, no: 0, code 000540 in process
+2026-05-18 02:29:41.918496, no: 1, code 030960 in process
+2026-05-18 02:29:49.275300, no: 2, code 060720 in process
+2026-05-18 02:29:56.586384, no: 3, code 068270 in process
+2026-05-18 02:30:03.943005, no: 4, code 263750 in process
+2026-05-18 02:30:16.393346, no: 5, code 950160 in process
+----> no: 5, code 950160 currency not in KRW, skipping
+2026-05-18 02:30:21.639866, no: 6, code 437730 in process
+2026-05-18 02:30:29.055023, no: 7, code 259960 in process
+2026-05-18 02:30:36.851761, no: 8, code 066620 in process
+2026-05-18 02:30:44.313650, no: 9, code 009070 in process
+2026-05-18 02:30:51.841959, no: 10, code 095570 in process
+2026-05-18 02:30:59.821121, no: 11, code 260930 in process
+2026-05-18 02:31:07.274371, no: 12, code 950140 in process
+----> no: 12, code 950140 currency not in KRW, skipping
+2026-05-18 02:31:12.495980, no: 13, code 103140 in process
+2026-05-18 02:31:19.898482, no: 14, code 001450 in process
+2026-05-18 02:31:27.286243, no: 15, code 097870 in process
+== Update finished ==
+initiating - prices and volumes updates...
+/home/andy/projects/trader/tools/dc_tools.py:115: UserWarning: No artists with labels found to put in legend.  Note that artists whose label start with an underscore are ignored when legend() is called with no argument.
+  axl = ax.legend(loc='upper left')
+/home/andy/projects/trader/tools/dc_tools.py:136: UserWarning: No artists with labels found to put in legend.  Note that artists whose label start with an underscore are ignored when legend() is called with no argument.
+  axrl = axr.legend(loc='upper left')
+/home/andy/projects/trader/tools/dc_tools.py:146: UserWarning: Attempting to set identical low and high xlims makes transformation singular; automatically expanding.
+  ax.set_xlim(-0.5, len(x) - 0.5)
+/home/andy/projects/trader/tools/dc_tools.py:147: UserWarning: Attempting to set identical low and high xlims makes transformation singular; automatically expanding.
+  axr.set_xlim(-0.5, len(x) - 0.5)
+/home/andy/projects/trader/tools/dc_tools.py:115: UserWarning: No artists with labels found to put in legend.  Note that artists whose label start with an underscore are ignored when legend() is called with no argument.
+  axl = ax.legend(loc='upper left')
+/home/andy/projects/trader/tools/dc_tools.py:136: UserWarning: No artists with labels found to put in legend.  Note that artists whose label start with an underscore are ignored when legend() is called with no argument.
+  axrl = axr.legend(loc='upper left')
+/home/andy/projects/trader/tools/dc_tools.py:146: UserWarning: Attempting to set identical low and high xlims makes transformation singular; automatically expanding.
+  ax.set_xlim(-0.5, len(x) - 0.5)
+/home/andy/projects/trader/tools/dc_tools.py:147: UserWarning: Attempting to set identical low and high xlims makes transformation singular; automatically expanding.
+  axr.set_xlim(-0.5, len(x) - 0.5)
+/home/andy/projects/trader/tools/dc_tools.py:115: UserWarning: No artists with labels found to put in legend.  Note that artists whose label start with an underscore are ignored when legend() is called with no argument.
+  axl = ax.legend(loc='upper left')
+/home/andy/projects/trader/tools/dc_tools.py:136: UserWarning: No artists with labels found to put in legend.  Note that artists whose label start with an underscore are ignored when legend() is called with no argument.
+  axrl = axr.legend(loc='upper left')
+/home/andy/projects/trader/tools/dc_tools.py:146: UserWarning: Attempting to set identical low and high xlims makes transformation singular; automatically expanding.
+  ax.set_xlim(-0.5, len(x) - 0.5)
+/home/andy/projects/trader/tools/dc_tools.py:147: UserWarning: Attempting to set identical low and high xlims makes transformation singular; automatically expanding.
+  axr.set_xlim(-0.5, len(x) - 0.5)
+/home/andy/projects/trader/tools/dc_tools.py:115: UserWarning: No artists with labels found to put in legend.  Note that artists whose label start with an underscore are ignored when legend() is called with no argument.
+  axl = ax.legend(loc='upper left')
+/home/andy/projects/trader/tools/dc_tools.py:136: UserWarning: No artists with labels found to put in legend.  Note that artists whose label start with an underscore are ignored when legend() is called with no argument.
+  axrl = axr.legend(loc='upper left')
+/home/andy/projects/trader/tools/dc_tools.py:146: UserWarning: Attempting to set identical low and high xlims makes transformation singular; automatically expanding.
+  ax.set_xlim(-0.5, len(x) - 0.5)
+/home/andy/projects/trader/tools/dc_tools.py:147: UserWarning: Attempting to set identical low and high xlims makes transformation singular; automatically expanding.
+  axr.set_xlim(-0.5, len(x) - 0.5)
+/home/andy/projects/trader/tools/dc_tools.py:115: UserWarning: No artists with labels found to put in legend.  Note that artists whose label start with an underscore are ignored when legend() is called with no argument.
+  axl = ax.legend(loc='upper left')
+/home/andy/projects/trader/tools/dc_tools.py:136: UserWarning: No artists with labels found to put in legend.  Note that artists whose label start with an underscore are ignored when legend() is called with no argument.
+  axrl = axr.legend(loc='upper left')
+/home/andy/projects/trader/tools/dc_tools.py:146: UserWarning: Attempting to set identical low and high xlims makes transformation singular; automatically expanding.
+  ax.set_xlim(-0.5, len(x) - 0.5)
+/home/andy/projects/trader/tools/dc_tools.py:147: UserWarning: Attempting to set identical low and high xlims makes transformation singular; automatically expanding.
+  axr.set_xlim(-0.5, len(x) - 0.5)
+/home/andy/projects/trader/tools/dc_tools.py:115: UserWarning: No artists with labels found to put in legend.  Note that artists whose label start with an underscore are ignored when legend() is called with no argument.
+  axl = ax.legend(loc='upper left')
+/home/andy/projects/trader/tools/dc_tools.py:136: UserWarning: No artists with labels found to put in legend.  Note that artists whose label start with an underscore are ignored when legend() is called with no argument.
+  axrl = axr.legend(loc='upper left')
+/home/andy/projects/trader/tools/dc_tools.py:146: UserWarning: Attempting to set identical low and high xlims makes transformation singular; automatically expanding.
+  ax.set_xlim(-0.5, len(x) - 0.5)
+/home/andy/projects/trader/tools/dc_tools.py:147: UserWarning: Attempting to set identical low and high xlims makes transformation singular; automatically expanding.
+  axr.set_xlim(-0.5, len(x) - 0.5)
+/home/andy/projects/trader/tools/dc_tools.py:115: UserWarning: No artists with labels found to put in legend.  Note that artists whose label start with an underscore are ignored when legend() is called with no argument.
+  axl = ax.legend(loc='upper left')
+/home/andy/projects/trader/tools/dc_tools.py:136: UserWarning: No artists with labels found to put in legend.  Note that artists whose label start with an underscore are ignored when legend() is called with no argument.
+  axrl = axr.legend(loc='upper left')
+/home/andy/projects/trader/tools/dc_tools.py:146: UserWarning: Attempting to set identical low and high xlims makes transformation singular; automatically expanding.
+  ax.set_xlim(-0.5, len(x) - 0.5)
+/home/andy/projects/trader/tools/dc_tools.py:147: UserWarning: Attempting to set identical low and high xlims makes transformation singular; automatically expanding.
+  axr.set_xlim(-0.5, len(x) - 0.5)
+/home/andy/projects/trader/tools/dc_tools.py:115: UserWarning: No artists with labels found to put in legend.  Note that artists whose label start with an underscore are ignored when legend() is called with no argument.
+  axl = ax.legend(loc='upper left')
+/home/andy/projects/trader/tools/dc_tools.py:136: UserWarning: No artists with labels found to put in legend.  Note that artists whose label start with an underscore are ignored when legend() is called with no argument.
+  axrl = axr.legend(loc='upper left')
+/home/andy/projects/trader/tools/dc_tools.py:146: UserWarning: Attempting to set identical low and high xlims makes transformation singular; automatically expanding.
+  ax.set_xlim(-0.5, len(x) - 0.5)
+/home/andy/projects/trader/tools/dc_tools.py:147: UserWarning: Attempting to set identical low and high xlims makes transformation singular; automatically expanding.
+  axr.set_xlim(-0.5, len(x) - 0.5)
+000120 | 1/183
+000230 | 2/183
+000270 | 3/183
+000400 | 4/183
+0004V0 | 5/183
+000540 | 6/183
+000700 | 7/183
+000720 | 8/183
+0009K0 | 9/183
+001080 | 10/183
+001450 | 11/183
+0015S0 | 12/183
+001810 | 13/183
+002100 | 14/183
+002240 | 15/183
+002460 | 16/183
+002960 | 17/183
+003300 | 18/183
+003460 | 19/183
+003610 | 20/183
+003690 | 21/183
+003920 | 22/183
+004090 | 23/183
+004270 | 24/183
+004720 | 25/183
+004970 | 26/183
+005010 | 27/183
+005160 | 28/183
+005250 | 29/183
+005750 | 30/183
+005850 | 31/183
+005960 | 32/183
+006800 | 33/183
+007860 | 34/183
+008700 | 35/183
+2026-05-18 02:35:59.899925 | 008700 | quarterly data of 008700 is empty.
+008870 | 36/183
+009070 | 37/183
+009150 | 38/183
+009200 | 39/183
+009270 | 40/183
+009290 | 41/183
+009580 | 42/183
+009830 | 43/183
+010770 | 44/183
+011070 | 45/183
+011330 | 46/183
+012690 | 47/183
+0126Z0 | 48/183
+012750 | 49/183
+014790 | 50/183
+014820 | 51/183
+016880 | 52/183
+017250 | 53/183
+017550 | 54/183
+017800 | 55/183
+017900 | 56/183
+018000 | 57/183
+018290 | 58/183
+021820 | 59/183
+024740 | 60/183
+024800 | 61/183
+026150 | 62/183
+027050 | 63/183
+030530 | 64/183
+030960 | 65/183
+032800 | 66/183
+032830 | 67/183
+033920 | 68/183
+038530 | 69/183
+040300 | 70/183
+041510 | 71/183
+041920 | 72/183
+042520 | 73/183
+050860 | 74/183
+051600 | 75/183
+053700 | 76/183
+054930 | 77/183
+059090 | 78/183
+059210 | 79/183
+060370 | 80/183
+060720 | 81/183
+060850 | 82/183
+063080 | 83/183
+064350 | 84/183
+065650 | 85/183
+065660 | 86/183
+066620 | 87/183
+068270 | 88/183
+071320 | 89/183
+076610 | 90/183
+078340 | 91/183
+079370 | 92/183
+084440 | 93/183
+084690 | 94/183
+085620 | 95/183
+088260 | 96/183
+089470 | 97/183
+089590 | 98/183
+090080 | 99/183
+090710 | 100/183
+091580 | 101/183
+093240 | 102/183
+095570 | 103/183
+096530 | 104/183
+097870 | 105/183
+099440 | 106/183
+100250 | 107/183
+102460 | 108/183
+103140 | 109/183
+105560 | 110/183
+107600 | 111/183
+111110 | 112/183
+111380 | 113/183
+115440 | 114/183
+122450 | 115/183
+124560 | 116/183
+126700 | 117/183
+139130 | 118/183
+169330 | 119/183
+175250 | 120/183
+183300 | 121/183
+185750 | 122/183
+187220 | 123/183
+188260 | 124/183
+189690 | 125/183
+190510 | 126/183
+198940 | 127/183
+204270 | 128/183
+207940 | 129/183
+208370 | 130/183
+214430 | 131/183
+215000 | 132/183
+215790 | 133/183
+217330 | 134/183
+230360 | 135/183
+234340 | 136/183
+241560 | 137/183
+241710 | 138/183
+241820 | 139/183
+246960 | 140/183
+248170 | 141/183
+251370 | 142/183
+259960 | 143/183
+260930 | 144/183
+261520 | 145/183
+263750 | 146/183
+272210 | 147/183
+274090 | 148/183
+293480 | 149/183
+298020 | 150/183
+298050 | 151/183
+299030 | 152/183
+306620 | 153/183
+330590 | 154/183
+330730 | 155/183
+334970 | 156/183
+348950 | 157/183
+350520 | 158/183
+373110 | 159/183
+375500 | 160/183
+376900 | 161/183
+383800 | 162/183
+383930 | 163/183
+400760 | 164/183
+403490 | 165/183
+404990 | 166/183
+412540 | 167/183
+417010 | 168/183
+424870 | 169/183
+432320 | 170/183
+2026-05-18 02:50:18.847535 | 432320 | quarterly data of 432320 is empty.
+437730 | 171/183
+443060 | 172/183
+452260 | 173/183
+452280 | 174/183
+475230 | 175/183
+481850 | 176/183
+487360 | 177/183
+950130 | 178/183
+2026-05-18 02:50:47.641934 | 950130 | quarterly data of 950130 is empty.
+950140 | 179/183
+2026-05-18 02:50:48.827015 | 950140 | quarterly data of 950140 is empty.
+950160 | 180/183
+2026-05-18 02:50:50.018111 | 950160 | quarterly data of 950160 is empty.
+950190 | 181/183
+2026-05-18 02:50:51.202490 | 950190 | quarterly data of 950190 is empty.
+950200 | 182/183
+2026-05-18 02:50:52.388297 | 950200 | quarterly data of 950200 is empty.
+950220 | 183/183
+2026-05-18 02:50:53.575760 | 950220 | quarterly data of 950220 is empty.
+sending incremental file list
+000120.png
+000230.png
+000270.png
+000400.png
+0004V0.png
+000540.png
+000700.png
+000720.png
+0009K0.png
+001080.png
+001450.png
+0015S0.png
+001810.png
+002100.png
+002240.png
+002460.png
+002960.png
+003300.png
+003460.png
+003610.png
+003690.png
+003920.png
+004090.png
+004270.png
+004720.png
+004970.png
+005010.png
+005160.png
+005250.png
+005750.png
+005850.png
+005960.png
+006800.png
+007860.png
+008870.png
+009070.png
+009150.png
+009200.png
+009270.png
+009290.png
+009580.png
+009830.png
+010770.png
+011070.png
+011330.png
+012690.png
+0126Z0.png
+012750.png
+014790.png
+014820.png
+016880.png
+017250.png
+017550.png
+017800.png
+017900.png
+018000.png
+018290.png
+021820.png
+024740.png
+024800.png
+026150.png
+027050.png
+030530.png
+030960.png
+032800.png
+032830.png
+033920.png
+038530.png
+040300.png
+041510.png
+041920.png
+042520.png
+050860.png
+051600.png
+053700.png
+054930.png
+059090.png
+059210.png
+060370.png
+060720.png
+060850.png
+063080.png
+064350.png
+065650.png
+065660.png
+066620.png
+068270.png
+071320.png
+076610.png
+078340.png
+079370.png
+084440.png
+084690.png
+085620.png
+088260.png
+089470.png
+089590.png
+090080.png
+090710.png
+091580.png
+093240.png
+095570.png
+096530.png
+097870.png
+099440.png
+100250.png
+102460.png
+103140.png
+105560.png
+107600.png
+111110.png
+111380.png
+115440.png
+122450.png
+124560.png
+126700.png
+139130.png
+169330.png
+175250.png
+183300.png
+185750.png
+187220.png
+188260.png
+189690.png
+190510.png
+198940.png
+204270.png
+207940.png
+208370.png
+214430.png
+215000.png
+215790.png
+217330.png
+230360.png
+234340.png
+241560.png
+241710.png
+241820.png
+246960.png
+248170.png
+251370.png
+259960.png
+260930.png
+261520.png
+263750.png
+272210.png
+274090.png
+293480.png
+298020.png
+298050.png
+299030.png
+306620.png
+330590.png
+330730.png
+334970.png
+348950.png
+350520.png
+373110.png
+375500.png
+376900.png
+383800.png
+383930.png
+400760.png
+403490.png
+404990.png
+412540.png
+417010.png
+424870.png
+437730.png
+443060.png
+452260.png
+452280.png
+475230.png
+481850.png
+487360.png
+df_krx.db
+update_info.txt
+
+sent 68,325,113 bytes  received 3,379 bytes  136,656,984.00 bytes/sec
+total size is 1,129,173,558  speedup is 16.53
