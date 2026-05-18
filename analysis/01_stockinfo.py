@@ -46,21 +46,21 @@ DATECOLS = [
 ]
 
 # =========================================================
-# data structure
+# data structure: a single stock info or multiple stocks (sector) info
 # =========================================================
 @dataclass
-class StockInfo:
-    code: str # code for single stock, or combined code for multiple stocks
-    time: pd.Timestamp # creation time 
+class StockInfo: 
+    codelist: list[str] = field(default_factory=list) 
+    time: pd.Timestamp | None = None # creation time 
 
-    main_df: pd.DataFrame
+    main_df: pd.DataFrame | None = None
 
     # ma related: MarCap, Amount
-    ma_rates: pd.DataFrame | None
-    ma_fitted: pd.DataFrame | None # only used in graph drawing
+    ma_rates: pd.DataFrame | None = None
+    ma_fitted: pd.DataFrame | None = None # only used in graph drawing
 
     # fr related: PER, OpIncome, OpMargins, etc
-    fr_stats: pd.DataFrame | None
+    fr_stats: pd.DataFrame | None = None
 
     meta: dict = field(  
         default_factory=lambda: {
@@ -87,19 +87,16 @@ def get_ma_data(code: str, aggregration: Literal['d', 'w', 'm'], start_date): # 
 
     # ----------------------------------------------------------------------------
     # if market is open (or at least in early hours), then today record is removed
+    # as volume is not a full day data
     # ----------------------------------------------------------------------------
     now = datetime.now()
     if is_KRX_open(now=now):
-        ###_ ??? is this working?
-        ###_ find way to reflect today's record
-        ###_ price and volume data may not be in there for today
         ma_data = ma_data[ma_data.index.date != now.date()]
-    print(ma_data) 
     ma_data = ma_data.loc[start_date:]
-    print(ma_data[:40]) 
 
     return _ma_aggregate_periods(ma_data, aggregration) 
 
+# after aggregation, index is the last day of a period
 def _ma_aggregate_periods(
     ma_data: pd.DataFrame,
     aggregation: Literal['d', 'w', 'm'],
@@ -217,11 +214,6 @@ def _extract_account_data(fr_db_for_code, account):
     row = row/KRW_UNIT
     return row
 
-def _ffill_inf(df):
-    df = df.replace([np.inf, -np.inf], np.nan)
-    df = df.ffill()
-    return df
-
 # getting rev and opincome data
 def get_fr_data(fr_main_db, code):
     fr_db_for_code = _get_fr_db_for_code(fr_main_db, code)
@@ -246,21 +238,35 @@ def get_opincome_stats(start_date, fr_data: pd.DataFrame):
     fwd_opincome = y[-1]+sum(y_future)
 
     return float(opincome_slope), float(fwd_opincome) 
-    
-###_
-###_ be careful with trims... gets shorter and shorter when adding
-###_ align dates start_date and main_df data mismatch --- will later be a headache.
-###_ make modules clearer otherwise operations will not be easy... 
 
-def get_raw_stockinfo(code: str, aggregation: Literal['d', 'w', 'm'], start_date) -> StockInfo:
+# =========================================================
+# stockinfo building
+# =========================================================
+def _get_raw_ma_fr(code: str, aggregation: Literal['d', 'w', 'm'], start_date):
     # raw data part
     ma_data = get_ma_data(code, aggregation, start_date) 
-    print(ma_data)
     fr_data = get_fr_data(fr_main_db, code)
 
-    # combine the two - align dates using reindex
+    # combine mr and fr - align dates using reindex
     main_df = ma_data
     main_df[fr_data.columns]=fr_data.reindex(main_df.index, method='ffill')
+
+    return main_df
+
+def build_stockinfo(codelist: list | str, aggregation: Literal['d', 'w', 'm'], start_date, fill=False) -> StockInfo:
+    if isinstance(codelist, str):
+        codelist = [codelist]
+    
+    main_df = None
+    for code in codelist:
+        df = _get_raw_ma_fr(code, aggregation, start_date)
+        if main_df is None:
+            main_df = df.copy()
+        else: 
+            if fill:
+                main_df = main_df.add(df, fill_value=0) # a copy is returned
+            else:
+                main_df = main_df.add(df)
 
     meta = {
         'unit': KRW_UNIT,
@@ -268,8 +274,8 @@ def get_raw_stockinfo(code: str, aggregation: Literal['d', 'w', 'm'], start_date
         'start_date': start_date,
     }
 
-    return StockInfo(
-        code=code,
+    res = StockInfo(
+        codelist=codelist,
         time=pd.Timestamp.now(),
 
         main_df=main_df,
@@ -279,10 +285,15 @@ def get_raw_stockinfo(code: str, aggregation: Literal['d', 'w', 'm'], start_date
         meta=meta
     )
 
-def build_stockinfo(stockinfo: StockInfo) -> StockInfo:
+    res = _compute_stockinfo(res)
+    return res
+
+def _compute_stockinfo(stockinfo: StockInfo) -> StockInfo:
+    assert stockinfo.main_df is not None
     main_df = stockinfo.main_df
 
-    # computation part
+    ma_rates, ma_fitted = compute_ma_rates(main_df)
+
     # ltm: last twelve months
     main_df['revenue_ltm'] = main_df['revenue'].rolling(4).sum()
     main_df['opincome_ltm'] = main_df['opincome'].rolling(4).sum()
@@ -292,9 +303,10 @@ def build_stockinfo(stockinfo: StockInfo) -> StockInfo:
     # PER: assumes the same 4 quarters 
     main_df['PER'] = main_df['marcap']/(4*main_df['opincome']) # x4 applied here
     main_df['PER_ltm'] = main_df['marcap']/main_df['opincome_ltm']
-    main_df = _ffill_inf(main_df)
 
-    ma_rates, ma_fitted = compute_ma_rates(main_df)
+    # ffill
+    main_df = main_df.replace([np.inf, -np.inf], np.nan).ffill().astype('float64')
+
     opincome_slope, fwd_opincome = get_opincome_stats(stockinfo.meta['start_date'], main_df)
     PER_fwd = main_df['marcap'].iloc[-1]/fwd_opincome
 
@@ -341,14 +353,40 @@ def build_stockinfo(stockinfo: StockInfo) -> StockInfo:
 # stockinfo operations
 # =========================================================
 
-def add_stockinfo(st1: StockInfo, st2: StockInfo):
+def add_stockinfo(st1: StockInfo, st2: StockInfo, fill=False):
     # to add, key parameters and index should match
-    if st1.meta != st2.meta:
-        raise ValueError('Key parameters mismatch')
+    KEYS = ['unit', 'aggregation', 'start_date']
+    meta = {}
+    for k in KEYS:
+        if st1.meta[k] != st2.meta[k]:
+            raise ValueError('Key parameters mismatch')
+        meta[k] = st1.meta[k]
+    assert st1.main_df is not None 
+    assert st2.main_df is not None
     if not st1.main_df.index.equals(st2.main_df.index):
         raise ValueError('main_df index mismatch')
-    
+    common = [x for x in st1.codelist if x in set(st2.codelist)]
+    if common:
+        raise ValueError(f'common codes are found {common} - addition suspended')
 
+    if fill: 
+        main_df=st1.main_df.add(st2.main_df, fill_value=0), # a copy is returned
+    else:
+        main_df=st1.main_df.add(st2.main_df)
+
+    res = StockInfo(
+        codelist=st1.codelist + st2.codelist,
+        time=max(st1.time, st2.time),
+
+        main_df=main_df,
+        ma_rates=None,
+        ma_fitted=None,
+        fr_stats =None,
+        meta=meta
+    )
+
+    res = _compute_stockinfo(res)
+    return res
 
 # =========================================================
 # plotting
@@ -581,7 +619,7 @@ def plot_stockinfo(
     # TOP TITLE
     # =====================================================
     ax1.set_title(
-        f"{stock_info.code} | "
+        f"{stock_info.codelist} | "
         f"{stock_info.time:%Y-%m-%d %H:%M} | "
         f"aggr: {stock_info.meta['aggregation']}"
     )
@@ -607,28 +645,9 @@ def plot_stockinfo(
 #%% 
 code = '000660'
 code = '005930'
-# code = '373220'
+code = '373220'
 aggregation = 'm'
 start_date = '2020-01-01'
 
-stockinfo = get_raw_stockinfo(code=code, aggregation=aggregation, start_date=start_date)
-stockinfo = build_stockinfo(stockinfo)
-
+stockinfo = build_stockinfo(codelist=code, aggregation=aggregation, start_date=start_date)
 plot_stockinfo(stockinfo, use_ltm = False)
-print(stockinfo.main_df)
-
-# %%
-b = stockinfo
-print(stockinfo.meta)
-print(stockinfo.ma_rates)
-print(stockinfo.fr_stats)  
-print(stockinfo.main_df)
-# %%
-print(a.main_df.index)
-print(b.main_df.index)
-add_stockinfo(a, b)
-
-
-
-###_ incase opincome is negative, graph should show negative too.
-# %%
