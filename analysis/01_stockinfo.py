@@ -49,6 +49,18 @@ DATECOLS = [
 # data structure: a single stock info or multiple stocks (sector) info
 # =========================================================
 @dataclass
+class CodeData:
+    code: str
+    time: pd.Timestamp # creation time
+    ma_data: pd.DataFrame
+    fr_data: pd.DataFrame
+    meta: dict = field(
+        default_factory=lambda: {
+            'unit': KRW_UNIT,
+        }
+    )
+
+@dataclass
 class StockInfo: 
     codelist: list[str] = field(default_factory=list) 
     time: pd.Timestamp | None = None # creation time 
@@ -67,7 +79,6 @@ class StockInfo:
 
     meta: dict = field(  
         default_factory=lambda: {
-            'unit': None,
             'aggregation': None,
             'start_date': None,
         })
@@ -206,6 +217,14 @@ def _opincome_stats(start_date, fr_data: pd.DataFrame):
 # =========================================================
 # stockinfo building
 # =========================================================
+def build_codedata(code):
+    return CodeData(
+        code = code, 
+        time = pd.Timestamp.now(),
+        ma_data = get_ma_data(code), 
+        fr_data = get_fr_data(code),
+    )
+
 def build_stockinfo(codelist: list | str, aggregation: Literal['d', 'w', 'm'], fill=False) -> StockInfo:
     if isinstance(codelist, str):
         codelist = [codelist]
