@@ -7,7 +7,7 @@ import matplotlib.pyplot as plt
 import matplotlib.dates as mdates
 from matplotlib.ticker import FuncFormatter
 from datetime import datetime
-from trader.tools.as_tools import is_KRX_open, load_market_data
+from trader.tools.as_tools import is_KRX_open, load_market_data, get_slope_intercept
 
 '''
 ma: MarCap + Amount
@@ -54,13 +54,15 @@ class StockInfo:
     time: pd.Timestamp | None = None # creation time 
 
     main_df: pd.DataFrame | None = None
+
+    # raw data
     ma_data: pd.DataFrame | None = None
     fr_data: pd.DataFrame | None = None
 
     # ma related: MarCap, Amount
     ma_rates: pd.DataFrame | None = None
 
-    # fr related: PER, OpIncome, OpMargins, etc
+    # fr related: PER, OpIncome, OpMargins
     fr_stats: pd.DataFrame | None = None
 
     meta: dict = field(  
@@ -69,16 +71,14 @@ class StockInfo:
             'aggregation': None,
             'start_date': None,
         })
-    
-    desc: str | None = None
 
 # =========================================================
 # handling ma data
 # =========================================================
 # ma: MarCap, Amount
-def get_ma_data(code: str, aggregration: Literal['d', 'w', 'm'], start_date): # start_date in 'yyyy-mm-dd' format
+def get_ma_data(code: str):
     if code not in df_krx.index: 
-        raise Exception(f'check code {code} - this could be combined stocks')
+        raise Exception(f'check code {code}')
 
     outshares = df_krx.at[code, 'Stocks']
     ma_data = pd.DataFrame({
@@ -93,22 +93,16 @@ def get_ma_data(code: str, aggregration: Literal['d', 'w', 'm'], start_date): # 
     now = datetime.now()
     if is_KRX_open(now=now):
         ma_data = ma_data[ma_data.index.date != now.date()]
-    ma_data = ma_data.loc[start_date:]
 
-    return _ma_aggregate_periods(ma_data, aggregration) 
+    return ma_data
 
-# after aggregation, index is the last day of a period
-def _ma_aggregate_periods(
-    ma_data: pd.DataFrame,
-    aggregation: Literal['d', 'w', 'm'],
-) -> pd.DataFrame:
+def _ma_aggregate_periods(ma_data: pd.DataFrame, aggregation: Literal['d', 'w', 'm']):
     """
-    Aggregate daily records into backward-aligned
-    discrete blocks.
+    aggregate into backward-aligned discrete blocks.
+    incomplete oldest block is discarded.
 
-    Incomplete oldest block is discarded.
+    index: the last days of periods
     """
-
     if aggregation not in BLOCK_MAP:
         raise ValueError(f'invalid aggregation: {aggregation}')
 
@@ -122,7 +116,6 @@ def _ma_aggregate_periods(
     ma_data = ma_data.iloc[-usable:]
 
     rows = []
-
     for start in range(0, usable, block_size):
 
         block = ma_data.iloc[start:start + block_size]
@@ -130,30 +123,23 @@ def _ma_aggregate_periods(
         amount = block['amount'].mean()
 
         rows.append({
-            'time': block.index[-1],
+            'last_day': block.index[-1],
             'marcap': marcap,
             'amount': amount,
         })
 
-    return pd.DataFrame(rows).set_index('time')
+    return pd.DataFrame(rows).set_index('last_day')
 
 def compute_ma_rates(ma_data: pd.DataFrame):
-    """
-    Compute:
-        - trend slopes
-        - recent increases
-        - fitted regression lines
-    """
-
     rates = pd.DataFrame(
         index=['recent_inc', 'slope', 'intercept'],
         columns=['marcap', 'amount', 'unit'],
     )
 
     for col in ['marcap', 'amount']:
-        recent_inc, slope, intercpet = _compute_ma_stats(ma_data[col])
+        rates.loc['recent_inc', col] = ma_data[col][-1] / ma_data[col][-2] - 1
 
-        rates.loc['recent_inc', col] = recent_inc
+        slope, intercpet = get_slope_intercept(ma_data[col])
         rates.loc['slope', col] = slope
         rates.loc['intercept', col] = intercpet
 
@@ -162,22 +148,6 @@ def compute_ma_rates(ma_data: pd.DataFrame):
     rates.loc['intercept', 'unit'] = KRW_UNIT_KR[KRW_UNIT]
 
     return rates
-
-def _compute_ma_stats(
-    s: pd.Series,
-) -> tuple[float, float, pd.Series]:
-    """
-    Compute:
-        - recent pct change
-        - geometric slope (log) and intercept
-    """
-    s = s.dropna()
-    x = np.arange(len(s))
-    y = s.values
-
-    recent_inc = s.iloc[-1] / s.iloc[-2] - 1
-    slope, intercept = np.polyfit(x,y,1)  
-    return recent_inc, slope, intercept
 
     # fit_values = intercept + slope*x
 
@@ -190,13 +160,11 @@ def _compute_ma_stats(
     #     index=s.index,
     # )
 
-
-
 # =========================================================
 # handling FR data
 # =========================================================
 # fr_main to code data (CFS or OFS)
-def _get_fr_db_for_code(fr_main_db, code):
+def _get_fr_db_for_code(code):
     # use CFS if data exists, and otherwise OFS (for that account)
     fr_target = fr_main_db.loc[fr_main_db['code']==code]
     cfs = fr_target.loc[fr_target['fs_div'] == "CFS"]
@@ -215,8 +183,8 @@ def _extract_account_data(fr_db_for_code, account):
     return row
 
 # getting rev and opincome data
-def get_fr_data(fr_main_db, code):
-    fr_db_for_code = _get_fr_db_for_code(fr_main_db, code)
+def get_fr_data(code):
+    fr_db_for_code = _get_fr_db_for_code(code)
     row_r = _extract_account_data(fr_db_for_code, 'revenue')
     row_o = _extract_account_data(fr_db_for_code, 'operating_income')
     fr_data = pd.DataFrame({
@@ -225,39 +193,27 @@ def get_fr_data(fr_main_db, code):
     })
     return fr_data
 
-# calc opincome slope and fwd opincome
-def get_opincome_stats(start_date, fr_data: pd.DataFrame):
+# calc opincome slope and fwd opincome (based on quarterly data)
+def _opincome_stats(start_date, fr_data: pd.DataFrame):
     start_idx = max(0, fr_data.index.searchsorted(start_date, side="right") - 1) # side="right" and -1 will give data from the quarter that start_date is in
-    opincome = fr_data.iloc[start_idx:]['opincome'].dropna()
+    opincome = fr_data.iloc[start_idx:]['opincome']
 
-    x = np.arange(len(opincome))
-    y = opincome.values.astype(float)
-    opincome_slope, _ = np.polyfit(x, y, 1) # use only slope / intercept is misleading
-    x_future = np.arange(1, 4) # three quarters needed
-    y_future = opincome_slope*x_future + y[-1]
-    fwd_opincome = y[-1]+sum(y_future)
+    opincome_slope, _ = get_slope_intercept(opincome)
+    fwd_opincome = sum([opincome_slope*i + opincome[-1] for i in [1, 2, 3, 4]])
 
     return float(opincome_slope), float(fwd_opincome) 
 
 # =========================================================
 # stockinfo building
 # =========================================================
-def _get_raw_ma_fr(code: str, aggregation: Literal['d', 'w', 'm'], start_date):
-    # raw data part
-    ma_data = get_ma_data(code, aggregation, start_date) 
-    fr_data = get_fr_data(fr_main_db, code)
-
-
-    return ma_data, fr_data
-
-def build_stockinfo(codelist: list | str, aggregation: Literal['d', 'w', 'm'], start_date, fill=False) -> StockInfo:
+def build_stockinfo(codelist: list | str, aggregation: Literal['d', 'w', 'm'], fill=False) -> StockInfo:
     if isinstance(codelist, str):
         codelist = [codelist]
     
-    ma_data = None 
-    fr_data = None 
     for code in codelist:
-        ma_, fr_ = _get_raw_ma_fr(code, aggregation, start_date)
+        ma_data = get_ma_data(code)
+        fr_data = get_fr_data(code)
+
         if ma_data is None or fr_data is None: ###_ review 'or' here
             ma_data = ma_.copy()
             fr_data = fr_.copy()
@@ -312,7 +268,7 @@ def _compute_stockinfo(stockinfo: StockInfo) -> StockInfo:
     # ffill
     main_df = main_df.replace([np.inf, -np.inf], np.nan).ffill().astype('float64')
 
-    opincome_slope, fwd_opincome = get_opincome_stats(stockinfo.meta['start_date'], fr_data) # should use fr_data
+    opincome_slope, fwd_opincome = _opincome_stats(stockinfo.meta['start_date'], fr_data) # should use fr_data
     PER_fwd = main_df['marcap'].iloc[-1]/fwd_opincome
 
     fr_stats = pd.DataFrame(

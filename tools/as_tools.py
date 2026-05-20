@@ -3,6 +3,7 @@ from zoneinfo import ZoneInfo
 import holidays
 from pathlib import Path
 import pandas as pd
+import numpy as np
 import FinanceDataReader as fdr
 
 def load_market_data():
@@ -68,3 +69,11 @@ def is_KRX_open(now=None, strict=False):
         market_close = time(12, 00)
 
     return market_open <= now.time() < market_close
+
+def get_slope_intercept(s: pd.Series):
+    s = s.dropna()
+    x = np.arange(len(s))
+    y = s.values
+
+    slope, intercept = np.polyfit(x,y,1)  
+    return slope, intercept
