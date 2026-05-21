@@ -3473,3 +3473,40 @@ update_info.txt
 
 sent 40,442,292 bytes  received 2,163 bytes  80,888,910.00 bytes/sec
 total size is 1,129,179,809  speedup is 27.92
+[main ad5f348] 2026-05-20 upload done from linux machine
+ 9 files changed, 573 insertions(+)
+ rewrite data_collection/data/df_krx.feather (83%)
+To https://github.com/iburn78/trader
+   15f8d06..ad5f348  main -> main
+https://github.com/iburn78/trader URL에서
+ * branch            main       -> FETCH_HEAD
+   ad5f348..484b1b7  main       -> origin/main
+업데이트 중 ad5f348..484b1b7
+Fast-forward
+ analysis/01_stockinfo.py               | 119 +++++++++++++--------------------
+ data_collection/data/price_DB.feather  | Bin 20274346 -> 20286178 bytes
+ data_collection/data/volume_DB.feather | Bin 28659466 -> 28672786 bytes
+ tools/as_tools.py                      |   9 +++
+ 4 files changed, 56 insertions(+), 72 deletions(-)
+https://github.com/iburn78/trader URL에서
+ * branch            main       -> FETCH_HEAD
+   484b1b7..c4e3138  main       -> origin/main
+업데이트 중 484b1b7..c4e3138
+Fast-forward
+ analysis/01_stockinfo.py               | 1049 ++++++++++++++------------------
+ data_collection/data/price_DB.feather  |  Bin 20286178 -> 20297034 bytes
+ data_collection/data/volume_DB.feather |  Bin 28672786 -> 28685658 bytes
+ tools/as_tools.py                      |    6 +
+ 4 files changed, 462 insertions(+), 593 deletions(-)
+/home/andy/projects/trader/autorun.sh: 줄 15: 19225 죽었음               python 00_CompanyHealth.py
+initiating - prices and volumes updates...
+Traceback (most recent call last):
+  File "/home/andy/projects/trader/data_collection/02_VisualizeHealth.py", line 13, in <module>
+    raise FileNotFoundError('***** plot_gen_control.npy does not exist. *****')
+FileNotFoundError: ***** plot_gen_control.npy does not exist. *****
+sending incremental file list
+df_krx.db
+update_info.txt
+
+sent 805,926 bytes  received 56 bytes  537,321.33 bytes/sec
+total size is 1,129,179,809  speedup is 1,400.00
