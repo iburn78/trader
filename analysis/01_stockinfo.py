@@ -26,8 +26,13 @@ DEFAULT_KRW_UNIT: float = 1e9
 class CodeData:
     code: str
     time: pd.Timestamp | None = None # creation time
+
+    # daily marcap and volume data
     ma_data: pd.DataFrame | None = None
+
+    # quarterly revenue and opincome data
     fr_data: pd.DataFrame | None = None
+
     unit: float = DEFAULT_KRW_UNIT
 
     def __post_init__(self):
@@ -85,8 +90,8 @@ class CodeData:
         row_o = (row_o/self.unit).ffill()
         row_o.index = DATECOLS
         fr_data = pd.DataFrame({
-            'revenue': row_r,
-            'opincome': row_o,
+            'revenue_qtr': row_r,
+            'opincome_qtr': row_o,
         })
         return fr_data
 
@@ -152,12 +157,12 @@ class SectorInfo:
 
             block = ma_aggr_data.iloc[start:start + block_size]
             marcap = block['marcap'].iloc[-1]
-            amount = block['amount'].sum() # Amount is sum over the aggregated period
+            amount_subtotal = block['amount'].sum() # Amount is sum over the aggregated period, i.e., subtotal
 
             rows.append({
                 'last_day': block.index[-1],
                 'marcap': marcap,
-                'amount': amount,
+                'amount_subtotal': amount_subtotal,
             })
 
         return pd.DataFrame(rows).set_index('last_day')
@@ -165,10 +170,10 @@ class SectorInfo:
     def _compute_ma_rates(self):
         ma_rates = pd.DataFrame(
             index=['recent_inc', 'slope', 'intercept'],
-            columns=['marcap', 'amount', 'unit'],
+            columns=['marcap', 'amount_subtotal', 'unit'],
         )
 
-        for col in ['marcap', 'amount']:
+        for col in ['marcap', 'amount_subtotal']:
             ma_rates.loc['recent_inc', col] = self.main_df[col].iloc[-1] / self.main_df[col].iloc[-2] - 1
 
             slope, intercpet = get_slope_intercept(self.main_df[col])
@@ -183,10 +188,10 @@ class SectorInfo:
     def _combine_fr_data(self):
         # fr_data preprocess before combine
         _fr_data = self.fr_data.copy()
-        _fr_data['revenue_ltm'] = _fr_data['revenue'].rolling(4).sum()
-        _fr_data['opincome_ltm'] = _fr_data['opincome'].rolling(4).sum()
-        _fr_data['opincome_qx4'] = _fr_data['opincome']*4
-        _fr_data['opmargin_qtr'] = _fr_data['opincome']/_fr_data['revenue'] # quarterly opmargin
+        _fr_data['revenue_ltm'] = _fr_data['revenue_qtr'].rolling(4).sum()
+        _fr_data['opincome_ltm'] = _fr_data['opincome_qtr'].rolling(4).sum()
+        _fr_data['opincome_qx4'] = _fr_data['opincome_qtr']*4
+        _fr_data['opmargin_qtr'] = _fr_data['opincome_qtr']/_fr_data['revenue_qtr'] # quarterly opmargin
         _fr_data['opmargin_ltm'] = _fr_data['opincome_ltm']/_fr_data['revenue_ltm']
 
         # align index and combine
@@ -202,7 +207,7 @@ class SectorInfo:
     def _compute_fr_rates(self, start_date):
         # calc opincome slope and fwd opincome (based on quarterly data)
         start_idx = max(0, self.fr_data.index.searchsorted(start_date, side="right") - 1) # side="right" and -1 will give data from the quarter that start_date is in
-        opincome = self.fr_data.iloc[start_idx:]['opincome']
+        opincome = self.fr_data.iloc[start_idx:]['opincome_qtr']
 
         opincome_slope, _ = get_slope_intercept(opincome)
         fwd_annual_opincome = sum([opincome_slope*i + opincome.iloc[-1] for i in [1, 2, 3, 4]]) # should use quarterly data
@@ -257,12 +262,12 @@ class SectorInfo:
             opincome_col = 'opincome_ltm'
             opmargin_col = 'opmargin_ltm'
             per_col = 'PER_ltm'
-            basis_text = f"Annualized by LTM basis"
+            basis_text = f"Annualized by LTM"
         else:
             opincome_col = 'opincome_qx4'
             opmargin_col = 'opmargin_qtr' # quarterly op margin
             per_col = 'PER_qx4' 
-            basis_text = f"Annualized by x4"
+            basis_text = f"Annualized by qx4"
 
         # =====================================================
         # (1) TOP: MARCAP + AMOUNT
@@ -289,21 +294,21 @@ class SectorInfo:
 
         ax1_r.bar(
             x,
-            self.main_df['amount'],
-            width=np.median(np.diff(mdates.date2num(x))), # bar_width
+            self.main_df['amount_subtotal'],
+            width=max(3, np.median(np.diff(mdates.date2num(x)))), # bar_width
             color='orange',
             alpha=0.5,
-            label='amount',
+            label='amount_subtotal',
         )
 
-        amt_fitted = self.ma_rates.at['slope', 'amount']*np.arange(len(x)) + self.ma_rates.at['intercept', 'amount']
+        amt_fitted = self.ma_rates.at['slope', 'amount_subtotal']*np.arange(len(x)) + self.ma_rates.at['intercept', 'amount_subtotal']
         ax1_r.plot(
             x,
             amt_fitted,
             color='tab:orange',
             linestyle='--',
             linewidth=2,
-            label='amount trend',
+            label='amount_subtotal trend',
         )
 
         # ---- ZERO BASELINE
@@ -319,8 +324,8 @@ class SectorInfo:
         )
 
         ax1_r.annotate(
-            f"ra:{self.ma_rates.loc['recent_inc', 'amount']:.0%}",
-            xy=(x[-1], self.main_df['amount'].iloc[-1]),
+            f"ra:{self.ma_rates.loc['recent_inc', 'amount_subtotal']:.0%}",
+            xy=(x[-1], self.main_df['amount_subtotal'].iloc[-1]),
             xytext=(-3, -5),
             textcoords='offset points',
             fontsize = 12, 
@@ -337,7 +342,7 @@ class SectorInfo:
         )
 
         ax1_r.annotate(
-            f"sa:{self.ma_rates.at['slope', 'amount']:,.0f}",
+            f"sa:{self.ma_rates.at['slope', 'amount_subtotal']:,.0f}",
             xy=(x[mid_], amt_fitted[mid_]),
             xytext=(0, 10),
             textcoords='offset points',
@@ -428,9 +433,9 @@ class SectorInfo:
         ax2_r.yaxis.set_major_formatter(FuncFormatter(lambda x, _: f"{x:,.0f}"))
 
         ax2.set_title(
-            f"({basis_text}) opincome | "
+            f"[{basis_text}] opincome | "
             f"opmargin (%) | "
-            f"PER (marcap / income)"
+            f"PER (marcap / opincome)"
         )
 
         ax2.xaxis.set_major_formatter(mdates.DateFormatter('%Y-%m-%d'))
@@ -459,8 +464,8 @@ code1 = '000660'
 code2 = '005930'
 code3 = '373220'
 codelist = [code1, code2, code3]
-# codelist = [code2]
-aggregation = 'd'
+codelist = [code3]
+aggregation = 'w'
 start_date = '2020-01-01'
 
 si = SectorInfo(codelist=codelist)
@@ -472,3 +477,20 @@ si.plot(use_ltm=False)
 print(si.ma_rates)
 print(si.fr_rates)
 
+
+# %%
+# print(si.main_df)
+print(max(si.main_df['amount_subtotal']))
+# %%
+c = si.main_df['amount_subtotal'].idxmax()
+print(si.main_df[c:])
+# %%
+print(si.main_df)
+# %%
+# 
+# for lg ensol, aggr vol slope is really ?
+# 
+# align fitted with actual data
+# - ployfit already removed na
+# - draw properly
+# check other stat - impact of na
