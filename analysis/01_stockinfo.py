@@ -3,631 +3,472 @@ from dataclasses import dataclass, field
 from typing import Literal
 import numpy as np
 import pandas as pd
+from functools import reduce
+from datetime import datetime
+from trader.tools.as_tools import is_KRX_open, load_market_data, get_slope_intercept, KRW_UNIT_KR
 import matplotlib.pyplot as plt
 import matplotlib.dates as mdates
 from matplotlib.ticker import FuncFormatter
-from datetime import datetime
-from trader.tools.as_tools import is_KRX_open, load_market_data, get_slope_intercept
 
 '''
-ma: MarCap + Amount
+ma: MarCap (last day), Amount (sum of a period)
 outshares: # shares outstanding
-volume: # shares traded
-amount: money amount traded
-slope: liear regression over all periods 
+volume: # shares traded 
+amount: money amount traded (sum of each block)
+slope: liear regression over all periods since start_date
 recent_inc: comparing between last 2 priods
+ltm: last twelve months
 '''
 df_krx, prices, volumes, fr_main_db = load_market_data()
+DEFAULT_KRW_UNIT: float = 1e9 
 
-# business days in each aggregation
-BLOCK_MAP = {
-    'd': 1,
-    'w': 5,
-    'm': 20,
-}
-
-KRW_UNIT = 1e9 
-KRW_UNIT_KR = {
-    1e12: 'jo',
-    1e9: '10-uk',
-    1e8: 'uk', 
-}
-
-QCOLS = sorted(c for c in fr_main_db.columns if 'Q' in c)
-quarter_map = {
-    '1Q': '01-01',
-    '2Q': '04-01',
-    '3Q': '07-01',
-    '4Q': '10-01',
-}
-DATECOLS = [
-    pd.Timestamp(f'{year}-{quarter_map[q]}')
-    for year, q in (col.split('_') for col in QCOLS)
-]
-
-# =========================================================
-# data structure: a single stock info or multiple stocks (sector) info
-# =========================================================
 @dataclass
 class CodeData:
     code: str
-    time: pd.Timestamp # creation time
-    ma_data: pd.DataFrame
-    fr_data: pd.DataFrame
-    meta: dict = field(
-        default_factory=lambda: {
-            'unit': KRW_UNIT,
-        }
-    )
-
-@dataclass
-class StockInfo: 
-    codelist: list[str] = field(default_factory=list) 
-    time: pd.Timestamp | None = None # creation time 
-
-    main_df: pd.DataFrame | None = None
-
-    # raw data
+    time: pd.Timestamp | None = None # creation time
     ma_data: pd.DataFrame | None = None
     fr_data: pd.DataFrame | None = None
+    unit: float = DEFAULT_KRW_UNIT
 
-    # ma related: MarCap, Amount
-    ma_rates: pd.DataFrame | None = None
+    def __post_init__(self):
+        self.time = pd.Timestamp.now()
+        self.ma_data = self.get_ma_data()
+        self.fr_data = self.get_fr_data()
 
-    # fr related: PER, OpIncome, OpMargins
-    fr_stats: pd.DataFrame | None = None
+    # ma: MarCap, Amount in daily basis
+    def get_ma_data(self):
+        if self.code not in df_krx.index: 
+            raise Exception(f'check code {self.code}')
 
-    meta: dict = field(  
-        default_factory=lambda: {
-            'aggregation': None,
-            'start_date': None,
+        outshares = df_krx.at[self.code, 'Stocks']
+        ma_data = pd.DataFrame({
+            'marcap': prices[self.code] * outshares / self.unit,
+            'amount': volumes[self.code] * prices[self.code] / self.unit,
         })
 
-# =========================================================
-# handling ma data
-# =========================================================
-# ma: MarCap, Amount
-def get_ma_data(code: str):
-    if code not in df_krx.index: 
-        raise Exception(f'check code {code}')
+        # ----------------------------------------------------------------------------
+        # if market is open (or at least in early hours), then today record is removed
+        # as volume is not a full day data
+        # ----------------------------------------------------------------------------
+        now = datetime.now()
+        if is_KRX_open(now=now):
+            ma_data = ma_data[ma_data.index.date != now.date()]
 
-    outshares = df_krx.at[code, 'Stocks']
-    ma_data = pd.DataFrame({
-        'marcap': prices[code] * outshares / KRW_UNIT,
-        'amount': volumes[code] * prices[code] / KRW_UNIT,
-    })
+        return ma_data
+    
+    # fr: financial records in quarterly basis
+    def get_fr_data(self):
+        QCOLS = sorted(c for c in fr_main_db.columns if 'Q' in c)
+        _quarter_map = {
+            '1Q': '01-01',
+            '2Q': '04-01',
+            '3Q': '07-01',
+            '4Q': '10-01',
+        }
+        DATECOLS = [
+            pd.Timestamp(f'{year}-{_quarter_map[q]}')
+            for year, q in (col.split('_') for col in QCOLS)
+        ]
 
-    # ----------------------------------------------------------------------------
-    # if market is open (or at least in early hours), then today record is removed
-    # as volume is not a full day data
-    # ----------------------------------------------------------------------------
-    now = datetime.now()
-    if is_KRX_open(now=now):
-        ma_data = ma_data[ma_data.index.date != now.date()]
+        # get CFS(consolidated) if not empty
+        fr_target = fr_main_db.loc[fr_main_db['code']==self.code]
+        fr_db_for_code = fr_target.loc[fr_target['fs_div'] == "CFS"]
+        cfs_qcols = fr_db_for_code.loc[(fr_db_for_code['account'] == 'revenue') | (fr_db_for_code['account'] == 'operating_income'), QCOLS]
+        if cfs_qcols.isna().all().all():
+            fr_db_for_code = fr_target.loc[fr_target['fs_div'] == "OFS"] 
 
-    return ma_data
+        row_r = fr_db_for_code.loc[fr_db_for_code['account'] == 'revenue', QCOLS].iloc[0].copy() # series
+        row_r = (row_r/self.unit).ffill()
+        row_r.index = DATECOLS
 
-def _ma_aggregate_periods(ma_data: pd.DataFrame, aggregation: Literal['d', 'w', 'm']):
-    """
-    aggregate into backward-aligned discrete blocks.
-    incomplete oldest block is discarded.
-
-    index: the last days of periods
-    """
-    if aggregation not in BLOCK_MAP:
-        raise ValueError(f'invalid aggregation: {aggregation}')
-
-    block_size = BLOCK_MAP[aggregation]
-
-    usable = (len(ma_data) // block_size) * block_size
-
-    if usable == 0:
-        raise ValueError('not enough rows')
-
-    ma_data = ma_data.iloc[-usable:]
-
-    rows = []
-    for start in range(0, usable, block_size):
-
-        block = ma_data.iloc[start:start + block_size]
-        marcap = block['marcap'].iloc[-1]
-        amount = block['amount'].mean()
-
-        rows.append({
-            'last_day': block.index[-1],
-            'marcap': marcap,
-            'amount': amount,
+        row_o = fr_db_for_code.loc[fr_db_for_code['account'] == 'operating_income', QCOLS].iloc[0].copy() # series
+        row_o = (row_o/self.unit).ffill()
+        row_o.index = DATECOLS
+        fr_data = pd.DataFrame({
+            'revenue': row_r,
+            'opincome': row_o,
         })
+        return fr_data
 
-    return pd.DataFrame(rows).set_index('last_day')
+class SectorInfo: 
+    def __init__(self, codelist: list, unit=None, fill=False):
+        if len(set(codelist)) != len(codelist): 
+            raise ValueError('non-unique cd_list')
 
-def compute_ma_rates(ma_data: pd.DataFrame):
-    rates = pd.DataFrame(
-        index=['recent_inc', 'slope', 'intercept'],
-        columns=['marcap', 'amount', 'unit'],
-    )
-
-    for col in ['marcap', 'amount']:
-        rates.loc['recent_inc', col] = ma_data[col][-1] / ma_data[col][-2] - 1
-
-        slope, intercpet = get_slope_intercept(ma_data[col])
-        rates.loc['slope', col] = slope
-        rates.loc['intercept', col] = intercpet
-
-    rates.loc['recent_inc', 'unit'] = '%'
-    rates.loc['slope', 'unit'] = KRW_UNIT_KR[KRW_UNIT]
-    rates.loc['intercept', 'unit'] = KRW_UNIT_KR[KRW_UNIT]
-
-    return rates
-
-    # fit_values = intercept + slope*x
-
-    # fitted = pd.DataFrame(index=ma_data.index)
-    # fitted[col] = fit_
-    
-    # # saving fitted values for plots
-    # fit_ = pd.Series(
-    #     fit_values,
-    #     index=s.index,
-    # )
-
-# =========================================================
-# handling FR data
-# =========================================================
-# fr_main to code data (CFS or OFS)
-def _get_fr_db_for_code(code):
-    # use CFS if data exists, and otherwise OFS (for that account)
-    fr_target = fr_main_db.loc[fr_main_db['code']==code]
-    cfs = fr_target.loc[fr_target['fs_div'] == "CFS"]
-    cfs_qcols = cfs.loc[(cfs['account'] == 'revenue') | (cfs['account'] == 'operating_income'), QCOLS]
-    # get CFS(consolidated) if not empty
-    if cfs_qcols.isna().all().all():
-        ofs = fr_target.loc[fr_target['fs_div'] == "OFS"] 
-        return ofs
-    return cfs
-
-def _extract_account_data(fr_db_for_code, account):
-    row = fr_db_for_code.loc[fr_db_for_code['account'] == account, QCOLS].iloc[0].copy() # series
-    row.index = DATECOLS
-    row = row.ffill()
-    row = row/KRW_UNIT
-    return row
-
-# getting rev and opincome data
-def get_fr_data(code):
-    fr_db_for_code = _get_fr_db_for_code(code)
-    row_r = _extract_account_data(fr_db_for_code, 'revenue')
-    row_o = _extract_account_data(fr_db_for_code, 'operating_income')
-    fr_data = pd.DataFrame({
-        'revenue': row_r,
-        'opincome': row_o,
-    })
-    return fr_data
-
-# calc opincome slope and fwd opincome (based on quarterly data)
-def _opincome_stats(start_date, fr_data: pd.DataFrame):
-    start_idx = max(0, fr_data.index.searchsorted(start_date, side="right") - 1) # side="right" and -1 will give data from the quarter that start_date is in
-    opincome = fr_data.iloc[start_idx:]['opincome']
-
-    opincome_slope, _ = get_slope_intercept(opincome)
-    fwd_opincome = sum([opincome_slope*i + opincome[-1] for i in [1, 2, 3, 4]])
-
-    return float(opincome_slope), float(fwd_opincome) 
-
-# =========================================================
-# stockinfo building
-# =========================================================
-def build_codedata(code):
-    return CodeData(
-        code = code, 
-        time = pd.Timestamp.now(),
-        ma_data = get_ma_data(code), 
-        fr_data = get_fr_data(code),
-    )
-
-def build_stockinfo(codelist: list | str, aggregation: Literal['d', 'w', 'm'], fill=False) -> StockInfo:
-    if isinstance(codelist, str):
-        codelist = [codelist]
-    
-    for code in codelist:
-        ma_data = get_ma_data(code)
-        fr_data = get_fr_data(code)
-
-        if ma_data is None or fr_data is None: ###_ review 'or' here
-            ma_data = ma_.copy()
-            fr_data = fr_.copy()
+        if unit is not None:
+            cd_list = [CodeData(code=code, unit=unit) for code in codelist]
         else: 
-            if fill:
-                ma_data = ma_data.add(ma_, fill_value=0) # a copy is returned
-                fr_data = fr_data.add(fr_, fill_value=0) 
-            else:
-                ma_data = ma_data.add(ma_) # do not let nan be added
-                fr_data = fr_data.add(fr_)
-
-    meta = {
-        'unit': KRW_UNIT,
-        'aggregation': aggregation,
-        'start_date': start_date,
-    }
-
-    res = StockInfo(
-        codelist=codelist,
-        time=pd.Timestamp.now(),
-
-        main_df=None,
-        ma_data=ma_data, 
-        fr_data=fr_data,
-        ma_rates=None,
-        fr_stats =None,
-        meta=meta
-    )
-
-    res = _compute_stockinfo(res)
-    return res
-
-def _compute_stockinfo(stockinfo: StockInfo) -> StockInfo:
-    ma_data = stockinfo.ma_data
-    fr_data = stockinfo.fr_data
-
-    # ltm: last twelve months
-    fr_data['revenue_ltm'] = fr_data['revenue'].rolling(4).sum()
-    fr_data['opincome_ltm'] = fr_data['opincome'].rolling(4).sum()
-    fr_data['opmargin'] = fr_data['opincome']/fr_data['revenue']
-    fr_data['opmargin_ltm'] = fr_data['opincome_ltm']/fr_data['revenue_ltm']
-
-    # combine mr and fr - align dates using reindex
-    main_df = ma_data
-    main_df[fr_data.columns]=fr_data.reindex(main_df.index, method='ffill')
-    ma_rates = compute_ma_rates(main_df)
-
-    # PER: assumes the same 4 quarters 
-    main_df['PER'] = main_df['marcap']/(4*main_df['opincome']) # x4 applied here
-    main_df['PER_ltm'] = main_df['marcap']/main_df['opincome_ltm']
-
-    # ffill
-    main_df = main_df.replace([np.inf, -np.inf], np.nan).ffill().astype('float64')
-
-    opincome_slope, fwd_opincome = _opincome_stats(stockinfo.meta['start_date'], fr_data) # should use fr_data
-    PER_fwd = main_df['marcap'].iloc[-1]/fwd_opincome
-
-    fr_stats = pd.DataFrame(
-        index=['PER', 'opincome', 'opmargin'],
-        columns=['ltm', 'qx4', 'fwd', 'slope', 'unit'],
-    )
-
-    _config = {
-        'PER': {
-            'ltm': main_df['PER_ltm'].iloc[-1],
-            'qx4': main_df['PER'].iloc[-1],
-            'fwd': PER_fwd,
-            'unit': 'times',
-        },
-
-        'opincome': {
-            'ltm': main_df['opincome_ltm'].iloc[-1],
-            'qx4': main_df['opincome'].iloc[-1]*4,
-            'fwd': fwd_opincome,
-            'slope': opincome_slope,
-            'unit': KRW_UNIT_KR[KRW_UNIT],
-        },
-
-        'opmargin': {
-            'ltm': main_df['opmargin_ltm'].iloc[-1],
-            'qx4': main_df['opmargin'].iloc[-1],
-            'unit': '%',
-        },
-    }
-
-    for row, values in _config.items():
-        for col, val in values.items():
-            fr_stats.loc[row, col] = val
-
-    stockinfo.main_df = main_df
-    stockinfo.ma_rates = ma_rates
-    stockinfo.fr_stats = fr_stats
-
-    return stockinfo
-
-# =========================================================
-# stockinfo operations
-# =========================================================
-
-###_ review the following
-def add_stockinfo(st1: StockInfo, st2: StockInfo, fill=False):
-    # to add, key parameters and index should match
-    KEYS = ['unit', 'aggregation', 'start_date']
-    meta = {}
-    for k in KEYS:
-        if st1.meta[k] != st2.meta[k]:
-            raise ValueError('Key parameters mismatch')
-        meta[k] = st1.meta[k]
-    assert st1.main_df is not None 
-    assert st2.main_df is not None
-    if not st1.main_df.index.equals(st2.main_df.index):
-        raise ValueError('main_df index mismatch')
-    common = [x for x in st1.codelist if x in set(st2.codelist)]
-    if common:
-        raise ValueError(f'common codes are found {common} - addition suspended')
-
-    ###_ should handle ma and fr... 
-    if fill: 
-        main_df=st1.main_df.add(st2.main_df, fill_value=0) # a copy is returned
-    else:
-        main_df=st1.main_df.add(st2.main_df) # nan stays as nan
-
-    res = StockInfo(
-        codelist=st1.codelist + st2.codelist,
-        time=max(st1.time, st2.time),
-
-        main_df=main_df,
-        ma_rates=None,
-        fr_stats =None,
-        meta=meta
-    )
-
-    res = _compute_stockinfo(res)
-    return res
-
-# =========================================================
-# plotting
-# =========================================================
-def plot_stockinfo(
-    stock_info: StockInfo,
-    figsize: tuple = (12, 6),
-    use_ltm: bool = False,
-):
-
-    fig, (ax1, ax2) = plt.subplots(
-        2,
-        1,
-        figsize=(figsize[0], figsize[1] * 1.6),
-        sharex=True
-    )
-
-    main_df = stock_info.main_df
-    ###_ ma_fitted = stock_info.ma_fitted
-    x = main_df.index
-
-    # =====================================================G
-    # COLUMN SELECTION
-    # =====================================================
-    if use_ltm:
-        opincome_col = 'opincome_ltm'
-        opmargin_col = 'opmargin_ltm'
-        per_col = 'PER_ltm'
-        basis_text = "LTM basis"
-        income_mult = 1
-    else:
-        opincome_col = 'opincome'
-        opmargin_col = 'opmargin'
-        per_col = 'PER'
-        basis_text = f"qx4 in {KRW_UNIT_KR[KRW_UNIT]}"
-        income_mult = 4
-
-    # =====================================================
-    # (1) TOP: MARCAP + AMOUNT
-    # =====================================================
-    ax1_r = ax1.twinx()
-
-    ax1.plot(
-        x,
-        main_df['marcap'],
-        color='black',
-        linewidth=2,
-        label='marcap',
-    )
-
-    # ax1.plot(
-    #     x,
-    #     ma_fitted['marcap'],
-    #     color='gray',
-    #     linestyle='--',
-    #     linewidth=2,
-    #     label='marcap trend',
-    # )
-
-    bar_width = np.median(np.diff(mdates.date2num(x)))
-
-    ax1_r.bar(
-        x,
-        main_df['amount'],
-        width=bar_width,
-        color='orange',
-        alpha=0.5,
-        label='amount',
-    )
-
-    # ax1_r.plot(
-    #     x,
-    #     ma_fitted['amount'],
-    #     color='tab:orange',
-    #     linestyle='--',
-    #     linewidth=2,
-    #     label='amount trend',
-    # )
-
-    # ---- ZERO BASELINE
-    ax1.set_ylim(bottom=0)
-    ax1_r.set_ylim(bottom=0)
-
-    last_x = x[-1]
-
-    ax1.annotate(
-        f"rp:{stock_info.ma_rates.loc['recent_inc', 'marcap']:.0%}",
-        xy=(last_x, main_df['marcap'].iloc[-1]),
-        xytext=(3, 3),
-        textcoords='offset points',
-        fontsize = 12, 
-    )
-
-    ax1_r.annotate(
-        f"ra:{stock_info.ma_rates.loc['recent_inc', 'amount']:.0%}",
-        xy=(last_x, main_df['amount'].iloc[-1]),
-        xytext=(3, 3),
-        textcoords='offset points',
-        fontsize = 12, 
-    )
-
-    ###_ fit_marcap = ma_fitted['marcap']
-    ###_ fit_amount = ma_fitted['amount']
-
-    ###_ mid_m = len(fit_marcap) // 2
-    ###_ mid_a = len(fit_amount) // 2
-
-    # ax1.annotate(
-    #     f"sp:{stock_info.ma_rates.loc['slope', 'marcap']:,.0f}",
-    #     xy=(fit_marcap.index[mid_m], fit_marcap.iloc[mid_m]),
-    #     xytext=(0, 10),
-    #     textcoords='offset points',
-    #     fontsize = 12, 
-    # )
-
-    # ax1_r.annotate(
-    #     f"sa:{stock_info.ma_rates.loc['slope', 'amount']:,.0f}",
-    #     xy=(fit_amount.index[mid_a], fit_amount.iloc[mid_a]),
-    #     xytext=(0, 10),
-    #     textcoords='offset points',
-    #     fontsize = 12, 
-    # )
-
-    ax1.set_ylabel(f"MarCap ({KRW_UNIT_KR[KRW_UNIT]} KRW)")
-    ax1_r.set_ylabel(f"Amount ({KRW_UNIT_KR[KRW_UNIT]} KRW)")
-
-    ax1.yaxis.set_major_formatter(FuncFormatter(lambda x, _: f"{x:,.0f}"))
-    ax1_r.yaxis.set_major_formatter(FuncFormatter(lambda x, _: f"{x:,.0f}"))
-
-    ax1.grid(True, linestyle='--', alpha=0.3)
-
-    # =====================================================
-    # (2) BOTTOM: OPINCOME + OPMARGIN + PER
-    # =====================================================
-    ax2_r = ax2.twinx()
-
-    opincome_raw = main_df[opincome_col]
-    opmargin = main_df[opmargin_col]
-    per = main_df[per_col]
-
-    opincome = opincome_raw * income_mult
-
-    bar_width2 = np.median(np.diff(mdates.date2num(x)))
-
-    ax2.bar(
-        x,
-        opincome,
-        width=bar_width2,
-        color='tab:blue',
-        alpha=0.6,
-        label='opincome',
-    )
-
-    # ---- OPMARGIN (visual scaling only)
-    scale_factor = opincome.max() if opincome.max() != 0 else 1
-    opmargin_scaled = opmargin * scale_factor
-
-    ax2.plot(
-        x,
-        opmargin_scaled,
-        linestyle=':',
-        color='red',
-        linewidth=3,
-        label='opmargin',
-    )
-
-    # ---- PER
-    ax2_r.plot(
-        x,
-        per,
-        color='purple',
-        linewidth=2,
-        label='PER',
-    )
-
-    # ---- ZERO BASELINE
-    ax2.set_ylim(bottom=min(0, opincome.min()))
-    ax2_r.set_ylim(bottom=min(0, per.min()))
-
-    ax2.annotate(
-        f"{opincome.iloc[-1]:,.0f}",
-        xy=(last_x, opincome.iloc[-1]),
-        xytext=(5, 0),
-        textcoords='offset points',
-        fontsize = 12, 
-    )
-
-    ax2.annotate(
-        f"{opmargin.iloc[-1]:.2f}",
-        xy=(last_x, opmargin_scaled.iloc[-1]),
-        xytext=(5, 0),
-        textcoords='offset points',
-        fontsize = 12, 
-    )
-
-    ax2_r.annotate(
-        f"{per.iloc[-1]:.1f}",
-        xy=(last_x, per.iloc[-1]),
-        xytext=(5, 0),
-        textcoords='offset points',
-        fontsize = 12, 
-    )
-
-    ax2.set_ylabel(f"Op Income ({KRW_UNIT_KR[KRW_UNIT]} KRW)")
-    ax2_r.set_ylabel("PER")
-    ax2.grid(True, linestyle='--', alpha=0.3)
-
-    ax2.yaxis.set_major_formatter(FuncFormatter(lambda x, _: f"{x:,.0f}"))
-    ax2_r.yaxis.set_major_formatter(FuncFormatter(lambda x, _: f"{x:,.0f}"))
-
-    ax2.set_title(
-        f"opincome ({basis_text}) | "
-        f"opmargin (%) | "
-        f"PER (marcap / income)"
-    )
-
-    ax2.xaxis.set_major_formatter(mdates.DateFormatter('%Y-%m-%d'))
-    fig.autofmt_xdate()
-
-    ax1.set_title(
-        f"{stock_info.codelist} | "
-        f"{stock_info.time:%Y-%m-%d %H:%M} | "
-        f"aggr: {stock_info.meta['aggregation']}"
-    )
-
-    lines1, labels1 = ax1.get_legend_handles_labels()
-    lines1r, labels1r = ax1_r.get_legend_handles_labels()
-    ax1.legend(lines1 + lines1r, labels1 + labels1r, loc='upper left')
-
-    lines2, labels2 = ax2.get_legend_handles_labels()
-    lines2r, labels2r = ax2_r.get_legend_handles_labels()
-    ax2.legend(lines2 + lines2r, labels2 + labels2r, loc='upper left')
-
-    plt.tight_layout()
-    plt.show()
+            cd_list = [CodeData(code) for code in codelist]
+
+        self.time: pd.Timestamp | None = cd_list[0].time  # codelist creation time
+        self.codelist = codelist
+        self.ma_data = self._add_dfs([cd.ma_data for cd in cd_list], fill) # daily basis
+        self.fr_data = self._add_dfs([cd.fr_data for cd in cd_list], fill) # quarterly basis
+        self.meta = {
+            'unit': cd_list[0].unit, # KRW unit
+        }
+    
+    def _add_dfs(self, df_list, fill=False):
+        return reduce(lambda a, b: a.add(b, fill_value=0 if fill else None), df_list)
+
+    def get_stats(self, aggregation: Literal['d', 'w', 'm'], start_date): # start date in "yyyy-mm-dd" format
+        # data is 'aggregated' from 'start_date'
+        self.meta['aggregation'] = aggregation
+        self.meta['start_date'] = start_date
+
+        self.main_df = self._ma_aggregate_periods(aggregation, start_date)
+        self.main_df = self._combine_fr_data()
+        self.ma_rates = self._compute_ma_rates()
+        self.fr_rates = self._compute_fr_rates(start_date)
+
+    def _ma_aggregate_periods(self, aggregation, start_date):
+        # business days in each aggregation
+        BLOCK_MAP = {
+            'd': 1,
+            'w': 5,
+            'm': 20,
+        }
+        """
+        aggregate into backward-aligned discrete blocks.
+        incomplete oldest block is discarded.
+
+        index: the last days of periods
+        """
+        if aggregation not in BLOCK_MAP:
+            raise ValueError(f'invalid aggregation: {aggregation}')
+
+        block_size = BLOCK_MAP[aggregation]
+
+        # use from start_date
+        usable = (len(self.ma_data.loc[start_date:]) // block_size) * block_size
+
+        if usable == 0:
+            raise ValueError('not enough rows')
+
+        ma_aggr_data = self.ma_data.iloc[-usable:]
+
+        rows = []
+        for start in range(0, usable, block_size):
+
+            block = ma_aggr_data.iloc[start:start + block_size]
+            marcap = block['marcap'].iloc[-1]
+            amount = block['amount'].sum() # Amount is sum over the aggregated period
+
+            rows.append({
+                'last_day': block.index[-1],
+                'marcap': marcap,
+                'amount': amount,
+            })
+
+        return pd.DataFrame(rows).set_index('last_day')
+
+    def _compute_ma_rates(self):
+        ma_rates = pd.DataFrame(
+            index=['recent_inc', 'slope', 'intercept'],
+            columns=['marcap', 'amount', 'unit'],
+        )
+
+        for col in ['marcap', 'amount']:
+            ma_rates.loc['recent_inc', col] = self.main_df[col].iloc[-1] / self.main_df[col].iloc[-2] - 1
+
+            slope, intercpet = get_slope_intercept(self.main_df[col])
+            ma_rates.loc['slope', col] = slope
+            ma_rates.loc['intercept', col] = intercpet
+
+        ma_rates.loc['recent_inc', 'unit'] = '%'
+        ma_rates.loc['slope', 'unit'] = KRW_UNIT_KR[self.meta['unit']]
+        ma_rates.loc['intercept', 'unit'] = KRW_UNIT_KR[self.meta['unit']]
+
+        return ma_rates
+    def _combine_fr_data(self):
+        # fr_data preprocess before combine
+        _fr_data = self.fr_data.copy()
+        _fr_data['revenue_ltm'] = _fr_data['revenue'].rolling(4).sum()
+        _fr_data['opincome_ltm'] = _fr_data['opincome'].rolling(4).sum()
+        _fr_data['opincome_qx4'] = _fr_data['opincome']*4
+        _fr_data['opmargin_qtr'] = _fr_data['opincome']/_fr_data['revenue'] # quarterly opmargin
+        _fr_data['opmargin_ltm'] = _fr_data['opincome_ltm']/_fr_data['revenue_ltm']
+
+        # align index and combine
+        self.main_df[_fr_data.columns]=_fr_data.reindex(self.main_df.index, method='ffill')
+
+        # PER: assumes the same 4 quarters 
+        self.main_df['PER_qx4'] = self.main_df['marcap']/self.main_df['opincome_qx4']
+        self.main_df['PER_ltm'] = self.main_df['marcap']/self.main_df['opincome_ltm']
+
+        # ffill and return
+        return self.main_df.replace([np.inf, -np.inf], np.nan).ffill().astype('float64')
+
+    def _compute_fr_rates(self, start_date):
+        # calc opincome slope and fwd opincome (based on quarterly data)
+        start_idx = max(0, self.fr_data.index.searchsorted(start_date, side="right") - 1) # side="right" and -1 will give data from the quarter that start_date is in
+        opincome = self.fr_data.iloc[start_idx:]['opincome']
+
+        opincome_slope, _ = get_slope_intercept(opincome)
+        fwd_annual_opincome = sum([opincome_slope*i + opincome.iloc[-1] for i in [1, 2, 3, 4]]) # should use quarterly data
+        PER_fwd = self.main_df['marcap'].iloc[-1]/fwd_annual_opincome
+
+        fr_rates = pd.DataFrame(
+            index=['PER', 'opincome', 'opmargin'],
+            columns=['ltm', 'qx4', 'fwd', 'slope', 'unit'],
+        )
+
+        _config = {
+            'PER': {
+                'ltm': self.main_df['PER_ltm'].iloc[-1],
+                'qx4': self.main_df['PER_qx4'].iloc[-1],
+                'fwd': PER_fwd,
+                'unit': 'times',
+            },
+
+            'opincome': {
+                'ltm': self.main_df['opincome_ltm'].iloc[-1],
+                'qx4': self.main_df['opincome_qx4'].iloc[-1],
+                'fwd': fwd_annual_opincome,
+                'slope': opincome_slope,
+                'unit': KRW_UNIT_KR[self.meta['unit']],
+            },
+
+            'opmargin': {
+                'ltm': self.main_df['opmargin_ltm'].iloc[-1],
+                'qx4': self.main_df['opmargin_qtr'].iloc[-1],
+                'unit': '%',
+            },
+        }
+
+        for row, values in _config.items():
+            for col, val in values.items():
+                fr_rates.loc[row, col] = val
+
+        return fr_rates
+
+
+    # =========================================================
+    # plotting
+    # =========================================================
+    def plot(self, figsize: tuple = (12, 6), use_ltm: bool = True):
+        fig, (ax1, ax2) = plt.subplots(2, 1, figsize=(figsize[0], figsize[1] * 1.6), sharex=True)
+        
+        x = self.main_df.index
+        # =====================================================G
+        # COLUMN SELECTION
+        # =====================================================
+        if use_ltm:
+            opincome_col = 'opincome_ltm'
+            opmargin_col = 'opmargin_ltm'
+            per_col = 'PER_ltm'
+            basis_text = f"Annualized by LTM basis"
+        else:
+            opincome_col = 'opincome_qx4'
+            opmargin_col = 'opmargin_qtr' # quarterly op margin
+            per_col = 'PER_qx4' 
+            basis_text = f"Annualized by x4"
+
+        # =====================================================
+        # (1) TOP: MARCAP + AMOUNT
+        # =====================================================
+        ax1_r = ax1.twinx()
+
+        ax1.plot(
+            x,
+            self.main_df['marcap'],
+            color='black',
+            linewidth=2,
+            label='marcap',
+        )
+
+        mc_fitted = self.ma_rates.at['slope', 'marcap']*np.arange(len(x)) + self.ma_rates.at['intercept', 'marcap']
+        ax1.plot(
+            x,
+            mc_fitted,
+            color='gray',
+            linestyle='--',
+            linewidth=2,
+            label='marcap trend',
+        )
+
+        ax1_r.bar(
+            x,
+            self.main_df['amount'],
+            width=np.median(np.diff(mdates.date2num(x))), # bar_width
+            color='orange',
+            alpha=0.5,
+            label='amount',
+        )
+
+        amt_fitted = self.ma_rates.at['slope', 'amount']*np.arange(len(x)) + self.ma_rates.at['intercept', 'amount']
+        ax1_r.plot(
+            x,
+            amt_fitted,
+            color='tab:orange',
+            linestyle='--',
+            linewidth=2,
+            label='amount trend',
+        )
+
+        # ---- ZERO BASELINE
+        ax1.set_ylim(bottom=0)
+        ax1_r.set_ylim(bottom=0)
+
+        ax1.annotate(
+            f"rp:{self.ma_rates.loc['recent_inc', 'marcap']:.0%}",
+            xy=(x[-1], self.main_df['marcap'].iloc[-1]),
+            xytext=(-3, 5),
+            textcoords='offset points',
+            fontsize = 12, 
+        )
+
+        ax1_r.annotate(
+            f"ra:{self.ma_rates.loc['recent_inc', 'amount']:.0%}",
+            xy=(x[-1], self.main_df['amount'].iloc[-1]),
+            xytext=(-3, -5),
+            textcoords='offset points',
+            fontsize = 12, 
+        )
+
+        mid_ = len(x) // 2
+
+        ax1.annotate(
+            f"sp:{self.ma_rates.at['slope', 'marcap']:,.0f}",
+            xy=(x[mid_], mc_fitted[mid_]),
+            xytext=(0, 10),
+            textcoords='offset points',
+            fontsize = 12, 
+        )
+
+        ax1_r.annotate(
+            f"sa:{self.ma_rates.at['slope', 'amount']:,.0f}",
+            xy=(x[mid_], amt_fitted[mid_]),
+            xytext=(0, 10),
+            textcoords='offset points',
+            fontsize = 12, 
+        )
+
+        ax1.set_ylabel(f"MarCap ({KRW_UNIT_KR[self.meta['unit']]} KRW)")
+        ax1_r.set_ylabel(f"Amount ({KRW_UNIT_KR[self.meta['unit']]} KRW)")
+
+        ax1.yaxis.set_major_formatter(FuncFormatter(lambda x, _: f"{x:,.0f}"))
+        ax1_r.yaxis.set_major_formatter(FuncFormatter(lambda x, _: f"{x:,.0f}"))
+
+        ax1.grid(True, linestyle='--', alpha=0.3)
+
+        # =====================================================
+        # (2) BOTTOM: OPINCOME, OPMARGIN, PER
+        # =====================================================
+        ax2_r = ax2.twinx()
+
+        opincome = self.main_df[opincome_col]
+        opmargin = self.main_df[opmargin_col]
+        per = self.main_df[per_col]
+
+        bar_width2 = np.median(np.diff(mdates.date2num(x)))
+
+        ax2.bar(
+            x,
+            opincome,
+            width=bar_width2,
+            color='tab:blue',
+            alpha=0.6,
+            label='opincome',
+        )
+
+        scale_factor = opincome.max() if opincome.max() != 0 else 1
+        opmargin_scaled = opmargin * scale_factor
+
+        ax2.plot(
+            x,
+            opmargin_scaled,
+            linestyle=':',
+            color='red',
+            linewidth=3,
+            label='opmargin',
+        )
+
+        ax2_r.plot(
+            x,
+            per,
+            color='purple',
+            linewidth=2,
+            label='PER',
+        )
+
+        # ---- ZERO BASELINE
+        ax2.set_ylim(bottom=min(0, opincome.min()))
+        ax2_r.set_ylim(bottom=min(0, per.min()))
+
+        ax2.annotate(
+            f"{opincome.iloc[-1]:,.0f}",
+            xy=(x[-1], opincome.iloc[-1]),
+            xytext=(1, 2),
+            textcoords='offset points',
+            fontsize = 12, 
+        )
+
+        ax2.annotate(
+            f"{opmargin.iloc[-1]:.2f}",
+            xy=(x[-1], opmargin_scaled.iloc[-1]),
+            xytext=(1, 2),
+            textcoords='offset points',
+            fontsize = 12, 
+        )
+
+        ax2_r.annotate(
+            f"{per.iloc[-1]:.1f}",
+            xy=(x[-1], per.iloc[-1]),
+            xytext=(1, 2),
+            textcoords='offset points',
+            fontsize = 12, 
+        )
+
+        ax2.set_ylabel(f"Op Income ({KRW_UNIT_KR[self.meta['unit']]} KRW)")
+        ax2_r.set_ylabel("PER")
+        ax2.grid(True, linestyle='--', alpha=0.3)
+
+        ax2.yaxis.set_major_formatter(FuncFormatter(lambda x, _: f"{x:,.0f}"))
+        ax2_r.yaxis.set_major_formatter(FuncFormatter(lambda x, _: f"{x:,.0f}"))
+
+        ax2.set_title(
+            f"({basis_text}) opincome | "
+            f"opmargin (%) | "
+            f"PER (marcap / income)"
+        )
+
+        ax2.xaxis.set_major_formatter(mdates.DateFormatter('%Y-%m-%d'))
+        fig.autofmt_xdate()
+
+        ax1.set_title(
+            f"{self.codelist} | "
+            f"{self.time:%Y-%m-%d %H:%M} | "
+            f"aggr: {self.meta['aggregation']}"
+        )
+
+        lines1, labels1 = ax1.get_legend_handles_labels()
+        lines1r, labels1r = ax1_r.get_legend_handles_labels()
+        ax1.legend(lines1 + lines1r, labels1 + labels1r, loc='upper left')
+
+        lines2, labels2 = ax2.get_legend_handles_labels()
+        lines2r, labels2r = ax2_r.get_legend_handles_labels()
+        ax2.legend(lines2 + lines2r, labels2 + labels2r, loc='upper left')
+
+        plt.tight_layout()
+        plt.show()
 
 
 #%% 
-code = '000660'
-code = '005930'
-code = '373220'
-aggregation = 'm'
+code1 = '000660'
+code2 = '005930'
+code3 = '373220'
+codelist = [code1, code2, code3]
+# codelist = [code2]
+aggregation = 'd'
 start_date = '2020-01-01'
 
-stockinfo = build_stockinfo(codelist=code, aggregation=aggregation, start_date=start_date)
-plot_stockinfo(stockinfo, use_ltm = False)
-# %%
-stockinfo.ma_rates
-stockinfo.fr_stats
-
-# 1) rates are wrong when there is nan (lg)
-# 2) delte fitted
-# 3) ltm and qx4 are the same
-
-# %%
-
-
-1) make this cleaner
-- stockinfo: single stock info
-- sectorinfo: multiple stocks info
-- mv, fr: merge later / quarterly compuation is mixed up 
-- mv, fr can addup
-- compute_rates can be applied to any stockinfo or sectorinfo
+si = SectorInfo(codelist=codelist)
+si.get_stats(aggregation=aggregation, start_date=start_date)
+#%%
+si.plot()
+si.plot(use_ltm=False)
+#%%
+print(si.ma_rates)
+print(si.fr_rates)
 

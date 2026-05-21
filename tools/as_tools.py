@@ -6,6 +6,12 @@ import pandas as pd
 import numpy as np
 import FinanceDataReader as fdr
 
+KRW_UNIT_KR = {
+    1e12: 'jo',
+    1e9: '10-uk',
+    1e8: 'uk', 
+}
+
 def load_market_data():
     BASE_DIR = Path(__file__).resolve().parents[1]
     DATA_DIR = BASE_DIR / 'data_collection' / 'data'
