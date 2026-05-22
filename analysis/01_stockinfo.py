@@ -612,4 +612,3 @@ si.plot()
 print(si.ma_rates)
 print(si.fr_rates)
 
-# %%
