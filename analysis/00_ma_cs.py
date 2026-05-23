@@ -4,6 +4,7 @@ import mplfinance as mpf
 import yfinance as yf
 
 # adds moving average and cross signals
+# should have 'Close'
 def add_ma_cs(price_ohlcv, window_n):
     ma_col = f"ma{window_n}"  # ma: moving average
     cs_col = f"cs{window_n}"  # cs: cross signal (of "Close")
@@ -19,6 +20,7 @@ def add_ma_cs(price_ohlcv, window_n):
 
     return price_ohlcv
 
+# should have 'Open', 'High', 'Low', 'Close', 'Volume'
 def ma_cs_plot(price_ohlcv, window_n, days_to_display = 0):
     price_ohlcv = add_ma_cs(price_ohlcv, window_n)[-days_to_display:]
 
@@ -52,7 +54,7 @@ def ma_cs_plot(price_ohlcv, window_n, days_to_display = 0):
     ]
 
     mpf.plot(
-        price_ohlcv, # should have 'Open', 'High', 'Low', 'Close', 'Volume'
+        price_ohlcv, 
         figsize = (15, 10),
         type='candle', 
         addplot=apds,
@@ -64,7 +66,6 @@ def ma_cs_plot(price_ohlcv, window_n, days_to_display = 0):
 # -----------------------
 # Usage
 # -----------------------
-tk = yf.Ticker("005930.KS")
-tkpr = tk.history(period="1y")
-ma_cs_plot(tkpr , 10, 30)
+prices = yf.Ticker("005930.KS").history(period='1y')
+ma_cs_plot(prices, 10, 30)
 
