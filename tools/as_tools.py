@@ -95,22 +95,42 @@ client = OpenAI(
     api_key="dummy"
 )
 
-def get_local_response(input_text, image_file=None, client=client, model="gemma4"):
-    content = [{
-        "type": "text",
-        "text": input_text,
-    }]
+def get_local_response(input_text, image_file=None, context_file=None, client=client, model="gemma4"):
+    content = [
+        {
+            "type": "text",
+            "text": input_text,
+        }
+    ]
+
+    # optional context file: txt or md, etc
+    if context_file is not None:
+        with open(context_file, "r", encoding="utf-8") as f:
+            context_text = f.read()
+
+        content.append(
+            {
+                "type": "text",
+                "text": f"\nContext of the request:\n{context_text}"
+            }
+        )
+
+    # optional image
     if image_file is not None:
         with open(image_file, "rb") as f:
             image_b64 = base64.b64encode(f.read()).decode("utf-8")
+
         mime_type, _ = mimetypes.guess_type(image_file)
         mime_type = mime_type or "image/png"
-        content.append({
-            "type": "image_url",
-            "image_url": {
-                "url": f"data:{mime_type};base64,{image_b64}",
+
+        content.append(
+            {
+                "type": "image_url",
+                "image_url": {
+                    "url": f"data:{mime_type};base64,{image_b64}",
+                }
             }
-        })
+        )
 
     response = client.chat.completions.create(
         model=model,
