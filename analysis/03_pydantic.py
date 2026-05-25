@@ -1,32 +1,38 @@
-#%%
+#%% -----------------------------------------------------------------------
+# BASIC PYDANTIC USAGE
 from pydantic import BaseModel
 
+# Pydantic model (similar to dataclass, but with runtime validation)
 class User(BaseModel):
+    # field definitions via type annotations
     name: str
     age: int
-    active: bool = True
+    active: bool = True   # default value
+
+# Pydantic will:
+# - validate input types
+# - coerce types when possible
+# - raise ValidationError if invalid
 
 u = User(name="Andy", age="35")
 
-print(u)
-print(type(u.age))
-print(u.model_dump())
-print(u.model_dump_json())
+print(u)                  # parsed model object
+print(type(u.age))       # <class 'int'>
+
+# serialization helpers
+print(u.model_dump())       # dict form
+print(u.model_dump_json())  # JSON string
 
 
-#%% 
-# run in terminal
-# Only:
-# run_sync()
-# vs
-# await run()
+#%% -----------------------------------------------------------------------
+# AI type validation use cases
 
+from pydantic import BaseModel
 from pydantic_ai import Agent
 from pydantic_ai.models.openai import OpenAIChatModel
 from pydantic_ai.providers.openai import OpenAIProvider
 
 from openai import AsyncOpenAI
-
 
 # connect to local Ollama server
 client = AsyncOpenAI(
@@ -40,70 +46,30 @@ model = OpenAIChatModel(
     provider=OpenAIProvider(openai_client=client),
 )
 
-# create agent
-agent = Agent(model)
-
-# run
-result = agent.run_sync('Explain recursion in one sentence.')
-
-print(result.output)
-
-#%% 
-# run in vscode (jupyter)
-from pydantic_ai import Agent
-from pydantic_ai.models.openai import OpenAIChatModel
-from pydantic_ai.providers.openai import OpenAIProvider
-
-from openai import AsyncOpenAI
-
-print('async')
-client = AsyncOpenAI(
-    base_url='http://localhost:11434/v1',
-    api_key='ollama',
-)
-
-model = OpenAIChatModel(
-    model_name='gemma4:latest',
-    provider=OpenAIProvider(openai_client=client),
-)
-
-agent = Agent(model)
-
-# await 
-result = await agent.run(
-    'Explain recursion in one sentence.'
-)
-
-print(result.output)
-
-#%%
-from pydantic import BaseModel
-from pydantic_ai import Agent
-
-from pydantic_ai.models.openai import OpenAIChatModel
-from pydantic_ai.providers.openai import OpenAIProvider
-
-from openai import AsyncOpenAI
-
-
 # structured output schema
+
+from typing import Literal
+from typing import Annotated
+from pydantic import StringConstraints
+
+# uppercases, letters, 1 to 5 chars, exactly one token(word)
+
+TickerStr = Annotated[
+    str,
+    StringConstraints(
+        # uppercases, letters, 1 to 5 chars, exactly one token(word)
+        pattern=r'^[A-Z]{1,5}$'
+        # include dots/dashes  
+        # pattern=r'^[A-Z.\-]{1,10}$'
+        # include / 
+        # pattern=r'^[A-Z0-9.\-\/]{1,15}$'
+    )
+]
+
 class StockAnalysis(BaseModel):
-    ticker: str
-    sentiment: str
+    ticker: TickerStr
+    sentiment: Literal['bullish', 'bearish', 'neutral'] # or 'str' 
     confidence: float
-
-
-# connect to local Ollama
-client = AsyncOpenAI(
-    base_url='http://localhost:11434/v1',
-    api_key='ollama',
-)
-
-# model
-model = OpenAIChatModel(
-    model_name='gemma4:latest',
-    provider=OpenAIProvider(openai_client=client),
-)
 
 # agent with enforced output type
 agent = Agent(
@@ -111,67 +77,26 @@ agent = Agent(
     output_type=StockAnalysis,
 )
 
-# run
-result = await agent.run(
-    'Analyze NVDA stock sentiment.'
-)
+request_text = 'Analyze NVDA stock sentiment.'
 
-# typed result
+result = await agent.run(request_text) # when run in notebook:
+# result = agent.run_sync(request_text) # run in terminal
+
+# type validated output
 print(result.output)
-
 # normal python object access
 print(result.output.ticker)
 print(result.output.sentiment)
 print(result.output.confidence)
 
-# even stronger type forcing
-# from typing import Literal
 
-# class StockAnalysis(BaseModel):
-#     ticker: str
-#     sentiment: Literal['bullish', 'bearish', 'neutral']
-#     confidence: float
-
-#%%
-from typing import Annotated
-from pydantic import BaseModel, StringConstraints
-
-
-# uppercase only
-# letters only
-# 1 to 5 chars
-# exactly one token
-
-TickerStr = Annotated[
-    str,
-    StringConstraints(
-        pattern=r'^[A-Z]{1,5}$'
-    )
-]
-
-
-class StockAnalysis(BaseModel):
-    ticker: TickerStr
-    sentiment: str
-    confidence: float
-
-
-# If you want dots/dashes too: 
-pattern=r'^[A-Z.\-]{1,10}$'
-# include / too
-pattern=r'^[A-Z0-9.\-\/]{1,15}$'
-
-
-
-#%% 
-# internet search version
+#%% -----------------------------------------------------------------------
+# Internet search version
 from pydantic_ai import Agent, RunContext
-
 from pydantic_ai.models.openai import OpenAIChatModel
 from pydantic_ai.providers.openai import OpenAIProvider
-
 from openai import AsyncOpenAI
-
+from ddgs import DDGS
 
 client = AsyncOpenAI(
     base_url='http://localhost:11434/v1',
@@ -185,30 +110,40 @@ model = OpenAIChatModel(
 
 agent = Agent(model)
 
-
 @agent.tool
 def web_search(ctx: RunContext, query: str) -> str:
-    return f"Fake web results for: {query}"
+    # should be implemented
+    # e.g., listing of search (using DuckDuckGo)
+    # - titles
+    # - snippets
+    # - URLs
 
+    print('--------------')
+    print(query) # AI generated query
+    print('--------------')
 
-result = await agent.run(
-    "Search web for NVIDIA news"
-)
+    with DDGS() as ddgs:
+        results = list(ddgs.text(query, max_results=10))
+    # extract useful text fields
+    formatted = [
+        f"{r.get('title', '')} - {r.get('body', '')} ({r.get('href', '')})"
+        for r in results
+    ]
+    search_res = ' '.join(formatted)
+
+    print('--------------')
+    print(search_res) # ddgs search result
+    print('--------------')
+
+    return f"search results:\n{search_res}"
+
+request_text = "Search web for NVIDIA news and summarize"
+
+result = await agent.run(request_text) # when run in notebook:
+# result = agent.run_sync(request_text) # run in terminal
 
 print(result.output)
-# may need to use duckduckgo
-#%%
-from duckduckgo_search import DDGS
 
-with DDGS() as ddgs:
-    results = list(ddgs.text("NVIDIA news", max_results=5))
-
-print(results)
-# It simply asks DuckDuckGo for search results and returns:
-
-# titles
-# snippets
-# URLs
-
-#################################
-# study Crawl4AI 
+#############################################
+# study Crawl4AI (for internet crawl)
+#############################################
