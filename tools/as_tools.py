@@ -83,3 +83,43 @@ def get_slope_intercept(s: pd.Series):
 
     slope, intercept = np.polyfit(x,y,1)  
     return slope, intercept
+
+
+# local gemma4 (installed via ollama)
+# standard way to call an local model (using openai template)
+from openai import OpenAI
+import base64, mimetypes
+
+client = OpenAI(
+    base_url="http://localhost:11434/v1", # ollama
+    api_key="dummy"
+)
+
+def get_local_response(input_text, image_file=None, client=client, model="gemma4"):
+    content = [{
+        "type": "text",
+        "text": input_text,
+    }]
+    if image_file is not None:
+        with open(image_file, "rb") as f:
+            image_b64 = base64.b64encode(f.read()).decode("utf-8")
+        mime_type, _ = mimetypes.guess_type(image_file)
+        mime_type = mime_type or "image/png"
+        content.append({
+            "type": "image_url",
+            "image_url": {
+                "url": f"data:{mime_type};base64,{image_b64}",
+            }
+        })
+
+    response = client.chat.completions.create(
+        model=model,
+        messages=[
+            {
+                "role": "user",
+                "content": content,
+            }
+        ]
+    )
+
+    return response.choices[0].message.content
