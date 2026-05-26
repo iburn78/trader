@@ -26,7 +26,6 @@ print(u.model_dump_json())  # JSON string
 
 #%% -----------------------------------------------------------------------
 # AI type validation use cases
-
 from pydantic import BaseModel
 from pydantic_ai import Agent
 from pydantic_ai.models.openai import OpenAIChatModel
@@ -47,12 +46,9 @@ model = OpenAIChatModel(
 )
 
 # structured output schema
-
 from typing import Literal
 from typing import Annotated
 from pydantic import StringConstraints
-
-# uppercases, letters, 1 to 5 chars, exactly one token(word)
 
 TickerStr = Annotated[
     str,
