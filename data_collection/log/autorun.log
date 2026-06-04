@@ -3666,3 +3666,372 @@ update_info.txt
 
 sent 805,926 bytes  received 56 bytes  1,611,964.00 bytes/sec
 total size is 1,129,179,809  speedup is 1,400.00
+[main de899da] 2026-05-28 upload done from linux machine
+ 5 files changed, 131 insertions(+)
+ rewrite data_collection/data/df_krx.feather (83%)
+To https://github.com/iburn78/trader
+   13aa912..de899da  main -> main
+https://github.com/iburn78/trader URL에서
+ * branch            main       -> FETCH_HEAD
+   de899da..0bb50de  main       -> origin/main
+업데이트 중 de899da..0bb50de
+Fast-forward
+ data_collection/data/price_DB.feather  | Bin 20329690 -> 20342266 bytes
+ data_collection/data/volume_DB.feather | Bin 28723242 -> 28736450 bytes
+ 2 files changed, 0 insertions(+), 0 deletions(-)
+https://github.com/iburn78/trader URL에서
+ * branch            main       -> FETCH_HEAD
+   0bb50de..6985ccf  main       -> origin/main
+업데이트 중 0bb50de..6985ccf
+Fast-forward
+ data_collection/data/price_DB.feather  | Bin 20342266 -> 20352098 bytes
+ data_collection/data/volume_DB.feather | Bin 28736450 -> 28749922 bytes
+ 2 files changed, 0 insertions(+), 0 deletions(-)
+/home/andy/projects/trader/autorun.sh: 줄 15: 29706 죽었음               python 00_CompanyHealth.py
+initiating - prices and volumes updates...
+/home/andy/projects/trader/autorun.sh: 줄 15: 30978 죽었음               python 00_CompanyHealth.py
+Traceback (most recent call last):
+  File "/home/andy/projects/trader/data_collection/02_VisualizeHealth.py", line 13, in <module>
+    raise FileNotFoundError('***** plot_gen_control.npy does not exist. *****')
+FileNotFoundError: ***** plot_gen_control.npy does not exist. *****
+sending incremental file list
+df_krx.db
+update_info.txt
+
+sent 805,926 bytes  received 56 bytes  1,611,964.00 bytes/sec
+total size is 1,129,179,809  speedup is 1,400.00
+/home/andy/projects/trader/autorun.sh: 줄 21: 31041 버스 오류           (코어 덤프됨) git add -A
+initiating - prices and volumes updates...
+fatal: '/home/andy/projects/trader/.git/index.lock' 파일을 만들 수 없습니다: 파일이 있습니다.
+
+이 저장소에서 다른 깃 프로세스가 실행 중인 것으로 보입니다. (예를
+들어 'git commit' 명령으로 편집기가 열려 있다든지.) 모든 프로세스를
+끝냈는지 확인하시고 다시 시도해 보십시오. 그래도 계속 실패하면, 이
+저장소에서 깃 프로세스가 전에 이상 종료했을 수도 있습니다:
+수동으로 해당 파일을 제거하고 계속하십시오.
+Everything up-to-date
+Traceback (most recent call last):
+  File "/home/andy/projects/trader/data_collection/02_VisualizeHealth.py", line 13, in <module>
+    raise FileNotFoundError('***** plot_gen_control.npy does not exist. *****')
+FileNotFoundError: ***** plot_gen_control.npy does not exist. *****
+sending incremental file list
+
+sent 68,363 bytes  received 12 bytes  136,750.00 bytes/sec
+total size is 1,129,179,809  speedup is 16,514.51
+fatal: '/home/andy/projects/trader/.git/index.lock' 파일을 만들 수 없습니다: 파일이 있습니다.
+
+이 저장소에서 다른 깃 프로세스가 실행 중인 것으로 보입니다. (예를
+들어 'git commit' 명령으로 편집기가 열려 있다든지.) 모든 프로세스를
+끝냈는지 확인하시고 다시 시도해 보십시오. 그래도 계속 실패하면, 이
+저장소에서 깃 프로세스가 전에 이상 종료했을 수도 있습니다:
+수동으로 해당 파일을 제거하고 계속하십시오.
+fatal: '/home/andy/projects/trader/.git/index.lock' 파일을 만들 수 없습니다: 파일이 있습니다.
+
+이 저장소에서 다른 깃 프로세스가 실행 중인 것으로 보입니다. (예를
+들어 'git commit' 명령으로 편집기가 열려 있다든지.) 모든 프로세스를
+끝냈는지 확인하시고 다시 시도해 보십시오. 그래도 계속 실패하면, 이
+저장소에서 깃 프로세스가 전에 이상 종료했을 수도 있습니다:
+수동으로 해당 파일을 제거하고 계속하십시오.
+Everything up-to-date
+https://github.com/iburn78/trader URL에서
+ * branch            main       -> FETCH_HEAD
+   6985ccf..e716429  main       -> origin/main
+error: '/home/andy/projects/trader/.git/index.lock' 파일을 만들 수 없습니다: 파일이 있습니다.
+
+이 저장소에서 다른 깃 프로세스가 실행 중인 것으로 보입니다. (예를
+들어 'git commit' 명령으로 편집기가 열려 있다든지.) 모든 프로세스를
+끝냈는지 확인하시고 다시 시도해 보십시오. 그래도 계속 실패하면, 이
+저장소에서 깃 프로세스가 전에 이상 종료했을 수도 있습니다:
+수동으로 해당 파일을 제거하고 계속하십시오.
+업데이트 중 6985ccf..e716429
+/home/andy/projects/trader/autorun.sh: 줄 15: 32911 죽었음               python 00_CompanyHealth.py
+initiating - prices and volumes updates...
+Traceback (most recent call last):
+  File "/home/andy/projects/trader/data_collection/02_VisualizeHealth.py", line 13, in <module>
+    raise FileNotFoundError('***** plot_gen_control.npy does not exist. *****')
+FileNotFoundError: ***** plot_gen_control.npy does not exist. *****
+sending incremental file list
+df_krx.db
+update_info.txt
+
+sent 805,926 bytes  received 56 bytes  1,611,964.00 bytes/sec
+total size is 1,129,179,809  speedup is 1,400.00
+fatal: '/home/andy/projects/trader/.git/index.lock' 파일을 만들 수 없습니다: 파일이 있습니다.
+
+이 저장소에서 다른 깃 프로세스가 실행 중인 것으로 보입니다. (예를
+들어 'git commit' 명령으로 편집기가 열려 있다든지.) 모든 프로세스를
+끝냈는지 확인하시고 다시 시도해 보십시오. 그래도 계속 실패하면, 이
+저장소에서 깃 프로세스가 전에 이상 종료했을 수도 있습니다:
+수동으로 해당 파일을 제거하고 계속하십시오.
+fatal: '/home/andy/projects/trader/.git/index.lock' 파일을 만들 수 없습니다: 파일이 있습니다.
+
+이 저장소에서 다른 깃 프로세스가 실행 중인 것으로 보입니다. (예를
+들어 'git commit' 명령으로 편집기가 열려 있다든지.) 모든 프로세스를
+끝냈는지 확인하시고 다시 시도해 보십시오. 그래도 계속 실패하면, 이
+저장소에서 깃 프로세스가 전에 이상 종료했을 수도 있습니다:
+수동으로 해당 파일을 제거하고 계속하십시오.
+To https://github.com/iburn78/trader
+ ! [rejected]        main -> main (non-fast-forward)
+error: 레퍼런스를 'https://github.com/iburn78/trader'에 푸시하는데 실패했습니다
+힌트: 현재 브랜치의 끝이 리모트 브랜치보다 뒤에 있으므로 업데이트가
+힌트: 거부되었습니다. 푸시하기 전에 ('git pull ...' 등 명령으로) 리모트
+힌트: 변경 사항을 포함하십시오.
+힌트: 자세한 정보는 'git push --help'의 "Note about fast-forwards' 부분을
+힌트: 참고하십시오.
+https://github.com/iburn78/trader URL에서
+ * branch            main       -> FETCH_HEAD
+error: '/home/andy/projects/trader/.git/index.lock' 파일을 만들 수 없습니다: 파일이 있습니다.
+
+이 저장소에서 다른 깃 프로세스가 실행 중인 것으로 보입니다. (예를
+들어 'git commit' 명령으로 편집기가 열려 있다든지.) 모든 프로세스를
+끝냈는지 확인하시고 다시 시도해 보십시오. 그래도 계속 실패하면, 이
+저장소에서 깃 프로세스가 전에 이상 종료했을 수도 있습니다:
+수동으로 해당 파일을 제거하고 계속하십시오.
+업데이트 중 6985ccf..e716429
+/home/andy/projects/trader/autorun.sh: 줄 15: 34292 죽었음               python 00_CompanyHealth.py
+initiating - prices and volumes updates...
+Traceback (most recent call last):
+  File "/home/andy/projects/trader/data_collection/02_VisualizeHealth.py", line 13, in <module>
+    raise FileNotFoundError('***** plot_gen_control.npy does not exist. *****')
+FileNotFoundError: ***** plot_gen_control.npy does not exist. *****
+sending incremental file list
+df_krx.db
+update_info.txt
+
+sent 805,926 bytes  received 56 bytes  537,321.33 bytes/sec
+total size is 1,129,179,809  speedup is 1,400.00
+fatal: '/home/andy/projects/trader/.git/index.lock' 파일을 만들 수 없습니다: 파일이 있습니다.
+
+이 저장소에서 다른 깃 프로세스가 실행 중인 것으로 보입니다. (예를
+들어 'git commit' 명령으로 편집기가 열려 있다든지.) 모든 프로세스를
+끝냈는지 확인하시고 다시 시도해 보십시오. 그래도 계속 실패하면, 이
+저장소에서 깃 프로세스가 전에 이상 종료했을 수도 있습니다:
+수동으로 해당 파일을 제거하고 계속하십시오.
+fatal: '/home/andy/projects/trader/.git/index.lock' 파일을 만들 수 없습니다: 파일이 있습니다.
+
+이 저장소에서 다른 깃 프로세스가 실행 중인 것으로 보입니다. (예를
+들어 'git commit' 명령으로 편집기가 열려 있다든지.) 모든 프로세스를
+끝냈는지 확인하시고 다시 시도해 보십시오. 그래도 계속 실패하면, 이
+저장소에서 깃 프로세스가 전에 이상 종료했을 수도 있습니다:
+수동으로 해당 파일을 제거하고 계속하십시오.
+To https://github.com/iburn78/trader
+ ! [rejected]        main -> main (non-fast-forward)
+error: 레퍼런스를 'https://github.com/iburn78/trader'에 푸시하는데 실패했습니다
+힌트: 현재 브랜치의 끝이 리모트 브랜치보다 뒤에 있으므로 업데이트가
+힌트: 거부되었습니다. 푸시하기 전에 ('git pull ...' 등 명령으로) 리모트
+힌트: 변경 사항을 포함하십시오.
+힌트: 자세한 정보는 'git push --help'의 "Note about fast-forwards' 부분을
+힌트: 참고하십시오.
+https://github.com/iburn78/trader URL에서
+ * branch            main       -> FETCH_HEAD
+   e716429..03d0ed4  main       -> origin/main
+error: '/home/andy/projects/trader/.git/index.lock' 파일을 만들 수 없습니다: 파일이 있습니다.
+
+이 저장소에서 다른 깃 프로세스가 실행 중인 것으로 보입니다. (예를
+들어 'git commit' 명령으로 편집기가 열려 있다든지.) 모든 프로세스를
+끝냈는지 확인하시고 다시 시도해 보십시오. 그래도 계속 실패하면, 이
+저장소에서 깃 프로세스가 전에 이상 종료했을 수도 있습니다:
+수동으로 해당 파일을 제거하고 계속하십시오.
+업데이트 중 6985ccf..03d0ed4
+/home/andy/projects/trader/autorun.sh: 줄 15: 35625 죽었음               python 00_CompanyHealth.py
+initiating - prices and volumes updates...
+[246690] Latest FDR date 2026-06-01 not in Yahoo. Using fdr only.
+[004720] Latest FDR date 2026-06-01 not in Yahoo. Using fdr only.
+[109960] Latest FDR date 2026-06-01 not in Yahoo. Using fdr only.
+[065060] Latest FDR date 2026-06-01 not in Yahoo. Using fdr only.
+[009190] Latest FDR date 2026-06-01 not in Yahoo. Using fdr only.
+[085310] Close mismatch on 2026-06-01: fdr=10300, yf=nan. Using fdr only.
+[290690] Latest FDR date 2026-06-01 not in Yahoo. Using fdr only.
+[205470] Latest FDR date 2026-06-01 not in Yahoo. Using fdr only.
+[290660] Latest FDR date 2026-06-01 not in Yahoo. Using fdr only.
+Traceback (most recent call last):
+  File "/home/andy/projects/trader/data_collection/02_VisualizeHealth.py", line 13, in <module>
+    raise FileNotFoundError('***** plot_gen_control.npy does not exist. *****')
+FileNotFoundError: ***** plot_gen_control.npy does not exist. *****
+sending incremental file list
+df_krx.db
+update_info.txt
+
+sent 810,020 bytes  received 56 bytes  1,620,152.00 bytes/sec
+total size is 1,129,183,905  speedup is 1,393.92
+fatal: '/home/andy/projects/trader/.git/index.lock' 파일을 만들 수 없습니다: 파일이 있습니다.
+
+이 저장소에서 다른 깃 프로세스가 실행 중인 것으로 보입니다. (예를
+들어 'git commit' 명령으로 편집기가 열려 있다든지.) 모든 프로세스를
+끝냈는지 확인하시고 다시 시도해 보십시오. 그래도 계속 실패하면, 이
+저장소에서 깃 프로세스가 전에 이상 종료했을 수도 있습니다:
+수동으로 해당 파일을 제거하고 계속하십시오.
+fatal: '/home/andy/projects/trader/.git/index.lock' 파일을 만들 수 없습니다: 파일이 있습니다.
+
+이 저장소에서 다른 깃 프로세스가 실행 중인 것으로 보입니다. (예를
+들어 'git commit' 명령으로 편집기가 열려 있다든지.) 모든 프로세스를
+끝냈는지 확인하시고 다시 시도해 보십시오. 그래도 계속 실패하면, 이
+저장소에서 깃 프로세스가 전에 이상 종료했을 수도 있습니다:
+수동으로 해당 파일을 제거하고 계속하십시오.
+To https://github.com/iburn78/trader
+ ! [rejected]        main -> main (non-fast-forward)
+error: 레퍼런스를 'https://github.com/iburn78/trader'에 푸시하는데 실패했습니다
+힌트: 현재 브랜치의 끝이 리모트 브랜치보다 뒤에 있으므로 업데이트가
+힌트: 거부되었습니다. 푸시하기 전에 ('git pull ...' 등 명령으로) 리모트
+힌트: 변경 사항을 포함하십시오.
+힌트: 자세한 정보는 'git push --help'의 "Note about fast-forwards' 부분을
+힌트: 참고하십시오.
+https://github.com/iburn78/trader URL에서
+ * branch            main       -> FETCH_HEAD
+   03d0ed4..c66a8d4  main       -> origin/main
+error: '/home/andy/projects/trader/.git/index.lock' 파일을 만들 수 없습니다: 파일이 있습니다.
+
+이 저장소에서 다른 깃 프로세스가 실행 중인 것으로 보입니다. (예를
+들어 'git commit' 명령으로 편집기가 열려 있다든지.) 모든 프로세스를
+끝냈는지 확인하시고 다시 시도해 보십시오. 그래도 계속 실패하면, 이
+저장소에서 깃 프로세스가 전에 이상 종료했을 수도 있습니다:
+수동으로 해당 파일을 제거하고 계속하십시오.
+업데이트 중 6985ccf..c66a8d4
+/home/andy/projects/trader/autorun.sh: 줄 15: 37019 죽었음               python 00_CompanyHealth.py
+$474650.KS: possibly delisted; no timezone found
+initiating - prices and volumes updates...
+[900340] Close mismatch on 2026-06-02: fdr=2080, yf=nan. Using fdr only.
+[246690] Latest FDR date 2026-06-02 not in Yahoo. Using fdr only.
+[115180] Latest FDR date 2026-06-02 not in Yahoo. Using fdr only.
+[086890] Latest FDR date 2026-06-02 not in Yahoo. Using fdr only.
+[274090] Latest FDR date 2026-06-02 not in Yahoo. Using fdr only.
+[069540] Latest FDR date 2026-06-02 not in Yahoo. Using fdr only.
+[424760] Latest FDR date 2026-06-02 not in Yahoo. Using fdr only.
+[188260] Latest FDR date 2026-06-02 not in Yahoo. Using fdr only.
+[085660] Latest FDR date 2026-06-02 not in Yahoo. Using fdr only.
+[142280] Latest FDR date 2026-06-02 not in Yahoo. Using fdr only.
+[012170] Close mismatch on 2026-06-02: fdr=1108, yf=nan. Using fdr only.
+[070300] Latest FDR date 2026-06-02 not in Yahoo. Using fdr only.
+Traceback (most recent call last):
+  File "/home/andy/projects/trader/data_collection/02_VisualizeHealth.py", line 13, in <module>
+    raise FileNotFoundError('***** plot_gen_control.npy does not exist. *****')
+FileNotFoundError: ***** plot_gen_control.npy does not exist. *****
+sending incremental file list
+df_krx.db
+update_info.txt
+
+sent 810,022 bytes  received 56 bytes  1,620,156.00 bytes/sec
+total size is 1,129,183,905  speedup is 1,393.92
+fatal: '/home/andy/projects/trader/.git/index.lock' 파일을 만들 수 없습니다: 파일이 있습니다.
+
+이 저장소에서 다른 깃 프로세스가 실행 중인 것으로 보입니다. (예를
+들어 'git commit' 명령으로 편집기가 열려 있다든지.) 모든 프로세스를
+끝냈는지 확인하시고 다시 시도해 보십시오. 그래도 계속 실패하면, 이
+저장소에서 깃 프로세스가 전에 이상 종료했을 수도 있습니다:
+수동으로 해당 파일을 제거하고 계속하십시오.
+fatal: '/home/andy/projects/trader/.git/index.lock' 파일을 만들 수 없습니다: 파일이 있습니다.
+
+이 저장소에서 다른 깃 프로세스가 실행 중인 것으로 보입니다. (예를
+들어 'git commit' 명령으로 편집기가 열려 있다든지.) 모든 프로세스를
+끝냈는지 확인하시고 다시 시도해 보십시오. 그래도 계속 실패하면, 이
+저장소에서 깃 프로세스가 전에 이상 종료했을 수도 있습니다:
+수동으로 해당 파일을 제거하고 계속하십시오.
+To https://github.com/iburn78/trader
+ ! [rejected]        main -> main (non-fast-forward)
+error: 레퍼런스를 'https://github.com/iburn78/trader'에 푸시하는데 실패했습니다
+힌트: 현재 브랜치의 끝이 리모트 브랜치보다 뒤에 있으므로 업데이트가
+힌트: 거부되었습니다. 푸시하기 전에 ('git pull ...' 등 명령으로) 리모트
+힌트: 변경 사항을 포함하십시오.
+힌트: 자세한 정보는 'git push --help'의 "Note about fast-forwards' 부분을
+힌트: 참고하십시오.
+https://github.com/iburn78/trader URL에서
+ * branch            main       -> FETCH_HEAD
+   c66a8d4..7538027  main       -> origin/main
+error: '/home/andy/projects/trader/.git/index.lock' 파일을 만들 수 없습니다: 파일이 있습니다.
+
+이 저장소에서 다른 깃 프로세스가 실행 중인 것으로 보입니다. (예를
+들어 'git commit' 명령으로 편집기가 열려 있다든지.) 모든 프로세스를
+끝냈는지 확인하시고 다시 시도해 보십시오. 그래도 계속 실패하면, 이
+저장소에서 깃 프로세스가 전에 이상 종료했을 수도 있습니다:
+수동으로 해당 파일을 제거하고 계속하십시오.
+업데이트 중 6985ccf..7538027
+/home/andy/projects/trader/autorun.sh: 줄 15: 38448 죽었음               python 00_CompanyHealth.py
+initiating - prices and volumes updates...
+Traceback (most recent call last):
+  File "/home/andy/projects/trader/data_collection/02_VisualizeHealth.py", line 13, in <module>
+    raise FileNotFoundError('***** plot_gen_control.npy does not exist. *****')
+FileNotFoundError: ***** plot_gen_control.npy does not exist. *****
+sending incremental file list
+df_krx.db
+update_info.txt
+
+sent 810,022 bytes  received 56 bytes  1,620,156.00 bytes/sec
+total size is 1,129,183,905  speedup is 1,393.92
+fatal: '/home/andy/projects/trader/.git/index.lock' 파일을 만들 수 없습니다: 파일이 있습니다.
+
+이 저장소에서 다른 깃 프로세스가 실행 중인 것으로 보입니다. (예를
+들어 'git commit' 명령으로 편집기가 열려 있다든지.) 모든 프로세스를
+끝냈는지 확인하시고 다시 시도해 보십시오. 그래도 계속 실패하면, 이
+저장소에서 깃 프로세스가 전에 이상 종료했을 수도 있습니다:
+수동으로 해당 파일을 제거하고 계속하십시오.
+fatal: '/home/andy/projects/trader/.git/index.lock' 파일을 만들 수 없습니다: 파일이 있습니다.
+
+이 저장소에서 다른 깃 프로세스가 실행 중인 것으로 보입니다. (예를
+들어 'git commit' 명령으로 편집기가 열려 있다든지.) 모든 프로세스를
+끝냈는지 확인하시고 다시 시도해 보십시오. 그래도 계속 실패하면, 이
+저장소에서 깃 프로세스가 전에 이상 종료했을 수도 있습니다:
+수동으로 해당 파일을 제거하고 계속하십시오.
+To https://github.com/iburn78/trader
+ ! [rejected]        main -> main (non-fast-forward)
+error: 레퍼런스를 'https://github.com/iburn78/trader'에 푸시하는데 실패했습니다
+힌트: 현재 브랜치의 끝이 리모트 브랜치보다 뒤에 있으므로 업데이트가
+힌트: 거부되었습니다. 푸시하기 전에 ('git pull ...' 등 명령으로) 리모트
+힌트: 변경 사항을 포함하십시오.
+힌트: 자세한 정보는 'git push --help'의 "Note about fast-forwards' 부분을
+힌트: 참고하십시오.
+From https://github.com/iburn78/trader
+ * branch            main       -> FETCH_HEAD
+   7538027..71d8395  main       -> origin/main
+error: Unable to create '/home/andy/projects/trader/.git/index.lock': File exists.
+
+Another git process seems to be running in this repository, e.g.
+an editor opened by 'git commit'. Please make sure all processes
+are terminated then try again. If it still fails, a git process
+may have crashed in this repository earlier:
+remove the file manually to continue.
+Updating 6985ccf..71d8395
+Company health data collection initiated at 2026-06-04 15:31:57.522713
+Updating KRX data...
+Updating between dates: 2026-05-13 / 2026-06-04
+FULL rescan codes:
+Total 136 items.
+[0-99] ['000250', '000370', '000400', '0004V0', '000540', '000880', '000950', '000990', '0009K0', '0010V0', '001340', '001470', '0015S0', '002620', '002960', '003100', '003460', '003690', '004430', '004720', '004970', '005010', '005070', '005420', '005850', '006260', '006800', '009270', '009450', '009830', '010130', '010770', '011070', '011090', '012690', '0126Z0', '014820', '015590', '021050', '023760', '024740', '024850', '026150', '027050', '033100', '038530', '041920', '044180', '047310', '051600', '058850', '059210', '060370', '060850', '065660', '071320', '071670', '071970', '075580', '076610', '079980', '080420', '082640', '085620', '088350', '089590', '090080', '090710', '091580', '093050', '096530', '098120', '100250', '107600', '111110', '111380', '115440', '120030', '121890', '124560', '131370', '138040', '139130', '143210', '175250', '187220', '188260', '207940', '208370', '210120', '214420', '214430', '215790', '217330', '225430', '237690', '241590', '241710', '246250', '246960']
+[100-135] ['248170', '252500', '259960', '261520', '267270', '271980', '272210', '298020', '298050', '306620', '336570', '347700', '347890', '357880', '365340', '373110', '375500', '376900', '383930', '388050', '403490', '412540', '417010', '417200', '419080', '424870', '443060', '448900', '452260', '452280', '466410', '469750', '475230', '475580', '487360', '900140']
+PARTIAL rescan codes:
+Total 63 items.
+[0-62] ['397810', '950160', '030960', '900270', '350520', '008870', '900100', '439960', '900250', '900310', '293940', '008700', '330590', '900300', '950220', '400760', '417310', '950200', '021820', '100660', '477850', '900110', '377190', '334890', '900120', '950130', '221800', '003610', '348950', '241820', '950170', '481850', '169330', '273640', '001080', '950210', '309710', '469610', '032800', '900340', '459510', '398120', '900070', '900290', '478560', '900260', '042520', '288180', '305090', '462980', '050860', '246710', '088260', '189690', '404990', '241560', '389470', '950190', '334970', '084440', '017250', '097870', '093240']
+full_rescan batch operation: 0
+Financial data collection log >> 
+2026-06-04 15:32:20.795988, no: 0, code 000250 in process
+2026-06-04 15:32:41.874751, no: 1, code 000370 in process
+2026-06-04 15:32:51.586765, no: 2, code 000400 in process
+2026-06-04 15:33:01.108871, no: 3, code 0004V0 in process
+2026-06-04 15:33:07.831404, no: 4, code 000540 in process
+2026-06-04 15:33:18.147335, no: 5, code 000880 in process
+2026-06-04 15:33:40.775268, no: 6, code 000950 in process
+2026-06-04 15:34:07.872260, no: 7, code 000990 in process
+2026-06-04 15:34:30.592879, no: 8, code 0009K0 in process
+2026-06-04 15:34:38.448663, no: 9, code 0010V0 in process
+2026-06-04 15:34:45.811060, no: 10, code 001340 in process
+2026-06-04 15:35:07.190786, no: 11, code 001470 in process
+2026-06-04 15:35:31.952771, no: 12, code 0015S0 in process
+2026-06-04 15:35:38.323625, no: 13, code 002620 in process
+2026-06-04 15:35:58.889883, no: 14, code 002960 in process
+2026-06-04 15:36:18.719202, no: 15, code 003100 in process
+2026-06-04 15:36:41.503754, no: 16, code 003460 in process
+2026-06-04 15:36:51.667826, no: 17, code 003690 in process
+2026-06-04 15:37:03.214017, no: 18, code 004430 in process
+2026-06-04 15:37:25.368300, no: 19, code 004720 in process
+2026-06-04 15:37:45.710830, no: 20, code 004970 in process
+2026-06-04 15:38:05.378733, no: 21, code 005010 in process
+2026-06-04 15:38:24.493805, no: 22, code 005070 in process
+2026-06-04 15:38:44.504050, no: 23, code 005420 in process
+2026-06-04 15:39:07.100709, no: 24, code 005850 in process
+Traceback (most recent call last):
+  File "/home/andy/projects/trader/data_collection/00_CompanyHealth.py", line 388, in <module>
+    update_main_db(log_file, main_db, plot_gen_control_file)
+  File "/home/andy/projects/trader/data_collection/00_CompanyHealth.py", line 351, in update_main_db
+    db_f = _generate_financial_reports_set(batch_codes, None, log_file, end_day)
+  File "/home/andy/projects/trader/data_collection/00_CompanyHealth.py", line 232, in _generate_financial_reports_set
+    time.sleep(sleep_time)
+KeyboardInterrupt
