@@ -1,7 +1,6 @@
 #%%
-from trader.analysis.drawer import Drawer
+from trader.graph.drawer import Drawer
 
-#%%
 # ----------------------------------------------------------------
 # PRICE, PER, PBR plots
 # ----------------------------------------------------------------
@@ -22,7 +21,6 @@ drawer.quarterly_line_plot(code, qtrs_back, 'PBR', 'quarterly')
 drawer.quarterly_line_plot(code, qtrs_back, 'PBR', 'average')
 
 
-#%% 
 # ----------------------------------------------------------------
 # Line plot
 # ----------------------------------------------------------------
@@ -36,4 +34,3 @@ d = Drawer(
     )
 
 d.line_plot(x, y, '-o')
-# d.line_plot(x1, y1, '-o', x2, y2, type=':^')

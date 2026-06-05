@@ -1,6 +1,7 @@
 #%% 
-from tools.dc_tools import set_KoreanFonts
-from graph.graph_tools import quarter_format, lang_formatter, precision_formatter, precision_adjust, gen_output_plot_path_file, retrieve_quarterly_data_code, get_quarters, get_last_quarter, get_quarter_simpler_string, get_PER_rolling, get_last_N_quarter_price, L4_addition, get_PBR, lookup_name_onetime, read_or_regen
+from trader.tools.dc_tools import set_KoreanFonts
+from broker import Broker
+from trader.graph.graph_tools import quarter_format, lang_formatter, precision_formatter, precision_adjust, gen_output_plot_path_file, retrieve_quarterly_data_code, get_quarters, get_last_quarter, get_quarter_simpler_string, get_PER_rolling, get_last_N_quarter_price, L4_addition, get_PBR, lookup_name_onetime, read_or_regen
 import os
 import matplotlib.pyplot as plt
 import matplotlib.dates as mdates
@@ -460,8 +461,8 @@ class Drawer:
         self.ax.text(mid_point, upper_value + (upper_value * 0.01), f'{upper_value}', color='orange', ha='center', va='bottom', fontsize=fontsize)
         self.ax.text(mid_point, lower_value + (lower_value * 0.01), f'{lower_value}', color='orange', ha='center', va='bottom', fontsize=fontsize)
         arrow_point = int(len(pr)*3/4)
-        self.draw_arrow((pr.index[arrow_point], avg_value*(1.0)), (pr.index[arrow_point], upper_value), '+1$\sigma$', text_offset=(17, 0))
-        self.draw_arrow((pr.index[arrow_point], avg_value*(1.0)), (pr.index[arrow_point], lower_value), '-1$\sigma$', text_offset=(17, 0))
+        self.draw_arrow((pr.index[arrow_point], avg_value*(1.0)), (pr.index[arrow_point], upper_value), r'+1$\sigma$', text_offset=(17, 0))
+        self.draw_arrow((pr.index[arrow_point], avg_value*(1.0)), (pr.index[arrow_point], lower_value), r'-1$\sigma$', text_offset=(17, 0))
         self._price_xtick_formatter(pr)
 
     def plot_fownership(self, fo, cr, period='D', save=True, output_file=None):
@@ -585,7 +586,10 @@ class Drawer:
     
     def line_animate(self, x, y, speed = 1, output_file=None):
         self._init_fig()
-        line, = self.ax.plot([], [], lw=3, color='yellow')
+        line, = self.ax.plot([], [], lw=3, color='white')
+
+        # self.ax.legend()
+
         self.ax.set_xlim(min(x), max(x))
         self.ax.set_ylim(min(y), max(y))
         def init():
@@ -613,6 +617,8 @@ class Drawer:
         # Initialize two lines
         line1, = self.ax.plot([], [], lw=3, color='white', label='Line 1')
         line2, = self.ax.plot([], [], lw=3, color='orange', label='Line 2')
+
+        self.ax.legend()
 
         # Set axis limits
         self.ax.set_xlim(min(min(x1), min(x2)), max(max(x1), max(x2)))
@@ -651,6 +657,8 @@ class Drawer:
         line2, = self.ax.plot([], [], lw=3, color='orange', label='Line 2')
         line3, = self.ax.plot([], [], lw=3, color='cyan', label='Line 3')
 
+        self.ax.legend()
+
         # Set axis limits
         self.ax.set_xlim(min(min(x1), min(x2), min(x3)), max(max(x1), max(x2), max(x3)))
         self.ax.set_ylim(min(min(y1), min(y2), min(y3)), max(max(y1), max(y2), max(y3)))
@@ -681,16 +689,3 @@ class Drawer:
             ani.save(output_file, writer='ffmpeg', fps=24)
 
         plt.show()
-
-if __name__ == '__main__': 
-    x = ['11/11', '11/12', '11/13', '11/14', '11/15']
-    y = [19298.76, 19281.40, 19230.72,	19107.65, 18680.12]
-
-    d = Drawer(
-        figsize = (12, 4), 
-        tick_text_size = 16,
-        text_size = 20,
-        )
-
-    y2 = [i*1.1 for i in y]
-    pass

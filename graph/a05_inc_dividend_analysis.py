@@ -1,3 +1,12 @@
+###_ dividend part dc15 => reorganize / make it run
+###_ revive dividend analysis
+###_ revisit some of the dc codes
+###_ analysis part vs datacollection part vs graph part: make it clear separation
+###_ revise CCA
+###_ move on to optrading (check interconnection with trader and disconnect)
+###_ move on to ani
+
+
 #%%
 # -------------------------------------------------------
 # Dividend analysis example

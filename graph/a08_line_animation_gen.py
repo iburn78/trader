@@ -1,6 +1,6 @@
 #%% 
-from trader.analysis.analysis_tools import *
-from trader.analysis.drawer import *
+from trader.graph.graph_tools import *
+from trader.graph.drawer import *
 
 drawer = Drawer(
     figsize = (16, 16), 
@@ -10,11 +10,12 @@ drawer = Drawer(
 
 code1 = '005930'
 code2 = '000660' # 하이닉스
+code3 = '010120' 
 
-start_date = '2024-07-15'
+start_date = '2024-11-30'
 pr1 = get_last_N_quarter_price(code1, qts_back= None, start_date=start_date)
 pr2 = get_last_N_quarter_price(code2, qts_back= None, start_date=start_date)
-# pr3 = get_last_N_quarter_price(code3, qts_back= None, start_date=start_date)
+pr3 = get_last_N_quarter_price(code3, qts_back= None, start_date=start_date)
 
 x1 = pr1.index
 y1 = pr1.values
@@ -24,14 +25,14 @@ x2 = pr2.index
 y2 = pr2.values
 y2 = y2/y2[0]*100
 
-# x3 = pr3.index
-# y3 = pr3.values
-# y3 = y3/y3[0]*100
+x3 = pr3.index
+y3 = pr3.values
+y3 = y3/y3[0]*100
 
 cd_ = os.path.dirname(os.path.abspath(__file__)) # .   
-# drawer.line_animate(x,y, speed=2, output_file=os.path.join(cd_, 'plots/ani.mp4'))
-drawer.double_line_animate(x1,y1, x2, y2, speed=1, output_file=os.path.join(cd_, 'plots/ani.mp4'))
-# drawer.triple_line_animate(x1 ,y1, x2, y2, x3, y3, speed=2, output_file=os.path.join(cd_, 'plots/ani.mp4'))
+# drawer.line_animate(x1,y1, speed=2, output_file=os.path.join(cd_, 'plots/ani1.mp4'))
+# drawer.double_line_animate(x1,y1, x2, y2, speed=1, output_file=os.path.join(cd_, 'plots/ani2.mp4'))
+drawer.triple_line_animate(x1 ,y1, x2, y2, x3, y3, speed=2, output_file=os.path.join(cd_, 'plots/ani3.mp4'))
 
 # print(x1)
 # print(x2) 

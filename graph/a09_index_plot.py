@@ -22,7 +22,7 @@ for index_name, ticker in indices.items():
     data = yf.download(ticker, start="2000-01-01", end="2024-12-31", interval="1d")
     
     # Resample to yearly closing price
-    yearly_closing = data['Close'].resample('Y').last()
+    yearly_closing = data['Close'].resample('YE').last()
     yearly_closing_prices[index_name] = yearly_closing.values.squeeze()  # Use squeeze to ensure 1D
 
 # Format the index to show only the year
@@ -32,8 +32,8 @@ yearly_closing_prices.index = yearly_closing.index.year
 #%% -------------------------------------------------------------
 # An example of animating index developments since the normalize date
 # ---------------------------------------------------------------
-from trader.analysis.analysis_tools import *
-from trader.analysis.drawer import Drawer
+from trader.graph.graph_tools import *
+from trader.graph.drawer import Drawer
 import yfinance as yf
 
 # Define tickers for global indices
@@ -54,8 +54,8 @@ df_KS200 = fdr.DataReader('KS200')['Close'] # KOSPI 200 (KRX)
 data = {name: yf.Ticker(ticker).history(period="3mo", interval="1d") for name, ticker in indices.items()}
 
 # lim: dates from before today
-lim = -26
-normalize_date = '2024-12-05'
+lim = -100
+normalize_date = '2026-03-10'
 
 KS = df_KS[lim:]
 KS = KS/KS.loc[normalize_date]*100

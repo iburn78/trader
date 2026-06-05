@@ -1,10 +1,11 @@
 #%%
 import os
 import FinanceDataReader as fdr
-from tools.dc_tools import generate_krx_data, get_main_financial_reports_db
+from trader.tools.dc_tools import generate_krx_data, get_main_financial_reports_db
 import pandas as pd
 import requests
 import time
+from pathlib import Path
 
 LANG_DICT = {
     'KRW': '원',
@@ -38,13 +39,14 @@ CONVERT_DICT = {
 }
 
 QUARTER_START_DATE = '2014-01-01'
-RR_TIME_ALLOWANCE = 24*3600
+RR_TIME_ALLOWANCE = 12*3600 # Read or Regen threshold
 
 cd_ = os.path.dirname(os.path.abspath(__file__)) # .   
 pd_ = os.path.dirname(os.path.dirname(os.path.abspath(__file__))) # .. 
 
 OUTPUT_PLOTS_DIR = os.path.join(cd_, 'plots/')
-KRX_DATA_FILE = os.path.join(pd_, 'data_collection/data/df_krx.feather')
+DF_KRX_PATH = os.path.join(pd_, 'data_collection/data/df_krx.feather')
+df_krx = pd.read_feather(DF_KRX_PATH)
 
 def retrieve_quarterly_data_code(code):
     fr_main = get_main_financial_reports_db()
@@ -193,6 +195,8 @@ def read_or_regen(data_file, regen_func, time_allowance = RR_TIME_ALLOWANCE, **k
             res = regen_func(**kwargs)
             res.to_feather(data_file)
     else: 
+        data_file = Path(data_file)
+        data_file.parent.mkdir(parents=True, exist_ok=True)
         res = regen_func(**kwargs)
         res.to_feather(data_file)
     return res
@@ -239,8 +243,11 @@ def get_latest_face_value(broker, code):
 
     
 # give days in the format of 'yyyymmdd'
-# day_from = '20240101'
-# day_to = '20240201'
+# day_from = '20260315'
+# day_to = '20260531'
+# ----------------------------------------------------------------------
+# WARNING: these data are not spit adjusted / later may use other db
+# ----------------------------------------------------------------------
 def market_change_analysis(day_from, day_to):
     y_close = fdr.StockListing('KRX', day_from)
     t_close = fdr.StockListing('KRX', day_to)
@@ -251,17 +258,37 @@ def market_change_analysis(day_from, day_to):
     y_close_KOSDAQ = y_close.loc[y_close['Market']=='KOSDAQ']
     t_close_KOSDAQ = t_close.loc[t_close['Market']=='KOSDAQ']
 
+    type_cast = ['Marcap_y', 'Marcap_t', 'Close_y', 'Close_t', 'Volume_y', 'Volume_t']
+
     res_KOSPI = t_close_KOSPI.merge(y_close_KOSPI[['Code', 'Close', 'Volume', 'Marcap']], on='Code', how='inner', suffixes=('_t', '_y'))
     res_KOSPI = res_KOSPI[['Code', 'Name', 'Marcap_y', 'Marcap_t', 'Close_y', 'Close_t', 'Volume_y', 'Volume_t']]
-    type_cast = ['Marcap_y', 'Marcap_t', 'Close_y', 'Close_t', 'Volume_y', 'Volume_t']
-    res_KOSPI[type_cast] = res_KOSPI[type_cast].apply(pd.to_numeric, errors='coerce').fillna(0).astype('int64')
+    res_KOSPI[type_cast] = res_KOSPI[type_cast].apply(pd.to_numeric, errors='coerce')
+    res_KOSPI = res_KOSPI.replace(0,pd.NA).dropna(subset=type_cast)
+    res_KOSPI[type_cast] = res_KOSPI[type_cast].astype('int64')
+
     res_KOSDAQ = t_close_KOSDAQ.merge(y_close_KOSDAQ[['Code', 'Close', 'Volume', 'Marcap']], on='Code', how='inner', suffixes=('_t', '_y'))
     res_KOSDAQ = res_KOSDAQ[['Code', 'Name', 'Marcap_y', 'Marcap_t', 'Close_y', 'Close_t', 'Volume_y', 'Volume_t']]
-    res_KOSDAQ[type_cast] = res_KOSDAQ[type_cast].apply(pd.to_numeric, errors='coerce').fillna(0).astype('int64')
+    res_KOSDAQ[type_cast] = res_KOSDAQ[type_cast].apply(pd.to_numeric, errors='coerce')
+    res_KOSDAQ = res_KOSDAQ.replace(0, pd.NA).dropna(subset=type_cast)
+    res_KOSDAQ[type_cast] = res_KOSDAQ[type_cast].astype('int64')
+
     res_KOSPI = res_KOSPI.sort_values(by='Marcap_y', ascending=False).reset_index(drop=True)
     res_KOSDAQ = res_KOSDAQ.sort_values(by='Marcap_y', ascending=False).reset_index(drop=True)
 
     return res_KOSPI, res_KOSDAQ
+
+# target_DB = res_KOSPI or res_KOSDAQ from market_change_analysis function
+def top_movements_in_group(target_DB, select_by_marcap = 100):
+    target_group = target_DB.iloc[:select_by_marcap].copy()
+    target_group['p_increase'] = (target_group['Marcap_t']-target_group['Marcap_y'])/target_group['Marcap_y']*100
+    target_group['v_increase'] = (target_group['Volume_t']*target_group['Close_t']-target_group['Volume_y']*target_group['Close_y'])/(target_group['Volume_y']*target_group['Close_y'])*100
+    target_group1=target_group.sort_values(by='p_increase', ascending=False)
+    price_top_performers = target_group1.iloc[:20]
+    price_bottom_performers = target_group1.iloc[-20:]
+    target_group2=target_group.sort_values(by='v_increase', ascending=False)
+    volume_top_performers = target_group2.iloc[:20]
+    volume_bottom_performers = target_group2.iloc[-20:]
+    return price_top_performers, price_bottom_performers, volume_top_performers, volume_bottom_performers
 
 def market_grouping_anaysis(target_DB):
     # --------------------------------------------------
@@ -280,18 +307,3 @@ def market_grouping_anaysis(target_DB):
     ).reset_index(name='Measure')
 
     return target_DB, group_mc, group_vol
-
-# target_DB = res_KOSPI or res_KOSDAQ from market_change_analysis function
-def top_movements_in_group(target_DB, select_by_marcap = 100):
-    target_group = target_DB.iloc[:select_by_marcap].copy()
-    target_group['p_increase'] = (target_group['Marcap_t']-target_group['Marcap_y'])/target_group['Marcap_y']*100
-    target_group['v_increase'] = (target_group['Volume_t']*target_group['Close_t']-target_group['Volume_y']*target_group['Close_y'])/(target_group['Volume_y']*target_group['Close_y'])*100
-    target_group1=target_group.sort_values(by='p_increase', ascending=False)
-    price_top_performers = target_group1.iloc[:20]
-    price_bottom_performers = target_group1.iloc[-20:]
-    target_group2=target_group.sort_values(by='v_increase', ascending=False)
-    volume_top_performers = target_group2.iloc[:20]
-    volume_bottom_performers = target_group2.iloc[-20:]
-    return price_top_performers, price_bottom_performers, volume_top_performers, volume_bottom_performers
-
-

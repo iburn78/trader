@@ -60,7 +60,7 @@ drawer.bar_plot(
     # scale_factor=0.9, 
     # highlights_gray=[1],
     # highlights_red=[1],
-    save=False,
+    # save=T,
     )
 
 
@@ -78,6 +78,7 @@ drawer = Drawer(
     tick_text_size = 14,
     text_size = 14,
     )
+
 drawer.barh_plot(items, values, 
     increment_FT=(4,0), 
     highlights=[1, 2],
@@ -92,10 +93,10 @@ drawer.barh_plot(items, values,
 # ----------------------------------------------------------------
 # Bar plot using analysis tools
 # ----------------------------------------------------------------
-from trader.analysis.drawer import Drawer
-from trader.analysis.analysis_tools import market_change_analysis, top_movements_in_group
-day_from = '20240111'
-day_to = '20241213'
+from trader.graph.drawer import Drawer
+from trader.graph.graph_tools import market_change_analysis, top_movements_in_group
+day_from = '20260311'
+day_to = '20260605'
 
 res_KOSPI, res_KOSDAQ = market_change_analysis(day_from, day_to)
 target_DB = res_KOSPI

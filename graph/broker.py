@@ -18,10 +18,12 @@ class Broker:
             self.base = 'https://openapi.koreainvestment.com:9443'
             self.key = _cfg['main_app']
             self.sec = _cfg['main_sec']
+            self.sleep_duration = 0.1
         elif self.mode == 'demo': 
             self.base = 'https://openapivts.koreainvestment.com:29443'
             self.key = _cfg['paper_app']
             self.sec = _cfg['paper_sec']
+            self.sleep_duration = 0.7
 
         p = {
             "grant_type": "client_credentials",
@@ -29,7 +31,9 @@ class Broker:
             "appsecret": self.sec,
         }
         token_url = f"{self.base}/oauth2/tokenP"
-        self.token = requests.post(token_url, json=p).json()['access_token']
+
+        res = requests.post(token_url, json=p).json()
+        self.token = res['access_token'] # 1 access per 1 min
 
     # returns last 30 datapoints according to defined period
     def fetch_foreign_ownership(self, code, period): 
@@ -38,24 +42,26 @@ class Broker:
         url = f"{self.base}/{path}"
         headers = {
             "content-type": "application/json; charset=utf-8",
-            "authorization": self.token,
-            "appKey": self.key,
-            "appSecret": self.sec,
+            "authorization": f"Bearer {self.token}",
+            "appkey": self.key,
+            "appsecret": self.sec,
             "tr_id": "FHKST01010400",
-            "tr_cont": "",
+            "custtype": "P",
         }
 
         params = {
-            "fid_cond_mrkt_div_code": "J",
-            "fid_input_iscd": code,
-            "FID_PERIOD_DIV_CODE":period, 
-            "FID_ORG_ADJ_PRC":"0000000000" # modified stock prices
+            "FID_COND_MRKT_DIV_CODE": "UN",
+            "FID_INPUT_ISCD": code,
+            "FID_PERIOD_DIV_CODE": period, 
+            "FID_ORG_ADJ_PRC": "1", # modified stock prices
         }
 
         res = requests.get(url, headers=headers, params=params)
+        time.sleep(self.sleep_duration)
         if res.json()['rt_cd'] == '0' and len(res.json()['output']) > 0:
             res = pd.DataFrame(res.json()['output'])
         else: 
+            print(f"cannot process {code}: {res.json()}")
             return None
 
         type_casting = {'stck_clpr':'int', 'hts_frgn_ehrt':'float'}
@@ -63,19 +69,22 @@ class Broker:
         foreign_ownership = res.set_index('date')[['price', 'fo']].sort_index()
         foreign_ownership.index = pd.to_datetime(foreign_ownership.index, format='%Y%m%d')
         foreign_ownership['code'] = code
+        # corr logic: 
         corr = foreign_ownership['price'].corr(foreign_ownership['fo'])
 
         return foreign_ownership, corr
 
     def fetch_corr_foreign_ownership(self, code): 
-        fo_d, cr_d = self.fetch_foreign_ownership(code, 'D')
-        fo_w, cr_w = self.fetch_foreign_ownership(code, 'W')
-        fo_m, cr_m = self.fetch_foreign_ownership(code, 'M')
+        try:
+            fo_d, cr_d = self.fetch_foreign_ownership(code, 'D')
+            fo_w, cr_w = self.fetch_foreign_ownership(code, 'W')
+            fo_m, cr_m = self.fetch_foreign_ownership(code, 'M')
+        except:
+            return None
         date = fo_d.index.values[-1]
-
         return [code, cr_d, cr_w, cr_m, date]
 
-    MARCAP_THRESHOLD = 5000*10**8 
+    MARCAP_THRESHOLD = 200000*10**8 
     IPO_YEAR_THRESHOLD = 3 
     
     def generate_corr_data(self, df_krx=df_krx):
@@ -84,7 +93,9 @@ class Broker:
         corr = []
         for code in df_krx.index:
             corr_ = self.fetch_corr_foreign_ownership(code)
-            time.sleep(0.1)
+            if corr_ is None: 
+                print(f"skipping {code}")
+                continue
             corr_.append(df_krx.loc[code, 'Name'])
             corr.append(corr_)
 
@@ -97,10 +108,9 @@ class Broker:
         # corr_inv = corr[corr[['w', 'm']].min(axis=1) > 0.7].sort_values('d')
         return corr
 
+# usage: 
+if __name__ == "__main__":
+    broker = Broker('demo')
+    corr_data = broker.generate_corr_data()
+    print(corr_data)
 
-#%% 
-c= Broker('prod')
-print(df_krx)
-#%% 
-d = c.generate_corr_data()
-print(d)
