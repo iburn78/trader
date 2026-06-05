@@ -1,5 +1,6 @@
 ###_ dividend part dc15 => reorganize / make it run
 ###_ revive dividend analysis
+###_ checkout codes in US holdings and fnguide stuff
 ###_ revisit some of the dc codes
 ###_ analysis part vs datacollection part vs graph part: make it clear separation
 ###_ revise CCA
