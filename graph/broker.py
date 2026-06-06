@@ -107,6 +107,94 @@ class Broker:
         # corr_top = corr.loc[(corr['average'] > 0.7) & (corr['std'] < 0.1)]
         # corr_inv = corr[corr[['w', 'm']].min(axis=1) > 0.7].sort_values('d')
         return corr
+    
+    def get_div(self, code, start_date, end_date, detail=False): 
+        path = "/uapi/domestic-stock/v1/ksdinfo/dividend" # 예탁원정보(배당일정)
+        url = f"{self.base}/{path}"
+        headers = {
+            "content-type": "application/json; charset=utf-8",
+            "authorization": f"Bearer {self.token}",
+            "appkey": self.key,
+            "appsecret": self.sec,
+            "tr_id": "HHKDB669102C0",
+            "custtype": "P",
+        }
+
+        params = {
+            "CTS" : "",
+            "GB1" : "0",
+            "F_DT" : start_date, 
+            "T_DT" : end_date, 
+            "SHT_CD" : code, 
+            "HIGH_GB" : "",
+        }
+        output = requests.get(url, headers=headers, params=params).json()['output1']
+        time.sleep(self.sleep_duration)
+
+        res = pd.DataFrame(output)
+        if detail: 
+            return res
+        if len(res) == 0:
+            return pd.DataFrame()
+
+        # 기준일, 배당금지급일
+        res['record_date'] = pd.to_datetime(res['record_date'], errors='coerce')
+        res['divi_pay_dt'] = pd.to_datetime(res['divi_pay_dt'], errors='coerce')
+
+        # 현금배당금, 액면가, 주식배당률(%), 현금배당률(%)
+        type_casting = {'per_sto_divi_amt':'int', 'face_val': 'int', 'stk_divi_rate': 'float', 'divi_rate': 'float'}
+        res = res.astype(type_casting)
+
+        # clean na and zero 
+        res = res.dropna(subset=['record_date', 'per_sto_divi_amt'])
+        res = res[res['per_sto_divi_amt'] !=0 ]
+        if len(res) == 0:
+            return pd.DataFrame()
+
+        # normalize per_stock_dividend_amount
+        res_normalized = res.copy()
+        latest_div_idx = res['record_date'].idxmax()
+        normalizer = res['face_val']/res.loc[latest_div_idx]['face_val']
+        res_normalized['face_val'] = res['face_val']/normalizer
+        res_normalized['per_sto_divi_amt'] = res['per_sto_divi_amt']/normalizer
+
+        # add yearly dividend
+        res_yearly_sum = res_normalized.groupby(res_normalized['record_date'].dt.year)['per_sto_divi_amt'].sum().reset_index()
+        res_yearly_sum.rename(columns={'record_date': 'year', 'per_sto_divi_amt': code}, inplace=True)
+        res_yearly_sum.set_index('year', inplace=True)
+
+        return res_yearly_sum
+
+    ###_
+    def build_div_DB(codelist, div_DB_path = None):
+
+        with open(os.path.join(os.path.dirname(os.path.dirname(os.path.dirname(os.path.abspath(__file__)))), 'config/config.json'), 'r') as json_file:
+            config = json.load(json_file)
+            key = config['key']
+            secret = config['secret']
+            acc_no = config['acc_no']
+
+        broker = KoreaInvestment(api_key=key, api_secret=secret, acc_no=acc_no, mock=False)
+        start_date = pd.to_datetime('2014-01-01').strftime('%Y%m%d')
+        end_date = pd.to_datetime('now').strftime('%Y%m%d')
+
+        results = [get_div(broker, code, start_date, end_date) for code in codelist]
+        res =  pd.concat(results, axis=1)
+
+        if div_DB_path == None:
+            cd_ = os.path.dirname(os.path.abspath(__file__)) # .   
+            div_DB_path = os.path.join(cd_, f'data/div_DB_{end_date}.feather')
+        res.to_feather(div_DB_path)
+    
+    if __name__ == '__main__':
+        cd_ = os.path.dirname(os.path.abspath(__file__)) # .   
+        df_krx_path = os.path.join(cd_, 'data/df_krx.feather')
+
+        df_krx = pd.read_feather(df_krx_path)
+        codelist = df_krx.index
+        build_div_DB(codelist)
+        print('Building dividend DB is completed')
+
 
 # usage: 
 if __name__ == "__main__":
