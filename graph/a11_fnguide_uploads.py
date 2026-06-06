@@ -1,6 +1,8 @@
 #%%
 # -----------------------------------------------------------------------------
 # Utilizing the fn-guide quartelry result data - downloaded as Excel (ProResult.xlsx)
+# https://www.fnguide.com/Home/PopPerformanceNews
+###_ study how to utilize this (and automate)
 # -----------------------------------------------------------------------------
 import pandas as pd
 import os 

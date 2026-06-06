@@ -2,12 +2,13 @@
 import pandas as pd
 import os
 
-pd_ = os.path.dirname(os.path.dirname(os.path.abspath(__file__))) # .. 
+cd_ = os.path.dirname(os.path.abspath(__file__)) # . 
+pd_ = os.path.dirname(cd_) # .. 
 df_krx_path = os.path.join(pd_, 'data_collect/data/df_krx.feather')
 price_DB_path = os.path.join(pd_, 'data_collect/data/price_DB.feather')
 
-# build div_DB to do the analysis first, using dc15_DividendDB.py
-div_DB_path = os.path.join(pd_, 'data_collect/data/div_DB_20241014.feather')
+end_date = pd.to_datetime('now').strftime('%Y%m%d')
+div_DB_path = os.path.join(cd_, f'data/div_DB_{end_date}.feather')
 
 df_krx = pd.read_feather(df_krx_path)
 price_DB = pd.read_feather(price_DB_path)
@@ -19,12 +20,10 @@ div_DB = pd.read_feather(div_DB_path)
 # Removal logic is necessary to be implemented of some financial vehicle companies: reducing face-value after dividend.
 # ---------------------------------------------------------------
 
-from trader.analysis.analysis_tools import *
-from trader.analysis.broker import Broker
+from trader.graph.graph_tools import *
 
-year = 2024
+year = 2025
 threshold = 7 # dividend yield rate to filter larger ones
-broker = Broker()
 
 temp = {}
 temp['div'] = div_DB.loc[year]
@@ -41,7 +40,6 @@ div_year['name'] = div_year.index.map(lambda x: df_krx.loc[x, 'Name'] if x in df
 div_year = div_year.dropna()
 
 #%% 
-
 import seaborn as sns
 import matplotlib.pyplot as plt
 from tools.dc_tools import set_KoreanFonts

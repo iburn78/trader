@@ -1,5 +1,3 @@
-###_ dividend part dc15 => reorganize / make it run
-###_ revive dividend analysis
 ###_ checkout codes in US holdings and fnguide stuff
 ###_ revisit some of the dc codes
 ###_ analysis part vs datacollection part vs graph part: make it clear separation
@@ -15,12 +13,13 @@
 import pandas as pd
 import os
 
-pd_ = os.path.dirname(os.path.dirname(os.path.abspath(__file__))) # .. 
+cd_ = os.path.dirname(os.path.abspath(__file__)) # . 
+pd_ = os.path.dirname(cd_) # .. 
 df_krx_path = os.path.join(pd_, 'data_collect/data/df_krx.feather')
 price_DB_path = os.path.join(pd_, 'data_collect/data/price_DB.feather')
 
-# build div_DB to do the analysis first, using dc15_DividendDB.py
-div_DB_path = os.path.join(pd_, 'data_collect/data/div_DB_20241014.feather')
+end_date = pd.to_datetime('now').strftime('%Y%m%d')
+div_DB_path = os.path.join(cd_, f'data/div_DB_{end_date}.feather')
 
 df_krx = pd.read_feather(df_krx_path)
 price_DB = pd.read_feather(price_DB_path)
@@ -36,13 +35,13 @@ print(pos_code)
 
 #%% 
 temp1 = div_DB[pos_code]
-temp2 = temp1.drop(columns=temp1.columns[temp1.loc[2023].isna()])
-temp3 = temp2.drop(columns=temp2.columns[temp2.loc[2022].isna()])
-temp4 = temp3.drop(columns=temp3.columns[temp3.loc[2021].isna()])
-temp5 = temp4.drop(columns=temp4.columns[temp4.loc[2020].isna()])
-temp6 = temp5.drop(columns=temp5.columns[temp5.loc[2019].isna()])
+temp2 = temp1.drop(columns=temp1.columns[temp1.loc[2025].isna()])
+temp3 = temp2.drop(columns=temp2.columns[temp2.loc[2024].isna()])
+temp4 = temp3.drop(columns=temp3.columns[temp3.loc[2023].isna()])
+temp5 = temp4.drop(columns=temp4.columns[temp4.loc[2022].isna()])
+temp6 = temp5.drop(columns=temp5.columns[temp5.loc[2021].isna()])
 temp7 = temp6.iloc[:-1]
-temp8 = temp7.loc[:, temp7.loc[2023].sort_values(ascending=False).index]
+temp8 = temp7.loc[:, temp7.loc[2025].sort_values(ascending=False).index]
 
 #%% 
 name_dict = {}
@@ -82,8 +81,8 @@ for i in range(len(temp9.columns)):
     plt.show()
 
 #%%
-last_available_date_2023 = price_DB[price_DB.index.year == 2023].index.max()
+last_available_date_2025 = price_DB[price_DB.index.year == 2025].index.max()
 for col in temp8.columns:
-    pr =  price_DB.loc[last_available_date_2023, col]
+    pr =  price_DB.loc[last_available_date_2025, col]
     div_rate = (temp8[col].values[-1])/pr*100
     print(div_rate)

@@ -5,8 +5,10 @@ import requests
 import pandas as pd
 import time
 
-ppd_ = os.path.dirname(os.path.dirname(os.path.dirname(os.path.abspath(__file__)))) # ../..
+cd_ = os.path.dirname(os.path.abspath(__file__)) # .   
+ppd_ = os.path.dirname(os.path.dirname(cd_)) # ../..
 df_krx = pd.read_feather(os.path.join(ppd_, 'trader/data_collect/data/df_krx.feather')) 
+DIV_DB_PATH = os.path.join(cd_, 'data/div_DB_end_date.feather') # 'end_date' to be replaced by actual date
 
 class Broker:
     def __init__(self, mode='demo'):
@@ -165,40 +167,23 @@ class Broker:
 
         return res_yearly_sum
 
-    ###_
-    def build_div_DB(codelist, div_DB_path = None):
+    def build_div_DB(self, codelist, div_DB_path = DIV_DB_PATH):
 
-        with open(os.path.join(os.path.dirname(os.path.dirname(os.path.dirname(os.path.abspath(__file__)))), 'config/config.json'), 'r') as json_file:
-            config = json.load(json_file)
-            key = config['key']
-            secret = config['secret']
-            acc_no = config['acc_no']
-
-        broker = KoreaInvestment(api_key=key, api_secret=secret, acc_no=acc_no, mock=False)
-        start_date = pd.to_datetime('2014-01-01').strftime('%Y%m%d')
+        start_date = pd.to_datetime('2016-01-01').strftime('%Y%m%d')
         end_date = pd.to_datetime('now').strftime('%Y%m%d')
 
-        results = [get_div(broker, code, start_date, end_date) for code in codelist]
+        results = [self.get_div(code, start_date, end_date) for code in codelist]
         res =  pd.concat(results, axis=1)
+        res.to_feather(div_DB_path.replace("end_date", end_date))
 
-        if div_DB_path == None:
-            cd_ = os.path.dirname(os.path.abspath(__file__)) # .   
-            div_DB_path = os.path.join(cd_, f'data/div_DB_{end_date}.feather')
-        res.to_feather(div_DB_path)
+        return res
     
-    if __name__ == '__main__':
-        cd_ = os.path.dirname(os.path.abspath(__file__)) # .   
-        df_krx_path = os.path.join(cd_, 'data/df_krx.feather')
-
-        df_krx = pd.read_feather(df_krx_path)
-        codelist = df_krx.index
-        build_div_DB(codelist)
-        print('Building dividend DB is completed')
-
 
 # usage: 
 if __name__ == "__main__":
-    broker = Broker('demo')
-    corr_data = broker.generate_corr_data()
-    print(corr_data)
+    broker = Broker('prod')
+    # corr_data = broker.generate_corr_data()
+    # print(corr_data)
 
+    div_DB = broker.build_div_DB(df_krx.index)
+    print(div_DB)
