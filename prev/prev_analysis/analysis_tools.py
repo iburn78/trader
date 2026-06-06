@@ -44,7 +44,7 @@ cd_ = os.path.dirname(os.path.abspath(__file__)) # .
 pd_ = os.path.dirname(os.path.dirname(os.path.abspath(__file__))) # .. 
 
 OUTPUT_PLOTS_DIR = os.path.join(cd_, 'plots/')
-KRX_DATA_FILE = os.path.join(pd_, 'data_collection/data/df_krx.feather')
+KRX_DATA_FILE = os.path.join(pd_, 'data_collect/data/df_krx.feather')
 
 def retrieve_quarterly_data_code(code):
     fr_main = get_main_financial_reports_db()
@@ -250,7 +250,7 @@ def get_latest_face_value(broker, code):
 #     broker = KoreaInvestment(api_key=key, api_secret=secret, acc_no=acc_no, mock=False)
 #     return broker
     
-from trader.data_collection.dc15_DividendDB import *
+from trader.data_collect.dc15_DividendDB import *
 def get_div_single_company(broker, code): 
     start_date = pd.to_datetime('2014-01-01').strftime('%Y%m%d')
     end_date = pd.to_datetime('now').strftime('%Y%m%d')

@@ -1,6 +1,6 @@
 #%% 
 # CCA: Company Classification Analysis
-from trader.data_collection.dc19_CCA_tools import get_score_trend, post_process, generate_PPT
+from trader.data_collect.dc19_CCA_tools import get_score_trend, post_process, generate_PPT
 import pickle
 
 # score_trend, _ = get_score_trend()

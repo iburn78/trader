@@ -73,7 +73,7 @@ class Broker:
     MARCAP_THRESHOLD = 5000*10**8 
     IPO_YEAR_THRESHOLD = 3 
     pd_ = os.path.dirname(os.path.dirname(os.path.abspath(__file__))) # .. 
-    KRX_DATA_FILE = os.path.join(pd_, 'data_collection/data/df_krx.feather')
+    KRX_DATA_FILE = os.path.join(pd_, 'data_collect/data/df_krx.feather')
 
     def generate_corr_data(self, krx_data_file=KRX_DATA_FILE):
         df_krx = read_or_regen(krx_data_file, generate_krx_data)

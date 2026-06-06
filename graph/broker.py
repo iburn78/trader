@@ -6,7 +6,7 @@ import pandas as pd
 import time
 
 ppd_ = os.path.dirname(os.path.dirname(os.path.dirname(os.path.abspath(__file__)))) # ../..
-df_krx = pd.read_feather(os.path.join(ppd_, 'trader/data_collection/data/df_krx.feather')) 
+df_krx = pd.read_feather(os.path.join(ppd_, 'trader/data_collect/data/df_krx.feather')) 
 
 class Broker:
     def __init__(self, mode='demo'):

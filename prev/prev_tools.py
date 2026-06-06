@@ -31,7 +31,7 @@ def _plot_company_financial_summary(db, code, path=None): # previous func
     _plot_barline_prev(ax[3], yiu, 'equity', 'retained_earnings', 'debt_to_equity_ratio')
 
     pd_ = os.path.dirname(os.path.dirname(os.path.abspath(__file__))) # .. 
-    df_krx = pd.read_feather(os.path.join(pd_, 'data_collection/data/df_krx.feather'))
+    df_krx = pd.read_feather(os.path.join(pd_, 'data_collect/data/df_krx.feather'))
     try: 
         name = df_krx['Name'][code]
     except Exception as e: 
@@ -118,7 +118,7 @@ def _plot_barline_prev(ax, data, y1, y2, y3, y4=None):
 
 def get_df_krx():
     pd_ = os.path.dirname(os.path.dirname(os.path.abspath(__file__)))
-    df_krx = pd.read_feather(os.path.join(pd_, 'data_collection/data/df_krx.feather'))
+    df_krx = pd.read_feather(os.path.join(pd_, 'data_collect/data/df_krx.feather'))
     return df_krx
 
 def prev_quarter_start(date: pd.Timestamp = None) -> pd.Timestamp:
@@ -151,7 +151,7 @@ def plot_last_quarter_prices(pr_db, code, path=None):
     ax.spines['left'].set_visible(False)
 
     pd_ = os.path.dirname(os.path.dirname(os.path.abspath(__file__))) # .. 
-    df_krx = pd.read_feather(os.path.join(pd_, 'data_collection/data/df_krx.feather'))
+    df_krx = pd.read_feather(os.path.join(pd_, 'data_collect/data/df_krx.feather'))
     try: 
         name = df_krx['Name'][code]
     except Exception as e: 
@@ -254,7 +254,7 @@ def get_krx_unique_update_list(dart, start, end):
 def get_name_from_code(code, df_krx=None): 
     if df_krx is None: 
         pd_ = os.path.dirname(os.path.dirname(os.path.abspath(__file__)))
-        df_krx = pd.read_feather(os.path.join(pd_, 'data_collection/data/df_krx.feather'))
+        df_krx = pd.read_feather(os.path.join(pd_, 'data_collect/data/df_krx.feather'))
     if code not in df_krx.index:
         return 'Name_not_found'
     else: 
@@ -263,7 +263,7 @@ def get_name_from_code(code, df_krx=None):
 def get_market_and_rank(code, df_krx=None):
     if df_krx is None: 
         pd_ = os.path.dirname(os.path.dirname(os.path.abspath(__file__)))
-        df_krx = pd.read_feather(os.path.join(pd_, 'data_collection/data/df_krx.feather'))
+        df_krx = pd.read_feather(os.path.join(pd_, 'data_collect/data/df_krx.feather'))
 
     market = df_krx.loc[code, 'Market']
     tdf_ = df_krx.loc[df_krx['Market'] == market].reset_index()
@@ -336,8 +336,8 @@ def get_dbs(check_time=True):
             raise Exception('git timestamp check failed')
 
     pd_ = os.path.dirname(os.path.dirname(os.path.abspath(__file__))) # ..
-    df_krx_file = os.path.join(pd_, 'data_collection/data/df_krx.feather') 
-    qa_db_file = os.path.join(pd_, 'data_collection/data/qa_db.pkl') 
+    df_krx_file = os.path.join(pd_, 'data_collect/data/df_krx.feather') 
+    qa_db_file = os.path.join(pd_, 'data_collect/data/qa_db.pkl') 
 
     main_db = get_main_financial_reports_db()
     df_krx = pd.read_feather(df_krx_file)
@@ -349,13 +349,13 @@ def get_dbs(check_time=True):
 
 def get_price_db(): 
     pd_ = os.path.dirname(os.path.dirname(os.path.abspath(__file__))) # ..
-    price_db_file = os.path.join(pd_, 'data_collection/data/price_DB.feather') 
+    price_db_file = os.path.join(pd_, 'data_collect/data/price_DB.feather') 
     price_db = pd.read_feather(price_db_file)
     return price_db
 
 def get_outshare_db():
     pd_ = os.path.dirname(os.path.dirname(os.path.abspath(__file__))) # ..
-    outshare_DB_path = os.path.join(pd_, 'data_collection/data/outshare_DB.feather')
+    outshare_DB_path = os.path.join(pd_, 'data_collect/data/outshare_DB.feather')
     outshare_DB = pd.read_feather(outshare_DB_path)
     return outshare_DB
     

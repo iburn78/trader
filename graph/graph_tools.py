@@ -45,7 +45,7 @@ cd_ = os.path.dirname(os.path.abspath(__file__)) # .
 pd_ = os.path.dirname(os.path.dirname(os.path.abspath(__file__))) # .. 
 
 OUTPUT_PLOTS_DIR = os.path.join(cd_, 'plots/')
-DF_KRX_PATH = os.path.join(pd_, 'data_collection/data/df_krx.feather')
+DF_KRX_PATH = os.path.join(pd_, 'data_collect/data/df_krx.feather')
 df_krx = pd.read_feather(DF_KRX_PATH)
 
 def retrieve_quarterly_data_code(code):

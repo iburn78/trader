@@ -97,7 +97,7 @@ if __name__ == '__main__':
     START_DATE = '2014-01-01'
 
     cd_ = os.path.dirname(os.path.abspath(__file__)) # .   
-    log_file = os.path.join(cd_, 'log/data_collection.log')
+    log_file = os.path.join(cd_, 'log/data_collect.log')
     price_DB_path = os.path.join(cd_, 'data/price_DB.feather')
 
     gen_market_DB(price_DB_path, START_DATE, log_file=log_file)

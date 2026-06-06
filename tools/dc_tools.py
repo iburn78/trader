@@ -48,7 +48,7 @@ def plot_company_financial_summary(fr_db, pr_db, code, path=None, start_quarter=
     _plot_barline(ax[4], yiu, 'equity', 'retained_earnings', 'debt_to_equity_ratio', cc1=cmap(0.25), cc2=cmap(0.55))
 
     pd_ = os.path.dirname(os.path.dirname(os.path.abspath(__file__))) # .. 
-    df_krx = pd.read_feather(os.path.join(pd_, 'data_collection/data/df_krx.feather'))
+    df_krx = pd.read_feather(os.path.join(pd_, 'data_collect/data/df_krx.feather'))
     try: 
         name = df_krx['Name'][code]
     except Exception as e: 
@@ -264,11 +264,11 @@ def generate_krx_data(sql_db_creation=True):
     df_krx = df_krx[df_krx['MarketId'] != 'KNX']
 
     # df_krx=df_krx[~df_krx['Dept'].str.contains('관리')]   # remove companies in trouble
-    df_krx.to_feather(os.path.join(pd_, 'data_collection/data/df_krx.feather'))
+    df_krx.to_feather(os.path.join(pd_, 'data_collect/data/df_krx.feather'))
 
     if sql_db_creation: 
         df_krx_sql = df_krx.copy()
-        plots_dir = os.path.join(pd_, 'data_collection/plots') # this db is used in TNP project 
+        plots_dir = os.path.join(pd_, 'data_collect/plots') # this db is used in TNP project 
         os.makedirs(plots_dir, exist_ok=True)
         conn = sqlite3.connect(os.path.join(plots_dir, 'df_krx.db'))
         df_krx_sql['ListingDate'] = df_krx_sql['ListingDate'].dt.strftime('%Y-%m-%d')
@@ -319,10 +319,10 @@ def nth_quarter_before(n: int = 0):
 
 def get_main_financial_reports_db():
     pd_ = os.path.dirname(os.path.dirname(os.path.abspath(__file__))) # ..
-    # main_db_file = os.path.join(pd_, 'data_collection/data/financial_reports_main.feather') 
-    main_db_file1 = os.path.join(pd_, 'data_collection/data/financial_reports_main1.feather') 
-    main_db_file2 = os.path.join(pd_, 'data_collection/data/financial_reports_main2.feather') 
-    main_db_file3 = os.path.join(pd_, 'data_collection/data/financial_reports_main3.feather') 
+    # main_db_file = os.path.join(pd_, 'data_collect/data/financial_reports_main.feather') 
+    main_db_file1 = os.path.join(pd_, 'data_collect/data/financial_reports_main1.feather') 
+    main_db_file2 = os.path.join(pd_, 'data_collect/data/financial_reports_main2.feather') 
+    main_db_file3 = os.path.join(pd_, 'data_collect/data/financial_reports_main3.feather') 
     
     # main_db = pd.read_feather(main_db_file)
     main_db1 = pd.read_feather(main_db_file1)
@@ -334,9 +334,9 @@ def get_main_financial_reports_db():
 
 def save_main_financial_reports_db(main_db):
     pd_ = os.path.dirname(os.path.dirname(os.path.abspath(__file__))) # ..
-    main_db_file1 = os.path.join(pd_, 'data_collection/data/financial_reports_main1.feather') 
-    main_db_file2 = os.path.join(pd_, 'data_collection/data/financial_reports_main2.feather') 
-    main_db_file3 = os.path.join(pd_, 'data_collection/data/financial_reports_main3.feather') 
+    main_db_file1 = os.path.join(pd_, 'data_collect/data/financial_reports_main1.feather') 
+    main_db_file2 = os.path.join(pd_, 'data_collect/data/financial_reports_main2.feather') 
+    main_db_file3 = os.path.join(pd_, 'data_collect/data/financial_reports_main3.feather') 
 
     CHUNK_SIZE = int(len(main_db)/3)
     main_db1 = main_db.iloc[:CHUNK_SIZE]

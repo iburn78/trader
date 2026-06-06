@@ -1,5 +1,5 @@
 #%%
-from trader.data_collection.dc06_GenPriceDB import get_prices
+from trader.data_collect.dc06_GenPriceDB import get_prices
 import pandas as pd
 import pickle
 

@@ -6,11 +6,11 @@ import pandas as pd
 import os
 
 pd_ = os.path.dirname(os.path.dirname(os.path.abspath(__file__))) # .. 
-df_krx_path = os.path.join(pd_, 'data_collection/data/df_krx.feather')
-price_DB_path = os.path.join(pd_, 'data_collection/data/price_DB.feather')
+df_krx_path = os.path.join(pd_, 'data_collect/data/df_krx.feather')
+price_DB_path = os.path.join(pd_, 'data_collect/data/price_DB.feather')
 
 # build div_DB to do the analysis first, using dc15_DividendDB.py
-div_DB_path = os.path.join(pd_, 'data_collection/data/div_DB_20241014.feather')
+div_DB_path = os.path.join(pd_, 'data_collect/data/div_DB_20241014.feather')
 
 df_krx = pd.read_feather(df_krx_path)
 price_DB = pd.read_feather(price_DB_path)

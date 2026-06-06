@@ -14,7 +14,7 @@ KRW_UNIT_KR = {
 
 def load_market_data():
     BASE_DIR = Path(__file__).resolve().parents[1]
-    DATA_DIR = BASE_DIR / 'data_collection' / 'data'
+    DATA_DIR = BASE_DIR / 'data_collect' / 'data'
 
     PRICE_DB_PATH = DATA_DIR / 'price_DB.feather'
     VOLUME_DB_PATH = DATA_DIR / 'volume_DB.feather'

@@ -112,9 +112,9 @@ if __name__ == "__main__":
     fr_db, df_krx, qa_db = get_dbs(check_time=False) # in autorun, git-commit is done daily
 
     pd_ = os.path.dirname(os.path.dirname(os.path.abspath(__file__))) # ..
-    qa_db_file = os.path.join(pd_, 'data_collection/data/qa_db.pkl') 
-    plot_gen_control_file = os.path.join(pd_, 'data_collection/data/plot_gen_control.npy')
-    log_file = os.path.join(pd_, 'data_collection/log/quarterly_analysis_db.log')
+    qa_db_file = os.path.join(pd_, 'data_collect/data/qa_db.pkl') 
+    plot_gen_control_file = os.path.join(pd_, 'data_collect/data/plot_gen_control.npy')
+    log_file = os.path.join(pd_, 'data_collect/log/quarterly_analysis_db.log')
 
     if qa_db is None:
         log_print(log_file, f'{TODAY} QA DB: initialization with {INITIAL_SIZE} codes')
