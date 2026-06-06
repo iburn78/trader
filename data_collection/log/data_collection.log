@@ -2960,3 +2960,69 @@ Financial data collection log >>
 2026-06-06 02:14:03.275451, no: 13, code 900250 in process
 ----> no: 13, code 900250 currency not in KRW, skipping
 == Update finished ==
+Company health data collection initiated at 2026-06-07 02:00:07.851618
+Updating KRX data...
+Updating between dates: 2026-05-30 / 2026-06-07
+FULL rescan codes:
+Total 35 items.
+[0-34] ['000250', '000950', '000990', '003160', '004430', '005010', '005070', '005420', '010130', '015360', '021050', '024850', '033100', '043610', '044180', '047310', '049800', '069540', '071670', '079900', '079980', '091580', '093050', '189860', '237690', '246250', '252500', '267270', '331740', '365340', '412540', '417200', '419080', '448900', '900140']
+PARTIAL rescan codes:
+Total 9 items.
+[0-8] ['900300', '900070', '900110', '900290', '900270', '900250', '241820', '900120', '377190']
+full_rescan batch operation: 0
+Financial data collection log >> 
+2026-06-07 02:00:16.770967, no: 0, code 000250 in process
+2026-06-07 02:00:35.579512, no: 1, code 000950 in process
+2026-06-07 02:00:54.155017, no: 2, code 000990 in process
+2026-06-07 02:01:12.384913, no: 3, code 003160 in process
+2026-06-07 02:01:31.832100, no: 4, code 004430 in process
+2026-06-07 02:01:51.112498, no: 5, code 005010 in process
+2026-06-07 02:02:09.873258, no: 6, code 005070 in process
+2026-06-07 02:02:28.078503, no: 7, code 005420 in process
+2026-06-07 02:02:46.927064, no: 8, code 010130 in process
+2026-06-07 02:03:05.400172, no: 9, code 015360 in process
+2026-06-07 02:03:23.861199, no: 10, code 021050 in process
+2026-06-07 02:03:42.351795, no: 11, code 024850 in process
+2026-06-07 02:03:52.456496, no: 12, code 033100 in process
+2026-06-07 02:04:11.239063, no: 13, code 043610 in process
+2026-06-07 02:04:29.515012, no: 14, code 044180 in process
+2026-06-07 02:04:47.944498, no: 15, code 047310 in process
+2026-06-07 02:05:07.354267, no: 16, code 049800 in process
+2026-06-07 02:05:25.585573, no: 17, code 069540 in process
+2026-06-07 02:05:43.827023, no: 18, code 071670 in process
+2026-06-07 02:06:02.576328, no: 19, code 079900 in process
+2026-06-07 02:06:10.372394, no: 20, code 079980 in process
+2026-06-07 02:06:29.036814, no: 21, code 091580 in process
+2026-06-07 02:06:48.421923, no: 22, code 093050 in process
+2026-06-07 02:07:07.382647, no: 23, code 189860 in process
+2026-06-07 02:07:25.769649, no: 24, code 237690 in process
+2026-06-07 02:07:51.551600, no: 25, code 246250 in process
+2026-06-07 02:08:01.220228, no: 26, code 252500 in process
+2026-06-07 02:08:17.707579, no: 27, code 267270 in process
+2026-06-07 02:08:34.929069, no: 28, code 331740 in process
+2026-06-07 02:08:42.196507, no: 29, code 365340 in process
+2026-06-07 02:08:52.716161, no: 30, code 412540 in process
+2026-06-07 02:09:00.916159, no: 31, code 417200 in process
+2026-06-07 02:09:09.608643, no: 32, code 419080 in process
+2026-06-07 02:09:20.158565, no: 33, code 448900 in process
+2026-06-07 02:09:27.762585, no: 34, code 900140 in process
+----> no: 34, code 900140 currency not in KRW, skipping
+partial_rescan batch operation: 0
+Financial data collection log >> 
+2026-06-07 02:09:40.689534, no: 0, code 900300 in process
+----> no: 0, code 900300 currency not in KRW, skipping
+2026-06-07 02:09:46.051953, no: 1, code 900070 in process
+----> no: 1, code 900070 currency not in KRW, skipping
+2026-06-07 02:09:51.418910, no: 2, code 900110 in process
+----> no: 2, code 900110 currency not in KRW, skipping
+2026-06-07 02:09:56.990646, no: 3, code 900290 in process
+----> no: 3, code 900290 currency not in KRW, skipping
+2026-06-07 02:10:02.522630, no: 4, code 900270 in process
+----> no: 4, code 900270 currency not in KRW, skipping
+2026-06-07 02:10:07.885601, no: 5, code 900250 in process
+----> no: 5, code 900250 currency not in KRW, skipping
+2026-06-07 02:10:13.368647, no: 6, code 241820 in process
+2026-06-07 02:10:26.473303, no: 7, code 900120 in process
+----> no: 7, code 900120 currency not in KRW, skipping
+2026-06-07 02:10:32.029175, no: 8, code 377190 in process
+== Update finished ==
