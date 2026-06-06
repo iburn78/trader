@@ -68,12 +68,26 @@ def plot_company_financial_summary(fr_db, pr_db, code, path=None, start_quarter=
         plt.close()
 
 def _plot_barline(ax, data, y1, y2, y3, y4=None, cc1='lightskyblue', cc2='steelblue', cc3='r', cc4='k'):
-    axr = ax.twinx()
+
     if y4 != None:
-        tx = data.loc[y1].isnull()*data.loc[y2].isnull().values*data.loc[y4].isnull().values
+        tx = data.loc[y1].isnull() & data.loc[y2].isnull() & data.loc[y4].isnull()
     else: 
-        tx = data.loc[y1].isnull()*data.loc[y2].isnull().values
+        tx = data.loc[y1].isnull() & data.loc[y2].isnull()
     x = [s for s in data.columns.values if not tx[s]]
+
+    if not x:
+        ax.set_title("No financial data available")
+
+        ax.set_xticks([])
+        ax.set_yticks([])
+
+        for spine in ax.spines.values():
+            spine.set_visible(False)
+
+        ax.set_facecolor('whitesmoke')
+        return
+
+    axr = ax.twinx()
 
     sns.barplot(x=x, y=data.loc[y1, x], ax = ax, label=y1, color=cc1)
     ax.ticklabel_format(axis='y', scilimits=[-3, 3])
