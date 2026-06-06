@@ -1,4 +1,5 @@
 ###_ checkout codes in US holdings and fnguide stuff
+###_ move .sh file to linux autorun and do git pull only on mac / and other machines.
 ###_ revisit some of the dc codes
 ###_ analysis part vs datacollection part vs graph part: make it clear separation
 ###_ revise CCA
