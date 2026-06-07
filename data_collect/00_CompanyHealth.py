@@ -371,6 +371,17 @@ def update_main_db(log_file, main_db, plot_gen_control_file=None):
 
     log_print(log_file, '== Update finished ==')
 
+# codelist = fdr.StockListing('KRX')['Code'].tolist()
+def update_db_last_n_year(codelist, duration: int):
+    # DAYS_ALLOWANCE is for giving enough time for DART to update its API (just to mark date_updated as DAYS_ALLOWANCE days ago)
+    DAYS_ALLOWANCE = 2
+    end_day = (datetime.datetime.today() - datetime.timedelta(days=DAYS_ALLOWANCE)).strftime('%Y-%m-%d')
+    res = _generate_financial_reports_set(codelist, duration, log_file, end_day) # duration as n year
+    res = _sort_columns_financial_reports(res)
+
+    main_db = get_main_financial_reports_db()
+    main_db = merge_update(main_db, res)
+    save_main_financial_reports_db(main_db)
 
 def single_company_data_collect(code, fs_div=None):
     dart = OpenDartReader(DART_APIS[1])

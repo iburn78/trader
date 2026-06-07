@@ -18,6 +18,11 @@ price_DB = pd.read_feather(price_db_file)
 plot_ctrl = np.load(plot_gen_control_file, allow_pickle=True)
 log_file = os.path.join(cd_, 'log/plot_gen_control_exceptions.log')
 
+# -----------------------------------------------------
+# in case to regenerate all plots use
+# codelist = fdr.StockListing('KRX')['Code'].tolist()
+# plot_ctrl = codelist
+# -----------------------------------------------------
 l = len(plot_ctrl)
 for i, code in enumerate(plot_ctrl):
     print('{} | {}/{}'.format(code, i+1, l))

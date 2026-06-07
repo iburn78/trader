@@ -19,7 +19,7 @@ yearly_closing_prices = pd.DataFrame()
 # Fetch data for each index
 for index_name, ticker in indices.items():
     print(f"Fetching data for {index_name} ({ticker})...")
-    data = yf.download(ticker, start="2000-01-01", end="2024-12-31", interval="1d")
+    data = yf.download(ticker, start="2000-01-01", end="2026-06-07", interval="1d")
     
     # Resample to yearly closing price
     yearly_closing = data['Close'].resample('YE').last()
