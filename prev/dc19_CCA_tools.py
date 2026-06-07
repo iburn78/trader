@@ -1,7 +1,7 @@
 #%% 
 # CCA: Company Classification Analysis
 from tools.dc_tools import get_df_krx
-from trader.data_collection.dc18_Info_DB import get_company_issues, save_GPT_response
+from trader.data_collect.dc18_Info_DB import get_company_issues, save_GPT_response
 import pandas as pd
 import numpy as np
 import os
@@ -41,7 +41,7 @@ CONF_FILE = os.path.join(os.path.dirname(os.path.dirname(os.path.dirname(os.path
 
 def get_qa_db(): 
     pd_ = os.path.dirname(os.path.dirname(os.path.abspath(__file__))) # ..
-    qa_db_file = os.path.join(pd_, 'data_collection/data/qa_db.pkl') 
+    qa_db_file = os.path.join(pd_, 'data_collect/data/qa_db.pkl') 
     return pd.read_pickle(qa_db_file)
 
 qa_db = get_qa_db()
@@ -433,7 +433,7 @@ def styled_df_to_image(df):
 import io
 from tools.dc_tools import get_main_financial_reports_db, get_quarterly_data, get_price_db, get_outshare_db, prev_quarter_str
 from tools.dc_tools import plot_company_financial_summary
-from trader.data_collection.dc17_QuarterlyAnalysisDB import MAX_QUARTERS
+from trader.data_collect.dc17_QuarterlyAnalysisDB import MAX_QUARTERS
 import matplotlib.pyplot as plt
 from pptx import Presentation
 from pptx.util import Inches

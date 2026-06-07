@@ -4,7 +4,7 @@ import yfinance as yf
 import os
 # -----------------------------------------------------------------------------
 # Example DataFrame with Tickers (you'll need to map CUSIPs to tickers)
-# get foreign holdings (US) from 금융투자협회 (or 증권거래소 etc as Excel file format)
+# get foreign holdings (US) from 예탁원 (국제거래/외화증권예탁결제)
 # -----------------------------------------------------------------------------
 
 cd_ = os.path.dirname(os.path.abspath(__file__)) # .   
@@ -73,15 +73,15 @@ df['Ticker'] = tickers
 df['MarCap'] = MarCaps
 df['MarCap'] = pd.to_numeric(df['MarCap'], errors='coerce')
 df['보관금액'] = pd.to_numeric(df['보관금액'], errors='coerce')
-df['KR'] = df['보관금액']/df['MarCap']*100
+df['HoldingRatio'] = df['보관금액']/df['MarCap']*100
 dfx  = df.dropna()
 dfx['name'] = df['종목명'].apply(lambda x: x.split(' ')[0])
 
 
 #%% --------------------------------------
-# Drawing part
+# Drawing:  holding percent too
 # ----------------------------------------
-from trader.analysis.drawer import Drawer
+from trader.graph.drawer import Drawer
 
 bar_drawer = Drawer(
     figsize = (6, 10), 
@@ -92,7 +92,7 @@ bar_drawer = Drawer(
 bar_drawer.free_plot()
 
 x = dfx['Ticker'].iloc[::-1]
-y = dfx['보관금액'].iloc[::-1]/10**8
+y = dfx['보관금액'].iloc[::-1]/10**6 # Million USD
 
 bars = bar_drawer.ax.barh(x,y)
 for index, value in enumerate(y):
