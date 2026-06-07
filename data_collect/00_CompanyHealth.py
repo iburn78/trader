@@ -392,7 +392,7 @@ def single_company_data_collect(code, fs_div=None):
 
 if __name__ == '__main__': 
     cd_ = os.path.dirname(os.path.abspath(__file__)) # .   
-    log_file = os.path.join(cd_, 'log/data_collection.log')
+    log_file = os.path.join(cd_, 'log/data_collect.log')
     plot_gen_control_file = os.path.join(cd_, 'data/plot_gen_control.npy')
     main_db = get_main_financial_reports_db()
 

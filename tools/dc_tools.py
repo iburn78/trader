@@ -299,7 +299,9 @@ def generate_krx_data(sql_db_creation=True):
 
 def log_print(log_file, message):
     print(message)
-    with open(log_file, 'a') as f: # a new file would be created if there is no log_file / otherwise it will append with "a" option
+    # a new file would be created if there is no log_file / otherwise it will append with "a" option
+    # should create target dir (e.g., "/log")
+    with open(log_file, 'a') as f: 
         f.write(str(message)+'\n')
 
 def null_checker(main_db, n):  # check if there are no data in nth quarter before from now
