@@ -12,9 +12,8 @@ git pull --no-edit origin main
 # Run Python scripts
 source venv/bin/activate
 cd "${trader}/data_collect"
-python 00_CompanyHealth.py
-python 01_GenMarketDB.py
-python 02_VisualizeHealth.py
+python 00_GenMarketDB.py
+python 01_CompanyHealth.py
 
 rsync -ruv "${trader}/data_collect/plots/" "${tnp}/public/data/"
 

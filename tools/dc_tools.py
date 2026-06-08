@@ -364,3 +364,37 @@ def save_main_financial_reports_db(main_db):
     main_db3.to_feather(main_db_file3)
     return True
 
+def create_plots_from_plot_gen_control(plot_gen_control_file):
+    # need to have price_DB
+    # need to create 'plots' directory 
+
+    if not os.path.exists(plot_gen_control_file):
+        print('----------------------------------------------------')
+        print('no codelist to create plots (target file not exist).')
+        print('----------------------------------------------------')
+        # raise FileNotFoundError('***** no codelist to create plots (target file not exist). *****')
+        return
+    plot_ctrl = np.load(plot_gen_control_file, allow_pickle=True)
+
+    main_db = get_main_financial_reports_db()
+    pd_ = os.path.dirname(os.path.dirname(os.path.abspath(__file__))) # .. 
+    price_db_file = os.path.join(pd_, 'data_collect/data/price_DB.feather') 
+    price_DB = pd.read_feather(price_db_file)
+
+    # -----------------------------------------------------
+    # in case to regenerate all plots use
+    # codelist = fdr.StockListing('KRX')['Code'].tolist()
+    # plot_ctrl = codelist
+    # -----------------------------------------------------
+    l = len(plot_ctrl)
+    for i, code in enumerate(plot_ctrl):
+        print('{} | {}/{}'.format(code, i+1, l))
+        path = os.path.join(pd_, 'data_collect/plots/'+code+'.png')
+        try:
+            plot_company_financial_summary(main_db, price_DB, code, path)
+        except Exception as error:
+            print(str(datetime.datetime.now())+' | '+code+' | '+str(error))
+            if os.path.exists(path):
+                os.remove(path)
+
+    os.remove(plot_gen_control_file)

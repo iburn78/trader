@@ -7,6 +7,7 @@ except:
 import os
 from trader.tools.dictionary import ACCOUNT_NAME_DICTIONARY, BS_ACCOUNTS, IS_ACCOUNTS, DART_APIS, MODIFIED_REPORT
 from trader.tools.dc_tools import log_print, null_checker, nth_quarter_before, generate_krx_data, merge_update, save_main_financial_reports_db, get_main_financial_reports_db
+from trader.tools.dc_tools import create_plots_from_plot_gen_control
 import pandas as pd
 import numpy as np
 import datetime, time
@@ -397,3 +398,6 @@ if __name__ == '__main__':
     main_db = get_main_financial_reports_db()
 
     update_main_db(log_file, main_db, plot_gen_control_file)
+
+    create_plots_from_plot_gen_control(plot_gen_control_file) # uses price_DB internally (run this after price_DB update)
+

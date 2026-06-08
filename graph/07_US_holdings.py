@@ -4,12 +4,13 @@ import yfinance as yf
 import os
 # -----------------------------------------------------------------------------
 # Example DataFrame with Tickers (you'll need to map CUSIPs to tickers)
-# get foreign holdings (US) from 예탁원 (국제거래/외화증권예탁결제)
+# get foreign holdings (US) from 예탁원(증권정보포털) (국제거래/외화증권예탁결제)
 # -----------------------------------------------------------------------------
 
 cd_ = os.path.dirname(os.path.abspath(__file__)) # .   
 datafile = os.path.join(cd_, 'data/usholdings.xlsx')
 df = pd.read_excel(datafile)
+display(df)
 
 tickers = [
     "TSLA", # TESLA INC
@@ -77,11 +78,11 @@ df['HoldingRatio'] = df['보관금액']/df['MarCap']*100
 dfx  = df.dropna()
 dfx['name'] = df['종목명'].apply(lambda x: x.split(' ')[0])
 
-
 #%% --------------------------------------
 # Drawing:  holding percent too
 # ----------------------------------------
 from trader.graph.drawer import Drawer
+from trader.graph.graph_tools import gen_output_plot_path_file
 
 bar_drawer = Drawer(
     figsize = (6, 10), 
@@ -92,13 +93,15 @@ bar_drawer = Drawer(
 bar_drawer.free_plot()
 
 x = dfx['Ticker'].iloc[::-1]
-y = dfx['보관금액'].iloc[::-1]/10**6 # Million USD
+y1 = dfx['보관금액'].iloc[::-1]/10**9 # Billion USD
+y2 = dfx['HoldingRatio'].iloc[::-1] # percent
 
-bars = bar_drawer.ax.barh(x,y)
-for index, value in enumerate(y):
-    bar_drawer.ax.text(value, index, " "+str(round(value)), va='center', fontsize=12)
+bars = bar_drawer.ax.barh(x,y1)
+for index, value in enumerate(y1):
+    bar_drawer.ax.text(value, index, " "+str(round(value, 1)), va='center', fontsize=12)
+
+for index, value in enumerate(y2):
+    bar_drawer.ax.text(y1.max()*1.2, index, " "+str(round(value, 2)), va='center', fontsize=12)
 
 bars[-1].set_color('orange')
-bars[-2].set_color('gray')
-bars[-3].set_color('gray')
-
+bar_drawer._savefig(gen_output_plot_path_file('usholdings'))

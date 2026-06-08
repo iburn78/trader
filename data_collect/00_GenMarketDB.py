@@ -176,5 +176,3 @@ if __name__ == '__main__':
     # print(price_DB)
     # print(volume_DB)
 
-
-
