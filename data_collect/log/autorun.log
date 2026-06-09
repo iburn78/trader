@@ -1,0 +1,96 @@
+https://github.com/iburn78/trader URL에서
+ * branch            main       -> FETCH_HEAD
+이미 업데이트 상태입니다.
+initiating - prices and volumes updates...
+Traceback (most recent call last):
+  File "/home/andy/projects/trader/data_collect/00_GenMarketDB.py", line 171, in <module>
+    gen_market_DB(paths, START_DATE)
+  File "/home/andy/projects/trader/data_collect/00_GenMarketDB.py", line 117, in gen_market_DB
+    market_snapshot = _get_market_snapshot()
+  File "/home/andy/projects/trader/data_collect/00_GenMarketDB.py", line 109, in _get_market_snapshot
+    market_snapshot = fdr.StockListing('KRX')[['Code', 'Market', 'Stocks']]
+  File "/home/andy/projects/trader/venv/lib/python3.10/site-packages/FinanceDataReader/data.py", line 174, in StockListing
+    return KrxMarcapListingCache(market).read(date_req)
+  File "/home/andy/projects/trader/venv/lib/python3.10/site-packages/FinanceDataReader/krx/listing.py", line 37, in read
+    df = pd.read_csv(url, dtype={'Code': str, 'Dept': str, 'ChangeCode': str, 'MarketId': str})
+  File "/home/andy/projects/trader/venv/lib/python3.10/site-packages/pandas/io/parsers/readers.py", line 1026, in read_csv
+    return _read(filepath_or_buffer, kwds)
+  File "/home/andy/projects/trader/venv/lib/python3.10/site-packages/pandas/io/parsers/readers.py", line 620, in _read
+    parser = TextFileReader(filepath_or_buffer, **kwds)
+  File "/home/andy/projects/trader/venv/lib/python3.10/site-packages/pandas/io/parsers/readers.py", line 1620, in __init__
+    self._engine = self._make_engine(f, self.engine)
+  File "/home/andy/projects/trader/venv/lib/python3.10/site-packages/pandas/io/parsers/readers.py", line 1880, in _make_engine
+    self.handles = get_handle(
+  File "/home/andy/projects/trader/venv/lib/python3.10/site-packages/pandas/io/common.py", line 728, in get_handle
+    ioargs = _get_filepath_or_buffer(
+  File "/home/andy/projects/trader/venv/lib/python3.10/site-packages/pandas/io/common.py", line 384, in _get_filepath_or_buffer
+    with urlopen(req_info) as req:
+  File "/home/andy/projects/trader/venv/lib/python3.10/site-packages/pandas/io/common.py", line 289, in urlopen
+    return urllib.request.urlopen(*args, **kwargs)
+  File "/usr/lib/python3.10/urllib/request.py", line 216, in urlopen
+    return opener.open(url, data, timeout)
+  File "/usr/lib/python3.10/urllib/request.py", line 525, in open
+    response = meth(req, response)
+  File "/usr/lib/python3.10/urllib/request.py", line 634, in http_response
+    response = self.parent.error(
+  File "/usr/lib/python3.10/urllib/request.py", line 563, in error
+    return self._call_chain(*args)
+  File "/usr/lib/python3.10/urllib/request.py", line 496, in _call_chain
+    result = func(*args)
+  File "/usr/lib/python3.10/urllib/request.py", line 643, in http_error_default
+    raise HTTPError(req.full_url, code, msg, hdrs, fp)
+urllib.error.HTTPError: HTTP Error 404: Not Found
+Company health data collection initiated at 2026-06-09 02:00:08.588002
+Updating KRX data...
+Generation of KRX data failed: HTTP Error 404: Not Found
+Traceback (most recent call last):
+  File "/home/andy/projects/trader/data_collect/01_CompanyHealth.py", line 323, in update_main_db
+    df_krx = generate_krx_data()
+  File "/home/andy/projects/trader/tools/dc_tools.py", line 270, in generate_krx_data
+    df_krx_desc = fdr.StockListing('KRX-DESC')
+  File "/home/andy/projects/trader/venv/lib/python3.10/site-packages/FinanceDataReader/data.py", line 176, in StockListing
+    return KrxStockListingCache(market).read()
+  File "/home/andy/projects/trader/venv/lib/python3.10/site-packages/FinanceDataReader/krx/listing.py", line 132, in read
+    df = pd.read_csv(csv_url, dtype={'Code': str})
+  File "/home/andy/projects/trader/venv/lib/python3.10/site-packages/pandas/io/parsers/readers.py", line 1026, in read_csv
+    return _read(filepath_or_buffer, kwds)
+  File "/home/andy/projects/trader/venv/lib/python3.10/site-packages/pandas/io/parsers/readers.py", line 620, in _read
+    parser = TextFileReader(filepath_or_buffer, **kwds)
+  File "/home/andy/projects/trader/venv/lib/python3.10/site-packages/pandas/io/parsers/readers.py", line 1620, in __init__
+    self._engine = self._make_engine(f, self.engine)
+  File "/home/andy/projects/trader/venv/lib/python3.10/site-packages/pandas/io/parsers/readers.py", line 1880, in _make_engine
+    self.handles = get_handle(
+  File "/home/andy/projects/trader/venv/lib/python3.10/site-packages/pandas/io/common.py", line 728, in get_handle
+    ioargs = _get_filepath_or_buffer(
+  File "/home/andy/projects/trader/venv/lib/python3.10/site-packages/pandas/io/common.py", line 384, in _get_filepath_or_buffer
+    with urlopen(req_info) as req:
+  File "/home/andy/projects/trader/venv/lib/python3.10/site-packages/pandas/io/common.py", line 289, in urlopen
+    return urllib.request.urlopen(*args, **kwargs)
+  File "/usr/lib/python3.10/urllib/request.py", line 216, in urlopen
+    return opener.open(url, data, timeout)
+  File "/usr/lib/python3.10/urllib/request.py", line 525, in open
+    response = meth(req, response)
+  File "/usr/lib/python3.10/urllib/request.py", line 634, in http_response
+    response = self.parent.error(
+  File "/usr/lib/python3.10/urllib/request.py", line 563, in error
+    return self._call_chain(*args)
+  File "/usr/lib/python3.10/urllib/request.py", line 496, in _call_chain
+    result = func(*args)
+  File "/usr/lib/python3.10/urllib/request.py", line 643, in http_error_default
+    raise HTTPError(req.full_url, code, msg, hdrs, fp)
+urllib.error.HTTPError: HTTP Error 404: Not Found
+
+During handling of the above exception, another exception occurred:
+
+Traceback (most recent call last):
+  File "/home/andy/projects/trader/data_collect/01_CompanyHealth.py", line 400, in <module>
+    update_main_db(log_file, main_db, plot_gen_control_file)
+  File "/home/andy/projects/trader/data_collect/01_CompanyHealth.py", line 327, in update_main_db
+    raise Exception('Generation of KRX data failed: '+str(e))
+Exception: Generation of KRX data failed: HTTP Error 404: Not Found
+sending incremental file list
+df_krx.db
+update_info.txt
+
+sent 810,088 bytes  received 56 bytes  540,096.00 bytes/sec
+total size is 1,127,856,811  speedup is 1,392.17
