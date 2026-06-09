@@ -2,8 +2,8 @@
 import pandas as pd
 import numpy as np
 import os
-from trader.tools.dc_tools import get_main_financial_reports_db, _choose_unique_rows
-from trader.tools.ca_tools import get_quarterly_data
+from trader.tools.dc_tools import get_main_financial_reports_db
+from tools.cca_tools import get_quarterly_data
 
 KEY_ACCOUNT = 'operating_income'
 MIN_QUARTERS = 8  # Minimum quarters of data required
