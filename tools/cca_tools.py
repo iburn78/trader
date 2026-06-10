@@ -7,47 +7,10 @@ import os
 from html2image import Html2Image
 from datetime import datetime
 
-from trader.tools.dc_tools import _choose_unique_rows
-from trader.tools.dictionary import KRW_UNIT
-
-# ----------------------------------------------------------
-# gen quartely data related
-# ----------------------------------------------------------
-def get_quarterly_data(code, fr_db, unit=KRW_UNIT, native=False):  # fr_db = main_db or financial_reports_main
-    quarter_cols= [s for s in fr_db.columns.values if 'Q' in s]
-    quarter_cols.sort()
-    fs_div_mode = 'CFS'
-    y = fr_db.loc[(fr_db['code']==code) & (fr_db['fs_div']==fs_div_mode), ['account']+quarter_cols].drop_duplicates().set_index(['account'])
-    if y.isnull().all().all():
-        fs_div_mode = 'OFS'
-        y = fr_db.loc[(fr_db['code']==code) & (fr_db['fs_div']==fs_div_mode), ['account']+quarter_cols].drop_duplicates().set_index(['account'])
-    if y.isnull().all().all():
-        return None
-    if native: 
-        return y.dropna(axis=1, how='all')
-
-    # date_updated = str(fr_db.loc[(fr_db['code']==code) & (fr_db['fs_div']==fs_div_mode), 'date_updated'].values[0])
-    y.columns = [s.replace('2020','XX').replace('20','').replace('XX','20').replace('_','.').replace('Q','') for s in quarter_cols]
-    yiu = y/unit
-    yiu=_choose_unique_rows(yiu, 'account')
-    yiu.loc['opmargin', :] = yiu.loc['operating_income']/yiu.loc['revenue'].replace(0, pd.NA)*100   # sometimes, revenue entry is zero, then it computes to '+- np.inf'
-    yiu.loc['liquid_asset_ratio', :] = yiu.loc['liquid_assets']/yiu.loc['assets']*100
-    yiu.loc['liquid_debt_ratio', :] = yiu.loc['liquid_debts']/yiu.loc['debts']*100
-    yiu.loc['debt_to_equity_ratio', :] = yiu.loc['debts']/yiu.loc['equity']*100
-    yiu.replace(0, np.nan, inplace=True)   # works both for int and float, and there is no truly zero value in financial data
-    return yiu #, date_updated
-
-def prev_quarter_str(date):
-    y, q = date.year, (date.month - 1) // 3 + 1
-    if q == 1:
-        y -= 1
-        q = 4
-    else:
-        q -= 1
-    return f"{y}_{q}Q"
 # ----------------------------------------------------------
 # Classification Logic
 # ----------------------------------------------------------
+# stats = [mean, cv, slope, acc]
 cv_threshold_prime = 0.4
 cv_threshold = 1.0
 criteria_dict = {
@@ -64,7 +27,7 @@ criteria_dict = {
     'debt_to_equity_ratio_stats': [200, cv_threshold, np.nan, np.nan] # percent
 }
 weight = [5, 2, 2, 5, 1, 1, 1, 1, 1, 1, 1] # weights for each criteria
-top_N = 50 # top to add
+top_N = 100 # top to add
 
 # ----------------------------------------------------------
 # Data Structure
@@ -81,7 +44,7 @@ info_db_file = os.path.join(pd_, 'data_collect/data/info_db.xlsx')
 class StockInfo: 
     code: str 
     name: str = "" 
-    GPT_response: str = "" 
+    LLM_response: str = "" 
     industry: str = "" 
     business_model: str = "" 
     products: str = "" 
@@ -128,7 +91,7 @@ class Info_DB:
         s.updated = datetime.now().strftime("%Y-%m-%d")
         self.db.loc[s.code] = asdict(s)
 
-    def read_company(self, code: str) -> StockInfo:
+    def get_stockinfo(self, code: str) -> StockInfo:
         if code in self.db.index:
             row_dict = self.db.loc[code].to_dict()
             row_dict['code'] = code
@@ -136,26 +99,26 @@ class Info_DB:
         else: 
             return StockInfo(code)
 
-def get_company_issues(code):
+def get_prev_response_and_issues(code):
     idb = Info_DB()
-    s = idb.read_company(code)
+    s = idb.get_stockinfo(code)
     issues = s.get_issues()
-    prev = s.GPT_response
+    prev_response = s.LLM_response
     date_updated = s.updated
-    return issues, prev, date_updated
+    return issues, prev_response, date_updated
 
-def save_GPT_response(code, response):
+def save_LLM_response(code, response):
     idb = Info_DB()
-    s = idb.read_company(code)
-    s.GPT_response = response
+    s = idb.get_stockinfo(code)
+    s.LLM_response = response
     idb.add_company(s) # date_updated updated
     idb.save_to_disk()
 
 # -------------------------------------------------------------
 # pipeline: data → tables → HTML → image
 # -------------------------------------------------------------
-# Takes stock/quarter data from qa_db
-# Calculates a few metrics (growth, margins, debt, etc.)
+# Takes data from qa_db
+# Calculates a few metrics compared with criteria
 # Formats and colors them like a report
 # Builds an HTML page with tables
 # Takes a screenshot of that HTML
@@ -420,7 +383,7 @@ def _gen_summary(code, period:str | None = None, qa_db = qa_db):
 
     return desc, styled
     
-def gen_data_in_html(code):
+def gen_data_in_html(code, temp_path):
     summary_desc, summary_df = _gen_summary(code)
     summary_desc = summary_desc.replace('\n', '<br>')
     summary_df = summary_df.to_html()
@@ -467,20 +430,18 @@ def gen_data_in_html(code):
     </body>
     </html>
     """
-    img_path = os.path.join(pd_, 'data_collect/cca/temp/')
-    temp_html = os.path.join(img_path, 'temp.html')
-    os.makedirs(img_path, exist_ok=True)
+    temp_html = os.path.join(temp_path, 'temp.html')
     filename = 'temp.png'
     with open(temp_html, "w", encoding="utf-8") as f:
         f.write(full_html)  
 
-    hti = Html2Image(output_path=img_path)
+    hti = Html2Image(output_path=temp_path)
     hti.screenshot(html_file=temp_html, save_as=filename, size=(1400, 900))
     os.remove(temp_html)
 
-    return os.path.join(img_path, filename)
+    return os.path.join(temp_path, filename)
 
-def styled_df_to_image(df):
+def styled_df_to_image(df, temp_path):
     # Apply conditional formatting: negative numbers in bold red
     def style_negative(v):
         if isinstance(v, (int, float)) and v < 0:
@@ -515,15 +476,13 @@ def styled_df_to_image(df):
     </html>
     """
 
-    img_path = os.path.join(pd_, 'data_collect/cca/temp/')
-    temp_html = os.path.join(img_path, 'temp.html')
-    os.makedirs(img_path, exist_ok=True)
+    temp_html = os.path.join(temp_path, 'temp.html')
     filename = 'temp.png'
     with open(temp_html, "w", encoding="utf-8") as f:
         f.write(full_html)  
 
-    hti = Html2Image(output_path=img_path)
+    hti = Html2Image(output_path=temp_path)
     hti.screenshot(html_file=temp_html, save_as=filename, size=(900, 1200))
     os.remove(temp_html)
 
-    return os.path.join(img_path, filename)
+    return os.path.join(temp_path, filename)

@@ -3,24 +3,22 @@
 # CCA: Company Classification Analysis
 # CCA Post processing and PPT Generation
 # ----------------------------------------------------------
+# PART 1: cca_dict creation
+# - all operation is local
+# ----------------------------------------------------------
 import pickle
-from openai import OpenAI
-import re
 from datetime import datetime, timedelta
-import FinanceDataReader as fdr
 import io, os
 import pandas as pd
-from trader.tools.dc_tools import get_main_financial_reports_db, plot_company_financial_summary
-from trader.tools.cca_tools import get_score_trend, get_quarterly_data, prev_quarter_str, get_periods, styled_df_to_image, get_company_issues, save_GPT_response
+from trader.tools.dc_tools import get_main_financial_reports_db, get_quarterly_data, plot_company_financial_summary
+from trader.tools.cca_tools import get_score_trend, get_periods
 from trader.tools.cca_tools import df_krx, qa_db, top_N
-import matplotlib.pyplot as plt
-from pptx import Presentation
-from pptx.util import Inches
 
 fr_db = get_main_financial_reports_db()
 pd_ = os.path.dirname(os.path.dirname(os.path.abspath(__file__))) # ..
 pr_db_file = os.path.join(pd_, 'data_collect/data/price_DB.feather') 
 pr_db = pd.read_feather(pr_db_file)
+cca_dict_file = os.path.join(pd_, 'data_collect/cca/temp/cca_dict.pkl')
 
 target_account = 'net_income'
 
@@ -38,8 +36,18 @@ def L4_rolling_addition(fh, target_account=target_account):
     fh = pd.concat([fh, new_row_df])
     return fh 
 
-# get price, marcap, PER, PBR
+# mp_db: just to get price, marcap, PER, PBR
 def get_market_performance_db(code, fr_db=fr_db, pr_db=pr_db, target_account=target_account, MAX_QUARTERS=40): # e.g., 10 years or use MAX_QUARTERS in qa_db generation
+
+    def prev_quarter_str(date):
+        y, q = date.year, (date.month - 1) // 3 + 1
+        if q == 1:
+            y -= 1
+            q = 4
+        else:
+            q -= 1
+        return f"{y}_{q}Q"
+
     fh = get_quarterly_data(code, fr_db, native=True)
     fh = L4_rolling_addition(fh, target_account)
     try:
@@ -68,36 +76,20 @@ def get_market_performance_db(code, fr_db=fr_db, pr_db=pr_db, target_account=tar
 
     return mp_db
 
-def mp_plot(mp_db, columns=['price', 'PER', 'PBR']):
-    fig, axes = plt.subplots(len(columns), 1, figsize=(12, 4 * len(columns)), sharex=True)
-    if len(columns) == 1:
-        axes = [axes]
-    for ax, col in zip(axes, columns):
-        mp_db[col].plot(ax=ax, title=col, grid=True, fontsize=12)
-    plt.tight_layout()
-    img_stream = io.BytesIO()
-    plt.savefig(img_stream, format='png', bbox_inches='tight')
-    plt.close(fig)
-    img_stream.seek(0)
-    return img_stream
-    # plt.show()
-    # plt.savefig("----.png")
-
-def get_late_prices(codelist, days=7):
+def _get_late_prices(codelist, days=7):
     start_date = (datetime.today() - timedelta(days=days)).strftime('%Y-%m-%d')
     res = pd.DataFrame()
 
     for code in codelist:
-        df = fdr.DataReader(code, start_date)['Close']
-        df.name = code  # name the Series as the stock code
+        df = pr_db.loc[pr_db.index >= start_date, code] # df.name == code (remains as the column name)
         res = pd.concat([res, df], axis=1)
 
     res = res.T
     res.columns = pd.to_datetime(res.columns).strftime("%m-%d")
     return res  # transpose to have stock codes as index and dates as columns
 
-def get_codelist_summary(codelist, days=7, df_krx=df_krx):
-    last_prices = get_late_prices(codelist, days)
+def _get_codelist_summary(codelist, days=7, df_krx=df_krx):
+    last_prices = _get_late_prices(codelist, days)
     pr_changes = (last_prices.pct_change(axis=1) * 100).round(2).dropna(axis=1)
     pr_changes.insert(0, 'name', '')
     for code in pr_changes.index:
@@ -107,12 +99,12 @@ def get_codelist_summary(codelist, days=7, df_krx=df_krx):
     pr_changes['marcap'] = pr_changes['marcap'].round().astype(int)
     return pr_changes
 
-def post_process(score_trend, qa_db=qa_db, fr_db=fr_db, pr_db=pr_db, df_krx=df_krx, top_N = top_N):
-    data_dict = {}
+def _post_process(score_trend, qa_db=qa_db, fr_db=fr_db, pr_db=pr_db, df_krx=df_krx, top_N = top_N):
+    cca_dict = {}
     mp_db_dict = {}
     periods = get_periods(qa_db)
 
-    cls = get_codelist_summary(score_trend.index)
+    cls = _get_codelist_summary(score_trend.index)
     for code in score_trend.index: 
         print("processing", code)
         mp_db = get_market_performance_db(code, fr_db, pr_db)
@@ -123,47 +115,105 @@ def post_process(score_trend, qa_db=qa_db, fr_db=fr_db, pr_db=pr_db, df_krx=df_k
         txt = score_trend.loc[[code]][periods+['avg']].to_string(index=False)
         cls.loc[code, 'note'] = 'rank:' + rank + ', select:' + score_trend.loc[code, 'selected'] + f', top{str(top_N)}:' + score_trend.loc[code, f'top{str(top_N)}'] + ', MCap:' + str(df_krx.at[code, 'Marcap'] // 10**8) + ', PER:' + str(round(mp_db['PER'].iloc[-1], 2)) + '\n' + txt
 
-    data_dict['codelist_summary'] = cls
-    data_dict['mp_db_dict'] = mp_db_dict
+    cca_dict['created'] = datetime.today().strftime('%Y-%m-%d')
+    cca_dict['codelist_summary'] = cls
+    cca_dict['mp_db_dict'] = mp_db_dict
 
-    # codelist selection logic ------------------
+    # -------------------------------------------------------
+    # additional codelist selection logic  
+    # -------------------------------------------------------
     PER_limit = 1000
     scodelist = cls.loc[(cls['PER'] > 0) & (cls['PER'] < PER_limit)].index
-    data_dict['select_codelist'] = scodelist
-    data_dict['select_codelist_summary'] = cls.loc[cls.index.isin(scodelist)].drop('note', axis=1)
+    # -------------------------------------------------------
+    cca_dict['select_codelist'] = scodelist
+    cca_dict['select_codelist_summary'] = cls.loc[cls.index.isin(scodelist)].drop('note', axis=1)
 
-    return data_dict
+    return cca_dict
 
-def generate_PPT(data_dict, fr_db=fr_db, pr_db=pr_db, summary_only = False, top_N: int = top_N):
+def get_cca_dict(cca_dict_file, force_recreate=False):
+    os.makedirs(os.path.dirname(cca_dict_file), exist_ok=True)
 
-    cd_ = os.path.dirname(os.path.abspath(__file__)) # .
-    CCA_folder = 'CCA'
-    today_str = pd.Timestamp.today().strftime('%Y-%m-%d_%H%M')
-    CCA_template = os.path.join(cd_, CCA_folder, 'CCA_template.pptx')
-    CCA_result = os.path.join(cd_, CCA_folder, f'CCA_result_{today_str}.pptx')
+    _today = datetime.today().strftime('%Y-%m-%d')
+    needs_refresh = force_recreate or not os.path.exists(cca_dict_file)
+
+    if not needs_refresh:
+        try:
+            with open(cca_dict_file, 'rb') as f:
+                cca_dict = pickle.load(f)
+
+            needs_refresh = cca_dict.get('created') != _today
+
+        except Exception:
+            # Corrupt or unreadable cache; rebuild it.
+            needs_refresh = True
+
+    if needs_refresh:
+        score_trend, _ = get_score_trend()
+        cca_dict = _post_process(score_trend)
+
+        with open(cca_dict_file, 'wb') as f:
+            pickle.dump(cca_dict, f)
+
+    return cca_dict
+
+# ----------------------------------------------------------
+# PART 2: PPT generation
+# - uses LLM: can be non-local
+# - input: cca_dict, fr_db, pr_db, top_N
+# ----------------------------------------------------------
+import re
+from openai import OpenAI
+import matplotlib.pyplot as plt
+from pptx import Presentation
+from pptx.util import Inches
+from trader.tools.cca_tools import styled_df_to_image, gen_data_in_html, get_prev_response_and_issues, save_LLM_response
+
+temp_path = os.path.join(pd_, 'data_collect/cca/temp/')
+os.makedirs(temp_path, exist_ok=True)
+
+CCA_template = os.path.join(pd_, 'data_collect/cca/util/CCA_template.pptx')
+
+today_hm = pd.Timestamp.today().strftime('%Y-%m-%d_%H%M')
+CCA_result = os.path.join(pd_, f'data_collect/cca/CCA_result_{today_hm}.pptx')
+
+def _mp_plot(mp_db, columns=['price', 'PER', 'PBR']):
+    fig, axes = plt.subplots(len(columns), 1, figsize=(12, 4 * len(columns)), sharex=True)
+    if len(columns) == 1:
+        axes = [axes]
+    for ax, col in zip(axes, columns):
+        mp_db[col].plot(ax=ax, title=col, grid=True, fontsize=12)
+    plt.tight_layout()
+    img_stream = io.BytesIO()
+    plt.savefig(img_stream, format='png', bbox_inches='tight')
+    img_stream.seek(0)
+    # plt.show()
+    plt.close(fig)
+    return img_stream
+
+def generate_PPT(cca_dict, fr_db=fr_db, pr_db=pr_db, summary_only=False, top_N: int = top_N):
     prs = Presentation(CCA_template)
 
     # Codelist summary page 
     slide = prs.slides.add_slide(prs.slide_layouts[2])
-    img_path = styled_df_to_image(data_dict['select_codelist_summary'])
+    img_path = styled_df_to_image(cca_dict['select_codelist_summary'], temp_path)
     slide.shapes.add_picture(img_path, 0, Inches(0.1), width=prs.slide_width*0.55)
     os.remove(img_path)
 
     # Per code pages 
     if not summary_only: 
-        if top_N is None: top_N = len(data_dict['select_codelist'])
-        for code in data_dict['select_codelist'][:top_N]:
+        if top_N is None: top_N = len(cca_dict['select_codelist'])
+        for code in cca_dict['select_codelist'][:top_N]:
             print("slide generating for", code)
             slide = prs.slides.add_slide(prs.slide_layouts[0])
-            img_stream = mp_plot(data_dict['mp_db_dict'][code])
+            img_stream = _mp_plot(cca_dict['mp_db_dict'][code])
             slide.shapes.add_picture(img_stream, Inches(0.1), Inches(0.5), height=Inches(6))
             for ph in slide.placeholders: 
                 if ph.name == 'Text Placeholder 1':
-                    ph.text = data_dict['codelist_summary'].loc[code, 'name']
+                    ph.text = cca_dict['codelist_summary'].loc[code, 'name']
                 if ph.name == 'Text Placeholder 2':
-                    ph.text = today_str
+                    ph.text = today_hm
                 if ph.name == 'Text Placeholder 3':
-                    ph.text = data_dict['codelist_summary'].loc[code, 'note']
+                    ph.text = cca_dict['codelist_summary'].loc[code, 'note']
 
             slide = prs.slides.add_slide(prs.slide_layouts[1])
             ph = next(iter(slide.placeholders)) 
@@ -174,12 +224,18 @@ def generate_PPT(data_dict, fr_db=fr_db, pr_db=pr_db, summary_only = False, top_
             slide.shapes.add_picture(img_stream, Inches(0.1), 0, height=prs.slide_height)
 
             slide = prs.slides.add_slide(prs.slide_layouts[2])
-            img_path = gen_data_in_html(code)
+            img_path = gen_data_in_html(code, temp_path)
             slide.shapes.add_picture(img_path, 0, Inches(0.1), width=prs.slide_width)
             os.remove(img_path)
 
     prs.save(CCA_result)
     print("PPT generation completed...")
+
+def _simple_text_formatting(text):
+    text = re.sub(r"\*\*(.+?)\*\*", r"[\1]", text)                  # **bold** → [bold]
+    text = re.sub(r"^-{3,}\s*$", "\n", text, flags=re.MULTILINE)    # line of 3+ dashes → empty line
+    text = re.sub(r"(\n\s*){3,}", "\n\n", text)                     # 3+ empty/whitespace lines → 1 empty line
+    return text.strip()
 
 def LLM_request(code):
     company_name = df_krx.loc[code, "Name"]
@@ -197,28 +253,28 @@ def LLM_request(code):
         "The total length must not exceed 700 words. "
     )
 
-    info, prev, date_prev = get_company_issues(code)
+    issues, prev_response, date_prev = get_prev_response_and_issues(code)
 
     # if the prev gpt response is saved within 7 days, pass
     if datetime.today() - datetime.strptime(date_prev, '%Y-%m-%d') < timedelta(days=7):
-        if prev:
-            return prev
+        if prev_response:
+            return prev_response
 
-    if info:
-        info_command = (
+    if issues:
+        issues_command = (
             "The following is additional information. "
             "Cross-check its validity and use it only if it is important and accurate.\n"
         )
-        info = info_command + info
+        issues = issues_command + issues
 
-    if prev:
+    if prev_response:
         prev_command = (
             f"The following is your previous response to the identical query about the company on {date_prev}. "
             "Refer to it, but update your answer with any new developments since then.\n"
         )
-        prev = prev_command + prev
-
-    extras = "\n\n".join(filter(None, [info, prev]))
+        prev_response = prev_command + prev_response
+    
+    extras = "\n\n".join(filter(None, [issues, prev_response]))
     prompt = f"{content_command}\n{format_command}\n\n{extras}"
 
     client = OpenAI(
@@ -227,52 +283,28 @@ def LLM_request(code):
         base_url="http://localhost:11434/v1", # ollama
     )
 
-    chat_completion = client.chat.completions.create(
-        # model="sonar-pro", # perplexity
-        model="gemma4", 
-        messages=[
-            {
-                "role": "user",
-                "content": (
-                    prompt
-                )
-            }
-        ],
-    )
-    try:
-        citations = getattr(chat_completion, 'citations', [])
-        if not citations:
-            citations = getattr(chat_completion, 'search_results', [])
-    except:
-        citations = []
+    # chat_completion = client.chat.completions.create(
+    #     # model="sonar-pro", # perplexity
+    #     model="gemma4", 
+    #     messages=[
+    #         {
+    #             "role": "user",
+    #             "content": (
+    #                 prompt
+    #             )
+    #         }
+    #     ],
+    # )
     
-    response = chat_completion.choices[0].message.content
-    response = _simple_text_formatting(response)
-    response = response + "\n\n" + "\n".join(citations)
-    save_GPT_response(code, response)
+    # response = chat_completion.choices[0].message.content
+    # response = _simple_text_formatting(response)
+    # save_LLM_response(code, response)
+    response = prev_response
 
     return response
 
-def _simple_text_formatting(text):
-    text = re.sub(r"\*\*(.+?)\*\*", r"[\1]", text)                  # **bold** → [bold]
-    text = re.sub(r"^-{3,}\s*$", "\n", text, flags=re.MULTILINE)    # line of 3+ dashes → empty line
-    text = re.sub(r"(\n\s*){3,}", "\n\n", text)                     # 3+ empty/whitespace lines → 1 empty line
-    return text.strip()
-
-data_dict_file = os.path.join(pd_, 'data_collect/cca/temp/data_dict.pkl')
-def get_data_dict(re_create=False, data_dict_file=data_dict_file):
-    
-    if re_create or not os.path.exists(data_dict_file):
-        score_trend, _ = get_score_trend()
-        data_dict = post_process(score_trend)
-        with open(data_dict_file, 'wb') as f:
-            pickle.dump(data_dict, f)
-    else:
-        with open(data_dict_file, 'rb') as f:
-            data_dict = pickle.load(f)
-    return data_dict
-
 if __name__ == "__main__":
-    data_dict = get_data_dict(re_create=False)
-    generate_PPT(data_dict, summary_only = False)
+    cca_dict = get_cca_dict(cca_dict_file, force_recreate=False)
+    generate_PPT(cca_dict, summary_only=False)
 
+###_ PER Calculation is wrong
