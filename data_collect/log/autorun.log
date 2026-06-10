@@ -1525,3 +1525,203 @@ update_info.txt
 
 sent 18,775,925 bytes  received 947 bytes  37,553,744.00 bytes/sec
 total size is 1,127,474,146  speedup is 60.05
+[main b8f8c9b] 2026-06-10 upload done from linux machine
+ 6 files changed, 1508 insertions(+)
+ rewrite data_collect/data/df_krx.feather (83%)
+To https://github.com/iburn78/trader
+   fe16e76..b8f8c9b  main -> main
+https://github.com/iburn78/trader URL에서
+ * branch            main       -> FETCH_HEAD
+   7c6cf37..92662fc  main       -> origin/main
+error: 다음 파일의 로컬 변경 사항을 병합 때문에 덮어 쓰게 됩니다:
+	data_collect/log/autorun.log
+병합하기 전에 변경 사항을 커밋하거나 스태시하십시오.
+중지함
+업데이트 중 7c6cf37..92662fc
+$490470.KS: possibly delisted; no timezone found
+$456160.KS: possibly delisted; no timezone found
+$0117P0.KS: possibly delisted; no timezone found
+$0017J0.KS: possibly delisted; no timezone found
+$0001A0.KS: possibly delisted; no timezone found
+$424870.KS: possibly delisted; no timezone found
+initiating - prices and volumes updates...
+[052900] Latest FDR date 2026-06-10 not in Yahoo. Using fdr only.
+[123420] Latest FDR date 2026-06-10 not in Yahoo. Using fdr only.
+[002630] Close mismatch on 2026-06-10: fdr=857, yf=nan. Using fdr only.
+[348340] Latest FDR date 2026-06-10 not in Yahoo. Using fdr only.
+[085910] Latest FDR date 2026-06-10 not in Yahoo. Using fdr only.
+[066910] Latest FDR date 2026-06-10 not in Yahoo. Using fdr only.
+[078070] Latest FDR date 2026-06-10 not in Yahoo. Using fdr only.
+[900310] Close mismatch on 2026-06-10: fdr=1840, yf=nan. Using fdr only.
+[317770] Latest FDR date 2026-06-10 not in Yahoo. Using fdr only.
+[441270] Latest FDR date 2026-06-10 not in Yahoo. Using fdr only.
+[001527] Close mismatch on 2026-06-10: fdr=7010, yf=nan. Using fdr only.
+[347700] Latest FDR date 2026-06-10 not in Yahoo. Using fdr only.
+[011790] Close mismatch on 2026-06-10: fdr=124100, yf=nan. Using fdr only.
+[065650] Latest FDR date 2026-06-10 not in Yahoo. Using fdr only.
+[126340] Latest FDR date 2026-06-10 not in Yahoo. Using fdr only.
+[358570] Latest FDR date 2026-06-10 not in Yahoo. Using fdr only.
+[950220] Close mismatch on 2026-06-10: fdr=1767, yf=nan. Using fdr only.
+[274090] Latest FDR date 2026-06-10 not in Yahoo. Using fdr only.
+[009970] Close mismatch on 2026-06-10: fdr=185500, yf=nan. Using fdr only.
+[105560] Close mismatch on 2026-06-10: fdr=154000, yf=nan. Using fdr only.
+[123010] Latest FDR date 2026-06-10 not in Yahoo. Using fdr only.
+[019570] Latest FDR date 2026-06-10 not in Yahoo. Using fdr only.
+[001340] Close mismatch on 2026-06-10: fdr=5470, yf=nan. Using fdr only.
+[060230] Latest FDR date 2026-06-10 not in Yahoo. Using fdr only.
+/home/andy/projects/trader/venv/lib/python3.10/site-packages/pandas/core/frame.py:717: DeprecationWarning: Passing a BlockManager to DataFrame is deprecated and will raise in a future version. Use public APIs instead.
+  warnings.warn(
+/home/andy/projects/trader/venv/lib/python3.10/site-packages/pandas/core/frame.py:717: DeprecationWarning: Passing a BlockManager to DataFrame is deprecated and will raise in a future version. Use public APIs instead.
+  warnings.warn(
+/home/andy/projects/trader/venv/lib/python3.10/site-packages/pandas/core/frame.py:717: DeprecationWarning: Passing a BlockManager to DataFrame is deprecated and will raise in a future version. Use public APIs instead.
+  warnings.warn(
+/home/andy/projects/trader/venv/lib/python3.10/site-packages/pandas/core/frame.py:717: DeprecationWarning: Passing a BlockManager to DataFrame is deprecated and will raise in a future version. Use public APIs instead.
+  warnings.warn(
+/home/andy/projects/trader/venv/lib/python3.10/site-packages/pandas/core/frame.py:717: DeprecationWarning: Passing a BlockManager to DataFrame is deprecated and will raise in a future version. Use public APIs instead.
+  warnings.warn(
+/home/andy/projects/trader/venv/lib/python3.10/site-packages/pandas/core/frame.py:717: DeprecationWarning: Passing a BlockManager to DataFrame is deprecated and will raise in a future version. Use public APIs instead.
+  warnings.warn(
+/home/andy/projects/trader/venv/lib/python3.10/site-packages/pandas/core/frame.py:717: DeprecationWarning: Passing a BlockManager to DataFrame is deprecated and will raise in a future version. Use public APIs instead.
+  warnings.warn(
+/home/andy/projects/trader/venv/lib/python3.10/site-packages/pandas/core/frame.py:717: DeprecationWarning: Passing a BlockManager to DataFrame is deprecated and will raise in a future version. Use public APIs instead.
+  warnings.warn(
+/home/andy/projects/trader/venv/lib/python3.10/site-packages/pandas/core/frame.py:717: DeprecationWarning: Passing a BlockManager to DataFrame is deprecated and will raise in a future version. Use public APIs instead.
+  warnings.warn(
+/home/andy/projects/trader/venv/lib/python3.10/site-packages/pandas/core/frame.py:717: DeprecationWarning: Passing a BlockManager to DataFrame is deprecated and will raise in a future version. Use public APIs instead.
+  warnings.warn(
+/home/andy/projects/trader/venv/lib/python3.10/site-packages/pandas/core/frame.py:717: DeprecationWarning: Passing a BlockManager to DataFrame is deprecated and will raise in a future version. Use public APIs instead.
+  warnings.warn(
+/home/andy/projects/trader/venv/lib/python3.10/site-packages/pandas/core/frame.py:717: DeprecationWarning: Passing a BlockManager to DataFrame is deprecated and will raise in a future version. Use public APIs instead.
+  warnings.warn(
+/home/andy/projects/trader/venv/lib/python3.10/site-packages/pandas/core/frame.py:717: DeprecationWarning: Passing a BlockManager to DataFrame is deprecated and will raise in a future version. Use public APIs instead.
+  warnings.warn(
+/home/andy/projects/trader/venv/lib/python3.10/site-packages/pandas/core/frame.py:717: DeprecationWarning: Passing a BlockManager to DataFrame is deprecated and will raise in a future version. Use public APIs instead.
+  warnings.warn(
+/home/andy/projects/trader/venv/lib/python3.10/site-packages/pandas/core/frame.py:717: DeprecationWarning: Passing a BlockManager to DataFrame is deprecated and will raise in a future version. Use public APIs instead.
+  warnings.warn(
+/home/andy/projects/trader/venv/lib/python3.10/site-packages/pandas/core/frame.py:717: DeprecationWarning: Passing a BlockManager to DataFrame is deprecated and will raise in a future version. Use public APIs instead.
+  warnings.warn(
+/home/andy/projects/trader/venv/lib/python3.10/site-packages/pandas/core/frame.py:717: DeprecationWarning: Passing a BlockManager to DataFrame is deprecated and will raise in a future version. Use public APIs instead.
+  warnings.warn(
+/home/andy/projects/trader/venv/lib/python3.10/site-packages/pandas/core/frame.py:717: DeprecationWarning: Passing a BlockManager to DataFrame is deprecated and will raise in a future version. Use public APIs instead.
+  warnings.warn(
+/home/andy/projects/trader/venv/lib/python3.10/site-packages/pandas/core/frame.py:717: DeprecationWarning: Passing a BlockManager to DataFrame is deprecated and will raise in a future version. Use public APIs instead.
+  warnings.warn(
+/home/andy/projects/trader/venv/lib/python3.10/site-packages/pandas/core/frame.py:717: DeprecationWarning: Passing a BlockManager to DataFrame is deprecated and will raise in a future version. Use public APIs instead.
+  warnings.warn(
+/home/andy/projects/trader/venv/lib/python3.10/site-packages/pandas/core/frame.py:717: DeprecationWarning: Passing a BlockManager to DataFrame is deprecated and will raise in a future version. Use public APIs instead.
+  warnings.warn(
+/home/andy/projects/trader/venv/lib/python3.10/site-packages/pandas/core/frame.py:717: DeprecationWarning: Passing a BlockManager to DataFrame is deprecated and will raise in a future version. Use public APIs instead.
+  warnings.warn(
+/home/andy/projects/trader/venv/lib/python3.10/site-packages/pandas/core/frame.py:717: DeprecationWarning: Passing a BlockManager to DataFrame is deprecated and will raise in a future version. Use public APIs instead.
+  warnings.warn(
+/home/andy/projects/trader/venv/lib/python3.10/site-packages/pandas/core/frame.py:717: DeprecationWarning: Passing a BlockManager to DataFrame is deprecated and will raise in a future version. Use public APIs instead.
+  warnings.warn(
+/home/andy/projects/trader/venv/lib/python3.10/site-packages/pandas/core/frame.py:717: DeprecationWarning: Passing a BlockManager to DataFrame is deprecated and will raise in a future version. Use public APIs instead.
+  warnings.warn(
+/home/andy/projects/trader/venv/lib/python3.10/site-packages/pandas/core/frame.py:717: DeprecationWarning: Passing a BlockManager to DataFrame is deprecated and will raise in a future version. Use public APIs instead.
+  warnings.warn(
+/home/andy/projects/trader/venv/lib/python3.10/site-packages/pandas/core/frame.py:717: DeprecationWarning: Passing a BlockManager to DataFrame is deprecated and will raise in a future version. Use public APIs instead.
+  warnings.warn(
+/home/andy/projects/trader/venv/lib/python3.10/site-packages/pandas/core/frame.py:717: DeprecationWarning: Passing a BlockManager to DataFrame is deprecated and will raise in a future version. Use public APIs instead.
+  warnings.warn(
+/home/andy/projects/trader/venv/lib/python3.10/site-packages/pandas/core/frame.py:717: DeprecationWarning: Passing a BlockManager to DataFrame is deprecated and will raise in a future version. Use public APIs instead.
+  warnings.warn(
+Company health data collection initiated at 2026-06-11 02:01:06.559655
+Updating KRX data...
+Updating between dates: 2026-06-03 / 2026-06-11
+FULL rescan codes:
+Total 24 items.
+[0-23] ['000250', '001570', '003160', '006660', '011790', '015360', '019680', '025900', '041440', '043260', '043610', '049800', '054050', '056190', '069540', '079900', '083930', '085660', '088260', '114090', '189860', '331740', '412540', '417200']
+PARTIAL rescan codes:
+Total 2 items.
+[0-1] ['241820', '395400']
+full_rescan batch operation: 0
+Financial data collection log >> 
+2026-06-11 02:01:15.482775, no: 0, code 000250 in process
+2026-06-11 02:01:33.939668, no: 1, code 001570 in process
+2026-06-11 02:01:52.338205, no: 2, code 003160 in process
+2026-06-11 02:02:10.554696, no: 3, code 006660 in process
+2026-06-11 02:02:28.862836, no: 4, code 011790 in process
+2026-06-11 02:02:47.339400, no: 5, code 015360 in process
+2026-06-11 02:03:05.773709, no: 6, code 019680 in process
+2026-06-11 02:03:24.178669, no: 7, code 025900 in process
+2026-06-11 02:03:42.565739, no: 8, code 041440 in process
+2026-06-11 02:04:00.841835, no: 9, code 043260 in process
+2026-06-11 02:04:19.374258, no: 10, code 043610 in process
+2026-06-11 02:04:37.632731, no: 11, code 049800 in process
+2026-06-11 02:04:55.949464, no: 12, code 054050 in process
+2026-06-11 02:05:14.203831, no: 13, code 056190 in process
+2026-06-11 02:05:32.578301, no: 14, code 069540 in process
+2026-06-11 02:05:50.972483, no: 15, code 079900 in process
+2026-06-11 02:05:59.122675, no: 16, code 083930 in process
+2026-06-11 02:06:18.600839, no: 17, code 085660 in process
+2026-06-11 02:06:38.000184, no: 18, code 088260 in process
+2026-06-11 02:06:45.247399, no: 19, code 114090 in process
+2026-06-11 02:07:03.722648, no: 20, code 189860 in process
+2026-06-11 02:07:21.948078, no: 21, code 331740 in process
+2026-06-11 02:07:28.806786, no: 22, code 412540 in process
+2026-06-11 02:07:37.108635, no: 23, code 417200 in process
+partial_rescan batch operation: 0
+Financial data collection log >> 
+2026-06-11 02:07:53.904138, no: 0, code 241820 in process
+2026-06-11 02:08:01.788788, no: 1, code 395400 in process
+== Update finished ==
+000250 | 1/26
+001570 | 2/26
+003160 | 3/26
+006660 | 4/26
+011790 | 5/26
+015360 | 6/26
+019680 | 7/26
+025900 | 8/26
+041440 | 9/26
+043260 | 10/26
+043610 | 11/26
+049800 | 12/26
+054050 | 13/26
+056190 | 14/26
+069540 | 15/26
+079900 | 16/26
+083930 | 17/26
+085660 | 18/26
+088260 | 19/26
+114090 | 20/26
+189860 | 21/26
+241820 | 22/26
+331740 | 23/26
+395400 | 24/26
+2026-06-11 02:11:09.068431 | 395400 | quarterly data of 395400 is empty.
+412540 | 25/26
+417200 | 26/26
+sending incremental file list
+000250.png
+001570.png
+003160.png
+006660.png
+011790.png
+015360.png
+019680.png
+025900.png
+041440.png
+043260.png
+043610.png
+049800.png
+054050.png
+056190.png
+069540.png
+079900.png
+083930.png
+085660.png
+088260.png
+114090.png
+189860.png
+241820.png
+331740.png
+412540.png
+417200.png
+df_krx.db
+update_info.txt
+
+sent 10,453,350 bytes  received 533 bytes  20,907,766.00 bytes/sec
+total size is 1,127,470,018  speedup is 107.85
