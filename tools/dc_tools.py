@@ -39,7 +39,7 @@ def plot_company_financial_summary(fr_db, pr_db, code, path=None, start_quarter=
     plt.close('all')
     cmap = sns.color_palette("Blues", as_cmap=True)
     f, ax = plt.subplots(5, 1, figsize=(20, 18), constrained_layout=True, gridspec_kw={'height_ratios': [4, 5, 3, 3, 3]})
-    f.set_constrained_layout_pads(w_pad=0, h_pad=0.1, hspace=0, wspace=0.)
+    f.get_layout_engine().set(w_pad=0, h_pad=0.1, hspace=0, wspace=0.)
     qprices = _get_quarterly_prices(fr_db, pr_db, code, fs_div_mode)
     _plot_priceline(ax[0], qprices)
     _plot_barline(ax[1], yiu, 'revenue', 'operating_income', 'opmargin', 'net_income', cc1=cmap(0.25), cc2=cmap(0.7))
@@ -169,7 +169,10 @@ def _plot_barline(ax, data, y1, y2, y3, y4=None, cc1='lightskyblue', cc2='steelb
 
 def _choose_unique_rows(df, index_name):
     df.reset_index(drop=False, inplace=True)
-    idx = df.groupby(df[index_name]).apply(lambda gp: gp.count(axis=1).idxmax())
+    # to be deprecated: groupby().apply()
+    # idx = df.groupby(df[index_name]).apply(lambda gp: gp.count(axis=1).idxmax())
+    valid_count = df.notna().sum(axis=1)
+    idx = valid_count.groupby(df[index_name]).idxmax()
     return df.loc[idx].set_index(index_name, drop=True)
 
 def _get_quarterly_prices(fr_db, pr_db, code, fs_div_mode = 'CFS'):

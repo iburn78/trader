@@ -7,7 +7,7 @@ git pull --no-edit origin main
 
 source venv/bin/activate
 
-python data_collect/01_GenMarketDB.py
+python data_collect/00_GenMarketDB.py
 
 git add data_collect/data/price_DB.feather data_collect/data/volume_DB.feather
 git commit -m "$(date '+%Y-%m-%d') pv update"

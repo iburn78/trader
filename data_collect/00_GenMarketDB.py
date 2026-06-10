@@ -104,11 +104,12 @@ def _update_DB(DB, snapshot, date, column):
     DB.loc[date, row.index] = row
     return DB
 
-def _get_market_snapshot(date_req = None):
-    if date_req == None: 
+def _get_market_snapshot(date = None):
+    if date == None: 
         market_snapshot = fdr.StockListing('KRX')[['Code', 'Market', 'Stocks']]
     else:
-        market_snapshot = fdr.StockListing('KRX', date_req.strftime('%Y%m%d'))[['Code', 'Market', 'Stocks']]
+        date_req = date.strftime('%Y%m%d')
+        market_snapshot = fdr.StockListing('KRX', date_req)[['Code', 'Market', 'Stocks']]
 
     return market_snapshot.loc[market_snapshot['Market'].str.contains('KOSPI|KOSDAQ')]
 
@@ -145,7 +146,11 @@ def gen_market_DB(paths, START_DATE):
     # snapshot update should be done after full replaces above
     for date in dates_to_update:
         # this is only available through CACHE from 2026-03-08
-        date_snapshot = fdr.StockListing('KRX', date.strftime('%Y%m%d'))[['Code', 'Market', 'Close', 'Volume', 'Amount', 'Marcap', 'Stocks']] 
+        date_req = date.strftime('%Y%m%d')
+        # Quick Fix (FDR Error): -------------------------
+        if date_req == '20260608': date_req = '20260605'
+        # ------------------------------------------------
+        date_snapshot = fdr.StockListing('KRX', date_req)[['Code', 'Market', 'Close', 'Volume', 'Amount', 'Marcap', 'Stocks']] 
         date_snapshot = date_snapshot.loc[date_snapshot['Market'].str.contains('KOSPI|KOSDAQ')]
 
         price_DB = _update_DB(price_DB, date_snapshot, date, 'Close')
