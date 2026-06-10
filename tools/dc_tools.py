@@ -197,6 +197,30 @@ def _get_quarterly_prices(fr_db, pr_db, code, fs_div_mode = 'CFS'):
     qprices['quarter'] = qprices.index.year.astype(str).str[-2:] + '.' + qprices.index.quarter.astype(str) 
     return qprices
 
+def get_quarterly_data(code, fr_db, unit=KRW_UNIT, native=False):  # fr_db = main_db or financial_reports_main
+    quarter_cols= [s for s in fr_db.columns.values if 'Q' in s]
+    quarter_cols.sort()
+    fs_div_mode = 'CFS'
+    y = fr_db.loc[(fr_db['code']==code) & (fr_db['fs_div']==fs_div_mode), ['account']+quarter_cols].drop_duplicates().set_index(['account'])
+    if y.isnull().all().all():
+        fs_div_mode = 'OFS'
+        y = fr_db.loc[(fr_db['code']==code) & (fr_db['fs_div']==fs_div_mode), ['account']+quarter_cols].drop_duplicates().set_index(['account'])
+    if y.isnull().all().all():
+        return None
+    if native: 
+        return y.dropna(axis=1, how='all')
+
+    # date_updated = str(fr_db.loc[(fr_db['code']==code) & (fr_db['fs_div']==fs_div_mode), 'date_updated'].values[0])
+    y.columns = [s.replace('2020','XX').replace('20','').replace('XX','20').replace('_','.').replace('Q','') for s in quarter_cols]
+    yiu = y/unit
+    yiu=_choose_unique_rows(yiu, 'account')
+    yiu.loc['opmargin', :] = yiu.loc['operating_income']/yiu.loc['revenue'].replace(0, pd.NA)*100   # sometimes, revenue entry is zero, then it computes to '+- np.inf'
+    yiu.loc['liquid_asset_ratio', :] = yiu.loc['liquid_assets']/yiu.loc['assets']*100
+    yiu.loc['liquid_debt_ratio', :] = yiu.loc['liquid_debts']/yiu.loc['debts']*100
+    yiu.loc['debt_to_equity_ratio', :] = yiu.loc['debts']/yiu.loc['equity']*100
+    yiu.replace(0, np.nan, inplace=True)   # works both for int and float, and there is no truly zero value in financial data
+    return yiu #, date_updated
+
 def _plot_priceline(ax, qprices):
     sns.lineplot(x='quarter', y='price', data=qprices, ax = ax, color="k")
     qm = qprices.groupby('quarter').mean().sort_index()['price'].tolist()

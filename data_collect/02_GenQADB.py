@@ -2,8 +2,37 @@
 import pandas as pd
 import numpy as np
 import os
-from trader.tools.dc_tools import get_main_financial_reports_db
-from tools.cca_tools import get_quarterly_data
+from trader.tools.dc_tools import get_main_financial_reports_db, get_quarterly_data
+
+# -----------------------------------------------------------------------------------
+# QA_DB 
+# - used pkl to save objects in df
+# - this is purely local computation, no network overloads
+# -----------------------------------------------------------------------------------
+'''
+index 'Code'
+column 'meta'
+    meta_dict = {
+        'name': '삼성전자',
+        'date': '2026-06-10', # date of analysis
+        'last_quarter': '26.2' # last quarter of data
+    }
+column '{n}Q': n = 24, 20, ..., 8
+    # stats = [mean, cv, slope, acc]
+    quarter_dict = {
+        'revenue_growth': [avg_revenue_growth_pct, negative_growth_count], # percent, # count
+        'revenue_stats': rev_stats, # size
+        'opincome_stats': opincome_stats, # size
+        'opmargin_stats': opmargin_pct_stats, # percent
+        'nopincome_stats': nopincome_stats, # size
+        'asset_stats': asset_stats, # size
+        'debt_stats': debt_stats, # size
+        'equity_stats': equity_stats, # size
+        'liquid_asset_ratio_stats': liquid_asset_ratio_pct_stats, # percent
+        'liquid_debt_ratio_stats': liquid_debt_ratio_pct_stats, # percent
+        'debt_to_equity_ratio_stats': debt_to_equity_ratio_pct_stats, # percent
+    }
+'''
 
 KEY_ACCOUNT = 'operating_income'
 MIN_QUARTERS = 8  # Minimum quarters of data required
@@ -11,8 +40,6 @@ MAX_QUARTERS = 24  # Maximum quarters to analyze
 STEPS = 4  # Number of quarters to reduce analysis window
 REVENUE_DIP_THRESHOLD = -5.0  # Threshold for a significant revenue dip (%, quarter)
 TODAY = pd.Timestamp.today().strftime('%Y-%m-%d')
-INITIAL_SIZE = 2500 # initial size of the codelist
-
 
 def slope_and_acc(series: pd.Series):
     series = series.dropna().astype(float)
@@ -45,6 +72,7 @@ def rounder(x):
             return int(x)
         else:
             return round(x, 2)
+
 def basic_stats(series: pd.Series):
     mean = series.mean()
     std = series.std()
@@ -83,7 +111,7 @@ def calculate_stats(df):
     debt_to_equity_ratio_pct_stats = basic_stats(df['debt_to_equity_ratio']) # percent
 
     # stats = [mean, cv, slope, acc]
-    result_dict = {
+    quarter_dict = {
         'revenue_growth': [avg_revenue_growth_pct, negative_growth_count], # percent, # count
         'revenue_stats': rev_stats, # size
         'opincome_stats': opincome_stats, # size
@@ -96,7 +124,7 @@ def calculate_stats(df):
         'liquid_debt_ratio_stats': liquid_debt_ratio_pct_stats, # percent
         'debt_to_equity_ratio_stats': debt_to_equity_ratio_pct_stats, # percent
     }
-    return result_dict
+    return quarter_dict
 
 def code_handler(code, fr_db, df_krx):
     print(code)
@@ -111,18 +139,20 @@ def code_handler(code, fr_db, df_krx):
     name = df_krx.loc[code, 'Name']
     quarter_labels = [f'{q}Q' for q in quarter_steps]  
     res = pd.DataFrame(columns=['meta'] + quarter_labels, index=[code])
+
     meta_dict = {
         'name': name,
         'date': TODAY, # date of analysis
         'last_quarter': q_df.columns[-1], # last quarter of data
     }
+
     res.at[code, 'meta'] = meta_dict
     for i, qs in enumerate(quarter_steps):
         df = q_df.T[-qs:] # only generates a view
         res.at[code, quarter_labels[i]] = calculate_stats(df)
     return res # returns a dataframe with single row and multiple columns
 
-def qa_db_builder(codelist, qa_db, fr_db, df_krx, qa_db_file): 
+def qa_db_builder(codelist, fr_db, df_krx, qa_db_file, qa_db = None): 
     reslist = []
     for code in codelist:
         res = code_handler(code, fr_db, df_krx)
@@ -152,13 +182,12 @@ def qa_db_builder(codelist, qa_db, fr_db, df_krx, qa_db_file):
 if __name__ == "__main__":
     pd_ = os.path.dirname(os.path.dirname(os.path.abspath(__file__))) # ..
     df_krx_file = os.path.join(pd_, 'data_collect/data/df_krx.feather') 
-    qa_db_file = os.path.join(pd_, 'data_collect/data/qa_db.pkl') 
 
     fr_db = get_main_financial_reports_db()
     df_krx = pd.read_feather(df_krx_file)
 
-    codelist = df_krx.index.tolist()[0:1000]
-    # assign None to rebuild
-    # or read from file to append
-    qa_db = None
-    qa_db = qa_db_builder(codelist, qa_db, fr_db, df_krx, qa_db_file) 
+    codelist = df_krx.index.tolist()
+
+    # save qa_db file
+    qa_db_file = os.path.join(pd_, 'data_collect/data/qa_db.pkl') 
+    qa_db = qa_db_builder(codelist, fr_db, df_krx, qa_db_file) 

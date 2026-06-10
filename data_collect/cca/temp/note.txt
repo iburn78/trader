@@ -1,2 +1,0 @@
-This folder (temp) is necessary for CCA to operate. 
-Do not delete.
