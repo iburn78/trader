@@ -166,7 +166,7 @@ from openai import OpenAI
 import matplotlib.pyplot as plt
 from pptx import Presentation
 from pptx.util import Inches
-from trader.tools.cca_tools import styled_df_to_image, gen_data_in_html, get_company_issues, save_LLM_response
+from trader.tools.cca_tools import styled_df_to_image, gen_data_in_html, get_prev_response_and_issues, save_LLM_response
 
 temp_path = os.path.join(pd_, 'data_collect/cca/temp/')
 os.makedirs(temp_path, exist_ok=True)
@@ -190,7 +190,7 @@ def _mp_plot(mp_db, columns=['price', 'PER', 'PBR']):
     plt.close(fig)
     return img_stream
 
-def generate_PPT(cca_dict, fr_db=fr_db, pr_db=pr_db, summary_only = False, top_N: int = top_N):
+def generate_PPT(cca_dict, fr_db=fr_db, pr_db=pr_db, summary_only=False, top_N: int = top_N):
     prs = Presentation(CCA_template)
 
     # Codelist summary page 
@@ -253,12 +253,12 @@ def LLM_request(code):
         "The total length must not exceed 700 words. "
     )
 
-    issues, prev, date_prev = get_company_issues(code)
+    issues, prev_response, date_prev = get_prev_response_and_issues(code)
 
     # if the prev gpt response is saved within 7 days, pass
     if datetime.today() - datetime.strptime(date_prev, '%Y-%m-%d') < timedelta(days=7):
-        if prev:
-            return prev
+        if prev_response:
+            return prev_response
 
     if issues:
         issues_command = (
@@ -267,14 +267,14 @@ def LLM_request(code):
         )
         issues = issues_command + issues
 
-    if prev:
+    if prev_response:
         prev_command = (
             f"The following is your previous response to the identical query about the company on {date_prev}. "
             "Refer to it, but update your answer with any new developments since then.\n"
         )
-        prev = prev_command + prev
-
-    extras = "\n\n".join(filter(None, [issues, prev]))
+        prev_response = prev_command + prev_response
+    
+    extras = "\n\n".join(filter(None, [issues, prev_response]))
     prompt = f"{content_command}\n{format_command}\n\n{extras}"
 
     client = OpenAI(
@@ -283,37 +283,28 @@ def LLM_request(code):
         base_url="http://localhost:11434/v1", # ollama
     )
 
-    chat_completion = client.chat.completions.create(
-        # model="sonar-pro", # perplexity
-        model="gemma4", 
-        messages=[
-            {
-                "role": "user",
-                "content": (
-                    prompt
-                )
-            }
-        ],
-    )
-    try:
-        citations = getattr(chat_completion, 'citations', [])
-        if not citations:
-            citations = getattr(chat_completion, 'search_results', [])
-    except:
-        citations = []
+    # chat_completion = client.chat.completions.create(
+    #     # model="sonar-pro", # perplexity
+    #     model="gemma4", 
+    #     messages=[
+    #         {
+    #             "role": "user",
+    #             "content": (
+    #                 prompt
+    #             )
+    #         }
+    #     ],
+    # )
     
-    response = chat_completion.choices[0].message.content
-    response = _simple_text_formatting(response)
-    response = response + "\n\n" + "\n".join(citations)
-    save_LLM_response(code, response)
+    # response = chat_completion.choices[0].message.content
+    # response = _simple_text_formatting(response)
+    # save_LLM_response(code, response)
+    response = prev_response
 
     return response
 
 if __name__ == "__main__":
-    cca_dict = get_cca_dict(cca_dict_file, force_recreate=True)
-    # print(cca_dict)
-
-    # generate_PPT(cca_dict, summary_only = True)
+    cca_dict = get_cca_dict(cca_dict_file, force_recreate=False)
+    generate_PPT(cca_dict, summary_only=False)
 
 ###_ PER Calculation is wrong
-###_ why 291 companies? at least one Y?

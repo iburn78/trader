@@ -91,7 +91,7 @@ class Info_DB:
         s.updated = datetime.now().strftime("%Y-%m-%d")
         self.db.loc[s.code] = asdict(s)
 
-    def read_company(self, code: str) -> StockInfo:
+    def get_stockinfo(self, code: str) -> StockInfo:
         if code in self.db.index:
             row_dict = self.db.loc[code].to_dict()
             row_dict['code'] = code
@@ -99,17 +99,17 @@ class Info_DB:
         else: 
             return StockInfo(code)
 
-def get_company_issues(code):
+def get_prev_response_and_issues(code):
     idb = Info_DB()
-    s = idb.read_company(code)
+    s = idb.get_stockinfo(code)
     issues = s.get_issues()
-    prev = s.LLM_response
+    prev_response = s.LLM_response
     date_updated = s.updated
-    return issues, prev, date_updated
+    return issues, prev_response, date_updated
 
 def save_LLM_response(code, response):
     idb = Info_DB()
-    s = idb.read_company(code)
+    s = idb.get_stockinfo(code)
     s.LLM_response = response
     idb.add_company(s) # date_updated updated
     idb.save_to_disk()
