@@ -1,7 +1,12 @@
 #!/bin/bash
 
+# note: if this autorun.sh itself is modified, 
+# on the first cron-run this changes may not be reflected
+# as changes are updated through 'git pull' below
+
 trader="$HOME/projects/trader"
 tnp="$HOME/projects/tnp"
+mkdir -p "${trader}/data_collect/log"
 LOG_FILE="${trader}/data_collect/log/autorun.log"
 
 exec >> "$LOG_FILE" 2>&1
