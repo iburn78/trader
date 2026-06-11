@@ -20,7 +20,7 @@ recent_inc: comparing last 2 priods
 ltm: last twelve months
 '''
 df_krx, prices, volumes, fr_main_db = load_market_data()
-DEFAULT_KRW_UNIT: float = 1e9 
+DEFAULT_KRW_UNIT: float = 1e9 # 10 억원
 
 # single code data that contains raw data for max period
 @dataclass
@@ -611,4 +611,3 @@ si.plot()
 #%%
 print(si.ma_rates)
 print(si.fr_rates)
-

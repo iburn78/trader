@@ -41,7 +41,7 @@ client = AsyncOpenAI(
 
 # define model
 model = OpenAIChatModel(
-    model_name='gemma4:latest',
+    model_name='gemma4',
     provider=OpenAIProvider(openai_client=client),
 )
 
@@ -100,7 +100,7 @@ client = AsyncOpenAI(
 )
 
 model = OpenAIChatModel(
-    model_name='gemma4:latest',
+    model_name='gemma4',
     provider=OpenAIProvider(openai_client=client),
 )
 
@@ -119,7 +119,8 @@ def web_search(ctx: RunContext, query: str) -> str:
     print('--------------')
 
     with DDGS() as ddgs:
-        results = list(ddgs.text(query, max_results=10))
+        results = list(ddgs.news(query))# , max_results=100))
+# ddgs.text vs ddgs.news
     # extract useful text fields
     formatted = [
         f"{r.get('title', '')} - {r.get('body', '')} ({r.get('href', '')})"
@@ -127,18 +128,32 @@ def web_search(ctx: RunContext, query: str) -> str:
     ]
     search_res = ' '.join(formatted)
 
-    print('--------------')
-    print(search_res) # ddgs search result
-    print('--------------')
+    for r in results:
+        print(r)
 
+    # print('--------------')
+    # print(search_res) # ddgs search result
+    # print('--------------')
     return f"search results:\n{search_res}"
 
-request_text = "Search web for NVIDIA news and summarize"
+request_text = "Search web for NVIDIA news 1"
 
-result = await agent.run(request_text) # when run in notebook:
+keys = [
+"Nvidia latest earnings report date",
+"Nvidia Blackwell chip announcement",
+"Nvidia Microsoft partnership data center",
+"Nvidia data center AI deployments news",
+"Nvidia export controls update",
+"Nvidia Omniverse enterprise launch"
+]
+for k in keys:
+    res = web_search(None, k)
+    print(res)
+
+# result = await agent.run(request_text) # when run in notebook:
 # result = agent.run_sync(request_text) # run in terminal
 
-print(result.output)
+# print(result.output)
 
 #############################################
 # study Crawl4AI (for internet crawl)

@@ -6,6 +6,7 @@ import numpy as np
 import os
 from html2image import Html2Image
 from datetime import datetime
+import subprocess
 
 # ----------------------------------------------------------
 # Classification Logic
@@ -14,7 +15,7 @@ from datetime import datetime
 cv_threshold_prime = 0.4
 cv_threshold = 1.0
 criteria_dict = {
-    'revenue_growth': [(15,7), 0.3], # percent (yoy), # count (e.g., 0.2 = 20% of quarters: to be multiplied by period)
+    'revenue_growth': [(15,7), 0.3], # (percent level1, level2 / yoy), # negative count ratio max (e.g., 0.2 = 20% of quarters: to be multiplied by period)
     'revenue_stats': [np.nan, cv_threshold_prime, 0, np.nan], # size
     'opincome_stats': [np.nan, cv_threshold_prime, 0, np.nan], # size
     'opmargin_stats': [(20,10), cv_threshold_prime, 0, np.nan], # percent
@@ -124,8 +125,31 @@ def save_LLM_response(code, response):
 # Takes a screenshot of that HTML
 # Saves it as a PNG image
 
+def L4_rolling_addition(fh, target_account):
+    # Add L4 target account to the financial report database.
+    new_row = {'account':'L4_'+target_account }
+    target_row = fh.loc[target_account]
+
+    for i in range(3, len(fh.columns)):
+        previous_4_quarters = fh.columns[i-3:i+1]
+        rolling_sum = target_row[previous_4_quarters].sum()
+        new_row[fh.columns[i]] = rolling_sum
+
+    new_row_df = pd.DataFrame([new_row]).set_index('account')
+    fh = pd.concat([fh, new_row_df])
+    return fh 
+
 def get_periods(qa_db=qa_db): 
     return [i for i in qa_db.columns if 'Q' in i]
+
+def prev_quarter_str(date):
+    y, q = date.year, (date.month - 1) // 3 + 1
+    if q == 1:
+        y -= 1
+        q = 4
+    else:
+        q -= 1
+    return f"{y}_{q}Q"
 
 def _compare_logic(data_dict, criteria_dict, period:str):
     key = list(data_dict.keys())
@@ -436,6 +460,8 @@ def gen_data_in_html(code, temp_path):
         f.write(full_html)  
 
     hti = Html2Image(output_path=temp_path)
+    # to supress unnecessary screen prints
+    hti.browser._subprocess_run_kwargs["stderr"] = subprocess.DEVNULL
     hti.screenshot(html_file=temp_html, save_as=filename, size=(1400, 900))
     os.remove(temp_html)
 
@@ -482,6 +508,9 @@ def styled_df_to_image(df, temp_path):
         f.write(full_html)  
 
     hti = Html2Image(output_path=temp_path)
+    # to supress unnecessary screen prints
+    hti.browser._subprocess_run_kwargs["stderr"] = subprocess.DEVNULL
+
     hti.screenshot(html_file=temp_html, save_as=filename, size=(900, 1200))
     os.remove(temp_html)
 

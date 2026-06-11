@@ -10,8 +10,9 @@ import pickle
 from datetime import datetime, timedelta
 import io, os
 import pandas as pd
+from tqdm import tqdm
 from trader.tools.dc_tools import get_main_financial_reports_db, get_quarterly_data, plot_company_financial_summary
-from trader.tools.cca_tools import get_score_trend, get_periods
+from trader.tools.cca_tools import get_score_trend, get_periods, L4_rolling_addition, prev_quarter_str
 from trader.tools.cca_tools import df_krx, qa_db, top_N
 
 fr_db = get_main_financial_reports_db()
@@ -20,34 +21,11 @@ pr_db_file = os.path.join(pd_, 'data_collect/data/price_DB.feather')
 pr_db = pd.read_feather(pr_db_file)
 cca_dict_file = os.path.join(pd_, 'data_collect/cca/temp/cca_dict.pkl')
 
-target_account = 'net_income'
-
-def L4_rolling_addition(fh, target_account=target_account):
-    # Add L4 target account to the financial report database.
-    new_row = {'account':'L4_'+target_account }
-    target_row = fh.loc[target_account]
-
-    for i in range(3, len(fh.columns)):
-        previous_4_quarters = fh.columns[i-3:i+1]
-        rolling_sum = target_row[previous_4_quarters].sum()
-        new_row[fh.columns[i]] = rolling_sum
-
-    new_row_df = pd.DataFrame([new_row]).set_index('account')
-    fh = pd.concat([fh, new_row_df])
-    return fh 
+target_account = 'net_income' # for some companies, api does not provide net income data
+target_account = 'operating_income' # PER is then based on operating income, could be different from other PER publications
 
 # mp_db: just to get price, marcap, PER, PBR
 def get_market_performance_db(code, fr_db=fr_db, pr_db=pr_db, target_account=target_account, MAX_QUARTERS=40): # e.g., 10 years or use MAX_QUARTERS in qa_db generation
-
-    def prev_quarter_str(date):
-        y, q = date.year, (date.month - 1) // 3 + 1
-        if q == 1:
-            y -= 1
-            q = 4
-        else:
-            q -= 1
-        return f"{y}_{q}Q"
-
     fh = get_quarterly_data(code, fr_db, native=True)
     fh = L4_rolling_addition(fh, target_account)
     try:
@@ -105,8 +83,8 @@ def _post_process(score_trend, qa_db=qa_db, fr_db=fr_db, pr_db=pr_db, df_krx=df_
     periods = get_periods(qa_db)
 
     cls = _get_codelist_summary(score_trend.index)
-    for code in score_trend.index: 
-        print("processing", code)
+    pbar = tqdm(score_trend.index, desc="score_trend items")
+    for code in pbar:
         mp_db = get_market_performance_db(code, fr_db, pr_db)
         mp_db_dict[code] = mp_db
         cls.loc[code, 'PER'] = round(mp_db['PER'].iloc[-1], 2)
@@ -202,8 +180,9 @@ def generate_PPT(cca_dict, fr_db=fr_db, pr_db=pr_db, summary_only=False, top_N: 
     # Per code pages 
     if not summary_only: 
         if top_N is None: top_N = len(cca_dict['select_codelist'])
-        for code in cca_dict['select_codelist'][:top_N]:
-            print("slide generating for", code)
+        pbar = tqdm(cca_dict['select_codelist'][:top_N])
+        for code in pbar:
+            pbar.set_postfix(code=code)
             slide = prs.slides.add_slide(prs.slide_layouts[0])
             img_stream = _mp_plot(cca_dict['mp_db_dict'][code])
             slide.shapes.add_picture(img_stream, Inches(0.1), Inches(0.5), height=Inches(6))
@@ -272,20 +251,23 @@ def LLM_request(code):
             f"The following is your previous response to the identical query about the company on {date_prev}. "
             "Refer to it, but update your answer with any new developments since then.\n"
         )
-        prev_response = prev_command + prev_response
+        prev_info = prev_command + prev_response
     
-    extras = "\n\n".join(filter(None, [issues, prev_response]))
+    extras = "\n\n".join(filter(None, [issues, prev_info]))
     prompt = f"{content_command}\n{format_command}\n\n{extras}"
 
     client = OpenAI(
         api_key= "dummy", 
-        # base_url = "https://api.perplexity.ai" 
         base_url="http://localhost:11434/v1", # ollama
+        # base_url = "https://api.perplexity.ai" # perplexity API may contain reference info, separately
     )
 
+    # ----------------------------------
+    # decommand the following to use LLM
+    # ----------------------------------
     # chat_completion = client.chat.completions.create(
-    #     # model="sonar-pro", # perplexity
     #     model="gemma4", 
+    #     # model="sonar-pro", # perplexity
     #     messages=[
     #         {
     #             "role": "user",
@@ -299,6 +281,10 @@ def LLM_request(code):
     # response = chat_completion.choices[0].message.content
     # response = _simple_text_formatting(response)
     # save_LLM_response(code, response)
+
+    # ----------------------------------
+    # remove the following to enable LLM
+    # ----------------------------------
     response = prev_response
 
     return response
@@ -306,5 +292,3 @@ def LLM_request(code):
 if __name__ == "__main__":
     cca_dict = get_cca_dict(cca_dict_file, force_recreate=False)
     generate_PPT(cca_dict, summary_only=False)
-
-###_ PER Calculation is wrong

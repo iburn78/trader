@@ -2,10 +2,14 @@
 import pandas as pd
 import numpy as np
 import os
+from tqdm import tqdm
 from trader.tools.dc_tools import get_main_financial_reports_db, get_quarterly_data
 
 # -----------------------------------------------------------------------------------
 # QA_DB 
+# - infrequent update is ok (though fast), no need to daily update
+# - used in CCA, but completely independent from CCA in generation
+
 # - used pkl to save objects in df
 # - this is purely local computation, no network overloads
 # -----------------------------------------------------------------------------------
@@ -20,7 +24,7 @@ column 'meta'
 column '{n}Q': n = 24, 20, ..., 8
     # stats = [mean, cv, slope, acc]
     quarter_dict = {
-        'revenue_growth': [avg_revenue_growth_pct, negative_growth_count], # percent, # count
+        'revenue_growth': [avg_revenue_growth_pct, negative_growth_count], # percent (yoy by quater), # count
         'revenue_stats': rev_stats, # size
         'opincome_stats': opincome_stats, # size
         'opmargin_stats': opmargin_pct_stats, # percent
@@ -127,7 +131,6 @@ def calculate_stats(df):
     return quarter_dict
 
 def code_handler(code, fr_db, df_krx):
-    print(code)
     q_df = get_quarterly_data(code, fr_db)
     if q_df is None:
         return None
@@ -154,7 +157,9 @@ def code_handler(code, fr_db, df_krx):
 
 def qa_db_builder(codelist, fr_db, df_krx, qa_db_file, qa_db = None): 
     reslist = []
-    for code in codelist:
+    pbar = tqdm(codelist, desc="QA DB")    
+    for code in pbar:
+        pbar.set_postfix(code=code)
         res = code_handler(code, fr_db, df_krx)
         if res is not None:
             reslist.append(res)
