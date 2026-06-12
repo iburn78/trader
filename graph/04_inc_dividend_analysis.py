@@ -6,7 +6,7 @@ import pandas as pd
 import os
 import seaborn as sns
 import matplotlib.pyplot as plt
-from trader.tools.dc_tools import set_KoreanFonts
+from tools.data_collect_tools import set_KoreanFonts
 
 cd_ = os.path.dirname(os.path.abspath(__file__)) # . 
 pd_ = os.path.dirname(cd_) # .. 

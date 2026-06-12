@@ -1,12 +1,18 @@
 #%% 
 # CA: Classification Analysis
-from dataclasses import dataclass, asdict, field, fields
 import pandas as pd
 import numpy as np
 import os
 from html2image import Html2Image
 from datetime import datetime
 import subprocess
+
+pd_ = os.path.dirname(os.path.dirname(os.path.abspath(__file__))) # ..
+df_krx_file = os.path.join(pd_, 'data_collect/data/df_krx.feather') 
+df_krx = pd.read_feather(df_krx_file)
+
+qa_db_file = os.path.join(pd_, 'data_collect/data/qa_db.pkl') 
+qa_db = pd.read_pickle(qa_db_file)
 
 # ----------------------------------------------------------
 # Classification Logic
@@ -29,91 +35,6 @@ criteria_dict = {
 }
 weight = [5, 2, 2, 5, 1, 1, 1, 1, 1, 1, 1] # weights for each criteria
 top_N = 100 # top to add
-
-# ----------------------------------------------------------
-# Data Structure
-# ----------------------------------------------------------
-pd_ = os.path.dirname(os.path.dirname(os.path.abspath(__file__))) # ..
-df_krx_file = os.path.join(pd_, 'data_collect/data/df_krx.feather') 
-df_krx = pd.read_feather(df_krx_file)
-
-qa_db_file = os.path.join(pd_, 'data_collect/data/qa_db.pkl') 
-qa_db = pd.read_pickle(qa_db_file)
-info_db_file = os.path.join(pd_, 'data_collect/data/info_db.xlsx')
-
-@dataclass
-class StockInfo: 
-    code: str 
-    name: str = "" 
-    LLM_response: str = "" 
-    industry: str = "" 
-    business_model: str = "" 
-    products: str = "" 
-    competitors: str = "" 
-    issue1: str = "" 
-    issue2: str = "" 
-    issue3: str = "" 
-    issue4: str = "" 
-    issue5: str = "" 
-    note: str = "" 
-    updated: str = field(default_factory=lambda: datetime.now().strftime("%Y-%m-%d"))
-
-    def __str__(self):
-        lines = []
-        for field_ in fields(self):
-            value = getattr(self, field_.name)
-            if value is not None:
-                if isinstance(value, datetime):
-                    value = value.strftime("%Y-%m-%d %H:%M:%S")
-                lines.append(f"{field_.name:<15}: {value}")
-        return "\n".join(lines)
-
-    def get_issues(self) -> str:
-        issues = [self.issue1, self.issue2, self.issue3, self.issue4, self.issue5]
-        return "\n".join(issue for issue in issues if issue)
-
-class Info_DB:
-    def __init__(self):
-        self.load_from_disk()
-    
-    def load_from_disk(self):
-        if os.path.exists(info_db_file):
-            self.db = pd.read_excel(info_db_file, index_col="code", engine='openpyxl', dtype={'code':str})
-        else:
-            self.db = pd.DataFrame(columns=[f.name for f in fields(StockInfo)])
-            self.db.set_index("code", inplace=True)
-        self.db = self.db.fillna("").astype(str)
-
-    def save_to_disk(self):
-        self.db.to_excel(info_db_file, engine='openpyxl')
-
-    def add_company(self, s: StockInfo):
-        s.name = df_krx.loc[s.code, "Name"]
-        s.updated = datetime.now().strftime("%Y-%m-%d")
-        self.db.loc[s.code] = asdict(s)
-
-    def get_stockinfo(self, code: str) -> StockInfo:
-        if code in self.db.index:
-            row_dict = self.db.loc[code].to_dict()
-            row_dict['code'] = code
-            return StockInfo(**row_dict)
-        else: 
-            return StockInfo(code)
-
-def get_prev_response_and_issues(code):
-    idb = Info_DB()
-    s = idb.get_stockinfo(code)
-    issues = s.get_issues()
-    prev_response = s.LLM_response
-    date_updated = s.updated
-    return issues, prev_response, date_updated
-
-def save_LLM_response(code, response):
-    idb = Info_DB()
-    s = idb.get_stockinfo(code)
-    s.LLM_response = response
-    idb.add_company(s) # date_updated updated
-    idb.save_to_disk()
 
 # -------------------------------------------------------------
 # pipeline: data → tables → HTML → image

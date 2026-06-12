@@ -3,12 +3,11 @@ import pandas as pd
 import numpy as np
 import os
 from tqdm import tqdm
-from trader.tools.dc_tools import get_main_financial_reports_db, get_quarterly_data
-
+from tools.data_collect_tools import get_main_financial_reports_db, get_quarterly_data
 # -----------------------------------------------------------------------------------
 # QA_DB (quarterly analysis dbs)
 # - infrequent update is ok (though fast), no need to daily update
-# - used in CCA, but completely independent from CCA in generation
+# - used in CCA(company classification), but completely independent from CCA in generation
 
 # - used pkl to save objects in df
 # - this is purely local computation, no network overloads
