@@ -392,7 +392,7 @@ def save_main_financial_reports_db(main_db):
     return True
 
 def create_plots_from_plot_gen_control(plot_gen_control_file):
-    # need to have price_db_
+    # need to have price_db
     # need to create 'plots' directory 
 
     if not os.path.exists(plot_gen_control_file):
@@ -405,8 +405,8 @@ def create_plots_from_plot_gen_control(plot_gen_control_file):
 
     main_db = get_main_financial_reports_db()
     pd_ = os.path.dirname(os.path.dirname(os.path.abspath(__file__))) # .. 
-    price_db_file = os.path.join(pd_, 'data_collect/data/price_db_.feather') 
-    price_db_ = pd.read_feather(price_db_file)
+    price_dbfile = os.path.join(pd_, 'data_collect/data/price_db.feather') 
+    price_db = pd.read_feather(price_dbfile)
 
     # -----------------------------------------------------
     # in case to regenerate all plots use
@@ -418,7 +418,7 @@ def create_plots_from_plot_gen_control(plot_gen_control_file):
         print('{} | {}/{}'.format(code, i+1, l))
         path = os.path.join(pd_, 'data_collect/plots/'+code+'.png')
         try:
-            plot_company_financial_summary(main_db, price_db_, code, path)
+            plot_company_financial_summary(main_db, price_db, code, path)
         except Exception as error:
             print(str(datetime.datetime.now())+' | '+code+' | '+str(error))
             if os.path.exists(path):

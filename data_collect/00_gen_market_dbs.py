@@ -118,15 +118,15 @@ def gen_market_DB(paths, START_DATE):
     market_snapshot = _get_market_snapshot()
 
     try:
-        price_db_ = pd.read_feather(paths[0])
-        volume_db_ = pd.read_feather(paths[1])
+        price_db = pd.read_feather(paths[0])
+        volume_db = pd.read_feather(paths[1])
     except FileNotFoundError:  # Handle if files don't exist
         print('files not found - creating new ones; could take some time')
         initialization(START_DATE=START_DATE, paths=paths)
 
-    # Get dates to update from the last available date in price_db_
+    # Get dates to update from the last available date in price_db
     # the data in the last date should be updated too (if loaded from file)
-    dates_to_update = market_dates[market_dates.get_loc(price_db_.index[-1]):]
+    dates_to_update = market_dates[market_dates.get_loc(price_db.index[-1]):]
 
     prev_market_snapshot = _get_market_snapshot(dates_to_update[0])
     intersection = pd.merge(prev_market_snapshot, market_snapshot, on=['Code', 'Stocks'], how='inner')
@@ -137,8 +137,8 @@ def gen_market_DB(paths, START_DATE):
     for code in code_list_to_fully_replace:
         try:
             code, res = _fetch(code, START_DATE)
-            price_db_[code] = res['Close']
-            volume_db_[code] = res['Volume']
+            price_db[code] = res['Close']
+            volume_db[code] = res['Volume']
         except Exception as e:
             print(f"Error retrieving full data for {code}: {e}")
             continue  # Skip if there is an error
@@ -153,20 +153,20 @@ def gen_market_DB(paths, START_DATE):
         date_snapshot = fdr.StockListing('KRX', date_req)[['Code', 'Market', 'Close', 'Volume', 'Amount', 'Marcap', 'Stocks']] 
         date_snapshot = date_snapshot.loc[date_snapshot['Market'].str.contains('KOSPI|KOSDAQ')]
 
-        price_db_ = _update_DB(price_db_, date_snapshot, date, 'Close')
-        volume_db_ = _update_DB(volume_db_, date_snapshot, date, 'Volume')
+        price_db = _update_DB(price_db, date_snapshot, date, 'Close')
+        volume_db = _update_DB(volume_db, date_snapshot, date, 'Volume')
     
-    _save_db(price_db_, price_db__path)
-    _save_db(volume_db_, volume_db__path)
+    _save_db(price_db, price_db_path)
+    _save_db(volume_db, volume_db_path)
 
 
 if __name__ == '__main__': 
     print("initiating - prices and volumes updates...")
     START_DATE = '2016-01-01'
     cd_ = os.path.dirname(os.path.abspath(__file__)) # .
-    price_db__path = os.path.join(cd_, 'data/price_db_.feather')
-    volume_db__path = os.path.join(cd_, 'data/volume_db_.feather')
-    paths = [price_db__path, volume_db__path]
+    price_db_path = os.path.join(cd_, 'data/price_db.feather')
+    volume_db_path = os.path.join(cd_, 'data/volume_db.feather')
+    paths = [price_db_path, volume_db_path]
 
     # -------------------------------------
     # if need to initialize, use this
@@ -175,9 +175,9 @@ if __name__ == '__main__':
 
     gen_market_DB(paths, START_DATE)
 
-    # price_db_ = pd.read_feather(paths[0])
-    # volume_db_ = pd.read_feather(paths[1])
+    # price_db = pd.read_feather(paths[0])
+    # volume_db = pd.read_feather(paths[1])
 
-    # print(price_db_)
-    # print(volume_db_)
+    # print(price_db)
+    # print(volume_db)
 

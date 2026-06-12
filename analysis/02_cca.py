@@ -17,7 +17,7 @@ from trader.tools.cca_tools import df_krx, qa_db, top_N
 
 fr_db = get_main_financial_reports_db()
 pd_ = os.path.dirname(os.path.dirname(os.path.abspath(__file__))) # ..
-pr_db_file = os.path.join(pd_, 'data_collect/data/price_db_.feather') 
+pr_db_file = os.path.join(pd_, 'data_collect/data/price_db.feather') 
 pr_db = pd.read_feather(pr_db_file)
 cca_dict_file = os.path.join(pd_, 'data_collect/cca/temp/cca_dict.pkl')
 

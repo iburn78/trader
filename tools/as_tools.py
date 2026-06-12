@@ -16,8 +16,8 @@ def load_market_data():
     BASE_DIR = Path(__file__).resolve().parents[1]
     DATA_DIR = BASE_DIR / 'data_collect' / 'data'
 
-    PRICE_DB_PATH = DATA_DIR / 'price_db_.feather'
-    VOLUME_DB_PATH = DATA_DIR / 'volume_db_.feather'
+    PRICE_DB_PATH = DATA_DIR / 'price_db.feather'
+    VOLUME_DB_PATH = DATA_DIR / 'volume_db.feather'
 
     FRM1_PATH = DATA_DIR / 'financial_reports_main1.feather'
     FRM2_PATH = DATA_DIR / 'financial_reports_main2.feather'
