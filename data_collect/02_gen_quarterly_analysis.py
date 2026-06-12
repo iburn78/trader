@@ -6,7 +6,7 @@ from tqdm import tqdm
 from trader.tools.dc_tools import get_main_financial_reports_db, get_quarterly_data
 
 # -----------------------------------------------------------------------------------
-# QA_DB 
+# QA_DB (quarterly analysis dbs)
 # - infrequent update is ok (though fast), no need to daily update
 # - used in CCA, but completely independent from CCA in generation
 

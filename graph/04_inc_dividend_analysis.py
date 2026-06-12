@@ -11,14 +11,14 @@ from trader.tools.dc_tools import set_KoreanFonts
 cd_ = os.path.dirname(os.path.abspath(__file__)) # . 
 pd_ = os.path.dirname(cd_) # .. 
 df_krx_path = os.path.join(pd_, 'data_collect/data/df_krx.feather')
-price_DB_path = os.path.join(pd_, 'data_collect/data/price_DB.feather')
+price_db__path = os.path.join(pd_, 'data_collect/data/price_db_.feather')
 
 # created in broker
 end_date = pd.to_datetime('now').strftime('%Y%m%d')
 div_DB_path = os.path.join(cd_, f'data/div_DB_{end_date}.feather')
 
 df_krx = pd.read_feather(df_krx_path)
-price_DB = pd.read_feather(price_DB_path)
+price_db_ = pd.read_feather(price_db__path)
 div_DB = pd.read_feather(div_DB_path)
 
 # selected companies that have ever increasing dividend
@@ -66,9 +66,9 @@ for i in range(len(temp9.columns)):
     plt.show()
 
 # didvidend ratio 
-last_available_date_2025 = price_DB[price_DB.index.year == 2025].index.max()
+last_available_date_2025 = price_db_[price_db_.index.year == 2025].index.max()
 for col in temp8.columns:
-    pr =  price_DB.loc[last_available_date_2025, col]
+    pr =  price_db_.loc[last_available_date_2025, col]
     div_rate = (temp8[col].values[-1])/pr*100
     print(round(div_rate, 2))
 
@@ -84,7 +84,7 @@ threshold = 7 # dividend yield rate to filter larger ones
 
 temp = {}
 temp['div'] = div_DB.loc[year]
-temp['price'] = price_DB.loc[price_DB.index[price_DB.index.year == year].max()] # calculates year end closing price
+temp['price'] = price_db_.loc[price_db_.index[price_db_.index.year == year].max()] # calculates year end closing price
 temp['rate'] = temp['div']/temp['price']*100
 div_year = pd.DataFrame(temp).sort_values(by = 'rate', ascending=False)
 div_year = div_year.replace([float('inf'), -float('inf')], float('nan')).dropna()

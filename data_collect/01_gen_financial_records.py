@@ -399,5 +399,5 @@ if __name__ == '__main__':
 
     update_main_db(log_file, main_db, plot_gen_control_file)
 
-    create_plots_from_plot_gen_control(plot_gen_control_file) # uses price_DB internally (run this after price_DB update)
+    create_plots_from_plot_gen_control(plot_gen_control_file) # uses price_db_ internally (run this after price_db_ update)
 
