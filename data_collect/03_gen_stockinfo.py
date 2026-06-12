@@ -1,48 +1,51 @@
-
+#%%
 import pandas as pd
 import os
+from datetime import datetime
 from dataclasses import dataclass, asdict, field, fields
 
 pd_ = os.path.dirname(os.path.dirname(os.path.abspath(__file__))) # ..
-info_db_file = os.path.join(pd_, 'data_collect/data/info_db.xlsx')
+stockinfo_df_path = os.path.join(pd_, 'data_collect/data/stockinfo_df.feather')
+stockissue_df_path = os.path.join(pd_, 'data_collect/data/stockissue_df.feather')
 
 @dataclass
 class StockInfo: 
     code: str 
     name: str = "" 
-    LLM_response: str = "" 
     exec_summary: str = ""
-    industry: str = "" 
-    industry_growth: str = ""
+    sector: str = "" 
+    sector_view: str = ""
     value_chain: str = ""
     business_model: str = "" 
     products: str = "" 
     competitors: str = "" 
-    competitive_advanteges: str = ""
+    comp_advantege: str = ""
     valuation: str = ""
-    event: str = ""
     momentum: str = ""
-    issue1: str = "" 
-    issue2: str = "" 
-    issue3: str = "" 
-    issue4: str = "" 
-    issue5: str = "" 
-    note: str = "" 
     updated: str = field(default_factory=lambda: datetime.now().strftime("%Y-%m-%d"))
 
     def __str__(self):
         lines = []
         for field_ in fields(self):
             value = getattr(self, field_.name)
-            if value is not None:
-                if isinstance(value, datetime):
-                    value = value.strftime("%Y-%m-%d %H:%M:%S")
-                lines.append(f"{field_.name:<15}: {value}")
+            lines.append(f"{field_.name:<14}: {value}")
         return "\n".join(lines)
 
-    def get_issues(self) -> str:
-        issues = [self.issue1, self.issue2, self.issue3, self.issue4, self.issue5]
-        return "\n".join(issue for issue in issues if issue)
+@dataclass
+class StockIssue:
+    code: str
+    content: str = ""
+    created: str = field(default_factory=lambda: datetime.now().strftime('%Y-%m-%d'))
+    resolved: bool = False
+
+    def __str__(self):
+        lines = []
+        for field_ in fields(self):
+            value = getattr(self, field_.name)
+            lines.append(f"{field_.name:<14}: {value}")
+        return "\n".join(lines)
+
+
 
 class StockInfoDB:
     def __init__(self):

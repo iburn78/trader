@@ -54,7 +54,7 @@ def LLM_request(code):
     )
 
     # ----------------------------------
-    # decommand the following to use LLM
+    # decommant the following to use LLM
     # ----------------------------------
     # chat_completion = client.chat.completions.create(
     #     model="gemma4", 
