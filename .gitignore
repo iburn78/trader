@@ -166,3 +166,6 @@ docs_cache/
 
 CCA_result*
 temp/
+
+# mac 
+mac_local.log
