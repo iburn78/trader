@@ -18,3 +18,8 @@ sending incremental file list
 
 sent 68,437 bytes  received 12 bytes  136,898.00 bytes/sec
 total size is 1,127,470,018  speedup is 16,471.68
+[main cc874cb] 2026-06-13 upload done from linux machine
+ 3 files changed, 20 insertions(+)
+ create mode 100644 data_collect/log/autorun.log
+To https://github.com/iburn78/trader
+   2e75ceb..cc874cb  main -> main
