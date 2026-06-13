@@ -156,7 +156,7 @@ for k in keys:
 # print(result.output)
 
 #############################################
-# study Crawl4AI (for internet crawl) // should require anoter venv
+# study Crawl4AI (for internet crawl) // should require another venv
 #############################################
 #%% 
 from ddgs import DDGS
