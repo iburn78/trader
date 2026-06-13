@@ -36,7 +36,7 @@ from openai import AsyncOpenAI
 # connect to local Ollama server
 client = AsyncOpenAI(
     base_url='http://localhost:11434/v1',
-    api_key='ollama',  # required but can be anything
+    api_key='-'
 )
 
 # define model
@@ -156,5 +156,33 @@ for k in keys:
 # print(result.output)
 
 #############################################
-# study Crawl4AI (for internet crawl)
+# study Crawl4AI (for internet crawl) // should require anoter venv
 #############################################
+#%% 
+from ddgs import DDGS
+
+with DDGS() as ddgs:
+    results = list(
+        ddgs.text(
+            "python pandas feather vs sqlite",
+        )
+    )
+
+# with DDGS() as ddgs:
+#     results = list(
+#         ddgs.news(
+#             "space x ipo and perspective"
+#         )
+#     )
+with DDGS() as ddgs:
+    results = list(
+        ddgs.images(
+            "apple cakes",
+        )
+    )
+
+for r in results:
+    print(r["title"])
+    # print(r["href"]) # text 
+    # print(r["url"]) # news
+    print(r.get('url') or r.get('href'))

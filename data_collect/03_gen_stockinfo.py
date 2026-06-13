@@ -43,11 +43,11 @@ class StockIssue:
         lines = []
         for field_ in fields(self):
             value = getattr(self, field_.name)
-            lines.append(f"{field_.name:<14}: {value}")
+            lines.append(f"{field_.name:<8}: {value}")
         return "\n".join(lines)
 
 class InfoDB(ABC):
-    data_class = None  # must be overridden
+    data_class = None  # must be overridden by a dataclass
     def __init__(self, db_filename):
         self.filename = db_filename
         if os.path.exists(db_filename):
