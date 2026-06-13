@@ -186,3 +186,65 @@ for r in results:
     # print(r["href"]) # text 
     # print(r["url"]) # news
     print(r.get('url') or r.get('href'))
+
+
+
+
+
+# Chrome for Testing 148.0.7778.96 (playwright chromium v1223) downloaded to /Users/andy/Library/Caches/ms-playwright/chromium-1223
+
+
+#%% 
+import asyncio
+from crawl4ai import AsyncWebCrawler
+
+async def main():
+    async with AsyncWebCrawler() as crawler:
+        result = await crawler.arun(
+            url="https://pandas.pydata.org"
+        )
+
+        print(result.markdown)
+
+asyncio.run(main())
+
+
+summary = llm(result.markdown)
+
+
+# from ddgs import DDGS
+# from crawl4ai import AsyncWebCrawler
+# import asyncio
+
+
+# async def crawl(url):
+#     async with AsyncWebCrawler() as c:
+#         return await c.arun(url)
+
+
+# with DDGS() as ddgs:
+#     urls = [
+#         r["href"]
+#         for r in ddgs.text(
+#             "Samsung electronics latest AI strategy",
+#             max_results=3
+#         )
+#     ]
+
+
+# async def main():
+#     for u in urls:
+#         result = await crawl(u)
+#         print(result.markdown[:1000])
+
+
+# asyncio.run(main())
+
+
+# User question
+# ↓
+# DDGS → find pages
+# ↓
+# Crawl4AI → fetch content
+# ↓
+# LLM → answer
