@@ -6,8 +6,8 @@ except:
     from opendartreader import OpenDartReader # newer version
 import os
 from trader.tools.dictionary import ACCOUNT_NAME_DICTIONARY, BS_ACCOUNTS, IS_ACCOUNTS, DART_APIS, MODIFIED_REPORT
-from tools.dc_tools import log_print, null_checker, nth_quarter_before, generate_krx_data, merge_update, save_main_financial_reports_db, get_main_financial_reports_db
-from tools.dc_tools import create_plots_from_plot_gen_control
+from trader.tools.dc_tools import log_print, null_checker, nth_quarter_before, generate_krx_data, merge_update, save_main_financial_reports_db, get_main_financial_reports_db
+from trader.tools.dc_tools import create_plots_from_plot_gen_control
 import pandas as pd
 import numpy as np
 import datetime, time

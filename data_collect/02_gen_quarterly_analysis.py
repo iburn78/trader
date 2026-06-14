@@ -3,7 +3,7 @@ import pandas as pd
 import numpy as np
 import os
 from tqdm import tqdm
-from tools.dc_tools import get_main_financial_reports_db, get_quarterly_data
+from trader.tools.dc_tools import get_main_financial_reports_db, get_quarterly_data
 # -----------------------------------------------------------------------------------
 # QA_DB (quarterly analysis dbs)
 # - infrequent update is ok (though fast), no need to daily update

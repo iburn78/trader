@@ -5,7 +5,7 @@
 
 - Executing a Module as a Script:
     Use if __name__ == "__main__": to check if a module is being run as the main program.
-    Wrap your multiprocessing code in an if __name__ == "__main__": block in your main script to ensure that it's only executed in the main process. This helps avoid issues with creating child processes during import.
+    Wrap your multiprocessing code in an if __name__ == "__main__": block in your main script to ensure that it's only executed in the main process. 
     This approach ensures better process management with the operating system.
 
 - Packages:
@@ -25,7 +25,7 @@
         import sys, os
         sys.path.append(os.path.dirname(os.getcwd()))  # adding the parent directory to the path; the parent directory contains 'tools' package
 
-        from tools import koreainvest_module
+        from tools import some_module
     
     (more robust method)
     --------------------------------------
