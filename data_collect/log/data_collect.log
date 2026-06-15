@@ -1,12 +1,3 @@
-initiating - prices and volumes updates...
-$0082N0.KS: possibly delisted; no timezone found
-initiating - prices and volumes updates...
-initiating - prices and volumes updates...
-initiating - prices and volumes updates...
-initiating - prices and volumes updates...
-initiating - prices and volumes updates...
-initiating - prices and volumes updates...
-initiating - prices and volumes updates...
 Company health data collection initiated at 2026-06-16 01:00:09.694867
 Updating KRX data...
 Updating between dates: 2026-06-08 / 2026-06-16
@@ -47,61 +38,3 @@ Financial data collection log >>
 2026-06-16 01:06:43.445028, no: 4, code 067010 in process
 2026-06-16 01:06:52.466178, no: 5, code 395400 in process
 == Update finished ==
-001570 | 1/26
-001720 | 2/26
-006660 | 3/26
-011790 | 4/26
-019680 | 5/26
-025880 | 6/26
-025900 | 7/26
-039560 | 8/26
-041440 | 9/26
-043260 | 10/26
-054050 | 11/26
-056190 | 12/26
-067010 | 13/26
-083930 | 14/26
-085660 | 15/26
-088260 | 16/26
-092440 | 17/26
-114090 | 18/26
-119610 | 19/26
-141000 | 20/26
-241820 | 21/26
-395400 | 22/26
-2026-06-16 01:10:09.912637 | 395400 | quarterly data of 395400 is empty.
-412540 | 23/26
-413390 | 24/26
-432320 | 25/26
-2026-06-16 01:10:19.619424 | 432320 | quarterly data of 432320 is empty.
-434480 | 26/26
-sending incremental file list
-001570.png
-001720.png
-006660.png
-011790.png
-019680.png
-025880.png
-025900.png
-039560.png
-041440.png
-043260.png
-054050.png
-056190.png
-067010.png
-083930.png
-085660.png
-088260.png
-092440.png
-114090.png
-119610.png
-141000.png
-241820.png
-412540.png
-413390.png
-434480.png
-df_krx.db
-update_info.txt
-
-sent 10,483,137 bytes  received 514 bytes  20,967,302.00 bytes/sec
-total size is 1,127,510,718  speedup is 107.55
