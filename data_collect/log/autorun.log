@@ -106,3 +106,7 @@ update_info.txt
 sent 10,483,137 bytes  received 514 bytes  20,967,302.00 bytes/sec
 total size is 1,127,510,718  speedup is 107.55
 initiating - prices and volumes updates...
+initiating - prices and volumes updates...
+[368970] Latest FDR date 2026-06-15 not in Yahoo. Using fdr only.
+[389030] Latest FDR date 2026-06-15 not in Yahoo. Using fdr only.
+[097780] Close mismatch on 2026-06-15: fdr=664, yf=332.0. Using fdr only.
