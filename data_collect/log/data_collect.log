@@ -38,3 +38,39 @@ Financial data collection log >>
 2026-06-16 01:06:43.445028, no: 4, code 067010 in process
 2026-06-16 01:06:52.466178, no: 5, code 395400 in process
 == Update finished ==
+Company health data collection initiated at 2026-06-17 01:00:09.927347
+Updating KRX data...
+Updating between dates: 2026-06-09 / 2026-06-17
+FULL rescan codes:
+Total 14 items.
+[0-13] ['0010F0', '011790', '019680', '025880', '039560', '043260', '053080', '056190', '085660', '119610', '141000', '412540', '413390', '434480']
+PARTIAL rescan codes:
+Total 8 items.
+[0-7] ['432320', '001720', '396690', '092440', '033200', '241820', '067010', '395400']
+full_rescan batch operation: 0
+Financial data collection log >> 
+2026-06-17 01:00:18.777070, no: 0, code 0010F0 in process
+2026-06-17 01:00:25.014528, no: 1, code 011790 in process
+2026-06-17 01:00:43.732883, no: 2, code 019680 in process
+2026-06-17 01:01:02.806000, no: 3, code 025880 in process
+2026-06-17 01:01:21.384861, no: 4, code 039560 in process
+2026-06-17 01:01:39.882910, no: 5, code 043260 in process
+2026-06-17 01:01:58.400332, no: 6, code 053080 in process
+2026-06-17 01:02:11.859431, no: 7, code 056190 in process
+2026-06-17 01:02:30.382134, no: 8, code 085660 in process
+2026-06-17 01:02:50.001389, no: 9, code 119610 in process
+2026-06-17 01:03:08.371090, no: 10, code 141000 in process
+2026-06-17 01:03:26.652841, no: 11, code 412540 in process
+2026-06-17 01:03:34.947441, no: 12, code 413390 in process
+2026-06-17 01:03:42.420815, no: 13, code 434480 in process
+partial_rescan batch operation: 0
+Financial data collection log >> 
+2026-06-17 01:04:01.917790, no: 0, code 432320 in process
+2026-06-17 01:04:08.046092, no: 1, code 001720 in process
+2026-06-17 01:04:15.887343, no: 2, code 396690 in process
+2026-06-17 01:04:21.948479, no: 3, code 092440 in process
+2026-06-17 01:04:29.791378, no: 4, code 033200 in process
+2026-06-17 01:04:38.010818, no: 5, code 241820 in process
+2026-06-17 01:04:46.003024, no: 6, code 067010 in process
+2026-06-17 01:04:53.868784, no: 7, code 395400 in process
+== Update finished ==
