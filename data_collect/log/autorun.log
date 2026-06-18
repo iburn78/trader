@@ -319,3 +319,105 @@ initiating - prices and volumes updates...
 initiating - prices and volumes updates...
 initiating - prices and volumes updates...
 initiating - prices and volumes updates...
+initiating - prices and volumes updates...
+Company health data collection initiated at 2026-06-19 01:00:10.136782
+Updating KRX data...
+Updating between dates: 2026-06-11 / 2026-06-19
+FULL rescan codes:
+Total 14 items.
+[0-13] ['000020', '0010F0', '025880', '039560', '053080', '119610', '141000', '160190', '240550', '412540', '413390', '434480', '469610', '475400']
+PARTIAL rescan codes:
+Total 13 items.
+[0-12] ['357430', '067010', '241820', '092440', '060310', '432320', '396690', '001720', '021880', '099750', '289080', '033200', '020180']
+full_rescan batch operation: 0
+Financial data collection log >> 
+2026-06-19 01:00:19.377507, no: 0, code 000020 in process
+2026-06-19 01:00:38.230682, no: 1, code 0010F0 in process
+2026-06-19 01:00:44.525768, no: 2, code 025880 in process
+2026-06-19 01:01:03.754889, no: 3, code 039560 in process
+2026-06-19 01:01:22.281667, no: 4, code 053080 in process
+2026-06-19 01:01:35.043120, no: 5, code 119610 in process
+2026-06-19 01:01:54.389324, no: 6, code 141000 in process
+2026-06-19 01:02:13.184158, no: 7, code 160190 in process
+2026-06-19 01:02:21.516558, no: 8, code 240550 in process
+2026-06-19 01:02:28.968388, no: 9, code 412540 in process
+2026-06-19 01:02:37.187481, no: 10, code 413390 in process
+2026-06-19 01:02:44.602358, no: 11, code 434480 in process
+2026-06-19 01:02:54.060716, no: 12, code 469610 in process
+2026-06-19 01:03:00.682012, no: 13, code 475400 in process
+partial_rescan batch operation: 0
+Financial data collection log >> 
+2026-06-19 01:03:18.003088, no: 0, code 357430 in process
+2026-06-19 01:03:24.059180, no: 1, code 067010 in process
+2026-06-19 01:03:31.860309, no: 2, code 241820 in process
+2026-06-19 01:03:39.908611, no: 3, code 092440 in process
+2026-06-19 01:03:47.911089, no: 4, code 060310 in process
+2026-06-19 01:03:55.877004, no: 5, code 432320 in process
+2026-06-19 01:04:02.000728, no: 6, code 396690 in process
+2026-06-19 01:04:08.085334, no: 7, code 001720 in process
+2026-06-19 01:04:16.270952, no: 8, code 021880 in process
+2026-06-19 01:04:24.149003, no: 9, code 099750 in process
+2026-06-19 01:04:32.107154, no: 10, code 289080 in process
+2026-06-19 01:04:40.237136, no: 11, code 033200 in process
+2026-06-19 01:04:48.122655, no: 12, code 020180 in process
+== Update finished ==
+000020 | 1/27
+0010F0 | 2/27
+001720 | 3/27
+020180 | 4/27
+021880 | 5/27
+025880 | 6/27
+033200 | 7/27
+039560 | 8/27
+053080 | 9/27
+060310 | 10/27
+067010 | 11/27
+092440 | 12/27
+099750 | 13/27
+119610 | 14/27
+141000 | 15/27
+160190 | 16/27
+240550 | 17/27
+241820 | 18/27
+289080 | 19/27
+357430 | 20/27
+396690 | 21/27
+412540 | 22/27
+413390 | 23/27
+432320 | 24/27
+434480 | 25/27
+469610 | 26/27
+475400 | 27/27
+sending incremental file list
+000020.png
+0010F0.png
+001720.png
+020180.png
+021880.png
+025880.png
+033200.png
+039560.png
+053080.png
+060310.png
+067010.png
+092440.png
+099750.png
+119610.png
+141000.png
+160190.png
+240550.png
+241820.png
+289080.png
+357430.png
+396690.png
+412540.png
+413390.png
+432320.png
+434480.png
+469610.png
+475400.png
+df_krx.db
+update_info.txt
+
+sent 9,991,562 bytes  received 571 bytes  6,661,422.00 bytes/sec
+total size is 1,127,570,995  speedup is 112.85
