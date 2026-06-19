@@ -422,3 +422,309 @@ update_info.txt
 sent 9,991,562 bytes  received 571 bytes  6,661,422.00 bytes/sec
 total size is 1,127,570,995  speedup is 112.85
 initiating - prices and volumes updates...
+$475400.KS: possibly delisted; no timezone found
+$478340.KS: possibly delisted; no timezone found
+Traceback (most recent call last):
+  File "/usr/lib/python3.10/runpy.py", line 196, in _run_module_as_main
+    return _run_code(code, main_globals, None,
+  File "/usr/lib/python3.10/runpy.py", line 86, in _run_code
+    exec(code, run_globals)
+  File "/home/andy/projects/trader/data_collect/00_gen_market_dbs.py", line 176, in <module>
+    gen_market_DB(paths, START_DATE)
+  File "/home/andy/projects/trader/data_collect/00_gen_market_dbs.py", line 159, in gen_market_DB
+    _save_db(price_db, price_db_path)
+  File "/home/andy/projects/trader/data_collect/00_gen_market_dbs.py", line 98, in _save_db
+    db = db.astype('float')
+  File "/home/andy/projects/trader/venv/lib/python3.10/site-packages/pandas/core/generic.py", line 6643, in astype
+    new_data = self._mgr.astype(dtype=dtype, copy=copy, errors=errors)
+  File "/home/andy/projects/trader/venv/lib/python3.10/site-packages/pandas/core/internals/managers.py", line 430, in astype
+    return self.apply(
+  File "/home/andy/projects/trader/venv/lib/python3.10/site-packages/pandas/core/internals/managers.py", line 363, in apply
+    applied = getattr(b, f)(**kwargs)
+  File "/home/andy/projects/trader/venv/lib/python3.10/site-packages/pandas/core/internals/blocks.py", line 758, in astype
+    new_values = astype_array_safe(values, dtype, copy=copy, errors=errors)
+  File "/home/andy/projects/trader/venv/lib/python3.10/site-packages/pandas/core/dtypes/astype.py", line 237, in astype_array_safe
+    new_values = astype_array(values, dtype, copy=copy)
+  File "/home/andy/projects/trader/venv/lib/python3.10/site-packages/pandas/core/dtypes/astype.py", line 182, in astype_array
+    values = _astype_nansafe(values, dtype, copy=copy)
+  File "/home/andy/projects/trader/venv/lib/python3.10/site-packages/pandas/core/dtypes/astype.py", line 133, in _astype_nansafe
+    return arr.astype(dtype, copy=True)
+ValueError: could not convert string to float: b''
+initiating - prices and volumes updates...
+Error retrieving full data for 0165X0: code 0165X0 not available in FDR
+$475400.KS: possibly delisted; no timezone found
+$478340.KS: possibly delisted; no timezone found
+Traceback (most recent call last):
+  File "/usr/lib/python3.10/runpy.py", line 196, in _run_module_as_main
+    return _run_code(code, main_globals, None,
+  File "/usr/lib/python3.10/runpy.py", line 86, in _run_code
+    exec(code, run_globals)
+  File "/home/andy/projects/trader/data_collect/00_gen_market_dbs.py", line 176, in <module>
+    gen_market_DB(paths, START_DATE)
+  File "/home/andy/projects/trader/data_collect/00_gen_market_dbs.py", line 159, in gen_market_DB
+    _save_db(price_db, price_db_path)
+  File "/home/andy/projects/trader/data_collect/00_gen_market_dbs.py", line 98, in _save_db
+    db = db.astype('float')
+  File "/home/andy/projects/trader/venv/lib/python3.10/site-packages/pandas/core/generic.py", line 6643, in astype
+    new_data = self._mgr.astype(dtype=dtype, copy=copy, errors=errors)
+  File "/home/andy/projects/trader/venv/lib/python3.10/site-packages/pandas/core/internals/managers.py", line 430, in astype
+    return self.apply(
+  File "/home/andy/projects/trader/venv/lib/python3.10/site-packages/pandas/core/internals/managers.py", line 363, in apply
+    applied = getattr(b, f)(**kwargs)
+  File "/home/andy/projects/trader/venv/lib/python3.10/site-packages/pandas/core/internals/blocks.py", line 758, in astype
+    new_values = astype_array_safe(values, dtype, copy=copy, errors=errors)
+  File "/home/andy/projects/trader/venv/lib/python3.10/site-packages/pandas/core/dtypes/astype.py", line 237, in astype_array_safe
+    new_values = astype_array(values, dtype, copy=copy)
+  File "/home/andy/projects/trader/venv/lib/python3.10/site-packages/pandas/core/dtypes/astype.py", line 182, in astype_array
+    values = _astype_nansafe(values, dtype, copy=copy)
+  File "/home/andy/projects/trader/venv/lib/python3.10/site-packages/pandas/core/dtypes/astype.py", line 133, in _astype_nansafe
+    return arr.astype(dtype, copy=True)
+ValueError: could not convert string to float: b''
+initiating - prices and volumes updates...
+Error retrieving full data for 0165X0: code 0165X0 not available in FDR
+$478340.KS: possibly delisted; no timezone found
+$475400.KS: possibly delisted; no timezone found
+Traceback (most recent call last):
+  File "/usr/lib/python3.10/runpy.py", line 196, in _run_module_as_main
+    return _run_code(code, main_globals, None,
+  File "/usr/lib/python3.10/runpy.py", line 86, in _run_code
+    exec(code, run_globals)
+  File "/home/andy/projects/trader/data_collect/00_gen_market_dbs.py", line 176, in <module>
+    gen_market_DB(paths, START_DATE)
+  File "/home/andy/projects/trader/data_collect/00_gen_market_dbs.py", line 159, in gen_market_DB
+    _save_db(price_db, price_db_path)
+  File "/home/andy/projects/trader/data_collect/00_gen_market_dbs.py", line 98, in _save_db
+    db = db.astype('float')
+  File "/home/andy/projects/trader/venv/lib/python3.10/site-packages/pandas/core/generic.py", line 6643, in astype
+    new_data = self._mgr.astype(dtype=dtype, copy=copy, errors=errors)
+  File "/home/andy/projects/trader/venv/lib/python3.10/site-packages/pandas/core/internals/managers.py", line 430, in astype
+    return self.apply(
+  File "/home/andy/projects/trader/venv/lib/python3.10/site-packages/pandas/core/internals/managers.py", line 363, in apply
+    applied = getattr(b, f)(**kwargs)
+  File "/home/andy/projects/trader/venv/lib/python3.10/site-packages/pandas/core/internals/blocks.py", line 758, in astype
+    new_values = astype_array_safe(values, dtype, copy=copy, errors=errors)
+  File "/home/andy/projects/trader/venv/lib/python3.10/site-packages/pandas/core/dtypes/astype.py", line 237, in astype_array_safe
+    new_values = astype_array(values, dtype, copy=copy)
+  File "/home/andy/projects/trader/venv/lib/python3.10/site-packages/pandas/core/dtypes/astype.py", line 182, in astype_array
+    values = _astype_nansafe(values, dtype, copy=copy)
+  File "/home/andy/projects/trader/venv/lib/python3.10/site-packages/pandas/core/dtypes/astype.py", line 133, in _astype_nansafe
+    return arr.astype(dtype, copy=True)
+ValueError: could not convert string to float: b''
+initiating - prices and volumes updates...
+Error retrieving full data for 0165X0: code 0165X0 not available in FDR
+$475400.KS: possibly delisted; no timezone found
+$478340.KS: possibly delisted; no timezone found
+Traceback (most recent call last):
+  File "/usr/lib/python3.10/runpy.py", line 196, in _run_module_as_main
+    return _run_code(code, main_globals, None,
+  File "/usr/lib/python3.10/runpy.py", line 86, in _run_code
+    exec(code, run_globals)
+  File "/home/andy/projects/trader/data_collect/00_gen_market_dbs.py", line 176, in <module>
+    gen_market_DB(paths, START_DATE)
+  File "/home/andy/projects/trader/data_collect/00_gen_market_dbs.py", line 159, in gen_market_DB
+    _save_db(price_db, price_db_path)
+  File "/home/andy/projects/trader/data_collect/00_gen_market_dbs.py", line 98, in _save_db
+    db = db.astype('float')
+  File "/home/andy/projects/trader/venv/lib/python3.10/site-packages/pandas/core/generic.py", line 6643, in astype
+    new_data = self._mgr.astype(dtype=dtype, copy=copy, errors=errors)
+  File "/home/andy/projects/trader/venv/lib/python3.10/site-packages/pandas/core/internals/managers.py", line 430, in astype
+    return self.apply(
+  File "/home/andy/projects/trader/venv/lib/python3.10/site-packages/pandas/core/internals/managers.py", line 363, in apply
+    applied = getattr(b, f)(**kwargs)
+  File "/home/andy/projects/trader/venv/lib/python3.10/site-packages/pandas/core/internals/blocks.py", line 758, in astype
+    new_values = astype_array_safe(values, dtype, copy=copy, errors=errors)
+  File "/home/andy/projects/trader/venv/lib/python3.10/site-packages/pandas/core/dtypes/astype.py", line 237, in astype_array_safe
+    new_values = astype_array(values, dtype, copy=copy)
+  File "/home/andy/projects/trader/venv/lib/python3.10/site-packages/pandas/core/dtypes/astype.py", line 182, in astype_array
+    values = _astype_nansafe(values, dtype, copy=copy)
+  File "/home/andy/projects/trader/venv/lib/python3.10/site-packages/pandas/core/dtypes/astype.py", line 133, in _astype_nansafe
+    return arr.astype(dtype, copy=True)
+ValueError: could not convert string to float: b''
+initiating - prices and volumes updates...
+Error retrieving full data for 0165X0: code 0165X0 not available in FDR
+$475400.KS: possibly delisted; no timezone found
+$478340.KS: possibly delisted; no timezone found
+Traceback (most recent call last):
+  File "/usr/lib/python3.10/runpy.py", line 196, in _run_module_as_main
+    return _run_code(code, main_globals, None,
+  File "/usr/lib/python3.10/runpy.py", line 86, in _run_code
+    exec(code, run_globals)
+  File "/home/andy/projects/trader/data_collect/00_gen_market_dbs.py", line 176, in <module>
+    gen_market_DB(paths, START_DATE)
+  File "/home/andy/projects/trader/data_collect/00_gen_market_dbs.py", line 159, in gen_market_DB
+    _save_db(price_db, price_db_path)
+  File "/home/andy/projects/trader/data_collect/00_gen_market_dbs.py", line 98, in _save_db
+    db = db.astype('float')
+  File "/home/andy/projects/trader/venv/lib/python3.10/site-packages/pandas/core/generic.py", line 6643, in astype
+    new_data = self._mgr.astype(dtype=dtype, copy=copy, errors=errors)
+  File "/home/andy/projects/trader/venv/lib/python3.10/site-packages/pandas/core/internals/managers.py", line 430, in astype
+    return self.apply(
+  File "/home/andy/projects/trader/venv/lib/python3.10/site-packages/pandas/core/internals/managers.py", line 363, in apply
+    applied = getattr(b, f)(**kwargs)
+  File "/home/andy/projects/trader/venv/lib/python3.10/site-packages/pandas/core/internals/blocks.py", line 758, in astype
+    new_values = astype_array_safe(values, dtype, copy=copy, errors=errors)
+  File "/home/andy/projects/trader/venv/lib/python3.10/site-packages/pandas/core/dtypes/astype.py", line 237, in astype_array_safe
+    new_values = astype_array(values, dtype, copy=copy)
+  File "/home/andy/projects/trader/venv/lib/python3.10/site-packages/pandas/core/dtypes/astype.py", line 182, in astype_array
+    values = _astype_nansafe(values, dtype, copy=copy)
+  File "/home/andy/projects/trader/venv/lib/python3.10/site-packages/pandas/core/dtypes/astype.py", line 133, in _astype_nansafe
+    return arr.astype(dtype, copy=True)
+ValueError: could not convert string to float: b''
+initiating - prices and volumes updates...
+Error retrieving full data for 0165X0: code 0165X0 not available in FDR
+$475400.KS: possibly delisted; no timezone found
+$478340.KS: possibly delisted; no timezone found
+Traceback (most recent call last):
+  File "/usr/lib/python3.10/runpy.py", line 196, in _run_module_as_main
+    return _run_code(code, main_globals, None,
+  File "/usr/lib/python3.10/runpy.py", line 86, in _run_code
+    exec(code, run_globals)
+  File "/home/andy/projects/trader/data_collect/00_gen_market_dbs.py", line 176, in <module>
+    gen_market_DB(paths, START_DATE)
+  File "/home/andy/projects/trader/data_collect/00_gen_market_dbs.py", line 159, in gen_market_DB
+    _save_db(price_db, price_db_path)
+  File "/home/andy/projects/trader/data_collect/00_gen_market_dbs.py", line 98, in _save_db
+    db = db.astype('float')
+  File "/home/andy/projects/trader/venv/lib/python3.10/site-packages/pandas/core/generic.py", line 6643, in astype
+    new_data = self._mgr.astype(dtype=dtype, copy=copy, errors=errors)
+  File "/home/andy/projects/trader/venv/lib/python3.10/site-packages/pandas/core/internals/managers.py", line 430, in astype
+    return self.apply(
+  File "/home/andy/projects/trader/venv/lib/python3.10/site-packages/pandas/core/internals/managers.py", line 363, in apply
+    applied = getattr(b, f)(**kwargs)
+  File "/home/andy/projects/trader/venv/lib/python3.10/site-packages/pandas/core/internals/blocks.py", line 758, in astype
+    new_values = astype_array_safe(values, dtype, copy=copy, errors=errors)
+  File "/home/andy/projects/trader/venv/lib/python3.10/site-packages/pandas/core/dtypes/astype.py", line 237, in astype_array_safe
+    new_values = astype_array(values, dtype, copy=copy)
+  File "/home/andy/projects/trader/venv/lib/python3.10/site-packages/pandas/core/dtypes/astype.py", line 182, in astype_array
+    values = _astype_nansafe(values, dtype, copy=copy)
+  File "/home/andy/projects/trader/venv/lib/python3.10/site-packages/pandas/core/dtypes/astype.py", line 133, in _astype_nansafe
+    return arr.astype(dtype, copy=True)
+ValueError: could not convert string to float: b''
+initiating - prices and volumes updates...
+Error retrieving full data for 0165X0: code 0165X0 not available in FDR
+$478340.KS: possibly delisted; no timezone found
+$475400.KS: possibly delisted; no timezone found
+$0165X0.KS: possibly delisted; no timezone found
+initiating - prices and volumes updates...
+[417840] Latest FDR date 2026-06-19 not in Yahoo. Using fdr only.
+[067390] Latest FDR date 2026-06-19 not in Yahoo. Using fdr only.
+[389030] Latest FDR date 2026-06-19 not in Yahoo. Using fdr only.
+[192650] Close mismatch on 2026-06-19: fdr=5390, yf=nan. Using fdr only.
+[053700] Latest FDR date 2026-06-19 not in Yahoo. Using fdr only.
+[036800] Latest FDR date 2026-06-19 not in Yahoo. Using fdr only.
+[295310] Latest FDR date 2026-06-19 not in Yahoo. Using fdr only.
+[001520] Close mismatch on 2026-06-19: fdr=565, yf=nan. Using fdr only.
+[456010] Latest FDR date 2026-06-19 not in Yahoo. Using fdr only.
+[089230] Latest FDR date 2026-06-19 not in Yahoo. Using fdr only.
+[455900] Latest FDR date 2026-06-19 not in Yahoo. Using fdr only.
+[001527] Close mismatch on 2026-06-19: fdr=7090, yf=nan. Using fdr only.
+[104540] Latest FDR date 2026-06-19 not in Yahoo. Using fdr only.
+[163730] Latest FDR date 2026-06-19 not in Yahoo. Using fdr only.
+[050090] Latest FDR date 2026-06-19 not in Yahoo. Using fdr only.
+[328130] Latest FDR date 2026-06-19 not in Yahoo. Using fdr only.
+[078600] Latest FDR date 2026-06-19 not in Yahoo. Using fdr only.
+[001525] Close mismatch on 2026-06-19: fdr=4550, yf=nan. Using fdr only.
+Company health data collection initiated at 2026-06-20 01:00:25.241734
+Updating KRX data...
+Updating between dates: 2026-06-12 / 2026-06-20
+FULL rescan codes:
+Total 17 items.
+[0-16] ['000020', '000300', '0010F0', '002630', '025880', '039560', '045660', '053080', '119610', '141000', '160190', '240550', '412540', '413390', '453450', '469610', '475400']
+PARTIAL rescan codes:
+Total 11 items.
+[0-10] ['241820', '099750', '289080', '396690', '060310', '432320', '033200', '357430', '021880', '020180', '018500']
+full_rescan batch operation: 0
+Financial data collection log >> 
+2026-06-20 01:00:33.604897, no: 0, code 000020 in process
+2026-06-20 01:00:52.610820, no: 1, code 000300 in process
+2026-06-20 01:01:11.467176, no: 2, code 0010F0 in process
+2026-06-20 01:01:17.708758, no: 3, code 002630 in process
+2026-06-20 01:01:35.366525, no: 4, code 025880 in process
+2026-06-20 01:01:53.574714, no: 5, code 039560 in process
+2026-06-20 01:02:12.021137, no: 6, code 045660 in process
+2026-06-20 01:02:31.545375, no: 7, code 053080 in process
+2026-06-20 01:02:44.574306, no: 8, code 119610 in process
+2026-06-20 01:03:03.524574, no: 9, code 141000 in process
+2026-06-20 01:03:22.401996, no: 10, code 160190 in process
+2026-06-20 01:03:30.620244, no: 11, code 240550 in process
+2026-06-20 01:03:38.089622, no: 12, code 412540 in process
+2026-06-20 01:03:46.293012, no: 13, code 413390 in process
+2026-06-20 01:03:53.806032, no: 14, code 453450 in process
+2026-06-20 01:04:02.052897, no: 15, code 469610 in process
+2026-06-20 01:04:08.633532, no: 16, code 475400 in process
+partial_rescan batch operation: 0
+Financial data collection log >> 
+2026-06-20 01:04:25.404910, no: 0, code 241820 in process
+2026-06-20 01:04:33.406601, no: 1, code 099750 in process
+2026-06-20 01:04:41.276846, no: 2, code 289080 in process
+2026-06-20 01:04:49.139437, no: 3, code 396690 in process
+2026-06-20 01:04:55.215994, no: 4, code 060310 in process
+2026-06-20 01:05:03.153020, no: 5, code 432320 in process
+2026-06-20 01:05:09.256026, no: 6, code 033200 in process
+2026-06-20 01:05:17.193786, no: 7, code 357430 in process
+2026-06-20 01:05:23.366603, no: 8, code 021880 in process
+2026-06-20 01:05:31.210054, no: 9, code 020180 in process
+2026-06-20 01:05:38.981184, no: 10, code 018500 in process
+== Update finished ==
+000020 | 1/28
+000300 | 2/28
+0010F0 | 3/28
+002630 | 4/28
+018500 | 5/28
+020180 | 6/28
+021880 | 7/28
+025880 | 8/28
+033200 | 9/28
+039560 | 10/28
+045660 | 11/28
+053080 | 12/28
+060310 | 13/28
+099750 | 14/28
+119610 | 15/28
+141000 | 16/28
+160190 | 17/28
+240550 | 18/28
+241820 | 19/28
+289080 | 20/28
+357430 | 21/28
+396690 | 22/28
+412540 | 23/28
+413390 | 24/28
+432320 | 25/28
+453450 | 26/28
+469610 | 27/28
+475400 | 28/28
+sending incremental file list
+000020.png
+000300.png
+0010F0.png
+002630.png
+018500.png
+020180.png
+021880.png
+025880.png
+033200.png
+039560.png
+045660.png
+053080.png
+060310.png
+099750.png
+119610.png
+141000.png
+160190.png
+240550.png
+241820.png
+289080.png
+357430.png
+396690.png
+412540.png
+413390.png
+432320.png
+453450.png
+469610.png
+475400.png
+df_krx.db
+update_info.txt
+
+sent 10,187,025 bytes  received 592 bytes  20,375,234.00 bytes/sec
+total size is 1,127,505,128  speedup is 110.67
