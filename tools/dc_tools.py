@@ -294,13 +294,9 @@ def merge_update(A, F=None, P=None, index_cols=['code', 'fs_div', 'account_nm'])
 
 def generate_krx_data(sql_db_creation=True): 
     pd_ = os.path.dirname(os.path.dirname(os.path.abspath(__file__))) # .. 
-    df_krx_desc = fdr.StockListing('KRX-DESC')
     df_krx = fdr.StockListing('KRX')
 
-    df_krx.drop(columns=['Close', 'ChangeCode', 'Changes', 'ChagesRatio', 'Open', 'High', 'Low', 'Volume', 'Amount'], inplace=True)
-    cols_to_use = df_krx_desc.columns.difference(df_krx.columns).tolist()
-    cols_to_use.append('Code')
-    df_krx = df_krx.merge(df_krx_desc[cols_to_use], on='Code', how='left')
+    df_krx.drop(columns=['ChangeCode', 'Changes', 'ChagesRatio'], inplace=True)
     df_krx = df_krx.set_index('Code')
     df_krx = df_krx[df_krx['MarketId'] != 'KNX']
 
@@ -313,7 +309,6 @@ def generate_krx_data(sql_db_creation=True):
         plots_dir = os.path.join(pd_, 'data_collect/plots') 
         os.makedirs(plots_dir, exist_ok=True)
         conn = sqlite3.connect(os.path.join(plots_dir, 'df_krx.db'))
-        df_krx_sql['ListingDate'] = df_krx_sql['ListingDate'].dt.strftime('%Y-%m-%d')
         df_krx_sql.to_sql('krx_data', conn, if_exists='replace')
 
         conn.commit()

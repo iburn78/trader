@@ -521,10 +521,10 @@ class Drawer:
 
         if self.lang == 'K':
             title = '외국인 보유율과 주가 상관관계'
-            text_01 = f'시총>{format(int(Broker.MARCAP_THRESHOLD/10**8),",")}억원, 상장>{int(Broker.IPO_YEAR_THRESHOLD)}년인 상장사 총{len(corr)}개 중 상관계수 상위{min(len(corr), num_to_plot)}개 표시'
+            text_01 = f'시총>{format(int(Broker.MARCAP_THRESHOLD/10**8),",")}억원, 상장사 총{len(corr)}개 중 상관계수 상위{min(len(corr), num_to_plot)}개 표시'
         else: 
             title = 'Share price and Foreign ownership correlation '
-            text_01 = f'total {len(corr)} public companies are Market Cap > {format(int(Broker.MARCAP_THRESHOLD/10**9),",")}B KRW, IPO > {int(Broker.IPO_YEAR_THRESHOLD)} years, and top {min(len(corr), num_to_plot)} are shown'
+            text_01 = f'total {len(corr)} public companies are Market Cap > {format(int(Broker.MARCAP_THRESHOLD/10**9),",")}B KRW, top {min(len(corr), num_to_plot)} are shown'
 
         sorted_corr = corr.sort_values(period, ascending=True)[-num_to_plot:].reset_index(drop=True)
         bars = self.ax.barh(sorted_corr['name'], sorted_corr[period])

@@ -87,11 +87,9 @@ class Broker:
         return [code, cr_d, cr_w, cr_m, date]
 
     MARCAP_THRESHOLD = 200000*10**8 
-    IPO_YEAR_THRESHOLD = 3 
     
     def generate_corr_data(self, df_krx=df_krx):
         df_krx = df_krx.loc[df_krx['Marcap'] >= Broker.MARCAP_THRESHOLD]
-        df_krx = df_krx.loc[pd.Timestamp.today()- df_krx['ListingDate'] > pd.Timedelta(days = Broker.IPO_YEAR_THRESHOLD*(365+1))]
         corr = []
         for code in df_krx.index:
             corr_ = self.fetch_corr_foreign_ownership(code)

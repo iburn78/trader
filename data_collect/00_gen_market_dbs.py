@@ -91,12 +91,10 @@ def initialization(START_DATE, paths, workers=8):
     _save_db(vdb, paths[1])
 
 def _save_db(db, path):
+    # float is efficient in NaN handling etc 
+    db = db.apply(pd.to_numeric, errors='coerce')
     # remove delisted
     db = db.dropna(axis=1, subset=[db.index[-1]])
-
-    # float is efficient in NaN handling etc 
-    db = db.astype('float')
-
     db.to_feather(path)
 
 def _update_DB(DB, snapshot, date, column):
