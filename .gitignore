@@ -169,3 +169,6 @@ temp/
 
 # mac 
 mac_local.log
+
+# etc
+*.swp
