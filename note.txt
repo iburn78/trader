@@ -146,35 +146,46 @@
                 else: 
                     date_str = date_req
 
-        # Package Error to be fixed in 2025-07-04 ### (as STR is now included in code like '0037T0')
+    [new update on krx/listing.py ] - modify the entire read func
+    class KrxMarcapListingCache:
+        def read(self, date_req=None):
+            url = 'http://data.krx.co.kr/comm/bldAttendant/executeForResourceBundle.cmd?baseName=krx.mdc.i18n.component&key=B128.bld'
+            try:
+                r = requests.get(url, headers=self.headers)
+                j = json.loads(r.text)
+                date_str = j['result']['output'][0]['max_work_dt']
+            except:
+                # print(r.text)
+                # raise ValueError(f"Failed to load data from {url}")
+                print('failed to load KRX, trying today')
+                date_str = datetime.today().strftime('%Y%m%d')
+            if date_req != None:
+                date_str = date_req
+            formatted_date = datetime.strptime(date_str, '%Y%m%d').strftime('%Y-%m-%d')
         
-        # df_listing['Code'] = df_listing['Code'].apply(lambda x: '{:06d}'.format(x))
-        df_listing['Code'] = df_listing['Code'].apply(lambda x: str(x).zfill(6))
-                
-        # if re.match(r'\d{5}[0-9A-Z]', code): 
-        if re.match(r'^\d{5}[0-9KLMN]$', code) or re.match(r'^\d{4}[A-Z]\d$', code):
+            # https://raw.githubusercontent.com/FinanceData/fdr_krx_data_cache/refs/heads/master/data/listing/krx/2026-03-11.csv
+            # 해당 날짜의 데이터를 가져옴
+            url = f'https://raw.githubusercontent.com/FinanceData/fdr_krx_data_cache/refs/heads/master/data/listing/krx/{formatted_date}.csv'
+            try: 
+                df = pd.read_csv(url, index_col=0, dtype={'Code': str, 'Dept': str, 'ChangeCode': str, 'MarketId': str})
+            except:
+                print(f"ERROR {formatted_date} csv data not exists")
+                import sys
+                sys.exit()
+            df = df.reset_index(drop=True)
+        
+            mkt_map = {'KRX-MARCAP':'ALL', 'KRX':'ALL', 'KOSPI':'STK', 'KOSDAQ':'KSQ', 'KONEX':'KNX'}
+            if self.market not in mkt_map:
+                raise ValueError(f"market shoud be one of {list(mkt_map.keys())}")
+        
+            mkt = mkt_map[self.market]
+            if mkt != 'ALL':
+                df = df[df['MarketId'] == mkt]
+                df = df.reset_index(drop=True)
 
-    [new update on krx/listing.py ] - modify like below:
-            def read(self, date_req=None):
-                url = 'http://data.krx.co.kr/comm/bldAttendant/executeForResourceBundle.cmd?baseName=krx.mdc.i18n.component&key=B128.bld'
-                try:
-                    r = requests.get(url, headers=self.headers)
-                    j = json.loads(r.text)
-                    date_str = j['result']['output'][0]['max_work_dt']
-                except:
-                    print('failed to load KRX, trying today')
-                    date_str = datetime.today().strftime('%Y%m%d')
-                if date_req != None:
-                    date_str = date_req
-                formatted_date = datetime.strptime(date_str, '%Y%m%d').strftime('%Y-%m-%d')
-        
-                url = f'https://raw.githubusercontent.com/FinanceData/fdr_krx_data_cache/refs/heads/master/data/listing/krx/{formatted_date}.csv'
-                try: 
-                    df = pd.read_csv(url, index_col=0, dtype={'Code': str, 'Dept': str, 'ChangeCode': str, 'MarketId': str})
-                except:
-                    print(f"ERROR {formatted_date} csv data not exists")
-                    import sys
-                    sys.exit()
+            df.attrs = {'exchange':'KRX', 'source':'KRX', 'data':'LISTINGS'}
+            return df
+
         
 
 
