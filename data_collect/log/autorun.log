@@ -827,3 +827,113 @@ update_info.txt
 
 sent 9,267,072 bytes  received 554 bytes  18,535,252.00 bytes/sec
 total size is 1,127,498,361  speedup is 121.66
+Traceback (most recent call last):
+  File "/usr/lib/python3.10/runpy.py", line 187, in _run_module_as_main
+    mod_name, mod_spec, code = _get_module_details(mod_name, _Error)
+  File "/usr/lib/python3.10/runpy.py", line 157, in _get_module_details
+    code = loader.get_code(mod_name)
+  File "<frozen importlib._bootstrap_external>", line 1017, in get_code
+  File "<frozen importlib._bootstrap_external>", line 947, in source_to_code
+  File "<frozen importlib._bootstrap>", line 241, in _call_with_frames_removed
+  File "/home/andy/projects/trader/data_collect/00_gen_market_dbs.py", line 163
+    print(f"initiating - prices and volumes updates... {datetime.today().strftime("%Y-%m-%d %H%M%S")}")
+                                                                                   ^
+SyntaxError: f-string: unmatched '('
+Company health data collection initiated at 2026-06-22 01:00:07.360967
+Updating KRX data...
+Updating between dates: 2026-06-14 / 2026-06-22
+FULL rescan codes:
+Total 15 items.
+[0-14] ['000020', '000300', '0010F0', '002630', '025880', '045660', '053080', '119610', '160190', '240550', '412540', '413390', '453450', '469610', '475400']
+PARTIAL rescan codes:
+Total 11 items.
+[0-10] ['396690', '241820', '021880', '033200', '060310', '432320', '289080', '018500', '357430', '020180', '099750']
+full_rescan batch operation: 0
+Financial data collection log >> 
+2026-06-22 01:00:15.217093, no: 0, code 000020 in process
+2026-06-22 01:00:39.050407, no: 1, code 000300 in process
+2026-06-22 01:00:58.205156, no: 2, code 0010F0 in process
+2026-06-22 01:01:04.436372, no: 3, code 002630 in process
+2026-06-22 01:01:21.313693, no: 4, code 025880 in process
+2026-06-22 01:01:40.332464, no: 5, code 045660 in process
+2026-06-22 01:01:58.895140, no: 6, code 053080 in process
+2026-06-22 01:02:11.586328, no: 7, code 119610 in process
+2026-06-22 01:02:30.986564, no: 8, code 160190 in process
+2026-06-22 01:02:39.725723, no: 9, code 240550 in process
+2026-06-22 01:02:47.257026, no: 10, code 412540 in process
+2026-06-22 01:02:55.564198, no: 11, code 413390 in process
+2026-06-22 01:03:03.007026, no: 12, code 453450 in process
+2026-06-22 01:03:11.218955, no: 13, code 469610 in process
+2026-06-22 01:03:17.786122, no: 14, code 475400 in process
+partial_rescan batch operation: 0
+Financial data collection log >> 
+2026-06-22 01:03:34.624640, no: 0, code 396690 in process
+2026-06-22 01:03:40.728385, no: 1, code 241820 in process
+2026-06-22 01:03:48.673114, no: 2, code 021880 in process
+2026-06-22 01:03:56.577037, no: 3, code 033200 in process
+2026-06-22 01:04:04.647676, no: 4, code 060310 in process
+2026-06-22 01:04:12.585578, no: 5, code 432320 in process
+2026-06-22 01:04:18.699544, no: 6, code 289080 in process
+2026-06-22 01:04:26.524681, no: 7, code 018500 in process
+2026-06-22 01:04:34.417292, no: 8, code 357430 in process
+2026-06-22 01:04:40.488125, no: 9, code 020180 in process
+2026-06-22 01:04:48.236449, no: 10, code 099750 in process
+== Update finished ==
+000020 | 1/26
+000300 | 2/26
+0010F0 | 3/26
+002630 | 4/26
+018500 | 5/26
+020180 | 6/26
+021880 | 7/26
+025880 | 8/26
+033200 | 9/26
+045660 | 10/26
+053080 | 11/26
+060310 | 12/26
+099750 | 13/26
+119610 | 14/26
+160190 | 15/26
+240550 | 16/26
+241820 | 17/26
+289080 | 18/26
+357430 | 19/26
+396690 | 20/26
+412540 | 21/26
+413390 | 22/26
+432320 | 23/26
+453450 | 24/26
+469610 | 25/26
+475400 | 26/26
+sending incremental file list
+000020.png
+000300.png
+0010F0.png
+002630.png
+018500.png
+020180.png
+021880.png
+025880.png
+033200.png
+045660.png
+053080.png
+060310.png
+099750.png
+119610.png
+160190.png
+240550.png
+241820.png
+289080.png
+357430.png
+396690.png
+412540.png
+413390.png
+432320.png
+453450.png
+469610.png
+475400.png
+df_krx.db
+update_info.txt
+
+sent 9,263,118 bytes  received 554 bytes  18,527,344.00 bytes/sec
+total size is 1,127,494,414  speedup is 121.71
