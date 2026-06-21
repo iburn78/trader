@@ -160,7 +160,7 @@ def gen_market_DB(paths, START_DATE):
 
 
 if __name__ == '__main__': 
-    print(f"initiating - prices and volumes updates... {datetime.today().strftime("%Y-%m-%d %H%M%S")}")
+    print(f'initiating - prices and volumes updates... {datetime.today().strftime("%Y-%m-%d %H%M%S")}')
     START_DATE = '2016-01-01'
     cd_ = os.path.dirname(os.path.abspath(__file__)) # .
     price_db_path = os.path.join(cd_, 'data/price_db.feather')
