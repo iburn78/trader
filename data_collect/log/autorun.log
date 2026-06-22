@@ -939,3 +939,7 @@ sent 9,263,118 bytes  received 554 bytes  18,527,344.00 bytes/sec
 total size is 1,127,494,414  speedup is 121.71
 initiating - prices and volumes updates... 2026-06-22 080004
 completed - prices and volumes updates
+$096250.KS: possibly delisted; no timezone found
+$475830.KS: possibly delisted; no timezone found
+initiating - prices and volumes updates... 2026-06-22 100003
+completed - prices and volumes updates
