@@ -1064,3 +1064,7 @@ sent 10,121,221 bytes  received 609 bytes  20,243,660.00 bytes/sec
 total size is 1,127,569,666  speedup is 111.40
 [initiating] - prices and volumes updates... 2026-06-23 080005
 [completed] - prices and volumes updates
+[initiating] - prices and volumes updates... 2026-06-23 100003
+[900100] Close mismatch on 2026-06-22: fdr=3890, yf=389.0. Using fdr only.
+[900250] Close mismatch on 2026-06-22: fdr=2080, yf=2076.0. Using fdr only.
+[completed] - prices and volumes updates
