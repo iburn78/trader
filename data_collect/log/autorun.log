@@ -1422,3 +1422,5 @@ $061090.KS: possibly delisted; no timezone found
 [initiating] - prices and volumes updates... 2026-06-26 100002
 [042040] Close mismatch on 2026-06-25: fdr=749, yf=7490.0. Using fdr only.
 [completed] - prices and volumes updates
+[initiating] - prices and volumes updates... 2026-06-26 120002
+[completed] - prices and volumes updates
