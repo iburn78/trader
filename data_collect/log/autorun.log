@@ -1416,3 +1416,9 @@ sent 10,196,622 bytes  received 535 bytes  20,394,314.00 bytes/sec
 total size is 1,127,201,040  speedup is 110.54
 [initiating] - prices and volumes updates... 2026-06-26 080004
 [completed] - prices and volumes updates
+$0004V0.KS: possibly delisted; no timezone found
+$331740.KS: possibly delisted; no timezone found
+$061090.KS: possibly delisted; no timezone found
+[initiating] - prices and volumes updates... 2026-06-26 100002
+[042040] Close mismatch on 2026-06-25: fdr=749, yf=7490.0. Using fdr only.
+[completed] - prices and volumes updates
