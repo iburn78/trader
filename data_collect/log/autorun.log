@@ -1548,3 +1548,104 @@ update_info.txt
 
 sent 12,716,204 bytes  received 628 bytes  25,433,664.00 bytes/sec
 total size is 1,126,905,352  speedup is 88.62
+prices and volumes updates [initiating] 2026-06-28 01:00:04
+prices and volumes updates [completed]
+Company health data collection initiated at 2026-06-28 01:00:11.904420
+Updating KRX data...
+Updating between dates: 2026-06-20 / 2026-06-28
+FULL rescan codes:
+Total 25 items.
+[0-24] ['005110', '006620', '018500', '042600', '043090', '043590', '048770', '066310', '088290', '089030', '096630', '100220', '101000', '109860', '178320', '190650', '191420', '226400', '238490', '258790', '302550', '332570', '340930', '387570', '950130']
+PARTIAL rescan codes:
+Total 1 items.
+[0-0] ['241820']
+full_rescan batch operation: 0
+Financial data collection log >> 
+2026-06-28 01:00:19.599533, no: 0, code 005110 in process
+2026-06-28 01:00:39.431776, no: 1, code 006620 in process
+2026-06-28 01:00:55.672005, no: 2, code 018500 in process
+2026-06-28 01:01:13.100612, no: 3, code 042600 in process
+2026-06-28 01:01:32.882325, no: 4, code 043090 in process
+2026-06-28 01:01:53.736508, no: 5, code 043590 in process
+2026-06-28 01:02:12.884345, no: 6, code 048770 in process
+2026-06-28 01:02:31.442288, no: 7, code 066310 in process
+2026-06-28 01:02:50.028308, no: 8, code 088290 in process
+2026-06-28 01:03:08.373163, no: 9, code 089030 in process
+2026-06-28 01:03:27.081451, no: 10, code 096630 in process
+2026-06-28 01:03:45.514254, no: 11, code 100220 in process
+2026-06-28 01:04:04.042636, no: 12, code 101000 in process
+2026-06-28 01:04:22.570995, no: 13, code 109860 in process
+2026-06-28 01:04:41.983539, no: 14, code 178320 in process
+2026-06-28 01:04:59.228745, no: 15, code 190650 in process
+2026-06-28 01:05:09.030250, no: 16, code 191420 in process
+2026-06-28 01:05:27.243239, no: 17, code 226400 in process
+2026-06-28 01:05:43.142283, no: 18, code 238490 in process
+2026-06-28 01:06:00.538737, no: 19, code 258790 in process
+2026-06-28 01:06:14.167912, no: 20, code 302550 in process
+2026-06-28 01:06:28.345113, no: 21, code 332570 in process
+2026-06-28 01:06:41.795694, no: 22, code 340930 in process
+2026-06-28 01:06:54.067797, no: 23, code 387570 in process
+2026-06-28 01:07:01.480827, no: 24, code 950130 in process
+----> no: 24, code 950130 currency not in KRW, skipping
+partial_rescan batch operation: 0
+Financial data collection log >> 
+2026-06-28 01:07:16.175749, no: 0, code 241820 in process
+== Update finished ==
+005110 | 1/26
+006620 | 2/26
+018500 | 3/26
+042600 | 4/26
+043090 | 5/26
+043590 | 6/26
+048770 | 7/26
+066310 | 8/26
+088290 | 9/26
+089030 | 10/26
+096630 | 11/26
+100220 | 12/26
+101000 | 13/26
+109860 | 14/26
+178320 | 15/26
+190650 | 16/26
+191420 | 17/26
+226400 | 18/26
+238490 | 19/26
+241820 | 20/26
+258790 | 21/26
+302550 | 22/26
+332570 | 23/26
+340930 | 24/26
+387570 | 25/26
+950130 | 26/26
+2026-06-28 01:10:51.242363 | 950130 | quarterly data of 950130 is empty.
+sending incremental file list
+005110.png
+006620.png
+018500.png
+042600.png
+043090.png
+043590.png
+048770.png
+066310.png
+088290.png
+089030.png
+096630.png
+100220.png
+101000.png
+109860.png
+178320.png
+190650.png
+191420.png
+226400.png
+238490.png
+241820.png
+258790.png
+302550.png
+332570.png
+340930.png
+387570.png
+df_krx.db
+update_info.txt
+
+sent 11,226,975 bytes  received 535 bytes  22,455,020.00 bytes/sec
+total size is 1,126,910,233  speedup is 100.37
