@@ -1766,3 +1766,12 @@ prices and volumes updates [initiating] 2026-06-29 18:00:02
 prices and volumes updates [completed]
 prices and volumes updates [initiating] 2026-06-29 20:00:02
 prices and volumes updates [completed]
+prices and volumes updates [initiating] 2026-06-30 01:00:03
+prices and volumes updates [completed]
+종료됨
+sending incremental file list
+df_krx.db
+update_info.txt
+
+sent 810,142 bytes  received 56 bytes  1,620,396.00 bytes/sec
+total size is 1,126,908,302  speedup is 1,390.90
