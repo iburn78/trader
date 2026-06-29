@@ -1752,3 +1752,7 @@ sent 11,225,047 bytes  received 535 bytes  22,451,164.00 bytes/sec
 total size is 1,126,908,302  speedup is 100.39
 prices and volumes updates [initiating] 2026-06-29 08:00:03
 prices and volumes updates [completed]
+$0015N0.KS: possibly delisted; no timezone found
+prices and volumes updates [initiating] 2026-06-29 10:00:03
+Error retrieving full data for 153890: code 153890 not available in FDR
+prices and volumes updates [completed]
