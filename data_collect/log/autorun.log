@@ -1,2 +1,7 @@
 prices and volumes updates [initiating] 2026-06-30 08:00:03
 prices and volumes updates [completed]
+prices and volumes updates [initiating] 2026-06-30 10:00:02
+Error retrieving full data for 475040: code 475040 not available in FDR
+[200230] Close mismatch on 2026-06-29: fdr=360, yf=3600.0. Using fdr only.
+Error retrieving full data for 0164H0: code 0164H0 not available in FDR
+prices and volumes updates [completed]
