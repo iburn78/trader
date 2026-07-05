@@ -429,3 +429,85 @@ Financial data collection log >>
 2026-07-05 01:13:44.835482, no: 21, code 001080 in process
 2026-07-05 01:13:52.479869, no: 22, code 060310 in process
 == Update finished ==
+Company health data collection initiated at 2026-07-06 01:00:09.935192
+Updating KRX data...
+Updating between dates: 2026-06-28 / 2026-07-06
+FULL rescan codes:
+Total 42 items.
+[0-41] ['0010F0', '001290', '002920', '005030', '006360', '008600', '009440', '011370', '018700', '024850', '024890', '025890', '036190', '038540', '050120', '058970', '059210', '066310', '067770', '079950', '079980', '082210', '085810', '085910', '091700', '093190', '094820', '126340', '129890', '137940', '150900', '186230', '190650', '246250', '290670', '306620', '309930', '317400', '332570', '361670', '464280', '471820']
+PARTIAL rescan codes:
+Total 23 items.
+[0-22] ['001080', '169330', '097870', '030960', '050860', '189690', '099750', '289080', '033200', '092440', '153890', '093240', '032800', '060310', '021820', '334970', '020180', '001720', '021880', '018500', '067010', '002630', '190650']
+full_rescan batch operation: 0
+Financial data collection log >> 
+2026-07-06 01:00:16.902890, no: 0, code 0010F0 in process
+2026-07-06 01:00:23.113729, no: 1, code 001290 in process
+2026-07-06 01:00:32.203347, no: 2, code 002920 in process
+2026-07-06 01:00:51.082465, no: 3, code 005030 in process
+2026-07-06 01:01:09.026865, no: 4, code 006360 in process
+2026-07-06 01:01:28.246385, no: 5, code 008600 in process
+2026-07-06 01:01:48.239522, no: 6, code 009440 in process
+2026-07-06 01:02:06.341405, no: 7, code 011370 in process
+2026-07-06 01:02:24.012094, no: 8, code 018700 in process
+2026-07-06 01:02:36.882634, no: 9, code 024850 in process
+2026-07-06 01:02:46.783449, no: 10, code 024890 in process
+2026-07-06 01:03:04.883035, no: 11, code 025890 in process
+2026-07-06 01:03:22.668867, no: 12, code 036190 in process
+2026-07-06 01:03:40.641881, no: 13, code 038540 in process
+2026-07-06 01:03:58.666277, no: 14, code 050120 in process
+2026-07-06 01:04:17.047445, no: 15, code 058970 in process
+2026-07-06 01:04:28.554821, no: 16, code 059210 in process
+2026-07-06 01:04:46.567516, no: 17, code 066310 in process
+2026-07-06 01:05:04.882271, no: 18, code 067770 in process
+2026-07-06 01:05:22.691195, no: 19, code 079950 in process
+2026-07-06 01:05:40.918867, no: 20, code 079980 in process
+2026-07-06 01:05:59.070831, no: 21, code 082210 in process
+2026-07-06 01:06:17.848844, no: 22, code 085810 in process
+2026-07-06 01:06:35.828725, no: 23, code 085910 in process
+2026-07-06 01:06:53.880220, no: 24, code 091700 in process
+2026-07-06 01:07:11.734830, no: 25, code 093190 in process
+2026-07-06 01:07:29.823870, no: 26, code 094820 in process
+2026-07-06 01:07:47.700988, no: 27, code 126340 in process
+2026-07-06 01:08:00.252060, no: 28, code 129890 in process
+2026-07-06 01:08:12.289175, no: 29, code 137940 in process
+2026-07-06 01:08:30.499969, no: 30, code 150900 in process
+2026-07-06 01:08:48.401745, no: 31, code 186230 in process
+2026-07-06 01:09:01.896731, no: 32, code 190650 in process
+2026-07-06 01:09:10.729422, no: 33, code 246250 in process
+2026-07-06 01:09:20.282866, no: 34, code 290670 in process
+2026-07-06 01:09:34.418677, no: 35, code 306620 in process
+2026-07-06 01:09:47.585311, no: 36, code 309930 in process
+2026-07-06 01:10:01.814568, no: 37, code 317400 in process
+2026-07-06 01:10:14.913414, no: 38, code 332570 in process
+2026-07-06 01:10:27.367073, no: 39, code 361670 in process
+2026-07-06 01:10:38.844495, no: 40, code 464280 in process
+2026-07-06 01:10:46.524283, no: 41, code 471820 in process
+partial_rescan batch operation: 0
+Financial data collection log >> 
+2026-07-06 01:11:16.800053, no: 0, code 001080 in process
+2026-07-06 01:11:24.575617, no: 1, code 169330 in process
+2026-07-06 01:11:32.370484, no: 2, code 097870 in process
+2026-07-06 01:11:40.144783, no: 3, code 030960 in process
+2026-07-06 01:11:47.977449, no: 4, code 050860 in process
+2026-07-06 01:11:55.671450, no: 5, code 189690 in process
+2026-07-06 01:12:03.394516, no: 6, code 099750 in process
+2026-07-06 01:12:11.242757, no: 7, code 289080 in process
+2026-07-06 01:12:18.975739, no: 8, code 033200 in process
+2026-07-06 01:12:26.778069, no: 9, code 092440 in process
+2026-07-06 01:12:34.540135, no: 10, code 153890 in process
+----> no: 10, code 153890 data not available, could be a financial institution
+2026-07-06 01:12:35.923421, no: 10, code 153890 in process
+----> no: 10, code 153890 data not available, could be a financial institution
+2026-07-06 01:12:42.179859, no: 11, code 093240 in process
+2026-07-06 01:12:49.924058, no: 12, code 032800 in process
+2026-07-06 01:12:57.592193, no: 13, code 060310 in process
+2026-07-06 01:13:05.685043, no: 14, code 021820 in process
+2026-07-06 01:13:13.384330, no: 15, code 334970 in process
+2026-07-06 01:13:21.027331, no: 16, code 020180 in process
+2026-07-06 01:13:28.740756, no: 17, code 001720 in process
+2026-07-06 01:13:36.491410, no: 18, code 021880 in process
+2026-07-06 01:13:44.286487, no: 19, code 018500 in process
+2026-07-06 01:13:52.079265, no: 20, code 067010 in process
+2026-07-06 01:13:59.777609, no: 21, code 002630 in process
+2026-07-06 01:14:07.528556, no: 22, code 190650 in process
+== Update finished ==
