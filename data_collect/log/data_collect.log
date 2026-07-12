@@ -926,3 +926,56 @@ Financial data collection log >>
 2026-07-12 01:07:42.963818, no: 20, code 002630 in process
 2026-07-12 01:07:50.767669, no: 21, code 021820 in process
 == Update finished ==
+Company health data collection initiated at 2026-07-13 01:00:10.450020
+Updating KRX data...
+Updating between dates: 2026-07-05 / 2026-07-13
+FULL rescan codes:
+Total 17 items.
+[0-16] ['003850', '014620', '033560', '043090', '049180', '054670', '066570', '067390', '108490', '115610', '127710', '178780', '243840', '264660', '277410', '394420', '464490']
+PARTIAL rescan codes:
+Total 22 items.
+[0-21] ['001080', '021820', '001720', '018500', '020180', '093240', '099750', '169330', '021880', '032800', '289080', '002630', '334970', '189690', '050860', '092440', '060310', '067010', '190650', '030960', '097870', '033200']
+full_rescan batch operation: 0
+Financial data collection log >> 
+2026-07-13 01:00:17.828563, no: 0, code 003850 in process
+2026-07-13 01:00:36.573138, no: 1, code 014620 in process
+2026-07-13 01:00:55.151376, no: 2, code 033560 in process
+2026-07-13 01:01:14.070869, no: 3, code 043090 in process
+2026-07-13 01:01:32.624399, no: 4, code 049180 in process
+2026-07-13 01:01:51.248839, no: 5, code 054670 in process
+2026-07-13 01:02:09.914868, no: 6, code 066570 in process
+2026-07-13 01:02:28.366829, no: 7, code 067390 in process
+2026-07-13 01:02:46.921449, no: 8, code 108490 in process
+2026-07-13 01:03:01.877647, no: 9, code 115610 in process
+2026-07-13 01:03:25.352471, no: 10, code 127710 in process
+2026-07-13 01:03:43.616269, no: 11, code 178780 in process
+2026-07-13 01:04:01.983868, no: 12, code 243840 in process
+2026-07-13 01:04:18.225448, no: 13, code 264660 in process
+2026-07-13 01:04:33.987456, no: 14, code 277410 in process
+2026-07-13 01:04:48.801827, no: 15, code 394420 in process
+2026-07-13 01:04:55.086884, no: 16, code 464490 in process
+partial_rescan batch operation: 0
+Financial data collection log >> 
+2026-07-13 01:05:10.662574, no: 0, code 001080 in process
+2026-07-13 01:05:18.470522, no: 1, code 021820 in process
+2026-07-13 01:05:26.283462, no: 2, code 001720 in process
+2026-07-13 01:05:34.175893, no: 3, code 018500 in process
+2026-07-13 01:05:42.207740, no: 4, code 020180 in process
+2026-07-13 01:05:50.056461, no: 5, code 093240 in process
+2026-07-13 01:05:57.899173, no: 6, code 099750 in process
+2026-07-13 01:06:05.739803, no: 7, code 169330 in process
+2026-07-13 01:06:13.675563, no: 8, code 021880 in process
+2026-07-13 01:06:21.453366, no: 9, code 032800 in process
+2026-07-13 01:06:29.333281, no: 10, code 289080 in process
+2026-07-13 01:06:37.132952, no: 11, code 002630 in process
+2026-07-13 01:06:44.919843, no: 12, code 334970 in process
+2026-07-13 01:06:52.644447, no: 13, code 189690 in process
+2026-07-13 01:07:00.539823, no: 14, code 050860 in process
+2026-07-13 01:07:08.324081, no: 15, code 092440 in process
+2026-07-13 01:07:16.196777, no: 16, code 060310 in process
+2026-07-13 01:07:24.076117, no: 17, code 067010 in process
+2026-07-13 01:07:31.824732, no: 18, code 190650 in process
+2026-07-13 01:07:39.678519, no: 19, code 030960 in process
+2026-07-13 01:07:47.412294, no: 20, code 097870 in process
+2026-07-13 01:07:55.305780, no: 21, code 033200 in process
+== Update finished ==
