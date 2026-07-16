@@ -3235,3 +3235,136 @@ prices and volumes updates [initiating] 2026-07-16 18:00:02
 prices and volumes updates [completed]
 prices and volumes updates [initiating] 2026-07-16 20:00:02
 prices and volumes updates [completed]
+prices and volumes updates [initiating] 2026-07-17 01:00:02
+prices and volumes updates [completed]
+Company health data collection initiated at 2026-07-17 01:00:09.871564
+Updating KRX data...
+Updating between dates: 2026-07-09 / 2026-07-17
+FULL rescan codes:
+Total 14 items.
+[0-13] ['003850', '049180', '058970', '072770', '084180', '096690', '108230', '121850', '127710', '149980', '382150', '394420', '440320', '488900']
+PARTIAL rescan codes:
+Total 23 items.
+[0-22] ['169330', '190650', '021820', '021880', '099750', '060310', '033200', '097870', '002630', '032800', '093240', '289080', '448730', '189690', '001720', '067010', '001080', '030960', '092440', '050860', '334970', '020180', '018500']
+full_rescan batch operation: 0
+Financial data collection log >> 
+2026-07-17 01:00:16.856024, no: 0, code 003850 in process
+2026-07-17 01:00:36.227340, no: 1, code 049180 in process
+2026-07-17 01:00:55.312581, no: 2, code 058970 in process
+2026-07-17 01:01:07.420155, no: 3, code 072770 in process
+2026-07-17 01:01:27.569303, no: 4, code 084180 in process
+2026-07-17 01:01:46.931789, no: 5, code 096690 in process
+2026-07-17 01:02:06.383618, no: 6, code 108230 in process
+2026-07-17 01:02:25.606036, no: 7, code 121850 in process
+2026-07-17 01:02:46.409727, no: 8, code 127710 in process
+2026-07-17 01:03:05.143934, no: 9, code 149980 in process
+2026-07-17 01:03:23.767191, no: 10, code 382150 in process
+2026-07-17 01:03:32.917682, no: 11, code 394420 in process
+2026-07-17 01:03:39.188304, no: 12, code 440320 in process
+2026-07-17 01:03:49.066509, no: 13, code 488900 in process
+partial_rescan batch operation: 0
+Financial data collection log >> 
+2026-07-17 01:04:05.420427, no: 0, code 169330 in process
+2026-07-17 01:04:13.239783, no: 1, code 190650 in process
+2026-07-17 01:04:21.165944, no: 2, code 021820 in process
+2026-07-17 01:04:29.137332, no: 3, code 021880 in process
+2026-07-17 01:04:37.312468, no: 4, code 099750 in process
+2026-07-17 01:04:45.076137, no: 5, code 060310 in process
+2026-07-17 01:04:52.895885, no: 6, code 033200 in process
+2026-07-17 01:05:00.830686, no: 7, code 097870 in process
+2026-07-17 01:05:08.787481, no: 8, code 002630 in process
+2026-07-17 01:05:16.604094, no: 9, code 032800 in process
+2026-07-17 01:05:24.393377, no: 10, code 093240 in process
+2026-07-17 01:05:32.227436, no: 11, code 289080 in process
+2026-07-17 01:05:40.250155, no: 12, code 448730 in process
+2026-07-17 01:05:46.341365, no: 13, code 189690 in process
+2026-07-17 01:05:54.538839, no: 14, code 001720 in process
+2026-07-17 01:06:02.489429, no: 15, code 067010 in process
+2026-07-17 01:06:10.482076, no: 16, code 001080 in process
+2026-07-17 01:06:18.266018, no: 17, code 030960 in process
+2026-07-17 01:06:26.719594, no: 18, code 092440 in process
+2026-07-17 01:06:34.523169, no: 19, code 050860 in process
+2026-07-17 01:06:42.406640, no: 20, code 334970 in process
+2026-07-17 01:06:50.164986, no: 21, code 020180 in process
+2026-07-17 01:06:58.375499, no: 22, code 018500 in process
+== Update finished ==
+001080 | 1/37
+001720 | 2/37
+002630 | 3/37
+003850 | 4/37
+018500 | 5/37
+020180 | 6/37
+021820 | 7/37
+021880 | 8/37
+030960 | 9/37
+032800 | 10/37
+033200 | 11/37
+049180 | 12/37
+050860 | 13/37
+058970 | 14/37
+060310 | 15/37
+067010 | 16/37
+072770 | 17/37
+084180 | 18/37
+092440 | 19/37
+093240 | 20/37
+096690 | 21/37
+097870 | 22/37
+099750 | 23/37
+108230 | 24/37
+121850 | 25/37
+127710 | 26/37
+149980 | 27/37
+169330 | 28/37
+189690 | 29/37
+190650 | 30/37
+289080 | 31/37
+334970 | 32/37
+382150 | 33/37
+394420 | 34/37
+440320 | 35/37
+448730 | 36/37
+2026-07-17 01:11:17.464885 | 448730 | quarterly data of 448730 is empty.
+488900 | 37/37
+sending incremental file list
+001080.png
+001720.png
+002630.png
+003850.png
+018500.png
+020180.png
+021820.png
+021880.png
+030960.png
+032800.png
+033200.png
+049180.png
+050860.png
+058970.png
+060310.png
+067010.png
+072770.png
+084180.png
+092440.png
+093240.png
+096690.png
+097870.png
+099750.png
+108230.png
+121850.png
+127710.png
+149980.png
+169330.png
+189690.png
+190650.png
+289080.png
+334970.png
+382150.png
+394420.png
+440320.png
+488900.png
+df_krx.db
+update_info.txt
+
+sent 14,528,938 bytes  received 742 bytes  29,059,360.00 bytes/sec
+total size is 1,125,522,425  speedup is 77.46
