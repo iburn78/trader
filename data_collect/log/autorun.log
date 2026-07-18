@@ -3506,3 +3506,124 @@ update_info.txt
 
 sent 13,543,254 bytes  received 685 bytes  27,087,878.00 bytes/sec
 total size is 1,125,527,875  speedup is 83.10
+prices and volumes updates [initiating] 2026-07-19 01:00:03
+prices and volumes updates [completed]
+Company health data collection initiated at 2026-07-19 01:00:10.898891
+Updating KRX data...
+Updating between dates: 2026-07-11 / 2026-07-19
+FULL rescan codes:
+Total 10 items.
+[0-9] ['058970', '072770', '084180', '096690', '108230', '121850', '149980', '382150', '440320', '488900']
+PARTIAL rescan codes:
+Total 23 items.
+[0-22] ['002630', '189690', '021880', '099750', '092440', '060310', '289080', '097870', '020180', '448730', '050860', '021820', '190650', '334970', '032800', '033200', '030960', '093240', '001080', '001720', '169330', '067010', '018500']
+full_rescan batch operation: 0
+Financial data collection log >> 
+2026-07-19 01:00:17.790505, no: 0, code 058970 in process
+2026-07-19 01:00:29.507504, no: 1, code 072770 in process
+2026-07-19 01:00:48.658976, no: 2, code 084180 in process
+2026-07-19 01:01:08.977800, no: 3, code 096690 in process
+2026-07-19 01:01:27.693252, no: 4, code 108230 in process
+2026-07-19 01:01:46.424486, no: 5, code 121850 in process
+2026-07-19 01:02:04.975262, no: 6, code 149980 in process
+2026-07-19 01:02:23.114836, no: 7, code 382150 in process
+2026-07-19 01:02:32.363214, no: 8, code 440320 in process
+2026-07-19 01:02:42.106508, no: 9, code 488900 in process
+partial_rescan batch operation: 0
+Financial data collection log >> 
+2026-07-19 01:02:57.376729, no: 0, code 002630 in process
+2026-07-19 01:03:05.184886, no: 1, code 189690 in process
+2026-07-19 01:03:13.081763, no: 2, code 021880 in process
+2026-07-19 01:03:20.854842, no: 3, code 099750 in process
+2026-07-19 01:03:28.698013, no: 4, code 092440 in process
+2026-07-19 01:03:36.468845, no: 5, code 060310 in process
+2026-07-19 01:03:44.299006, no: 6, code 289080 in process
+2026-07-19 01:03:52.147093, no: 7, code 097870 in process
+2026-07-19 01:04:00.024841, no: 8, code 020180 in process
+2026-07-19 01:04:07.974848, no: 9, code 448730 in process
+2026-07-19 01:04:14.073277, no: 10, code 050860 in process
+2026-07-19 01:04:21.744883, no: 11, code 021820 in process
+2026-07-19 01:04:31.145368, no: 12, code 190650 in process
+2026-07-19 01:04:38.893883, no: 13, code 334970 in process
+2026-07-19 01:04:46.852870, no: 14, code 032800 in process
+2026-07-19 01:04:54.634020, no: 15, code 033200 in process
+2026-07-19 01:05:02.670943, no: 16, code 030960 in process
+2026-07-19 01:05:10.389009, no: 17, code 093240 in process
+2026-07-19 01:05:18.133783, no: 18, code 001080 in process
+2026-07-19 01:05:25.919881, no: 19, code 001720 in process
+2026-07-19 01:05:39.003988, no: 20, code 169330 in process
+2026-07-19 01:05:46.839807, no: 21, code 067010 in process
+2026-07-19 01:05:54.643050, no: 22, code 018500 in process
+== Update finished ==
+001080 | 1/33
+001720 | 2/33
+002630 | 3/33
+018500 | 4/33
+020180 | 5/33
+021820 | 6/33
+021880 | 7/33
+030960 | 8/33
+032800 | 9/33
+033200 | 10/33
+050860 | 11/33
+058970 | 12/33
+060310 | 13/33
+067010 | 14/33
+072770 | 15/33
+084180 | 16/33
+092440 | 17/33
+093240 | 18/33
+096690 | 19/33
+097870 | 20/33
+099750 | 21/33
+108230 | 22/33
+121850 | 23/33
+149980 | 24/33
+169330 | 25/33
+189690 | 26/33
+190650 | 27/33
+289080 | 28/33
+334970 | 29/33
+382150 | 30/33
+440320 | 31/33
+448730 | 32/33
+2026-07-19 01:09:43.135122 | 448730 | quarterly data of 448730 is empty.
+488900 | 33/33
+sending incremental file list
+001080.png
+001720.png
+002630.png
+018500.png
+020180.png
+021820.png
+021880.png
+030960.png
+032800.png
+033200.png
+050860.png
+058970.png
+060310.png
+067010.png
+072770.png
+084180.png
+092440.png
+093240.png
+096690.png
+097870.png
+099750.png
+108230.png
+121850.png
+149980.png
+169330.png
+189690.png
+190650.png
+289080.png
+334970.png
+382150.png
+440320.png
+488900.png
+df_krx.db
+update_info.txt
+
+sent 13,057,076 bytes  received 666 bytes  26,115,484.00 bytes/sec
+total size is 1,125,526,800  speedup is 86.20
