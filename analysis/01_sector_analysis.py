@@ -11,13 +11,14 @@ import matplotlib.dates as mdates
 from matplotlib.ticker import FuncFormatter
 
 '''
-ma: MarCap (last day), Amount (sum of a period)
+ma: MarCap (last day, i.e, if market is open then until yesterday), Amount (sum of a period)
 outshares: # shares outstanding
 volume: # shares traded 
 amount: money amount traded (sum of each block)
 slope: liear regression over all periods since start_date
 recent_inc: comparing last 2 priods
 ltm: last twelve months
+aggregation: d, w, m q (refer to the BLOCK_MAP)
 '''
 df_krx, prices, volumes, fr_main_db = load_market_data()
 DEFAULT_KRW_UNIT: float = 1e9 # 10 억원
@@ -616,7 +617,7 @@ from scraper.tools.models import CV_Manager
 
 cvm = CV_Manager()
 
-mlcc = cvm.get_component('PCB')
+mlcc = cvm.get_component('Memory')
 if mlcc:
     codelist = mlcc.get_codelist()
 else: 
@@ -624,7 +625,7 @@ else:
 
 si = SectorAnalysis(codelist=codelist)
 
-aggregation = 'w'
-start_date = '2020-01-01'
+aggregation = 'd'
+start_date = '2026-01-01'
 si.get_stats(aggregation, start_date)
 si.plot()
