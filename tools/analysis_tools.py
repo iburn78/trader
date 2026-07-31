@@ -5,6 +5,7 @@ from pathlib import Path
 import pandas as pd
 import numpy as np
 import FinanceDataReader as fdr
+from trader.tools.dc_tools import get_main_financial_reports_db
 
 KRW_UNIT_KR = {
     1e12: 'jo',
@@ -19,17 +20,10 @@ def load_market_data():
     PRICE_DB_PATH = DATA_DIR / 'price_db.feather'
     VOLUME_DB_PATH = DATA_DIR / 'volume_db.feather'
 
-    FRM1_PATH = DATA_DIR / 'financial_reports_main1.feather'
-    FRM2_PATH = DATA_DIR / 'financial_reports_main2.feather'
-    FRM3_PATH = DATA_DIR / 'financial_reports_main3.feather'
-
     df_krx = gen_df_krx()
     prices = pd.read_feather(PRICE_DB_PATH)
     volumes = pd.read_feather(VOLUME_DB_PATH)
-    frm1 = pd.read_feather(FRM1_PATH)
-    frm2 = pd.read_feather(FRM2_PATH)
-    frm3 = pd.read_feather(FRM3_PATH)
-    fr_main_db = pd.concat([frm1, frm2, frm3], axis=0)
+    fr_main_db = get_main_financial_reports_db()
 
     return df_krx, prices, volumes, fr_main_db
 
