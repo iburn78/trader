@@ -40,8 +40,8 @@ def is_KRX_open(now=None, strict=False):
     Rules:
     - Mon~Fri
     - Not Korean public holiday
-    - 09:00 ~ 15:30 KST 
-    - or ~ 12:00 KST (not strict)
+    - 09:00 ~ 15:30 KST (if strict==True)
+    - or ~ 12:00 KST (if strict==False)
     """
 
     KR_HOLIDAYS = holidays.KR()

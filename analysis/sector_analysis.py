@@ -11,7 +11,7 @@ import matplotlib.dates as mdates
 from matplotlib.ticker import FuncFormatter
 
 '''
-ma: MarCap (last day, i.e, if market is open then until yesterday), Amount (sum of a period)
+ma: MarCap (until last day if is_KRX_open == True; if strict False then include today if it is after 12:00), Amount (sum of a period)
 outshares: # shares outstanding
 volume: # shares traded 
 amount: money amount traded (sum of each block)
@@ -595,37 +595,3 @@ class SectorAnalysis:
             mdates.DateFormatter('%Y-%m-%d')
         )
 
-#%% 
-code1 = '000660'
-code2 = '005930'
-code3 = '373220'
-codelist = [code1, code2, code3]
-codelist = [code3]
-
-si = SectorAnalysis(codelist=codelist)
-
-aggregation = 'w'
-start_date = '2020-01-01'
-si.get_stats(aggregation, start_date)
-si.plot()
-
-print(si.ma_rates)
-print(si.fr_rates)
-
-#%%
-from scraper.tools.models import CV_Manager
-
-cvm = CV_Manager()
-
-mlcc = cvm.get_component('Memory')
-if mlcc:
-    codelist = mlcc.get_codelist()
-else: 
-    codelist = []
-
-si = SectorAnalysis(codelist=codelist)
-
-aggregation = 'd'
-start_date = '2026-01-01'
-si.get_stats(aggregation, start_date)
-si.plot()
