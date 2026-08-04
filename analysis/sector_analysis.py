@@ -49,9 +49,12 @@ class CodeData:
 
         outshares = df_krx.at[self.code, 'Stocks']
         ma_data = pd.DataFrame({
-            'marcap': prices[self.code] * outshares / self.unit, #type:ignore
+            'marcap': prices[self.code] * outshares / self.unit, # type:ignore
             'amount_daily': volumes[self.code] * prices[self.code] / self.unit,
         })
+
+        # ffill - nan could exist only in the beginning
+        ma_data = ma_data.ffill()
 
         # ----------------------------------------------------------------------------
         # if market is open (or at least in early hours), then today record is removed
@@ -59,10 +62,9 @@ class CodeData:
         # ----------------------------------------------------------------------------
         now = datetime.now()
         if is_KRX_open(now=now):
-            ma_data = ma_data[ma_data.index.date != now.date()] #type:ignore
+            ma_data = ma_data[ma_data.index.date != now.date()]  # type:ignore
 
-        # return with ffill - nan could exist only in the beginning
-        return ma_data.ffill()
+        return ma_data
     
     # fr: financial records in quarterly basis
     def get_fr_data(self):
