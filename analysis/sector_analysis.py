@@ -9,6 +9,7 @@ from trader.tools.analysis_tools import is_KRX_open, load_market_data, get_slope
 import matplotlib.pyplot as plt
 import matplotlib.dates as mdates
 from matplotlib.ticker import FuncFormatter
+import FinanceDataReader as fdr
 
 '''
 ma: MarCap (until last day if is_KRX_open == True; if strict False then include today if it is after 12:00), Amount (sum of a period)
@@ -52,6 +53,15 @@ class CodeData:
             'marcap': prices[self.code] * outshares / self.unit, # type:ignore
             'amount_daily': volumes[self.code] * prices[self.code] / self.unit,
         })
+
+        ###_ checker (temporary)
+        if ma_data.iloc[-1].isna().any():
+            print(f'{self.code}: price, volume, outshare ----------------------------')
+            print(prices[self.code].iloc[-3:])
+            print(volumes[self.code].iloc[-3:])
+            print(outshares)
+            print(ma_data.iloc[-3:])
+            raise ValueError(f"ma data for code {self.code} is nan for last row - check")
 
         # ffill - nan could exist only in the beginning
         ma_data = ma_data.ffill()
@@ -104,26 +114,44 @@ class CodeData:
 
 # a sector analysis
 class SectorAnalysis: 
-    def __init__(self, codelist: list, unit=None, fill=False):
+    def __init__(self):
+        self.time = pd.Timestamp.now()
+        self.codelist = []
+        self.ma_data=pd.DataFrame()
+        self.fr_data=pd.DataFrame()
+        self.is_index = False
+
+    def from_index(self, name: str, unit=1e12):
+        # FinanceDataReader
+        index_key = {
+            'KOSPI': 'KS11', # KRX
+            'KOSDAQ': 'KQ11', # KRX
+            'KOSPI200': 'KS200', # KRX
+        }
+        if name not in index_key.keys(): 
+            raise ValueError(f'Check index name: {name}')
+        self.meta = {
+            'name': name,
+            'unit': unit if unit else DEFAULT_KRW_UNIT, # KRW unit
+        }
+        _ma_data = fdr.DataReader(index_key[name])[['MarCap', 'Amount']]
+        self.ma_data = _ma_data.rename(columns={'MarCap': 'marcap', 'Amount': 'amount_daily'})/self.meta['unit']
+        self.is_index = True
+
+    def from_codelist(self, codelist: list, name='', unit=None, fill=False):
+        self.codelist = codelist
+        self.meta = {
+            'name': name, 
+            'unit': unit if unit else DEFAULT_KRW_UNIT, # KRW unit
+        }
+
         if len(set(codelist)) != len(codelist): 
             raise ValueError('non-unique cd_list')
-
-        if unit is not None:
-            cd_list = [CodeData(code=code, unit=unit) for code in codelist]
-        else: 
-            cd_list = [CodeData(code) for code in codelist]
-
-        self.time: pd.Timestamp | None = cd_list[0].time  # codelist creation time
-        self.codelist = codelist
+        cd_list = [CodeData(code=code, unit=self.meta['unit']) for code in codelist]
 
         # ma_data, fr_data stay as raw
         self.ma_data = self._add_dfs([cd.ma_data for cd in cd_list], fill) # daily basis
         self.fr_data = self._add_dfs([cd.fr_data for cd in cd_list], fill) # quarterly basis
-        self.meta = {
-            'unit': cd_list[0].unit, # KRW unit
-        }
-        # get default stats
-        self.get_stats()
     
     # function that sums multiple serieses
     def _add_dfs(self, df_list, fill=False):
@@ -132,13 +160,14 @@ class SectorAnalysis:
     # cut data from start_date and define aggregation length
     def get_stats(self, aggregation: Literal['d', 'w', 'm'] = 'm', start_date = '2023-01-01'): # start date in "yyyy-mm-dd" format
         # data is 'aggregated' from 'start_date'
-        self.meta['aggregation'] = aggregation  #type:ignore
+        self.meta['aggregation'] = aggregation #type:ignore
         self.meta['start_date'] = start_date #type:ignore
 
         self.main_df = self._ma_aggregate_periods(aggregation, start_date)
-        self.main_df = self._combine_fr_data()
         self.ma_rates = self._compute_ma_rates()
-        self.fr_rates = self._compute_fr_rates(start_date)
+        if not self.is_index:
+            self.main_df = self._combine_fr_data()
+            self.fr_rates = self._compute_fr_rates(start_date)
 
     # aggregate into backward-aligned discrete blocks
     def _ma_aggregate_periods(self, aggregation, start_date):
@@ -268,21 +297,31 @@ class SectorAnalysis:
     # =========================================================
     # plotting
     # =========================================================
-    def plot(self, figsize: tuple = (12, 6)):
-        fig, axes = plt.subplots(
-            3,
-            1,
-            figsize=(figsize[0], figsize[1] * 2.2),
-            sharex=True,
-        )
+    def plot(self, figsize = None):
+        if self.is_index:
+            if figsize is None: figsize = (12, 3)
+            fig, ax = plt.subplots(
+                figsize=(figsize[0], figsize[1]),
+                sharex=True,
+            )
+            self._plot_ma_panel(ax)
 
-        ax1, ax2, ax3 = axes
+        else:
+            if figsize is None: figsize = (12, 9)
+            fig, axes = plt.subplots(
+                3,
+                1,
+                figsize=(figsize[0], figsize[1]),
+                sharex=True,
+            )
 
-        self._plot_ma_panel(ax1)
+            ax1, ax2, ax3 = axes
 
-        self._plot_fundamental_panel(ax2, use_ltm=True)
+            self._plot_ma_panel(ax1)
 
-        self._plot_fundamental_panel(ax3, use_ltm=False)
+            self._plot_fundamental_panel(ax2, use_ltm=True)
+
+            self._plot_fundamental_panel(ax3, use_ltm=False)
 
         plt.tight_layout()
         plt.show()
