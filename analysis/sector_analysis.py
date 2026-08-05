@@ -6,10 +6,10 @@ import pandas as pd
 from functools import reduce
 from datetime import datetime
 from trader.tools.analysis_tools import is_KRX_open, load_market_data, get_slope_intercept, KRW_UNIT_KR
+from trader.tools.dc_tools import get_index
 import matplotlib.pyplot as plt
 import matplotlib.dates as mdates
 from matplotlib.ticker import FuncFormatter
-import FinanceDataReader as fdr
 
 '''
 ma: MarCap (until last day if is_KRX_open == True; if strict False then include today if it is after 12:00), Amount (sum of a period)
@@ -123,19 +123,13 @@ class SectorAnalysis:
 
     def from_index(self, name: str, unit=1e12):
         # FinanceDataReader
-        index_key = {
-            'KOSPI': 'KS11', # KRX
-            'KOSDAQ': 'KQ11', # KRX
-            'KOSPI200': 'KS200', # KRX
-        }
-        if name not in index_key.keys(): 
-            raise ValueError(f'Check index name: {name}')
         self.meta = {
             'name': name,
             'unit': unit if unit else DEFAULT_KRW_UNIT, # KRW unit
         }
-        _ma_data = fdr.DataReader(index_key[name])[['MarCap', 'Amount']]
-        self.ma_data = _ma_data.rename(columns={'MarCap': 'marcap', 'Amount': 'amount_daily'})/self.meta['unit']
+
+        _ma_data = get_index(name)
+        self.ma_data = _ma_data.rename(columns={'Close': 'index_data', 'MarCap': 'marcap', 'Amount': 'amount_daily'})/self.meta['unit']
         self.is_index = True
 
     def from_codelist(self, codelist: list, name='', unit=None, fill=False):

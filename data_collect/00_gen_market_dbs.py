@@ -10,6 +10,7 @@ from concurrent.futures import ThreadPoolExecutor
 from functools import partial
 
 from yfinance.exceptions import YFRateLimitError
+from trader.tools.dc_tools import pvi_paths
 
 # intention:
 # - if fdr makes error: halt by ValueError
@@ -116,9 +117,11 @@ def gen_market_DB(paths, START_DATE):
     market_dates = fdr.DataReader('005930', START_DATE).index
     market_snapshot = _get_market_snapshot()
 
+    [price_db_path, volume_db_path, kospi_path, kosdaq_path, kospi200_path] = paths
+
     try:
-        price_db = pd.read_feather(paths[0])
-        volume_db = pd.read_feather(paths[1])
+        price_db = pd.read_feather(price_db_path)
+        volume_db = pd.read_feather(volume_db_path)
     except FileNotFoundError:  # Handle if files don't exist
         print('files not found - creating new ones; could take some time')
         initialization(START_DATE=START_DATE, paths=paths)
@@ -158,21 +161,25 @@ def gen_market_DB(paths, START_DATE):
     _save_db(price_db, price_db_path)
     _save_db(volume_db, volume_db_path)
 
+    # INDEX data collection
+    kospi = fdr.DataReader('KS11')
+    kosdaq = fdr.DataReader('KQ11')
+    kospi200 = fdr.DataReader('KS200')
+
+    kospi.to_feather(kospi_path)
+    kosdaq.to_feather(kosdaq_path)
+    kospi200.to_feather(kospi200_path)
 
 if __name__ == '__main__': 
     print(f'prices and volumes updates [initiating] {datetime.today().strftime("%Y-%m-%d %H:%M:%S")}')
     START_DATE = '2016-01-01'
-    cd_ = os.path.dirname(os.path.abspath(__file__)) # .
-    price_db_path = os.path.join(cd_, 'data/price_db.feather')
-    volume_db_path = os.path.join(cd_, 'data/volume_db.feather')
-    paths = [price_db_path, volume_db_path]
 
     # -------------------------------------
     # if need to initialize, use this
     # -------------------------------------
     # initialization(START_DATE, paths)
 
-    gen_market_DB(paths, START_DATE)
+    gen_market_DB(pvi_paths, START_DATE)
     print("prices and volumes updates [completed]")
 
     # price_db = pd.read_feather(paths[0])

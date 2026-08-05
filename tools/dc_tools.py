@@ -12,6 +12,16 @@ import datetime
 import os
 import io
 
+pd_ = os.path.dirname(os.path.dirname(os.path.abspath(__file__))) # ..
+price_db_path = os.path.join(pd_, 'data_collect/data/price_db.feather')
+volume_db_path = os.path.join(pd_, 'data_collect/data/volume_db.feather')
+kospi_path = os.path.join(pd_, 'data_collect/data/kospi.feather')
+kosdaq_path = os.path.join(pd_, 'data_collect/data/kosdaq.feather')
+kospi200_path = os.path.join(pd_, 'data_collect/data/kospi200.feather')
+
+# price, volume, index
+pvi_paths = [price_db_path, volume_db_path, kospi_path, kosdaq_path, kospi200_path]
+
 def plot_company_financial_summary(fr_db, pr_db, code, path=None, start_quarter='2016_1Q'): # use 2016 1Q as start quarter (dart api data starts from 2015 anyway)
     quarter_cols= [s for s in fr_db.columns.values if 'Q' in s]
     quarter_cols.sort()
@@ -431,3 +441,14 @@ def create_plots_from_plot_gen_control(plot_gen_control_file):
                 os.remove(path)
 
     os.remove(plot_gen_control_file)
+
+def get_index(name: str) -> pd.DataFrame: 
+    index_dict = {
+        'KOSPI': kospi_path,
+        'KOSDAQ': kosdaq_path,
+        'KOSPI200': kospi200_path,
+    }
+    if name not in index_dict.keys(): 
+        raise ValueError(f'Check index name: {name}')
+
+    return pd.read_feather(index_dict[name])
