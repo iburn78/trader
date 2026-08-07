@@ -10,6 +10,7 @@ from trader.tools.dc_tools import get_index
 import matplotlib.pyplot as plt
 import matplotlib.dates as mdates
 from matplotlib.ticker import FuncFormatter
+from scraper.tools.models import Component
 
 '''
 ma: MarCap (until last day if is_KRX_open == True; if strict False then include today if it is after 12:00), Amount (sum of a period)
@@ -109,6 +110,8 @@ class CodeData:
             'opincome_qtr': row_o,
         })
 
+        ###_ should know last unique data / may 
+        ###_ may return the raw data
         # return with ffill - nan could exist only in the beginning
         return fr_data.ffill()
 
@@ -116,9 +119,7 @@ class CodeData:
 class SectorAnalysis: 
     def __init__(self):
         self.time = pd.Timestamp.now()
-        self.codelist = []
-        self.ma_data=pd.DataFrame()
-        self.fr_data=pd.DataFrame()
+        self.codelist = [] 
         self.is_index = False
 
     def from_index(self, name: str, unit=1e12):
@@ -146,13 +147,16 @@ class SectorAnalysis:
         # ma_data, fr_data stay as raw
         self.ma_data = self._add_dfs([cd.ma_data for cd in cd_list], fill) # daily basis
         self.fr_data = self._add_dfs([cd.fr_data for cd in cd_list], fill) # quarterly basis
+
+    def from_component(self, component: Component, unit=None, fill=False):
+        self.from_codelist(codelist=component.get_codelist(), name=component.name, unit=unit, fill=fill)
     
     # function that sums multiple serieses
     def _add_dfs(self, df_list, fill=False):
         return reduce(lambda a, b: a.add(b, fill_value=0 if fill else None), df_list)
 
     # cut data from start_date and define aggregation length
-    def get_stats(self, aggregation: Literal['d', 'w', 'm'] = 'm', start_date = '2023-01-01'): # start date in "yyyy-mm-dd" format
+    def get_stats(self, aggregation: Literal['d', 'w', 'm', 'q'] = 'w', start_date = '2023-01-01'): # start date in "yyyy-mm-dd" format
         # data is 'aggregated' from 'start_date'
         self.meta['aggregation'] = aggregation #type:ignore
         self.meta['start_date'] = start_date #type:ignore
@@ -287,6 +291,20 @@ class SectorAnalysis:
                 fr_rates.loc[row, col] = val
 
         return fr_rates
+
+    # =========================================================
+    # Assessment Logic 
+    # =========================================================
+    def assess(self):
+        if self.is_index: 
+            print('no assess available for index data')
+            return
+
+        
+
+        
+
+    
 
     # =========================================================
     # plotting
@@ -458,7 +476,7 @@ class SectorAnalysis:
         ax.grid(True, linestyle='--', alpha=0.3)
 
         ax.set_title(
-            f"{self.codelist} | "
+            f"{self.meta['name']} {self.codelist if not self.is_index else ''} | "
             f"{self.time:%Y-%m-%d %H:%M} | "
             f"aggr: {self.meta['aggregation']}"
         )

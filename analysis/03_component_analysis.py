@@ -1,12 +1,16 @@
 #%%
-from scraper.tools.models import CV_Manager
-from trader.analysis.sector_analysis import SectorAnalysis
+from scraper.tools.models import CV_Manager, Component
+from trader.analysis.sector_analysis import SectorAnalysis, CodeData
 
+
+c = CodeData('000660')
+print(c)
+#%% 
 cvm = CV_Manager()
-component = cvm.get_component('Memory')
+component: Component = cvm.get_component('Memory')
 
 sa = SectorAnalysis()
-sa.from_codelist(component.get_codelist())
+sa.from_component(component)
 sa.get_stats(aggregation='d', start_date='2025-01-01')
 sa.plot()
 print(sa.ma_rates)
@@ -14,59 +18,41 @@ print(sa.fr_rates)
 
 sm = SectorAnalysis()
 sm.from_index('KOSPI')
-sm.get_stats(aggregation='w', start_date='2025-01-01')
+sm.get_stats(aggregation='d', start_date='2025-01-01')
 sm.plot()
 print(sm.ma_rates)
+# print(sa.main_df)
+print(sa.ma_data)
+print(sa.fr_data)
 #%% 
 import pandas as pd
-import numpy as np
-
-# Beta = Cov(stock returns, market returns) / Var(market returns)
-# Alpha = mean(stock returns) − beta × mean(market returns)
 
 def calc_alpha_beta(
-    stock: pd.Series,
-    market: pd.Series,
+    stock: pd.Series, # price or marcap
+    market: pd.Series, # index or marcap
     n = 1,
-    log_return: bool = False, 
 ):
     """
-    Calculate CAPM alpha and beta of `stock` relative to `market`.
-
-    Parameters
-    ----------
-    stock : pd.Series
-        Stock price series.
-    market : pd.Series
-        Market index price series.
-    log_return : bool
-        If True, use log returns. Otherwise use percentage returns.
-
-    Returns
-    -------
     alpha : float
-        Average return alpha per period.
+        Average return alpha per period if n = 1
+        if n > 1, then the result is for n-period return 
     beta : float
-        CAPM beta.
+        CAPM beta
     """
 
     df = pd.concat([stock, market], axis=1, join="inner").dropna()
     df.columns = ["stock", "market"]
 
-    if log_return:
-        ret = np.log(df / df.shift(1)).dropna()
-    else:
-        ret = df.pct_change().dropna()
+    ret = df.pct_change().dropna()
 
     beta = ret["stock"].cov(ret["market"]) / ret["market"].var()
-    alpha = ret["stock"].mean() - beta * ret["market"].mean()
+    _alpha = ret["stock"].mean() - beta * ret["market"].mean()
+    alpha = (_alpha+1)**n - 1
 
-    if log_return:
-        alpha = np.exp(alpha*n) - 1
-    else:
-        alpha = (alpha+1)**n - 1
-
-    return alpha, beta
+    return float(alpha), float(beta)
 
 calc_alpha_beta(sa.ma_data['marcap'], sm.ma_data['index_data'])
 
+
+#%%
+print(sa.fr_rates)
