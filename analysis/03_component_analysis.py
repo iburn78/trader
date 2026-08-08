@@ -1,7 +1,7 @@
 #%%
 from scraper.tools.models import CV_Manager, Component
 from trader.analysis.sector_analysis import SectorAnalysis, CodeData
-
+import pandas as pd
 
 c = CodeData('000660')
 print(c)
@@ -21,11 +21,46 @@ sm.from_index('KOSPI')
 sm.get_stats(aggregation='d', start_date='2025-01-01')
 sm.plot()
 print(sm.ma_rates)
-# print(sa.main_df)
-print(sa.ma_data)
-print(sa.fr_data)
 #%% 
-import pandas as pd
+
+OPINCOME_GROWTH_RATE = 0.05 # per period 
+OPMARGIN_THRESHOLD = 0.25 
+
+def assess(sa):
+    if sa.is_index: 
+        print('no assess available for index data')
+        return False
+
+    # remove ffill duplicates (if exists)
+    fr = sa.fr_data.drop_duplicates()
+    opic = fr['opincome_qtr']
+    rev = fr['revenue_qtr']
+    opic_slope = sa.fr_rates.at['opincome', 'slope']
+
+    if len(fr) < 5: 
+        print('need fr data at least 5 qtrly data points')
+        return False
+
+    # logic 1: is opincome for last 4 quarters positive at all
+    logic_1 = (opic.iloc[-4:] > 0).all()
+
+    # logic 2: is latest opincome higher than prev year, quarter
+    logic_2 = opic.iloc[-1] > max(opic.iloc[-2], opic.iloc[-5])
+
+    # logic 3: has opincome an upward trend
+    logic_3 = opic_slope > 0
+
+    # logic 4: is opincome groth sufficiently strong
+    logic_4 = opic_slope / opic.iloc[-4:].mean() > OPINCOME_GROWTH_RATE
+
+    # logic 5: is opmargin high enough 
+    logic_5 = ((opic/rev).iloc[-4:] > OPMARGIN_THRESHOLD).all()
+
+    return [logic_1, logic_2, logic_3, logic_4, logic_5]
+
+
+
+#%%
 
 def calc_alpha_beta(
     stock: pd.Series, # price or marcap

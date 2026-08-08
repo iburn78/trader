@@ -110,8 +110,6 @@ class CodeData:
             'opincome_qtr': row_o,
         })
 
-        ###_ should know last unique data / may 
-        ###_ may return the raw data
         # return with ffill - nan could exist only in the beginning
         return fr_data.ffill()
 
@@ -295,13 +293,6 @@ class SectorAnalysis:
     # =========================================================
     # Assessment Logic 
     # =========================================================
-    def assess(self):
-        if self.is_index: 
-            print('no assess available for index data')
-            return
-
-        
-
         
 
     
