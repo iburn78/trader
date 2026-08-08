@@ -21,12 +21,18 @@ sm.from_index('KOSPI')
 sm.get_stats(aggregation='d', start_date='2025-01-01')
 sm.plot()
 print(sm.ma_rates)
+#%%
+
+# sa.main_df
+assess(sa)
 #%% 
 
 OPINCOME_GROWTH_RATE = 0.05 # per period 
 OPMARGIN_THRESHOLD = 0.25 
+PER_LOW = 7
+PER_MED = 12
 
-def assess(sa):
+def assess(sa: SectorAnalysis):
     if sa.is_index: 
         print('no assess available for index data')
         return False
@@ -36,28 +42,56 @@ def assess(sa):
     opic = fr['opincome_qtr']
     rev = fr['revenue_qtr']
     opic_slope = sa.fr_rates.at['opincome', 'slope']
+    PER_ltm = sa.main_df['PER_ltm']
 
     if len(fr) < 5: 
         print('need fr data at least 5 qtrly data points')
         return False
 
-    # logic 1: is opincome for last 4 quarters positive at all
-    logic_1 = (opic.iloc[-4:] > 0).all()
+    res = {}
+    # ------------------------------------------------------------------
+    # opincome_generating 
+    # ------------------------------------------------------------------
+    # check point 1: is opincome for last 4 quarters positive at all 
+    c1 = (opic.iloc[-4:] > 0).all()
 
-    # logic 2: is latest opincome higher than prev year, quarter
-    logic_2 = opic.iloc[-1] > max(opic.iloc[-2], opic.iloc[-5])
+    # check point 2: is latest opincome higher than prev year, quarter 
+    c2 = opic.iloc[-1] > max(opic.iloc[-2], opic.iloc[-5])
 
-    # logic 3: has opincome an upward trend
-    logic_3 = opic_slope > 0
+    # check point 3: has opincome an upward trend
+    c3 = opic_slope > 0
 
-    # logic 4: is opincome groth sufficiently strong
-    logic_4 = opic_slope / opic.iloc[-4:].mean() > OPINCOME_GROWTH_RATE
+    if c1 and c2 and c3: res['opincome_generating'] = True
+    else: res['opincome_generating'] = False
 
-    # logic 5: is opmargin high enough 
-    logic_5 = ((opic/rev).iloc[-4:] > OPMARGIN_THRESHOLD).all()
+    # ------------------------------------------------------------------
+    # opincome_growth_high 
+    # ------------------------------------------------------------------
+    # opincome slope over last 4 quarter opincome average
+    res['opincome_growth_high'] = bool(opic_slope / opic.iloc[-4:].mean() > OPINCOME_GROWTH_RATE)
 
-    return [logic_1, logic_2, logic_3, logic_4, logic_5]
+    # ------------------------------------------------------------------
+    # opmargin_high_enough 
+    # ------------------------------------------------------------------
+    # last 4 quarter opmargin average
+    res['opmargin_high'] = bool(((opic/rev).iloc[-4:] > OPMARGIN_THRESHOLD).all())
 
+    # ------------------------------------------------------------------
+    # PER_ltm L, M, H
+    # ------------------------------------------------------------------
+    if PER_ltm.iloc[-1] <= PER_LOW: l = "L"
+    elif PER_ltm.iloc[-1] <= PER_MED: l = "M"
+    else: l = "H"
+    res['PER_ltm'] = l
+
+    # ------------------------------------------------------------------
+    # Development_path: Volatility and Amount increment
+    # ------------------------------------------------------------------
+    # Volatility: ?
+    # Amount increment: last period(?) amount over average, generally increaing?
+    
+
+    return res
 
 
 #%%
