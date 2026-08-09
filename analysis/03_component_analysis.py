@@ -2,6 +2,7 @@
 from scraper.tools.models import CV_Manager, Component
 from trader.analysis.sector_analysis import SectorAnalysis, CodeData
 import pandas as pd
+from trader.tools.analysis_tools import is_KRX_open, load_market_data, get_slope_intercept, KRW_UNIT_KR
 
 c = CodeData('000660')
 print(c)
@@ -93,6 +94,8 @@ def assess(sa: SectorAnalysis):
 
     return res
 
+# get_slope_intercept(sa.ma_data['marcap'].pct_change()[-30:].std().dropna())
+sa.ma_data['marcap'].pct_change()[:].std()
 
 #%%
 
