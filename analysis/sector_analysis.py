@@ -31,7 +31,7 @@ class CodeData:
     code: str
     time: pd.Timestamp | None = None # creation time
 
-    # daily marcap and volume data
+    # daily marcap and amount data
     ma_data: pd.DataFrame | None = None
 
     # quarterly revenue and opincome data

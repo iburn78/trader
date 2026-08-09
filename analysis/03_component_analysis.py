@@ -94,8 +94,39 @@ def assess(sa: SectorAnalysis):
 
     return res
 
-# get_slope_intercept(sa.ma_data['marcap'].pct_change()[-30:].std().dropna())
-sa.ma_data['marcap'].pct_change()[:].std()
+#%% 
+def calc_increment(s: pd.Series, measure_duration = 20, base_duration = 120): 
+    # default values: 
+    # - measure_duration: 20 (1 months)
+    # - base_duration: 120 (6 months, required length)
+
+    s = s.dropna()
+    s = s[s != 0] # dropping zeros too (e.g., suspended days etc)
+
+    slope, intercept = get_slope_intercept(s[-base_duration:-measure_duration])
+
+    # define floor: 
+    _min = min(s[-base_duration:])*0.7
+
+    extrapolated_value = max(intercept + slope*(base_duration-measure_duration/2), _min)
+    measure_duration_average = s[-measure_duration:].mean()
+
+    ratio = measure_duration_average/extrapolated_value
+    if ratio > 2: res = 'High'
+    elif ratio > 1: res = 'Up'
+    elif ratio > 0.5: res = 'Down'
+    else: res = 'Low'
+
+    return ratio, slope, res
+    
+# volatility   
+###_ is rolling correct? 
+###_ is comparing to trend is correct?
+a = calc_increment(sa.ma_data['marcap'].pct_change().rolling(20).std().dropna(), 1, 100)
+print(a)
+# amount 
+b = calc_increment(sa.ma_data['amount_daily'])
+print(b)
 
 #%%
 
