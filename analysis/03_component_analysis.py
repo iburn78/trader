@@ -3,6 +3,7 @@ from scraper.tools.models import CV_Manager, Component
 from trader.analysis.sector_analysis import SectorAnalysis, CodeData
 import pandas as pd
 from trader.tools.analysis_tools import get_slope_intercept
+from trader.tools.dc_tools import get_index
 
 cvm = CV_Manager()
 component: Component = cvm.get_component('Memory')
@@ -27,6 +28,12 @@ PER_MED = 12
 MEASURE_DURATION = 20 # days 
 BASE_DURATION = 120 # days
 
+def assess(res):
+    pass
+
+###_ combine with fr_rates, ma_rates
+###_ aggregation data vs daily data etc
+
 def build_assess_data(sa: SectorAnalysis):
     if sa.is_index: 
         print('no assess available for index data')
@@ -37,8 +44,6 @@ def build_assess_data(sa: SectorAnalysis):
     opic = fr['opincome_qtr']
     rev = fr['revenue_qtr']
     opic_slope = sa.fr_rates.at['opincome', 'slope']
-    PER_ltm = sa.main_df['PER_ltm']
-    PER_qx4 = sa.main_df['PER_qx4']
 
     if len(fr) < 5: 
         print('need fr data at least 5 qtrly data points')
@@ -77,36 +82,51 @@ def build_assess_data(sa: SectorAnalysis):
     res['opmargin_last_4qtrs'] = list((opic/rev).iloc[-4:].astype('float'))
 
     # ------------------------------------------------------------------
-    # PER_ltm L, M, H
+    # PER
     # ------------------------------------------------------------------
     # if PER_ltm.iloc[-1] <= PER_LOW: l = "L"
     # elif PER_ltm.iloc[-1] <= PER_MED: l = "M"
     # else: l = "H"
     res['PER'] = {
-        'PER_ltm': float(PER_ltm.iloc[-1]), 
-        'per_qx4': float(PER_qx4.iloc[-1]),
+        'PER_ltm': float(sa.main_df['PER_ltm'].iloc[-1]), 
+        'PER_qx4': float(sa.main_df['PER_qx4'].iloc[-1]),
+        'PER_fwd': float(sa.fr_rates.at['PER', 'fwd']),
     }
 
     # ------------------------------------------------------------------
-    # Development_path: Volatility and Amount increment
+    # volatility and amount increment
     # ------------------------------------------------------------------
     # Rolling volatility:
     res['volatility_rolling_pct'] = calc_increment(sa.ma_data['marcap'].pct_change().rolling(MEASURE_DURATION).std().dropna())
     # Amount:
     res['amount_daily'] = calc_increment(sa.ma_data['amount_daily'])
 
+
+    # ------------------------------------------------------------------
+    # alpha and beta
+    # ------------------------------------------------------------------
+    _from_start_date = calc_alpha_beta(sa.ma_data['marcap'], get_index('KOSPI')['Close'])
+    _base_duration = calc_alpha_beta(sa.ma_data['marcap'][-BASE_DURATION:], get_index('KOSPI')['Close'])
+    _measure_duration = calc_alpha_beta(sa.ma_data['marcap'][-MEASURE_DURATION:], get_index('KOSPI')['Close'])
+    res['alpha_beta'] = {
+        'from_start_date': _from_start_date,
+        'base_duration': _base_duration,
+        'measure_duration': _measure_duration,
+    }
+
     return res
+
 
 def calc_increment(s: pd.Series, measure_duration=MEASURE_DURATION, base_duration=BASE_DURATION): 
     # default values: 
     # - measure_duration: 20 (1 months)
     # - base_duration: 120 (6 months, required length)
-    # return: [measure to base (exclusive), slope]
+    # return: [measure to base, slope]
 
     s = s.dropna()
     s = s[s != 0] # dropping zeros too (e.g., suspended days etc)
 
-    slope, intercept = get_slope_intercept(s[-base_duration:-measure_duration])
+    slope, intercept = get_slope_intercept(s[-base_duration:])
 
     # define floor: 
     _min = min(s[-base_duration:])*0.7
@@ -120,7 +140,10 @@ def calc_increment(s: pd.Series, measure_duration=MEASURE_DURATION, base_duratio
     # elif ratio > 0.5: res = 'Down'
     # else: res = 'Low'
 
-    return [float(measure_to_base_ratio), float(slope)]
+    return {
+        'measure_to_base': float(measure_to_base_ratio), 
+        'slope': float(slope),
+    }
 
 def calc_alpha_beta(
     stock: pd.Series, # price or marcap
@@ -144,12 +167,18 @@ def calc_alpha_beta(
     _alpha = ret["stock"].mean() - beta * ret["market"].mean()
     alpha = (_alpha+1)**n - 1
 
-    return float(alpha), float(beta)
+    return {
+        'alpha': float(alpha),
+        'beta': float(beta),
+    }
 
 calc_alpha_beta(sa.ma_data['marcap'], sm.ma_data['index_data'])
 
 
 #%%
-print(sa.main_df)
-print(build_assess_data(sa))
+display(build_assess_data(sa))
+
+
+
+
 # %%

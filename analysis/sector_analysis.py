@@ -128,7 +128,10 @@ class SectorAnalysis:
         }
 
         _ma_data = get_index(name)
-        self.ma_data = _ma_data.rename(columns={'Close': 'index_data', 'MarCap': 'marcap', 'Amount': 'amount_daily'})/self.meta['unit']
+        _ma_data = _ma_data.rename(columns={'Close': 'index_data', 'MarCap': 'marcap', 'Amount': 'amount_daily'})
+        _ma_data['marcap'] = _ma_data['marcap']/self.meta['unit']
+        _ma_data['amount_daily'] = _ma_data['amount_daily']/self.meta['unit']
+        self.ma_data = _ma_data
         self.is_index = True
 
     def from_codelist(self, codelist: list, name='', unit=None, fill=False):
