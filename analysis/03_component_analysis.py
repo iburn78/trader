@@ -2,11 +2,8 @@
 from scraper.tools.models import CV_Manager, Component
 from trader.analysis.sector_analysis import SectorAnalysis, CodeData
 import pandas as pd
-from trader.tools.analysis_tools import is_KRX_open, load_market_data, get_slope_intercept, KRW_UNIT_KR
+from trader.tools.analysis_tools import get_slope_intercept
 
-c = CodeData('000660')
-print(c)
-#%% 
 cvm = CV_Manager()
 component: Component = cvm.get_component('Memory')
 
@@ -22,18 +19,15 @@ sm.from_index('KOSPI')
 sm.get_stats(aggregation='d', start_date='2025-01-01')
 sm.plot()
 print(sm.ma_rates)
-#%%
-
-# sa.main_df
-assess(sa)
-#%% 
 
 OPINCOME_GROWTH_RATE = 0.05 # per period 
 OPMARGIN_THRESHOLD = 0.25 
 PER_LOW = 7
 PER_MED = 12
+MEASURE_DURATION = 20 # days 
+BASE_DURATION = 120 # days
 
-def assess(sa: SectorAnalysis):
+def build_assess_data(sa: SectorAnalysis):
     if sa.is_index: 
         print('no assess available for index data')
         return False
@@ -44,6 +38,7 @@ def assess(sa: SectorAnalysis):
     rev = fr['revenue_qtr']
     opic_slope = sa.fr_rates.at['opincome', 'slope']
     PER_ltm = sa.main_df['PER_ltm']
+    PER_qx4 = sa.main_df['PER_qx4']
 
     if len(fr) < 5: 
         print('need fr data at least 5 qtrly data points')
@@ -51,54 +46,62 @@ def assess(sa: SectorAnalysis):
 
     res = {}
     # ------------------------------------------------------------------
-    # opincome_generating 
+    # opincome_health 
     # ------------------------------------------------------------------
     # check point 1: is opincome for last 4 quarters positive at all 
-    c1 = (opic.iloc[-4:] > 0).all()
+    c1 = bool((opic.iloc[-4:] > 0).all())
 
     # check point 2: is latest opincome higher than prev year, quarter 
-    c2 = opic.iloc[-1] > max(opic.iloc[-2], opic.iloc[-5])
+    c2 = bool(opic.iloc[-1] > max(opic.iloc[-2], opic.iloc[-5]))
 
     # check point 3: has opincome an upward trend
-    c3 = opic_slope > 0
+    c3 = bool(opic_slope > 0)
 
-    if c1 and c2 and c3: res['opincome_generating'] = True
-    else: res['opincome_generating'] = False
+    # opincome slope over the average of last 4 quarters
+    opic_growth = opic_slope / opic.iloc[-4:].mean() 
+
+    res['opincome_health'] = {
+        'positive_last_4qtrs': c1, 
+        'higher_than_comp': c2, # higher than comparable quarters
+        'positive_slope': c3, # measured from start_date given 
+        'growth_per_qtr': float(opic_growth),
+    }
+
+    ###_
+    # bool(opic_growth > OPINCOME_GROWTH_RATE)
 
     # ------------------------------------------------------------------
-    # opincome_growth_high 
+    # opmargin 
     # ------------------------------------------------------------------
-    # opincome slope over last 4 quarter opincome average
-    res['opincome_growth_high'] = bool(opic_slope / opic.iloc[-4:].mean() > OPINCOME_GROWTH_RATE)
-
-    # ------------------------------------------------------------------
-    # opmargin_high_enough 
-    # ------------------------------------------------------------------
-    # last 4 quarter opmargin average
-    res['opmargin_high'] = bool(((opic/rev).iloc[-4:] > OPMARGIN_THRESHOLD).all())
+    # last 4 quarter opmargin
+    res['opmargin_last_4qtrs'] = list((opic/rev).iloc[-4:].astype('float'))
 
     # ------------------------------------------------------------------
     # PER_ltm L, M, H
     # ------------------------------------------------------------------
-    if PER_ltm.iloc[-1] <= PER_LOW: l = "L"
-    elif PER_ltm.iloc[-1] <= PER_MED: l = "M"
-    else: l = "H"
-    res['PER_ltm'] = l
+    # if PER_ltm.iloc[-1] <= PER_LOW: l = "L"
+    # elif PER_ltm.iloc[-1] <= PER_MED: l = "M"
+    # else: l = "H"
+    res['PER'] = {
+        'PER_ltm': float(PER_ltm.iloc[-1]), 
+        'per_qx4': float(PER_qx4.iloc[-1]),
+    }
 
     # ------------------------------------------------------------------
     # Development_path: Volatility and Amount increment
     # ------------------------------------------------------------------
-    # Volatility: ?
-    # Amount increment: last period(?) amount over average, generally increaing?
-    
+    # Rolling volatility:
+    res['volatility_rolling_pct'] = calc_increment(sa.ma_data['marcap'].pct_change().rolling(MEASURE_DURATION).std().dropna())
+    # Amount:
+    res['amount_daily'] = calc_increment(sa.ma_data['amount_daily'])
 
     return res
 
-#%% 
-def calc_increment(s: pd.Series, measure_duration = 20, base_duration = 120): 
+def calc_increment(s: pd.Series, measure_duration=MEASURE_DURATION, base_duration=BASE_DURATION): 
     # default values: 
     # - measure_duration: 20 (1 months)
     # - base_duration: 120 (6 months, required length)
+    # return: [measure to base (exclusive), slope]
 
     s = s.dropna()
     s = s[s != 0] # dropping zeros too (e.g., suspended days etc)
@@ -111,24 +114,13 @@ def calc_increment(s: pd.Series, measure_duration = 20, base_duration = 120):
     extrapolated_value = max(intercept + slope*(base_duration-measure_duration/2), _min)
     measure_duration_average = s[-measure_duration:].mean()
 
-    ratio = measure_duration_average/extrapolated_value
-    if ratio > 2: res = 'High'
-    elif ratio > 1: res = 'Up'
-    elif ratio > 0.5: res = 'Down'
-    else: res = 'Low'
+    measure_to_base_ratio = measure_duration_average/extrapolated_value
+    # if ratio > 2: res = 'High'
+    # elif ratio > 1: res = 'Up'
+    # elif ratio > 0.5: res = 'Down'
+    # else: res = 'Low'
 
-    return ratio, slope, res
-    
-# volatility   
-###_ is rolling correct? 
-###_ is comparing to trend is correct?
-a = calc_increment(sa.ma_data['marcap'].pct_change().rolling(20).std().dropna(), 1, 100)
-print(a)
-# amount 
-b = calc_increment(sa.ma_data['amount_daily'])
-print(b)
-
-#%%
+    return [float(measure_to_base_ratio), float(slope)]
 
 def calc_alpha_beta(
     stock: pd.Series, # price or marcap
@@ -158,4 +150,6 @@ calc_alpha_beta(sa.ma_data['marcap'], sm.ma_data['index_data'])
 
 
 #%%
-print(sa.fr_rates)
+print(sa.main_df)
+print(build_assess_data(sa))
+# %%
