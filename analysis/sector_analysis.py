@@ -5,12 +5,11 @@ import numpy as np
 import pandas as pd
 from functools import reduce
 from datetime import datetime
-from trader.tools.analysis_tools import is_KRX_open, load_market_data, get_slope_intercept, KRW_UNIT_KR
-from trader.tools.dc_tools import get_index
+from trader.tools.analysis_tools import is_KRX_open, load_market_data, get_slope_intercept, KRW_UNIT_KR, round_sig, calc_increment, calc_alpha_beta, dprint
+from trader.tools.dc_tools import get_index, set_KoreanFonts
 import matplotlib.pyplot as plt
 import matplotlib.dates as mdates
 from matplotlib.ticker import FuncFormatter
-from scraper.tools.models import Component
 
 '''
 ma: MarCap (until last day if is_KRX_open == True; if strict False then include today if it is after 12:00), Amount (sum of a period)
@@ -23,7 +22,21 @@ ltm: last twelve months
 aggregation: d, w, m q (refer to the BLOCK_MAP)
 '''
 df_krx, prices, volumes, fr_main_db = load_market_data()
+kospi = get_index('KOSPI')['Close']
+
 DEFAULT_KRW_UNIT: float = 1e9 # 10 억원
+MEASURE_DURATION = 20 # days 
+BASE_DURATION = 120 # days
+DEFAULT_START_DATE = '2024-01-01'
+
+# ASSESS
+OPINCOME_GROWTH_RATE = 0.05 # per quarter 
+OPMARGIN_THRESHOLD = 0.25 
+PER_LOW = 7
+PER_MED = 12
+VOLATILITY_THRESHOLD = 0.33 
+AMOUNT_DAILY_THRESHOLD = 0.33 
+ALPHA_DAILY_THRESHOLD = 0.0004 # to convert yearly: x 250 (busines days) 
 
 # single code data that contains raw data for max period
 @dataclass
@@ -110,21 +123,26 @@ class CodeData:
             'opincome_qtr': row_o,
         })
 
-        # return with ffill - nan could exist only in the beginning
+        # return with ffill 
         return fr_data.ffill()
 
 # a sector analysis
 class SectorAnalysis: 
     def __init__(self):
-        self.time = pd.Timestamp.now()
+        self.meta = {'updated': pd.Timestamp.now().strftime("%Y-%m-%d %H:%M")}
         self.codelist = [] 
+        self.assess_data = {}
         self.is_index = False
 
-    def from_index(self, name: str, unit=1e12):
+    # =========================================================
+    # Creation
+    # =========================================================
+    def from_index(self, name: str, unit=1e12, start_date=DEFAULT_START_DATE):
         # FinanceDataReader
-        self.meta = {
+        self.meta = self.meta | {
             'name': name,
             'unit': unit if unit else DEFAULT_KRW_UNIT, # KRW unit
+            'start_date': start_date, # start date in "yyyy-mm-dd" format
         }
 
         _ma_data = get_index(name)
@@ -133,12 +151,14 @@ class SectorAnalysis:
         _ma_data['amount_daily'] = _ma_data['amount_daily']/self.meta['unit']
         self.ma_data = _ma_data
         self.is_index = True
+        return self
 
-    def from_codelist(self, codelist: list, name='', unit=None, fill=False):
+    def from_codelist(self, codelist: list, name='', unit=None, fill=False, start_date=DEFAULT_START_DATE):
         self.codelist = codelist
-        self.meta = {
+        self.meta = self.meta | {
             'name': name, 
             'unit': unit if unit else DEFAULT_KRW_UNIT, # KRW unit
+            'start_date': start_date, # start date in "yyyy-mm-dd" format
         }
 
         if len(set(codelist)) != len(codelist): 
@@ -149,27 +169,196 @@ class SectorAnalysis:
         self.ma_data = self._add_dfs([cd.ma_data for cd in cd_list], fill) # daily basis
         self.fr_data = self._add_dfs([cd.fr_data for cd in cd_list], fill) # quarterly basis
 
-    def from_component(self, component: Component, unit=None, fill=False):
-        self.from_codelist(codelist=component.get_codelist(), name=component.name, unit=unit, fill=fill)
+        self._post_creation()
+        return self
+
+    def from_code(self, code: str, unit=None, fill=False, start_date=DEFAULT_START_DATE):
+        return self.from_codelist(codelist=[code], name=df_krx.at[code, 'Name'], unit=unit, fill=fill, start_date=start_date)
+
+    def from_component(self, component: 'Component', unit=None, fill=False, start_date=DEFAULT_START_DATE): 
+        return self.from_codelist(codelist=component.get_codelist(), name=component.name, unit=unit, fill=fill, start_date=start_date)
     
     # function that sums multiple serieses
     def _add_dfs(self, df_list, fill=False):
         return reduce(lambda a, b: a.add(b, fill_value=0 if fill else None), df_list)
 
-    # cut data from start_date and define aggregation length
-    def get_stats(self, aggregation: Literal['d', 'w', 'm', 'q'] = 'w', start_date = '2023-01-01'): # start date in "yyyy-mm-dd" format
-        # data is 'aggregated' from 'start_date'
-        self.meta['aggregation'] = aggregation #type:ignore
-        self.meta['start_date'] = start_date #type:ignore
+    def _post_creation(self):
+        self._build_assess_data()
+        self._perform_assess()
 
-        self.main_df = self._ma_aggregate_periods(aggregation, start_date)
-        self.ma_rates = self._compute_ma_rates()
+    # =========================================================
+    # Assessment  
+    # =========================================================
+    def print(self):
+        print('Meta Data:')
+        dprint(self.meta)
         if not self.is_index:
-            self.main_df = self._combine_fr_data()
-            self.fr_rates = self._compute_fr_rates(start_date)
+            print('Assess Data:')
+            dprint(self.assess_data)
+            print('Assess Result:')
+            dprint(self.assess_result)
 
-    # aggregate into backward-aligned discrete blocks
-    def _ma_aggregate_periods(self, aggregation, start_date):
+    def _build_assess_data(self):  
+        if self.is_index: 
+            print('no assess available for index data')
+            return False
+
+
+        fr = self.fr_data # drop_duplicates()
+
+        # side="right" and -1 will give data from the quarter that start_date is in
+        start_idx = max(0, fr.index.searchsorted(self.meta['start_date'], side="right") - 1) 
+
+        fr = fr.iloc[start_idx:]
+
+        if len(fr) < 5: 
+            print('need fr data at least 5 qtrly data points')
+            return False
+
+        opic = fr['opincome_qtr'] 
+        rev = fr['revenue_qtr']
+        opic_slope , _ = get_slope_intercept(opic)
+
+        res = {
+            'updated': self.meta['updated']
+        }
+        # ------------------------------------------------------------------
+        # opincome_health 
+        # ------------------------------------------------------------------
+        # check point 1: is opincome for last 4 quarters positive at all 
+        c1 = bool((opic.iloc[-4:] > 0).all())
+
+        # check point 2: is latest opincome higher than prev year, quarter 
+        c2 = bool(opic.iloc[-1] >= max(opic.iloc[-2], opic.iloc[-5]))
+
+        # opincome slope over the average of last 4 quarters
+        opic_growth = opic_slope / opic.iloc[-4:].mean() 
+
+        res['opincome_health'] = {
+            'positive_last_4qtrs': c1, 
+            'higher_than_comp': c2, # higher than comparable quarters
+            'slope': round_sig(opic_slope), # measured from start_date given 
+            'growth_per_qtr': round_sig(opic_growth),
+        }
+
+        # ------------------------------------------------------------------
+        # opmargin 
+        # ------------------------------------------------------------------
+        # last 4 quarter opmargin
+        res['opmargin_last_4qtrs'] = list((opic/rev).iloc[-4:].apply(round_sig))
+
+        # ------------------------------------------------------------------
+        # PER
+        # ------------------------------------------------------------------
+        PER_ltm = self.ma_data['marcap'].iloc[-1]/self.fr_data['opincome_qtr'].iloc[-4:].sum()
+        PER_qx4 = self.ma_data['marcap'].iloc[-1]/(self.fr_data['opincome_qtr'].iloc[-1]*4)
+
+        fwd_annual_opincome = sum([opic_slope*i + opic.iloc[-1] for i in [1, 2, 3, 4]]) # this excludes the current quarter by choice
+        PER_fwd = self.ma_data['marcap'].iloc[-1]/fwd_annual_opincome
+
+        res['PER'] = {
+            'PER_ltm': round_sig(PER_ltm), 
+            'PER_qx4': round_sig(PER_qx4),
+            'PER_fwd': round_sig(PER_fwd),
+        }
+
+        # ------------------------------------------------------------------
+        # volatility and amount increment
+        # ------------------------------------------------------------------
+        # Rolling volatility:
+        res['volatility_rolling_pct'] = calc_increment(self.ma_data['marcap'].pct_change().rolling(MEASURE_DURATION).std().dropna(), MEASURE_DURATION, BASE_DURATION)
+        # Amount:
+        res['amount_daily'] = calc_increment(self.ma_data['amount_daily'], MEASURE_DURATION, BASE_DURATION)
+
+        # ------------------------------------------------------------------
+        # alpha and beta
+        # ------------------------------------------------------------------
+        _from_start_date = calc_alpha_beta(self.ma_data['marcap'], kospi)
+        _base_duration = calc_alpha_beta(self.ma_data['marcap'][-BASE_DURATION:], kospi)
+        _measure_duration = calc_alpha_beta(self.ma_data['marcap'][-MEASURE_DURATION:], kospi)
+        res['alpha_beta'] = {
+            'from_start_date': _from_start_date,
+            'base_duration': _base_duration,
+            'measure_duration': _measure_duration,
+        }
+
+        self.assess_data = res
+
+    def _perform_assess(self):
+        oh = self.assess_data['opincome_health']
+        basics = False
+        if oh['positive_last_4qtrs'] and oh['higher_than_comp'] and oh['slope'] > 0:
+            basics = True
+
+        finantially_sound = False
+        if oh['growth_per_qtr'] >= OPINCOME_GROWTH_RATE: 
+            finantially_sound = True
+
+        om = self.assess_data['opmargin_last_4qtrs']
+        if all(x > OPMARGIN_THRESHOLD for x in om):
+            finantially_sound = True
+
+        # PER_level
+        per = self.assess_data['PER']
+        if per['PER_ltm'] <= PER_LOW: PER_level = 'L'
+        elif per['PER_ltm'] <= PER_MED: PER_level = 'M'
+        else: PER_level = 'H'
+
+        # volatility movement in measure period
+        vol = self.assess_data['volatility_rolling_pct']
+        if vol['measure_to_base'] < 1-VOLATILITY_THRESHOLD: volatility = 'U'
+        elif vol['measure_to_base'] < 1+VOLATILITY_THRESHOLD: volatility = '-'
+        else: volatility = 'D'
+
+        # amount movement in measure period
+        amt = self.assess_data['amount_daily']
+        if amt['measure_to_base'] < 1-AMOUNT_DAILY_THRESHOLD: amount = 'U'
+        elif amt['measure_to_base'] < 1+AMOUNT_DAILY_THRESHOLD: amount = '-'
+        else: amount = 'D'
+
+        # alpha_level
+        alp = self.assess_data['alpha_beta']['measure_duration']
+        if alp['alpha'] < -AMOUNT_DAILY_THRESHOLD: alpha_level = 'underperform' # strong negative
+        elif alp['alpha'] <= AMOUNT_DAILY_THRESHOLD: alpha_level = 'at_market'
+        else: alpha_level = 'outperform' # strong positive
+
+        # Choose Representative Categories
+        market_sentiment = 'unchanged'
+        if amount == 'U' and volatility == 'D': market_sentiment = 'confidence_created'
+        elif amount == 'U' and volatility == 'U': market_sentiment = 'unstable'
+        elif amount == 'D' and volatility == 'D': market_sentiment = 'events_consumed'
+        elif amount == 'D' and volatility == 'U': market_sentiment = 'speculators_remained'
+
+        # --------------------------------------------
+        # categorization
+        # --------------------------------------------
+        if basics and finantially_sound:
+            if PER_level == 'L':
+                category = 'A'
+            elif PER_level == 'M': 
+                category = 'B'
+            else: 
+                category = 'C'
+        else: 
+            category = 'D'
+
+        self.assess_result = {
+            'basics': basics,
+            'financially_sound': finantially_sound,
+            'PER_level': PER_level,
+            'volatility_movement': volatility,
+            'amount_movement': amount,
+            'alpha_level': alpha_level,
+            'market_sentiment': market_sentiment,
+            'category': category,
+        }
+
+    # =========================================================
+    # Aggregation and plotting
+    # =========================================================
+
+    # cut data from start_date and define aggregation length
+    def plot(self, aggregation: Literal['d', 'w', 'm', 'q'] = 'w'): 
         # business days in each aggregation
         BLOCK_MAP = {
             'd': 1,
@@ -177,18 +366,29 @@ class SectorAnalysis:
             'm': 20,
             'q': 60,
         }
+        if aggregation not in BLOCK_MAP:
+            raise ValueError(f'invalid aggregation: {self.meta['aggregation']}')
+
+        # data is 'aggregated' from 'start_date'
+        self.meta['aggregation'] = aggregation 
+        block_size = BLOCK_MAP[aggregation]
+
+        self._aggr_dataset = self._ma_aggregate_periods(block_size)
+        self._aggr_ma_plotdata = self._prep_aggr_ma_plotdata()
+        if not self.is_index:
+            self._aggr_dataset = self._combine_fr_data()
+
+        self._plot()
+
+    # aggregate into backward-aligned discrete blocks
+    def _ma_aggregate_periods(self, block_size):
         """
         incomplete oldest block is discarded
         index: the last days of periods
         amount: sum of daily amounts, i.e., subtotal
         """
-        if aggregation not in BLOCK_MAP:
-            raise ValueError(f'invalid aggregation: {aggregation}')
-
-        block_size = BLOCK_MAP[aggregation]
-
         # use from start_date
-        usable = (len(self.ma_data.loc[start_date:]) // block_size) * block_size #type:ignore
+        usable = (len(self.ma_data.loc[self.meta['start_date']:]) // block_size) * block_size #type:ignore
 
         if usable == 0:
             raise ValueError('not enough rows')
@@ -212,7 +412,7 @@ class SectorAnalysis:
 
     def _combine_fr_data(self):
         # fr_data pre-process before combine
-        _fr_data = self.fr_data.copy() #type:ignore
+        _fr_data = self.fr_data.copy() 
         _fr_data['revenue_ltm'] = _fr_data['revenue_qtr'].rolling(4).sum()
         _fr_data['opincome_ltm'] = _fr_data['opincome_qtr'].rolling(4).sum()
         _fr_data['opincome_qx4'] = _fr_data['opincome_qtr']*4
@@ -220,90 +420,36 @@ class SectorAnalysis:
         _fr_data['opmargin_qtr'] = _fr_data['opincome_qtr']/_fr_data['revenue_qtr'] # quarterly opmargin
 
         # align index and combine (so fr_data only after start_date is used)
-        self.main_df[_fr_data.columns]=_fr_data.reindex(self.main_df.index, method='ffill')
+        self._aggr_dataset[_fr_data.columns]=_fr_data.reindex(self._aggr_dataset.index, method='ffill')
 
         # PER: assumes the same 4 quarters 
-        self.main_df['PER_qx4'] = self.main_df['marcap']/self.main_df['opincome_qx4']
-        self.main_df['PER_ltm'] = self.main_df['marcap']/self.main_df['opincome_ltm']
+        self._aggr_dataset['PER_qx4'] = self._aggr_dataset['marcap']/self._aggr_dataset['opincome_qx4']
+        self._aggr_dataset['PER_ltm'] = self._aggr_dataset['marcap']/self._aggr_dataset['opincome_ltm']
 
         # ffill and return
-        return self.main_df.replace([np.inf, -np.inf], np.nan).ffill().astype('float64')
+        return self._aggr_dataset.replace([np.inf, -np.inf], np.nan).ffill().astype('float64')
 
-    def _compute_ma_rates(self):
-        ma_rates = pd.DataFrame(
+    def _prep_aggr_ma_plotdata(self):
+        ma_plotdata = pd.DataFrame(
             index=['recent_inc', 'slope', 'intercept'],
             columns=['marcap', 'amount_subtotal', 'unit'],
         )
 
         for col in ['marcap', 'amount_subtotal']:
-            ma_rates.loc['recent_inc', col] = self.main_df[col].iloc[-1] / self.main_df[col].iloc[-2] - 1
+            ma_plotdata.loc['recent_inc', col] = self._aggr_dataset[col].iloc[-1] / self._aggr_dataset[col].iloc[-2] - 1
 
-            slope, intercpet = get_slope_intercept(self.main_df[col])
-            ma_rates.loc['slope', col] = slope
-            ma_rates.loc['intercept', col] = intercpet
+            slope, intercpet = get_slope_intercept(self._aggr_dataset[col])
+            ma_plotdata.loc['slope', col] = slope
+            ma_plotdata.loc['intercept', col] = intercpet
 
-        ma_rates.loc['recent_inc', 'unit'] = '%'
-        ma_rates.loc['slope', 'unit'] = KRW_UNIT_KR[self.meta['unit']]
-        ma_rates.loc['intercept', 'unit'] = KRW_UNIT_KR[self.meta['unit']]
+        ma_plotdata.loc['recent_inc', 'unit'] = '%'
+        ma_plotdata.loc['slope', 'unit'] = KRW_UNIT_KR[self.meta['unit']]
+        ma_plotdata.loc['intercept', 'unit'] = KRW_UNIT_KR[self.meta['unit']]
 
-        return ma_rates
+        return ma_plotdata
 
-    def _compute_fr_rates(self, start_date):
-        # calc opincome slope and fwd opincome (based on quarterly data)
-        # side="right" and -1 will give data from the quarter that start_date is in
-        start_idx = max(0, self.fr_data.index.searchsorted(start_date, side="right") - 1) #type:ignore 
-        opincome = self.fr_data.iloc[start_idx:]['opincome_qtr'] #type:ignore
-
-        opincome_slope, _ = get_slope_intercept(opincome)
-        fwd_annual_opincome = sum([opincome_slope*i + opincome.iloc[-1] for i in [1, 2, 3, 4]]) # this excludes the current quarter by choice
-        PER_fwd = self.main_df['marcap'].iloc[-1]/fwd_annual_opincome
-
-        fr_rates = pd.DataFrame(
-            index=['PER', 'opincome', 'opmargin'],
-            columns=['ltm', 'qx4', 'fwd', 'slope', 'unit'],
-        )
-
-        # later may add more stats like recent_inc (only if meaningful since fr data is quarterly basis)
-        _config = {
-            'PER': {
-                'ltm': self.main_df['PER_ltm'].iloc[-1],
-                'qx4': self.main_df['PER_qx4'].iloc[-1],
-                'fwd': PER_fwd,
-                'unit': 'times',
-            },
-
-            'opincome': {
-                'ltm': self.main_df['opincome_ltm'].iloc[-1],
-                'qx4': self.main_df['opincome_qx4'].iloc[-1],
-                'fwd': fwd_annual_opincome,
-                'slope': opincome_slope,
-                'unit': KRW_UNIT_KR[self.meta['unit']],
-            },
-
-            'opmargin': {
-                'ltm': self.main_df['opmargin_ltm'].iloc[-1],
-                'qx4': self.main_df['opmargin_qtr'].iloc[-1],
-                'unit': '%',
-            },
-        }
-
-        for row, values in _config.items():
-            for col, val in values.items():
-                fr_rates.loc[row, col] = val
-
-        return fr_rates
-
-    # =========================================================
-    # Assessment Logic 
-    # =========================================================
-        
-
-    
-
-    # =========================================================
-    # plotting
-    # =========================================================
-    def plot(self, figsize = None):
+    def _plot(self, figsize = None):
+        set_KoreanFonts()
         if self.is_index:
             if figsize is None: figsize = (12, 3)
             fig, ax = plt.subplots(
@@ -313,32 +459,31 @@ class SectorAnalysis:
             self._plot_ma_panel(ax)
 
         else:
-            if figsize is None: figsize = (12, 9)
+            if figsize is None: figsize = (12, 6)
             fig, axes = plt.subplots(
-                3,
+                2,
                 1,
                 figsize=(figsize[0], figsize[1]),
                 sharex=True,
             )
 
-            ax1, ax2, ax3 = axes
+            ax1, ax2 = axes
 
             self._plot_ma_panel(ax1)
 
             self._plot_fundamental_panel(ax2, use_ltm=True)
 
-            self._plot_fundamental_panel(ax3, use_ltm=False)
+            # self._plot_fundamental_panel(ax3, use_ltm=False)
 
         plt.tight_layout()
         plt.show()
-
 
     # =========================================================
     # (1) TOP PANEL: MARCAP + AMOUNT
     # =========================================================
     def _plot_ma_panel(self, ax):
 
-        x = self.main_df.index
+        x = self._aggr_dataset.index
         ax_r = ax.twinx()
 
         # -----------------------------------------------------
@@ -346,18 +491,18 @@ class SectorAnalysis:
         # -----------------------------------------------------
         ax.plot(
             x,
-            self.main_df['marcap'],
+            self._aggr_dataset['marcap'],
             color='black',
             linewidth=2,
             label='marcap',
         )
 
-        _mc_col = self.main_df['marcap'].dropna()
+        _mc_col = self._aggr_dataset['marcap'].dropna()
 
         mc_fitted = (
-            self.ma_rates.at['slope', 'marcap'] #type:ignore
+            self._aggr_ma_plotdata.at['slope', 'marcap'] #type:ignore
             * np.arange(len(_mc_col))
-            + self.ma_rates.at['intercept', 'marcap']
+            + self._aggr_ma_plotdata.at['intercept', 'marcap']
         )
 
         ax.plot(
@@ -379,19 +524,19 @@ class SectorAnalysis:
 
         ax_r.bar(
             x,
-            self.main_df['amount_subtotal'],
+            self._aggr_dataset['amount_subtotal'],
             width=bar_width,
             color='orange',
             alpha=0.5,
             label='amount_subtotal',
         )
 
-        _amt_col = self.main_df['amount_subtotal'].dropna()
+        _amt_col = self._aggr_dataset['amount_subtotal'].dropna()
 
         amt_fitted = ( 
-            self.ma_rates.at['slope', 'amount_subtotal'] #type:ignore
+            self._aggr_ma_plotdata.at['slope', 'amount_subtotal'] #type:ignore
             * np.arange(len(_amt_col))
-            + self.ma_rates.at['intercept', 'amount_subtotal']
+            + self._aggr_ma_plotdata.at['intercept', 'amount_subtotal']
         ) 
 
         ax_r.plot(
@@ -413,16 +558,16 @@ class SectorAnalysis:
         # annotations
         # -----------------------------------------------------
         ax.annotate(
-            f"rp:{self.ma_rates.loc['recent_inc', 'marcap']:.0%}",
-            xy=(x[-1], self.main_df['marcap'].iloc[-1]),
+            f"rp:{self._aggr_ma_plotdata.loc['recent_inc', 'marcap']:.0%}",
+            xy=(x[-1], self._aggr_dataset['marcap'].iloc[-1]),
             xytext=(-3, 5),
             textcoords='offset points',
             fontsize=12,
         )
 
         ax_r.annotate(
-            f"ra:{self.ma_rates.loc['recent_inc', 'amount_subtotal']:.0%}",
-            xy=(x[-1], self.main_df['amount_subtotal'].iloc[-1]),
+            f"ra:{self._aggr_ma_plotdata.loc['recent_inc', 'amount_subtotal']:.0%}",
+            xy=(x[-1], self._aggr_dataset['amount_subtotal'].iloc[-1]),
             xytext=(-3, -5),
             textcoords='offset points',
             fontsize=12,
@@ -431,7 +576,7 @@ class SectorAnalysis:
         mid_ = len(_mc_col) // 2
 
         ax.annotate(
-            f"sp:{self.ma_rates.at['slope', 'marcap']:,.0f}",
+            f"sp:{self._aggr_ma_plotdata.at['slope', 'marcap']:,.0f}",
             xy=(_mc_col.index[mid_], mc_fitted[mid_]),
             xytext=(0, 10),
             textcoords='offset points',
@@ -441,7 +586,7 @@ class SectorAnalysis:
         mid2_ = len(_amt_col) // 2
 
         ax_r.annotate(
-            f"sa:{self.ma_rates.at['slope', 'amount_subtotal']:,.0f}",
+            f"sa:{self._aggr_ma_plotdata.at['slope', 'amount_subtotal']:,.0f}",
             xy=(_amt_col.index[mid2_], amt_fitted[mid2_]),
             xytext=(0, 10),
             textcoords='offset points',
@@ -471,7 +616,7 @@ class SectorAnalysis:
 
         ax.set_title(
             f"{self.meta['name']} {self.codelist if not self.is_index else ''} | "
-            f"{self.time:%Y-%m-%d %H:%M} | "
+            f"{self.meta['updated']} | "
             f"aggr: {self.meta['aggregation']}"
         )
 
@@ -493,7 +638,7 @@ class SectorAnalysis:
     # =========================================================
     def _plot_fundamental_panel(self, ax, use_ltm: bool):
 
-        x = self.main_df.index
+        x = self._aggr_dataset.index
         ax_r = ax.twinx()
 
         # -----------------------------------------------------
@@ -510,9 +655,9 @@ class SectorAnalysis:
             per_col = 'PER_qx4'
             basis_text = "Annualized by qx4"
 
-        opincome = self.main_df[opincome_col]
-        opmargin = self.main_df[opmargin_col]
-        per = self.main_df[per_col]
+        opincome = self._aggr_dataset[opincome_col]
+        opmargin = self._aggr_dataset[opmargin_col]
+        per = self._aggr_dataset[per_col]
 
         # -----------------------------------------------------
         # opincome bars
@@ -642,3 +787,5 @@ class SectorAnalysis:
             mdates.DateFormatter('%Y-%m-%d')
         )
 
+
+# %%

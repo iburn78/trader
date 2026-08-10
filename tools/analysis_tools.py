@@ -6,6 +6,7 @@ import pandas as pd
 import numpy as np
 import FinanceDataReader as fdr
 from trader.tools.dc_tools import get_main_financial_reports_db
+import json
 
 KRW_UNIT_KR = {
     1e12: 'jo',
@@ -78,6 +79,64 @@ def get_slope_intercept(s: pd.Series):
     slope, intercept = np.polyfit(x,y,1)  
     return slope, intercept
 
+# round up to n significant numbers
+def round_sig(x, n=4):
+    return float(f"{x:.{n}g}")
+
+def dprint(d: dict):
+    if isinstance(d, dict):
+        print(json.dumps(d, indent=4, ensure_ascii=False))
+
+def calc_increment(s: pd.Series, measure_duration, base_duration): 
+    # args: 
+    # - measure_duration: 20 (1 months)
+    # - base_duration: 120 (6 months, required length)
+    # return: [measure to base, slope]
+
+    s = s.dropna()
+    s = s[s != 0] # dropping zeros too (e.g., suspended days etc)
+
+    slope, intercept = get_slope_intercept(s[-base_duration:])
+
+    # define floor: 
+    _min = min(s[-base_duration:])*0.7
+
+    extrapolated_value = max(intercept + slope*(base_duration-measure_duration/2), _min)
+    measure_duration_average = s[-measure_duration:].mean()
+
+    measure_to_base_ratio = measure_duration_average/extrapolated_value
+
+    return {
+        'measure_to_base': round_sig(measure_to_base_ratio), 
+        'slope': round_sig(slope),
+    }
+
+def calc_alpha_beta(
+    stock: pd.Series, # price or marcap
+    market: pd.Series, # index or marcap
+    n = 1,
+):
+    """
+    alpha : float
+        Average return alpha per period if n = 1
+        if n > 1, then the result is for n-period return 
+    beta : float
+        CAPM beta
+    """
+
+    df = pd.concat([stock, market], axis=1, join="inner").dropna()
+    df.columns = ["stock", "market"]
+
+    ret = df.pct_change().dropna()
+
+    beta = ret["stock"].cov(ret["market"]) / ret["market"].var()
+    _alpha = ret["stock"].mean() - beta * ret["market"].mean()
+    alpha = (_alpha+1)**n - 1
+
+    return {
+        'alpha': round_sig(alpha),
+        'beta': round_sig(beta),
+    }
 
 # local gemma4 (installed via ollama)
 # standard way to call an local model (using openai template)
