@@ -6,21 +6,29 @@ import os
 from html2image import Html2Image
 from datetime import datetime
 import subprocess
+from trader.tools.dc_tools import get_main_financial_reports_db
 
-cd_ = os.path.dirname(os.path.abspath(__file__))
+cd_ = os.path.dirname(os.path.abspath(__file__)) 
 ppd_ = os.path.dirname(os.path.dirname(cd_)) 
-df_krx_file = os.path.join(ppd_, 'data_collect/data/df_krx.feather') 
-df_krx = pd.read_feather(df_krx_file)
 
+# required dirs
+util_path = os.path.join(cd_, 'util/')
+os.makedirs(util_path, exist_ok=True)
 temp_path = os.path.join(cd_, 'temp/')
 os.makedirs(temp_path, exist_ok=True)
+results_path = os.path.join(cd_, 'results/')
+os.makedirs(results_path, exist_ok=True)
 
+# key file location and names
+CCA_template = os.path.join(cd_, 'util/CCA_template.pptx')
 qa_db_file = os.path.join(cd_, 'temp/qa_db.pkl') 
+cca_dict_file = os.path.join(cd_, 'temp/cca_dict.pkl')
+
+# basic load
+df_krx = pd.read_feather(os.path.join(ppd_, 'data_collect/data/df_krx.feather'))
+fr_db = get_main_financial_reports_db()
+pr_db = pd.read_feather(os.path.join(ppd_, 'data_collect/data/price_db.feather'))
 qa_db = pd.read_pickle(qa_db_file)
-
-###_ TEMP PATH, RESULT PATHS ETC >>>>> REORGANIZE AND TEST IN WIN
-
-
 
 # ----------------------------------------------------------
 # Classification Logic

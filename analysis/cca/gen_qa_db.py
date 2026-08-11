@@ -3,7 +3,19 @@ import pandas as pd
 import numpy as np
 import os
 from tqdm import tqdm
-from trader.tools.dc_tools import get_main_financial_reports_db, get_quarterly_data
+from trader.tools.dc_tools import get_quarterly_data
+from trader.tools.dc_tools import get_main_financial_reports_db
+
+# basic load
+cd_ = os.path.dirname(os.path.abspath(__file__)) 
+ppd_ = os.path.dirname(os.path.dirname(cd_)) 
+df_krx = pd.read_feather(os.path.join(ppd_, 'data_collect/data/df_krx.feather'))
+fr_db = get_main_financial_reports_db()
+
+temp_path = os.path.join(cd_, 'temp/')
+os.makedirs(temp_path, exist_ok=True)
+qa_db_file = os.path.join(cd_, 'temp/qa_db.pkl') 
+
 # -----------------------------------------------------------------------------------
 # QA_DB (quarterly analysis dbs)
 # - infrequent update is ok (though fast), no need to daily update
@@ -43,6 +55,7 @@ MAX_QUARTERS = 24  # Maximum quarters to analyze
 STEPS = 4  # Number of quarters to reduce analysis window
 REVENUE_DIP_THRESHOLD = -5.0  # Threshold for a significant revenue dip (%, quarter)
 TODAY = pd.Timestamp.today().strftime('%Y-%m-%d')
+
 
 def slope_and_acc(series: pd.Series):
     series = series.dropna().astype(float)
@@ -184,16 +197,7 @@ def qa_db_builder(codelist, fr_db, df_krx, qa_db_file, qa_db = None):
     return qa_db
 
 if __name__ == "__main__":
-    cd_ = os.path.dirname(os.path.abspath(__file__))
-    ppd_ = os.path.dirname(os.path.dirname(cd_)) 
-    df_krx_file = os.path.join(ppd_, 'data_collect/data/df_krx.feather') 
-
-    fr_db = get_main_financial_reports_db()
-    df_krx = pd.read_feather(df_krx_file)
-
+    # create and save qa_db file
     codelist = df_krx.index.tolist()
-
-    # save qa_db file
-    qa_db_file = os.path.join(cd_, 'temp/qa_db.pkl') 
     qa_db = qa_db_builder(codelist, fr_db, df_krx, qa_db_file) 
     print(qa_db)

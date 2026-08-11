@@ -11,19 +11,13 @@ from datetime import datetime, timedelta
 import io, os
 import pandas as pd
 from tqdm import tqdm
-from trader.tools.dc_tools import get_main_financial_reports_db, get_quarterly_data, plot_company_financial_summary
-from trader.tools.cca_tools import get_score_trend, get_periods, L4_rolling_addition, prev_quarter_str
-from trader.tools.cca_tools import df_krx, qa_db, top_N
-
-fr_db = get_main_financial_reports_db()
-cd_ = os.path.dirname(os.path.abspath(__file__))
-ppd_ = os.path.dirname(os.path.dirname(cd_)) 
-pr_db_file = os.path.join(ppd_, 'data_collect/data/price_db.feather') 
-pr_db = pd.read_feather(pr_db_file)
-cca_dict_file = os.path.join(cd_, 'temp/cca_dict.pkl')
+from trader.tools.dc_tools import get_quarterly_data, plot_company_financial_summary
+from trader.analysis.cca.cca_tools import get_score_trend, get_periods, L4_rolling_addition, prev_quarter_str
+from trader.analysis.cca.cca_tools import df_krx, fr_db, pr_db, qa_db_file, cca_dict_file, top_N
 
 target_account = 'net_income' # for some companies, api does not provide net income data
 target_account = 'operating_income' # PER is then based on operating income, could be different from other PER publications
+qa_db = pd.read_pickle(qa_db_file)
 
 # mp_db: just to get price, marcap, PER, PBR
 def get_market_performance_db(code, fr_db=fr_db, pr_db=pr_db, target_account=target_account, MAX_QUARTERS=40): # e.g., 10 years or use MAX_QUARTERS in qa_db generation
@@ -109,7 +103,7 @@ def _post_process(score_trend, qa_db=qa_db, fr_db=fr_db, pr_db=pr_db, df_krx=df_
 
     return cca_dict
 
-def get_cca_dict(cca_dict_file, force_recreate=False):
+def get_cca_dict(cca_dict_file=cca_dict_file, force_recreate=False):
     os.makedirs(os.path.dirname(cca_dict_file), exist_ok=True)
 
     _today = datetime.today().strftime('%Y-%m-%d')
@@ -143,15 +137,8 @@ def get_cca_dict(cca_dict_file, force_recreate=False):
 import matplotlib.pyplot as plt
 from pptx import Presentation
 from pptx.util import Inches
-from trader.tools.cca_tools import styled_df_to_image, gen_data_in_html 
-
-temp_path = os.path.join(cd_, 'temp/')
-os.makedirs(temp_path, exist_ok=True)
-
-CCA_template = os.path.join(cd_, 'util/CCA_template.pptx')
-
-results_path = os.path.join(cd_, 'results/')
-os.makedirs(results_path, exist_ok=True)
+from trader.analysis.cca.cca_tools import styled_df_to_image, gen_data_in_html 
+from trader.analysis.cca.cca_tools import results_path, temp_path, CCA_template
 
 today_hm = pd.Timestamp.today().strftime('%Y-%m-%d_%H%M')
 CCA_result = os.path.join(results_path, f'CCA_result_{today_hm}.pptx')
@@ -198,7 +185,7 @@ def generate_PPT(cca_dict, fr_db=fr_db, pr_db=pr_db, summary_only=False, top_N: 
 
             slide = prs.slides.add_slide(prs.slide_layouts[1])
             ph = next(iter(slide.placeholders)) 
-            ph.text = 'tb-implemented'
+            ph.text = 'tb-implemented' # company specific info to be filled
 
             slide = prs.slides.add_slide(prs.slide_layouts[2])
             img_stream = plot_company_financial_summary(fr_db, pr_db, code, None) 
@@ -213,5 +200,5 @@ def generate_PPT(cca_dict, fr_db=fr_db, pr_db=pr_db, summary_only=False, top_N: 
     print("PPT generation completed...")
 
 if __name__ == "__main__":
-    cca_dict = get_cca_dict(cca_dict_file, force_recreate=False)
+    cca_dict = get_cca_dict(force_recreate=False)
     generate_PPT(cca_dict, summary_only=False)
