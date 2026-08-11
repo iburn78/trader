@@ -20,9 +20,9 @@ outshares: # shares outstanding
 volume: # shares traded 
 amount: money amount traded (sum of each block)
 slope: liear regression over all periods since start_date
-recent_inc: comparing last 2 priods
-ltm: last twelve months
-aggregation: d, w, m q (refer to the BLOCK_MAP)
+recent_inc: comparing last 2 priods (e.g., last period movement)
+ltm: last twelve months (last 4 qurarters)
+aggregation: d, w, m, q (refer to the BLOCK_MAP)
 '''
 df_krx, prices, volumes, fr_main_db = load_market_data()
 kospi, kosdaq, kospi200 = get_index()
@@ -32,7 +32,7 @@ MEASURE_DURATION = 20 # days
 BASE_DURATION = 120 # days
 DEFAULT_START_DATE = '2024-01-01'
 
-# ASSESS
+# ASSESS parameters
 OPINCOME_GROWTH_RATE = 0.05 # per quarter 
 OPMARGIN_THRESHOLD = 0.25 
 PER_LOW = 7
@@ -41,9 +41,9 @@ VOLATILITY_THRESHOLD = 0.33
 AMOUNT_DAILY_THRESHOLD = 0.33 
 ALPHA_DAILY_THRESHOLD = 0.0004 # to convert yearly: x 250 (busines days) 
 
-# single code data that contains raw data for max period
 @dataclass
 class CodeData:
+    # single code data that contains raw data for max period
     code: str
     time: pd.Timestamp | None = None # creation time
 
@@ -67,7 +67,7 @@ class CodeData:
 
         outshares = df_krx.at[self.code, 'Stocks']
         ma_data = pd.DataFrame({
-            'marcap': prices[self.code] * outshares / self.unit, # type:ignore
+            'marcap': prices[self.code] * outshares / self.unit,
             'amount_daily': volumes[self.code] * prices[self.code] / self.unit,
         })
 
@@ -89,7 +89,7 @@ class CodeData:
         # ----------------------------------------------------------------------------
         now = datetime.now()
         if is_KRX_open(now=now):
-            ma_data = ma_data[ma_data.index.date != now.date()]  # type:ignore
+            ma_data = ma_data[ma_data.index.date != now.date()]
 
         return ma_data
     
@@ -129,14 +129,17 @@ class CodeData:
         # return with ffill 
         return fr_data.ffill()
 
-# a sector analysis
 class SectorAnalysis: 
+    # a sector analysis
     def __init__(self):
         self.meta = {'updated': pd.Timestamp.now().strftime("%Y-%m-%d %H:%M")}
         self.codelist = [] 
         self.assess_data = {}
-        self.is_index = False
-        self.is_company = False
+
+        # this class basically assumes a group of code (a sector, codelist, or component), but can handle company and index too
+        self.is_index = False # fr_data not available
+        self.is_company = False # self.codelist = [code] (i.e., single code)
+        self.is_component = False # self.component = component (i.e., accessible to component)
 
     # =========================================================
     # Creation
@@ -181,6 +184,8 @@ class SectorAnalysis:
         return self.from_codelist(codelist=[code], name=df_krx.at[code, 'Name'], unit=unit, fill=fill, start_date=start_date)
 
     def from_component(self, component: 'Component', unit=None, fill=False, start_date=DEFAULT_START_DATE): 
+        self.is_component = True
+        self.component = component
         return self.from_codelist(codelist=component.get_codelist(), name=component.name, unit=unit, fill=fill, start_date=start_date)
     
     # function that sums multiple serieses
@@ -190,35 +195,42 @@ class SectorAnalysis:
     def _post_creation(self):
         self._build_assess_data()
         self._perform_assess()
+        self._save_analysis_to_json() # autosave
 
-    def save_financials_to_json(self: SectorAnalysis, directory=PROFILES_DIR):
-        if not self.is_company:
+    def _save_analysis_to_json(self: SectorAnalysis, directory=None):
+        if self.is_index: 
+            return
+
+        if self.is_component:
             ###_ to implement this too
             print(f"not implemented yet - to be implemented to component too")
             return
-        code = self.codelist[0]
 
-        _files = list(Path(directory).glob(f"{code}*.json"))
-        if len(_files) > 1:
-            raise ValueError(f"Expected 1 file for {code}, found {len(_files)}")
-        elif len(_files) == 0: 
-            _f = code+'_'+sanitized_filename(df_krx.at[code, 'Name'])+'.json'
-            print(f"Not exising for {code}: {_f} will be created")
-            json_file = Path(directory) / _f
-            profile = {}
-        else:
-            json_file = _files[0]
-            with open(json_file, 'r', encoding="utf-8") as f:
-                profile = json.load(f)
+        if self.is_company: 
+            if directory is None: directory = PROFILES_DIR
+            code = self.codelist[0]
+            _files = list(Path(directory).glob(f"{code}*.json"))
 
-        profile['financials'] = {
-            'meta': self.meta,
-            'assess_data': self.assess_data,
-            'assess_result': self.assess_result
-        }
+            if len(_files) > 1:
+                raise ValueError(f"Expected 1 file for {code}, found {len(_files)}")
+            elif len(_files) == 0: 
+                _f = code+'_'+sanitized_filename(df_krx.at[code, 'Name'])+'.json'
+                print(f"Not exising for {code}: {_f} will be created")
+                json_file = Path(directory) / _f
+                profile = {}
+            else:
+                json_file = _files[0]
+                with open(json_file, 'r', encoding="utf-8") as f:
+                    profile = json.load(f)
 
-        with open(json_file, 'w', encoding="utf-8") as f:
-            json.dump(profile, f, ensure_ascii=False, indent=4)
+            profile['financials'] = {
+                'meta': self.meta,
+                'assess_data': self.assess_data,
+                'assess_result': self.assess_result
+            }
+
+            with open(json_file, 'w', encoding="utf-8") as f:
+                json.dump(profile, f, ensure_ascii=False, indent=4)
 
     # =========================================================
     # Assessment  
@@ -306,15 +318,14 @@ class SectorAnalysis:
         # ------------------------------------------------------------------
         # alpha and beta
         # ------------------------------------------------------------------
-        _from_start_date = calc_alpha_beta(self.ma_data['marcap'], kospi)
-        _base_duration = calc_alpha_beta(self.ma_data['marcap'][-BASE_DURATION:], kospi)
-        _measure_duration = calc_alpha_beta(self.ma_data['marcap'][-MEASURE_DURATION:], kospi)
+        _from_start_date = calc_alpha_beta(self.ma_data['marcap'], kospi['Close'])
+        _base_duration = calc_alpha_beta(self.ma_data['marcap'][-BASE_DURATION:], kospi['Close'])
+        _measure_duration = calc_alpha_beta(self.ma_data['marcap'][-MEASURE_DURATION:], kospi['Close'])
         res['alpha_beta'] = {
             'from_start_date': _from_start_date,
             'base_duration': _base_duration,
             'measure_duration': _measure_duration,
         }
-
         self.assess_data = res
 
     def _perform_assess(self):
@@ -422,12 +433,12 @@ class SectorAnalysis:
         amount: sum of daily amounts, i.e., subtotal
         """
         # use from start_date
-        usable = (len(self.ma_data.loc[self.meta['start_date']:]) // block_size) * block_size #type:ignore
+        usable = (len(self.ma_data.loc[self.meta['start_date']:]) // block_size) * block_size 
 
         if usable == 0:
             raise ValueError('not enough rows')
 
-        ma_aggr_data = self.ma_data.iloc[-usable:] #type:ignore
+        ma_aggr_data = self.ma_data.iloc[-usable:]
 
         rows = []
         for start in range(0, usable, block_size):
@@ -534,7 +545,7 @@ class SectorAnalysis:
         _mc_col = self._aggr_dataset['marcap'].dropna()
 
         mc_fitted = (
-            self._aggr_ma_plotdata.at['slope', 'marcap'] #type:ignore
+            self._aggr_ma_plotdata.at['slope', 'marcap']
             * np.arange(len(_mc_col))
             + self._aggr_ma_plotdata.at['intercept', 'marcap']
         )
@@ -568,7 +579,7 @@ class SectorAnalysis:
         _amt_col = self._aggr_dataset['amount_subtotal'].dropna()
 
         amt_fitted = ( 
-            self._aggr_ma_plotdata.at['slope', 'amount_subtotal'] #type:ignore
+            self._aggr_ma_plotdata.at['slope', 'amount_subtotal']
             * np.arange(len(_amt_col))
             + self._aggr_ma_plotdata.at['intercept', 'amount_subtotal']
         ) 
@@ -820,3 +831,24 @@ class SectorAnalysis:
         ax.xaxis.set_major_formatter(
             mdates.DateFormatter('%Y-%m-%d')
         )
+
+if __name__ == "__main__": 
+
+    # single company
+    code = '005930'
+    sc = SectorAnalysis().from_code(code)
+    sc.plot()
+    sc.print()
+
+    # component
+    from scraper.tools.models import CV_Manager, Component
+    cvm = CV_Manager()
+    component: Component = cvm.get_component('Memory')
+    sc = SectorAnalysis().from_component(component)
+    sc.plot()
+    sc.print()
+
+    # index
+    sa = SectorAnalysis().from_index('KOSDAQ')
+    sa.plot()
+    sa.print()

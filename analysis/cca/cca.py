@@ -16,10 +16,11 @@ from trader.tools.cca_tools import get_score_trend, get_periods, L4_rolling_addi
 from trader.tools.cca_tools import df_krx, qa_db, top_N
 
 fr_db = get_main_financial_reports_db()
-pd_ = os.path.dirname(os.path.dirname(os.path.abspath(__file__))) # ..
-pr_db_file = os.path.join(pd_, 'data_collect/data/price_db.feather') 
+cd_ = os.path.dirname(os.path.abspath(__file__))
+ppd_ = os.path.dirname(os.path.dirname(cd_)) 
+pr_db_file = os.path.join(ppd_, 'data_collect/data/price_db.feather') 
 pr_db = pd.read_feather(pr_db_file)
-cca_dict_file = os.path.join(pd_, 'data_collect/cca/temp/cca_dict.pkl')
+cca_dict_file = os.path.join(cd_, 'temp/cca_dict.pkl')
 
 target_account = 'net_income' # for some companies, api does not provide net income data
 target_account = 'operating_income' # PER is then based on operating income, could be different from other PER publications
@@ -144,13 +145,16 @@ from pptx import Presentation
 from pptx.util import Inches
 from trader.tools.cca_tools import styled_df_to_image, gen_data_in_html 
 
-temp_path = os.path.join(pd_, 'data_collect/cca/temp/')
+temp_path = os.path.join(cd_, 'temp/')
 os.makedirs(temp_path, exist_ok=True)
 
-CCA_template = os.path.join(pd_, 'data_collect/cca/util/CCA_template.pptx')
+CCA_template = os.path.join(cd_, 'util/CCA_template.pptx')
+
+results_path = os.path.join(cd_, 'results/')
+os.makedirs(results_path, exist_ok=True)
 
 today_hm = pd.Timestamp.today().strftime('%Y-%m-%d_%H%M')
-CCA_result = os.path.join(pd_, f'data_collect/cca/CCA_result_{today_hm}.pptx')
+CCA_result = os.path.join(results_path, f'CCA_result_{today_hm}.pptx')
 
 def _mp_plot(mp_db, columns=['price', 'PER', 'PBR']):
     fig, axes = plt.subplots(len(columns), 1, figsize=(12, 4 * len(columns)), sharex=True)

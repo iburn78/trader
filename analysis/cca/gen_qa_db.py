@@ -184,8 +184,9 @@ def qa_db_builder(codelist, fr_db, df_krx, qa_db_file, qa_db = None):
     return qa_db
 
 if __name__ == "__main__":
-    pd_ = os.path.dirname(os.path.dirname(os.path.abspath(__file__))) # ..
-    df_krx_file = os.path.join(pd_, 'data_collect/data/df_krx.feather') 
+    cd_ = os.path.dirname(os.path.abspath(__file__))
+    ppd_ = os.path.dirname(os.path.dirname(cd_)) 
+    df_krx_file = os.path.join(ppd_, 'data_collect/data/df_krx.feather') 
 
     fr_db = get_main_financial_reports_db()
     df_krx = pd.read_feather(df_krx_file)
@@ -193,5 +194,6 @@ if __name__ == "__main__":
     codelist = df_krx.index.tolist()
 
     # save qa_db file
-    qa_db_file = os.path.join(pd_, 'data_collect/data/qa_db.pkl') 
+    qa_db_file = os.path.join(cd_, 'temp/qa_db.pkl') 
     qa_db = qa_db_builder(codelist, fr_db, df_krx, qa_db_file) 
+    print(qa_db)

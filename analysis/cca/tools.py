@@ -7,12 +7,20 @@ from html2image import Html2Image
 from datetime import datetime
 import subprocess
 
-pd_ = os.path.dirname(os.path.dirname(os.path.abspath(__file__))) # ..
-df_krx_file = os.path.join(pd_, 'data_collect/data/df_krx.feather') 
+cd_ = os.path.dirname(os.path.abspath(__file__))
+ppd_ = os.path.dirname(os.path.dirname(cd_)) 
+df_krx_file = os.path.join(ppd_, 'data_collect/data/df_krx.feather') 
 df_krx = pd.read_feather(df_krx_file)
 
-qa_db_file = os.path.join(pd_, 'data_collect/data/qa_db.pkl') 
+temp_path = os.path.join(cd_, 'temp/')
+os.makedirs(temp_path, exist_ok=True)
+
+qa_db_file = os.path.join(cd_, 'temp/qa_db.pkl') 
 qa_db = pd.read_pickle(qa_db_file)
+
+###_ TEMP PATH, RESULT PATHS ETC >>>>> REORGANIZE AND TEST IN WIN
+
+
 
 # ----------------------------------------------------------
 # Classification Logic
