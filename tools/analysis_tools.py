@@ -4,9 +4,10 @@ import holidays
 from pathlib import Path
 import pandas as pd
 import numpy as np
-import FinanceDataReader as fdr
 from trader.tools.dc_tools import get_main_financial_reports_db
 import json
+import re
+import os
 
 KRW_UNIT_KR = {
     1e12: 'jo',
@@ -21,18 +22,13 @@ def load_market_data():
     PRICE_DB_PATH = DATA_DIR / 'price_db.feather'
     VOLUME_DB_PATH = DATA_DIR / 'volume_db.feather'
 
-    df_krx = gen_df_krx()
+    pd_ = os.path.dirname(os.path.dirname(os.path.abspath(__file__))) 
+    df_krx = pd.read_feather(os.path.join(pd_, 'data_collect/data/df_krx.feather'))
     prices = pd.read_feather(PRICE_DB_PATH)
     volumes = pd.read_feather(VOLUME_DB_PATH)
     fr_main_db = get_main_financial_reports_db()
 
     return df_krx, prices, volumes, fr_main_db
-
-# not heavy, always rebuild
-def gen_df_krx():
-    df_krx = fdr.StockListing('KRX')[['Code', 'Name', 'Market', 'Close', 'Volume', 'Amount', 'Marcap', 'Stocks']].set_index('Code')
-    df_krx = df_krx.loc[df_krx['Market'].str.contains('KOSPI|KOSDAQ')]
-    return df_krx
 
 def is_KRX_open(now=None, strict=False):
     """
@@ -137,6 +133,11 @@ def calc_alpha_beta(
         'alpha': round_sig(alpha),
         'beta': round_sig(beta),
     }
+
+def sanitized_filename(name):
+    name = re.sub(r'[<>:"/\\|?*]+', "", name)
+    filename = "_".join(name.split())
+    return filename
 
 # local gemma4 (installed via ollama)
 # standard way to call an local model (using openai template)

@@ -11,6 +11,10 @@ sb = SectorAnalysis().from_code(code)
 sm = SectorAnalysis().from_index('KOSPI')
 
 sa.print()
-
-# %%
 sb.print()
+
+code = '009830' 
+code = '020150'
+code = '021240'
+sc = SectorAnalysis().from_code(code)
+sc.save_financials_to_json()

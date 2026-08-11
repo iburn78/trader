@@ -5,11 +5,14 @@ import numpy as np
 import pandas as pd
 from functools import reduce
 from datetime import datetime
-from trader.tools.analysis_tools import is_KRX_open, load_market_data, get_slope_intercept, KRW_UNIT_KR, round_sig, calc_increment, calc_alpha_beta, dprint
-from trader.tools.dc_tools import get_index, set_KoreanFonts
+import json
+from pathlib import Path
 import matplotlib.pyplot as plt
 import matplotlib.dates as mdates
 from matplotlib.ticker import FuncFormatter
+from trader.tools.analysis_tools import is_KRX_open, load_market_data, get_slope_intercept, KRW_UNIT_KR, round_sig, calc_increment, calc_alpha_beta, dprint, sanitized_filename
+from trader.tools.dc_tools import get_index, set_KoreanFonts
+from scraper.tools.tools import PROFILES_DIR
 
 '''
 ma: MarCap (until last day if is_KRX_open == True; if strict False then include today if it is after 12:00), Amount (sum of a period)
@@ -22,7 +25,7 @@ ltm: last twelve months
 aggregation: d, w, m q (refer to the BLOCK_MAP)
 '''
 df_krx, prices, volumes, fr_main_db = load_market_data()
-kospi = get_index('KOSPI')['Close']
+kospi, kosdaq, kospi200 = get_index()
 
 DEFAULT_KRW_UNIT: float = 1e9 # 10 억원
 MEASURE_DURATION = 20 # days 
@@ -133,20 +136,20 @@ class SectorAnalysis:
         self.codelist = [] 
         self.assess_data = {}
         self.is_index = False
+        self.is_company = False
 
     # =========================================================
     # Creation
     # =========================================================
     def from_index(self, name: str, unit=1e12, start_date=DEFAULT_START_DATE):
-        # FinanceDataReader
         self.meta = self.meta | {
             'name': name,
             'unit': unit if unit else DEFAULT_KRW_UNIT, # KRW unit
             'start_date': start_date, # start date in "yyyy-mm-dd" format
         }
 
-        _ma_data = get_index(name)
-        _ma_data = _ma_data.rename(columns={'Close': 'index_data', 'MarCap': 'marcap', 'Amount': 'amount_daily'})
+        _index = kospi if name == 'KOSPI' else kosdaq if name == "KOSDAQ" else kospi200 if name == "KOSPI200" else None
+        _ma_data = _index.rename(columns={'Close': 'index_data', 'MarCap': 'marcap', 'Amount': 'amount_daily'})
         _ma_data['marcap'] = _ma_data['marcap']/self.meta['unit']
         _ma_data['amount_daily'] = _ma_data['amount_daily']/self.meta['unit']
         self.ma_data = _ma_data
@@ -157,6 +160,7 @@ class SectorAnalysis:
         self.codelist = codelist
         self.meta = self.meta | {
             'name': name, 
+            'code': codelist[0] if self.is_company else codelist,
             'unit': unit if unit else DEFAULT_KRW_UNIT, # KRW unit
             'start_date': start_date, # start date in "yyyy-mm-dd" format
         }
@@ -173,6 +177,7 @@ class SectorAnalysis:
         return self
 
     def from_code(self, code: str, unit=None, fill=False, start_date=DEFAULT_START_DATE):
+        self.is_company = True
         return self.from_codelist(codelist=[code], name=df_krx.at[code, 'Name'], unit=unit, fill=fill, start_date=start_date)
 
     def from_component(self, component: 'Component', unit=None, fill=False, start_date=DEFAULT_START_DATE): 
@@ -185,6 +190,35 @@ class SectorAnalysis:
     def _post_creation(self):
         self._build_assess_data()
         self._perform_assess()
+
+    def save_financials_to_json(self: SectorAnalysis, directory=PROFILES_DIR):
+        if not self.is_company:
+            ###_ to implement this too
+            print(f"not implemented yet - to be implemented to component too")
+            return
+        code = self.codelist[0]
+
+        _files = list(Path(directory).glob(f"{code}*.json"))
+        if len(_files) > 1:
+            raise ValueError(f"Expected 1 file for {code}, found {len(_files)}")
+        elif len(_files) == 0: 
+            _f = code+'_'+sanitized_filename(df_krx.at[code, 'Name'])+'.json'
+            print(f"Not exising for {code}: {_f} will be created")
+            json_file = Path(directory) / _f
+            profile = {}
+        else:
+            json_file = _files[0]
+            with open(json_file, 'r', encoding="utf-8") as f:
+                profile = json.load(f)
+
+        profile['financials'] = {
+            'meta': self.meta,
+            'assess_data': self.assess_data,
+            'assess_result': self.assess_result
+        }
+
+        with open(json_file, 'w', encoding="utf-8") as f:
+            json.dump(profile, f, ensure_ascii=False, indent=4)
 
     # =========================================================
     # Assessment  
@@ -203,8 +237,7 @@ class SectorAnalysis:
             print('no assess available for index data')
             return False
 
-
-        fr = self.fr_data # drop_duplicates()
+        fr = self.fr_data # drop_duplicates() not applied here
 
         # side="right" and -1 will give data from the quarter that start_date is in
         start_idx = max(0, fr.index.searchsorted(self.meta['start_date'], side="right") - 1) 
@@ -285,6 +318,7 @@ class SectorAnalysis:
         self.assess_data = res
 
     def _perform_assess(self):
+        ###_ to be refined
         oh = self.assess_data['opincome_health']
         basics = False
         if oh['positive_last_4qtrs'] and oh['higher_than_comp'] and oh['slope'] > 0:
@@ -300,21 +334,21 @@ class SectorAnalysis:
 
         # PER_level
         per = self.assess_data['PER']
-        if per['PER_ltm'] <= PER_LOW: PER_level = 'L'
-        elif per['PER_ltm'] <= PER_MED: PER_level = 'M'
-        else: PER_level = 'H'
+        if per['PER_ltm'] <= PER_LOW: PER_level = 'Low'
+        elif per['PER_ltm'] <= PER_MED: PER_level = 'Mid'
+        else: PER_level = 'High'
 
         # volatility movement in measure period
         vol = self.assess_data['volatility_rolling_pct']
-        if vol['measure_to_base'] < 1-VOLATILITY_THRESHOLD: volatility = 'U'
+        if vol['measure_to_base'] < 1-VOLATILITY_THRESHOLD: volatility = 'Dn'
         elif vol['measure_to_base'] < 1+VOLATILITY_THRESHOLD: volatility = '-'
-        else: volatility = 'D'
+        else: volatility = 'Up'
 
         # amount movement in measure period
         amt = self.assess_data['amount_daily']
-        if amt['measure_to_base'] < 1-AMOUNT_DAILY_THRESHOLD: amount = 'U'
+        if amt['measure_to_base'] < 1-AMOUNT_DAILY_THRESHOLD: amount = 'Dn'
         elif amt['measure_to_base'] < 1+AMOUNT_DAILY_THRESHOLD: amount = '-'
-        else: amount = 'D'
+        else: amount = 'Up'
 
         # alpha_level
         alp = self.assess_data['alpha_beta']['measure_duration']
@@ -324,18 +358,18 @@ class SectorAnalysis:
 
         # Choose Representative Categories
         market_sentiment = 'unchanged'
-        if amount == 'U' and volatility == 'D': market_sentiment = 'confidence_created'
-        elif amount == 'U' and volatility == 'U': market_sentiment = 'unstable'
-        elif amount == 'D' and volatility == 'D': market_sentiment = 'events_consumed'
-        elif amount == 'D' and volatility == 'U': market_sentiment = 'speculators_remained'
+        if amount == 'Up' and volatility == 'Dn': market_sentiment = 'confidence_created'
+        elif amount == 'Up' and volatility == 'Up': market_sentiment = 'unstable'
+        elif amount == 'Dn' and volatility == 'Dn': market_sentiment = 'events_consumed'
+        elif amount == 'Dn' and volatility == 'Up': market_sentiment = 'speculators_remained'
 
         # --------------------------------------------
         # categorization
         # --------------------------------------------
         if basics and finantially_sound:
-            if PER_level == 'L':
+            if PER_level == 'Low':
                 category = 'A'
-            elif PER_level == 'M': 
+            elif PER_level == 'Mid': 
                 category = 'B'
             else: 
                 category = 'C'
@@ -786,6 +820,3 @@ class SectorAnalysis:
         ax.xaxis.set_major_formatter(
             mdates.DateFormatter('%Y-%m-%d')
         )
-
-
-# %%

@@ -12,4 +12,4 @@ exec >> "$LOG_FILE" 2>&1
 source "${trader}/venv/bin/activate"
 
 cd "${trader}/data_collect"
-python -m 00_gen_market_dbs
+python -m gen_market_dbs

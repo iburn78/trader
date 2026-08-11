@@ -143,7 +143,6 @@ import matplotlib.pyplot as plt
 from pptx import Presentation
 from pptx.util import Inches
 from trader.tools.cca_tools import styled_df_to_image, gen_data_in_html 
-from trader.tools.stockinfo_api import get_stockinfo_exec_summary 
 
 temp_path = os.path.join(pd_, 'data_collect/cca/temp/')
 os.makedirs(temp_path, exist_ok=True)
@@ -195,7 +194,7 @@ def generate_PPT(cca_dict, fr_db=fr_db, pr_db=pr_db, summary_only=False, top_N: 
 
             slide = prs.slides.add_slide(prs.slide_layouts[1])
             ph = next(iter(slide.placeholders)) 
-            ph.text = get_stockinfo_exec_summary(code)
+            ph.text = 'tb-implemented'
 
             slide = prs.slides.add_slide(prs.slide_layouts[2])
             img_stream = plot_company_financial_summary(fr_db, pr_db, code, None) 

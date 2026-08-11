@@ -34,7 +34,6 @@ yearly_closing_prices.index = yearly_closing.index.year
 # ---------------------------------------------------------------
 from trader.tools.graph_tools import *
 from trader.graph.drawer import Drawer
-import yfinance as yf
 
 # Define tickers for global indices
 indices = {
