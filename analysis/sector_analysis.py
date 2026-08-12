@@ -846,6 +846,7 @@ if __name__ == "__main__":
 
     # single company
     code = '005930'
+    code = '001750'
     sc = SectorAnalysis().from_code(code)
     sc.plot()
     sc.print()
