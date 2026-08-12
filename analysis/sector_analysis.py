@@ -12,7 +12,7 @@ import matplotlib.dates as mdates
 from matplotlib.ticker import FuncFormatter
 from trader.tools.analysis_tools import is_KRX_open, load_market_data, get_slope_intercept, KRW_UNIT_KR, round_sig, calc_increment, calc_alpha_beta, dprint, sanitized_filename
 from trader.tools.dc_tools import get_index, set_KoreanFonts
-from scraper.tools.tools import PROFILES_DIR
+from scraper.tools.tools import PROFILES_DIR, COMPONENTS_DIR
 
 '''
 ma: MarCap (until last day if is_KRX_open == True; if strict False then include today if it is after 12:00), Amount (sum of a period)
@@ -198,39 +198,50 @@ class SectorAnalysis:
         self._save_analysis_to_json() # autosave
 
     def _save_analysis_to_json(self: SectorAnalysis, directory=None):
-        if self.is_index: 
+        if self.is_index:
             return
 
         if self.is_component:
-            ###_ to implement this too
-            print(f"not implemented yet - to be implemented to component too")
+            directory = COMPONENTS_DIR if directory is None else directory
+
+            key = sanitized_filename(self.meta['name'])
+            new_filename = f'{key}.json'
+            label = f'component {key}'
+
+        elif self.is_company:
+            directory = PROFILES_DIR if directory is None else directory
+            code = self.codelist[0]
+            name = df_krx.at[code, 'Name']
+
+            key = code
+            new_filename = f'{code}_{sanitized_filename(name)}.json'
+            label = f'company {code}'
+
+        else:
             return
 
-        if self.is_company: 
-            if directory is None: directory = PROFILES_DIR
-            code = self.codelist[0]
-            _files = list(Path(directory).glob(f"{code}*.json"))
+        files = list(Path(directory).glob(f'{key}*.json'))
 
-            if len(_files) > 1:
-                raise ValueError(f"Expected 1 file for {code}, found {len(_files)}")
-            elif len(_files) == 0: 
-                _f = code+'_'+sanitized_filename(df_krx.at[code, 'Name'])+'.json'
-                print(f"Not exising for {code}: {_f} will be created")
-                json_file = Path(directory) / _f
-                profile = {}
-            else:
-                json_file = _files[0]
-                with open(json_file, 'r', encoding="utf-8") as f:
-                    profile = json.load(f)
+        if len(files) > 1:
+            raise ValueError(f"Expected 1 file for {key}, found {len(files)}")
 
-            profile['financials'] = {
-                'meta': self.meta,
-                'assess_data': self.assess_data,
-                'assess_result': self.assess_result
-            }
+        if files:
+            json_file = files[0]
+            with open(json_file, 'r', encoding='utf-8') as f:
+                data = json.load(f)
+        else:
+            json_file = Path(directory) / new_filename
+            print(f"json file with {label} does not exist: {new_filename} will be created")
+            data = {}
 
-            with open(json_file, 'w', encoding="utf-8") as f:
-                json.dump(profile, f, ensure_ascii=False, indent=4)
+        data['financials'] = {
+            'meta': self.meta,
+            'assess_data': self.assess_data,
+            'assess_result': self.assess_result,
+        }
+
+        with open(json_file, 'w', encoding='utf-8') as f:
+            json.dump(data, f, ensure_ascii=False, indent=4)
 
     # =========================================================
     # Assessment  
@@ -329,7 +340,6 @@ class SectorAnalysis:
         self.assess_data = res
 
     def _perform_assess(self):
-        ###_ to be refined
         oh = self.assess_data['opincome_health']
         basics = False
         if oh['positive_last_4qtrs'] and oh['higher_than_comp'] and oh['slope'] > 0:
