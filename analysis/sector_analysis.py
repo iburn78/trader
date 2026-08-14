@@ -159,6 +159,8 @@ class SectorAnalysis:
         return self
 
     def from_codelist(self, codelist: list, name='', unit=None, fill=False, start_date=DEFAULT_START_DATE):
+        if len(codelist) != len(set(codelist)): raise ValueError(f'codelist should not contain any duplications: {codelist}')
+
         self.codelist = codelist
         self.meta['name'] = name
         if self.is_company:
