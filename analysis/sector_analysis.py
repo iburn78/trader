@@ -138,8 +138,7 @@ class SectorAnalysis:
 
         # this class basically assumes a group of code (a sector, codelist, or component), but can handle company and index too
         self.is_index = False # fr_data not available
-        self.is_company = False # self.codelist = [code] (i.e., single code)
-        self.is_component = False # self.component = component (i.e., accessible to component)
+        self.is_company = False # self.codelist = [code] 
 
     # =========================================================
     # Creation
@@ -161,9 +160,13 @@ class SectorAnalysis:
 
     def from_codelist(self, codelist: list, name='', unit=None, fill=False, start_date=DEFAULT_START_DATE):
         self.codelist = codelist
+        self.meta['name'] = name
+        if self.is_company:
+            self.meta['code'] = codelist[0]
+        else:
+            self.meta['codelist'] = codelist
+
         self.meta = self.meta | {
-            'name': name, 
-            'code': codelist[0] if self.is_company else codelist,
             'unit': unit if unit else DEFAULT_KRW_UNIT, # KRW unit
             'start_date': start_date, # start date in "yyyy-mm-dd" format
         }
@@ -184,8 +187,6 @@ class SectorAnalysis:
         return self.from_codelist(codelist=[code], name=df_krx.at[code, 'Name'], unit=unit, fill=fill, start_date=start_date)
 
     def from_component(self, component: 'Component', unit=None, fill=False, start_date=DEFAULT_START_DATE): 
-        self.is_component = True
-        self.component = component
         return self.from_codelist(codelist=component.get_codelist(), name=component.name, unit=unit, fill=fill, start_date=start_date)
     
     # function that sums multiple serieses
@@ -201,14 +202,7 @@ class SectorAnalysis:
         if self.is_index:
             return
 
-        if self.is_component:
-            directory = COMPONENTS_DIR if directory is None else directory
-
-            key = sanitized_filename(self.meta['name'])
-            new_filename = f'{key}.json'
-            label = f'component {key}'
-
-        elif self.is_company:
+        if self.is_company:
             directory = PROFILES_DIR if directory is None else directory
             code = self.codelist[0]
             name = df_krx.at[code, 'Name']
@@ -218,7 +212,10 @@ class SectorAnalysis:
             label = f'company {code}'
 
         else:
-            return
+            directory = COMPONENTS_DIR if directory is None else directory
+            key = sanitized_filename(self.meta['name'])
+            new_filename = f'{key}.json'
+            label = f'component {key}'
 
         files = list(Path(directory).glob(f'{key}*.json'))
 
