@@ -1,14 +1,20 @@
 from trader.analysis.sector_analysis import SectorAnalysis
-from scraper.models.component_manager import ComponentManager
+from scraper.models.component import ComponentManager
+from scraper.models.valuechain import ValueChainManager
 
-component_name = "Memory"
-component = ComponentManager().get_item(component_name)
+valuechain_name = "Electronics"
+vcm = ValueChainManager()
+cm = ComponentManager()
+vc = vcm.get_item(key=valuechain_name)
 
-# generate sa for component itself
-SectorAnalysis().from_component(component)
+###_ need to add VC financials (save)
+# SectorAnalysis().from_codelist(vc.get_codelist_set())
 
-# generate sa for companies in the component
-for code in component.get_codelist():
-    SectorAnalysis().from_code(code)
+for component_name in vc.components: 
+    cp = cm.get_item(component_name)
+    # generate sa for component itself
+    SectorAnalysis().from_component(cp)
 
-
+    # generate sa for companies in the component
+    for code in cp.get_codelist():
+        SectorAnalysis().from_code(code)

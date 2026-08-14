@@ -213,6 +213,7 @@ class SectorAnalysis:
             new_filename = f'{code}_{sanitized_filename(name)}.json'
             label = f'company {code}'
 
+        ###_ need revise to save VC too
         else:
             directory = COMPONENTS_DIR if directory is None else directory
             key = sanitized_filename(self.meta['name'])
