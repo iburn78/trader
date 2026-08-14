@@ -230,7 +230,7 @@ class SectorAnalysis:
                 data = json.load(f)
         else:
             json_file = Path(directory) / new_filename
-            print(f"json file with {label} does not exist: {new_filename} will be created")
+            print(f"json file with {label} does not exist: {new_filename} to be created")
             data = {}
 
         data['financials'] = {
@@ -851,9 +851,9 @@ if __name__ == "__main__":
     sc.print()
 
     # component
-    from scraper.tools.models import CV_Manager, Component
-    cvm = CV_Manager()
-    component: Component = cvm.get_component('Memory')
+    from scraper.models.component_manager import ComponentManager
+    cm = ComponentManager()
+    component = cm.get_item('Memory')
     sc = SectorAnalysis().from_component(component)
     sc.plot()
     sc.print()
