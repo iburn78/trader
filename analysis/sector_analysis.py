@@ -12,7 +12,7 @@ import matplotlib.dates as mdates
 from matplotlib.ticker import FuncFormatter
 from trader.tools.analysis_tools import is_KRX_open, load_market_data, get_slope_intercept, KRW_UNIT_KR, round_sig, calc_increment, calc_alpha_beta, dprint, sanitized_filename
 from trader.tools.dc_tools import get_index, set_KoreanFonts
-from scraper.tools.tools import PROFILES_DIR, COMPONENTS_DIR
+from scraper.tools.tools import PROFILES_DIR, COMPONENTS_DIR, VALUECHAIN_DIR
 
 '''
 ma: MarCap (until last day if is_KRX_open == True; if strict False then include today if it is after 12:00), Amount (sum of a period)
@@ -139,6 +139,9 @@ class SectorAnalysis:
         # this class basically assumes a group of code (a sector, codelist, or component), but can handle company and index too
         self.is_index = False # fr_data not available
         self.is_company = False # self.codelist = [code] 
+        self.is_component = False 
+        self.is_valuechain = False 
+        self._dest_dir = None
 
     # =========================================================
     # Creation
@@ -186,10 +189,19 @@ class SectorAnalysis:
 
     def from_code(self, code: str, unit=None, fill=False, start_date=DEFAULT_START_DATE):
         self.is_company = True
+        self._dest_dir = PROFILES_DIR
         return self.from_codelist(codelist=[code], name=df_krx.at[code, 'Name'], unit=unit, fill=fill, start_date=start_date)
 
     def from_component(self, component: 'Component', unit=None, fill=False, start_date=DEFAULT_START_DATE): 
+        self.is_component = True
+        self._dest_dir = COMPONENTS_DIR
         return self.from_codelist(codelist=component.get_codelist(), name=component.name, unit=unit, fill=fill, start_date=start_date)
+
+    # for from_valuechain, valuechain manager has to be given too
+    def from_valuechain(self, vm: "ValueChainManager", vc: 'ValueChain', unit=None, fill=False, start_date=DEFAULT_START_DATE): 
+        self.is_valuechain = True
+        self._dest_dir = VALUECHAIN_DIR
+        return self.from_codelist(codelist=vm.get_codelist(vc), name=vc.name, unit=unit, fill=fill, start_date=start_date)
     
     # function that sums multiple serieses
     def _add_dfs(self, df_list, fill=False):
@@ -200,12 +212,11 @@ class SectorAnalysis:
         self._perform_assess()
         self._save_analysis_to_json() # autosave
 
-    def _save_analysis_to_json(self: SectorAnalysis, directory=None):
+    def _save_analysis_to_json(self: SectorAnalysis):
         if self.is_index:
             return
 
         if self.is_company:
-            directory = PROFILES_DIR if directory is None else directory
             code = self.codelist[0]
             name = df_krx.at[code, 'Name']
 
@@ -213,14 +224,20 @@ class SectorAnalysis:
             new_filename = f'{code}_{sanitized_filename(name)}.json'
             label = f'company {code}'
 
-        ###_ need revise to save VC too
-        else:
-            directory = COMPONENTS_DIR if directory is None else directory
+        elif self.is_component:
             key = sanitized_filename(self.meta['name'])
             new_filename = f'{key}.json'
             label = f'component {key}'
 
-        files = list(Path(directory).glob(f'{key}*.json'))
+        elif self.is_valuechain:
+            key = sanitized_filename(self.meta['name'])
+            new_filename = f'{key}.json'
+            label = f'valuechain {key}'
+
+        else: 
+            return
+
+        files = list(Path(self._dest_dir).glob(f'{key}*.json'))
 
         if len(files) > 1:
             raise ValueError(f"Expected 1 file for {key}, found {len(files)}")
@@ -230,7 +247,7 @@ class SectorAnalysis:
             with open(json_file, 'r', encoding='utf-8') as f:
                 data = json.load(f)
         else:
-            json_file = Path(directory) / new_filename
+            json_file = Path(self._dest_dir) / new_filename
             print(f"json file with {label} does not exist: {new_filename} to be created")
             data = {}
 
@@ -300,8 +317,9 @@ class SectorAnalysis:
         # ------------------------------------------------------------------
         # opmargin 
         # ------------------------------------------------------------------
-        # last 4 quarter opmargin
-        res['opmargin_last_4qtrs'] = list((opic/rev).iloc[-4:].apply(round_sig))
+        # last 4 quarter opmargin: date is quarter starting date
+        opms = (opic/rev).iloc[-4:].apply(round_sig).to_dict()
+        res['opmargin_last_4qtrs'] = {f'{k:%y}_{k.quarter}Q': v for k, v in opms.items()}
 
         # ------------------------------------------------------------------
         # PER
@@ -349,7 +367,7 @@ class SectorAnalysis:
         if oh['growth_per_qtr'] >= OPINCOME_GROWTH_RATE: 
             finantially_sound = True
 
-        om = self.assess_data['opmargin_last_4qtrs']
+        om = self.assess_data['opmargin_last_4qtrs'].values()
         if all(x > OPMARGIN_THRESHOLD for x in om):
             finantially_sound = True
 
