@@ -84,6 +84,7 @@ def dprint(d: dict):
         print(json.dumps(d, indent=4, ensure_ascii=False))
 
 def calc_increment(s: pd.Series, measure_duration, base_duration): 
+    # designed only for non-negative series
     # args: 
     # - measure_duration: 20 (1 months)
     # - base_duration: 120 (6 months, required length)
@@ -91,14 +92,19 @@ def calc_increment(s: pd.Series, measure_duration, base_duration):
 
     s = s.dropna()
     s = s[s != 0] # dropping zeros too (e.g., suspended days etc)
+    if (s < 0).any(): raise ValueError(f"check nonnegative numbers in {s}")
 
-    slope, intercept = get_slope_intercept(s[-base_duration:])
+    bd = min(len(s), base_duration)
+    md = min(bd, measure_duration)
 
-    # define floor: 
-    _min = min(s[-base_duration:])*0.7
+    slope, intercept = get_slope_intercept(s[-bd:])
 
-    extrapolated_value = max(intercept + slope*(base_duration-measure_duration/2), _min)
-    measure_duration_average = s[-measure_duration:].mean()
+    # define floor 
+    # - if extrapolated_value becomes negative or close to zero, comparison with measure_periodis is meaningless
+    _min = s[-bd:].mean()*0.3
+
+    extrapolated_value = max(intercept + slope*(bd-md/2), _min)
+    measure_duration_average = s[-md:].mean()
 
     measure_to_base_ratio = measure_duration_average/extrapolated_value
 

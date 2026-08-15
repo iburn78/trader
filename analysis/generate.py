@@ -1,5 +1,4 @@
 from trader.analysis.sector_analysis import SectorAnalysis
-from scraper.models.component import ComponentManager
 from scraper.models.valuechain import ValueChainManager
 
 vc_name = "Electronics"

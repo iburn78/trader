@@ -37,9 +37,9 @@ OPINCOME_GROWTH_RATE = 0.05 # per quarter
 OPMARGIN_THRESHOLD = 0.25 
 PER_LOW = 7
 PER_MED = 12
-VOLATILITY_THRESHOLD = 0.33 
-AMOUNT_DAILY_THRESHOLD = 0.33 
-ALPHA_DAILY_THRESHOLD = 0.0004 # to convert yearly: x 250 (busines days) 
+VOLATILITY_THRESHOLD = 0.33 # 0.33 for 33% volality up/down
+AMOUNT_DAILY_THRESHOLD = 0.33 # 0.33 for 33% amount up/down
+ALPHA_DAILY_THRESHOLD = 0.0004 # to convert yearly: x 250 (busines days), 0.0004 if 10% +/- compared to index
 
 @dataclass
 class CodeData:
@@ -143,9 +143,9 @@ class SectorAnalysis:
         self.is_valuechain = False 
         self._dest_dir = None
 
-    # =========================================================
+    # =======================================================================================================================
     # Creation
-    # =========================================================
+    # =======================================================================================================================
     def from_index(self, name: str, unit=1e12, start_date=DEFAULT_START_DATE):
         self.meta = self.meta | {
             'name': name,
@@ -260,9 +260,72 @@ class SectorAnalysis:
         with open(json_file, 'w', encoding='utf-8') as f:
             json.dump(data, f, ensure_ascii=False, indent=4)
 
-    # =========================================================
+    # =======================================================================================================================
     # Assessment  
-    # =========================================================
+    # =======================================================================================================================
+    '''
+    [basics]
+        - OP Income (시점, 상황에 따라 마지막 분기 data가 duplicated (ffill) 되었을 수 있음):
+            * 최근 4개 분기 모두 Positive 인가?
+            * 최근 분기가 전년동기, 직전분기보다 좋아졌는가?
+            * (START_DATE 부터) 성장중인가? (positive slope)
+
+        > 모두 충족하면 True
+
+
+    [financially sound]
+        - OP Income: (START_DATE 부터) 성장률이 충분히 높은가? (slope > THRESHOLD)
+        - OP Margin: 최근 4개 분기 이익률이 각각 충분히 높은가? (each of opmargin > THRESHOLD, 영업이익률은 트렌드를 보지 않음)
+
+        > 둘중의 하나 충족하면 True
+
+
+    [PER]
+        - PER_ltm: 직전 4개 분기 OP Income의 합 대비, 해당시점의 Marcap
+        - PER_qx4: 최근 분기 data로 연간 추정 (x4)
+        - PER_fwd: (START_DATE 부터) OP Income의 Regression으로 Extrapolate한 미래 4개 분기 데이터 추정 (직전분기 데이터는 미포함)
+        
+        > (PER_ltm default로 사용) Low, Mid, High로 구분: PER_LOW, PER_MID로 구분 (2026-08, KOSPI PER = ~17)
+
+
+    [Volatility]
+        - Marcap의 변화율(daily pct change)에 대해, Measure_Duration(직전, business days)기간동안 Standard_Dev로 정의함 (Rolling 일별, 양수)
+        - Volatility를 Base_Duration 동안 Regression 하였을 때, Measure_Duration 중간지점(비교위치) 값(Prediction)과 실제 Measure_Duration의 평균값(Real_mean)비교
+
+        > ratio = Real_mean/Prediction > 1 + THRESHOLD: 최근 Volatility가 증대 (Up)
+        > ratio > 1 - THRESHOLD: 최근 감소 (Dn)
+
+        * Base_Duration은 Measure_Duration을 포함, Measure_Duration은 Base_Duration의 마지막 기간 (recent business days)
+        * Regression 결과가 비교위치에서 near zero or negative 되는 것을 방지하기 위한 floor value 설정 (실제 구현 참조)
+        * THRESHOLD in float
+
+
+    [Amount]
+        - 일별 거래대금 대상 Volatility와 동일하게 산정
+
+        > ratio > 1 + THRESHOLD: Up
+        > ratio > 1 - THRESHOLD: Dn
+
+
+    [Alpha]
+        - Measure_Duration (or Base_Duration, from START_DATE) 동안, Index (KOSPI default) 대비 Alpha, Beta 분석
+
+        > alpha > THRESHOLD: outperform 
+        > alpha < -THRESHOLD: underperform 
+
+        * THRESHOLD: 일별 수익률, in float (기간 수익률은 convert 필요하며, x days로 estimate)
+    
+
+    [해석]
+        - Categorization: 
+            if basics and finantially_sound: 
+                PER_level Low: A
+                PER_level Mid: B
+                PER_level High: C
+            else: D
+            * Logic: 재무 사항이 갖추어진 회사중에, PER가 아직 낮은 회사가 보다 높은 등급
+            * in D, PER has to be interpreted individually, high per doesn't mean high valuation (negative or high value PER)
+    '''
     def print(self):
         print('Meta Data:')
         dprint(self.meta)
@@ -301,15 +364,17 @@ class SectorAnalysis:
         # check point 1: is opincome for last 4 quarters positive at all 
         c1 = bool((opic.iloc[-4:] > 0).all())
 
-        # check point 2: is latest opincome higher than prev year, quarter 
-        c2 = bool(opic.iloc[-1] >= max(opic.iloc[-2], opic.iloc[-5]))
+        # check point 2: is latest opincome higher than prev year, quarter (전년동기, 직전분기)
+        # note: current quarter may be the same as the prev quarter due to ffill (on assumption that the performance stays)
+        #       this is necessary, since some companies' financials may not be updated yet within a sector
+        c2 = bool(opic.iloc[-1] > max(opic.iloc[-2], opic.iloc[-5]))
 
         # opincome slope over the average of last 4 quarters
         opic_growth = opic_slope / opic.iloc[-4:].mean() 
 
         res['opincome_health'] = {
             'positive_last_4qtrs': c1, 
-            'higher_than_comp': c2, # higher than comparable quarters
+            'higher_than_comp': c2, # higher than comparable quarters 
             'slope': round_sig(opic_slope), # measured from start_date given 
             'growth_per_qtr': round_sig(opic_growth),
         }
@@ -318,6 +383,7 @@ class SectorAnalysis:
         # opmargin 
         # ------------------------------------------------------------------
         # last 4 quarter opmargin: date is quarter starting date
+        # refer to note: the same situation applies here
         opms = (opic/rev).iloc[-4:].apply(round_sig).to_dict()
         res['opmargin_last_4qtrs'] = {f'{k:%y}_{k.quarter}Q': v for k, v in opms.items()}
 
@@ -339,8 +405,9 @@ class SectorAnalysis:
         # ------------------------------------------------------------------
         # volatility and amount increment
         # ------------------------------------------------------------------
-        # Rolling volatility:
-        res['volatility_rolling_pct'] = calc_increment(self.ma_data['marcap'].pct_change().rolling(MEASURE_DURATION).std().dropna(), MEASURE_DURATION, BASE_DURATION)
+        # Volatility:
+        # volality is measured as std(percent change of marcap for last MEASURE_DURATION days)
+        res['volatility_pct'] = calc_increment(self.ma_data['marcap'].pct_change().rolling(MEASURE_DURATION).std().dropna(), MEASURE_DURATION, BASE_DURATION)
         # Amount:
         res['amount_daily'] = calc_increment(self.ma_data['amount_daily'], MEASURE_DURATION, BASE_DURATION)
 
@@ -378,7 +445,7 @@ class SectorAnalysis:
         else: PER_level = 'High'
 
         # volatility movement in measure period
-        vol = self.assess_data['volatility_rolling_pct']
+        vol = self.assess_data['volatility_pct']
         if vol['measure_to_base'] < 1-VOLATILITY_THRESHOLD: volatility = 'Dn'
         elif vol['measure_to_base'] < 1+VOLATILITY_THRESHOLD: volatility = '-'
         else: volatility = 'Up'
@@ -391,8 +458,8 @@ class SectorAnalysis:
 
         # alpha_level
         alp = self.assess_data['alpha_beta']['measure_duration']
-        if alp['alpha'] < -AMOUNT_DAILY_THRESHOLD: alpha_level = 'underperform' # strong negative
-        elif alp['alpha'] <= AMOUNT_DAILY_THRESHOLD: alpha_level = 'at_market'
+        if alp['alpha'] < -ALPHA_DAILY_THRESHOLD: alpha_level = 'underperform' # strong negative
+        elif alp['alpha'] <=  ALPHA_DAILY_THRESHOLD: alpha_level = 'at_market'
         else: alpha_level = 'outperform' # strong positive
 
         # Choose Representative Categories
@@ -426,9 +493,9 @@ class SectorAnalysis:
             'category': category,
         }
 
-    # =========================================================
+    # =======================================================================================================================
     # Aggregation and plotting
-    # =========================================================
+    # =======================================================================================================================
 
     # cut data from start_date and define aggregation length
     def plot(self, aggregation: Literal['d', 'w', 'm', 'q'] = 'w'): 
@@ -551,9 +618,9 @@ class SectorAnalysis:
         plt.tight_layout()
         plt.show()
 
-    # =========================================================
+    # =======================================================================================================================
     # (1) TOP PANEL: MARCAP + AMOUNT
-    # =========================================================
+    # =======================================================================================================================
     def _plot_ma_panel(self, ax):
 
         x = self._aggr_dataset.index
@@ -706,9 +773,9 @@ class SectorAnalysis:
         )
 
 
-    # =========================================================
+    # =======================================================================================================================
     # (2) FUNDAMENTAL PANEL
-    # =========================================================
+    # =======================================================================================================================
     def _plot_fundamental_panel(self, ax, use_ltm: bool):
 
         x = self._aggr_dataset.index
