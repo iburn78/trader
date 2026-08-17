@@ -10255,3 +10255,12 @@ prices and volumes updates [initiating] 2026-08-17 18:00:04
 prices and volumes updates [completed]
 prices and volumes updates [initiating] 2026-08-17 20:00:04
 prices and volumes updates [completed]
+prices and volumes updates [initiating] 2026-08-18 01:00:03
+ERROR 2026-08-14 csv data not exists
+Company health data collection initiated at 2026-08-18 01:02:05.256111
+Updating KRX data...
+ERROR 2026-08-14 csv data not exists
+sending incremental file list
+
+sent 68,535 bytes  received 12 bytes  137,094.00 bytes/sec
+total size is 1,125,843,397  speedup is 16,424.40
