@@ -15,10 +15,10 @@ from trader.tools.dc_tools import get_index, set_KoreanFonts
 from scraper.tools.tools import PROFILES_DIR, COMPONENTS_DIR, VALUECHAIN_DIR
 
 '''
-ma: MarCap (until last day if is_KRX_open == True; if strict False then include today if it is after 12:00), Amount (sum of a period)
+ma: MarCap (until last day if is_KRX_open == True; if strict False then include today if it is after 12:00), Amount
 outshares: # shares outstanding
 volume: # shares traded 
-amount: money amount traded (sum of each block)
+amount: money amount traded (a period)
 slope: liear regression over all periods since start_date
 recent_inc: comparing last 2 priods (e.g., last period movement)
 ltm: last twelve months (last 4 qurarters)
@@ -159,9 +159,8 @@ class SectorAnalysis:
         _ma_data['amount_daily'] = _ma_data['amount_daily']/self.meta['unit']
         self.ma_data = _ma_data
         self.is_index = True
-        return self
 
-    def from_codelist(self, codelist: list, name='', unit=None, fill=False, start_date=DEFAULT_START_DATE):
+    def process_codelist(self, codelist: list, name='', unit=None, fill=False, start_date=DEFAULT_START_DATE):
         if len(codelist) != len(set(codelist)): raise ValueError(f'codelist should not contain any duplications: {codelist}')
 
         self.codelist = codelist
@@ -184,30 +183,29 @@ class SectorAnalysis:
         self.ma_data = self._add_dfs([cd.ma_data for cd in cd_list], fill) # daily basis
         self.fr_data = self._add_dfs([cd.fr_data for cd in cd_list], fill) # quarterly basis
 
-        self._post_creation()
-        return self
+        self._post_process()
 
-    def from_code(self, code: str, unit=None, fill=False, start_date=DEFAULT_START_DATE):
+    def process_code(self, code: str, unit=None, fill=False, start_date=DEFAULT_START_DATE):
         self.is_company = True
         self._dest_dir = PROFILES_DIR
-        return self.from_codelist(codelist=[code], name=df_krx.at[code, 'Name'], unit=unit, fill=fill, start_date=start_date)
+        self.process_codelist(codelist=[code], name=df_krx.at[code, 'Name'], unit=unit, fill=fill, start_date=start_date)
 
-    def from_component(self, component: 'Component', unit=None, fill=False, start_date=DEFAULT_START_DATE): 
+    def process_component(self, component: 'Component', unit=None, fill=False, start_date=DEFAULT_START_DATE): 
         self.is_component = True
         self._dest_dir = COMPONENTS_DIR
-        return self.from_codelist(codelist=component.get_codelist(), name=component.name, unit=unit, fill=fill, start_date=start_date)
+        self.process_codelist(codelist=component.get_codelist(), name=component.name, unit=unit, fill=fill, start_date=start_date)
 
     # for from_valuechain, valuechain manager has to be given too
-    def from_valuechain(self, vm: "ValueChainManager", vc: 'ValueChain', unit=None, fill=False, start_date=DEFAULT_START_DATE): 
+    def process_valuechain(self, vm: "ValueChainManager", vc: 'ValueChain', unit=None, fill=False, start_date=DEFAULT_START_DATE): 
         self.is_valuechain = True
         self._dest_dir = VALUECHAIN_DIR
-        return self.from_codelist(codelist=vm.get_codelist(vc), name=vc.name, unit=unit, fill=fill, start_date=start_date)
+        self.process_codelist(codelist=vm.get_codelist(vc), name=vc.name, unit=unit, fill=fill, start_date=start_date)
     
     # function that sums multiple serieses
     def _add_dfs(self, df_list, fill=False):
         return reduce(lambda a, b: a.add(b, fill_value=0 if fill else None), df_list)
 
-    def _post_creation(self):
+    def _post_process(self):
         self._build_assess_data()
         self._perform_assess()
         self._save_analysis_to_json() # autosave
@@ -355,9 +353,7 @@ class SectorAnalysis:
         rev = fr['revenue_qtr']
         opic_slope , _ = get_slope_intercept(opic)
 
-        res = {
-            'updated': self.meta['updated']
-        }
+        res = {}
         # ------------------------------------------------------------------
         # opincome_health 
         # ------------------------------------------------------------------
@@ -932,7 +928,7 @@ if __name__ == "__main__":
     # single company
     code = '005930'
     code = '001750'
-    sc = SectorAnalysis().from_code(code)
+    sc = SectorAnalysis().process_code(code)
     sc.plot()
     sc.print()
 
@@ -940,7 +936,7 @@ if __name__ == "__main__":
     from scraper.models.component_manager import ComponentManager
     cm = ComponentManager()
     component = cm.get_item('Memory')
-    sc = SectorAnalysis().from_component(component)
+    sc = SectorAnalysis().process_component(component)
     sc.plot()
     sc.print()
 
