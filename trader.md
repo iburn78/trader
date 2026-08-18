@@ -1,6 +1,5 @@
 ### Elements 
 - Target analysis: Industry, Business, Performance
-    * consider: 실제 실적이 아니라, 실적 전망치가 올라가는 기업
 - Market analysis: Macro, Market Sentiment
 - Investor mindset: Principles, Objectivity (avoiding biases)
     * Acting according to principles in a disciplined manner 

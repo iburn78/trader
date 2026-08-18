@@ -1,7 +1,7 @@
 ### 핵심 질문
 - 대상(Company, Component, ValueChain, Sector, etc)의 재무상태가 우수한가? 
 
-- (Valuation) 대상의 PER를 현재 낮은가 높은가?
+- (Valuation) 대상의 PER는 현재 낮은가 높은가?
     - 재무상태를 감안하면, 합리적 수준의 PER는?
     - (Market Sentiment가 반영된다면) 단기에 얼마로 전망되는가?
 
@@ -12,8 +12,10 @@
     - Economics
     - Market Sentiment (Volatility/Speed, Amount/Momentum 등 감안)
     - Market Performance (Alpha, Beta 등 감안), Peer Performance (within ValueChian, Compoennt)
+        - Industry growth vs individual growth/distinctiveness 
     - Story:  
         - 현재 PER에 어떻게 도달(Market Sentiment, Market Performance)하였고, 어떻게 변화할 것으로 전망되는가?
+    - Etc: 재무제표 항목 (매출채권, 재고자산, CAPEX)
 
 - 절대적/상대적 매력도 평가
     - Standalone(절대평가): Story를 감안하여, PER의 단기 상승이 예상되는가?
@@ -53,3 +55,20 @@
     - from this, may be able to see 
         1. market sentiment around an sector (+/- consensus vs conflict)
         2. obvious direction of movement (or just drifting)
+
+
+### Public Knowledge
+- Analyst의 분석 참고
+    - Consider: 실제 실적이 아니라, 실적 전망치가 올라가는 기업
+    - Analyst conference call 청취 / IR 담당자 통화
+
+- References sites:
+    - https://dart.fss.or.kr/: 사업보고서
+    - https://kind.krx.co.kr/: IR 일정, 공시채널
+    - https://ecos.bok.or.kr/: Macro
+    - https://wcomp.fnguide.com/ (comp.fnguide.com): 기업정보
+    - https://data.krx.co.kr: KRX
+    - https://seibro.or.kr/: 주주현황, 보호예수
+    - https://kosis.kr/: 경제/산업 통계
+    - https://kirs.or.kr/: IR, 기업리서치
+      
