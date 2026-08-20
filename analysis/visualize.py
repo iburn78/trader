@@ -14,13 +14,13 @@ def fmt_value(key, value):
     if isinstance(value, float):
         if "(pct)" in key.lower() or "(%)" in key.lower():
             return f"{value:.2%}"
-
         return f"{value:,.6g}"
 
     if isinstance(value, int):
         return f"{value:,}"
 
     return str(value)
+
 
 def get_value(data, *keys, default="-"):
     """Drill down a nested dict using the given key chain."""
@@ -32,16 +32,8 @@ def get_value(data, *keys, default="-"):
     return default if data is None else data
 
 def dict_signature(data):
-    """
-    Return the nested key structure of a dict.
-    Values are ignored.
+    """Return the nested key structure of a dict. Values are ignored."""
 
-    Example:
-        {"a": {"b": 1}, "c": 2}
-
-    becomes:
-        (("a", ("b",)), ("c",))
-    """
     if not isinstance(data, dict):
         return ()
 
@@ -55,181 +47,100 @@ def dict_signature(data):
 
 def same_signature(*dicts):
     """Return True if all dictionaries have the same nested structure."""
-    if not dicts:
+    if len(dicts) < 2:
         return True
 
     signature = dict_signature(dicts[0])
     return all(dict_signature(d) == signature for d in dicts[1:])
 
-def render_dict(d, level=0):
-    """Render a single nested dict."""
+def section_row(key, level=0, colspan=1):
+    return f"""    <tr class="section-row level-{level}">
+        <td class="label" colspan="{colspan}">{escape(str(key))}</td>
+    </tr>
+"""
 
+def table_row(key, values=[], row_class="", level=0):
+    cells = "\n".join(
+        f'        <td class="value">{escape(fmt_value(key, v))}</td>'
+        for v in values
+    )
+
+    return f"""    <tr class="{row_class} level-{level}">
+        <td class="label">{escape(str(key))}</td>
+{cells}
+    </tr>
+"""
+
+def render_rows(dict_list, level=0):
+    """Flatten nested dictionaries into table rows."""
     rows = []
 
-    for key, value in d.items():
-        label = key
+    for key, value in dict_list[0].items():
+        values = [d[key] for d in dict_list]
 
         if isinstance(value, dict):
-            content = render_dict(value, level + 1)
-
-            rows.append(f"""
-            <tr class="section-row level-{level}">
-                <th colspan="2">{escape(label)}</th>
-            </tr>
-            {content}
-            """)
-
-        elif isinstance(value, list):
-            content = "".join(
-                f"<li>{escape(str(v))}</li>"
-                for v in value
+            # Dictionary = section/header row
+            rows.append(
+                section_row(
+                    key,
+                    level=level,
+                    colspan=len(dict_list)+1
+                )
             )
 
-            rows.append(f"""
-            <tr>
-                <td class="label">{escape(label)}</td>
-                <td class="value"><ul>{content}</ul></td>
-            </tr>
-            """)
-
-        else:
-            rows.append(f"""
-            <tr>
-                <td class="label">{escape(label)}</td>
-                <td class="value">
-                    {escape(fmt_value(key, value))}
-                </td>
-            </tr>
-            """)
-
-    return "\n".join(rows)
-
-def render_compare(d1, d2, names=("Value 1", "Value 2"), level=0):
-    """Render two dictionaries side-by-side."""
-
-    rows = []
-
-    for key, value1 in d1.items():
-        value2 = d2[key]
-
-        if isinstance(value1, dict):
-            content = render_compare(
-                value1,
-                value2,
-                names=names,
-                level=level + 1,
+            rows.extend(
+                render_rows(values, level=level + 1)
             )
 
-            rows.append(f"""
-            <tr class="section-row level-{level}">
-                <th colspan="3">{escape("000---")}</th>
-            </tr>
-            {content}
-            """)
-
-        elif isinstance(value1, list):
-            left = ", ".join(str(v) for v in value1)
-            right = ", ".join(str(v) for v in value2)
-
-            rows.append(f"""
-            <tr>
-                <td class="label">{"---"}</td>
-                <td>{escape(left)}</td>
-                <td>{escape(right)}</td>
-            </tr>
-            """)
-
         else:
-            rows.append(f"""
-            <tr>
-                <td class="label">{escape(key)}</td>
-                <td>{escape(fmt_value(key, value1))}</td>
-                <td>{escape(fmt_value(key, value2))}</td>
-            </tr>
-            """)
+            rows.append(
+                table_row(
+                    key,
+                    values,
+                    row_class="value-row",
+                    level=level,
+                )
+            )
+
+    return rows
+
+def render_compare(dict_name, column_names, dict_list):
+    rows = render_rows(dict_list)
+
+    header = f"""    <tr class="header-row">
+        <th class="label">{escape(str(dict_name))}</th>
+        {"".join(
+            f'<th class="value">{escape(str(name))}</th>'
+            for name in column_names
+        )}
+    </tr>
+"""
 
     return f"""
-    <table class="dict-table">
-        <thead>
-            <tr>
-                <th>{escape(key)}</th>
-                <th>{escape(names[0])}</th>
-                <th>{escape(names[1])}</th>
-            </tr>
-        </thead>
-        <tbody>
-            {''.join(rows)}
-        </tbody>
-    </table>
-    """
+<table class="dict-table">
+    <thead>
+{header}    </thead>
+    <tbody>
+{"".join(rows)}    </tbody>
+</table>
+"""
 
-def dict_to_html(*dicts, names=None, output=None):
-    """
-    Render one or two dictionaries as HTML.
 
-    One dict:
-        dict_to_html(data)
+def dict_to_html(column_names: list, dict_list: list, output=None):
+    if not dict_list:
+        raise ValueError("dict_list cannot be empty")
 
-    Two matching dicts:
-        dict_to_html(data1, data2)
+    if len(column_names) != len(dict_list):
+        raise ValueError("column_names and dict_list must have the same length")
 
-    Two matching dicts with column names:
-        dict_to_html(
-            data1,
-            data2,
-            names=("Samsung", "SK Hynix")
-        )
-    """
+    if not same_signature(*dict_list):
+        raise ValueError("signatures not matching")
 
-    if not dicts:
-        raise ValueError("At least one dictionary is required")
-
-    if len(dicts) > 2:
-        raise ValueError("Maximum of two dictionaries supported")
-
-    if not all(isinstance(d, dict) for d in dicts):
-        raise TypeError("All arguments must be dictionaries")
-
-    if names is None:
-        names = ("Value 1", "Value 2")
-
-    if len(dicts) == 1:
-        content = f"""
-        <table class="dict-table">
-            <tbody>
-                {render_dict(dicts[0])}
-            </tbody>
-        </table>
-        """
-
-    else:
-        if same_signature(*dicts):
-            content = render_compare(
-                dicts[0],
-                dicts[1],
-                names=names,
-            )
-        else:
-            # Different structures: render separately
-            content = f"""
-            <div class="dict-container">
-                <h2>{escape(names[0])}</h2>
-                <table class="dict-table">
-                    <tbody>
-                        {render_dict(dicts[0])}
-                    </tbody>
-                </table>
-            </div>
-
-            <div class="dict-container">
-                <h2>{escape(names[1])}</h2>
-                <table class="dict-table">
-                    <tbody>
-                        {render_dict(dicts[1])}
-                    </tbody>
-                </table>
-            </div>
-            """
+    content = render_compare(
+        "overall",
+        column_names,
+        dict_list,
+    )
 
     template = (
         TEMPLATE_DIR / "assessment.html"
@@ -247,6 +158,7 @@ def dict_to_html(*dicts, names=None, output=None):
 
     return html
 
+
 from trader.analysis.sector_analysis import SectorAnalysis
 
 code = '005930'
@@ -261,5 +173,5 @@ sb.process_code(code)
 sb.plot()
 sb.print()
 
-dict_to_html(sa.assess_data, output='a.html')
-dict_to_html(sa.assess_data, sb.assess_data, names=['sa', 'sb'], output='b.html')
+dict_to_html(['sa'], [sa.assess_data], output='a.html')
+dict_to_html(['sa', 'b', 'c'], [sa.assess_data, sb.assess_data, sa.assess_data], output='b.html')
