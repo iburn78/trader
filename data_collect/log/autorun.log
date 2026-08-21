@@ -10752,3 +10752,8 @@ sent 810,194 bytes  received 56 bytes  1,620,500.00 bytes/sec
 total size is 1,125,843,397  speedup is 1,389.50
 prices and volumes updates [initiating] 2026-08-21 08:00:05
 prices and volumes updates [completed]
+$475040.KS: possibly delisted; no timezone found
+prices and volumes updates [initiating] 2026-08-21 10:00:04
+[183300] Close mismatch on 2026-08-20: fdr=21800, yf=21760.0. Using fdr only.
+Error retrieving full data for 282620: code 282620 not available in FDR
+prices and volumes updates [completed]
