@@ -10,7 +10,7 @@ from pathlib import Path
 import matplotlib.pyplot as plt
 import matplotlib.dates as mdates
 from matplotlib.ticker import FuncFormatter
-from trader.tools.analysis_tools import is_KRX_open, load_market_data, get_slope_intercept, KRW_UNIT_KR, round_sig, calc_increment, calc_alpha_beta, dprint, sanitized_filename
+from trader.tools.analysis_tools import is_KRX_open, load_market_data, get_slope_intercept, KRW_UNIT_KR, round_sig, calc_increment, calc_alpha_beta, dprint, sanitized_filename, dict_to_html
 from trader.tools.dc_tools import get_index, set_KoreanFonts
 from scraper.tools.tools import PROFILES_DIR, COMPONENTS_DIR, VALUECHAIN_DIR
 
@@ -363,7 +363,7 @@ class SectorAnalysis:
         # check point 2: is latest opincome higher than prev year, quarter (전년동기, 직전분기)
         # note: current quarter may be the same as the prev quarter due to ffill (on assumption that the performance stays)
         #       this is necessary, since some companies' financials may not be updated yet within a sector
-        c2 = bool(opic.iloc[-1] > max(opic.iloc[-2], opic.iloc[-5]))
+        c2 = bool(opic.iloc[-1] >= max(opic.iloc[-2], opic.iloc[-5]))
 
         # opincome slope over the average of last 4 quarters
         opic_growth = opic_slope / opic.iloc[-4:].mean() 
@@ -488,6 +488,20 @@ class SectorAnalysis:
             'market_sentiment': market_sentiment,
             'category': category,
         }
+    # =======================================================================================================================
+    # Display in html
+    # =======================================================================================================================
+    def get_combined_dict(self):
+        combined_dict = {
+            'meta': self.meta,
+            'assess_data': self.assess_data,
+            'assess_result': self.assess_result
+        }
+        return combined_dict
+    def display_in_html(self, output_file: str|None = None):
+        if output_file: output = output_file
+        else: output = f'{self.meta["code"]}_{self.meta["name"]}.html'
+        dict_to_html('SectorAnalysis Display', [self.meta['name']], [self.get_combined_dict()], output=output)
 
     # =======================================================================================================================
     # Aggregation and plotting

@@ -8,13 +8,18 @@ from trader.tools.dc_tools import get_main_financial_reports_db
 import json
 import re
 import os
+from html import escape
 
 KRW_UNIT_KR = {
     1e12: 'jo',
     1e9: '10-uk',
     1e8: 'uk', 
 }
+TEMPLATE_HTML = Path(__file__).parent.parent / "analysis" / "templates"  / "dict_template.html"
 
+# -----------------------------------------------------------------------------------
+# Data generation
+# -----------------------------------------------------------------------------------
 def load_market_data():
     BASE_DIR = Path(__file__).resolve().parents[1]
     DATA_DIR = BASE_DIR / 'data_collect' / 'data'
@@ -145,6 +150,9 @@ def sanitized_filename(name):
     filename = "_".join(name.split())
     return filename
 
+# -----------------------------------------------------------------------------------
+# LLM 
+# -----------------------------------------------------------------------------------
 # local gemma4 (installed via ollama)
 # standard way to call an local model (using openai template)
 from openai import OpenAI
@@ -203,3 +211,127 @@ def get_local_response(input_text, image_file=None, context_file=None, client=cl
     )
 
     return response.choices[0].message.content
+
+# -----------------------------------------------------------------------------------
+# Display dict in html
+# -----------------------------------------------------------------------------------
+
+def _fmt_value(key, value):
+    if value is None:
+        return "-"
+
+    if isinstance(value, bool):
+        return "✓" if value else "✗"
+
+    if isinstance(value, float):
+        if "(pct)" in key.lower() or "(%)" in key.lower():
+            return f"{value:.2%}"
+        return f"{value:,.6g}"
+
+    if isinstance(value, int):
+        return f"{value:,}"
+
+    return str(value)
+
+def _dict_signature(data):
+    if not isinstance(data, dict):
+        return ()
+
+    return tuple(
+        (
+            key,
+            _dict_signature(value) if isinstance(value, dict) else None
+        )
+        for key, value in data.items()
+    )
+
+def _same_signature(*dicts):
+    """Return True if all dictionaries have the same nested structure."""
+    if len(dicts) < 2:
+        return True
+
+    signature = _dict_signature(dicts[0])
+    return all(_dict_signature(d) == signature for d in dicts[1:])
+
+def _section_row(key, level=0, colspan=1):
+    return f"""    <tr class="section-row level-{level}">
+        <td class="label" colspan="{colspan}">{escape(str(key))}</td>
+    </tr>
+"""
+
+def _value_row(key, values=[], level=0):
+    cells = "\n".join(
+        f'        <td class="value">{escape(_fmt_value(key, v))}</td>'
+        for v in values
+    )
+
+    return f"""    <tr class="value-row level-{level}">
+        <td class="label">{escape(str(key))}</td>
+{cells}
+    </tr>
+"""
+
+def _render_rows(dict_list, level=0):
+    """Flatten nested dictionaries into table rows."""
+    rows = []
+    for key, value in dict_list[0].items():
+        values = [d[key] for d in dict_list]
+
+        if isinstance(value, dict):
+            rows.append(_section_row(key, level=level, colspan=len(dict_list)+1))
+            rows.extend(_render_rows(values, level=level + 1))
+
+        else:
+            rows.append(_value_row(key, values, level=level))
+
+    return rows
+
+# generic function
+def dict_to_html(title, column_names: list, dict_list: list, output=None):
+    if not dict_list:
+        raise ValueError("dict_list cannot be empty")
+
+    if len(column_names) != len(dict_list):
+        raise ValueError("column_names and dict_list must have the same length")
+
+    if not _same_signature(*dict_list):
+        raise ValueError("signatures not matching")
+
+    rows = _render_rows(dict_list)
+
+    header = f"""    <tr class="header-row">
+        <th class="label">{escape(str(title))}</th>
+        {"".join(
+            f'<th class="value">{escape(str(name))}</th>'
+            for name in column_names
+        )}
+    </tr>"""
+
+    content = f"""
+<table class="dict-table">
+    <thead>
+{header}    </thead>
+    <tbody>
+{"".join(rows)}    </tbody>
+</table>"""
+
+    template = TEMPLATE_HTML.read_text(encoding="utf-8")
+    html = template.replace("{{ content }}", content)
+
+    if output:
+        output = Path(output)
+        output.parent.mkdir(parents=True, exist_ok=True)
+        output.write_text(html, encoding="utf-8")
+
+    print(f"file {output} is written...")
+
+def sa_list_to_html(title: str, sector_analysis_list:list, output_file: str|None = None):
+    name_list = [sa.meta['name'] for sa in sector_analysis_list]
+    dict_list = [sa.get_combined_dict() for sa in sector_analysis_list]
+    
+    if output_file: output = output_file
+    else: 
+        if not title: title = "combined"
+        output = f'{title}_{"_".join(name_list)}.html'
+
+    dict_to_html(title, name_list, dict_list, output)
