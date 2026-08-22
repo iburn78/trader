@@ -251,7 +251,12 @@ def _same_signature(*dicts):
         return True
 
     signature = _dict_signature(dicts[0])
-    return all(_dict_signature(d) == signature for d in dicts[1:])
+    passed = all(_dict_signature(d) == signature for d in dicts[1:])
+    if not passed:
+        print(f"signature mismatching: ")
+        for d in dicts:
+            print(_dict_signature(d))
+    return passed
 
 def _section_row(key, level=0, colspan=1):
     return f"""    <tr class="section-row level-{level}">
@@ -286,8 +291,8 @@ def _render_rows(dict_list, level=0):
 
     return rows
 
-# generic function
-def dict_to_html(title, column_names: list, dict_list: list, output=None):
+# general function
+def dict_to_html(title, column_names: list, dict_list: list, output_file=None):
     if not dict_list:
         raise ValueError("dict_list cannot be empty")
 
@@ -318,20 +323,17 @@ def dict_to_html(title, column_names: list, dict_list: list, output=None):
     template = TEMPLATE_HTML.read_text(encoding="utf-8")
     html = template.replace("{{ content }}", content)
 
-    if output:
-        output = Path(output)
-        output.parent.mkdir(parents=True, exist_ok=True)
-        output.write_text(html, encoding="utf-8")
+    with open("templates/dict_template.css", "r", encoding="utf-8") as f:
+        css = f.read()
+        html_css = html.replace("{{ css }}", css)
 
-    print(f"file {output} is written...")
-
-def sa_list_to_html(title: str, sector_analysis_list:list, output_file: str|None = None):
-    name_list = [sa.meta['name'] for sa in sector_analysis_list]
-    dict_list = [sa.get_combined_dict() for sa in sector_analysis_list]
-    
-    if output_file: output = output_file
+    if output_file:
+        output_file = Path(output_file)
+        output_file.parent.mkdir(parents=True, exist_ok=True)
+        output_file.write_text(html_css, encoding="utf-8")
+        print(f"file {output_file} is written...")
     else: 
-        if not title: title = "combined"
-        output = f'{title}_{"_".join(name_list)}.html'
+        print(html)
 
-    dict_to_html(title, name_list, dict_list, output)
+
+

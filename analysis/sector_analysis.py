@@ -13,6 +13,10 @@ from matplotlib.ticker import FuncFormatter
 from trader.tools.analysis_tools import is_KRX_open, load_market_data, get_slope_intercept, KRW_UNIT_KR, round_sig, calc_increment, calc_alpha_beta, dprint, sanitized_filename, dict_to_html
 from trader.tools.dc_tools import get_index, set_KoreanFonts
 from scraper.tools.tools import PROFILES_DIR, COMPONENTS_DIR, VALUECHAIN_DIR
+from scraper.models.json_models import JsonModel
+from scraper.models.profile import CompanyProfile
+from scraper.models.component import Component
+from scraper.models.valuechain import ValueChain
 
 '''
 ma: MarCap (until last day if is_KRX_open == True; if strict False then include today if it is after 12:00), Amount
@@ -159,7 +163,9 @@ class SectorAnalysis:
         _ma_data['amount_daily'] = _ma_data['amount_daily']/self.meta['unit']
         self.ma_data = _ma_data
         self.is_index = True
+        return self
 
+    # codelist: target sector -> returns an SA for the group of the codelist
     def process_codelist(self, codelist: list, name='', unit=None, fill=False, start_date=DEFAULT_START_DATE):
         if len(codelist) != len(set(codelist)): raise ValueError(f'codelist should not contain any duplications: {codelist}')
 
@@ -168,7 +174,7 @@ class SectorAnalysis:
         if self.is_company:
             self.meta['code'] = codelist[0]
         else:
-            self.meta['codelist'] = codelist
+            self.meta['code'] = codelist 
 
         self.meta = self.meta | {
             'unit': unit if unit else DEFAULT_KRW_UNIT, # KRW unit
@@ -184,22 +190,25 @@ class SectorAnalysis:
         self.fr_data = self._add_dfs([cd.fr_data for cd in cd_list], fill) # quarterly basis
 
         self._post_process()
+        return self
 
     def process_code(self, code: str, unit=None, fill=False, start_date=DEFAULT_START_DATE):
         self.is_company = True
         self._dest_dir = PROFILES_DIR
         self.process_codelist(codelist=[code], name=df_krx.at[code, 'Name'], unit=unit, fill=fill, start_date=start_date)
+        return self
 
-    def process_component(self, component: 'Component', unit=None, fill=False, start_date=DEFAULT_START_DATE): 
+    def process_component(self, component: Component, unit=None, fill=False, start_date=DEFAULT_START_DATE): 
         self.is_component = True
         self._dest_dir = COMPONENTS_DIR
         self.process_codelist(codelist=component.get_codelist(), name=component.name, unit=unit, fill=fill, start_date=start_date)
+        return self
 
-    # for from_valuechain, valuechain manager has to be given too
-    def process_valuechain(self, vm: "ValueChainManager", vc: 'ValueChain', unit=None, fill=False, start_date=DEFAULT_START_DATE): 
+    def process_valuechain(self, vc: ValueChain, unit=None, fill=False, start_date=DEFAULT_START_DATE): 
         self.is_valuechain = True
         self._dest_dir = VALUECHAIN_DIR
-        self.process_codelist(codelist=vm.get_codelist(vc), name=vc.name, unit=unit, fill=fill, start_date=start_date)
+        self.process_codelist(codelist=vc.get_codelist(), name=vc.name, unit=unit, fill=fill, start_date=start_date)
+        return self
     
     # function that sums multiple serieses
     def _add_dfs(self, df_list, fill=False):
@@ -351,6 +360,7 @@ class SectorAnalysis:
 
         opic = fr['opincome_qtr'] 
         rev = fr['revenue_qtr']
+        print(opic)
         opic_slope , _ = get_slope_intercept(opic)
 
         res = {}
@@ -498,10 +508,11 @@ class SectorAnalysis:
             'assess_result': self.assess_result
         }
         return combined_dict
-    def display_in_html(self, output_file: str|None = None):
+
+    def to_html(self, output_file: str|None = None):
         if output_file: output = output_file
         else: output = f'{self.meta["code"]}_{self.meta["name"]}.html'
-        dict_to_html('SectorAnalysis Display', [self.meta['name']], [self.get_combined_dict()], output=output)
+        dict_to_html('SectorAnalysis Display', [self.meta['name']], [self.get_combined_dict()], output_file=output)
 
     # =======================================================================================================================
     # Aggregation and plotting
@@ -937,24 +948,81 @@ class SectorAnalysis:
             mdates.DateFormatter('%Y-%m-%d')
         )
 
-if __name__ == "__main__": 
+# -----------------------------------------------------------------------------------------------
+# JsonModel to HTML interfacing function
+# -----------------------------------------------------------------------------------------------
+def jsonmodel_to_html(jsonmodel: JsonModel):
+    title = jsonmodel.__class__.__name__
 
+    if jsonmodel.__class__ == CompanyProfile:
+        sa_list = [SectorAnalysis().process_code(jsonmodel.code)]
+
+    elif jsonmodel.__class__ == Component:
+        sa_list = []
+        sa_list.append(SectorAnalysis().process_component(jsonmodel))
+
+        for code in jsonmodel.get_codelist():
+            sa_list.append(SectorAnalysis().process_code(code))
+
+    elif jsonmodel.__class__ == ValueChain:
+        sa_list = []
+        sa_list.append(SectorAnalysis().process_valuechain(jsonmodel))
+
+        for component in jsonmodel.get_components():
+            sa_list.append(SectorAnalysis().process_component(component))
+
+    else: 
+        raise ValueError(f'invalid jsonmodel argument: {jsonmodel}...')
+
+    name_list = [sa.meta['name'] for sa in sa_list]
+    dict_list = [sa.get_combined_dict() for sa in sa_list]
+    output_file = jsonmodel.get_html_path()
+    
+    dict_to_html(title, name_list, dict_list, output_file)
+
+# -----------------------------------------------------------------------------------------------
+# Usage examples
+# -----------------------------------------------------------------------------------------------
+if __name__ == "__main__": 
     # single company
     code = '005930'
-    code = '001750'
     sc = SectorAnalysis().process_code(code)
     sc.plot()
     sc.print()
 
     # component
-    from scraper.models.component_manager import ComponentManager
-    cm = ComponentManager()
-    component = cm.get_item('Memory')
+    name = "Memory"
+    component = Component.load_from_prefix(name)
     sc = SectorAnalysis().process_component(component)
     sc.plot()
     sc.print()
+
+    # valuechain
+    name = "Electronics"
+    vc = ValueChain.load_from_prefix(name)
+    sa = SectorAnalysis().process_valuechain(vc)
+    sa.plot()
+    sa.print()
 
     # index
     sa = SectorAnalysis().from_index('KOSDAQ')
     sa.plot()
     sa.print()
+
+    # ------------------------------------------
+    # HTML 
+    # ------------------------------------------
+    # 1) CompanyProfile
+    code = '009150'
+    profile = CompanyProfile.load_from_prefix(code)
+    jsonmodel_to_html(profile)
+
+    # 2) Component
+    name = 'PCB'
+    component = Component.load_from_prefix(name)
+    jsonmodel_to_html(component)
+
+    # 3) ValueChain
+    name = 'Electronics'
+    vc = ValueChain.load_from_prefix(name)
+    jsonmodel_to_html(vc)
