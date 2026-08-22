@@ -10823,3 +10823,12 @@ update_info.txt
 
 sent 810,197 bytes  received 56 bytes  540,168.67 bytes/sec
 total size is 1,125,843,397  speedup is 1,389.50
+prices and volumes updates [initiating] 2026-08-23 01:00:06
+prices and volumes updates [completed]
+/home/andy/projects/trader/scripts/data_collect.sh: 줄 16: 195404 죽었음               python -m gen_financial_records
+sending incremental file list
+df_krx.db
+update_info.txt
+
+sent 810,194 bytes  received 56 bytes  1,620,500.00 bytes/sec
+total size is 1,125,843,397  speedup is 1,389.50
