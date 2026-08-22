@@ -15,7 +15,6 @@ KRW_UNIT_KR = {
     1e9: '10-uk',
     1e8: 'uk', 
 }
-TEMPLATE_HTML = Path(__file__).parent.parent / "analysis" / "templates"  / "dict_template.html"
 
 # -----------------------------------------------------------------------------------
 # Data generation
@@ -292,7 +291,7 @@ def _render_rows(dict_list, level=0):
     return rows
 
 # general function
-def dict_to_html(title, column_names: list, dict_list: list, output_file=None):
+def dict_to_html(title, column_names: list, dict_list: list, template_html:Path, output_file=None):
     if not dict_list:
         raise ValueError("dict_list cannot be empty")
 
@@ -320,7 +319,7 @@ def dict_to_html(title, column_names: list, dict_list: list, output_file=None):
 {"".join(rows)}    </tbody>
 </table>"""
 
-    template = TEMPLATE_HTML.read_text(encoding="utf-8")
+    template = template_html.read_text(encoding="utf-8")
     html = template.replace("{{ content }}", content)
 
     with open("templates/dict_template.css", "r", encoding="utf-8") as f:
@@ -334,6 +333,3 @@ def dict_to_html(title, column_names: list, dict_list: list, output_file=None):
         print(f"file {output_file} is written...")
     else: 
         print(html)
-
-
-

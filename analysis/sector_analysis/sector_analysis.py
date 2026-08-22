@@ -45,6 +45,9 @@ VOLATILITY_THRESHOLD = 0.33 # 0.33 for 33% volality up/down
 AMOUNT_DAILY_THRESHOLD = 0.33 # 0.33 for 33% amount up/down
 ALPHA_DAILY_THRESHOLD = 0.0004 # to convert yearly: x 250 (busines days), 0.0004 if 10% +/- compared to index
 
+# HTML 
+TEMPLATE_HTML = Path(__file__).parent / "templates"  / "dict_template.html"
+
 @dataclass
 class CodeData:
     # single code data that contains raw data for max period
@@ -512,7 +515,7 @@ class SectorAnalysis:
     def to_html(self, output_file: str|None = None):
         if output_file: output = output_file
         else: output = f'{self.meta["code"]}_{self.meta["name"]}.html'
-        dict_to_html('SectorAnalysis Display', [self.meta['name']], [self.get_combined_dict()], output_file=output)
+        dict_to_html('SectorAnalysis Display', [self.meta['name']], [self.get_combined_dict()], template_html=TEMPLATE_HTML, output_file=output)
 
     # =======================================================================================================================
     # Aggregation and plotting
@@ -978,7 +981,7 @@ def jsonmodel_to_html(jsonmodel: JsonModel):
     dict_list = [sa.get_combined_dict() for sa in sa_list]
     output_file = jsonmodel.get_html_path()
     
-    dict_to_html(title, name_list, dict_list, output_file)
+    dict_to_html(title, name_list, dict_list, TEMPLATE_HTML, output_file)
 
 # -----------------------------------------------------------------------------------------------
 # Usage examples
