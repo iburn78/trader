@@ -5405,3 +5405,71 @@ Financial data collection log >>
 2026-08-23 01:12:00.511908, no: 14, code 018500 in process
 2026-08-23 01:12:08.422256, no: 15, code 001080 in process
 2026-08-23 01:12:16.338870, no: 16, code 169330 in process
+Company health data collection initiated at 2026-08-24 01:00:14.162535
+Updating KRX data...
+Updating between dates: 2026-08-16 / 2026-08-24
+FULL rescan codes:
+Total 36 items.
+[0-35] ['000540', '0015N0', '0015S0', '002210', '004800', '011330', '011930', '012160', '012630', '033130', '035720', '036460', '042940', '054620', '064960', '066360', '089790', '092040', '092220', '115530', '168330', '170900', '198940', '206560', '210120', '222080', '261200', '271560', '272210', '294870', '318010', '332570', '340570', '344820', '389650', '472850']
+PARTIAL rescan codes:
+Total 17 items.
+[0-16] ['376270', '097870', '334970', '021820', '018500', '462980', '357250', '093240', '001080', '030960', '189690', '169330', '012340', '950250', '032800', '950260', '050860']
+full_rescan batch operation: 0
+Financial data collection log >> 
+2026-08-24 01:00:20.812487, no: 0, code 000540 in process
+2026-08-24 01:00:30.366319, no: 1, code 0015N0 in process
+2026-08-24 01:00:37.460877, no: 2, code 0015S0 in process
+2026-08-24 01:00:43.976203, no: 3, code 002210 in process
+2026-08-24 01:01:02.964721, no: 4, code 004800 in process
+2026-08-24 01:01:22.097697, no: 5, code 011330 in process
+2026-08-24 01:01:41.529270, no: 6, code 011930 in process
+2026-08-24 01:02:00.709304, no: 7, code 012160 in process
+2026-08-24 01:02:19.936899, no: 8, code 012630 in process
+2026-08-24 01:02:38.928290, no: 9, code 033130 in process
+2026-08-24 01:02:57.976686, no: 10, code 035720 in process
+2026-08-24 01:03:18.232475, no: 11, code 036460 in process
+2026-08-24 01:03:37.101269, no: 12, code 042940 in process
+2026-08-24 01:03:56.184257, no: 13, code 054620 in process
+2026-08-24 01:04:15.540679, no: 14, code 064960 in process
+2026-08-24 01:04:35.209271, no: 15, code 066360 in process
+2026-08-24 01:04:51.286805, no: 16, code 089790 in process
+2026-08-24 01:05:10.080655, no: 17, code 092040 in process
+2026-08-24 01:05:29.772736, no: 18, code 092220 in process
+2026-08-24 01:05:48.831876, no: 19, code 115530 in process
+2026-08-24 01:06:08.093879, no: 20, code 168330 in process
+2026-08-24 01:06:27.243104, no: 21, code 170900 in process
+2026-08-24 01:06:46.115824, no: 22, code 198940 in process
+2026-08-24 01:06:56.214132, no: 23, code 206560 in process
+2026-08-24 01:07:15.229868, no: 24, code 210120 in process
+2026-08-24 01:07:25.287246, no: 25, code 222080 in process
+2026-08-24 01:07:43.495737, no: 26, code 261200 in process
+2026-08-24 01:08:00.522913, no: 27, code 271560 in process
+2026-08-24 01:08:17.665727, no: 28, code 272210 in process
+2026-08-24 01:08:31.682980, no: 29, code 294870 in process
+2026-08-24 01:08:47.947451, no: 30, code 318010 in process
+2026-08-24 01:09:02.203687, no: 31, code 332570 in process
+2026-08-24 01:09:15.178152, no: 32, code 340570 in process
+2026-08-24 01:09:27.723991, no: 33, code 344820 in process
+2026-08-24 01:09:41.635642, no: 34, code 389650 in process
+2026-08-24 01:09:49.535414, no: 35, code 472850 in process
+partial_rescan batch operation: 0
+Financial data collection log >> 
+2026-08-24 01:10:08.523910, no: 0, code 376270 in process
+2026-08-24 01:10:16.140363, no: 1, code 097870 in process
+2026-08-24 01:10:23.989802, no: 2, code 334970 in process
+2026-08-24 01:10:31.676810, no: 3, code 021820 in process
+2026-08-24 01:10:39.840909, no: 4, code 018500 in process
+2026-08-24 01:10:47.534233, no: 5, code 462980 in process
+2026-08-24 01:10:55.045757, no: 6, code 357250 in process
+2026-08-24 01:11:01.165365, no: 7, code 093240 in process
+2026-08-24 01:11:09.091185, no: 8, code 001080 in process
+2026-08-24 01:11:16.935629, no: 9, code 030960 in process
+2026-08-24 01:11:24.717896, no: 10, code 189690 in process
+2026-08-24 01:11:32.560385, no: 11, code 169330 in process
+2026-08-24 01:11:40.469331, no: 12, code 012340 in process
+2026-08-24 01:11:48.165732, no: 13, code 950250 in process
+----> no: 13, code 950250 currency not in KRW, skipping
+2026-08-24 01:11:54.108548, no: 14, code 032800 in process
+2026-08-24 01:12:02.048726, no: 15, code 950260 in process
+----> no: 15, code 950260 currency not in KRW, skipping
+2026-08-24 01:12:07.327850, no: 16, code 050860 in process
