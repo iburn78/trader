@@ -120,7 +120,7 @@
         ...
     ```
 
-- Add C:\Users\user\projects\trader\ or equivalent to environment variable for import to work.
+- Add C:\Users\user\projects\financials\ or equivalent to environment variable for import to work.
 
 - On Korean font setup for matplotlib: 
     * refer to https://unsolvedproblem.github.io/etc/2020/08/04/matplotlib_korean_recog.html

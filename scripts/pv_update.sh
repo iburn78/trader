@@ -1,15 +1,15 @@
 #!/bin/bash
 
-trader="$HOME/projects/trader"
+financials="$HOME/projects/financials"
 tnp="$HOME/projects/tnp"
 
-mkdir -p "${trader}/data_collect/log"
-LOG_FILE="${trader}/data_collect/log/autorun.log"
+mkdir -p "${financials}/data_collect/log"
+LOG_FILE="${financials}/data_collect/log/autorun.log"
 
 exec >> "$LOG_FILE" 2>&1
 
 # Run Python scripts
-source "${trader}/venv/bin/activate"
+source "${financials}/venv/bin/activate"
 
-cd "${trader}/data_collect"
+cd "${financials}/data_collect"
 python -m gen_market_dbs

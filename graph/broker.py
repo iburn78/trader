@@ -7,7 +7,7 @@ import time
 
 cd_ = os.path.dirname(os.path.abspath(__file__)) # .   
 ppd_ = os.path.dirname(os.path.dirname(cd_)) # ../..
-df_krx = pd.read_feather(os.path.join(ppd_, 'trader/data_collect/data/df_krx.feather')) 
+df_krx = pd.read_feather(os.path.join(ppd_, 'financials/data_collect/data/df_krx.feather')) 
 DIV_DB_PATH = os.path.join(cd_, 'data/div_DB_end_date.feather') # 'end_date' to be replaced by actual date
 
 class Broker:

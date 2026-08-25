@@ -1,8 +1,8 @@
 #!/bin/bash
 
-trader="$HOME/projects/trader"
+financials="$HOME/projects/financials"
 
-cd "$trader"
+cd "$financials"
 git add -A
 git commit -m "$(date '+%Y-%m-%d') upload done from linux machine"
 git push

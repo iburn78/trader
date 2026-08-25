@@ -1,6 +1,6 @@
 #!/bin/bash
 
-trader="$HOME/projects/trader"
+financials="$HOME/projects/financials"
 
-cd "$trader"
+cd "$financials"
 git pull --no-edit origin main
