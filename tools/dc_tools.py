@@ -13,6 +13,8 @@ import os
 import io
 
 pd_ = os.path.dirname(os.path.dirname(os.path.abspath(__file__))) # ..
+os.makedirs(os.path.join(pd_, 'data_collect/data'), exist_ok=True)
+os.makedirs(os.path.join(pd_, 'data_collect/log'), exist_ok=True)
 price_db_path = os.path.join(pd_, 'data_collect/data/price_db.feather')
 volume_db_path = os.path.join(pd_, 'data_collect/data/volume_db.feather')
 kospi_path = os.path.join(pd_, 'data_collect/data/kospi.feather')
