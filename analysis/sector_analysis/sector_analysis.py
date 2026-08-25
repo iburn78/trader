@@ -10,8 +10,8 @@ from pathlib import Path
 import matplotlib.pyplot as plt
 import matplotlib.dates as mdates
 from matplotlib.ticker import FuncFormatter
-from trader.tools.analysis_tools import is_KRX_open, load_market_data, get_slope_intercept, KRW_UNIT_KR, round_sig, calc_increment, calc_alpha_beta, dprint, sanitized_filename, dict_to_html
-from trader.tools.dc_tools import get_index, set_KoreanFonts
+from financials.tools.analysis_tools import is_KRX_open, load_market_data, get_slope_intercept, KRW_UNIT_KR, round_sig, calc_increment, calc_alpha_beta, dprint, sanitized_filename, dict_to_html
+from financials.tools.dc_tools import get_index, set_KoreanFonts
 from scraper.tools.tools import PROFILES_DIR, COMPONENTS_DIR, VALUECHAIN_DIR
 from scraper.models.json_models import JsonModel
 from scraper.models.profile import CompanyProfile

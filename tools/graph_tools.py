@@ -1,7 +1,7 @@
 #%%
 import os
 import FinanceDataReader as fdr
-from trader.tools.dc_tools import generate_krx_data, get_main_financial_reports_db
+from financials.tools.dc_tools import generate_krx_data, get_main_financial_reports_db
 import pandas as pd
 import requests
 import time

@@ -6,7 +6,7 @@ import os
 from html2image import Html2Image
 from datetime import datetime
 import subprocess
-from trader.tools.dc_tools import get_main_financial_reports_db
+from financials.tools.dc_tools import get_main_financial_reports_db
 
 cd_ = os.path.dirname(os.path.abspath(__file__)) 
 ppd_ = os.path.dirname(os.path.dirname(cd_)) 

@@ -34,7 +34,7 @@
     REMEMBER WHEN USING NEW MACHINES
     - add 'projects' folder to PYTHONPATH
     - then use dirname subsequently 
-        - from trader.tools import ... should work
+        - from financials.tools import ... should work
     - linux: add in /etc/environment 
         - cron will refer to this
         - .bashrc is not referred in cron

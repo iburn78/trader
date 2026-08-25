@@ -10,7 +10,7 @@ from concurrent.futures import ThreadPoolExecutor
 from functools import partial
 
 from yfinance.exceptions import YFRateLimitError
-from trader.tools.dc_tools import pvi_paths
+from financials.tools.dc_tools import pvi_paths
 
 # intention:
 # - if fdr makes error: halt by ValueError

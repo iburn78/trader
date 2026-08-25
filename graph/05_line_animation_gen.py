@@ -1,6 +1,6 @@
 #%% 
-from trader.tools.graph_tools import *
-from trader.graph.drawer import *
+from financials.tools.graph_tools import *
+from financials.graph.drawer import *
 
 drawer = Drawer(
     figsize = (16, 16), 

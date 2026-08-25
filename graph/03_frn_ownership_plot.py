@@ -3,8 +3,8 @@
 # Foreign Ownership plots
 # -------------------------------------------------------
 
-from trader.graph.drawer import Drawer
-from trader.graph.broker import Broker
+from financials.graph.drawer import Drawer
+from financials.graph.broker import Broker
 
 code = '005930'
 broker = Broker()

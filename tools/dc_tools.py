@@ -1,5 +1,5 @@
 #%%
-from trader.tools.dictionary import KRW_UNIT
+from financials.tools.dictionary import KRW_UNIT
 from math import log10
 import seaborn as sns
 import matplotlib.pyplot as plt

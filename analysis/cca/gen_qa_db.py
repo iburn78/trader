@@ -3,8 +3,8 @@ import pandas as pd
 import numpy as np
 import os
 from tqdm import tqdm
-from trader.tools.dc_tools import get_quarterly_data
-from trader.tools.dc_tools import get_main_financial_reports_db
+from financials.tools.dc_tools import get_quarterly_data
+from financials.tools.dc_tools import get_main_financial_reports_db
 
 # basic load
 cd_ = os.path.dirname(os.path.abspath(__file__)) 

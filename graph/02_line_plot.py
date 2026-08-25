@@ -1,5 +1,5 @@
 #%%
-from trader.graph.drawer import Drawer
+from financials.graph.drawer import Drawer
 
 # ----------------------------------------------------------------
 # PRICE, PER, PBR plots

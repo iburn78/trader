@@ -32,8 +32,8 @@ yearly_closing_prices.index = yearly_closing.index.year
 #%% -------------------------------------------------------------
 # An example of animating index developments since the normalize date
 # ---------------------------------------------------------------
-from trader.tools.graph_tools import *
-from trader.graph.drawer import Drawer
+from financials.tools.graph_tools import *
+from financials.graph.drawer import Drawer
 
 # Define tickers for global indices
 indices = {

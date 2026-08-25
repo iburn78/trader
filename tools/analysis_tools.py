@@ -4,7 +4,7 @@ import holidays
 from pathlib import Path
 import pandas as pd
 import numpy as np
-from trader.tools.dc_tools import get_main_financial_reports_db
+from financials.tools.dc_tools import get_main_financial_reports_db
 import json
 import re
 import os

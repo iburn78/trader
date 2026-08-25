@@ -11,9 +11,9 @@ from datetime import datetime, timedelta
 import io, os
 import pandas as pd
 from tqdm import tqdm
-from trader.tools.dc_tools import get_quarterly_data, plot_company_financial_summary
-from trader.analysis.cca.cca_tools import get_score_trend, get_periods, L4_rolling_addition, prev_quarter_str
-from trader.analysis.cca.cca_tools import df_krx, fr_db, pr_db, qa_db_file, cca_dict_file, top_N
+from financials.tools.dc_tools import get_quarterly_data, plot_company_financial_summary
+from financials.analysis.cca.cca_tools import get_score_trend, get_periods, L4_rolling_addition, prev_quarter_str
+from financials.analysis.cca.cca_tools import df_krx, fr_db, pr_db, qa_db_file, cca_dict_file, top_N
 
 target_account = 'net_income' # for some companies, api does not provide net income data
 target_account = 'operating_income' # PER is then based on operating income, could be different from other PER publications
@@ -137,8 +137,8 @@ def get_cca_dict(cca_dict_file=cca_dict_file, force_recreate=False):
 import matplotlib.pyplot as plt
 from pptx import Presentation
 from pptx.util import Inches
-from trader.analysis.cca.cca_tools import styled_df_to_image, gen_data_in_html 
-from trader.analysis.cca.cca_tools import results_path, temp_path, CCA_template
+from financials.analysis.cca.cca_tools import styled_df_to_image, gen_data_in_html 
+from financials.analysis.cca.cca_tools import results_path, temp_path, CCA_template
 
 today_hm = pd.Timestamp.today().strftime('%Y-%m-%d_%H%M')
 CCA_result = os.path.join(results_path, f'CCA_result_{today_hm}.pptx')
