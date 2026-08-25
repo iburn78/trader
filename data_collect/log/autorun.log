@@ -10867,3 +10867,9 @@ sent 810,197 bytes  received 56 bytes  540,168.67 bytes/sec
 total size is 1,125,843,397  speedup is 1,389.50
 prices and volumes updates [initiating] 2026-08-25 08:00:05
 prices and volumes updates [completed]
+prices and volumes updates [initiating] 2026-08-25 10:00:03
+Error retrieving full data for 0220WL: code 0220WL not available in FDR
+Error retrieving full data for 0220W0: code 0220W0 not available in FDR
+Error retrieving full data for 0155E0: code 0155E0 not available in FDR
+[000880] Close mismatch on 2026-08-24: fdr=83800, yf=110794.78125. Using fdr only.
+prices and volumes updates [completed]
