@@ -4,3 +4,12 @@ prices and volumes updates [initiating] 2026-08-26 18:00:04
 prices and volumes updates [completed]
 prices and volumes updates [initiating] 2026-08-26 20:00:04
 prices and volumes updates [completed]
+prices and volumes updates [initiating] 2026-08-27 01:00:04
+prices and volumes updates [completed]
+/home/andy/projects/financials/scripts/data_collect.sh: 줄 16: 203513 죽었음               python -m gen_financial_records
+sending incremental file list
+df_krx.db
+update_info.txt
+
+sent 810,194 bytes  received 56 bytes  1,620,500.00 bytes/sec
+total size is 1,125,843,397  speedup is 1,389.50
