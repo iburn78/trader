@@ -82,3 +82,28 @@ Financial data collection log >>
 ----> no: 22, code 950250 currency not in KRW, skipping
 2026-08-27 01:12:36.434597, no: 23, code 900250 in process
 ----> no: 23, code 900250 currency not in KRW, skipping
+Company health data collection initiated at 2026-08-27 11:56:40.954031
+Updating KRX data...
+Updating between dates: 2026-08-20 / 2026-08-27
+FULL rescan codes:
+Total 19 items.
+[0-18] ['002320', '011930', '066360', '079550', '086710', '092220', '115530', '170900', '206560', '246710', '261200', '272210', '318010', '340570', '344820', '371950', '372910', '377460', '419080']
+PARTIAL rescan codes:
+Total 20 items.
+[0-19] ['376270', '030960', '097870', '900250', '169330', '189690', '032800', '093240', '0013V0', '050860', '001080', '478560', '018500', '334970', '462980', '282620', '021820', '100660', '900310', '389470']
+full_rescan batch operation: 0
+Financial data collection log >> 
+2026-08-27 11:56:44.227643, no: 0, code 002320 in process
+2026-08-27 11:57:01.027442, no: 1, code 011930 in process
+2026-08-27 11:57:16.778203, no: 2, code 066360 in process
+2026-08-27 11:57:31.176104, no: 3, code 079550 in process
+2026-08-27 11:57:47.478421, no: 4, code 086710 in process
+2026-08-27 11:57:58.474833, no: 5, code 092220 in process
+2026-08-27 11:58:14.334559, no: 6, code 115530 in process
+2026-08-27 11:58:32.472176, no: 7, code 170900 in process
+2026-08-27 11:58:48.490530, no: 8, code 206560 in process
+2026-08-27 11:59:04.677350, no: 9, code 246710 in process
+2026-08-27 11:59:17.322036, no: 10, code 261200 in process
+2026-08-27 11:59:31.979424, no: 11, code 272210 in process
+2026-08-27 11:59:44.153415, no: 12, code 318010 in process
+2026-08-27 11:59:56.072209, no: 13, code 340570 in process
