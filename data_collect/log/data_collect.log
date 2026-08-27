@@ -107,3 +107,33 @@ Financial data collection log >>
 2026-08-27 11:59:31.979424, no: 11, code 272210 in process
 2026-08-27 11:59:44.153415, no: 12, code 318010 in process
 2026-08-27 11:59:56.072209, no: 13, code 340570 in process
+2026-08-27 12:00:08.744005, no: 14, code 344820 in process
+2026-08-27 12:00:22.221374, no: 15, code 371950 in process
+2026-08-27 12:00:32.898833, no: 16, code 372910 in process
+2026-08-27 12:00:43.518195, no: 17, code 377460 in process
+2026-08-27 12:00:53.276997, no: 18, code 419080 in process
+partial_rescan batch operation: 0
+Financial data collection log >> 
+2026-08-27 12:01:11.945940, no: 0, code 376270 in process
+2026-08-27 12:01:19.085390, no: 1, code 030960 in process
+2026-08-27 12:01:26.397286, no: 2, code 097870 in process
+2026-08-27 12:01:33.697880, no: 3, code 900250 in process
+----> no: 3, code 900250 currency not in KRW, skipping
+2026-08-27 12:01:38.900309, no: 4, code 169330 in process
+2026-08-27 12:01:46.117431, no: 5, code 189690 in process
+2026-08-27 12:01:53.410281, no: 6, code 032800 in process
+2026-08-27 12:02:00.971336, no: 7, code 093240 in process
+2026-08-27 12:02:08.252073, no: 8, code 0013V0 in process
+2026-08-27 12:02:14.467512, no: 9, code 050860 in process
+2026-08-27 12:02:21.663880, no: 10, code 001080 in process
+2026-08-27 12:02:28.886057, no: 11, code 478560 in process
+2026-08-27 12:02:36.929624, no: 12, code 018500 in process
+2026-08-27 12:02:44.130102, no: 13, code 334970 in process
+2026-08-27 12:02:51.362231, no: 14, code 462980 in process
+2026-08-27 12:02:58.316003, no: 15, code 282620 in process
+2026-08-27 12:03:04.034194, no: 16, code 021820 in process
+2026-08-27 12:03:11.337768, no: 17, code 100660 in process
+2026-08-27 12:03:18.337035, no: 18, code 900310 in process
+----> no: 18, code 900310 currency not in KRW, skipping
+2026-08-27 12:03:23.526842, no: 19, code 389470 in process
+== Update finished ==
