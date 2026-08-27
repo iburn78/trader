@@ -153,46 +153,6 @@
                 else: 
                     date_str = date_req
         ```
-
-    - [new update on krx/listing.py ] - modify the entire read func
-        ```
-        class KrxMarcapListingCache:
-            def read(self, date_req=None):
-                url = 'http://data.krx.co.kr/comm/bldAttendant/executeForResourceBundle.cmd?baseName=krx.mdc.i18n.component&key=B128.bld'
-                try:
-                    r = requests.get(url, headers=self.headers)
-                    j = json.loads(r.text)
-                    date_str = j['result']['output'][0]['max_work_dt']
-                except:
-                    # print(r.text)
-                    # raise ValueError(f"Failed to load data from {url}")
-                    print('failed to load KRX, trying today')
-                    date_str = datetime.today().strftime('%Y%m%d')
-                if date_req != None:
-                    date_str = date_req
-                formatted_date = datetime.strptime(date_str, '%Y%m%d').strftime('%Y-%m-%d')
-        
-                url = f'https://raw.githubusercontent.com/FinanceData/fdr_krx_data_cache/refs/heads/master/data/listing/krx/{formatted_date}.csv'
-                try: 
-                    df = pd.read_csv(url, index_col=0, dtype={'Code': str, 'Dept': str, 'ChangeCode': str, 'MarketId': str})
-                except:
-                    print(f"ERROR {formatted_date} csv data not exists")
-                    import sys
-                    sys.exit()
-                df = df.reset_index(drop=True)
-        
-                mkt_map = {'KRX-MARCAP':'ALL', 'KRX':'ALL', 'KOSPI':'STK', 'KOSDAQ':'KSQ', 'KONEX':'KNX'}
-                if self.market not in mkt_map:
-                    raise ValueError(f"market shoud be one of {list(mkt_map.keys())}")
-        
-                mkt = mkt_map[self.market]
-                if mkt != 'ALL':
-                    df = df[df['MarketId'] == mkt]
-                    df = df.reset_index(drop=True)
-
-                df.attrs = {'exchange':'KRX', 'source':'KRX', 'data':'LISTINGS'}
-                return df
-        ```
         
 - Quick fix
     ```

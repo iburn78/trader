@@ -13,6 +13,8 @@ source "${financials}/venv/bin/activate"
 
 cd "${financials}/data_collect"
 python -m gen_market_dbs
-python -m gen_financial_records
+# python -m gen_financial_records
+# Prevent the same code from running twice across cron jobs
+/usr/bin/flock -n /tmp/gen_financial_records.lock python -m gen_financial_records
 
 rsync -ruv "${financials}/data_collect/plots/" "${tnp}/public/data/"

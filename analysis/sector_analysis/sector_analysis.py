@@ -12,11 +12,11 @@ import matplotlib.dates as mdates
 from matplotlib.ticker import FuncFormatter
 from financials.tools.analysis_tools import is_KRX_open, load_market_data, get_slope_intercept, KRW_UNIT_KR, round_sig, calc_increment, calc_alpha_beta, dprint, sanitized_filename, dict_to_html
 from financials.tools.dc_tools import get_index, set_KoreanFonts
-from scraper.tools.tools import PROFILES_DIR, COMPONENTS_DIR, VALUECHAIN_DIR
-from scraper.models.json_models import JsonModel
-from scraper.models.profile import CompanyProfile
-from scraper.models.component import Component
-from scraper.models.valuechain import ValueChain
+from build.tools.tools import PROFILES_DIR, COMPONENTS_DIR, VALUECHAIN_DIR
+from build.models.json_models import JsonModel
+from build.models.profile import CompanyProfile
+from build.models.component import Component
+from build.models.valuechain import ValueChain
 
 '''
 ma: MarCap (until last day if is_KRX_open == True; if strict False then include today if it is after 12:00), Amount
