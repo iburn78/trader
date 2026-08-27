@@ -1,7 +1,7 @@
 #!/bin/bash
 
 financials="$HOME/projects/financials"
-tnp="$HOME/projects/tnp"
+data="$HOME/projects/data"
 
 mkdir -p "${financials}/data_collect/log"
 LOG_FILE="${financials}/data_collect/log/autorun.log"
@@ -13,3 +13,6 @@ source "${financials}/venv/bin/activate"
 
 cd "${financials}/data_collect"
 python -m gen_market_dbs
+
+mkdir -p "${data}/market"
+rsync -ruv "${financials}/data_collect/data/" "${data}/market/"
