@@ -151,3 +151,16 @@ update_info.txt
 
 sent 12,053,201 bytes  received 630 bytes  8,035,887.33 bytes/sec
 total size is 1,127,574,055  speedup is 93.54
+prices and volumes updates [initiating] 2026-08-28 08:00:05
+prices and volumes updates [completed]
+sending incremental file list
+df_krx.feather
+financial_reports_main.parquet
+kosdaq.feather
+kospi.feather
+kospi200.feather
+price_db.feather
+volume_db.feather
+
+sent 71,397,847 bytes  received 149 bytes  142,795,992.00 bytes/sec
+total size is 71,379,875  speedup is 1.00
