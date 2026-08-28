@@ -234,3 +234,29 @@ volume_db.feather
 
 sent 50,532,348 bytes  received 111 bytes  101,064,918.00 bytes/sec
 total size is 71,391,515  speedup is 1.41
+prices and volumes updates [initiating] 2026-08-29 01:00:05
+prices and volumes updates [completed]
+Traceback (most recent call last):
+  File "/usr/lib/python3.10/runpy.py", line 196, in _run_module_as_main
+    return _run_code(code, main_globals, None,
+  File "/usr/lib/python3.10/runpy.py", line 86, in _run_code
+    exec(code, run_globals)
+  File "/home/andy/projects/financials/data_collect/gen_financial_records.py", line 400, in <module>
+    update_main_db(log_file, main_db, plot_gen_control_file)
+  File "/home/andy/projects/financials/data_collect/gen_financial_records.py", line 339, in update_main_db
+    full_rescan_code, partial_rescan_code = _generate_update_codelist(log_file, start_day, end_day)
+  File "/home/andy/projects/financials/data_collect/gen_financial_records.py", line 259, in _generate_update_codelist
+    dart = OpenDartReader(DART_APIS[2])
+  File "/home/andy/projects/financials/venv/lib/python3.10/site-packages/OpenDartReader/dart.py", line 39, in __init__
+    df = dart_list.corp_codes(api_key)
+  File "/home/andy/projects/financials/venv/lib/python3.10/site-packages/OpenDartReader/dart_list.py", line 171, in corp_codes
+    raise ValueError({'status': status, 'message': message})
+ValueError: {'status': '800', 'message': '시스템 점검으로 인한  서비스가 중지 중입니다.'}
+Company health data collection initiated at 2026-08-29 01:00:12.896108
+Updating KRX data...
+sending incremental file list
+df_krx.db
+update_info.txt
+
+sent 810,310 bytes  received 56 bytes  1,620,732.00 bytes/sec
+total size is 1,127,574,055  speedup is 1,391.44
