@@ -164,3 +164,18 @@ volume_db.feather
 
 sent 71,397,847 bytes  received 149 bytes  142,795,992.00 bytes/sec
 total size is 71,379,875  speedup is 1.00
+$0017J0.KS: possibly delisted; no timezone found
+prices and volumes updates [initiating] 2026-08-28 10:00:04
+[204610] Close mismatch on 2026-08-27: fdr=3345, yf=3305.0. Using fdr only.
+[080720] Close mismatch on 2026-08-27: fdr=2725, yf=8175.8173828125. Using fdr only.
+[012170] Close mismatch on 2026-08-27: fdr=748, yf=3740.0. Using fdr only.
+prices and volumes updates [completed]
+sending incremental file list
+kosdaq.feather
+kospi.feather
+kospi200.feather
+price_db.feather
+volume_db.feather
+
+sent 50,532,350 bytes  received 111 bytes  33,688,307.33 bytes/sec
+total size is 71,391,515  speedup is 1.41
