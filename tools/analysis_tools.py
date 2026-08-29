@@ -21,13 +21,13 @@ KRW_UNIT_KR = {
 # -----------------------------------------------------------------------------------
 def load_market_data():
     BASE_DIR = Path(__file__).resolve().parents[1]
-    DATA_DIR = BASE_DIR / 'data_collect' / 'data'
+    DATA_DIR = BASE_DIR / 'collect' / 'data'
 
     PRICE_DB_PATH = DATA_DIR / 'price_db.feather'
     VOLUME_DB_PATH = DATA_DIR / 'volume_db.feather'
 
     pd_ = os.path.dirname(os.path.dirname(os.path.abspath(__file__))) 
-    df_krx = pd.read_feather(os.path.join(pd_, 'data_collect/data/df_krx.feather'))
+    df_krx = pd.read_feather(os.path.join(pd_, 'collect/data/df_krx.feather'))
     prices = pd.read_feather(PRICE_DB_PATH)
     volumes = pd.read_feather(VOLUME_DB_PATH)
     fr_main_db = get_main_financial_reports_db()

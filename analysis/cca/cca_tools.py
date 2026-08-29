@@ -25,9 +25,9 @@ qa_db_file = os.path.join(cd_, 'temp/qa_db.pkl')
 cca_dict_file = os.path.join(cd_, 'temp/cca_dict.pkl')
 
 # basic load
-df_krx = pd.read_feather(os.path.join(ppd_, 'data_collect/data/df_krx.feather'))
+df_krx = pd.read_feather(os.path.join(ppd_, 'collect/data/df_krx.feather'))
 fr_db = get_main_financial_reports_db()
-pr_db = pd.read_feather(os.path.join(ppd_, 'data_collect/data/price_db.feather'))
+pr_db = pd.read_feather(os.path.join(ppd_, 'collect/data/price_db.feather'))
 qa_db = pd.read_pickle(qa_db_file)
 
 # ----------------------------------------------------------

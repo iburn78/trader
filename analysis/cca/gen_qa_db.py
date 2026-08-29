@@ -9,7 +9,7 @@ from financials.tools.dc_tools import get_main_financial_reports_db
 # basic load
 cd_ = os.path.dirname(os.path.abspath(__file__)) 
 ppd_ = os.path.dirname(os.path.dirname(cd_)) 
-df_krx = pd.read_feather(os.path.join(ppd_, 'data_collect/data/df_krx.feather'))
+df_krx = pd.read_feather(os.path.join(ppd_, 'collect/data/df_krx.feather'))
 fr_db = get_main_financial_reports_db()
 
 temp_path = os.path.join(cd_, 'temp/')

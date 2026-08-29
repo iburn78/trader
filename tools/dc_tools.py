@@ -13,13 +13,13 @@ import os
 import io
 
 pd_ = os.path.dirname(os.path.dirname(os.path.abspath(__file__))) # ..
-os.makedirs(os.path.join(pd_, 'data_collect/data'), exist_ok=True)
-os.makedirs(os.path.join(pd_, 'data_collect/log'), exist_ok=True)
-price_db_path = os.path.join(pd_, 'data_collect/data/price_db.feather')
-volume_db_path = os.path.join(pd_, 'data_collect/data/volume_db.feather')
-kospi_path = os.path.join(pd_, 'data_collect/data/kospi.feather')
-kosdaq_path = os.path.join(pd_, 'data_collect/data/kosdaq.feather')
-kospi200_path = os.path.join(pd_, 'data_collect/data/kospi200.feather')
+os.makedirs(os.path.join(pd_, 'collect/data'), exist_ok=True)
+os.makedirs(os.path.join(pd_, 'collect/log'), exist_ok=True)
+price_db_path = os.path.join(pd_, 'collect/data/price_db.feather')
+volume_db_path = os.path.join(pd_, 'collect/data/volume_db.feather')
+kospi_path = os.path.join(pd_, 'collect/data/kospi.feather')
+kosdaq_path = os.path.join(pd_, 'collect/data/kosdaq.feather')
+kospi200_path = os.path.join(pd_, 'collect/data/kospi200.feather')
 
 # price, volume, index
 pvi_paths = [price_db_path, volume_db_path, kospi_path, kosdaq_path, kospi200_path]
@@ -60,7 +60,7 @@ def plot_company_financial_summary(fr_db, pr_db, code, path=None, start_quarter=
     _plot_barline(ax[4], yiu, 'equity', 'retained_earnings', 'debt_to_equity_ratio', cc1=cmap(0.25), cc2=cmap(0.55))
 
     pd_ = os.path.dirname(os.path.dirname(os.path.abspath(__file__))) # .. 
-    df_krx = pd.read_feather(os.path.join(pd_, 'data_collect/data/df_krx.feather'))
+    df_krx = pd.read_feather(os.path.join(pd_, 'collect/data/df_krx.feather'))
     try: 
         name = df_krx['Name'][code]
     except Exception as e: 
@@ -313,12 +313,12 @@ def generate_krx_data(sql_db_creation=True):
     df_krx = df_krx[df_krx['MarketId'] != 'KNX']
 
     # df_krx=df_krx[~df_krx['Dept'].str.contains('관리')]   # remove companies in trouble
-    df_krx.to_feather(os.path.join(pd_, 'data_collect/data/df_krx.feather'))
+    df_krx.to_feather(os.path.join(pd_, 'collect/data/df_krx.feather'))
 
     # this db is used in TNP project for code search in node
     if sql_db_creation: 
         df_krx_sql = df_krx.copy()
-        plots_dir = os.path.join(pd_, 'data_collect/plots') 
+        plots_dir = os.path.join(pd_, 'collect/plots') 
         os.makedirs(plots_dir, exist_ok=True)
         conn = sqlite3.connect(os.path.join(plots_dir, 'df_krx.db'))
         df_krx_sql.to_sql('krx_data', conn, if_exists='replace')
@@ -370,10 +370,10 @@ def nth_quarter_before(n: int = 0):
 
 def get_main_financial_reports_db():
     pd_ = os.path.dirname(os.path.dirname(os.path.abspath(__file__))) # ..
-    # # main_db_file = os.path.join(pd_, 'data_collect/data/financial_reports_main.feather') 
-    # main_db_file1 = os.path.join(pd_, 'data_collect/data/financial_reports_main1.feather') 
-    # main_db_file2 = os.path.join(pd_, 'data_collect/data/financial_reports_main2.feather') 
-    # main_db_file3 = os.path.join(pd_, 'data_collect/data/financial_reports_main3.feather') 
+    # # main_db_file = os.path.join(pd_, 'collect/data/financial_reports_main.feather') 
+    # main_db_file1 = os.path.join(pd_, 'collect/data/financial_reports_main1.feather') 
+    # main_db_file2 = os.path.join(pd_, 'collect/data/financial_reports_main2.feather') 
+    # main_db_file3 = os.path.join(pd_, 'collect/data/financial_reports_main3.feather') 
     
     # # main_db = pd.read_feather(main_db_file)
     # main_db1 = pd.read_feather(main_db_file1)
@@ -384,16 +384,16 @@ def get_main_financial_reports_db():
 
     # git file size limit ~100Mb, so need to compress better using parquet
     # with parquet, no need to split (yet)
-    main_db_file = os.path.join(pd_, 'data_collect/data/financial_reports_main.parquet') 
+    main_db_file = os.path.join(pd_, 'collect/data/financial_reports_main.parquet') 
     main_db = pd.read_parquet(main_db_file)
 
     return main_db
 
 def save_main_financial_reports_db(main_db: pd.DataFrame):
     pd_ = os.path.dirname(os.path.dirname(os.path.abspath(__file__))) # ..
-    # main_db_file1 = os.path.join(pd_, 'data_collect/data/financial_reports_main1.feather') 
-    # main_db_file2 = os.path.join(pd_, 'data_collect/data/financial_reports_main2.feather') 
-    # main_db_file3 = os.path.join(pd_, 'data_collect/data/financial_reports_main3.feather') 
+    # main_db_file1 = os.path.join(pd_, 'collect/data/financial_reports_main1.feather') 
+    # main_db_file2 = os.path.join(pd_, 'collect/data/financial_reports_main2.feather') 
+    # main_db_file3 = os.path.join(pd_, 'collect/data/financial_reports_main3.feather') 
 
     # CHUNK_SIZE = int(len(main_db)/3)
     # main_db1 = main_db.iloc[:CHUNK_SIZE]
@@ -404,7 +404,7 @@ def save_main_financial_reports_db(main_db: pd.DataFrame):
     # main_db2.to_feather(main_db_file2)
     # main_db3.to_feather(main_db_file3)
 
-    main_db_file = os.path.join(pd_, 'data_collect/data/financial_reports_main.parquet') 
+    main_db_file = os.path.join(pd_, 'collect/data/financial_reports_main.parquet') 
     main_db.to_parquet(main_db_file, compression='zstd') 
 
     return True
@@ -423,7 +423,7 @@ def create_plots_from_plot_gen_control(plot_gen_control_file):
 
     main_db = get_main_financial_reports_db()
     pd_ = os.path.dirname(os.path.dirname(os.path.abspath(__file__))) # .. 
-    price_dbfile = os.path.join(pd_, 'data_collect/data/price_db.feather') 
+    price_dbfile = os.path.join(pd_, 'collect/data/price_db.feather') 
     price_db = pd.read_feather(price_dbfile)
 
     # -----------------------------------------------------
@@ -434,7 +434,7 @@ def create_plots_from_plot_gen_control(plot_gen_control_file):
     l = len(plot_ctrl)
     for i, code in enumerate(plot_ctrl):
         print('{} | {}/{}'.format(code, i+1, l))
-        path = os.path.join(pd_, 'data_collect/plots/'+code+'.png')
+        path = os.path.join(pd_, 'collect/plots/'+code+'.png')
         try:
             plot_company_financial_summary(main_db, price_db, code, path)
         except Exception as error:

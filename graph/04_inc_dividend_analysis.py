@@ -10,8 +10,8 @@ from financials.tools.dc_tools import set_KoreanFonts
 
 cd_ = os.path.dirname(os.path.abspath(__file__)) # . 
 pd_ = os.path.dirname(cd_) # .. 
-df_krx_path = os.path.join(pd_, 'data_collect/data/df_krx.feather')
-price_db_path = os.path.join(pd_, 'data_collect/data/price_db.feather')
+df_krx_path = os.path.join(pd_, 'collect/data/df_krx.feather')
+price_db_path = os.path.join(pd_, 'collect/data/price_db.feather')
 
 # created in broker
 end_date = pd.to_datetime('now').strftime('%Y%m%d')
