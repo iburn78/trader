@@ -2,6 +2,7 @@
 
 financials="$HOME/projects/financials"
 tnp="$HOME/projects/tnp"
+data="$HOME/projects/data"
 
 mkdir -p "${financials}/collect/log"
 LOG_FILE="${financials}/collect/log/autorun.log"
@@ -18,3 +19,6 @@ python -m gen_market_dbs
 /usr/bin/flock -n /tmp/gen_financial_records.lock python -m gen_financial_records
 
 rsync -ruv "${financials}/collect/plots/" "${tnp}/public/data/"
+
+mkdir -p "${data}/market"
+rsync -ruv "${financials}/collect/data/" "${data}/market/"
