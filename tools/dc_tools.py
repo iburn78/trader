@@ -443,15 +443,3 @@ def create_plots_from_plot_gen_control(plot_gen_control_file):
                 os.remove(path)
 
     os.remove(plot_gen_control_file)
-
-def get_index(name = None):
-    index_dict = {
-        'KOSPI': kospi_path,
-        'KOSDAQ': kosdaq_path,
-        'KOSPI200': kospi200_path,
-    }
-    if name is None:
-        return [pd.read_feather(index_dict[k]) for k in index_dict.keys()]
-    if name not in index_dict.keys(): 
-        raise ValueError(f'Check index name: {name}')
-    return pd.read_feather(index_dict[name])
