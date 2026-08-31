@@ -310,3 +310,14 @@ volume_db.feather
 
 sent 50,554,607 bytes  received 111 bytes  33,703,145.33 bytes/sec
 total size is 71,413,448  speedup is 1.41
+prices and volumes updates [initiating] 2026-08-31 12:00:05
+prices and volumes updates [completed]
+sending incremental file list
+kosdaq.feather
+kospi.feather
+kospi200.feather
+price_db.feather
+volume_db.feather
+
+sent 50,554,607 bytes  received 111 bytes  101,109,436.00 bytes/sec
+total size is 71,413,448  speedup is 1.41
