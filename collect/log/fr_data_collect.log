@@ -188,3 +188,78 @@ Financial data collection log >>
 2026-09-01 01:08:31.528592, no: 22, code 900100 in process
 ----> no: 22, code 900100 currency not in KRW, skipping
 == Update finished ==
+Company health data collection initiated at 2026-09-02 01:00:16.523106
+Updating KRX data...
+Updating between dates: 2026-08-25 / 2026-09-02
+FULL rescan codes:
+Total 30 items.
+[0-29] ['0001A0', '000370', '000400', '000540', '000880', '001470', '002220', '002320', '003690', '004870', '040300', '053690', '054090', '054670', '058970', '066360', '079550', '085620', '086710', '088350', '102370', '102940', '199480', '246710', '273640', '282620', '285490', '372910', '377460', '419080']
+PARTIAL rescan codes:
+Total 21 items.
+[0-20] ['189690', '097870', '900260', '050860', '900100', '001080', '900070', '900300', '900310', '169330', '032800', '305090', '030960', '900110', '900270', '021820', '900140', '334970', '900250', '093240', '900340']
+full_rescan batch operation: 0
+Financial data collection log >> 
+2026-09-02 01:00:24.129158, no: 0, code 0001A0 in process
+2026-09-02 01:00:30.495541, no: 1, code 000370 in process
+2026-09-02 01:00:39.068260, no: 2, code 000400 in process
+2026-09-02 01:00:47.616830, no: 3, code 000540 in process
+2026-09-02 01:00:56.348975, no: 4, code 000880 in process
+2026-09-02 01:01:12.175910, no: 5, code 001470 in process
+2026-09-02 01:01:28.539541, no: 6, code 002220 in process
+2026-09-02 01:01:45.132834, no: 7, code 002320 in process
+2026-09-02 01:02:01.078774, no: 8, code 003690 in process
+2026-09-02 01:02:10.044823, no: 9, code 004870 in process
+2026-09-02 01:02:26.398728, no: 10, code 040300 in process
+2026-09-02 01:02:42.563923, no: 11, code 053690 in process
+2026-09-02 01:02:58.670371, no: 12, code 054090 in process
+2026-09-02 01:03:14.573975, no: 13, code 054670 in process
+2026-09-02 01:03:29.950390, no: 14, code 058970 in process
+2026-09-02 01:03:41.102929, no: 15, code 066360 in process
+2026-09-02 01:03:55.535502, no: 16, code 079550 in process
+2026-09-02 01:04:11.215266, no: 17, code 085620 in process
+2026-09-02 01:04:19.739076, no: 18, code 086710 in process
+2026-09-02 01:04:32.136866, no: 19, code 088350 in process
+2026-09-02 01:04:40.941819, no: 20, code 102370 in process
+2026-09-02 01:04:51.070278, no: 21, code 102940 in process
+2026-09-02 01:05:06.771546, no: 22, code 199480 in process
+2026-09-02 01:05:14.305821, no: 23, code 246710 in process
+2026-09-02 01:05:26.958265, no: 24, code 273640 in process
+2026-09-02 01:05:37.239888, no: 25, code 282620 in process
+2026-09-02 01:05:43.038110, no: 26, code 285490 in process
+2026-09-02 01:05:55.867348, no: 27, code 372910 in process
+2026-09-02 01:06:06.292105, no: 28, code 377460 in process
+2026-09-02 01:06:15.916520, no: 29, code 419080 in process
+partial_rescan batch operation: 0
+Financial data collection log >> 
+2026-09-02 01:06:35.122906, no: 0, code 189690 in process
+2026-09-02 01:06:41.257576, no: 1, code 097870 in process
+2026-09-02 01:06:47.134366, no: 2, code 900260 in process
+----> no: 2, code 900260 currency not in KRW, skipping
+2026-09-02 01:06:52.447224, no: 3, code 050860 in process
+2026-09-02 01:06:58.354397, no: 4, code 900100 in process
+----> no: 4, code 900100 currency not in KRW, skipping
+2026-09-02 01:07:03.656982, no: 5, code 001080 in process
+2026-09-02 01:07:09.487762, no: 6, code 900070 in process
+----> no: 6, code 900070 currency not in KRW, skipping
+2026-09-02 01:07:14.805888, no: 7, code 900300 in process
+----> no: 7, code 900300 currency not in KRW, skipping
+2026-09-02 01:07:20.124107, no: 8, code 900310 in process
+----> no: 8, code 900310 currency not in KRW, skipping
+2026-09-02 01:07:25.425242, no: 9, code 169330 in process
+2026-09-02 01:07:31.269417, no: 10, code 032800 in process
+2026-09-02 01:07:37.107797, no: 11, code 305090 in process
+2026-09-02 01:07:44.138309, no: 12, code 030960 in process
+2026-09-02 01:07:49.958836, no: 13, code 900110 in process
+----> no: 13, code 900110 currency not in KRW, skipping
+2026-09-02 01:07:55.258733, no: 14, code 900270 in process
+----> no: 14, code 900270 currency not in KRW, skipping
+2026-09-02 01:08:00.555830, no: 15, code 021820 in process
+2026-09-02 01:08:06.409412, no: 16, code 900140 in process
+----> no: 16, code 900140 currency not in KRW, skipping
+2026-09-02 01:08:12.994134, no: 17, code 334970 in process
+2026-09-02 01:08:18.856145, no: 18, code 900250 in process
+----> no: 18, code 900250 currency not in KRW, skipping
+2026-09-02 01:08:24.151361, no: 19, code 093240 in process
+2026-09-02 01:08:30.015874, no: 20, code 900340 in process
+----> no: 20, code 900340 currency not in KRW, skipping
+== Update finished ==
