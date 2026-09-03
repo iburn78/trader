@@ -334,3 +334,69 @@ Financial data collection log >>
 2026-09-03 01:07:54.243501, no: 17, code 050860 in process
 2026-09-03 01:08:00.101815, no: 18, code 097870 in process
 == Update finished ==
+Company health data collection initiated at 2026-09-04 01:00:13.714267
+Updating KRX data...
+Updating between dates: 2026-08-27 / 2026-09-04
+FULL rescan codes:
+Total 26 items.
+[0-25] ['0001A0', '000370', '000400', '000540', '000880', '001470', '002220', '003670', '003690', '004870', '040300', '053690', '054090', '054670', '058970', '085620', '086710', '088350', '102370', '102940', '143210', '199480', '246710', '273640', '282620', '285490']
+PARTIAL rescan codes:
+Total 18 items.
+[0-17] ['021820', '900270', '097870', '032800', '093240', '900110', '169330', '900140', '189690', '900340', '900260', '900070', '050860', '900100', '900300', '001080', '334970', '030960']
+full_rescan batch operation: 0
+Financial data collection log >> 
+2026-09-04 01:00:21.207036, no: 0, code 0001A0 in process
+2026-09-04 01:00:27.434834, no: 1, code 000370 in process
+2026-09-04 01:00:36.019447, no: 2, code 000400 in process
+2026-09-04 01:00:44.599568, no: 3, code 000540 in process
+2026-09-04 01:00:53.092867, no: 4, code 000880 in process
+2026-09-04 01:01:09.424866, no: 5, code 001470 in process
+2026-09-04 01:01:25.605959, no: 6, code 002220 in process
+2026-09-04 01:01:41.918776, no: 7, code 003670 in process
+2026-09-04 01:02:00.712407, no: 8, code 003690 in process
+2026-09-04 01:02:09.268619, no: 9, code 004870 in process
+2026-09-04 01:02:25.194735, no: 10, code 040300 in process
+2026-09-04 01:02:41.130520, no: 11, code 053690 in process
+2026-09-04 01:02:57.233765, no: 12, code 054090 in process
+2026-09-04 01:03:13.158379, no: 13, code 054670 in process
+2026-09-04 01:03:29.238539, no: 14, code 058970 in process
+2026-09-04 01:03:39.821348, no: 15, code 085620 in process
+2026-09-04 01:03:48.440899, no: 16, code 086710 in process
+2026-09-04 01:03:59.529609, no: 17, code 088350 in process
+2026-09-04 01:04:08.171530, no: 18, code 102370 in process
+2026-09-04 01:04:18.368035, no: 19, code 102940 in process
+2026-09-04 01:04:34.034834, no: 20, code 143210 in process
+2026-09-04 01:04:48.972502, no: 21, code 199480 in process
+2026-09-04 01:04:56.513033, no: 22, code 246710 in process
+2026-09-04 01:05:09.357401, no: 23, code 273640 in process
+2026-09-04 01:05:19.925833, no: 24, code 282620 in process
+2026-09-04 01:05:25.770361, no: 25, code 285490 in process
+partial_rescan batch operation: 0
+Financial data collection log >> 
+2026-09-04 01:05:49.313592, no: 0, code 021820 in process
+2026-09-04 01:05:55.221238, no: 1, code 900270 in process
+----> no: 1, code 900270 currency not in KRW, skipping
+2026-09-04 01:06:00.540944, no: 2, code 097870 in process
+2026-09-04 01:06:06.445623, no: 3, code 032800 in process
+2026-09-04 01:06:12.293992, no: 4, code 093240 in process
+2026-09-04 01:06:18.131446, no: 5, code 900110 in process
+----> no: 5, code 900110 currency not in KRW, skipping
+2026-09-04 01:06:23.472880, no: 6, code 169330 in process
+2026-09-04 01:06:29.329195, no: 7, code 900140 in process
+----> no: 7, code 900140 currency not in KRW, skipping
+2026-09-04 01:06:34.642131, no: 8, code 189690 in process
+2026-09-04 01:06:40.548445, no: 9, code 900340 in process
+----> no: 9, code 900340 currency not in KRW, skipping
+2026-09-04 01:06:45.862453, no: 10, code 900260 in process
+----> no: 10, code 900260 currency not in KRW, skipping
+2026-09-04 01:06:51.294094, no: 11, code 900070 in process
+----> no: 11, code 900070 currency not in KRW, skipping
+2026-09-04 01:06:56.596581, no: 12, code 050860 in process
+2026-09-04 01:07:02.422389, no: 13, code 900100 in process
+----> no: 13, code 900100 currency not in KRW, skipping
+2026-09-04 01:07:07.736779, no: 14, code 900300 in process
+----> no: 14, code 900300 currency not in KRW, skipping
+2026-09-04 01:07:13.058402, no: 15, code 001080 in process
+2026-09-04 01:07:18.980835, no: 16, code 334970 in process
+2026-09-04 01:07:24.810042, no: 17, code 030960 in process
+== Update finished ==
